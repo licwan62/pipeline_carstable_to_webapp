@@ -1,6 +1,6 @@
 Size chart generation log
-Generated at: 2026-07-07T00:23:26
-Config: D:\Home\Scripts\pipeline_carstable_to_webapp\html_user_size_preference.yaml
+Generated at: 2026-07-07T01:00:42
+Config: D:\Home\Scripts\pipeline_carstable_to_webapp\configs\html-user-size-preference.yaml
 Output directory: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\02_html\HNT
 CSS: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\02_html\HNT\size-chart.css
 Pages: 9

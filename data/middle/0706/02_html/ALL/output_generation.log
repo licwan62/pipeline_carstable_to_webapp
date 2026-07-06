@@ -1,6 +1,6 @@
 Size chart generation log
-Generated at: 2026-07-07T00:23:25
-Config: D:\Home\Scripts\pipeline_carstable_to_webapp\html_user_size_preference.yaml
+Generated at: 2026-07-07T01:00:42
+Config: D:\Home\Scripts\pipeline_carstable_to_webapp\configs\html-user-size-preference.yaml
 Output directory: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\02_html\ALL
 CSS: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\02_html\ALL\size-chart.css
 Pages: 6
@@ -12,7 +12,7 @@ Inputs:
 - D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\03_user_size_exports\ALL\non_pickup.tsv
   Sheet: 非皮卡压缩表
   Profile: non-pickup
-  Rows after filtering: 1131
+  Rows after filtering: 1132
   Titles: 49
   Brand column: MAKE
   Stripe column: MODEL

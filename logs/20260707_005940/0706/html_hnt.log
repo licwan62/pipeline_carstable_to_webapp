@@ -1,0 +1,3 @@
+cwd: D:\Home\Scripts\generate_size_chart_html
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tsv_to_size_chart_html.py --non-pickup-input D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\03_user_size_exports\HNT\non_pickup.tsv --pickup-input D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\03_user_size_exports\HNT\pickup.tsv --config-path D:\Home\Scripts\pipeline_carstable_to_webapp/configs/html-user-size-preference.yaml --output D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\02_html\HNT\output.html
+
