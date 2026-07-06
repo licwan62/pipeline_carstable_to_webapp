@@ -1,0 +1,225 @@
+repos:
+  pipeline: "."
+  compress: "../compress_to_size_chart"
+  html: "../generate_size_chart_html"
+  publish: "../publish_tables_to_webapp"
+
+paths:
+  input_dir: "data/input"
+  middle_dir: "data/middle"
+  output_dir: "data/output"
+  logs_dir: "logs"
+
+file_rules:
+  input_pattern: "*.xlsx"
+
+run:
+  stop_on_error: true
+
+variables:
+  compress_output_root: "{case_middle}/01_compress"
+  compress_case_dir: "{compress_output_root}/{case_name}"
+  compress_dir: "{compress_case_dir}/compress"
+  non_pickup_tsv: "{compress_dir}/{case_name}_非皮卡高度压缩表.tsv"
+  pickup_tsv: "{compress_dir}/{case_name}_皮卡高度压缩表.tsv"
+  compressed_xlsx: "{compress_case_dir}/{case_name}_output.xlsx"
+  compress_all_stem: "{case_name}_ALL尺码匹配"
+  compress_tm_stem: "{case_name}_TM尺码匹配"
+  compress_hnt_stem: "{case_name}_HNT尺码匹配"
+  all_non_pickup_tsv: "{compress_output_root}/{compress_all_stem}/compress/{compress_all_stem}_非皮卡高度压缩表.tsv"
+  all_pickup_tsv: "{compress_output_root}/{compress_all_stem}/compress/{compress_all_stem}_皮卡高度压缩表.tsv"
+  tm_non_pickup_tsv: "{compress_output_root}/{compress_tm_stem}/compress/{compress_tm_stem}_非皮卡高度压缩表.tsv"
+  tm_pickup_tsv: "{compress_output_root}/{compress_tm_stem}/compress/{compress_tm_stem}_皮卡高度压缩表.tsv"
+  hnt_non_pickup_tsv: "{compress_output_root}/{compress_hnt_stem}/compress/{compress_hnt_stem}_非皮卡高度压缩表.tsv"
+  hnt_pickup_tsv: "{compress_output_root}/{compress_hnt_stem}/compress/{compress_hnt_stem}_皮卡高度压缩表.tsv"
+  html_output_dir: "{case_middle}/02_html"
+  user_size_dir: "{case_middle}/02_user_size_workbooks"
+  user_size_template: "{root}/data/template/尺码适配表.xlsx"
+  user_size_non_pickup_table_name: "非皮卡高度压缩表"
+  user_size_pickup_table_name: "皮卡高度压缩表"
+  all_user_size_workbook: "{user_size_dir}/ALL_用户尺码模板.xlsx"
+  tm_user_size_workbook: "{user_size_dir}/TM_用户尺码模板.xlsx"
+  hnt_user_size_workbook: "{user_size_dir}/HNT_用户尺码模板.xlsx"
+  user_size_export_dir: "{case_middle}/03_user_size_exports"
+  all_user_size_export_dir: "{user_size_export_dir}/ALL"
+  tm_user_size_export_dir: "{user_size_export_dir}/TM"
+  hnt_user_size_export_dir: "{user_size_export_dir}/HNT"
+  all_user_non_pickup_tsv: "{all_user_size_export_dir}/non_pickup.tsv"
+  all_user_pickup_tsv: "{all_user_size_export_dir}/pickup.tsv"
+  tm_user_non_pickup_tsv: "{tm_user_size_export_dir}/non_pickup.tsv"
+  tm_user_pickup_tsv: "{tm_user_size_export_dir}/pickup.tsv"
+  hnt_user_non_pickup_tsv: "{hnt_user_size_export_dir}/non_pickup.tsv"
+  hnt_user_pickup_tsv: "{hnt_user_size_export_dir}/pickup.tsv"
+  all_html_output: "{html_output_dir}/ALL/output.html"
+  tm_html_output: "{html_output_dir}/TM/output.html"
+  hnt_html_output: "{html_output_dir}/HNT/output.html"
+  publish_html_target: "../publish_tables_to_webapp/data/source/html/{case_name}"
+  published_site_dir: "../publish_tables_to_webapp/_site"
+
+steps:
+  compress:
+    enabled: true
+    repo: "compress"
+    command:
+      - "{python}"
+      - "process_tsv.py"
+      - "{input_file}"
+      - "--output-dir"
+      - "{compress_output_root}"
+      - "--field-profile"
+      - "{root}/configs/compress-field-profile.yaml"
+    check_exists:
+      - "{all_non_pickup_tsv}"
+      - "{all_pickup_tsv}"
+      - "{tm_non_pickup_tsv}"
+      - "{tm_pickup_tsv}"
+      - "{hnt_non_pickup_tsv}"
+      - "{hnt_pickup_tsv}"
+
+  user_size_template:
+    enabled: true
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/build_user_size_templates.py"
+      - "--case-name"
+      - "{case_name}"
+      - "--compress-root"
+      - "{compress_output_root}"
+      - "--output-dir"
+      - "{user_size_dir}"
+      - "--template"
+      - "{user_size_template}"
+      - "--non-pickup-table-name"
+      - "{user_size_non_pickup_table_name}"
+      - "--pickup-table-name"
+      - "{user_size_pickup_table_name}"
+    check_exists:
+      - "{all_user_size_workbook}"
+      - "{tm_user_size_workbook}"
+      - "{hnt_user_size_workbook}"
+    pause_after: "请打开 {user_size_dir} 里的三个用户尺码模板工作簿，让公式计算用户尺码 SIZE，并按需人工调整后保存。保存完成再按 Enter 继续生成 HTML。"
+
+  user_size_validate:
+    enabled: true
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/validate_user_size_templates.py"
+      - "{all_user_size_workbook}"
+      - "{tm_user_size_workbook}"
+      - "{hnt_user_size_workbook}"
+
+  user_size_export_all:
+    enabled: true
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/export_user_size_tables.py"
+      - "--workbook"
+      - "{all_user_size_workbook}"
+      - "--output-dir"
+      - "{all_user_size_export_dir}"
+    check_exists:
+      - "{all_user_non_pickup_tsv}"
+      - "{all_user_pickup_tsv}"
+
+  user_size_export_tm:
+    enabled: true
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/export_user_size_tables.py"
+      - "--workbook"
+      - "{tm_user_size_workbook}"
+      - "--output-dir"
+      - "{tm_user_size_export_dir}"
+    check_exists:
+      - "{tm_user_non_pickup_tsv}"
+      - "{tm_user_pickup_tsv}"
+
+  user_size_export_hnt:
+    enabled: true
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/export_user_size_tables.py"
+      - "--workbook"
+      - "{hnt_user_size_workbook}"
+      - "--output-dir"
+      - "{hnt_user_size_export_dir}"
+    check_exists:
+      - "{hnt_user_non_pickup_tsv}"
+      - "{hnt_user_pickup_tsv}"
+
+  html_all:
+    enabled: true
+    repo: "html"
+    command:
+      - "{python}"
+      - "tsv_to_size_chart_html.py"
+      - "--non-pickup-input"
+      - "{all_user_non_pickup_tsv}"
+      - "--pickup-input"
+      - "{all_user_pickup_tsv}"
+      - "--config-path"
+      - "{root}/configs/html-user-size-preference.yaml"
+      - "--output"
+      - "{all_html_output}"
+    check_exists:
+      - "{html_output_dir}/ALL/output_001.html"
+      - "{html_output_dir}/ALL/size-chart.css"
+
+  html_tm:
+    enabled: true
+    repo: "html"
+    command:
+      - "{python}"
+      - "tsv_to_size_chart_html.py"
+      - "--non-pickup-input"
+      - "{tm_user_non_pickup_tsv}"
+      - "--pickup-input"
+      - "{tm_user_pickup_tsv}"
+      - "--config-path"
+      - "{root}/configs/html-user-size-preference.yaml"
+      - "--output"
+      - "{tm_html_output}"
+    check_exists:
+      - "{html_output_dir}/TM/output_001.html"
+      - "{html_output_dir}/TM/size-chart.css"
+
+  html_hnt:
+    enabled: true
+    repo: "html"
+    command:
+      - "{python}"
+      - "tsv_to_size_chart_html.py"
+      - "--non-pickup-input"
+      - "{hnt_user_non_pickup_tsv}"
+      - "--pickup-input"
+      - "{hnt_user_pickup_tsv}"
+      - "--config-path"
+      - "{root}/configs/html-user-size-preference.yaml"
+      - "--output"
+      - "{hnt_html_output}"
+    check_exists:
+      - "{html_output_dir}/HNT/output_001.html"
+      - "{html_output_dir}/HNT/size-chart.css"
+    pause_after: "请检查 {html_output_dir}。如需人工修改，请直接覆盖该目录内 HTML/CSS 后继续。"
+
+  publish:
+    enabled: true
+    repo: "publish"
+    copy_before:
+      - from: "{html_output_dir}"
+        to: "{publish_html_target}"
+        overwrite: true
+    command:
+      - "{python}"
+      - "tools/build_site.py"
+    copy_after:
+      - from: "{published_site_dir}"
+        to: "{case_output}/site"
+        overwrite: true
+    check_exists:
+      - "{case_output}/site/index.html"

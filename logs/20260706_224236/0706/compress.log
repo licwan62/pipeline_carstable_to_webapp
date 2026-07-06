@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "D:\Home\Scripts\compress_to_size_chart\process_tsv.py", line 3024, in <module>
+    main()
+    ~~~~^^
+  File "D:\Home\Scripts\compress_to_size_chart\process_tsv.py", line 2971, in main
+    input_tables = read_input_tables(input_path, encoding=args.encoding, field_profile=field_profile)
+  File "D:\Home\Scripts\compress_to_size_chart\process_tsv.py", line 432, in read_input_tables
+    return read_excel_input_tables(path, profile_input_sheets(field_profile))
+  File "D:\Home\Scripts\compress_to_size_chart\process_tsv.py", line 405, in read_excel_input_tables
+    raise ValueError(
+        f"Excel input has multiple sheets. Set input.sheets in YAML. Available sheets: {available_text}"
+    )
+ValueError: Excel input has multiple sheets. Set input.sheets in YAML. Available sheets: 参数、ALL尺码、HNT尺码、TM尺码、子车系维护表、ALL尺码匹配、TM尺码匹配、HNT尺码匹配、公式
+cwd: D:\Home\Scripts\compress_to_size_chart
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe process_tsv.py D:\Home\Scripts\pipeline_carstable_to_webapp\data\input\0706.xlsx --output-dir D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress --check-atom --no-progress
+
