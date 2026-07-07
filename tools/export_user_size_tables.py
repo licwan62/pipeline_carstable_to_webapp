@@ -68,8 +68,11 @@ def build_simple_map(workbook, sheet_name: str, table_name: str, key: str, value
     return {row.get(key, ""): row.get(value, "") for row in rows if row.get(key)}
 
 
-def build_type_rows(workbook) -> list[dict[str, str]]:
-    return table_records(workbook, "TYPE缩写", "TYPE缩写表")
+def build_type_rows(workbook) -> tuple[list[dict[str, str]], dict[str, str]]:
+    type_rows = table_records(workbook, "TYPE缩写", "TYPE缩写表")
+    word_rows = table_records(workbook, "TYPE缩写", "表8")
+    word_map = {row.get("原结构词", ""): row.get("SHORT结构词", "") for row in word_rows if row.get("原结构词")}
+    return type_rows, word_map
 
 
 def build_pickup_title_rows(workbook) -> list[dict[str, str]]:
@@ -93,7 +96,7 @@ def long_type_for_row(row: dict[str, str], const_counts: dict[str, int]) -> str:
     return " ".join(part for part in [const, version] if part).strip()
 
 
-def short_type(long_type: str, car: str, type_rows: list[dict[str, str]]) -> str:
+def short_type(long_type: str, car: str, type_rows: list[dict[str, str]], word_map: dict[str, str]) -> str:
     long_type = clean(long_type)
     car = clean(car)
     if not long_type:
@@ -110,7 +113,13 @@ def short_type(long_type: str, car: str, type_rows: list[dict[str, str]]) -> str
         if score > best_score:
             best_score = score
             best_value = clean(row.get("SHORT-TYPE", ""))
-    return best_value or long_type
+    if best_value:
+        return best_value
+
+    parts = [clean(part) for part in long_type.split("/") if clean(part)]
+    if not parts:
+        return long_type
+    return "/".join(word_map.get(part, part) for part in parts)
 
 
 def pickup_title(row: dict[str, str], title_rows: list[dict[str, str]]) -> tuple[str, str]:
@@ -128,7 +137,7 @@ def pickup_title(row: dict[str, str], title_rows: list[dict[str, str]]) -> tuple
 def export_non_pickup(workbook, output_path: Path) -> int:
     size_map, category_map = build_size_maps(workbook)
     model_map = build_simple_map(workbook, "MODEL缩写", "MODEL缩写表", "长MODEL", "短MODEL")
-    type_rows = build_type_rows(workbook)
+    type_rows, word_map = build_type_rows(workbook)
     rows = sheet_records(workbook, NON_PICKUP_SHEET)
 
     const_sets: dict[str, set[str]] = {}
@@ -158,7 +167,7 @@ def export_non_pickup(workbook, output_path: Path) -> int:
                 "BACKSIZE": row.get("BACKSIZE", ""),
                 "CATAGORY": first_non_empty(row.get("CATAGORY", ""), category_map.get(row.get("BACKSIZE", ""), "")),
                 "LONG-TYPE": long_type,
-                "TYPE": first_non_empty(row.get("TYPE", ""), short_type(long_type, row.get("CAR", ""), type_rows)),
+                "TYPE": first_non_empty(row.get("TYPE", ""), short_type(long_type, row.get("CAR", ""), type_rows, word_map)),
                 "SHORT-MODEL": first_non_empty(row.get("SHORT-MODEL", ""), model_map.get(row.get("MODEL", ""), row.get("MODEL", ""))),
                 "SIZE": size,
             }

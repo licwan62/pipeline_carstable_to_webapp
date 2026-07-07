@@ -1,0 +1,9 @@
+cwd: D:\Home\Scripts\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/export_all_user_size_tables.py --workbook-dir D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\02_user_size_workbooks --output-root D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\03_user_size_exports
+
+Exported 1186 non-pickup row(s), 134 pickup row(s): D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\03_user_size_exports\ALL
+Exported 1306 non-pickup row(s), 134 pickup row(s): D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\03_user_size_exports\TM
+Exported 1282 non-pickup row(s), 114 pickup row(s): D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\03_user_size_exports\HNT
+[ALL] C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe D:\Home\Scripts\pipeline_carstable_to_webapp\tools\export_user_size_tables.py --workbook D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\02_user_size_workbooks\ALL_用户尺码模板.xlsx --output-dir D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\03_user_size_exports\ALL
+[TM] C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe D:\Home\Scripts\pipeline_carstable_to_webapp\tools\export_user_size_tables.py --workbook D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\02_user_size_workbooks\TM_用户尺码模板.xlsx --output-dir D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\03_user_size_exports\TM
+[HNT] C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe D:\Home\Scripts\pipeline_carstable_to_webapp\tools\export_user_size_tables.py --workbook D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\02_user_size_workbooks\HNT_用户尺码模板.xlsx --output-dir D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\03_user_size_exports\HNT

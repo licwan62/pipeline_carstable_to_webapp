@@ -1,0 +1,176 @@
+cwd: D:\Home\Scripts\compress_to_size_chart
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe process_tsv.py D:\Home\Scripts\pipeline_carstable_to_webapp\data\input\0706.xlsx --output-dir D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress --field-profile D:\Home\Scripts\pipeline_carstable_to_webapp/configs/compress-field-profile.yaml
+
+读取工作表: ALL尺码匹配 (4422 rows)
+读取工作表: TM尺码匹配 (4422 rows)
+读取工作表: HNT尺码匹配 (4422 rows)
+
+处理工作表 1/3: ALL尺码匹配
+[进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/650 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡高度压缩 | MAKE=Buick | MODEL=Encore GX | 已完成MODEL=84/650 | 合并项数量=58 | 尝试次数=76 | 用时=10s
+[进度] 非皮卡高度压缩 | MAKE=Buick | MODEL=LeSabre | 已完成MODEL=87/650 | 合并项数量=65 | 尝试次数=158 | 用时=20s
+[进度] 非皮卡高度压缩 | MAKE=Cadillac | MODEL=DeVille | 已完成MODEL=106/650 | 合并项数量=88 | 尝试次数=258 | 用时=30s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Camaro | 已完成MODEL=127/650 | 合并项数量=115 | 尝试次数=371 | 用时=40s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Camaro | 已完成MODEL=127/650 | 合并项数量=122 | 尝试次数=468 | 用时=50s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Impala | 已完成MODEL=140/650 | 合并项数量=153 | 尝试次数=559 | 用时=60s
+[进度] 非皮卡高度压缩 | MAKE=Dodge | MODEL=Viper | 已完成MODEL=190/650 | 合并项数量=180 | 尝试次数=680 | 用时=70s
+[进度] 非皮卡高度压缩 | MAKE=Ford | MODEL=Mustang | 已完成MODEL=213/650 | 合并项数量=204 | 尝试次数=749 | 用时=80s
+[进度] 非皮卡高度压缩 | MAKE=GMC | MODEL=Acadia | 已完成MODEL=217/650 | 合并项数量=217 | 尝试次数=804 | 用时=90s
+[进度] 非皮卡高度压缩 | MAKE=Jeep | MODEL=Grand Cherokee | 已完成MODEL=305/650 | 合并项数量=257 | 尝试次数=880 | 用时=100s
+[进度] 非皮卡高度压缩 | MAKE=Maserati | MODEL=GranTurismo | 已完成MODEL=393/650 | 合并项数量=304 | 尝试次数=964 | 用时=110s
+[进度] 非皮卡高度压缩 | MAKE=Mercedes-Benz | MODEL=E-Class | 已完成MODEL=428/650 | 合并项数量=339 | 尝试次数=1043 | 用时=120s
+[进度] 非皮卡高度压缩 | MAKE=Mercedes-Benz | MODEL=SL-Class | 已完成MODEL=441/650 | 合并项数量=360 | 尝试次数=1154 | 用时=130s
+[进度] 非皮卡高度压缩 | MAKE=Nissan | MODEL=Versa Note | 已完成MODEL=487/650 | 合并项数量=403 | 尝试次数=1261 | 用时=140s
+[进度] 非皮卡高度压缩 | MAKE=Oldsmobile | MODEL=Cutlass | 已完成MODEL=494/650 | 合并项数量=413 | 尝试次数=1343 | 用时=150s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=Aztec | 已完成MODEL=511/650 | 合并项数量=426 | 尝试次数=1453 | 用时=160s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=520/650 | 合并项数量=440 | 尝试次数=1573 | 用时=170s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=520/650 | 合并项数量=444 | 尝试次数=1704 | 用时=180s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=451 | 尝试次数=1788 | 用时=190s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=453 | 尝试次数=1815 | 用时=201s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=454 | 尝试次数=1841 | 用时=211s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=455 | 尝试次数=1867 | 用时=221s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=457 | 尝试次数=1894 | 用时=231s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=459 | 尝试次数=1921 | 用时=241s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=460 | 尝试次数=1951 | 用时=251s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=461 | 尝试次数=1989 | 用时=261s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=463 | 尝试次数=2028 | 用时=272s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=464 | 尝试次数=2057 | 用时=282s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=466 | 尝试次数=2102 | 用时=292s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=467 | 尝试次数=2140 | 用时=302s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=468 | 尝试次数=2189 | 用时=312s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=470 | 尝试次数=2234 | 用时=322s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=471 | 尝试次数=2279 | 用时=332s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=473 | 尝试次数=2323 | 用时=342s
+[进度] 非皮卡高度压缩 | MAKE=Saturn | MODEL=L-Series | 已完成MODEL=541/650 | 合并项数量=486 | 尝试次数=2377 | 用时=353s
+[进度] 非皮卡高度压缩 | MAKE=Volkswagen | MODEL=Passat | 已完成MODEL=621/650 | 合并项数量=535 | 尝试次数=2466 | 用时=363s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=XC90 | 已完成MODEL=650/650 | 合并项数量=549 | 尝试次数=2481 | 用时=365s
+[进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/30 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=1/30 | 合并项数量=8 | 尝试次数=104 | 用时=10s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=1/30 | 合并项数量=10 | 尝试次数=157 | 用时=20s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=1/30 | 合并项数量=15 | 尝试次数=233 | 用时=30s
+[进度] 皮卡高度压缩 | MAKE=Ford | MODEL=F-150 | 已完成MODEL=9/30 | 合并项数量=35 | 尝试次数=437 | 用时=40s
+[进度] 皮卡高度压缩 | MAKE=GMC | MODEL=Canyon | 已完成MODEL=15/30 | 合并项数量=53 | 尝试次数=632 | 用时=50s
+[进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=30/30 | 合并项数量=98 | 尝试次数=804 | 用时=59s
+写入完成
+Input table: ALL尺码匹配
+Output dir: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_ALL尺码匹配
+Non-pickup lossless TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_ALL尺码匹配\compress\0706_ALL尺码匹配_非皮卡无损压缩表.tsv
+Non-pickup high TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_ALL尺码匹配\compress\0706_ALL尺码匹配_非皮卡高度压缩表.tsv
+Pickup lossless TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_ALL尺码匹配\compress\0706_ALL尺码匹配_皮卡无损压缩.tsv
+Pickup high TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_ALL尺码匹配\compress\0706_ALL尺码匹配_皮卡高度压缩表.tsv
+Log TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_ALL尺码匹配\compress\0706_ALL尺码匹配_压缩log.tsv
+Atom TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_ALL尺码匹配\compress\0706_ALL尺码匹配_原子事实表.tsv
+Excel: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_ALL尺码匹配\0706_ALL尺码匹配_output.xlsx
+
+处理工作表 2/3: TM尺码匹配
+[进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/650 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡高度压缩 | MAKE=Buick | MODEL=LeSabre | 已完成MODEL=87/650 | 合并项数量=61 | 尝试次数=90 | 用时=10s
+[进度] 非皮卡高度压缩 | MAKE=Cadillac | MODEL=Seville | 已完成MODEL=114/650 | 合并项数量=95 | 尝试次数=192 | 用时=20s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Camaro | 已完成MODEL=127/650 | 合并项数量=113 | 尝试次数=302 | 用时=30s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Corvette | 已完成MODEL=135/650 | 合并项数量=137 | 尝试次数=385 | 用时=40s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Malibu | 已完成MODEL=143/650 | 合并项数量=156 | 尝试次数=505 | 用时=50s
+[进度] 非皮卡高度压缩 | MAKE=Ford | MODEL=Mustang | 已完成MODEL=213/650 | 合并项数量=201 | 尝试次数=624 | 用时=60s
+[进度] 非皮卡高度压缩 | MAKE=Ford | MODEL=Mustang Mach-E | 已完成MODEL=214/650 | 合并项数量=212 | 尝试次数=695 | 用时=70s
+[进度] 非皮卡高度压缩 | MAKE=Kia | MODEL=Carnival | 已完成MODEL=318/650 | 合并项数量=270 | 尝试次数=795 | 用时=80s
+[进度] 非皮卡高度压缩 | MAKE=Mercedes-Benz | MODEL=C-Class | 已完成MODEL=423/650 | 合并项数量=326 | 尝试次数=886 | 用时=90s
+[进度] 非皮卡高度压缩 | MAKE=Mercedes-Benz | MODEL=S-Class | 已完成MODEL=440/650 | 合并项数量=358 | 尝试次数=975 | 用时=100s
+[进度] 非皮卡高度压缩 | MAKE=Mercury | MODEL=Monterey | 已完成MODEL=450/650 | 合并项数量=381 | 尝试次数=1081 | 用时=110s
+[进度] 非皮卡高度压缩 | MAKE=Oldsmobile | MODEL=88 | 已完成MODEL=489/650 | 合并项数量=414 | 尝试次数=1197 | 用时=120s
+[进度] 非皮卡高度压缩 | MAKE=Oldsmobile | MODEL=Cutlass | 已完成MODEL=494/650 | 合并项数量=421 | 尝试次数=1282 | 用时=130s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=Bonneville | 已完成MODEL=511/650 | 合并项数量=435 | 尝试次数=1403 | 用时=140s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=520/650 | 合并项数量=448 | 尝试次数=1527 | 用时=150s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=520/650 | 合并项数量=452 | 尝试次数=1657 | 用时=160s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=458 | 尝试次数=1742 | 用时=171s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=460 | 尝试次数=1770 | 用时=181s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=461 | 尝试次数=1795 | 用时=191s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=463 | 尝试次数=1821 | 用时=201s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=464 | 尝试次数=1847 | 用时=212s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=466 | 尝试次数=1873 | 用时=222s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=467 | 尝试次数=1906 | 用时=232s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=469 | 尝试次数=1946 | 用时=242s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=470 | 尝试次数=1980 | 用时=253s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=472 | 尝试次数=2021 | 用时=263s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=473 | 尝试次数=2063 | 用时=273s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=474 | 尝试次数=2107 | 用时=283s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=476 | 尝试次数=2147 | 用时=293s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=477 | 尝试次数=2188 | 用时=303s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=479 | 尝试次数=2241 | 用时=314s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=481 | 尝试次数=2291 | 用时=324s
+[进度] 非皮卡高度压缩 | MAKE=Toyota | MODEL=Sequoia | 已完成MODEL=603/650 | 合并项数量=527 | 尝试次数=2376 | 用时=334s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=XC90 | 已完成MODEL=650/650 | 合并项数量=559 | 尝试次数=2441 | 用时=339s
+[进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/30 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=1/30 | 合并项数量=8 | 尝试次数=108 | 用时=10s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=1/30 | 合并项数量=10 | 尝试次数=162 | 用时=20s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=1/30 | 合并项数量=15 | 尝试次数=233 | 用时=30s
+[进度] 皮卡高度压缩 | MAKE=Ford | MODEL=F-150 | 已完成MODEL=9/30 | 合并项数量=34 | 尝试次数=422 | 用时=40s
+[进度] 皮卡高度压缩 | MAKE=Ford | MODEL=F-150 | 已完成MODEL=9/30 | 合并项数量=42 | 尝试次数=559 | 用时=50s
+[进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=29/30 | 合并项数量=91 | 尝试次数=764 | 用时=60s
+[进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=30/30 | 合并项数量=98 | 尝试次数=804 | 用时=62s
+写入完成
+Input table: TM尺码匹配
+Output dir: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_TM尺码匹配
+Non-pickup lossless TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_TM尺码匹配\compress\0706_TM尺码匹配_非皮卡无损压缩表.tsv
+Non-pickup high TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_TM尺码匹配\compress\0706_TM尺码匹配_非皮卡高度压缩表.tsv
+Pickup lossless TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_TM尺码匹配\compress\0706_TM尺码匹配_皮卡无损压缩.tsv
+Pickup high TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_TM尺码匹配\compress\0706_TM尺码匹配_皮卡高度压缩表.tsv
+Log TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_TM尺码匹配\compress\0706_TM尺码匹配_压缩log.tsv
+Atom TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_TM尺码匹配\compress\0706_TM尺码匹配_原子事实表.tsv
+Excel: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_TM尺码匹配\0706_TM尺码匹配_output.xlsx
+
+处理工作表 3/3: HNT尺码匹配
+[进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/650 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡高度压缩 | MAKE=Buick | MODEL=LeSabre | 已完成MODEL=87/650 | 合并项数量=61 | 尝试次数=93 | 用时=10s
+[进度] 非皮卡高度压缩 | MAKE=Buick | MODEL=Skylark | 已完成MODEL=96/650 | 合并项数量=78 | 尝试次数=173 | 用时=20s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Camaro | 已完成MODEL=127/650 | 合并项数量=114 | 尝试次数=292 | 用时=30s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Camaro | 已完成MODEL=127/650 | 合并项数量=121 | 尝试次数=379 | 用时=40s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Corvette | 已完成MODEL=135/650 | 合并项数量=146 | 尝试次数=457 | 用时=50s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Suburban | 已完成MODEL=151/650 | 合并项数量=168 | 尝试次数=565 | 用时=60s
+[进度] 非皮卡高度压缩 | MAKE=Ford | MODEL=Mustang | 已完成MODEL=213/650 | 合并项数量=209 | 尝试次数=662 | 用时=70s
+[进度] 非皮卡高度压缩 | MAKE=Ford | MODEL=Mustang | 已完成MODEL=213/650 | 合并项数量=216 | 尝试次数=714 | 用时=80s
+[进度] 非皮卡高度压缩 | MAKE=Hyundai | MODEL=Tucson | 已完成MODEL=266/650 | 合并项数量=238 | 尝试次数=772 | 用时=90s
+[进度] 非皮卡高度压缩 | MAKE=Lexus | MODEL=RX | 已完成MODEL=360/650 | 合并项数量=301 | 尝试次数=864 | 用时=100s
+[进度] 非皮卡高度压缩 | MAKE=Mercedes-Benz | MODEL=CL-Class | 已完成MODEL=424/650 | 合并项数量=338 | 尝试次数=941 | 用时=110s
+[进度] 非皮卡高度压缩 | MAKE=Mercedes-Benz | MODEL=S-Class | 已完成MODEL=440/650 | 合并项数量=368 | 尝试次数=1017 | 用时=120s
+[进度] 非皮卡高度压缩 | MAKE=Mercury | MODEL=Marquis | 已完成MODEL=448/650 | 合并项数量=388 | 尝试次数=1122 | 用时=130s
+[进度] 非皮卡高度压缩 | MAKE=Oldsmobile | MODEL=88 | 已完成MODEL=489/650 | 合并项数量=424 | 尝试次数=1234 | 用时=140s
+[进度] 非皮卡高度压缩 | MAKE=Oldsmobile | MODEL=Cutlass | 已完成MODEL=494/650 | 合并项数量=431 | 尝试次数=1301 | 用时=150s
+[进度] 非皮卡高度压缩 | MAKE=Oldsmobile | MODEL=Cutlass | 已完成MODEL=494/650 | 合并项数量=434 | 尝试次数=1360 | 用时=161s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=Bonneville | 已完成MODEL=511/650 | 合并项数量=447 | 尝试次数=1440 | 用时=171s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=520/650 | 合并项数量=459 | 尝试次数=1535 | 用时=181s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=520/650 | 合并项数量=462 | 尝试次数=1656 | 用时=191s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=520/650 | 合并项数量=466 | 尝试次数=1766 | 用时=201s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=471 | 尝试次数=1804 | 用时=211s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=473 | 尝试次数=1833 | 用时=221s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=474 | 尝试次数=1863 | 用时=232s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=476 | 尝试次数=1893 | 用时=242s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=478 | 尝试次数=1924 | 用时=252s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=480 | 尝试次数=1965 | 用时=262s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=481 | 尝试次数=2012 | 用时=272s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=483 | 尝试次数=2057 | 用时=282s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=485 | 尝试次数=2106 | 用时=292s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=487 | 尝试次数=2161 | 用时=302s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=488 | 尝试次数=2215 | 用时=313s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=490 | 尝试次数=2270 | 用时=323s
+[进度] 非皮卡高度压缩 | MAKE=Porsche | MODEL=911 | 已完成MODEL=525/650 | 合并项数量=492 | 尝试次数=2328 | 用时=333s
+[进度] 非皮卡高度压缩 | MAKE=Toyota | MODEL=Corolla | 已完成MODEL=581/650 | 合并项数量=532 | 尝试次数=2410 | 用时=343s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=XC90 | 已完成MODEL=650/650 | 合并项数量=568 | 尝试次数=2488 | 用时=351s
+[进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/30 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=1/30 | 合并项数量=8 | 尝试次数=111 | 用时=10s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=1/30 | 合并项数量=9 | 尝试次数=153 | 用时=20s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=1/30 | 合并项数量=10 | 尝试次数=193 | 用时=30s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=1/30 | 合并项数量=14 | 尝试次数=256 | 用时=40s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=Colorado | 已完成MODEL=3/30 | 合并项数量=18 | 尝试次数=313 | 用时=50s
+[进度] 皮卡高度压缩 | MAKE=Ford | MODEL=F-150 | 已完成MODEL=9/30 | 合并项数量=37 | 尝试次数=554 | 用时=60s
+[进度] 皮卡高度压缩 | MAKE=Ford | MODEL=F-150 | 已完成MODEL=9/30 | 合并项数量=42 | 尝试次数=692 | 用时=70s
+[进度] 皮卡高度压缩 | MAKE=Nissan | MODEL=Frontier | 已完成MODEL=23/30 | 合并项数量=72 | 尝试次数=866 | 用时=80s
+[进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=30/30 | 合并项数量=106 | 尝试次数=1028 | 用时=90s
+写入完成
+Input table: HNT尺码匹配
+Output dir: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_HNT尺码匹配
+Non-pickup lossless TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_HNT尺码匹配\compress\0706_HNT尺码匹配_非皮卡无损压缩表.tsv
+Non-pickup high TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_HNT尺码匹配\compress\0706_HNT尺码匹配_非皮卡高度压缩表.tsv
+Pickup lossless TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_HNT尺码匹配\compress\0706_HNT尺码匹配_皮卡无损压缩.tsv
+Pickup high TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_HNT尺码匹配\compress\0706_HNT尺码匹配_皮卡高度压缩表.tsv
+Log TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_HNT尺码匹配\compress\0706_HNT尺码匹配_压缩log.tsv
+Atom TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_HNT尺码匹配\compress\0706_HNT尺码匹配_原子事实表.tsv
+Excel: D:\Home\Scripts\pipeline_carstable_to_webapp\data\middle\0706\01_compress\0706_HNT尺码匹配\0706_HNT尺码匹配_output.xlsx

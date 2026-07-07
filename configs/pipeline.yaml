@@ -32,7 +32,7 @@ variables:
   tm_pickup_tsv: "{compress_output_root}/{compress_tm_stem}/compress/{compress_tm_stem}_皮卡高度压缩表.tsv"
   hnt_non_pickup_tsv: "{compress_output_root}/{compress_hnt_stem}/compress/{compress_hnt_stem}_非皮卡高度压缩表.tsv"
   hnt_pickup_tsv: "{compress_output_root}/{compress_hnt_stem}/compress/{compress_hnt_stem}_皮卡高度压缩表.tsv"
-  html_output_dir: "{case_middle}/02_html"
+  html_output_dir: "{case_middle}/04_html"
   user_size_dir: "{case_middle}/02_user_size_workbooks"
   user_size_template: "{root}/data/template/尺码适配表.xlsx"
   user_size_non_pickup_table_name: "非皮卡高度压缩表"
@@ -50,11 +50,11 @@ variables:
   tm_user_pickup_tsv: "{tm_user_size_export_dir}/pickup.tsv"
   hnt_user_non_pickup_tsv: "{hnt_user_size_export_dir}/non_pickup.tsv"
   hnt_user_pickup_tsv: "{hnt_user_size_export_dir}/pickup.tsv"
-  all_html_output: "{html_output_dir}/ALL/output.html"
-  tm_html_output: "{html_output_dir}/TM/output.html"
-  hnt_html_output: "{html_output_dir}/HNT/output.html"
-  publish_html_target: "../publish_tables_to_webapp/data/source/html/{case_name}"
-  published_site_dir: "../publish_tables_to_webapp/_site"
+  all_html_output: "{html_output_dir}/ALL/nonpick/output.html"
+  tm_html_output: "{html_output_dir}/TM/nonpick/output.html"
+  hnt_html_output: "{html_output_dir}/HNT/nonpick/output.html"
+  publish_workspace: "{case_middle}/05_publish_workspace"
+  publish_repo_path: "{root}/../publish_tables_to_webapp"
 
 steps:
   compress:
@@ -110,116 +110,71 @@ steps:
       - "{tm_user_size_workbook}"
       - "{hnt_user_size_workbook}"
 
-  user_size_export_all:
+  inplace_table:
     enabled: true
     repo: "pipeline"
     command:
       - "{python}"
-      - "tools/export_user_size_tables.py"
-      - "--workbook"
-      - "{all_user_size_workbook}"
-      - "--output-dir"
-      - "{all_user_size_export_dir}"
+      - "tools/export_all_user_size_tables.py"
+      - "--workbook-dir"
+      - "{user_size_dir}"
+      - "--output-root"
+      - "{user_size_export_dir}"
     check_exists:
       - "{all_user_non_pickup_tsv}"
       - "{all_user_pickup_tsv}"
+      - "{tm_user_non_pickup_tsv}"
+      - "{tm_user_pickup_tsv}"
+      - "{hnt_user_non_pickup_tsv}"
+      - "{hnt_user_pickup_tsv}"
 
-  user_size_export_tm:
+  get_html:
     enabled: true
     repo: "pipeline"
     command:
       - "{python}"
-      - "tools/export_user_size_tables.py"
-      - "--workbook"
-      - "{tm_user_size_workbook}"
-      - "--output-dir"
-      - "{tm_user_size_export_dir}"
-    check_exists:
-      - "{tm_user_non_pickup_tsv}"
-      - "{tm_user_pickup_tsv}"
-
-  user_size_export_hnt:
-    enabled: true
-    repo: "pipeline"
-    command:
-      - "{python}"
-      - "tools/export_user_size_tables.py"
-      - "--workbook"
-      - "{hnt_user_size_workbook}"
-      - "--output-dir"
-      - "{hnt_user_size_export_dir}"
-    check_exists:
-      - "{hnt_user_non_pickup_tsv}"
-      - "{hnt_user_pickup_tsv}"
-
-  html_all:
-    enabled: true
-    repo: "html"
-    command:
-      - "{python}"
-      - "tsv_to_size_chart_html.py"
-      - "--non-pickup-input"
-      - "{all_user_non_pickup_tsv}"
-      - "--pickup-input"
-      - "{all_user_pickup_tsv}"
+      - "tools/generate_all_html.py"
+      - "--export-root"
+      - "{user_size_export_dir}"
+      - "--output-root"
+      - "{html_output_dir}"
       - "--config-path"
       - "{root}/configs/html-user-size-preference.yaml"
-      - "--output"
-      - "{all_html_output}"
+      - "--html-script"
+      - "{root}/../generate_size_chart_html/tsv_to_size_chart_html.py"
     check_exists:
-      - "{html_output_dir}/ALL/output_001.html"
-      - "{html_output_dir}/ALL/size-chart.css"
-
-  html_tm:
-    enabled: true
-    repo: "html"
-    command:
-      - "{python}"
-      - "tsv_to_size_chart_html.py"
-      - "--non-pickup-input"
-      - "{tm_user_non_pickup_tsv}"
-      - "--pickup-input"
-      - "{tm_user_pickup_tsv}"
-      - "--config-path"
-      - "{root}/configs/html-user-size-preference.yaml"
-      - "--output"
-      - "{tm_html_output}"
-    check_exists:
-      - "{html_output_dir}/TM/output_001.html"
-      - "{html_output_dir}/TM/size-chart.css"
-
-  html_hnt:
-    enabled: true
-    repo: "html"
-    command:
-      - "{python}"
-      - "tsv_to_size_chart_html.py"
-      - "--non-pickup-input"
-      - "{hnt_user_non_pickup_tsv}"
-      - "--pickup-input"
-      - "{hnt_user_pickup_tsv}"
-      - "--config-path"
-      - "{root}/configs/html-user-size-preference.yaml"
-      - "--output"
-      - "{hnt_html_output}"
-    check_exists:
-      - "{html_output_dir}/HNT/output_001.html"
-      - "{html_output_dir}/HNT/size-chart.css"
+      - "{html_output_dir}/ALL/nonpick/output_001.html"
+      - "{html_output_dir}/ALL/nonpick/size-chart.css"
+      - "{html_output_dir}/ALL/pick/output_001.html"
+      - "{html_output_dir}/ALL/pick/size-chart.css"
+      - "{html_output_dir}/TM/nonpick/output_001.html"
+      - "{html_output_dir}/TM/nonpick/size-chart.css"
+      - "{html_output_dir}/TM/pick/output_001.html"
+      - "{html_output_dir}/TM/pick/size-chart.css"
+      - "{html_output_dir}/HNT/nonpick/output_001.html"
+      - "{html_output_dir}/HNT/nonpick/size-chart.css"
+      - "{html_output_dir}/HNT/pick/output_001.html"
+      - "{html_output_dir}/HNT/pick/size-chart.css"
     pause_after: "请检查 {html_output_dir}。如需人工修改，请直接覆盖该目录内 HTML/CSS 后继续。"
 
   publish:
     enabled: true
-    repo: "publish"
-    copy_before:
-      - from: "{html_output_dir}"
-        to: "{publish_html_target}"
-        overwrite: true
+    repo: "pipeline"
     command:
       - "{python}"
-      - "tools/build_site.py"
-    copy_after:
-      - from: "{published_site_dir}"
-        to: "{case_output}/site"
-        overwrite: true
+      - "tools/build_publish_site.py"
+      - "--publish-repo"
+      - "{publish_repo_path}"
+      - "--html-root"
+      - "{html_output_dir}"
+      - "--xlsx-source"
+      - "{input_file}"
+      - "--workspace"
+      - "{publish_workspace}"
+      - "--site-output"
+      - "{case_output}/site"
     check_exists:
       - "{case_output}/site/index.html"
+      - "{case_output}/site/size-chart.html"
+      - "{case_output}/site/size-match.html"
+      - "{case_output}/site/data/source/html/TM/nonpick/output_001.html"

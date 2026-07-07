@@ -80,12 +80,8 @@ python run_all.py --list-steps
 compress
 user_size_template
 user_size_validate
-user_size_export_all
-user_size_export_tm
-user_size_export_hnt
-html_all
-html_tm
-html_hnt
+inplace_table
+get_html
 publish
 ```
 
@@ -96,13 +92,13 @@ publish
 python run_all.py --case 0706 --from-step user_size_validate
 
 # 已经导出过用户尺码 TSV，只重新生成 HTML 和发布
-python run_all.py --case 0706 --from-step html_all
+python run_all.py --case 0706 --from-step get_html
 
 # 只跑到用户尺码模板生成
 python run_all.py --case 0706 --to-step user_size_template
 
 # 只重新导出用户尺码 TSV
-python run_all.py --case 0706 --from-step user_size_export_all --to-step user_size_export_hnt
+python run_all.py --case 0706 --from-step inplace_table --to-step inplace_table
 ```
 
 `--from-step` 和 `--to-step` 可以组合使用，避免每次从压缩第一步重跑。
@@ -113,9 +109,9 @@ python run_all.py --case 0706 --from-step user_size_export_all --to-step user_si
 2. `user_size_template`：基于 `data/template/尺码适配表.xlsx` 生成三个中间工作簿到 `data/middle/<任务名>/02_user_size_workbooks/`。
 3. 人工打开中间工作簿，让模板公式计算用户展示尺码 `SIZE`，按需调整后保存。
 4. `user_size_validate`：校验三个中间工作簿结构是否完整。
-5. `user_size_export_*`：把中间工作簿导出成 HTML 专用 TSV，并过滤 `SIZE` 空白或 `无可用尺码` 的行。
-6. `html_*`：分别生成 ALL/TM/HNT HTML。
-7. `publish`：复制 HTML 到 webapp，运行发布构建，并输出到 `data/output/<任务名>/site/`。
+5. `inplace_table`：把 ALL/TM/HNT 中间工作簿导出成 HTML 专用 TSV，并过滤 `SIZE` 空白或 `无可用尺码` 的行。
+6. `get_html`：分别生成 ALL/TM/HNT HTML。
+7. `publish`：在本项目的 `05_publish_workspace` 中临时复刻 webapp 构建结构，借用 `publish_tables_to_webapp/tools/build_site.py` 构建，并输出到 `data/output/<任务名>/site/`。
 
 ## 配置文件
 
@@ -182,7 +178,7 @@ columns:
 
 ### `configs/html-user-size-preference.yaml`
 
-HTML 生成配置。它面向 `user_size_export_*` 导出的 TSV，核心是使用用户展示尺码 `SIZE`：
+HTML 生成配置。它面向 `inplace_table` 导出的 TSV，核心是使用用户展示尺码 `SIZE`：
 
 ```yaml
 exclude_rows: SIZE=""; BACKSIZE=无可用尺码
@@ -231,9 +227,12 @@ data/template/尺码适配表.xlsx
 data/middle/<任务名>/01_compress/              压缩 TSV 和压缩工作簿
 data/middle/<任务名>/02_user_size_workbooks/  用户尺码中间工作簿
 data/middle/<任务名>/03_user_size_exports/    HTML 专用 TSV
-data/middle/<任务名>/02_html/                 生成的 HTML/CSS
+data/middle/<任务名>/04_html/                 生成的 HTML/CSS，目录结构为 ALL/TM/HNT + nonpick/pick
+data/middle/<任务名>/05_publish_workspace/   临时 webapp 构建工作区
 data/output/<任务名>/site/                    最终静态站点
 logs/<运行时间>/<任务名>/                     每步日志
 ```
 
-发布项目构建时会自动扫描 `data/source/html/` 下包含 `output_*.html` 的目录，并把列表写入生成的网站页面。
+发布时 `data/middle/<任务名>/04_html/ALL/TM/HNT` 会复制到本项目的 `data/middle/<任务名>/05_publish_workspace/data/source/html/`，不会写入 `publish_tables_to_webapp/data/source/html/`。目录要保持 `TM/nonpick/output_001.html`、`TM/pick/output_001.html` 这类结构，否则旧页面清单或缓存页面可能请求不到文件。
+
+发布构建时会自动扫描临时工作区 `data/source/html/` 下包含 `output_*.html` 的目录，并把列表写入生成的网站页面。

@@ -1,0 +1,50 @@
+excel_source:
+  path: data/source/tables/车型数据尺码.xlsx
+  match_data_path: data/generated/size-match.json
+match_sources:
+  - name: ALL
+    label: ALL尺码匹配表
+    sheet: ALL尺码匹配
+    header_row: 1
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
+  - name: TM
+    label: TM尺码匹配表
+    sheet: TM尺码匹配
+    header_row: 1
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
+  - name: HNT
+    label: HNT尺码匹配表
+    sheet: HNT尺码匹配
+    header_row: 1
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
+filters:
+  construct:
+    label: 结构
+    empty_label: All structures
+    source: TYPE
+    atomize: true
+  cab:
+    label: CAB
+    empty_label: All cabs
+    source: CAB
+    atomize: true
+  bed:
+    label: BED
+    empty_label: All beds
+    source: BED
+    atomize: true
+table_fields:
+  const:
+    label: 结构
+    source: CONST
+  cab:
+    label: CAB
+    source: CAB
+  bed:
+    label: BED
+    source: BED
+size_reference:
+  sheet: ALL尺码
+  header_row: 1
+  data_path: data/generated/size-ref.json
+  match_field: 通用尺码

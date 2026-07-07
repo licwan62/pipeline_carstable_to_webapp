@@ -1,208 +1,115 @@
 ﻿店铺	MAKE	MODEL	YEAR	VERSION	CAB	BED	BACKSIZE	SHORT-CAB	TITLE	DESCRIPTION	SIZE
 HNT	Cadillac	Escalade EXT	2002-2013		Crew	5.3	PK-L	Crew	Cadillac Escalade EXT		T3
-HNT	Chevrolet	C/K	1960-1998	Incl: R/V	Regular	6.5	PK-M	Regular	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T1
-HNT	Chevrolet	C/K	1968-2000	Classic/Classic DRW/Longhorn/R/V	Regular	8-8.5	PK-L	Regular	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T3
 HNT	Chevrolet	C/K	1973-1991	Incl: R/V	Crew	8	PK-XXL	Crew	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T6
-HNT	Chevrolet	C/K	1973-1998		Regular	8	PK-L	Regular	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T3
-HNT	Chevrolet	C/K	1988-2000	Incl: Classic DRW	Extended	8	PK-XXL	Extended	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T6
-HNT	Chevrolet	Colorado	2004-2012		Crew/Extended/Regular	5-6	PK-M	Crew/Ext/Reg	Chevrolet Colorado	Includes ZR2	T1
-HNT	Chevrolet	Colorado	2015-2026		Extended/Crew	5-6	PK-L	Extended/Crew	Chevrolet Colorado	Includes ZR2	T3
-HNT	Chevrolet	Silverado 1500	2009-2013		Crew/Extended	5.8-6.5	PK-XXL	Crew/Extended	Chevrolet Silverado 1500	Includes Trail Boss	T6
-HNT	Chevrolet	Silverado 1500	2014-2018		Crew/Double	5.8-6.6	PK-L	Crew/Double	Chevrolet Silverado 1500	Includes Trail Boss	T3
-HNT	Chevrolet	Silverado 1500	2019-2026	Incl: Trail Boss	Crew/Double	5.8-6.6	PK-XXL	Crew/Double	Chevrolet Silverado 1500	Includes Trail Boss	T6
-HNT	Chevrolet	Silverado 2500HD/3500HD	2008-2026		Crew	6.5-6.8	PK-XXL	Crew	Chevrolet Silverado 2500HD/3500HD	SRW only; Excludes DRW	T6
-HNT	Chevrolet	Silverado 2500HD/3500HD	2020-2024		Double	6.8	PK-XXL	Double	Chevrolet Silverado 2500HD/3500HD	SRW only; Excludes DRW	T6
+HNT	Chevrolet	C/K	1999-2000	Classic	Crew	6.5	PK-XXL	Crew	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T6
+HNT	Chevrolet	C/K	1988-2000	Incl: Classic	Extended	8	PK-XXL	Extended	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T6
+HNT	Chevrolet	C/K	1989-1999	Incl: Classic	Extended	6.5	PK-L	Extended	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T3
 HNT	Chevrolet	C/K	1960-1966		Regular	9	PK-L	Regular	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T3
 HNT	Chevrolet	C/K	1960-1972		Regular	8	PK-M	Regular	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T1
+HNT	Chevrolet	C/K	1960-1998	Incl: R/V	Regular	6.5	PK-M	Regular	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T1
 HNT	Chevrolet	C/K	1967-1972		Regular	9	PK-XL	Regular	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T4
-HNT	Chevrolet	C/K	1989-1998		Extended	6.5	PK-L	Extended	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T3
-HNT	Chevrolet	C/K	1999-2000	Classic DRW	Crew	6.5	PK-XXL	Crew	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T6
+HNT	Chevrolet	C/K	1968-2000	Classic/Longhorn/R/V	Regular	8-8.5	PK-L	Regular	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T3
+HNT	Chevrolet	C/K	1973-1998		Regular	8	PK-L	Regular	Chevrolet C/K	Includes Classic/Longhorn; Excludes DRW	T3
 HNT	Chevrolet	Colorado	2017-2022	ZR2	Crew	5	PK-L	Crew	Chevrolet Colorado	Includes ZR2	T3
-HNT	Chevrolet	Silverado 1500	1999-2008		Extended	6.5	PK-L	Extended	Chevrolet Silverado 1500	Includes Trail Boss	T3
-HNT	Chevrolet	Silverado 1500	1999-2013		Extended	8	PK-XXL	Extended	Chevrolet Silverado 1500	Includes Trail Boss	T6
-HNT	Chevrolet	Silverado 1500	1999-2026		Regular	8	PK-XL	Regular	Chevrolet Silverado 1500	Includes Trail Boss	T4
+HNT	Chevrolet	Colorado	2004-2012		Crew/Extended/Regular	5-6	PK-M	Crew/Ext/Reg	Chevrolet Colorado	Includes ZR2	T1
+HNT	Chevrolet	Colorado	2015-2026		Extended/Crew	5-6	PK-L	Extended/Crew	Chevrolet Colorado	Includes ZR2	T3
 HNT	Chevrolet	Silverado 1500	2004		Crew	5.8	PK-XXL	Crew	Chevrolet Silverado 1500	Includes Trail Boss	T6
 HNT	Chevrolet	Silverado 1500	2005		Crew	5.8	PK-L	Crew	Chevrolet Silverado 1500	Includes Trail Boss	T3
 HNT	Chevrolet	Silverado 1500	2006		Crew	5.8	PK-XXL	Crew	Chevrolet Silverado 1500	Includes Trail Boss	T6
 HNT	Chevrolet	Silverado 1500	2007-2008		Crew	5.8	PK-L	Crew	Chevrolet Silverado 1500	Includes Trail Boss	T3
+HNT	Chevrolet	Silverado 1500	2014-2018		Crew/Double	5.8-6.6	PK-L	Crew/Double	Chevrolet Silverado 1500	Includes Trail Boss	T3
+HNT	Chevrolet	Silverado 1500	2019-2026	Incl: Trail Boss	Crew/Double	5.8-6.6	PK-XXL	Crew/Double	Chevrolet Silverado 1500	Includes Trail Boss	T6
+HNT	Chevrolet	Silverado 1500	2009-2013		Crew/Extended	5.8-6.5	PK-XXL	Crew/Extended	Chevrolet Silverado 1500	Includes Trail Boss	T6
+HNT	Chevrolet	Silverado 1500	1999-2008		Extended	6.5	PK-L	Extended	Chevrolet Silverado 1500	Includes Trail Boss	T3
+HNT	Chevrolet	Silverado 1500	1999-2013		Extended	8	PK-XXL	Extended	Chevrolet Silverado 1500	Includes Trail Boss	T6
+HNT	Chevrolet	Silverado 1500	1999-2026		Regular	8	PK-XL	Regular	Chevrolet Silverado 1500	Includes Trail Boss	T4
 HNT	Chevrolet	Silverado 1500	2007-2018		Regular	6.6	PK-M	Regular	Chevrolet Silverado 1500	Includes Trail Boss	T1
 HNT	Chevrolet	Silverado 1500	2022-2026		Regular	6.6	PK-L	Regular	Chevrolet Silverado 1500	Includes Trail Boss	T3
-HNT	Chevrolet	Silverado 2500HD/3500HD	2001-2026		Regular	8	PK-XL	Regular	Chevrolet Silverado 2500HD/3500HD	SRW only; Excludes DRW	T4
+HNT	Chevrolet	Silverado 2500HD/3500HD	2008-2026		Crew	6.5-6.8	PK-XXL	Crew	Chevrolet Silverado 2500HD/3500HD	SRW only; Excludes DRW	T6
 HNT	Chevrolet	Silverado 2500HD/3500HD	2015-2017		Double	6.8	PK-L	Double	Chevrolet Silverado 2500HD/3500HD	SRW only; Excludes DRW	T3
 HNT	Chevrolet	Silverado 2500HD/3500HD	2015-2019		Double	8	PK-XXL	Double	Chevrolet Silverado 2500HD/3500HD	SRW only; Excludes DRW	T6
+HNT	Chevrolet	Silverado 2500HD/3500HD	2020-2024		Double	6.8	PK-XXL	Double	Chevrolet Silverado 2500HD/3500HD	SRW only; Excludes DRW	T6
+HNT	Chevrolet	Silverado 2500HD/3500HD	2001-2026		Regular	8	PK-XL	Regular	Chevrolet Silverado 2500HD/3500HD	SRW only; Excludes DRW	T4
 HNT	Chevrolet	Silverado EV	2024-2026		Crew	5.9	PK-XXL	Crew	Chevrolet Silverado EV		T6
 HNT	Dodge	Dakota	1990-2011		Club/Quad	5.25-6.5	PK-L	Club/Quad	Dodge Dakota		T3
 HNT	Dodge	Dakota	1987-1989		Regular	8	PK-M	Regular	Dodge Dakota		T1
 HNT	Dodge	Dakota	1987-2004		Regular	6.5	PK-M	Regular	Dodge Dakota		T1
 HNT	Dodge	Dakota	1990-1999		Regular	8	PK-L	Regular	Dodge Dakota		T3
-HNT	Ford	F-150	1992-1996		Regular/SuperCab	6.5	PK-M	Regular/SuperCab	Ford F-150	Includes Raptor/Lightning/Tremor	T1
-HNT	Ford	F-150	2001-2008		SuperCrew	5.5	PK-L	SuperCrew	Ford F-150	Includes Raptor/Lightning/Tremor	T3
-HNT	Ford	F-150	2009-2014		SuperCab	6.5-8	PK-M	SuperCab	Ford F-150	Includes Raptor/Lightning/Tremor	T1
-HNT	Ford	F-150	2009-2014	Incl: Raptor	SuperCrew	5.5	PK-M	SuperCrew	Ford F-150	Includes Raptor/Lightning/Tremor	T1
-HNT	Ford	F-150	2010-2019	Raptor	SuperCab	5.5	PK-L	SuperCab	Ford F-150	Includes Raptor/Lightning/Tremor	T3
-HNT	Ford	F-150	2015-2023		SuperCab	6.5	PK-L	SuperCab	Ford F-150	Includes Raptor/Lightning/Tremor	T3
-HNT	Ford	F-150	2021-2026	Incl: Tremor	SuperCrew	5.5	PK-XXL	SuperCrew	Ford F-150	Includes Raptor/Lightning/Tremor	T6
-HNT	Ford	F-150	2024-2026		SuperCab/SuperCrew	6.5	PK-XXL	SCab/SCrew	Ford F-150	Includes Raptor/Lightning/Tremor	T6
-HNT	Ford	F-250/F-350 Super Duty	2008-2010		Crew/SuperCab	8	PK-XXL	Crew/SuperCab	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T6
-HNT	Ford	Ford F-100	1968-1973		Regular	6.5-6.75	2L+	Regular	Ford Ranger	Includes Raptor	H1
-HNT	Ford	Maverick	2022-2026	Incl: Lobo/Tremor	SuperCrew	4.5	PK-M	SuperCrew	Ford Maverick	Includes Tremor/Lobo	T1
+HNT	Ford	Explorer	2001-2005	Sport Trac	Crew	4.2	PK-M	Crew	Ford Explorer Sport Trac	Includes Raptor	T1
+HNT	Ford	F-150	1992-1996		Regular	8	PK-L	Regular	Ford F-150	Includes Raptor	T3
+HNT	Ford	F-150	1992-2003		Regular	6.5	PK-M	Regular	Ford F-150	Includes Raptor	T1
+HNT	Ford	F-150	1997-2026		Regular	8	PK-XL	Regular	Ford F-150	Includes Raptor	T4
+HNT	Ford	F-150	2004-2014		Regular	6.5	PK-L	Regular	Ford F-150	Includes Raptor	T3
+HNT	Ford	F-150	2015-2026		Regular	6.5	PK-M	Regular	Ford F-150	Includes Raptor	T1
+HNT	Ford	F-150	1992-1998		SuperCab	8	PK-XXL	SuperCab	Ford F-150	Includes Raptor	T6
+HNT	Ford	F-150	2010-2019	Raptor	SuperCab	5.5	PK-L	SuperCab	Ford F-150	Includes Raptor	T3
+HNT	Ford	F-150	1994-2008		SuperCab/SuperCrew	5.5-6.5	PK-L	SCab/SCrew	Ford F-150	Includes Raptor	T3
+HNT	Ford	F-150	2009-2026		SuperCab/SuperCrew	6.5	PK-XXL	SCab/SCrew	Ford F-150	Includes Raptor	T6
+HNT	Ford	F-150	2009-2026	Incl: Lightning/Raptor/Tremor	SuperCrew	5.5	PK-XXL	SuperCrew	Ford F-150	Includes Raptor	T6
+HNT	Ford	F-250/F-350 Super Duty	1999-2026		Crew/SuperCab	6.8	PK-XXL	Crew/SuperCab	Ford F-250/F-350 Super Duty	Includes Raptor	T6
+HNT	Ford	F-250/F-350 Super Duty	1999-2016		Regular	8	PK-XL	Regular	Ford F-250/F-350 Super Duty	Includes Raptor	T4
+HNT	Ford	F-250/F-350 Super Duty	2017-2026		Regular	8	PK-XXL	Regular	Ford F-250/F-350 Super Duty	Includes Raptor	T6
+HNT	Ford	F-250/F-350 Super Duty	1999-2016		SuperCab	8	PK-XXL	SuperCab	Ford F-250/F-350 Super Duty	Includes Raptor	T6
+HNT	Ford	Maverick	2022-2026	Incl: Lobo/Tremor	SuperCrew	4.5	PK-M	SuperCrew	Ford Maverick	Includes Raptor	T1
+HNT	Ford	Ranger	1998-2011		Regular	6	PK-M	Regular	Ford Ranger	Includes Raptor	T1
 HNT	Ford	Ranger	1993-2011		SuperCab	6-7	PK-M	SuperCab	Ford Ranger	Includes Raptor	T1
 HNT	Ford	Ranger	2019-2026	Incl: Raptor	SuperCrew	5	PK-L	SuperCrew	Ford Ranger	Includes Raptor	T3
-HNT	Ford	Explorer	2001-2005	Sport Trac	Crew	4.2	PK-M	Crew	Ford Explorer Sport Trac		T1
-HNT	Ford	F-150	1992-1996		SuperCab	8	PK-M	SuperCab	Ford F-150	Includes Raptor/Lightning/Tremor	T1
-HNT	Ford	F-150	1992-2003		Regular	8	PK-M	Regular	Ford F-150	Includes Raptor/Lightning/Tremor	T1
-HNT	Ford	F-150	1997-1998		SuperCab	8	PK-L	SuperCab	Ford F-150	Includes Raptor/Lightning/Tremor	T3
-HNT	Ford	F-150	1997-2003		SuperCab	6.5	PK-M	SuperCab	Ford F-150	Includes Raptor/Lightning/Tremor	T1
-HNT	Ford	F-150	2004-2008		Regular	8	PK-L	Regular	Ford F-150	Includes Raptor/Lightning/Tremor	T3
-HNT	Ford	F-150	2004-2008		SuperCab	6.5	PK-XXL	SuperCab	Ford F-150	Includes Raptor/Lightning/Tremor	T6
-HNT	Ford	F-150	2004-2014		Regular	6.5	PK-M	Regular	Ford F-150	Includes Raptor/Lightning/Tremor	T1
-HNT	Ford	F-150	2009-2014		Regular	8	PK-XXL	Regular	Ford F-150	Includes Raptor/Lightning/Tremor	T6
-HNT	Ford	F-150	2009-2023		SuperCrew	6.5	PK-L	SuperCrew	Ford F-150	Includes Raptor/Lightning/Tremor	T3
-HNT	Ford	F-150	2015-2018		SuperCrew	5.5	PK-XL	SuperCrew	Ford F-150	Includes Raptor/Lightning/Tremor	T4
-HNT	Ford	F-150	2015-2020		Regular	6.5	PK-XXL	Regular	Ford F-150	Includes Raptor/Lightning/Tremor	T6
-HNT	Ford	F-150	2015-2020		Regular	8	PK-M	Regular	Ford F-150	Includes Raptor/Lightning/Tremor	T1
-HNT	Ford	F-150	2015-2020		SuperCab	8	PK-XL	SuperCab	Ford F-150	Includes Raptor/Lightning/Tremor	T4
-HNT	Ford	F-150	2021-2023		Regular	8	PK-XL	Regular	Ford F-150	Includes Raptor/Lightning/Tremor	T4
-HNT	Ford	F-150	2021-2023		SuperCab	8	PK-XXL	SuperCab	Ford F-150	Includes Raptor/Lightning/Tremor	T6
-HNT	Ford	F-150	2021-2026		Regular	6.5	PK-L	Regular	Ford F-150	Includes Raptor/Lightning/Tremor	T3
-HNT	Ford	F-150	2021-2026	Raptor	SuperCrew	5.5	PK-XL	SuperCrew	Ford F-150	Includes Raptor/Lightning/Tremor	T4
-HNT	Ford	F-150	2024-2026		Regular	8	PK-XXL	Regular	Ford F-150	Includes Raptor/Lightning/Tremor	T6
-HNT	Ford	F-250/F-350 Super Duty	1999-2000		SuperCab	8	PK-M	SuperCab	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T1
-HNT	Ford	F-250/F-350 Super Duty	1999-2007		Crew	8	PK-L	Crew	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T3
-HNT	Ford	F-250/F-350 Super Duty	1999-2010		Regular	8	PK-XL	Regular	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T4
-HNT	Ford	F-250/F-350 Super Duty	1999-2026		SuperCab	6.8	PK-XXL	SuperCab	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T6
-HNT	Ford	F-250/F-350 Super Duty	2001-2004		SuperCab	8	PK-XXL	SuperCab	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T6
-HNT	Ford	F-250/F-350 Super Duty	2005-2007		SuperCab	8	PK-M	SuperCab	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T1
-HNT	Ford	F-250/F-350 Super Duty	2011-2016		SuperCab	8	PK-M	SuperCab	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T1
-HNT	Ford	F-250/F-350 Super Duty	2011-2022		Crew	6.8	PK-XXL	Crew	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T6
-HNT	Ford	F-250/F-350 Super Duty	2011-2022		Crew	8	PK-XL	Crew	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T4
-HNT	Ford	F-250/F-350 Super Duty	2011-2026		Regular	8	PK-XXL	Regular	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T6
-HNT	Ford	F-250/F-350 Super Duty	2017-2026		SuperCab	8	PK-XXL	SuperCab	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T6
-HNT	Ford	F-250/F-350 Super Duty	2023-2026		Crew	8	PK-XXL	Crew	Ford F-250/F-350 Super Duty	SRW only; Excludes DRW	T6
-HNT	Ford	F-350 Super Duty	1999	DRW	Crew	8	PK-XL	Crew	Ford F-350 Super Duty		T4
-HNT	Ford	F-350 Super Duty	1999-2009	DRW	Regular	8	PK-XXL	Regular	Ford F-350 Super Duty		T6
-HNT	Ford	F-350 Super Duty	2000-2001	DRW	Crew	8	PK-XXL	Crew	Ford F-350 Super Duty		T6
-HNT	Ford	F-350 Super Duty	2003	DRW	Crew	8	PK-XL	Crew	Ford F-350 Super Duty		T4
-HNT	Ford	F-350 Super Duty	2004-2006	DRW	Crew	8	PK-XXL	Crew	Ford F-350 Super Duty		T6
-HNT	Ford	F-350 Super Duty	2008	DRW	Crew	8	PK-XXL	Crew	Ford F-350 Super Duty		T6
-HNT	Ford	F-350 Super Duty	2010-2011	DRW	Crew	8	PK-XXL	Crew	Ford F-350 Super Duty		T6
-HNT	Ford	F-350 Super Duty	2011	DRW	Regular	8	PK-XXL	Regular	Ford F-350 Super Duty		T6
-HNT	Ford	Ford F-100	1953-1960		Regular	6.5	2M	Regular	Ford Ranger	Includes Raptor	H0
-HNT	Ford	Ford F-100	1956-1960		Regular	8	3L	Regular	Ford Ranger	Includes Raptor	A1
-HNT	Ford	Ford F-100	1961-1964		Regular	6.5	3XXL	Regular	Ford Ranger	Includes Raptor	A4
-HNT	Ford	Ford F-100	1965-1966		Regular	8	2L+	Regular	Ford Ranger	Includes Raptor	H1
-HNT	Ford	Ford F-100	1967		Regular	6.5	3L	Regular	Ford Ranger	Includes Raptor	A1
-HNT	Ford	Ford F-100	1973-1983		Regular	8	3L	Regular	Ford Ranger	Includes Raptor	A1
-HNT	Ford	Ford F-100	1974-1979		Regular	6.75	3M-0	Regular	Ford Ranger	Includes Raptor	C2
-HNT	Ford	Ford F-100	1974-1979		SuperCab	6.75	3L	SuperCab	Ford Ranger	Includes Raptor	A1
-HNT	Ford	Ford F-100	1974-1979		SuperCab	8	2L+	SuperCab	Ford Ranger	Includes Raptor	H1
-HNT	Ford	Ford F-100	1980-1983		Regular	6.75	2L+	Regular	Ford Ranger	Includes Raptor	H1
-HNT	Ford	Ranger	1998-2011		Regular	6	PK-M	Regular	Ford Ranger	Includes Raptor	T1
-HNT	GMC	Canyon	2004-2012		Crew/Extended/Regular	5-6	PK-M	Crew/Ext/Reg	GMC Canyon	Excludes AT4X	T1
 HNT	GMC	Canyon	2015-2022		Crew/Extended	5-6	PK-L	Crew/Extended	GMC Canyon	Excludes AT4X	T3
-HNT	GMC	Sierra 1500	1999-2006		Extended/Crew	5.8-6.6	YL	Extended/Crew	GMC Sierra 1500/2500HD/3500HD		S2
-HNT	GMC	Sierra 2500HD/3500HD	2001-2007		Crew/Regular	8	3L	Crew/Regular	GMC Sierra 1500/2500HD/3500HD		A1
-HNT	GMC	Sierra 2500HD/3500HD	2008-2019		Crew/Double	8	3XL	Crew/Double	GMC Sierra 1500/2500HD/3500HD		A2
-HNT	GMC	Sierra 2500HD/3500HD	2015-2023		Crew/Double	6.8	3XL-0	Crew/Double	GMC Sierra 1500/2500HD/3500HD		C4
-HNT	GMC	Sierra 2500HD/3500HD	2020-2023	Incl: DRW	Crew/Double	8	3XXL	Crew/Double	GMC Sierra 1500/2500HD/3500HD		A4
-HNT	GMC	Sierra 2500HD/3500HD	2024-2026		Crew/Double	6.8	2M	Crew/Double	GMC Sierra 1500/2500HD/3500HD		H0
-HNT	GMC	Sierra 2500HD/3500HD	2024-2026	Incl: DRW	Crew	8	3L	Crew	GMC Sierra 1500/2500HD/3500HD		A1
-HNT	GMC	Sierra 1500	1999-2006		Extended	8	YM+	Extended	GMC Sierra 1500/2500HD/3500HD		S1
-HNT	GMC	Sierra 1500	1999-2006		Regular	8	YL	Regular	GMC Sierra 1500/2500HD/3500HD		S2
-HNT	GMC	Sierra 1500	2007-2013		Regular	6.6	YL	Regular	GMC Sierra 1500/2500HD/3500HD		S2
-HNT	GMC	Sierra 1500	2007-2013		Regular	8	YXL	Regular	GMC Sierra 1500/2500HD/3500HD		S3
-HNT	GMC	Sierra 1500	2019-2026		Crew	5.8	2L+	Crew	GMC Sierra 1500/2500HD/3500HD		H1
-HNT	GMC	Sierra 1500	2019-2026		Double	6.6	3L	Double	GMC Sierra 1500/2500HD/3500HD		A1
-HNT	GMC	Sierra 1500	2019-2026		Regular	8	2M	Regular	GMC Sierra 1500/2500HD/3500HD		H0
-HNT	GMC	Sierra 2500HD/3500HD	2001-2007		Crew	6.8	2L+	Crew	GMC Sierra 1500/2500HD/3500HD		H1
-HNT	GMC	Sierra 2500HD/3500HD	2001-2007	DRW	Crew	8	3L-0	Crew	GMC Sierra 1500/2500HD/3500HD		C3
-HNT	GMC	Sierra 2500HD/3500HD	2008-2014		Crew	6.8	2XXL-525	Crew	GMC Sierra 1500/2500HD/3500HD		H2
-HNT	GMC	Sierra 2500HD/3500HD	2008-2014		Regular	8	3L-0	Regular	GMC Sierra 1500/2500HD/3500HD		C3
-HNT	GMC	Sierra 2500HD/3500HD	2008-2019	DRW	Crew	8	3XL-0	Crew	GMC Sierra 1500/2500HD/3500HD		C4
-HNT	GMC	Sierra 2500HD/3500HD	2015-2019		Regular	8	2XXL-525	Regular	GMC Sierra 1500/2500HD/3500HD		H2
-HNT	GMC	Sierra 2500HD/3500HD	2020-2023		Regular	8	3XL	Regular	GMC Sierra 1500/2500HD/3500HD		A2
-HNT	GMC	Sierra 2500HD/3500HD	2024-2026		Double	8	2M	Double	GMC Sierra 1500/2500HD/3500HD		H0
-HNT	GMC	Sierra 2500HD/3500HD	2024-2026		Regular	8	3XXL	Regular	GMC Sierra 1500/2500HD/3500HD		A4
-HNT	GMC	Sierra EV	2024-2026		Crew	5.9	2M	Crew	GMC Sierra EV		H0
-HNT	Honda	Ridgeline	2006-2014		Crew	5	3XXL	Crew	Honda Ridgeline		A4
-HNT	Honda	Ridgeline	2017-2020		Crew	5.3	YXL	Crew	Honda Ridgeline		S3
-HNT	Honda	Ridgeline	2021-2026		Crew	5.3	YM+	Crew	Honda Ridgeline		S1
-HNT	Hyundai	Hyundai Santa Cruz	2022-2024		Crew	4.3	YM+	Crew	Hyundai Hyundai Santa Cruz	Includes XRT	S1
-HNT	Hyundai	Hyundai Santa Cruz	2024	XRT	Crew	4.3	YL	Crew	Hyundai Hyundai Santa Cruz	Includes XRT	S2
-HNT	Hyundai	Hyundai Santa Cruz	2025-2026		Crew	4.3	YL	Crew	Hyundai Hyundai Santa Cruz	Includes XRT	S2
-HNT	Hyundai	Hyundai Santa Cruz	2025-2026	XRT	Crew	4.3	2L+	Crew	Hyundai Hyundai Santa Cruz	Includes XRT	H1
-HNT	Ineos Automotive	Grenadier	2024-2026	Quartermaster	Crew	5.1	YL	Crew	Ineos Automotive Grenadier		S2
-HNT	Jeep	Gladiator	2020	Rubicon	Crew	5	YXL	Crew	Jeep Gladiator		S3
-HNT	Nissan	Frontier	1998		King/Regular	6	2L+	King/Regular	Nissan Frontier	Includes SC-V6	H1
-HNT	Nissan	Frontier	2000-2002		King/Regular	6	3XL	King/Regular	Nissan Frontier	Includes SC-V6	A2
-HNT	Nissan	Frontier	2003	Incl: SC-V6	Crew	4.5-6	YXL	Crew	Nissan Frontier	Includes SC-V6	S3
-HNT	Nissan	Frontier	2004		Crew	4.5-6	YM+	Crew	Nissan Frontier	Includes SC-V6	S1
-HNT	Nissan	Frontier	2026		Crew/King	6	3L	Crew/King	Nissan Frontier	Includes SC-V6	A1
-HNT	Nissan	Frontier	1999		King	6	2XXL-525	King	Nissan Frontier	Includes SC-V6	H2
-HNT	Nissan	Frontier	1999		Regular	6	YM+	Regular	Nissan Frontier	Includes SC-V6	S1
-HNT	Nissan	Frontier	2000		Crew	4.5	3L	Crew	Nissan Frontier	Includes SC-V6	A1
-HNT	Nissan	Frontier	2001		Crew	4.5	3XL	Crew	Nissan Frontier	Includes SC-V6	A2
-HNT	Nissan	Frontier	2001	SC-V6	King	6	3XXL	King	Nissan Frontier	Includes SC-V6	A4
-HNT	Nissan	Frontier	2002	SC-V6	Crew	4.5	3XXL	Crew	Nissan Frontier	Includes SC-V6	A4
-HNT	Nissan	Frontier	2002	SC-V6	Crew	6	YL	Crew	Nissan Frontier	Includes SC-V6	S2
-HNT	Nissan	Frontier	2003-2004		King	6	YL	King	Nissan Frontier	Includes SC-V6	S2
-HNT	Nissan	Frontier	2005-2007		King	6	YM+	King	Nissan Frontier	Includes SC-V6	S1
-HNT	Nissan	Frontier	2005-2021		Crew	6	YXL	Crew	Nissan Frontier	Includes SC-V6	S3
-HNT	Nissan	Frontier	2005-2026		Crew	5	YL	Crew	Nissan Frontier	Includes SC-V6	S2
-HNT	Nissan	Frontier	2008-2016		King	6	YXL	King	Nissan Frontier	Includes SC-V6	S3
-HNT	Nissan	Frontier	2017-2022		King	6	YL	King	Nissan Frontier	Includes SC-V6	S2
-HNT	Nissan	Frontier	2022		Crew	6	YL	Crew	Nissan Frontier	Includes SC-V6	S2
-HNT	Nissan	Frontier	2023		King	6	YM+	King	Nissan Frontier	Includes SC-V6	S1
-HNT	Nissan	Frontier	2023-2024		Crew	6	3L	Crew	Nissan Frontier	Includes SC-V6	A1
-HNT	Nissan	Frontier	2024-2025		King	6	2L+	King	Nissan Frontier	Includes SC-V6	H1
-HNT	Nissan	Frontier	2025		Crew	6	3M-0	Crew	Nissan Frontier	Includes SC-V6	C2
-HNT	Ram	1500	1994-2006		Club/Quad	6.4	2XXL-525	Club/Quad	Ram 1500	Includes TRX/RHO	H2
-HNT	Ram	1500	2019-2026	Incl: TRX	Crew	5.6	2L+	Crew	Ram 1500	Includes TRX/RHO	H1
-HNT	Ram	2500/3500	2003-2009		Regular/Mega	6.4-8	3L	Regular/Mega	Ram 2500/3500		A1
-HNT	Ram	2500/3500	2010-2018		Crew/Mega/Regular	6.4-8	YL	Crew/Mega/Regular	Ram 2500/3500		S2
-HNT	Ram	1500	1994-2001		Regular	6.4	3L-0	Regular	Ram 1500	Includes TRX/RHO	C3
-HNT	Ram	1500	1997		Regular	8	3L-0	Regular	Ram 1500	Includes TRX/RHO	C3
-HNT	Ram	1500	1999-2001		Regular	8	3L	Regular	Ram 1500	Includes TRX/RHO	A1
-HNT	Ram	1500	2002-2008		Regular	6.4	2XXL-525	Regular	Ram 1500	Includes TRX/RHO	H2
-HNT	Ram	1500	2005		Regular	8	3XL	Regular	Ram 1500	Includes TRX/RHO	A2
-HNT	Ram	1500	2007		Regular	8	3XXL	Regular	Ram 1500	Includes TRX/RHO	A4
-HNT	Ram	1500	2008		Quad	6.4	2L+	Quad	Ram 1500	Includes TRX/RHO	H1
-HNT	Ram	1500	2009-2014		Quad	6.4	3XL	Quad	Ram 1500	Includes TRX/RHO	A2
-HNT	Ram	1500	2009-2018		Crew	6.4	2XXL-525	Crew	Ram 1500	Includes TRX/RHO	H2
-HNT	Ram	1500	2009-2018		Regular	6.4	3L-0	Regular	Ram 1500	Includes TRX/RHO	C3
-HNT	Ram	1500	2009-2018		Regular	8	3L	Regular	Ram 1500	Includes TRX/RHO	A1
-HNT	Ram	1500	2011-2012		Crew	5.6	3XL	Crew	Ram 1500	Includes TRX/RHO	A2
-HNT	Ram	1500	2014-2018		Crew	5.6	YXL	Crew	Ram 1500	Includes TRX/RHO	S3
-HNT	Ram	1500	2016		Quad	6.4	3S-0	Quad	Ram 1500	Includes TRX/RHO	C1
-HNT	Ram	1500	2018		Quad	6.4	3M-0	Quad	Ram 1500	Includes TRX/RHO	C2
-HNT	Ram	1500	2019-2026		Crew	6.4	3M-0	Crew	Ram 1500	Includes TRX/RHO	C2
-HNT	Ram	1500	2019-2026		Quad	6.4	3L	Quad	Ram 1500	Includes TRX/RHO	A1
-HNT	Ram	1500	2025-2026	RHO	Crew	5.6	3L	Crew	Ram 1500	Includes TRX/RHO	A1
-HNT	Ram	1500 Classic	2019-2023		Crew	5.6	2L+	Crew	Ram 1500 Classic		H1
-HNT	Ram	2500/3500	1994-2002		Crew	6.4	3L	Crew	Ram 2500/3500		A1
-HNT	Ram	2500/3500	1994-2002		Regular	8	3L-0	Regular	Ram 2500/3500		C3
-HNT	Ram	2500/3500	1994-2009		Quad	8	3L-0	Quad	Ram 2500/3500		C3
-HNT	Ram	2500/3500	2019-2026		Crew	6.4	3M-0	Crew	Ram 2500/3500		C2
-HNT	Ram	2500/3500	2019-2026		Crew	8	3L	Crew	Ram 2500/3500		A1
-HNT	Ram	2500/3500	2019-2026		Mega	6.4	2L+	Mega	Ram 2500/3500		H1
-HNT	Ram	2500/3500	2019-2026		Regular	8	YM+	Regular	Ram 2500/3500		S1
-HNT	Rivian	R1T	2022-2026	Incl: Adventure/Dual/Quad	Crew	4.5	3M-0	Crew	Rivian R1T		C2
-HNT	Toyota	Tacoma	1995-2015		Regular/XtraCab/Double	6	PK-M	Regular/XtraCab/Double	Toyota Tacoma	Includes TRD Pro/Trailhunter	T1
-HNT	Toyota	Tacoma	2005-2026		Access/XtraCab	6	PK-L	Access/XtraCab	Toyota Tacoma	Includes TRD Pro/Trailhunter	T3
-HNT	Toyota	Tundra	2000-2006		Regular/Double	6.5	PK-L	Regular/Double	Toyota Tundra		T3
-HNT	Toyota	Tundra	2007-2021		Double	6.5-8.1	PK-L	Double	Toyota Tundra		T3
-HNT	Toyota	Tundra	2014-2019		CrewMax	5.5	PK-L	CrewMax	Toyota Tundra		T3
-HNT	Toyota	Tacoma	2003-2006		Double	5	PK-M	Double	Toyota Tacoma	Includes TRD Pro/Trailhunter	T1
-HNT	Toyota	Tacoma	2014-2026		Double	5	PK-L	Double	Toyota Tacoma	Includes TRD Pro/Trailhunter	T3
-HNT	Toyota	Tacoma	2016-2026		Double	6	PK-L	Double	Toyota Tacoma	Includes TRD Pro/Trailhunter	T3
-HNT	Toyota	Tacoma	2017-2023	TRD Pro	Double	5	PK-L	Double	Toyota Tacoma	Includes TRD Pro/Trailhunter	T3
-HNT	Toyota	Tacoma	2024-2026	TRD Pro/Trailhunter	Double	5	2L+	Double	Toyota Tacoma	Includes TRD Pro/Trailhunter	H1
-HNT	Toyota	Tundra	2000-2002		Access	6.5	PK-XL	Access	Toyota Tundra		T4
-HNT	Toyota	Tundra	2000-2006		Regular	8	PK-XL	Regular	Toyota Tundra		T4
-HNT	Toyota	Tundra	2004-2005		Access	6.5	PK-XXL	Access	Toyota Tundra		T6
-HNT	Toyota	Tundra	2007-2012		CrewMax	5.5	PK-M	CrewMax	Toyota Tundra		T1
-HNT	Toyota	Tundra	2007-2017		Regular	6.5	PK-XL	Regular	Toyota Tundra		T4
-HNT	Toyota	Tundra	2007-2017		Regular	8.1	PK-XXL	Regular	Toyota Tundra		T6
-HNT	Toyota	Tundra	2021		CrewMax	5.5	PK-XXL	CrewMax	Toyota Tundra		T6
-HNT	Toyota	Tundra	2022-2026		Double	6.5	PK-XXL	Double	Toyota Tundra		T6
-HNT	Toyota	Tundra	2022-2026		Double	8.1	2XXL-525	Double	Toyota Tundra		H2
+HNT	GMC	Canyon	2004-2012		Crew/Extended/Regular	5-6	PK-M	Crew/Ext/Reg	GMC Canyon	Excludes AT4X	T1
+HNT	GMC	Sierra 1500	2004-2006		Crew	5.8	PK-XXL	Crew	GMC Sierra 1500/2500HD/3500HD		T6
+HNT	GMC	Sierra 1500	2007-2018		Crew/Double	5.8-6.6	PK-L	Crew/Double	GMC Sierra 1500/2500HD/3500HD		T3
+HNT	GMC	Sierra 1500	2019-2026		Crew/Double	5.8-6.6	PK-XXL	Crew/Double	GMC Sierra 1500/2500HD/3500HD		T6
+HNT	GMC	Sierra 1500	1999-2006		Extended	6.6	PK-L	Extended	GMC Sierra 1500/2500HD/3500HD		T3
+HNT	GMC	Sierra 1500	1999-2013		Extended	8	PK-XXL	Extended	GMC Sierra 1500/2500HD/3500HD		T6
+HNT	GMC	Sierra 1500	2007-2013		Extended	6.6	PK-XXL	Extended	GMC Sierra 1500/2500HD/3500HD		T6
+HNT	GMC	Sierra 1500	1999-2026		Regular	8	PK-XL	Regular	GMC Sierra 1500/2500HD/3500HD		T4
+HNT	GMC	Sierra 1500	2007-2018		Regular	6.6	PK-M	Regular	GMC Sierra 1500/2500HD/3500HD		T1
+HNT	GMC	Sierra 1500	2019-2026		Regular	6.6	PK-L	Regular	GMC Sierra 1500/2500HD/3500HD		T3
+HNT	GMC	Sierra 2500HD/3500HD	2001-2026		Crew/Double	6.8	PK-XXL	Crew/Double	GMC Sierra 1500/2500HD/3500HD		T6
+HNT	GMC	Sierra 2500HD/3500HD	2001-2026		Regular	8	PK-XL	Regular	GMC Sierra 1500/2500HD/3500HD		T4
+HNT	GMC	Sierra EV	2024-2026		Crew	5.9	PK-XXL	Crew	GMC Sierra EV		T6
+HNT	Honda	Ridgeline	2006-2020		Crew	5-5.3	PK-M	Crew	Honda Ridgeline		T1
+HNT	Honda	Ridgeline	2021-2026		Crew	5.3	PK-L	Crew	Honda Ridgeline		T3
+HNT	Ineos Automotive	Grenadier	2024-2026	Quartermaster	Crew	5.1	PK-L	Crew	Ineos Automotive Grenadier		T3
+HNT	Jeep	Gladiator	2020-2026	Incl: Mojave/Rubicon	Crew	5	PK-L	Crew	Jeep Gladiator		T3
+HNT	Nissan	Frontier	2002-2021	Incl: SC-V6	Crew	4.5-5	PK-M	Crew	Nissan Frontier	Includes SC-V6	T1
+HNT	Nissan	Frontier	2002-2026	Incl: SC-V6	Crew	6	PK-L	Crew	Nissan Frontier	Includes SC-V6	T3
+HNT	Nissan	Frontier	2022-2026		Crew	5	PK-L	Crew	Nissan Frontier	Includes SC-V6	T3
+HNT	Nissan	Frontier	2022-2026		King	6	PK-L	King	Nissan Frontier	Includes SC-V6	T3
+HNT	Nissan	Frontier	1998-2001	Incl: SC-V6	King/Crew	4.5-6	PK-M	King/Crew	Nissan Frontier	Includes SC-V6	T1
+HNT	Nissan	Frontier	2001-2021		Regular/King	6	PK-M	Regular/King	Nissan Frontier	Includes SC-V6	T1
+HNT	Ram	1500	1994-2026		Club/Quad	6.4	PK-L	Club/Quad	Ram 1500	Includes TRX/RHO	T3
+HNT	Ram	1500	2009-2026		Crew	6.4	PK-XXL	Crew	Ram 1500	Includes TRX/RHO	T6
+HNT	Ram	1500	2011-2018		Crew	5.6	PK-L	Crew	Ram 1500	Includes TRX/RHO	T3
+HNT	Ram	1500	2019-2026	Incl: RHO/TRX	Crew	5.6	PK-XXL	Crew	Ram 1500	Includes TRX/RHO	T6
+HNT	Ram	1500	1994-2018		Regular	6.4	PK-M	Regular	Ram 1500	Includes TRX/RHO	T1
+HNT	Ram	1500	1997-2018		Regular	8	PK-XL	Regular	Ram 1500	Includes TRX/RHO	T4
+HNT	Ram	1500 Classic	2019-2023		Crew	5.6	PK-L	Crew	Ram 1500 Classic		T3
+HNT	Ram	2500/3500	1994-2026		Crew	6.4	PK-XXL	Crew	Ram 2500/3500		T6
+HNT	Ram	2500/3500	1994-2026		Quad/Mega	6.4-8	PK-XXL	Quad/Mega	Ram 2500/3500		T6
+HNT	Ram	2500/3500	1994-2026		Regular	8	PK-XL	Regular	Ram 2500/3500		T4
+HNT	Rivian	R1T	2022-2026	Incl: Adventure/Dual/Quad	Crew	4.5	PK-L	Crew	Rivian R1T		T3
+HNT	Toyota	Tacoma	2016-2023		Access	6	PK-L	Access	Toyota Tacoma	Includes TRD Pro/Trailhunter	T3
+HNT	Toyota	Tacoma	2003-2015		Double	5	PK-M	Double	Toyota Tacoma	Includes TRD Pro/Trailhunter	T1
+HNT	Toyota	Tacoma	2016-2026	Incl: Trailhunter/TRD Pro	Double	5	PK-L	Double	Toyota Tacoma	Includes TRD Pro/Trailhunter	T3
+HNT	Toyota	Tacoma	2005-2026		Double/XtraCab	6	PK-L	Double/XtraCab	Toyota Tacoma	Includes TRD Pro/Trailhunter	T3
+HNT	Toyota	Tacoma	1995-2013		XtraCab/Access	6	PK-M	XtraCab/Access	Toyota Tacoma	Includes TRD Pro/Trailhunter	T1
+HNT	Toyota	Tundra	2000-2021		Access/CrewMax	5.5-6.5	PK-L	Access/CrewMax	Toyota Tundra		T3
+HNT	Toyota	Tundra	2022-2026		CrewMax/Double	5.5-6.5	PK-XXL	CrewMax/Double	Toyota Tundra		T6
+HNT	Toyota	Tundra	2004-2006		Double	6.5	PK-XXL	Double	Toyota Tundra		T6
+HNT	Toyota	Tundra	2007-2021		Double	8.1	PK-XXL	Double	Toyota Tundra		T6
+HNT	Toyota	Tundra	2008-2020		Double	6.5	PK-L	Double	Toyota Tundra		T3
+HNT	Toyota	Tundra	2000-2006		Regular	6.5-8	PK-XL	Regular	Toyota Tundra		T4
+HNT	Toyota	Tundra	2007-2017		Regular	6.5	PK-M	Regular	Toyota Tundra		T1
+HNT	Toyota	Tundra	2007-2017		Regular	8.1	PK-XL	Regular	Toyota Tundra		T4
+HNT	Ford	Ford F-100	1953-1964		Regular	6.5	PK-M	Regular	#N/A	Includes Raptor	T1
+HNT	Ford	Ford F-100	1956-1966		Regular	8	PK-M	Regular	#N/A	Includes Raptor	T1
+HNT	Ford	Ford F-100	1967		Regular	6.5	PK-M	Regular	#N/A	Includes Raptor	T1
+HNT	Ford	Ford F-100	1967		Regular	8	PK-L	Regular	#N/A	Includes Raptor	T3
+HNT	Ford	Ford F-100	1968-1972		Regular	8	PK-M	Regular	#N/A	Includes Raptor	T1
+HNT	Ford	Ford F-100	1973-1979		Regular	8	PK-L	Regular	#N/A	Includes Raptor	T3
+HNT	Ford	Ford F-100	1973-1983		Regular	6.75	PK-M	Regular	#N/A	Includes Raptor	T1
+HNT	Ford	Ford F-100	1980-1983		Regular	8	PK-M	Regular	#N/A	Includes Raptor	T1
+HNT	Ford	Ford F-100	1974-1979		SuperCab	6.75	PK-L	SuperCab	#N/A	Includes Raptor	T3
+HNT	Ford	Ford F-100	1974-1979		SuperCab	8	PK-XXL	SuperCab	#N/A	Includes Raptor	T6
+HNT	Hyundai	Hyundai Santa Cruz	2022-2026	Incl: XRT	Crew	4.3	PK-M	Crew	#N/A	Includes XRT	T1

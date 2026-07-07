@@ -224,7 +224,10 @@ def wait_for_manual_check(message: str, variables: dict[str, str], dry_run: bool
     if dry_run:
         print(f"[manual-check] {text}")
         return
-    input(f"{text}\nPress Enter to continue...")
+    try:
+        input(f"{text}\nPress Enter to continue...")
+    except EOFError:
+        print(f"{text}\nNo interactive input available; continuing.")
 
 
 def enabled_step_names(config: dict[str, Any]) -> list[str]:

@@ -2,13 +2,13 @@
 TM	Acura ADX	Acura	ADX	2025-2026		SUV	YL	越野车			ADX	S2
 TM	Acura CL	Acura	CL	1997-2003		Coupe	3XL-0	跑车			CL	C4
 TM	Acura ILX	Acura	ILX	2013-2022		Sedan	3L	三厢车			ILX	A1
-TM	Acura Integra	Acura	Integra	1986-1993		Hatchback	2L+	两厢车	Hatchback	Hatchback	Integra	H1
 TM	Acura Integra	Acura	Integra	1990-2001		Sedan	3L	三厢车	Sedan	Sedan	Integra	A1
 TM	Acura Integra	Acura	Integra	1994-2001		Coupe	3M-0	跑车	Coupe	Coupe	Integra	C2
+TM	Acura Integra	Acura	Integra	1986-1993		Hatchback	2L+	两厢车	Hatchback	Hatchback	Integra	H1
 TM	Acura Integra	Acura	Integra	2023-2026	Incl: Type S	Hatchback	2XXL-525	两厢车	Hatchback Incl: Type S	Hbk Inc:TypeS	Integra	H2
 TM	Acura Legend	Acura	Legend	1986-1990		Sedan	3XL	三厢车	Sedan	Sedan	Legend	A2
-TM	Acura Legend	Acura	Legend	1987-1995		Coupe	3XL-0	跑车	Coupe	Coupe	Legend	C4
 TM	Acura Legend	Acura	Legend	1991-1995		Sedan	3XXL	三厢车	Sedan	Sedan	Legend	A4
+TM	Acura Legend	Acura	Legend	1987-1995		Coupe	3XL-0	跑车	Coupe	Coupe	Legend	C4
 TM	Acura MDX	Acura	MDX	2001-2006		SUV	YL	越野车			MDX	S2
 TM	Acura MDX	Acura	MDX	2007-2026	Incl: Type S	SUV	YXL	越野车	Incl: Type S	Incl: Type S	MDX	S3
 TM	Acura NSX	Acura	NSX	1991-2021		Coupe	3M-0	跑车			NSX	C2
@@ -41,22 +41,24 @@ TM	Audi A3 e-tron	Audi	A3 e-tron	2016-2018		Sportback	2L+	两厢车			A3 e-tron	
 TM	Audi A3/S3	Audi	A3/S3	2015-2016		Sedan	3L	三厢车			A3/S3	A1
 TM	Audi A3/S3/RS3	Audi	A3/S3/RS3	2017-2026		Sedan	3L	三厢车			A3/S3/RS3	A1
 TM	Audi A4	Audi	A4	1996-2003		Sedan	3L	三厢车	Sedan	Sedan	A4	A1
-TM	Audi A4	Audi	A4	1999		Wagon	2L+	两厢车	Wagon	Wagon	A4	H1
-TM	Audi A4	Audi	A4	2003		Convertible	3L-0	跑车	Convertible	Convertible	A4	C3
-TM	Audi A4	Audi	A4	2009-2012		Wagon	2XXL-525	两厢车	Wagon	Wagon	A4	H2
 TM	Audi A4	Audi	A4	2009		Sedan	3XL	三厢车	Sedan	Sedan	A4	A2
+TM	Audi A4	Audi	A4	2003		Convertible	3L-0	跑车	Convertible	Convertible	A4	C3
+TM	Audi A4	Audi	A4	1999		Wagon	2L+	两厢车	Wagon	Wagon	A4	H1
+TM	Audi A4	Audi	A4	2009-2012		Wagon	2XXL-525	两厢车	Wagon	Wagon	A4	H2
+TM	Audi A4	Audi	A4	2002-2003		Wagon	无可用尺码		Wagon	Wagon	A4	#N/A
 TM	Audi A4 allroad quattro	Audi	A4 allroad quattro	2013-2025		Wagon	2XXL-525	两厢车			A4 allroad qtro	H2
-TM	Audi A4/S4	Audi	A4/S4	2000-2001		Wagon	2L+	两厢车	Wagon	Wagon	A4/S4	H1
 TM	Audi A4/S4	Audi	A4/S4	2000-2006		Sedan	3L	三厢车	Sedan	Sedan	A4/S4	A1
-TM	Audi A4/S4	Audi	A4/S4	2004-2009		Convertible	3L-0	跑车	Convertible	Convertible	A4/S4	C3
 TM	Audi A4/S4	Audi	A4/S4	2010-2025		Sedan	3XL	三厢车	Sedan	Sedan	A4/S4	A2
+TM	Audi A4/S4	Audi	A4/S4	2004-2009		Convertible	3L-0	跑车	Convertible	Convertible	A4/S4	C3
+TM	Audi A4/S4	Audi	A4/S4	2000-2001		Wagon	2L+	两厢车	Wagon	Wagon	A4/S4	H1
+TM	Audi A4/S4	Audi	A4/S4	2004-2008		Wagon	无可用尺码		Wagon	Wagon	A4/S4	#N/A
 TM	Audi A4/S4/RS4	Audi	A4/S4/RS4	2007-2008		Sedan	3L	三厢车	Sedan	Sedan	A4/S4/RS4	A1
 TM	Audi A4/S4/RS4	Audi	A4/S4/RS4	2008		Convertible	3L-0	跑车	Convertible	Convertible	A4/S4/RS4	C3
 TM	Audi A5/S5	Audi	A5/S5	2008-2024		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	A5/S5	C3
 TM	Audi A5/S5	Audi	A5/S5	2026		Sportback	2XXL-525	两厢车	Sportback	Sportback	A5/S5	H2
 TM	Audi A5/S5/RS5	Audi	A5/S5/RS5	2013-2017		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	A5/S5/RS5	C3
-TM	Audi A5/S5/RS5	Audi	A5/S5/RS5	2018-2025		Sportback	2XXL-525	两厢车	Sportback	Sportback	A5/S5/RS5	H2
 TM	Audi A5/S5/RS5	Audi	A5/S5/RS5	2018-2024		Coupe	3XL-0	跑车	Coupe	Coupe	A5/S5/RS5	C4
+TM	Audi A5/S5/RS5	Audi	A5/S5/RS5	2018-2025		Sportback	2XXL-525	两厢车	Sportback	Sportback	A5/S5/RS5	H2
 TM	Audi A6	Audi	A6	1998-2026		Sedan	3XXL	三厢车			A6	A4
 TM	Audi A6 allroad quattro	Audi	A6 allroad quattro	2001-2025		Wagon	2XXL-525	两厢车			A6 allroad qtro	H2
 TM	Audi A6 e-tron/S6 e-tron	Audi	A6 e-tron/S6 e-tron	2025		Sportback	2XXL-525	两厢车			A6/S6 etron	H2
@@ -69,6 +71,9 @@ TM	Audi A8/S8	Audi	A8/S8	1997-2026		Sedan	3XXL	三厢车			A8/S8	A4
 TM	Audi A8/S8	Audi	A8/S8	2000-2018	LWB	Sedan	3XXL	三厢车	LWB	LWB	A8/S8	A4
 TM	Audi A8/S8	Audi	A8/S8	2019-2026	LWB	Sedan	3XXXL	三厢车	LWB	LWB	A8/S8	C6
 TM	Audi Cabriolet	Audi	Cabriolet	1995-1998		Convertible	3M-0	跑车			Cabriolet	C2
+TM	Audi e-tron GT/RS e-tron GT	Audi	e-tron GT/RS e-tron GT	2022-2024		Sedan	3XL+0	跑车			RS e-tron GT	C5
+TM	Audi e-tron GT/S e-tron GT/RS e-tron GT	Audi	e-tron GT/S e-tron GT/RS e-tron GT	2025-2026		Sedan	3XL+0	跑车			S/RS etron GT	C5
+TM	Audi e-tron/S e-tron	Audi	e-tron/S e-tron	2019-2023		Sportback/SUV	YXL	越野车			e-tron/S e-tron	S3
 TM	Audi Q3	Audi	Q3	2015-2026		SUV	YM+	越野车			Q3	S1
 TM	Audi Q4 e-tron	Audi	Q4 e-tron	2022-2026		Sportback/SUV	YM+	越野车			Q4 e-tron	S1
 TM	Audi Q5	Audi	Q5	2009-2013		SUV	YL	越野车			Q5	S2
@@ -83,36 +88,40 @@ TM	Audi R8/R8 GT	Audi	R8/R8 GT	2008-2023	Incl: Spyder	Convertible/Coupe	3M-0	跑
 TM	Audi RS7	Audi	RS7	2026		Sportback	2XXL-525	两厢车			RS7	H2
 TM	Audi TT/TTS/TT RS	Audi	TT/TTS/TT RS	2000-2006		Convertible/Coupe	3S-0	跑车			TT/TTS/TT RS	C1
 TM	Audi TT/TTS/TT RS	Audi	TT/TTS/TT RS	2008-2023		Convertible/Coupe	3M-0	跑车			TT/TTS/TT RS	C2
-TM	Audi e-tron GT/RS e-tron GT	Audi	e-tron GT/RS e-tron GT	2022-2024		Sedan	3XL+0	跑车			RS e-tron GT	C5
-TM	Audi e-tron GT/S e-tron GT/RS e-tron GT	Audi	e-tron GT/S e-tron GT/RS e-tron GT	2025-2026		Sedan	3XL+0	跑车			S/RS etron GT	C5
-TM	Audi e-tron/S e-tron	Audi	e-tron/S e-tron	2019-2023		Sportback/SUV	YXL	越野车			e-tron/S e-tron	S3
 TM	BMW 1 Series	BMW	1 Series	2008-2013		Convertible/Coupe	3M-0	跑车			1 Series	C2
-TM	BMW 2 Series	BMW	2 Series	2014-2021		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	2 Series	C2
 TM	BMW 2 Series	BMW	2 Series	2020-2026	Gran Coupe	Sedan	3L	三厢车	Sedan Gran Coupe	Sdn GranCoupe	2 Series	A1
+TM	BMW 2 Series	BMW	2 Series	2014-2021		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	2 Series	C2
 TM	BMW 2 Series	BMW	2 Series	2022-2026	M2	Coupe	3L-0	跑车	Coupe M2	Coupe M2	2 Series	C3
-TM	BMW 3 Series	BMW	3 Series	1977-2006		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	3 Series	C2
 TM	BMW 3 Series	BMW	3 Series	1984-2018		Sedan	3L	三厢车	Sedan	Sedan	3 Series	A1
-TM	BMW 3 Series	BMW	3 Series	2000-2005		Wagon	2L+	两厢车	Wagon	Wagon	3 Series	H1
-TM	BMW 3 Series	BMW	3 Series	2007-2013		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	3 Series	C3
-TM	BMW 3 Series	BMW	3 Series	2014-2019	Incl: GT	Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon Incl: GT	Hbk/Wgn Inc:GT	3 Series	H2
 TM	BMW 3 Series	BMW	3 Series	2019-2026		Sedan	3XL	三厢车	Sedan	Sedan	3 Series	A2
+TM	BMW 3 Series	BMW	3 Series	1977-2006		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	3 Series	C2
+TM	BMW 3 Series	BMW	3 Series	2007-2013		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	3 Series	C3
+TM	BMW 3 Series	BMW	3 Series	2000-2005		Wagon	2L+	两厢车	Wagon	Wagon	3 Series	H1
+TM	BMW 3 Series	BMW	3 Series	2014-2019	Incl: GT	Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon Incl: GT	Hbk/Wgn Inc:GT	3 Series	H2
+TM	BMW 3 Series	BMW	3 Series	2007-2012		Wagon	无可用尺码		Wagon	Wagon	3 Series	#N/A
+TM	BMW 4 Series	BMW	4 Series	2015-2020	Gran Coupe	Sedan	3L	三厢车	Sedan Gran Coupe	Sedan Gran Coupe	4 Series	A1
+TM	BMW 4 Series	BMW	4 Series	2022-2026	Gran Coupe	Sedan	3XL	三厢车	Sedan Gran Coupe	Sedan Gran Coupe	4 Series	A2
 TM	BMW 4 Series	BMW	4 Series	2014-2020		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	4 Series	C3
-TM	BMW 4 Series	BMW	4 Series	2015-2020	Gran Coupe	Sedan	3L	三厢车	Sedan Gran Coupe	Sdn GranCoupe	4 Series	A1
 TM	BMW 4 Series	BMW	4 Series	2021-2026	M4	Convertible/Coupe	3XL-0	跑车	Convertible/Coupe M4	Conv/Cpe M4	4 Series	C4
-TM	BMW 4 Series	BMW	4 Series	2022-2026	Gran Coupe	Sedan	3XL	三厢车	Sedan Gran Coupe	Sdn GranCoupe	4 Series	A2
 TM	BMW 5 Series	BMW	5 Series	1975-1988		Sedan	3L	三厢车	Sedan	Sedan	5 Series	A1
 TM	BMW 5 Series	BMW	5 Series	1989-2010		Sedan	3XL	三厢车	Sedan	Sedan	5 Series	A2
-TM	BMW 5 Series	BMW	5 Series	1992-2010		Wagon	2XXL-525	两厢车	Wagon	Wagon	5 Series	H2
 TM	BMW 5 Series	BMW	5 Series	2010-2026	GT/M5	Sedan	3XXL	三厢车	Sedan GT/M5	Sedan GT/M5	5 Series	A4
 TM	BMW 5 Series	BMW	5 Series	2011-2026		Sedan	3XXL	三厢车	Sedan	Sedan	5 Series	A4
+TM	BMW 5 Series	BMW	5 Series	1992-2010		Wagon	2XXL-525	两厢车	Wagon	Wagon	5 Series	H2
+TM	BMW 6 Series	BMW	6 Series	2013-2019	Gran Coupe	Sedan	3XXL	三厢车	Sedan Gran Coupe	Sedan Gran Coupe	6 Series	A4
 TM	BMW 6 Series	BMW	6 Series	1977-2019		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	6 Series	C4
-TM	BMW 6 Series	BMW	6 Series	2013-2019	Gran Coupe	Sedan	3XXL	三厢车	Sedan Gran Coupe	Sdn GranCoupe	6 Series	A4
 TM	BMW 6 Series	BMW	6 Series	2018-2019	Incl: GT	Hatchback	2XXL-525	两厢车	Hatchback Incl: GT	Hbk Inc:GT	6 Series	H2
 TM	BMW 7 Series	BMW	7 Series	1978-1986		Sedan	3XL	三厢车			7 Series	A2
 TM	BMW 7 Series	BMW	7 Series	1987-2022		Sedan	3XXL	三厢车			7 Series	A4
 TM	BMW 7 Series	BMW	7 Series	2023-2026		Sedan	3XXXL	三厢车			7 Series	C6
+TM	BMW 8 Series	BMW	8 Series	2020-2026	Gran Coupe	Sedan	3XXL	三厢车	Sedan Gran Coupe	Sedan Gran Coupe	8 Series	A4
 TM	BMW 8 Series	BMW	8 Series	1991-2026		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	8 Series	C4
-TM	BMW 8 Series	BMW	8 Series	2020-2026	Gran Coupe	Sedan	3XXL	三厢车	Sedan Gran Coupe	Sdn GranCoupe	8 Series	A4
+TM	BMW i3	BMW	i3	2014-2021		Hatchback	2L+	两厢车			i3	H1
+TM	BMW i4	BMW	i4	2022-2026		Fastback	3XL	三厢车			i4	A2
+TM	BMW i5	BMW	i5	2024-2026		Sedan	3XXL	三厢车			i5	A4
+TM	BMW i7	BMW	i7	2023-2026		Sedan	3XXXL	三厢车			i7	C6
+TM	BMW i8	BMW	i8	2014-2020		Coupe/Roadster	3L-0	跑车			i8	C3
+TM	BMW iX	BMW	iX	2022-2026		SUV	YXL	越野车			iX	S3
 TM	BMW X1	BMW	X1	2013-2026	Incl: M35i	SUV	YM+	越野车	Incl: M35i	Incl: M35i	X1	S1
 TM	BMW X2	BMW	X2	2018-2026	Incl: M35i	Coupe SUV/CUV	YM+	越野车	Incl: M35i	Incl: M35i	X2	S1
 TM	BMW X3	BMW	X3	2004-2010		SUV	YM+	越野车			X3	S1
@@ -126,17 +135,13 @@ TM	BMW XM	BMW	XM	2023-2026		SUV	YXXL-545	越野车			XM	S4
 TM	BMW Z3	BMW	Z3	1996-2002		Coupe/Roadster	3S-0	跑车			Z3	C1
 TM	BMW Z4	BMW	Z4	2003-2008		Roadster	3S-0	跑车	Roadster	Roadster	Z4	C1
 TM	BMW Z4	BMW	Z4	2009-2026		Convertible/Roadster	3M-0	跑车	Convertible/Roadster	Conv/Rdstr	Z4	C2
-TM	BMW i3	BMW	i3	2014-2021		Hatchback	2L+	两厢车			i3	H1
-TM	BMW i4	BMW	i4	2022-2026		Fastback	3XL	三厢车			i4	A2
-TM	BMW i5	BMW	i5	2024-2026		Sedan	3XXL	三厢车			i5	A4
-TM	BMW i7	BMW	i7	2023-2026		Sedan	3XXXL	三厢车			i7	C6
-TM	BMW i8	BMW	i8	2014-2020		Coupe/Roadster	3L-0	跑车			i8	C3
-TM	BMW iX	BMW	iX	2022-2026		SUV	YXL	越野车			iX	S3
 TM	Buick Cascada	Buick	Cascada	2016-2019		Convertible	3L-0	跑车			Cascada	C3
-TM	Buick Century	Buick	Century	1956		Wagon	2XXL-525	两厢车	Wagon	Wagon	Century	H2
-TM	Buick Century	Buick	Century	1957		Convertible	3XXXXL-0	跑车	Convertible	Convertible	Century	C7
-TM	Buick Century	Buick	Century	1978-1996		Wagon	2XXL-525	两厢车	Wagon	Wagon	Century	H2
 TM	Buick Century	Buick	Century	1998-2005		Sedan	3XXL	三厢车	Sedan	Sedan	Century	A4
+TM	Buick Century	Buick	Century	1957		Convertible	3XXXXL-0	跑车	Convertible	Convertible	Century	C7
+TM	Buick Century	Buick	Century	1956		Wagon	2XXL-525	两厢车	Wagon	Wagon	Century	H2
+TM	Buick Century	Buick	Century	1978-1996		Wagon	2XXL-525	两厢车	Wagon	Wagon	Century	H2
+TM	Buick Century	Buick	Century	1954-1955		Wagon	无可用尺码		Wagon	Wagon	Century	#N/A
+TM	Buick Century	Buick	Century	1958-1977		Wagon	无可用尺码		Wagon	Wagon	Century	#N/A
 TM	Buick Enclave	Buick	Enclave	2008-2026		SUV	YXXL-545	越野车			Enclave	S4
 TM	Buick Encore	Buick	Encore	2013-2022		SUV	YM+	越野车			Encore	S1
 TM	Buick Encore GX	Buick	Encore GX	2020-2026		SUV	YM+	越野车			Encore GX	S1
@@ -144,76 +149,87 @@ TM	Buick Envision	Buick	Envision	2016-2026		SUV	YL	越野车			Envision	S2
 TM	Buick Envista	Buick	Envista	2024-2026		Coupe SUV	YL	越野车			Envista	S2
 TM	Buick LaCrosse	Buick	LaCrosse	2005-2019		Sedan	3XXL	三厢车			LaCrosse	A4
 TM	Buick LeSabre	Buick	LeSabre	1959-1963		Sedan	3XXXL	三厢车	Sedan	Sedan	LeSabre	C6
-TM	Buick LeSabre	Buick	LeSabre	1959-1985		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	LeSabre	C7
 TM	Buick LeSabre	Buick	LeSabre	1965-1968		Sedan	3XXXL	三厢车	Sedan	Sedan	LeSabre	C6
 TM	Buick LeSabre	Buick	LeSabre	1980		Sedan	3XXXL	三厢车	Sedan	Sedan	LeSabre	C6
 TM	Buick LeSabre	Buick	LeSabre	1982-1985		Sedan	3XXXL	三厢车	Sedan	Sedan	LeSabre	C6
-TM	Buick LeSabre	Buick	LeSabre	1986-1991		Coupe	3XL+0	跑车	Coupe	Coupe	LeSabre	C5
 TM	Buick LeSabre	Buick	LeSabre	1986-2005		Sedan	3XXL	三厢车	Sedan	Sedan	LeSabre	A4
+TM	Buick LeSabre	Buick	LeSabre	1959-1985		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	LeSabre	C7
+TM	Buick LeSabre	Buick	LeSabre	1986-1991		Coupe	3XL+0	跑车	Coupe	Coupe	LeSabre	C5
+TM	Buick LeSabre	Buick	LeSabre	1959-1985		Wagon	无可用尺码		Wagon	Wagon	LeSabre	#N/A
+TM	Buick LeSabre	Buick	LeSabre	1964		Sedan	无可用尺码		Sedan	Sedan	LeSabre	#N/A
+TM	Buick LeSabre	Buick	LeSabre	1969-1979		Sedan	无可用尺码		Sedan	Sedan	LeSabre	#N/A
+TM	Buick LeSabre	Buick	LeSabre	1981		Sedan	无可用尺码		Sedan	Sedan	LeSabre	#N/A
 TM	Buick Lucerne	Buick	Lucerne	2006-2011		Sedan	3XXL	三厢车			Lucerne	A4
 TM	Buick Park Avenue	Buick	Park Avenue	1991-2005		Sedan	3XXL	三厢车			Park Avenue	A4
 TM	Buick Rainier	Buick	Rainier	2004-2007		SUV	YXL	越野车			Rainier	S3
 TM	Buick Reatta	Buick	Reatta	1988-1991		Convertible/Coupe	3L-0	跑车			Reatta	C3
-TM	Buick Regal	Buick	Regal	1973-1977		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Regal	C7
-TM	Buick Regal	Buick	Regal	1978-1996		Coupe	3XL+0	跑车	Coupe	Coupe	Regal	C5
 TM	Buick Regal	Buick	Regal	1991-2004		Sedan	3XXL	三厢车	Sedan	Sedan	Regal	A4
 TM	Buick Regal	Buick	Regal	2011-2017		Sedan	3XL	三厢车	Sedan	Sedan	Regal	A2
+TM	Buick Regal	Buick	Regal	1973-1977		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Regal	C7
+TM	Buick Regal	Buick	Regal	1978-1996		Coupe	3XL+0	跑车	Coupe	Coupe	Regal	C5
 TM	Buick Regal	Buick	Regal	2018-2020		Sportback/Wagon	2XXL-525	两厢车	Sportback/Wagon	Sptbk/Wgn	Regal	H2
 TM	Buick Rendezvous	Buick	Rendezvous	2002-2007		CUV	YL	越野车			Rendezvous	S2
 TM	Buick Riviera	Buick	Riviera	1963-1978		Coupe	3XXXXL-0	跑车			Riviera	C7
 TM	Buick Riviera	Buick	Riviera	1986-1993		Coupe	3XL+0	跑车			Riviera	C5
 TM	Buick Riviera	Buick	Riviera	1996-1999		Coupe	3XXXXL-0	跑车			Riviera	C7
+TM	Buick Riviera	Buick	Riviera	1979-1985		Coupe	无可用尺码				Riviera	#N/A
 TM	Buick Roadmaster	Buick	Roadmaster	1936-1952		Sedan	3XXXL	三厢车	Sedan	Sedan	Roadmaster	C6
-TM	Buick Roadmaster	Buick	Roadmaster	1936-1958		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Roadmaster	C7
 TM	Buick Roadmaster	Buick	Roadmaster	1953		Sedan	3XXL	三厢车	Sedan	Sedan	Roadmaster	A4
 TM	Buick Roadmaster	Buick	Roadmaster	1954-1957		Sedan	3XXXL	三厢车	Sedan	Sedan	Roadmaster	C6
 TM	Buick Roadmaster	Buick	Roadmaster	1992-1996		Sedan	3XXXL	三厢车	Sedan	Sedan	Roadmaster	C6
-TM	Buick Skylark	Buick	Skylark	1953		Convertible	3XXXXL-0	跑车	Convertible	Convertible	Skylark	C7
+TM	Buick Roadmaster	Buick	Roadmaster	1936-1958		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Roadmaster	C7
+TM	Buick Roadmaster	Buick	Roadmaster	1958		Sedan	无可用尺码		Sedan	Sedan	Roadmaster	#N/A
+TM	Buick Roadmaster	Buick	Roadmaster	1991-1996		Wagon	无可用尺码		Wagon	Wagon	Roadmaster	#N/A
 TM	Buick Skylark	Buick	Skylark	1965-1979		Sedan	3XXL	三厢车	Sedan	Sedan	Skylark	A4
-TM	Buick Skylark	Buick	Skylark	1975-1979		Hatchback	2XXL-525	两厢车	Hatchback	Hatchback	Skylark	H2
-TM	Buick Skylark	Buick	Skylark	1975-1979		Coupe	3XL+0	跑车	Coupe	Coupe	Skylark	C5
 TM	Buick Skylark	Buick	Skylark	1980-1991		Sedan	3L	三厢车	Sedan	Sedan	Skylark	A1
-TM	Buick Skylark	Buick	Skylark	1980-1991		Coupe	3L-0	跑车	Coupe	Coupe	Skylark	C3
 TM	Buick Skylark	Buick	Skylark	1992-1993		Sedan	3XL	三厢车	Sedan	Sedan	Skylark	A2
-TM	Buick Skylark	Buick	Skylark	1992-1993		Coupe	3XL-0	跑车	Coupe	Coupe	Skylark	C4
-TM	Buick Skylark	Buick	Skylark	1994		Coupe	3XL+0	跑车	Coupe	Coupe	Skylark	C5
 TM	Buick Skylark	Buick	Skylark	1994		Sedan	3XXL	三厢车	Sedan	Sedan	Skylark	A4
 TM	Buick Skylark	Buick	Skylark	1995-1998		Sedan	3XL	三厢车	Sedan	Sedan	Skylark	A2
+TM	Buick Skylark	Buick	Skylark	1953		Convertible	3XXXXL-0	跑车	Convertible	Convertible	Skylark	C7
+TM	Buick Skylark	Buick	Skylark	1975-1979		Coupe	3XL+0	跑车	Coupe	Coupe	Skylark	C5
+TM	Buick Skylark	Buick	Skylark	1980-1991		Coupe	3L-0	跑车	Coupe	Coupe	Skylark	C3
+TM	Buick Skylark	Buick	Skylark	1992-1993		Coupe	3XL-0	跑车	Coupe	Coupe	Skylark	C4
+TM	Buick Skylark	Buick	Skylark	1994		Coupe	3XL+0	跑车	Coupe	Coupe	Skylark	C5
 TM	Buick Skylark	Buick	Skylark	1995-1997		Coupe	3XL-0	跑车	Coupe	Coupe	Skylark	C4
+TM	Buick Skylark	Buick	Skylark	1975-1979		Hatchback	2XXL-525	两厢车	Hatchback	Hatchback	Skylark	H2
+TM	Buick Skylark	Buick	Skylark	1954-1972		Convertible/Coupe/Hatchback	无可用尺码		Convertible/Coupe/Hatchback	Conv/Cpe/Hbk	Skylark	#N/A
 TM	Buick Verano	Buick	Verano	2012-2017		Sedan	3L	三厢车			Verano	A1
 TM	Cadillac ATS	Cadillac	ATS	2013-2019		Sedan	3L	三厢车	Sedan	Sedan	ATS	A1
 TM	Cadillac ATS	Cadillac	ATS	2015-2019		Coupe	3L-0	跑车	Coupe	Coupe	ATS	C3
+TM	Cadillac Catera	Cadillac	Catera	1997-2001		Sedan	3XXL	三厢车			Catera	A4
 TM	Cadillac CT4	Cadillac	CT4	2020-2026		Sedan	3XL	三厢车			CT4	A2
 TM	Cadillac CT5	Cadillac	CT5	2020-2026	Incl: Blackwing	Sedan	3XXL	三厢车	Incl: Blackwing	Incl: Blackwing	CT5	A4
 TM	Cadillac CT6	Cadillac	CT6	2016-2020	Incl: Blackwing/PHEV	Sedan	3XXL	三厢车	Incl: Blackwing/PHEV	Inc:Black/PHEV	CT6	A4
 TM	Cadillac CTS	Cadillac	CTS	2003-2013	Incl: CTS-V	Sedan	3XL	三厢车	Sedan Incl: CTS-V	Sdn Inc:CTS-V	CTS	A2
-TM	Cadillac CTS	Cadillac	CTS	2010-2014		Wagon	2XXL-525	两厢车	Wagon	Wagon	CTS	H2
-TM	Cadillac CTS	Cadillac	CTS	2011-2015		Coupe	3XL-0	跑车	Coupe	Coupe	CTS	C4
 TM	Cadillac CTS	Cadillac	CTS	2014-2019		Sedan	3XXL	三厢车	Sedan	Sedan	CTS	A4
-TM	Cadillac Catera	Cadillac	Catera	1997-2001		Sedan	3XXL	三厢车			Catera	A4
-TM	Cadillac DTS	Cadillac	DTS	2006-2011		Sedan	3XXL	三厢车			DTS	A4
-TM	Cadillac DTS-L	Cadillac	DTS-L	2007-2011		Sedan	3XXXL	三厢车			DTS-L	C6
-TM	Cadillac DeVille	Cadillac	DeVille	1949-1984		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	DeVille	C7
-TM	Cadillac DeVille	Cadillac	DeVille	1985-1988		Coupe	3XL+0	跑车	Coupe	Coupe	DeVille	C5
+TM	Cadillac CTS	Cadillac	CTS	2011-2015		Coupe	3XL-0	跑车	Coupe	Coupe	CTS	C4
+TM	Cadillac CTS	Cadillac	CTS	2010-2014		Wagon	2XXL-525	两厢车	Wagon	Wagon	CTS	H2
 TM	Cadillac DeVille	Cadillac	DeVille	1985-1993		Sedan	3XXL	三厢车	Sedan	Sedan	DeVille	A4
 TM	Cadillac DeVille	Cadillac	DeVille	1994-1999		Sedan	3XXXL	三厢车	Sedan	Sedan	DeVille	C6
 TM	Cadillac DeVille	Cadillac	DeVille	2000-2005		Sedan	3XXL	三厢车	Sedan	Sedan	DeVille	A4
-TM	Cadillac ELR	Cadillac	ELR	2014-2016		Coupe	3XL-0	跑车			ELR	C4
+TM	Cadillac DeVille	Cadillac	DeVille	1949-1984		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	DeVille	C7
+TM	Cadillac DeVille	Cadillac	DeVille	1985-1988		Coupe	3XL+0	跑车	Coupe	Coupe	DeVille	C5
+TM	Cadillac DeVille	Cadillac	DeVille	1956-1984		Sedan	无可用尺码		Sedan	Sedan	DeVille	#N/A
+TM	Cadillac DeVille	Cadillac	DeVille	1989		Coupe	无可用尺码		Coupe	Coupe	DeVille	#N/A
+TM	Cadillac DTS	Cadillac	DTS	2006-2011		Sedan	3XXL	三厢车			DTS	A4
+TM	Cadillac DTS-L	Cadillac	DTS-L	2007-2011		Sedan	3XXXL	三厢车			DTS-L	C6
 TM	Cadillac Eldorado	Cadillac	Eldorado	1953-1978		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Eldorado	C7
 TM	Cadillac Eldorado	Cadillac	Eldorado	1986-1991		Coupe	3XL-0	跑车	Coupe	Coupe	Eldorado	C4
 TM	Cadillac Eldorado	Cadillac	Eldorado	1992-2002		Coupe	3XL+0	跑车	Coupe	Coupe	Eldorado	C5
+TM	Cadillac Eldorado	Cadillac	Eldorado	1979-1985		Convertible/Coupe	无可用尺码		Convertible/Coupe	Conv/Cpe	Eldorado	#N/A
+TM	Cadillac ELR	Cadillac	ELR	2014-2016		Coupe	3XL-0	跑车			ELR	C4
 TM	Cadillac Escalade	Cadillac	Escalade	1999-2000		SUV	YXXL-545	越野车			Escalade	S4
 TM	Cadillac Escalade	Cadillac	Escalade	2002-2006		SUV	YXL	越野车			Escalade	S3
 TM	Cadillac Escalade	Cadillac	Escalade	2003-2026	ESV	SUV	YXXL-585	越野车	ESV	ESV	Escalade	S5
 TM	Cadillac Escalade	Cadillac	Escalade	2007-2026		SUV	YXXL-545	越野车			Escalade	S4
 TM	Cadillac Lyriq	Cadillac	Lyriq	2023-2026	Incl: Lyriq-V	SUV	YXL	越野车	Incl: Lyriq-V	Incl: Lyriq-V	Lyriq	S3
 TM	Cadillac Optiq	Cadillac	Optiq	2025-2026		SUV	YL	越野车			Optiq	S2
-TM	Cadillac SRX	Cadillac	SRX	2004-2009		Wagon	2XXL-525	两厢车	Wagon	Wagon	SRX	H2
-TM	Cadillac SRX	Cadillac	SRX	2010-2016		SUV	YXL	越野车	SUV	SUV	SRX	S3
-TM	Cadillac STS	Cadillac	STS	2005-2011	Incl: STS-V	Sedan	3XXL	三厢车	Incl: STS-V	Incl: STS-V	STS	A4
 TM	Cadillac Seville	Cadillac	Seville	1976-1985		Sedan	3XXL	三厢车			Seville	A4
 TM	Cadillac Seville	Cadillac	Seville	1986-1991	Incl: STS	Sedan	3XL	三厢车	Incl: STS	Incl: STS	Seville	A2
 TM	Cadillac Seville	Cadillac	Seville	1992-2004	Incl: SLS/STS	Sedan	3XXL	三厢车	Incl: SLS/STS	Incl: SLS/STS	Seville	A4
+TM	Cadillac SRX	Cadillac	SRX	2010-2016		SUV	YXL	越野车	SUV	SUV	SRX	S3
+TM	Cadillac SRX	Cadillac	SRX	2004-2009		Wagon	2XXL-525	两厢车	Wagon	Wagon	SRX	H2
+TM	Cadillac STS	Cadillac	STS	2005-2011	Incl: STS-V	Sedan	3XXL	三厢车	Incl: STS-V	Incl: STS-V	STS	A4
 TM	Cadillac Vistiq	Cadillac	Vistiq	2026		SUV	YXXL-545	越野车			Vistiq	S4
 TM	Cadillac XLR	Cadillac	XLR	2004-2009	Incl: XLR-V	Convertible/Roadster	3M-0	跑车	Incl: XLR-V	Incl: XLR-V	XLR	C2
 TM	Cadillac XT4	Cadillac	XT4	2019-2023		SUV	YL	越野车			XT4	S2
@@ -224,12 +240,17 @@ TM	Cadillac XTS	Cadillac	XTS	2015-2019		Sedan	3XXL	三厢车			XTS	A4
 TM	Chevrolet Aveo	Chevrolet	Aveo	2004-2011		Sedan	3L	三厢车	Sedan	Sedan	Aveo	A1
 TM	Chevrolet Aveo	Chevrolet	Aveo	2006		Hatchback	2L+	两厢车	Hatchback	Hatchback	Aveo	H1
 TM	Chevrolet Aveo	Chevrolet	Aveo	2009-2011		Hatchback	2L+	两厢车	Hatchback	Hatchback	Aveo	H1
-TM	Chevrolet Bel Air	Chevrolet	Bel Air	1953-1957		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	Bel Air	C5
+TM	Chevrolet Aveo	Chevrolet	Aveo	2004-2005		Hatchback	无可用尺码		Hatchback	Hatchback	Aveo	#N/A
+TM	Chevrolet Aveo	Chevrolet	Aveo	2007-2008		Hatchback	无可用尺码		Hatchback	Hatchback	Aveo	#N/A
 TM	Chevrolet Bel Air	Chevrolet	Bel Air	1953-1957		Sedan	3XXL	三厢车	Sedan	Sedan	Bel Air	A4
-TM	Chevrolet Bel Air	Chevrolet	Bel Air	1954-1957		Wagon	2XXL-525	两厢车	Wagon	Wagon	Bel Air	H2
 TM	Chevrolet Bel Air	Chevrolet	Bel Air	1958-1966		Sedan	3XXXL	三厢车	Sedan	Sedan	Bel Air	C6
-TM	Chevrolet Bel Air	Chevrolet	Bel Air	1958-1962	Incl: Hardtop	Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe Incl: Hardtop	Conv/Cpe Inc:HTop	Bel Air	C7
 TM	Chevrolet Bel Air	Chevrolet	Bel Air	1970-1971		Sedan	3XXXL	三厢车	Sedan	Sedan	Bel Air	C6
+TM	Chevrolet Bel Air	Chevrolet	Bel Air	1953-1957		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	Bel Air	C5
+TM	Chevrolet Bel Air	Chevrolet	Bel Air	1958-1962	Incl: Hardtop	Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe Incl: Hardtop	Conv/Cpe Inc:HTop	Bel Air	C7
+TM	Chevrolet Bel Air	Chevrolet	Bel Air	1954-1957		Wagon	2XXL-525	两厢车	Wagon	Wagon	Bel Air	H2
+TM	Chevrolet Bel Air	Chevrolet	Bel Air	1958-1969	Incl: Kingswood/Parkwood	Wagon	无可用尺码		Wagon Incl: Kingswood/Parkwood	Wgn Inc:King/Park	Bel Air	#N/A
+TM	Chevrolet Bel Air	Chevrolet	Bel Air	1967-1969		Sedan	无可用尺码		Sedan	Sedan	Bel Air	#N/A
+TM	Chevrolet Bel Air	Chevrolet	Bel Air	1972-1975		Sedan	无可用尺码		Sedan	Sedan	Bel Air	#N/A
 TM	Chevrolet Beretta	Chevrolet	Beretta	1987-1996		Coupe	3XL-0	跑车			Beretta	C4
 TM	Chevrolet Beretta	Chevrolet	Beretta	1992-1994	GT/GTZ	Coupe	3L-0	跑车	GT/GTZ	GT/GTZ	Beretta	C3
 TM	Chevrolet Blazer	Chevrolet	Blazer	1969-1972		SUV	YM+	越野车			Blazer	S1
@@ -248,17 +269,19 @@ TM	Chevrolet Camaro	Chevrolet	Camaro	1993-2002	Incl: Z28	Convertible/Coupe	3XL+0
 TM	Chevrolet Camaro	Chevrolet	Camaro	2010-2024	Incl: ZL1	Convertible/Coupe	3XL-0	跑车	Convertible/Coupe Incl: ZL1	Conv/Cpe Inc:ZL1	Camaro	C4
 TM	Chevrolet Caprice	Chevrolet	Caprice	1966-1970		Sedan	3XXXL	三厢车	Sedan	Sedan	Caprice	C6
 TM	Chevrolet Caprice	Chevrolet	Caprice	1966-1976		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Caprice	C7
+TM	Chevrolet Caprice	Chevrolet	Caprice	1966-1970		Wagon	无可用尺码		Wagon	Wagon	Caprice	#N/A
 TM	Chevrolet Captiva	Chevrolet	Captiva	2012-2015		SUV	YM+	越野车			Captiva	S1
 TM	Chevrolet Cavalier	Chevrolet	Cavalier	1982-2004		Sedan	3L	三厢车	Sedan	Sedan	Cavalier	A1
-TM	Chevrolet Cavalier	Chevrolet	Cavalier	1983-1988		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Cavalier	H1
 TM	Chevrolet Cavalier	Chevrolet	Cavalier	1983-1987		Coupe	3M-0	跑车	Coupe	Coupe	Cavalier	C2
 TM	Chevrolet Cavalier	Chevrolet	Cavalier	1989-2005		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	Cavalier	C3
+TM	Chevrolet Cavalier	Chevrolet	Cavalier	1983-1988		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Cavalier	H1
 TM	Chevrolet Cavalier	Chevrolet	Cavalier	1992-1994		Wagon	2XXL-525	两厢车	Wagon	Wagon	Cavalier	H2
-TM	Chevrolet Chevelle	Chevrolet	Chevelle	1964-1967		Wagon	2XXL-525	两厢车	Wagon	Wagon	Chevelle	H2
-TM	Chevrolet Chevelle	Chevrolet	Chevelle	1964-1972		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	Chevelle	C5
 TM	Chevrolet Chevelle	Chevrolet	Chevelle	1964-1972		Sedan	3XXL	三厢车	Sedan	Sedan	Chevelle	A4
 TM	Chevrolet Chevelle	Chevrolet	Chevelle	1973-1977		Sedan	3XXXL	三厢车	Sedan	Sedan	Chevelle	C6
+TM	Chevrolet Chevelle	Chevrolet	Chevelle	1964-1972		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	Chevelle	C5
 TM	Chevrolet Chevelle	Chevrolet	Chevelle	1973-1977	Incl: Laguna Type S-3	Coupe	3XXXXL-0	跑车	Coupe Incl: Laguna Type S-3	Cpe Inc:LagunaS3	Chevelle	C7
+TM	Chevrolet Chevelle	Chevrolet	Chevelle	1964-1967		Wagon	2XXL-525	两厢车	Wagon	Wagon	Chevelle	H2
+TM	Chevrolet Chevelle	Chevrolet	Chevelle	1968-1977		Wagon	无可用尺码		Wagon	Wagon	Chevelle	#N/A
 TM	Chevrolet City Express	Chevrolet	City Express	2015-2018		Minivan	2XXL-525	两厢车			City Express	H2
 TM	Chevrolet Cobalt	Chevrolet	Cobalt	2005-2010		Sedan	3L	三厢车	Sedan	Sedan	Cobalt	A1
 TM	Chevrolet Cobalt	Chevrolet	Cobalt	2005-2010	Incl: SS	Coupe	3L-0	跑车	Coupe Incl: SS	Coupe Incl: SS	Cobalt	C3
@@ -272,42 +295,51 @@ TM	Chevrolet Cruze	Chevrolet	Cruze	2011-2019		Sedan	3L	三厢车	Sedan	Sedan	Cru
 TM	Chevrolet Cruze	Chevrolet	Cruze	2017-2019		Hatchback	2L+	两厢车	Hatchback	Hatchback	Cruze	H1
 TM	Chevrolet Equinox	Chevrolet	Equinox	2005-2026		SUV	YL	越野车			Equinox	S2
 TM	Chevrolet Equinox EV	Chevrolet	Equinox EV	2024-2026		SUV	YXL	越野车			Equinox EV	S3
+TM	Chevrolet Express	Chevrolet	Express	2013-2023	Incl: Extended	Minivan	无可用尺码		Incl: Extended	Incl: Extended	Express	#N/A
 TM	Chevrolet Impala	Chevrolet	Impala	1973-1976	Incl: Impala SS	Sedan	3XXXL	三厢车	Sedan Incl: Impala SS	Sdn Inc:SS	Impala	C6
-TM	Chevrolet Impala	Chevrolet	Impala	1973-1996		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Impala	C7
-TM	Chevrolet Impala	Chevrolet	Impala	1994-1996		Wagon	2XXL-525	两厢车	Wagon	Wagon	Impala	H2
 TM	Chevrolet Impala	Chevrolet	Impala	2014-2020		Sedan	3XXL	三厢车	Sedan	Sedan	Impala	A4
+TM	Chevrolet Impala	Chevrolet	Impala	1973-1996		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Impala	C7
 TM	Chevrolet Impala	Chevrolet	Impala	2014-2020		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Impala	C7
+TM	Chevrolet Impala	Chevrolet	Impala	1994-1996		Wagon	2XXL-525	两厢车	Wagon	Wagon	Impala	H2
+TM	Chevrolet Impala	Chevrolet	Impala	1962-1968		Wagon	无可用尺码		Wagon	Wagon	Impala	#N/A
+TM	Chevrolet Impala	Chevrolet	Impala	1994		Sedan	无可用尺码		Sedan	Sedan	Impala	#N/A
+TM	Chevrolet Impala	Chevrolet	Impala	1994		Wagon	无可用尺码		Wagon	Wagon	Impala	#N/A
+TM	Chevrolet Impala	Chevrolet	Impala	2009-2013		Coupe/Wagon	无可用尺码		Coupe/Wagon	Cpe/Wgn	Impala	#N/A
 TM	Chevrolet K5 Blazer	Chevrolet	K5 Blazer	1969-1972		SUV	YM+	越野车			K5 Blazer	S1
 TM	Chevrolet K5 Blazer	Chevrolet	K5 Blazer	1973-1994		SUV	YL	越野车			K5 Blazer	S2
-TM	Chevrolet Lumina	Chevrolet	Lumina	1990-1994		Coupe	3XL+0	跑车	Coupe	Coupe	Lumina	C5
 TM	Chevrolet Lumina	Chevrolet	Lumina	1990-2001		Sedan	3XXL	三厢车	Sedan	Sedan	Lumina	A4
-TM	Chevrolet Malibu	Chevrolet	Malibu	1964-1974		Wagon	2XXL-525	两厢车	Wagon	Wagon	Malibu	H2
-TM	Chevrolet Malibu	Chevrolet	Malibu	1964-1974		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	Malibu	C5
+TM	Chevrolet Lumina	Chevrolet	Lumina	1990-1994		Coupe	3XL+0	跑车	Coupe	Coupe	Lumina	C5
 TM	Chevrolet Malibu	Chevrolet	Malibu	1964-1974		Sedan	3XXL	三厢车	Sedan	Sedan	Malibu	A4
 TM	Chevrolet Malibu	Chevrolet	Malibu	1975-1977		Sedan	3XXXL	三厢车	Sedan	Sedan	Malibu	C6
-TM	Chevrolet Malibu	Chevrolet	Malibu	1978-1983		Wagon	2XXL-525	两厢车	Wagon	Wagon	Malibu	H2
-TM	Chevrolet Malibu	Chevrolet	Malibu	1978-1981		Coupe	3XL-0	跑车	Coupe	Coupe	Malibu	C4
 TM	Chevrolet Malibu	Chevrolet	Malibu	1978-1983		Sedan	3XXL	三厢车	Sedan	Sedan	Malibu	A4
 TM	Chevrolet Malibu	Chevrolet	Malibu	1997-2015		Sedan	3XL	三厢车	Sedan	Sedan	Malibu	A2
 TM	Chevrolet Malibu	Chevrolet	Malibu	2016-2025		Sedan	3XXL	三厢车	Sedan	Sedan	Malibu	A4
+TM	Chevrolet Malibu	Chevrolet	Malibu	1964-1974		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	Malibu	C5
+TM	Chevrolet Malibu	Chevrolet	Malibu	1978-1981		Coupe	3XL-0	跑车	Coupe	Coupe	Malibu	C4
+TM	Chevrolet Malibu	Chevrolet	Malibu	1964-1974		Wagon	2XXL-525	两厢车	Wagon	Wagon	Malibu	H2
+TM	Chevrolet Malibu	Chevrolet	Malibu	1978-1983		Wagon	2XXL-525	两厢车	Wagon	Wagon	Malibu	H2
+TM	Chevrolet Malibu	Chevrolet	Malibu	1975-1977		Coupe/Wagon	无可用尺码		Coupe/Wagon	Cpe/Wgn	Malibu	#N/A
 TM	Chevrolet Monte Carlo	Chevrolet	Monte Carlo	1971		Coupe	3XXXXL-0	跑车			Monte Carlo	C7
 TM	Chevrolet Monte Carlo	Chevrolet	Monte Carlo	1973-1977		Coupe	3XXXXL-0	跑车			Monte Carlo	C7
 TM	Chevrolet Monte Carlo	Chevrolet	Monte Carlo	1978-2007	Incl: SS	Coupe	3XL+0	跑车	Incl: SS	Incl: SS	Monte Carlo	C5
-TM	Chevrolet Nova	Chevrolet	Nova	1962-1979		Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon	Hbk/Wgn	Nova	H2
+TM	Chevrolet Monte Carlo	Chevrolet	Monte Carlo	1970		Coupe	无可用尺码				Monte Carlo	#N/A
+TM	Chevrolet Monte Carlo	Chevrolet	Monte Carlo	1972		Coupe	无可用尺码				Monte Carlo	#N/A
 TM	Chevrolet Nova	Chevrolet	Nova	1962-1967		Sedan	3L	三厢车	Sedan	Sedan	Nova	A1
-TM	Chevrolet Nova	Chevrolet	Nova	1962-1967		Coupe	3L-0	跑车	Coupe	Coupe	Nova	C3
 TM	Chevrolet Nova	Chevrolet	Nova	1968-1972		Sedan	3XL	三厢车	Sedan	Sedan	Nova	A2
-TM	Chevrolet Nova	Chevrolet	Nova	1968-1972		Coupe	3XL-0	跑车	Coupe	Coupe	Nova	C4
-TM	Chevrolet Nova	Chevrolet	Nova	1973-1979		Coupe	3XL+0	跑车	Coupe	Coupe	Nova	C5
 TM	Chevrolet Nova	Chevrolet	Nova	1973-1979		Sedan	3XXL	三厢车	Sedan	Sedan	Nova	A4
 TM	Chevrolet Nova	Chevrolet	Nova	1985-1988		Sedan	3L	三厢车	Sedan	Sedan	Nova	A1
+TM	Chevrolet Nova	Chevrolet	Nova	1962-1967		Coupe	3L-0	跑车	Coupe	Coupe	Nova	C3
+TM	Chevrolet Nova	Chevrolet	Nova	1968-1972		Coupe	3XL-0	跑车	Coupe	Coupe	Nova	C4
+TM	Chevrolet Nova	Chevrolet	Nova	1973-1979		Coupe	3XL+0	跑车	Coupe	Coupe	Nova	C5
+TM	Chevrolet Nova	Chevrolet	Nova	1962-1979		Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon	Hbk/Wgn	Nova	H2
 TM	Chevrolet Nova	Chevrolet	Nova	1987-1988		Hatchback	2L+	两厢车	Hatchback	Hatchback	Nova	H1
 TM	Chevrolet Prizm	Chevrolet	Prizm	1998-2002		Sedan	3L	三厢车			Prizm	A1
 TM	Chevrolet S-10 Blazer	Chevrolet	S-10 Blazer	1983-2005		SUV	YM+	越野车			S-10 Blazer	S1
 TM	Chevrolet S-10 Blazer	Chevrolet	S-10 Blazer	1995-2004		SUV	YL	越野车			S-10 Blazer	S2
-TM	Chevrolet SS	Chevrolet	SS	2014-2017		Sedan	3XXL	三厢车			SS	A4
-TM	Chevrolet Sonic	Chevrolet	Sonic	2012-2020		Hatchback	2L+	两厢车	Hatchback	Hatchback	Sonic	H1
 TM	Chevrolet Sonic	Chevrolet	Sonic	2012-2020		Sedan	3L	三厢车	Sedan	Sedan	Sonic	A1
+TM	Chevrolet Sonic	Chevrolet	Sonic	2012-2020		Hatchback	2L+	两厢车	Hatchback	Hatchback	Sonic	H1
+TM	Chevrolet Spark	Chevrolet	Spark	2013-2022		Hatchback	无可用尺码				Spark	#N/A
+TM	Chevrolet SS	Chevrolet	SS	2014-2017		Sedan	3XXL	三厢车			SS	A4
 TM	Chevrolet Suburban	Chevrolet	Suburban	1935-1940		SUV	YM+	越野车	SUV	SUV	Suburban	S1
 TM	Chevrolet Suburban	Chevrolet	Suburban	1941-1946		SUV	YXL	越野车	SUV	SUV	Suburban	S3
 TM	Chevrolet Suburban	Chevrolet	Suburban	1947-1954		Pickup	YL	越野车	Pickup	Pickup	Suburban	S2
@@ -318,17 +350,19 @@ TM	Chevrolet Tahoe	Chevrolet	Tahoe	1995-1999		SUV	YL	越野车			Tahoe	S2
 TM	Chevrolet Tahoe	Chevrolet	Tahoe	1995-2006		SUV	YXL	越野车			Tahoe	S3
 TM	Chevrolet Tahoe	Chevrolet	Tahoe	2007-2026		SUV	YXXL-545	越野车			Tahoe	S4
 TM	Chevrolet Tracker	Chevrolet	Tracker	1999-2004		SUV	YM+	越野车			Tracker	S1
+TM	Chevrolet Tracker	Chevrolet	Tracker	1998-2004		SUV	无可用尺码				Tracker	#N/A
 TM	Chevrolet Trailblazer	Chevrolet	Trailblazer	2002-2009	Incl: SS	SUV	YXL	越野车	Incl: SS	Incl: SS	Trailblazer	S3
 TM	Chevrolet Trailblazer	Chevrolet	Trailblazer	2021-2026		SUV	YM+	越野车			Trailblazer	S1
 TM	Chevrolet Traverse	Chevrolet	Traverse	2009-2026	Incl: Limited	SUV	YXXL-545	越野车	Incl: Limited	Incl: Limited	Traverse	S4
 TM	Chevrolet Trax	Chevrolet	Trax	2015-2026		SUV	YM+	越野车			Trax	S1
 TM	Chevrolet Volt	Chevrolet	Volt	2011-2015		Hatchback	2L+	两厢车			Volt	H1
+TM	Chevrolet Volt	Chevrolet	Volt	2016-2019		Hatchback	无可用尺码				Volt	#N/A
 TM	Chrysler 200	Chrysler	200	2011-2014		Sedan	3XL	三厢车	Sedan	Sedan	200	A2
-TM	Chrysler 200	Chrysler	200	2011-2014		Convertible	3XL+0	跑车	Convertible	Convertible	200	C5
 TM	Chrysler 200	Chrysler	200	2015-2017		Sedan	3XXL	三厢车	Sedan	Sedan	200	A4
+TM	Chrysler 200	Chrysler	200	2011-2014		Convertible	3XL+0	跑车	Convertible	Convertible	200	C5
 TM	Chrysler 200 Series	Chrysler	200 Series	2011-2014		Sedan	3XL	三厢车	Sedan	Sedan	200 Series	A2
-TM	Chrysler 200 Series	Chrysler	200 Series	2011-2014		Convertible	3XL+0	跑车	Convertible	Convertible	200 Series	C5
 TM	Chrysler 200 Series	Chrysler	200 Series	2015-2017		Sedan	3XXL	三厢车	Sedan	Sedan	200 Series	A4
+TM	Chrysler 200 Series	Chrysler	200 Series	2011-2014		Convertible	3XL+0	跑车	Convertible	Convertible	200 Series	C5
 TM	Chrysler 300	Chrysler	300	2005-2023		Sedan	3XXL	三厢车			300	A4
 TM	Chrysler 300 series	Chrysler	300 series	1999-2023	Incl: 300M	Sedan	3XXL	三厢车	Incl: 300M	Incl: 300M	300 series	A4
 TM	Chrysler 300M	Chrysler	300M	1999-2004		Sedan	3XXL	三厢车			300M	A4
@@ -339,31 +373,36 @@ TM	Chrysler Concorde	Chrysler	Concorde	1998-2001		Sedan	3XXXL	三厢车			Concor
 TM	Chrysler Concorde	Chrysler	Concorde	2002-2004		Sedan	3XXL	三厢车			Concorde	A4
 TM	Chrysler Crossfire	Chrysler	Crossfire	2004-2008		Coupe/Roadster	3S-0	跑车			Crossfire	C1
 TM	Chrysler LHS	Chrysler	LHS	1994-2001		Sedan	3XXL	三厢车			LHS	A4
-TM	Chrysler PT Cruiser	Chrysler	PT Cruiser	2001-2010		Wagon	2L+	两厢车			PT Cruiser	H1
 TM	Chrysler Pacifica	Chrysler	Pacifica	2004-2008		CUV	YXL	越野车	CUV	CUV	Pacifica	S3
 TM	Chrysler Pacifica	Chrysler	Pacifica	2017-2026		Minivan	2XXL-525	两厢车	Minivan	Minivan	Pacifica	H2
+TM	Chrysler PT Cruiser	Chrysler	PT Cruiser	2001-2010		Wagon	2L+	两厢车			PT Cruiser	H1
+TM	Chrysler Sebring	Chrysler	Sebring	2001-2010		Sedan	3XL	三厢车	Sedan	Sedan	Sebring	A2
 TM	Chrysler Sebring	Chrysler	Sebring	1995-2005		Coupe	3XL-0	跑车	Coupe	Coupe	Sebring	C4
 TM	Chrysler Sebring	Chrysler	Sebring	1996-2000		Convertible	3XL-0	跑车	Convertible	Convertible	Sebring	C4
-TM	Chrysler Sebring	Chrysler	Sebring	2001-2010		Sedan	3XL	三厢车	Sedan	Sedan	Sebring	A2
 TM	Chrysler Sebring	Chrysler	Sebring	2001-2010		Convertible	3XL+0	跑车	Convertible	Convertible	Sebring	C5
 TM	Chrysler Town & Country	Chrysler	Town & Country	1990-2016		Minivan	2XXL-525	两厢车			Town & Country	H2
 TM	Chrysler Voyager	Chrysler	Voyager	2000-2026		Minivan	2XXL-525	两厢车			Voyager	H2
-TM	Dodge Avenger	Dodge	Avenger	1995-2000		Coupe	3XL-0	跑车	Coupe	Coupe	Avenger	C4
 TM	Dodge Avenger	Dodge	Avenger	2008-2014		Sedan	3XXL	三厢车	Sedan	Sedan	Avenger	A4
+TM	Dodge Avenger	Dodge	Avenger	1995-2000		Coupe	3XL-0	跑车	Coupe	Coupe	Avenger	C4
 TM	Dodge Caliber	Dodge	Caliber	2007-2012		Hatchback	2L+	两厢车			Caliber	H1
 TM	Dodge Caravan	Dodge	Caravan	1984-1990	SWB	Minivan	2L+	两厢车	SWB	SWB	Caravan	H1
 TM	Dodge Caravan	Dodge	Caravan	1987-2020	Grand Caravan/LWB	Minivan	2XXL-525	两厢车	Grand Caravan/LWB	Grand/LWB	Caravan	H2
 TM	Dodge Caravan	Dodge	Caravan	1996-2007	SWB	Minivan	2XXL-525	两厢车	SWB	SWB	Caravan	H2
+TM	Dodge Caravan	Dodge	Caravan	1991-1995	SWB	Minivan	无可用尺码		SWB	SWB	Caravan	#N/A
 TM	Dodge Challenger	Dodge	Challenger	1970-1972		Coupe	3XL-0	跑车			Challenger	C4
 TM	Dodge Challenger	Dodge	Challenger	1973-1974		Coupe	3XL+0	跑车			Challenger	C5
 TM	Dodge Challenger	Dodge	Challenger	1978-1983		Coupe	3L-0	跑车			Challenger	C3
 TM	Dodge Challenger	Dodge	Challenger	2008-2023	Incl: Widebody	Coupe	3XL+0	跑车	Incl: Widebody	Incl: Widebody	Challenger	C5
+TM	Dodge Charger	Dodge	Charger	2006-2026		Sedan	3XXL	三厢车	Sedan	Sedan	Charger	A4
 TM	Dodge Charger	Dodge	Charger	1968-1970		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Charger	C7
 TM	Dodge Charger	Dodge	Charger	1973-1978		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Charger	C7
 TM	Dodge Charger	Dodge	Charger	1982-1987		Hatchback	2L+	两厢车	Hatchback	Hatchback	Charger	H1
-TM	Dodge Charger	Dodge	Charger	2006-2026		Sedan	3XXL	三厢车	Sedan	Sedan	Charger	A4
+TM	Dodge Charger	Dodge	Charger	1966-1967		Coupe	无可用尺码		Coupe	Coupe	Charger	#N/A
+TM	Dodge Charger	Dodge	Charger	1971-1972		Coupe	无可用尺码		Coupe	Coupe	Charger	#N/A
+TM	Dodge Charger	Dodge	Charger	2024-2026		Coupe	无可用尺码		Coupe	Coupe	Charger	#N/A
 TM	Dodge Dart	Dodge	Dart	2013-2016		Sedan	3L	三厢车			Dart	A1
 TM	Dodge Daytona	Dodge	Daytona	1984-1986		Hatchback	2L+	两厢车			Daytona	H1
+TM	Dodge Daytona	Dodge	Daytona	1987-1993		Hatchback	无可用尺码				Daytona	#N/A
 TM	Dodge Durango	Dodge	Durango	1998-2026	Incl: Hellcat/SRT	SUV	YXL	越野车	Incl: Hellcat/SRT	Inc:HC/SRT	Durango	S3
 TM	Dodge Hornet	Dodge	Hornet	2023-2025		CUV	YM+	越野车			Hornet	S1
 TM	Dodge Intrepid	Dodge	Intrepid	1993-2004		Sedan	3XXL	三厢车			Intrepid	A4
@@ -375,15 +414,17 @@ TM	Dodge Ramcharger	Dodge	Ramcharger	1974-1993	2WD/4WD	SUV	YL	越野车	2WD/4WD	
 TM	Dodge Stealth	Dodge	Stealth	1991-1996	R/T Turbo	Coupe	3L-0	跑车	R/T Turbo	R/T Turbo	Stealth	C3
 TM	Dodge Stratus	Dodge	Stratus	1995-2006		Sedan	3XL	三厢车			Stratus	A2
 TM	Dodge Viper	Dodge	Viper	1992-2017	Incl: ACR/GTS	Convertible/Coupe/Roadster	3M-0	跑车	Incl: ACR/GTS	Incl: ACR/GTS	Viper	C2
-TM	FIAT Fiat 500L	FIAT	Fiat 500L	2014-2020		Wagon	2L+	两厢车			Fiat 500L	H1
 TM	Fiat 124 Spider	Fiat	124 Spider	2017-2020	Abarth	Convertible	3S-0	跑车	Abarth	Abarth	124 Spider	C1
 TM	Fiat 500	Fiat	500	2012-2019	Incl: Abarth	Convertible	3S-0	跑车	Convertible Incl: Abarth	Conv Inc:Abarth	500	C1
+TM	Fiat 500	Fiat	500	2012-2019		Hatchback	无可用尺码		Hatchback	Hatchback	500	#N/A
 TM	Fiat 500X	Fiat	500X	2016-2023		SUV	YM+	越野车			500X	S1
+TM	FIAT Fiat 500L	FIAT	Fiat 500L	2014-2020		Wagon	2L+	两厢车			Fiat 500L	H1
 TM	Ford Bronco	Ford	Bronco	1978-1991		2dr SUV	YM+	越野车	2dr SUV	2dr SUV	Bronco	S1
 TM	Ford Bronco	Ford	Bronco	1992-1996		2dr SUV	YL	越野车	2dr SUV	2dr SUV	Bronco	S2
 TM	Ford Bronco	Ford	Bronco	2021-2026		4dr SUV	YL	越野车	4dr SUV	4dr SUV	Bronco	S2
 TM	Ford Bronco	Ford	Bronco	2022-2026		2dr SUV	YM+	越野车	2dr SUV	2dr SUV	Bronco	S1
 TM	Ford Bronco	Ford	Bronco	2022-2026	Raptor	4dr SUV	YXL	越野车	4dr SUV Raptor	4dr SUV Raptor	Bronco	S3
+TM	Ford Bronco	Ford	Bronco	1966-1977		2dr SUV	无可用尺码		2dr SUV	2dr SUV	Bronco	#N/A
 TM	Ford Bronco Sport	Ford	Bronco Sport	2021-2026	Incl: Badlands	4dr SUV	YM+	越野车	Incl: Badlands	Incl: Badlands	Bronco Sport	S1
 TM	Ford C-MAX	Ford	C-MAX	2013-2018	Incl: PHEV	Hatchback	2L+	两厢车	Incl: PHEV	Incl: PHEV	C-MAX	H1
 TM	Ford Crown Victoria	Ford	Crown Victoria	1983-2011		Sedan	3XXXL	三厢车			Crown Victoria	C6
@@ -392,9 +433,9 @@ TM	Ford Edge	Ford	Edge	2007-2024		SUV	YL	越野车			Edge	S2
 TM	Ford Escape	Ford	Escape	2001-2019		SUV	YM+	越野车			Escape	S1
 TM	Ford Escape	Ford	Escape	2020-2022		SUV	YL	越野车			Escape	S2
 TM	Ford Escape	Ford	Escape	2023-2026		SUV	YM+	越野车			Escape	S1
-TM	Ford Escort	Ford	Escort	1981-1999		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Escort	H1
 TM	Ford Escort	Ford	Escort	1981-2002		Sedan	3L	三厢车	Sedan	Sedan	Escort	A1
 TM	Ford Escort	Ford	Escort	1998-2003	ZX2	Coupe	3M-0	跑车	Coupe ZX2	Coupe ZX2	Escort	C2
+TM	Ford Escort	Ford	Escort	1981-1999		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Escort	H1
 TM	Ford Excursion	Ford	Excursion	2000-2005		SUV	YXXL-585	越野车			Excursion	S5
 TM	Ford Expedition	Ford	Expedition	1997-2026	Incl: Tremor	SUV	YXXL-545	越野车	Incl: Tremor	Incl: Tremor	Expedition	S4
 TM	Ford Expedition	Ford	Expedition	2007-2026	EL/MAX	SUV	YXXL-585	越野车	EL/MAX	EL/MAX	Expedition	S5
@@ -402,13 +443,14 @@ TM	Ford Explorer	Ford	Explorer	1991-2001		SUV	YM+	越野车			Explorer	S1
 TM	Ford Explorer	Ford	Explorer	2002		SUV	YXL	越野车			Explorer	S3
 TM	Ford Explorer	Ford	Explorer	2003-2005		SUV	YL	越野车			Explorer	S2
 TM	Ford Explorer	Ford	Explorer	2006-2025	Incl: Timberline	SUV	YXL	越野车	Incl: Timberline	Inc:Timber	Explorer	S3
-TM	Ford Fiesta	Ford	Fiesta	2011-2019	Incl: ST	Hatchback	2L+	两厢车	Hatchback Incl: ST	Hbk Inc:ST	Fiesta	H1
 TM	Ford Fiesta	Ford	Fiesta	2011-2019		Sedan	3L	三厢车	Sedan	Sedan	Fiesta	A1
+TM	Ford Fiesta	Ford	Fiesta	2011-2019	Incl: ST	Hatchback	2L+	两厢车	Hatchback Incl: ST	Hbk Inc:ST	Fiesta	H1
 TM	Ford Five Hundred	Ford	Five Hundred	2005-2007		Sedan	3XXL	三厢车			Five Hundred	A4
 TM	Ford Flex	Ford	Flex	2009-2019		CUV	YXXL-545	越野车			Flex	S4
-TM	Ford Focus	Ford	Focus	2000-2018	Incl: RS/ZX3/ZX5	Hatchback	2L+	两厢车	Hatchback Incl: RS/ZX3/ZX5	Hbk Inc:RS/Z3/Z5	Focus	H1
 TM	Ford Focus	Ford	Focus	2000-2018		Sedan	3L	三厢车	Sedan	Sedan	Focus	A1
 TM	Ford Focus	Ford	Focus	2008-2011		Coupe	3M-0	跑车	Coupe	Coupe	Focus	C2
+TM	Ford Focus	Ford	Focus	2000-2018	Incl: RS/ZX3/ZX5	Hatchback	2L+	两厢车	Hatchback Incl: RS/ZX3/ZX5	Hbk Inc:RS/Z3/Z5	Focus	H1
+TM	Ford Focus	Ford	Focus	2000-2007		Wagon	无可用尺码		Wagon	Wagon	Focus	#N/A
 TM	Ford Freestyle	Ford	Freestyle	2005-2007		CUV	YXL	越野车			Freestyle	S3
 TM	Ford Fusion	Ford	Fusion	2006-2020		Sedan	3XL	三厢车			Fusion	A2
 TM	Ford GT	Ford	GT	2005-2006		Coupe	3L-0	跑车			GT	C3
@@ -416,20 +458,29 @@ TM	Ford GT	Ford	GT	2017-2022		Coupe	3XL-0	跑车			GT	C4
 TM	Ford Mustang	Ford	Mustang	1965-1968		Convertible/Coupe/Fastback	3L-0	跑车	Convertible/Coupe/Fastback	Conv/Cpe/Fastbk	Mustang	C3
 TM	Ford Mustang	Ford	Mustang	1969-1972		Convertible/Coupe/Fastback	3XL-0	跑车	Convertible/Coupe/Fastback	Conv/Cpe/Fastbk	Mustang	C4
 TM	Ford Mustang	Ford	Mustang	1973		Convertible/Coupe/Fastback	3XL+0	跑车	Convertible/Coupe/Fastback	Conv/Cpe/Fastbk	Mustang	C5
-TM	Ford Mustang	Ford	Mustang	1974-1978		Hatchback	2L+	两厢车	Hatchback	Hatchback	Mustang	H1
 TM	Ford Mustang	Ford	Mustang	1974-1978		Coupe	3M-0	跑车	Coupe	Coupe	Mustang	C2
 TM	Ford Mustang	Ford	Mustang	1979-2004	Incl: Mach 1/SVO/SVT Cobra	Convertible/Coupe	3L-0	跑车	Convertible/Coupe Incl: Mach 1/SVO/SVT Cobra	Conv/Cpe Inc:M1+	Mustang	C3
 TM	Ford Mustang	Ford	Mustang	2005-2026	Incl: Dark Horse	Convertible/Coupe	3XL-0	跑车	Convertible/Coupe Incl: Dark Horse	Conv/Cpe Inc:DH	Mustang	C4
+TM	Ford Mustang	Ford	Mustang	1974-1978		Hatchback	2L+	两厢车	Hatchback	Hatchback	Mustang	H1
+TM	Ford Mustang	Ford	Mustang	1979-1993		Hatchback	无可用尺码		Hatchback	Hatchback	Mustang	#N/A
 TM	Ford Mustang Mach-E	Ford	Mustang Mach-E	2021-2026	Incl: Rally	Coupe SUV/CUV	YL	越野车	Incl: Rally	Incl: Rally	Mustang Mach-E	S2
-TM	Ford Taurus	Ford	Taurus	1986-2005		Wagon	2XXL-525	两厢车	Wagon	Wagon	Taurus	H2
 TM	Ford Taurus	Ford	Taurus	1986-1991		Sedan	3XL	三厢车	Sedan	Sedan	Taurus	A2
 TM	Ford Taurus	Ford	Taurus	1992-2019	Incl: SHO	Sedan	3XXL	三厢车	Sedan Incl: SHO	Sedan Incl: SHO	Taurus	A4
+TM	Ford Taurus	Ford	Taurus	1986-2005		Wagon	2XXL-525	两厢车	Wagon	Wagon	Taurus	H2
 TM	Ford Thunderbird	Ford	Thunderbird	1955		Convertible	3M-0	跑车	Convertible	Convertible	Thunderbird	C2
 TM	Ford Thunderbird	Ford	Thunderbird	1956		Convertible	3XL-0	跑车	Convertible	Convertible	Thunderbird	C4
 TM	Ford Thunderbird	Ford	Thunderbird	1957		Convertible	3L-0	跑车	Convertible	Convertible	Thunderbird	C3
 TM	Ford Thunderbird	Ford	Thunderbird	1967-1979		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Thunderbird	C7
 TM	Ford Thunderbird	Ford	Thunderbird	1980-1997		Coupe	3XL+0	跑车	Coupe	Coupe	Thunderbird	C5
 TM	Ford Thunderbird	Ford	Thunderbird	2002-2005		Coupe	3XL-0	跑车	Coupe	Coupe	Thunderbird	C4
+TM	Ford Thunderbird	Ford	Thunderbird	1958-1966		Convertible/Coupe	无可用尺码		Convertible/Coupe	Conv/Cpe	Thunderbird	#N/A
+TM	Genesis EQ900	Genesis	EQ900	2017-2026	G90	Sedan	3XXL	三厢车	G90	G90	EQ900	A4
+TM	Genesis G70	Genesis	G70	2019-2026		Sedan	3L	三厢车			G70	A1
+TM	Genesis G80	Genesis	G80	2017-2026	Incl: Sport	Sedan	3XXL	三厢车	Incl: Sport	Incl: Sport	G80	A4
+TM	Genesis G90	Genesis	G90	2017-2026		Sedan	3XXL	三厢车			G90	A4
+TM	Genesis GV60	Genesis	GV60	2023-2026		SUV	YM+	越野车			GV60	S1
+TM	Genesis GV70	Genesis	GV70	2022-2026		SUV	YL	越野车			GV70	S2
+TM	Genesis GV80	Genesis	GV80	2021-2026		SUV	YXL	越野车			GV80	S3
 TM	GMC Acadia	GMC	Acadia	2007-2023	Incl: Limited	SUV	YXL	越野车	Incl: Limited	Incl: Limited	Acadia	S3
 TM	GMC Acadia	GMC	Acadia	2024-2026		SUV	YXXL-545	越野车			Acadia	S4
 TM	GMC Envoy	GMC	Envoy	2002-2009		SUV	YXL	越野车			Envoy	S3
@@ -442,36 +493,32 @@ TM	GMC Yukon	GMC	Yukon	1992-1997		SUV	YL	越野车			Yukon	S2
 TM	GMC Yukon	GMC	Yukon	1995-1999		SUV	YXL	越野车			Yukon	S3
 TM	GMC Yukon	GMC	Yukon	2000-2026		SUV	YXXL-545	越野车			Yukon	S4
 TM	GMC Yukon XL	GMC	Yukon XL	2000-2026		SUV	YXXL-585	越野车			Yukon XL	S5
-TM	Genesis EQ900	Genesis	EQ900	2017-2026	G90	Sedan	3XXL	三厢车	G90	G90	EQ900	A4
-TM	Genesis G70	Genesis	G70	2019-2026		Sedan	3L	三厢车			G70	A1
-TM	Genesis G80	Genesis	G80	2017-2026	Incl: Sport	Sedan	3XXL	三厢车	Incl: Sport	Incl: Sport	G80	A4
-TM	Genesis G90	Genesis	G90	2017-2026		Sedan	3XXL	三厢车			G90	A4
-TM	Genesis GV60	Genesis	GV60	2023-2026		SUV	YM+	越野车			GV60	S1
-TM	Genesis GV70	Genesis	GV70	2022-2026		SUV	YL	越野车			GV70	S2
-TM	Genesis GV80	Genesis	GV80	2021-2026		SUV	YXL	越野车			GV80	S3
-TM	Honda Accord	Honda	Accord	1976-1989		Hatchback	2L+	两厢车	Hatchback	Hatchback	Accord	H1
 TM	Honda Accord	Honda	Accord	1979-1989		Sedan	3L	三厢车	Sedan	Sedan	Accord	A1
-TM	Honda Accord	Honda	Accord	1988-1990		Coupe	3L-0	跑车	Coupe	Coupe	Accord	C3
-TM	Honda Accord	Honda	Accord	1990-1997		Wagon	2XXL-525	两厢车	Wagon	Wagon	Accord	H2
 TM	Honda Accord	Honda	Accord	1990-2007		Sedan	3XL	三厢车	Sedan	Sedan	Accord	A2
-TM	Honda Accord	Honda	Accord	1991-2017		Coupe	3XL-0	跑车	Coupe	Coupe	Accord	C4
 TM	Honda Accord	Honda	Accord	2008-2026		Sedan	3XXL	三厢车	Sedan	Sedan	Accord	A4
-TM	Honda CR-V	Honda	CR-V	1997-2016		SUV	YM+	越野车			CR-V	S1
-TM	Honda CR-V	Honda	CR-V	2017-2026		SUV	YL	越野车			CR-V	S2
-TM	Honda CR-Z	Honda	CR-Z	2011-2016		Hatchback	2L+	两厢车			CR-Z	H1
-TM	Honda Civic	Honda	Civic	1973-1991		Wagon	2L+	两厢车	Wagon	Wagon	Civic	H1
+TM	Honda Accord	Honda	Accord	1988-1990		Coupe	3L-0	跑车	Coupe	Coupe	Accord	C3
+TM	Honda Accord	Honda	Accord	1991-2017		Coupe	3XL-0	跑车	Coupe	Coupe	Accord	C4
+TM	Honda Accord	Honda	Accord	1976-1989		Hatchback	2L+	两厢车	Hatchback	Hatchback	Accord	H1
+TM	Honda Accord	Honda	Accord	1990-1997		Wagon	2XXL-525	两厢车	Wagon	Wagon	Accord	H2
 TM	Honda Civic	Honda	Civic	1973-2026		Sedan	3L	三厢车	Sedan	Sedan	Civic	A1
-TM	Honda Civic	Honda	Civic	1988-2021		Hatchback	2L+	两厢车	Hatchback	Hatchback	Civic	H1
 TM	Honda Civic	Honda	Civic	1988-1991	CRX	Coupe	3S-0	跑车	Coupe CRX	Coupe CRX	Civic	C1
 TM	Honda Civic	Honda	Civic	1992-2020		Coupe	3M-0	跑车	Coupe	Coupe	Civic	C2
+TM	Honda Civic	Honda	Civic	1973-1991		Wagon	2L+	两厢车	Wagon	Wagon	Civic	H1
+TM	Honda Civic	Honda	Civic	1988-2021		Hatchback	2L+	两厢车	Hatchback	Hatchback	Civic	H1
+TM	Honda Civic	Honda	Civic	1980-1987		Hatchback	无可用尺码		Hatchback	Hatchback	Civic	#N/A
+TM	Honda Civic	Honda	Civic	2017-2026	Type R	Hatchback	无可用尺码		Hatchback Type R	Hbk Type R	Civic	#N/A
+TM	Honda Civic	Honda	Civic	2022-2026		Hatchback	无可用尺码		Hatchback	Hatchback	Civic	#N/A
 TM	Honda Clarity	Honda	Clarity	2017-2021		Sedan	3XXL	三厢车			Clarity	A4
 TM	Honda Clarity Plug In	Honda	Clarity Plug In	2018-2021		Sedan	3XXL	三厢车			Clarity Plug In	A4
 TM	Honda Crosstour	Honda	Crosstour	2010-2015		Hatchback	2XXL-525	两厢车			Crosstour	H2
+TM	Honda CR-V	Honda	CR-V	1997-2016		SUV	YM+	越野车			CR-V	S1
+TM	Honda CR-V	Honda	CR-V	2017-2026		SUV	YL	越野车			CR-V	S2
+TM	Honda CR-Z	Honda	CR-Z	2011-2016		Hatchback	2L+	两厢车			CR-Z	H1
 TM	Honda Element	Honda	Element	2003-2009		CUV	YM+	越野车			Element	S1
 TM	Honda Fit	Honda	Fit	2007-2020		Hatchback	2L+	两厢车			Fit	H1
 TM	Honda HR-V	Honda	HR-V	2016-2026		SUV	YM+	越野车			HR-V	S1
-TM	Honda Insight	Honda	Insight	2000-2014		Hatchback	2L+	两厢车	Hatchback	Hatchback	Insight	H1
 TM	Honda Insight	Honda	Insight	2019-2022		Sedan	3L	三厢车	Sedan	Sedan	Insight	A1
+TM	Honda Insight	Honda	Insight	2000-2014		Hatchback	2L+	两厢车	Hatchback	Hatchback	Insight	H1
 TM	Honda Odyssey	Honda	Odyssey	1995-2026		Minivan	2XXL-525	两厢车			Odyssey	H2
 TM	Honda Passport	Honda	Passport	1994-2002		SUV	YM+	越野车			Passport	S1
 TM	Honda Passport	Honda	Passport	2019-2026		SUV	YXL	越野车			Passport	S3
@@ -482,20 +529,20 @@ TM	Honda Prelude	Honda	Prelude	1983-2001		Coupe	3M-0	跑车			Prelude	C2
 TM	Honda Prelude	Honda	Prelude	2026		Coupe	3L-0	跑车			Prelude	C3
 TM	Honda Prologue	Honda	Prologue	2024-2026		SUV	YXL	越野车			Prologue	S3
 TM	Honda S2000	Honda	S2000	2000-2009		Roadster	3S-0	跑车			S2000	C1
-TM	Hyundai Accent	Hyundai	Accent	1995-2017		Hatchback	2L+	两厢车	Hatchback	Hatchback	Accent	H1
 TM	Hyundai Accent	Hyundai	Accent	1995-2022		Sedan	3L	三厢车	Sedan	Sedan	Accent	A1
+TM	Hyundai Accent	Hyundai	Accent	1995-2017		Hatchback	2L+	两厢车	Hatchback	Hatchback	Accent	H1
 TM	Hyundai Azera	Hyundai	Azera	2006-2017		Sedan	3XXL	三厢车			Azera	A4
 TM	Hyundai Elantra	Hyundai	Elantra	1992-2020		Sedan	3L	三厢车	Sedan	Sedan	Elantra	A1
-TM	Hyundai Elantra	Hyundai	Elantra	1996-2020		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Elantra	H1
 TM	Hyundai Elantra	Hyundai	Elantra	2021-2026		Sedan	3XL	三厢车	Sedan	Sedan	Elantra	A2
+TM	Hyundai Elantra	Hyundai	Elantra	1996-2020		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Elantra	H1
 TM	Hyundai Elantra GT	Hyundai	Elantra GT	2013-2020		Hatchback	2L+	两厢车			Elantra GT	H1
 TM	Hyundai Elantra Tour	Hyundai	Elantra Tour	2009-2012		Wagon	2L+	两厢车			Elantra Tour	H1
 TM	Hyundai Equus	Hyundai	Equus	2011-2016		Sedan	3XXL	三厢车			Equus	A4
 TM	Hyundai Genesis	Hyundai	Genesis	2009-2016	Incl: 5.0 R-Spec	Sedan	3XXL	三厢车	Incl: 5.0 R-Spec	Inc:5.0RSpc	Genesis	A4
+TM	Hyundai Ioniq	Hyundai	Ioniq	2017-2022		Hatchback	2L+	两厢车			Ioniq	H1
 TM	Hyundai IONIQ 5	Hyundai	IONIQ 5	2022-2026	Incl: N	SUV	YL	越野车	Incl: N	Incl: N	IONIQ 5	S2
 TM	Hyundai IONIQ 6	Hyundai	IONIQ 6	2023-2026		Sedan	3XL	三厢车			IONIQ 6	A2
 TM	Hyundai IONIQ 6	Hyundai	IONIQ 6	2026	N	Sedan	3XXL	三厢车	N	N	IONIQ 6	A4
-TM	Hyundai Ioniq	Hyundai	Ioniq	2017-2022		Hatchback	2L+	两厢车			Ioniq	H1
 TM	Hyundai Ioniq 9	Hyundai	Ioniq 9	2026		SUV	YXL	越野车			Ioniq 9	S3
 TM	Hyundai Kona	Hyundai	Kona	2019-2026		CUV	YM+	越野车			Kona	S1
 TM	Hyundai Nexo	Hyundai	Nexo	2019-2024		SUV	YL	越野车			Nexo	S2
@@ -519,16 +566,16 @@ TM	Infiniti EX	Infiniti	EX	2008-2013	EX35/EX37	SUV	YL	越野车	EX35/EX37	EX35/E
 TM	Infiniti FX	Infiniti	FX	2003-2008		CUV	YL	越野车			FX	S2
 TM	Infiniti FX	Infiniti	FX	2009-2013		CUV	YXL	越野车			FX	S3
 TM	Infiniti G	Infiniti	G	1991-2002		Sedan	3L	三厢车	Sedan	Sedan	G	A1
+TM	Infiniti G	Infiniti	G	2003-2013		Sedan	3XL	三厢车	Sedan	Sedan	G	A2
 TM	Infiniti G	Infiniti	G	2003-2013		Convertible	3L-0	跑车	Convertible	Convertible	G	C3
 TM	Infiniti G	Infiniti	G	2003-2013		Coupe	3L-0	跑车	Coupe	Coupe	G	C3
-TM	Infiniti G	Infiniti	G	2003-2013		Sedan	3XL	三厢车	Sedan	Sedan	G	A2
 TM	Infiniti G	Infiniti	G	2003-2013		Convertible	3XL-0	跑车	Convertible	Convertible	G	C4
 TM	Infiniti G	Infiniti	G	2003-2013		Coupe	3XL-0	跑车	Coupe	Coupe	G	C4
 TM	Infiniti I	Infiniti	I	1996-1999		Sedan	3XL	三厢车			I	A2
 TM	Infiniti I	Infiniti	I	2000-2004		Sedan	3XXL	三厢车			I	A4
 TM	Infiniti JX	Infiniti	JX	2013		CUV	YXL	越野车			JX	S3
-TM	Infiniti M	Infiniti	M	1990-1992		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	M	C4
 TM	Infiniti M	Infiniti	M	2003-2013		Sedan	3XXL	三厢车	Sedan	Sedan	M	A4
+TM	Infiniti M	Infiniti	M	1990-1992		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	M	C4
 TM	Infiniti Q40	Infiniti	Q40	2015		Sedan	3XL	三厢车			Q40	A2
 TM	Infiniti Q45	Infiniti	Q45	1990-2006		Sedan	3XXL	三厢车			Q45	A4
 TM	Infiniti Q50	Infiniti	Q50	2014-2024	Incl: Red Sport	Sedan	3XL	三厢车	Incl: Red Sport	Incl: Red Sport	Q50	A2
@@ -548,14 +595,14 @@ TM	Jaguar F-Pace	Jaguar	F-Pace	2017-2023		SUV	YL	越野车			F-Pace	S2
 TM	Jaguar F-Type	Jaguar	F-Type	2014-2024	Incl: P450/P575/R/R75/SVR/V6/V8 S	Convertible/Coupe	3M-0	跑车	Incl: P450/P575/R/R75/SVR/V6/V8 S	Inc:R/SVR	F-Type	C2
 TM	Jaguar I-Pace	Jaguar	I-Pace	2019-2024		SUV	YL	越野车			I-Pace	S2
 TM	Jaguar S-Type	Jaguar	S-Type	2000-2008		Sedan	3XXL	三厢车			S-Type	A4
-TM	Jaguar X-Type	Jaguar	X-Type	2002-2008		Sedan	3L	三厢车	Sedan	Sedan	X-Type	A1
-TM	Jaguar X-Type	Jaguar	X-Type	2005-2008		Wagon	2XXL-525	两厢车	Wagon	Wagon	X-Type	H2
 TM	Jaguar XE	Jaguar	XE	2017-2020		Sedan	3L	三厢车			XE	A1
 TM	Jaguar XF	Jaguar	XF	2009-2024		Sedan	3XXL	三厢车	Sedan	Sedan	XF	A4
 TM	Jaguar XF	Jaguar	XF	2018-2020	Sportbrake	Wagon	2XXL-525	两厢车	Wagon Sportbrake	Wgn Sportbrake	XF	H2
 TM	Jaguar XJ	Jaguar	XJ	1979-2019	Incl: LWB/SWB	Sedan	3XXL	三厢车	Incl: LWB/SWB	Incl: LWB/SWB	XJ	A4
 TM	Jaguar XJS	Jaguar	XJS	1976-1996		Convertible/Coupe	3XL-0	跑车			XJS	C4
 TM	Jaguar XK	Jaguar	XK	1997-2015	Incl: XKR/XKR-S	Convertible/Coupe	3XL-0	跑车	Incl: XKR/XKR-S	Incl: XKR/XKR-S	XK	C4
+TM	Jaguar X-Type	Jaguar	X-Type	2002-2008		Sedan	3L	三厢车	Sedan	Sedan	X-Type	A1
+TM	Jaguar X-Type	Jaguar	X-Type	2005-2008		Wagon	2XXL-525	两厢车	Wagon	Wagon	X-Type	H2
 TM	Jeep Cherokee	Jeep	Cherokee	1974-1983		SUV	YL	越野车			Cherokee	S2
 TM	Jeep Cherokee	Jeep	Cherokee	1984-2001		SUV	YM+	越野车			Cherokee	S1
 TM	Jeep Cherokee	Jeep	Cherokee	2014-2026		SUV	YL	越野车			Cherokee	S2
@@ -578,6 +625,7 @@ TM	Jeep Wrangler	Jeep	Wrangler	2004-2012	Rubicon/Unlimited	2dr SUV/4dr SUV	YM+	�
 TM	Jeep Wrangler	Jeep	Wrangler	2013-2026	Rubicon/Unlimited	4dr SUV	YL	越野车	4dr SUV Rubicon/Unlimited	4dr SUV Rub/Un	Wrangler	S2
 TM	Jeep Wrangler	Jeep	Wrangler	2013-2026	Incl: Xtreme	2dr SUV	YM+	越野车	2dr SUV Incl: Xtreme	2dr SUV Inc:Xtrm	Wrangler	S1
 TM	Jeep Wrangler	Jeep	Wrangler	2024-2026	Xtreme	4dr SUV	YXL	越野车	4dr SUV Xtreme	4dr SUV Xtreme	Wrangler	S3
+TM	Jeep Wrangler	Jeep	Wrangler	1987-2012		2dr SUV	无可用尺码		2dr SUV	2dr SUV	Wrangler	#N/A
 TM	Karma Automotive GS-6	Karma Automotive	GS-6	2021-2022		Sedan	3XXL	三厢车			GS-6	A4
 TM	Karma Automotive Revero	Karma Automotive	Revero	2017-2025	Incl: GT/GTS	Sedan	3XXL	三厢车	Incl: GT/GTS	Incl: GT/GTS	Revero	A4
 TM	Kia Amanti	Kia	Amanti	2004-2009		Sedan	3XXL	三厢车			Amanti	A4
@@ -588,14 +636,14 @@ TM	Kia EV6	Kia	EV6	2022-2026		CUV	YL	越野车			EV6	S2
 TM	Kia EV9	Kia	EV9	2024-2026		SUV	YXL	越野车			EV9	S3
 TM	Kia Forte	Kia	Forte	2010-2024		Sedan	3L	三厢车	Sedan	Sedan	Forte	A1
 TM	Kia Forte	Kia	Forte	2010-2013		Coupe	3M-0	跑车	Coupe	Coupe	Forte	C2
-TM	Kia Forte	Kia	Forte	2014-2018	Forte5	Hatchback	2L+	两厢车	Hatchback Forte5	Hbk Forte5	Forte	H1
 TM	Kia Forte	Kia	Forte	2014-2016	Koup	Coupe	3L-0	跑车	Coupe Koup	Coupe Koup	Forte	C3
+TM	Kia Forte	Kia	Forte	2014-2018	Forte5	Hatchback	2L+	两厢车	Hatchback Forte5	Hbk Forte5	Forte	H1
 TM	Kia K5	Kia	K5	2021-2026		Sedan	3XXL	三厢车			K5	A4
 TM	Kia K900	Kia	K900	2015-2020		Sedan	3XXL	三厢车			K900	A4
 TM	Kia NIRO	Kia	NIRO	2017-2026	Incl: EV	CUV	YM+	越野车	Incl: EV	Incl: EV	NIRO	S1
 TM	Kia Optima	Kia	Optima	2001-2020	Incl: Hybrid/PHEV	Sedan	3XL	三厢车	Incl: Hybrid/PHEV	Inc:Hy/PHEV	Optima	A2
-TM	Kia Rio	Kia	Rio	2001-2023	Rio5	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Rio5	Hbk/Wgn Rio5	Rio	H1
 TM	Kia Rio	Kia	Rio	2001-2023		Sedan	3L	三厢车	Sedan	Sedan	Rio	A1
+TM	Kia Rio	Kia	Rio	2001-2023	Rio5	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Rio5	Hbk/Wgn Rio5	Rio	H1
 TM	Kia Rondo	Kia	Rondo	2007-2010		SUV	YM+	越野车			Rondo	S1
 TM	Kia SELTOS	Kia	SELTOS	2021-2025		SUV	YM+	越野车			SELTOS	S1
 TM	Kia Sephia	Kia	Sephia	1994-2001		Sedan	3L	三厢车			Sephia	A1
@@ -604,6 +652,7 @@ TM	Kia Sorento	Kia	Sorento	2011-2026	Incl: PHEV	SUV	YL	越野车	Incl: PHEV	Incl
 TM	Kia Soul	Kia	Soul	2010-2025	Incl: EV	Hatchback/Wagon	2L+	两厢车	Incl: EV	Incl: EV	Soul	H1
 TM	Kia Spectra	Kia	Spectra	2000-2009		Sedan	3L	三厢车	Sedan	Sedan	Spectra	A1
 TM	Kia Spectra	Kia	Spectra	2006-2009		Hatchback	2L+	两厢车	Hatchback	Hatchback	Spectra	H1
+TM	Kia Spectra	Kia	Spectra	2002-2004		Hatchback	无可用尺码		Hatchback	Hatchback	Spectra	#N/A
 TM	Kia Sportage	Kia	Sportage	1995-2022		SUV	YM+	越野车			Sportage	S1
 TM	Kia Sportage	Kia	Sportage	2023-2026	Incl: PHEV	SUV	YL	越野车	Incl: PHEV	Incl: PHEV	Sportage	S2
 TM	Kia Stinger	Kia	Stinger	2018-2023	Incl: GT	Coupe/Fastback/Liftback	3XL-0	跑车	Incl: GT	Incl: GT	Stinger	C4
@@ -611,12 +660,13 @@ TM	Kia Telluride	Kia	Telluride	2020-2026		SUV	YXL	越野车			Telluride	S3
 TM	Land Rover Defender	Land Rover	Defender	2020-2026	90	SUV	YM+	越野车	90	90	Defender	S1
 TM	Land Rover Defender	Land Rover	Defender	2020-2026	110/110 OCTA	SUV	YXL	越野车	110/110 OCTA	110/110 OCTA	Defender	S3
 TM	Land Rover Defender	Land Rover	Defender	2023-2026	130	SUV	YXXL-545	越野车	130	130	Defender	S4
+TM	Land Rover Defender	Land Rover	Defender	1993-1997	90 NAS/110 NAS	SUV	无可用尺码		90 NAS/110 NAS	90 NAS/110 NAS	Defender	#N/A
 TM	Land Rover Discovery	Land Rover	Discovery	1994-1999		SUV	YM+	越野车			Discovery	S1
 TM	Land Rover Discovery	Land Rover	Discovery	2000-2004		SUV	YL	越野车			Discovery	S2
 TM	Land Rover Discovery	Land Rover	Discovery	2010-2024		SUV	YXL	越野车			Discovery	S3
 TM	Land Rover Discovery Sport	Land Rover	Discovery Sport	2015-2026		SUV	YM+	越野车			Discovery Sport	S1
-TM	Land Rover Evoque	Land Rover	Evoque	2012-2018		Coupe	3L-0	跑车	Coupe	Coupe	Evoque	C3
 TM	Land Rover Evoque	Land Rover	Evoque	2020-2026		SUV	YM+	越野车	SUV	SUV	Evoque	S1
+TM	Land Rover Evoque	Land Rover	Evoque	2012-2018		Coupe	3L-0	跑车	Coupe	Coupe	Evoque	C3
 TM	Land Rover Freelander	Land Rover	Freelander	2002-2005		SUV	YM+	越野车			Freelander	S1
 TM	Land Rover LR2	Land Rover	LR2	2008-2015		SUV	YM+	越野车			LR2	S1
 TM	Land Rover LR3	Land Rover	LR3	2005-2009		SUV	YXL	越野车			LR3	S3
@@ -625,9 +675,9 @@ TM	Land Rover Range Rover	Land Rover	Range Rover	1987-1992		SUV	YM+	越野车			
 TM	Land Rover Range Rover	Land Rover	Range Rover	1993-2002	Incl: LWB	SUV	YL	越野车	Incl: LWB	Incl: LWB	Range Rover	S2
 TM	Land Rover Range Rover	Land Rover	Range Rover	2003-2026		SUV	YXL	越野车			Range Rover	S3
 TM	Land Rover Range Rover	Land Rover	Range Rover	2014-2026	LWB	SUV	YXXL-545	越野车	LWB	LWB	Range Rover	S4
+TM	Land Rover Range Rover Evoque	Land Rover	Range Rover Evoque	2020-2026		SUV	YM+	越野车	SUV	SUV	RangeRov Evoq	S1
 TM	Land Rover Range Rover Evoque	Land Rover	Range Rover Evoque	2012-2016		Coupe	3M-0	跑车	Coupe	Coupe	RangeRov Evoq	C2
 TM	Land Rover Range Rover Evoque	Land Rover	Range Rover Evoque	2017-2019		Convertible	3L-0	跑车	Convertible	Convertible	RangeRov Evoq	C3
-TM	Land Rover Range Rover Evoque	Land Rover	Range Rover Evoque	2020-2026		SUV	YM+	越野车	SUV	SUV	RangeRov Evoq	S1
 TM	Land Rover Range Rover Sport	Land Rover	Range Rover Sport	2006-2013		SUV	YL	越野车			RangeRov Sport	S2
 TM	Land Rover Range Rover Sport	Land Rover	Range Rover Sport	2014-2026		SUV	YXL	越野车			RangeRov Sport	S3
 TM	Land Rover Range Rover Velar	Land Rover	Range Rover Velar	2018-2026		SUV	YL	越野车			RangeRov Velar	S2
@@ -641,8 +691,8 @@ TM	Lexus GX	Lexus	GX	2003-2013		SUV	YL	越野车			GX	S2
 TM	Lexus GX	Lexus	GX	2014-2026	Incl: Overtrail	SUV	YXL	越野车	Incl: Overtrail	Incl: Overtrail	GX	S3
 TM	Lexus HS	Lexus	HS	2010-2012		Sedan	3L	三厢车			HS	A1
 TM	Lexus IS	Lexus	IS	2001-2020		Sedan	3L	三厢车	Sedan	Sedan	IS	A1
-TM	Lexus IS	Lexus	IS	2010-2015		Convertible	3L-0	跑车	Convertible	Convertible	IS	C3
 TM	Lexus IS	Lexus	IS	2021-2026		Sedan	3XL	三厢车	Sedan	Sedan	IS	A2
+TM	Lexus IS	Lexus	IS	2010-2015		Convertible	3L-0	跑车	Convertible	Convertible	IS	C3
 TM	Lexus LC	Lexus	LC	2018-2026		Convertible/Coupe	3XL-0	跑车			LC	C4
 TM	Lexus LFA	Lexus	LFA	2012		Coupe	3M-0	跑车			LFA	C2
 TM	Lexus LS	Lexus	LS	1990-2026	Incl: L	Sedan	3XXL	三厢车	Incl: L	Incl: L	LS	A4
@@ -662,39 +712,37 @@ TM	Lexus SC	Lexus	SC	2002-2010		Convertible	3L-0	跑车	Convertible	Convertible	
 TM	Lexus TX	Lexus	TX	2024-2026		SUV	YXXL-545	越野车			TX	S4
 TM	Lexus UX	Lexus	UX	2019-2026		SUV	YM+	越野车			UX	S1
 TM	Lincoln Aviator	Lincoln	Aviator	2003-2026		SUV	YXL	越野车			Aviator	S3
-TM	Lincoln Continental	Lincoln	Continental	1940-1973		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Continental	C7
 TM	Lincoln Continental	Lincoln	Continental	1961-1965		Sedan	3XXXL	三厢车	Sedan	Sedan	Continental	C6
-TM	Lincoln Continental	Lincoln	Continental	1980		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Continental	C7
 TM	Lincoln Continental	Lincoln	Continental	1982-1998		Sedan	3XXL	三厢车	Sedan	Sedan	Continental	A4
 TM	Lincoln Continental	Lincoln	Continental	1999-2001		Sedan	3XXXL	三厢车	Sedan	Sedan	Continental	C6
 TM	Lincoln Continental	Lincoln	Continental	2002-2020		Sedan	3XXL	三厢车	Sedan	Sedan	Continental	A4
-TM	Lincoln Corsair	Lincoln	Corsair	2020-2026		SUV	YL	越野车			Corsair	S2
+TM	Lincoln Continental	Lincoln	Continental	1940-1973		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Continental	C7
+TM	Lincoln Continental	Lincoln	Continental	1980		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Continental	C7
+TM	Lincoln Continental	Lincoln	Continental	1958-1960		Sedan	无可用尺码		Sedan	Sedan	Continental	#N/A
+TM	Lincoln Continental	Lincoln	Continental	1966-1980		Sedan	无可用尺码		Sedan	Sedan	Continental	#N/A
+TM	Lincoln Continental	Lincoln	Continental	1974-1979		Coupe	无可用尺码		Coupe	Coupe	Continental	#N/A
 TM	Lincoln Corsair	Lincoln	Corsair	2020-2021	PHEV	SUV	YM+	越野车	PHEV	PHEV	Corsair	S1
+TM	Lincoln Corsair	Lincoln	Corsair	2020-2026		SUV	YL	越野车			Corsair	S2
 TM	Lincoln LS	Lincoln	LS	2000-2006		Sedan	3XXL	三厢车			LS	A4
+TM	Lincoln Mark VII	Lincoln	Mark VII	1984-1992		Coupe	3XL+0	跑车			Mark VII	C5
+TM	Lincoln Mark VIII	Lincoln	Mark VIII	1994-1998		Coupe	3XXXXL-0	跑车			Mark VIII	C7
+TM	Lincoln Mark VIII	Lincoln	Mark VIII	1993		Coupe	无可用尺码				Mark VIII	#N/A
 TM	Lincoln MKC	Lincoln	MKC	2015-2019		SUV	YM+	越野车			MKC	S1
 TM	Lincoln MKS	Lincoln	MKS	2009-2016		Sedan	3XXL	三厢车			MKS	A4
+TM	Lincoln MKT	Lincoln	MKT	2010-2019		Wagon	无可用尺码				MKT	#N/A
 TM	Lincoln MKX	Lincoln	MKX	2007-2018		SUV	YL	越野车			MKX	S2
 TM	Lincoln MKZ	Lincoln	MKZ	2008-2012		Sedan	3XL	三厢车			MKZ	A2
 TM	Lincoln MKZ	Lincoln	MKZ	2013-2020		Sedan	3XXL	三厢车			MKZ	A4
-TM	Lincoln Mark VII	Lincoln	Mark VII	1984-1992		Coupe	3XL+0	跑车			Mark VII	C5
-TM	Lincoln Mark VIII	Lincoln	Mark VIII	1994-1998		Coupe	3XXXXL-0	跑车			Mark VIII	C7
 TM	Lincoln Nautilus	Lincoln	Nautilus	2019-2023		SUV	YL	越野车			Nautilus	S2
 TM	Lincoln Nautilus	Lincoln	Nautilus	2024-2026		SUV	YXL	越野车			Nautilus	S3
 TM	Lincoln Navigator	Lincoln	Navigator	1998-2026		SUV	YXXL-545	越野车			Navigator	S4
 TM	Lincoln Navigator	Lincoln	Navigator	2007-2026	L	SUV	YXXL-585	越野车	L	L	Navigator	S5
 TM	Lincoln Town Car	Lincoln	Town Car	1998-2011		Sedan	3XXXL	三厢车			Town Car	C6
+TM	Lincoln Town Car	Lincoln	Town Car	1981-1997		Sedan	无可用尺码				Town Car	#N/A
+TM	Lincoln Town Car	Lincoln	Town Car	2000-2011	L	Sedan	无可用尺码		L	L	Town Car	#N/A
 TM	Lincoln Zephyr	Lincoln	Zephyr	2006		Sedan	3XL	三厢车			Zephyr	A2
 TM	Lucid Motors Gravity	Lucid Motors	Gravity	2025-2026		SUV	YXL	越野车			Gravity	S3
 TM	Lucid Motors Lucid Air	Lucid Motors	Lucid Air	2022-2026		Sedan	3XXL	三厢车			Lucid Air	A4
-TM	MINI Clubman	MINI	Clubman	2008-2024		Wagon	2L+	两厢车			Clubman	H1
-TM	MINI Convertible	MINI	Convertible	2005-2026	Incl: JCW	Convertible	3S-0	跑车	Incl: JCW	Incl: JCW	Convertible	C1
-TM	MINI Cooper	MINI	Cooper	2015-2024		Hatchback	2L+	两厢车			Cooper	H1
-TM	MINI Countryman	MINI	Countryman	2011-2026	Incl: JCW	SUV	YM+	越野车	Incl: JCW	Incl: JCW	Countryman	S1
-TM	MINI Coupe	MINI	Coupe	2012-2015		Coupe	3S-0	跑车			Coupe	C1
-TM	MINI Hardtop	MINI	Hardtop	2015-2024		4dr Hatchback	2L+	两厢车	4dr Hatchback	4dr Hatchback	Hardtop	H1
-TM	MINI Hatchback	MINI	Hatchback	2015-2024		4dr Hatchback	2L+	两厢车	4dr Hatchback	4dr Hatchback	Hatchback	H1
-TM	MINI Paceman	MINI	Paceman	2013-2016	Incl: JCW ALL4	Coupe SUV/CUV	YM+	越野车	Incl: JCW ALL4	Incl: JCW ALL4	Paceman	S1
-TM	MINI Roadster	MINI	Roadster	2012-2015	Incl: JCW	Convertible/Roadster	3S-0	跑车	Incl: JCW	Incl: JCW	Roadster	C1
 TM	Maserati Ghibli	Maserati	Ghibli	2014-2024		Sedan	3XXL	三厢车			Ghibli	A4
 TM	Maserati GranTurismo	Maserati	GranTurismo	2008-2014		Coupe	3XL-0	跑车	Coupe	Coupe	GranTurismo	C4
 TM	Maserati GranTurismo	Maserati	GranTurismo	2015-2026		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	GranTurismo	C5
@@ -703,15 +751,16 @@ TM	Maserati Levante	Maserati	Levante	2017-2024		SUV	YXL	越野车			Levante	S3
 TM	Maserati MC20	Maserati	MC20	2022-2025	Incl: Cielo	Convertible/Coupe	3L-0	跑车	Incl: Cielo	Incl: Cielo	MC20	C3
 TM	Maserati Quattroporte	Maserati	Quattroporte	2005-2024		Sedan	3XXL	三厢车			Quattroporte	A4
 TM	Mazda 2	Mazda	2	2011-2014		Hatchback	2L+	两厢车			2	H1
-TM	Mazda 3	Mazda	3	2004-2006		Hatchback	2L+	两厢车	Hatchback	Hatchback	3	H1
 TM	Mazda 3	Mazda	3	2004-2026		Sedan	3L	三厢车	Sedan	Sedan	3	A1
+TM	Mazda 3	Mazda	3	2004-2006		Hatchback	2L+	两厢车	Hatchback	Hatchback	3	H1
 TM	Mazda 3	Mazda	3	2010-2026		Hatchback	2L+	两厢车	Hatchback	Hatchback	3	H1
+TM	Mazda 3	Mazda	3	2007-2009		Hatchback	无可用尺码		Hatchback	Hatchback	3	#N/A
 TM	Mazda 5	Mazda	5	2006-2011		SUV	YL	越野车			5	S2
 TM	Mazda 5	Mazda	5	2012-2015		SUV	YM+	越野车			5	S1
-TM	Mazda 6	Mazda	6	2003-2008		Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon	Hbk/Wgn	6	H2
 TM	Mazda 6	Mazda	6	2009-2013		Sedan	3XXL	三厢车	Sedan	Sedan	6	A4
 TM	Mazda 6	Mazda	6	2014-2017		Sedan	3XL	三厢车	Sedan	Sedan	6	A2
 TM	Mazda 6	Mazda	6	2018-2021		Sedan	3XXL	三厢车	Sedan	Sedan	6	A4
+TM	Mazda 6	Mazda	6	2003-2008		Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon	Hbk/Wgn	6	H2
 TM	Mazda CX-3	Mazda	CX-3	2016-2021		SUV	YM+	越野车			CX-3	S1
 TM	Mazda CX-30	Mazda	CX-30	2020-2026		SUV	YM+	越野车			CX-30	S1
 TM	Mazda CX-5	Mazda	CX-5	2013-2025		SUV	YM+	越野车			CX-5	S1
@@ -722,12 +771,12 @@ TM	Mazda CX-70	Mazda	CX-70	2025-2026		SUV	YXL	越野车			CX-70	S3
 TM	Mazda CX-9	Mazda	CX-9	2007-2023		SUV	YXL	越野车			CX-9	S3
 TM	Mazda CX-90	Mazda	CX-90	2024-2025		SUV	YXXL-545	越野车			CX-90	S4
 TM	Mazda CX-90	Mazda	CX-90	2026		SUV	YXL	越野车			CX-90	S3
+TM	Mazda Miata	Mazda	Miata	1990-2026	Incl: RF/soft top	Convertible/Coupe	3S-0	跑车	Incl: RF/soft top	Inc:RF/Sf	Miata	C1
+TM	Mazda Millenia	Mazda	Millenia	1995-2002		Sedan	3XL	三厢车			Millenia	A2
 TM	Mazda MX-30	Mazda	MX-30	2022-2023		SUV	YM+	越野车			MX-30	S1
 TM	Mazda MX-5	Mazda	MX-5	1990-2026	Incl: RF	Convertible/Coupe	3S-0	跑车	Incl: RF	Incl: RF	MX-5	C1
 TM	Mazda MX-6	Mazda	MX-6	1990-1992		Coupe	3M-0	跑车			MX-6	C2
 TM	Mazda MX-6	Mazda	MX-6	1993-1997		Coupe	3L-0	跑车			MX-6	C3
-TM	Mazda Miata	Mazda	Miata	1990-2026	Incl: RF/soft top	Convertible/Coupe	3S-0	跑车	Incl: RF/soft top	Inc:RF/Sf	Miata	C1
-TM	Mazda Millenia	Mazda	Millenia	1995-2002		Sedan	3XL	三厢车			Millenia	A2
 TM	Mazda Protege	Mazda	Protege	1990-2003		Sedan	3L	三厢车	Sedan	Sedan	Protege	A1
 TM	Mazda Protege	Mazda	Protege	2002-2003	Protege5	Hatchback	2L+	两厢车	Hatchback Protege5	Hbk Protege5	Protege	H1
 TM	Mazda RX-7	Mazda	RX-7	1979-1995		Convertible/Coupe	3M-0	跑车			RX-7	C2
@@ -739,33 +788,34 @@ TM	Mercedes-Benz A-Class	Mercedes-Benz	A-Class	2019-2022	Incl: AMG	Sedan	3L	三�
 TM	Mercedes-Benz B-Class	Mercedes-Benz	B-Class	2014-2017		Hatchback	2L+	两厢车			B-Class	H1
 TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	1994-2021	Incl: PHEV	Sedan	3L	三厢车	Sedan Incl: PHEV	Sdn Inc:PHEV	C-Class	A1
 TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	1995-2006	AMG	Sedan	3L	三厢车	Sedan AMG	Sedan AMG	C-Class	A1
-TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2002-2005	SportCoupe	Hatchback	2L+	两厢车	Hatchback SportCoupe	Hbk SportCoupe	C-Class	H1
 TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2008-2026	AMG	Sedan	3XL	三厢车	Sedan AMG	Sedan AMG	C-Class	A2
-TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2012-2023		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	C-Class	C3
-TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2012-2015	AMG	Coupe	3XL-0	跑车	Coupe AMG	Coupe AMG	C-Class	C4
 TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2022-2026		Sedan	3XL	三厢车	Sedan	Sedan	C-Class	A2
-TM	Mercedes-Benz CL-Class	Mercedes-Benz	CL-Class	1998-2014	Incl: AMG	Coupe	3XL+0	跑车	Incl: AMG	Incl: AMG	CL-Class	C5
+TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2012-2015	AMG	Coupe	3XL-0	跑车	Coupe AMG	Coupe AMG	C-Class	C4
+TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2012-2023		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	C-Class	C3
+TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2002-2005	SportCoupe	Hatchback	2L+	两厢车	Hatchback SportCoupe	Hbk SportCoupe	C-Class	H1
+TM	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2002-2005		Wagon	无可用尺码		Wagon	Wagon	C-Class	#N/A
 TM	Mercedes-Benz CLA-Class	Mercedes-Benz	CLA-Class	2014-2025		Sedan	3L	三厢车			CLA-Class	A1
 TM	Mercedes-Benz CLA-Class	Mercedes-Benz	CLA-Class	2014-2026	AMG	Sedan	3L	三厢车	AMG	AMG	CLA-Class	A1
 TM	Mercedes-Benz CLA-Class	Mercedes-Benz	CLA-Class	2026-2027		Sedan	3XL	三厢车			CLA-Class	A2
+TM	Mercedes-Benz CL-Class	Mercedes-Benz	CL-Class	1998-2014	Incl: AMG	Coupe	3XL+0	跑车	Incl: AMG	Incl: AMG	CL-Class	C5
 TM	Mercedes-Benz CLK-Class	Mercedes-Benz	CLK-Class	1998-2009		Convertible/Coupe	3L-0	跑车			CLK-Class	C3
 TM	Mercedes-Benz CLS-Class	Mercedes-Benz	CLS-Class	2006-2023	4dr coupe/AMG	Sedan	3XXL	三厢车	4dr coupe/AMG	4dr coupe/AMG	CLS-Class	A4
-TM	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	1994-2026	Incl: All-Terrain	Wagon	2XXL-525	两厢车	Wagon Incl: All-Terrain	Wgn Inc:AllTerr	E-Class	H2
-TM	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	1994-2017	Incl: Cabriolet	Convertible/Coupe	3L-0	跑车	Convertible/Coupe Incl: Cabriolet	Conv/Cpe Inc:Cabr	E-Class	C3
 TM	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	1994-2009	Incl: AMG	Sedan	3XL	三厢车	Sedan Incl: AMG	Sedan Incl: AMG	E-Class	A2
 TM	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	2010-2026	Incl: AMG/PHEV	Sedan	3XXL	三厢车	Sedan Incl: AMG/PHEV	Sdn Inc:AMG/PHEV	E-Class	A4
+TM	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	1994-2017	Incl: Cabriolet	Convertible/Coupe	3L-0	跑车	Convertible/Coupe Incl: Cabriolet	Conv/Cpe Inc:Cabr	E-Class	C3
 TM	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	2018-2023	Incl: Cabriolet	Convertible/Coupe	3XL-0	跑车	Convertible/Coupe Incl: Cabriolet	Conv/Cpe Inc:Cabr	E-Class	C4
+TM	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	1994-2026	Incl: All-Terrain	Wagon	2XXL-525	两厢车	Wagon Incl: All-Terrain	Wgn Inc:AllTerr	E-Class	H2
 TM	Mercedes-Benz EQB	Mercedes-Benz	EQB	2022-2025		SUV	YL	越野车			EQB	S2
 TM	Mercedes-Benz G-Class	Mercedes-Benz	G-Class	2003-2018	AMG	SUV	YL	越野车	AMG	AMG	G-Class	S2
 TM	Mercedes-Benz G-Class	Mercedes-Benz	G-Class	2019-2026		SUV	YXL	越野车			G-Class	S3
-TM	Mercedes-Benz GL-Class	Mercedes-Benz	GL-Class	2007-2012		SUV	YXL	越野车			GL-Class	S3
-TM	Mercedes-Benz GL-Class	Mercedes-Benz	GL-Class	2013-2016	AMG	SUV	YXXL-545	越野车	AMG	AMG	GL-Class	S4
 TM	Mercedes-Benz GLA-Class	Mercedes-Benz	GLA-Class	2015-2026	Incl: AMG	SUV	YM+	越野车	Incl: AMG	Incl: AMG	GLA-Class	S1
 TM	Mercedes-Benz GLB-Class	Mercedes-Benz	GLB-Class	2020-2026		SUV	YL	越野车			GLB-Class	S2
 TM	Mercedes-Benz GLC-Class	Mercedes-Benz	GLC-Class	2016-2026	Incl: AMG	CUV/SUV	YL	越野车	Incl: AMG	Incl: AMG	GLC-Class	S2
-TM	Mercedes-Benz GLE-Class	Mercedes-Benz	GLE-Class	2016-2019		Coupe	3XL-0	跑车	Coupe	Coupe	GLE-Class	C4
+TM	Mercedes-Benz GL-Class	Mercedes-Benz	GL-Class	2007-2012		SUV	YXL	越野车			GL-Class	S3
+TM	Mercedes-Benz GL-Class	Mercedes-Benz	GL-Class	2013-2016	AMG	SUV	YXXL-545	越野车	AMG	AMG	GL-Class	S4
 TM	Mercedes-Benz GLE-Class	Mercedes-Benz	GLE-Class	2016-2019		SUV	YL	越野车	SUV	SUV	GLE-Class	S2
 TM	Mercedes-Benz GLE-Class	Mercedes-Benz	GLE-Class	2020-2026		SUV	YXL	越野车	SUV	SUV	GLE-Class	S3
+TM	Mercedes-Benz GLE-Class	Mercedes-Benz	GLE-Class	2016-2019		Coupe	3XL-0	跑车	Coupe	Coupe	GLE-Class	C4
 TM	Mercedes-Benz GLE-Class	Mercedes-Benz	GLE-Class	2021-2026		Coupe	3XL+0	跑车	Coupe	Coupe	GLE-Class	C5
 TM	Mercedes-Benz GLK-Class	Mercedes-Benz	GLK-Class	2011-2015		SUV	YM+	越野车			GLK-Class	S1
 TM	Mercedes-Benz GLS-Class	Mercedes-Benz	GLS-Class	2017-2026	AMG	SUV	YXXL-545	越野车	AMG	AMG	GLS-Class	S4
@@ -773,7 +823,6 @@ TM	Mercedes-Benz M-Class	Mercedes-Benz	M-Class	1998-2001		SUV	YM+	越野车			M-
 TM	Mercedes-Benz M-Class	Mercedes-Benz	M-Class	2002-2015	Incl: AMG/Diesel	SUV	YL	越野车	Incl: AMG/Diesel	Inc:AMG	M-Class	S2
 TM	Mercedes-Benz ML-Class	Mercedes-Benz	ML-Class	1998-2001		SUV	YM+	越野车			ML-Class	S1
 TM	Mercedes-Benz ML-Class	Mercedes-Benz	ML-Class	2002-2015		SUV	YL	越野车			ML-Class	S2
-TM	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	1994-2020	Incl: PHEV	Convertible/Coupe	3XL+0	跑车	Convertible/Coupe Incl: PHEV	Conv/Cpe Inc:PHEV	S-Class	C5
 TM	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	1994-2020	Incl: LWB	Sedan	3XXL	三厢车	Sedan Incl: LWB	Sedan Incl: LWB	S-Class	A4
 TM	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2001-2013	AMG	Sedan	3XXL	三厢车	Sedan AMG	Sedan AMG	S-Class	A4
 TM	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2014	AMG	Sedan	3XXXL	三厢车	Sedan AMG	Sedan AMG	S-Class	C6
@@ -781,65 +830,91 @@ TM	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2015-2016	AMG	Sedan	3XXL	三厢�
 TM	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2016-2026	Maybach	Sedan	3XXXL	三厢车	Sedan Maybach	Sedan Maybach	S-Class	C6
 TM	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2017-2026	AMG	Sedan	3XXXL	三厢车	Sedan AMG	Sedan AMG	S-Class	C6
 TM	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2021-2026		Sedan	3XXXL	三厢车	Sedan	Sedan	S-Class	C6
+TM	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	1994-2020	Incl: PHEV	Convertible/Coupe	3XL+0	跑车	Convertible/Coupe Incl: PHEV	Conv/Cpe Inc:PHEV	S-Class	C5
+TM	Mercedes-Benz SLC-Class	Mercedes-Benz	SLC-Class	2017-2020	Incl: AMG	Roadster	3S-0	跑车	Incl: AMG	Incl: AMG	SLC-Class	C1
 TM	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	1954-1971		Coupe/Roadster	3M-0	跑车	Coupe/Roadster	Cpe/Rdstr	SL-Class	C2
 TM	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	1957-2020	300SL/560SL/AMG	Roadster	3L-0	跑车	Roadster 300SL/560SL/AMG	Rdstr 300/560/AMG	SL-Class	C3
 TM	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	1972-1989		Roadster	3L-0	跑车	Roadster	Roadster	SL-Class	C3
 TM	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	1990-2002		Roadster	3M-0	跑车	Roadster	Roadster	SL-Class	C2
 TM	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	2003-2020		Roadster	3L-0	跑车	Roadster	Roadster	SL-Class	C3
 TM	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	2022-2026	Incl: AMG	Roadster	3XL-0	跑车	Roadster Incl: AMG	Rdstr Inc:AMG	SL-Class	C4
-TM	Mercedes-Benz SLC-Class	Mercedes-Benz	SLC-Class	2017-2020	Incl: AMG	Roadster	3S-0	跑车	Incl: AMG	Incl: AMG	SLC-Class	C1
 TM	Mercedes-Benz SLK-Class	Mercedes-Benz	SLK-Class	1998-2016	Incl: AMG	Roadster	3S-0	跑车	Incl: AMG	Incl: AMG	SLK-Class	C1
+TM	Mercury Cougar	Mercury	Cougar	1980-1982		Sedan	3XXL	三厢车	Sedan	Sedan	Cougar	A4
 TM	Mercury Cougar	Mercury	Cougar	1967-1970		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	Cougar	C4
 TM	Mercury Cougar	Mercury	Cougar	1971-1973		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	Cougar	C5
 TM	Mercury Cougar	Mercury	Cougar	1974-1979	Incl: XR-7	Coupe	3XXXXL-0	跑车	Coupe Incl: XR-7	Cpe Inc:XR7	Cougar	C7
-TM	Mercury Cougar	Mercury	Cougar	1980-2002		Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon	Hbk/Wgn	Cougar	H2
 TM	Mercury Cougar	Mercury	Cougar	1980-1997		Coupe	3XL+0	跑车	Coupe	Coupe	Cougar	C5
-TM	Mercury Cougar	Mercury	Cougar	1980-1982		Sedan	3XXL	三厢车	Sedan	Sedan	Cougar	A4
+TM	Mercury Cougar	Mercury	Cougar	1980-2002		Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon	Hbk/Wgn	Cougar	H2
+TM	Mercury Cougar	Mercury	Cougar	1977-1979		Sedan/Wagon	无可用尺码		Sedan/Wagon	Sdn/Wgn	Cougar	#N/A
 TM	Mercury Grand Marquis	Mercury	Grand Marquis	1979-2011		Sedan	3XXXL	三厢车			Grand Marquis	C6
+TM	Mercury Grand Marquis	Mercury	Grand Marquis	1975-1978		Sedan	无可用尺码				Grand Marquis	#N/A
 TM	Mercury Marauder	Mercury	Marauder	2003-2004		Sedan	3XXXL	三厢车			Marauder	C6
 TM	Mercury Mariner	Mercury	Mariner	2005-2011		SUV	YM+	越野车			Mariner	S1
-TM	Mercury Marquis	Mercury	Marquis	1967-1982		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Marquis	C7
 TM	Mercury Marquis	Mercury	Marquis	1979-1982		Sedan	3XXXL	三厢车	Sedan	Sedan	Marquis	C6
-TM	Mercury Marquis	Mercury	Marquis	1983-1986		Wagon	2XXL-525	两厢车	Wagon	Wagon	Marquis	H2
 TM	Mercury Marquis	Mercury	Marquis	1983-1986		Sedan	3XXL	三厢车	Sedan	Sedan	Marquis	A4
+TM	Mercury Marquis	Mercury	Marquis	1967-1982		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Marquis	C7
+TM	Mercury Marquis	Mercury	Marquis	1983-1986		Wagon	2XXL-525	两厢车	Wagon	Wagon	Marquis	H2
+TM	Mercury Marquis	Mercury	Marquis	1969-1978		Sedan	无可用尺码		Sedan	Sedan	Marquis	#N/A
+TM	Mercury Marquis	Mercury	Marquis	1973-1982		Wagon	无可用尺码		Wagon	Wagon	Marquis	#N/A
 TM	Mercury Milan	Mercury	Milan	2006-2011		Sedan	3XL	三厢车			Milan	A2
-TM	Mercury Monterey	Mercury	Monterey	1952-1954		Wagon	2XXL-525	两厢车	Wagon	Wagon	Monterey	H2
-TM	Mercury Monterey	Mercury	Monterey	1952-1953		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	Monterey	C5
 TM	Mercury Monterey	Mercury	Monterey	1952-1956		Sedan	3XXL	三厢车	Sedan	Sedan	Monterey	A4
 TM	Mercury Monterey	Mercury	Monterey	1957-1958		Sedan	3XXXL	三厢车	Sedan	Sedan	Monterey	C6
-TM	Mercury Monterey	Mercury	Monterey	1957-1974		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Monterey	C7
 TM	Mercury Monterey	Mercury	Monterey	1961-1964		Sedan	3XXXL	三厢车	Sedan	Sedan	Monterey	C6
+TM	Mercury Monterey	Mercury	Monterey	1952-1953		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	Monterey	C5
+TM	Mercury Monterey	Mercury	Monterey	1957-1974		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Monterey	C7
+TM	Mercury Monterey	Mercury	Monterey	1952-1954		Wagon	2XXL-525	两厢车	Wagon	Wagon	Monterey	H2
 TM	Mercury Monterey	Mercury	Monterey	2004-2007		Minivan	2XXL-525	两厢车	Minivan	Minivan	Monterey	H2
+TM	Mercury Monterey	Mercury	Monterey	1954-1956		Convertible/Coupe/Hatchback	无可用尺码		Convertible/Coupe/Hatchback	Conv/Cpe/Hbk	Monterey	#N/A
+TM	Mercury Monterey	Mercury	Monterey	1955-1974		Wagon	无可用尺码		Wagon	Wagon	Monterey	#N/A
+TM	Mercury Monterey	Mercury	Monterey	1959-1960		Sedan	无可用尺码		Sedan	Sedan	Monterey	#N/A
+TM	Mercury Monterey	Mercury	Monterey	1965-1974		Sedan	无可用尺码		Sedan	Sedan	Monterey	#N/A
 TM	Mercury Mountaineer	Mercury	Mountaineer	1997-1998		SUV	YL	越野车			Mountaineer	S2
 TM	Mercury Mountaineer	Mercury	Mountaineer	1999-2010		SUV	YXL	越野车			Mountaineer	S3
-TM	Mercury Sable	Mercury	Sable	1986-2005		Wagon	2XXL-525	两厢车	Wagon	Wagon	Sable	H2
 TM	Mercury Sable	Mercury	Sable	1986-2009		Sedan	3XXL	三厢车	Sedan	Sedan	Sable	A4
+TM	Mercury Sable	Mercury	Sable	1986-2005		Wagon	2XXL-525	两厢车	Wagon	Wagon	Sable	H2
 TM	Mercury Tracer	Mercury	Tracer	1988-1999		Sedan	3L	三厢车	Sedan	Sedan	Tracer	A1
 TM	Mercury Tracer	Mercury	Tracer	1991-1999		Wagon	2L+	两厢车	Wagon	Wagon	Tracer	H1
+TM	MINI Clubman	MINI	Clubman	2008-2024		Wagon	2L+	两厢车			Clubman	H1
+TM	MINI Convertible	MINI	Convertible	2005-2026	Incl: JCW	Convertible	3S-0	跑车	Incl: JCW	Incl: JCW	Convertible	C1
+TM	MINI Cooper	MINI	Cooper	2015-2024		Hatchback	2L+	两厢车			Cooper	H1
+TM	MINI Cooper	MINI	Cooper	2002-2026		Hatchback	无可用尺码				Cooper	#N/A
+TM	MINI Cooper SE	MINI	Cooper SE	2020-2024		Hatchback	无可用尺码				Cooper SE	#N/A
+TM	MINI Countryman	MINI	Countryman	2011-2026	Incl: JCW	SUV	YM+	越野车	Incl: JCW	Incl: JCW	Countryman	S1
+TM	MINI Coupe	MINI	Coupe	2012-2015		Coupe	3S-0	跑车			Coupe	C1
+TM	MINI Hardtop	MINI	Hardtop	2015-2024		4dr Hatchback	2L+	两厢车	4dr Hatchback	4dr Hatchback	Hardtop	H1
+TM	MINI Hardtop	MINI	Hardtop	2002-2024		2dr Hatchback	无可用尺码		2dr Hatchback	2dr Hatchback	Hardtop	#N/A
+TM	MINI Hatchback	MINI	Hatchback	2015-2024		4dr Hatchback	2L+	两厢车	4dr Hatchback	4dr Hatchback	Hatchback	H1
+TM	MINI Hatchback	MINI	Hatchback	2002-2024	Incl: Cooper SE	2dr Hatchback	无可用尺码		2dr Hatchback Incl: Cooper SE	2dr Hbk Inc:SE	Hatchback	#N/A
+TM	MINI Paceman	MINI	Paceman	2013-2016	Incl: JCW ALL4	Coupe SUV/CUV	YM+	越野车	Incl: JCW ALL4	Incl: JCW ALL4	Paceman	S1
+TM	MINI Roadster	MINI	Roadster	2012-2015	Incl: JCW	Convertible/Roadster	3S-0	跑车	Incl: JCW	Incl: JCW	Roadster	C1
 TM	Mitsubishi 3000GT	Mitsubishi	3000GT	1991-1999		Convertible/Coupe	3L-0	跑车			3000GT	C3
 TM	Mitsubishi Diamante	Mitsubishi	Diamante	1992-1993		Sedan	3XL	三厢车			Diamante	A2
 TM	Mitsubishi Diamante	Mitsubishi	Diamante	1994-2004		Sedan	3XXL	三厢车			Diamante	A4
 TM	Mitsubishi Eclipse	Mitsubishi	Eclipse	1990-1999		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	Eclipse	C2
-TM	Mitsubishi Eclipse	Mitsubishi	Eclipse	1995-1999		Hatchback	2L+	两厢车	Hatchback	Hatchback	Eclipse	H1
+TM	Mitsubishi Eclipse	Mitsubishi	Eclipse	2000-2005		Coupe	3M-0	跑车	Coupe	Coupe	Eclipse	C2
 TM	Mitsubishi Eclipse	Mitsubishi	Eclipse	2000-2012		Convertible	3L-0	跑车	Convertible	Convertible	Eclipse	C3
 TM	Mitsubishi Eclipse	Mitsubishi	Eclipse	2000-2012		Coupe	3L-0	跑车	Coupe	Coupe	Eclipse	C3
-TM	Mitsubishi Eclipse	Mitsubishi	Eclipse	2000-2005		Coupe	3M-0	跑车	Coupe	Coupe	Eclipse	C2
+TM	Mitsubishi Eclipse	Mitsubishi	Eclipse	1995-1999		Hatchback	2L+	两厢车	Hatchback	Hatchback	Eclipse	H1
 TM	Mitsubishi Eclipse Cross	Mitsubishi	Eclipse Cross	2018-2026		CUV	YM+	越野车			Eclipse Cross	S1
 TM	Mitsubishi Endeavor	Mitsubishi	Endeavor	2004-2011		SUV	YXL	越野车			Endeavor	S3
 TM	Mitsubishi Galant	Mitsubishi	Galant	1989-1993		Sedan	3L	三厢车			Galant	A1
 TM	Mitsubishi Galant	Mitsubishi	Galant	1994-2012		Sedan	3XL	三厢车			Galant	A2
+TM	Mitsubishi i-MiEV	Mitsubishi	i-MiEV	2012-2017		Hatchback	无可用尺码				i-MiEV	#N/A
 TM	Mitsubishi Lancer	Mitsubishi	Lancer	2002-2017		Sedan	3L	三厢车	Sedan	Sedan	Lancer	A1
+TM	Mitsubishi Lancer	Mitsubishi	Lancer	2011-2015		Sportback	无可用尺码		Sportback	Sportback	Lancer	#N/A
 TM	Mitsubishi Mirage	Mitsubishi	Mirage	2017-2024		Sedan	3L	三厢车	Sedan	Sedan	Mirage	A1
+TM	Mitsubishi Mirage	Mitsubishi	Mirage	2014-2024		Hatchback	无可用尺码		Hatchback	Hatchback	Mirage	#N/A
 TM	Mitsubishi Montero	Mitsubishi	Montero	1983-1989		SUV	YM+	越野车			Montero	S1
 TM	Mitsubishi Montero	Mitsubishi	Montero	1989-1997		SUV	YL	越野车			Montero	S2
 TM	Mitsubishi Montero	Mitsubishi	Montero	1999-2000		SUV	YL	越野车			Montero	S2
 TM	Mitsubishi Montero	Mitsubishi	Montero	2001-2006		SUV	YXL	越野车			Montero	S3
+TM	Mitsubishi Montero	Mitsubishi	Montero	1990		SUV	无可用尺码				Montero	#N/A
 TM	Mitsubishi Montero Sport	Mitsubishi	Montero Sport	1997-2004		SUV	YL	越野车			Montero Sport	S2
 TM	Mitsubishi Outlander	Mitsubishi	Outlander	2003-2006		SUV	YM+	越野车			Outlander	S1
 TM	Mitsubishi Outlander	Mitsubishi	Outlander	2007-2026		SUV	YL	越野车			Outlander	S2
 TM	Mitsubishi Outlander Sport	Mitsubishi	Outlander Sport	2011-2025		SUV	YM+	越野车			Outlander Sport	S1
-TM	Nissan 240SX	Nissan	240SX	1989-1992		Hatchback	2L+	两厢车	Hatchback	Hatchback	240SX	H1
 TM	Nissan 240SX	Nissan	240SX	1989-1998		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	240SX	C2
+TM	Nissan 240SX	Nissan	240SX	1989-1992		Hatchback	2L+	两厢车	Hatchback	Hatchback	240SX	H1
 TM	Nissan 300ZX	Nissan	300ZX	1984-1985		Coupe	3M-0	跑车	Coupe	Coupe	300ZX	C2
 TM	Nissan 300ZX	Nissan	300ZX	1986-1989		Coupe	3L-0	跑车	Coupe	Coupe	300ZX	C3
 TM	Nissan 300ZX	Nissan	300ZX	1990-1996	Incl: 2+2	Convertible/Coupe	3M-0	跑车	Convertible/Coupe Incl: 2+2	Conv/Cpe Inc:2+2	300ZX	C2
@@ -847,8 +922,8 @@ TM	Nissan 350Z	Nissan	350Z	2003-2009		Convertible/Coupe	3M-0	跑车			350Z	C2
 TM	Nissan 370Z	Nissan	370Z	2009-2020	Incl: NISMO	Convertible/Coupe	3M-0	跑车	Incl: NISMO	Incl: NISMO	370Z	C2
 TM	Nissan Altima	Nissan	Altima	1993-1997		Sedan	3L	三厢车	Sedan	Sedan	Altima	A1
 TM	Nissan Altima	Nissan	Altima	1998-2018		Sedan	3XL	三厢车	Sedan	Sedan	Altima	A2
-TM	Nissan Altima	Nissan	Altima	2008-2013		Coupe	3L-0	跑车	Coupe	Coupe	Altima	C3
 TM	Nissan Altima	Nissan	Altima	2019-2026		Sedan	3XXL	三厢车	Sedan	Sedan	Altima	A4
+TM	Nissan Altima	Nissan	Altima	2008-2013		Coupe	3L-0	跑车	Coupe	Coupe	Altima	C3
 TM	Nissan Ariya	Nissan	Ariya	2023-2026		SUV	YL	越野车			Ariya	S2
 TM	Nissan Armada	Nissan	Armada	2004-2026	Incl: NISMO/PRO-4X	SUV	YXXL-545	越野车	Incl: NISMO/PRO-4X	Inc:NIS/PRO4X	Armada	S4
 TM	Nissan Cube	Nissan	Cube	2009-2014		Wagon	2L+	两厢车			Cube	H1
@@ -856,15 +931,15 @@ TM	Nissan GT-R	Nissan	GT-R	2009-2016		Coupe	3L-0	跑车			GT-R	C3
 TM	Nissan GT-R	Nissan	GT-R	2017-2024	NISMO	Coupe	3XL-0	跑车	NISMO	NISMO	GT-R	C4
 TM	Nissan Juke	Nissan	Juke	2011-2017		CUV	YM+	越野车			Juke	S1
 TM	Nissan Kicks	Nissan	Kicks	2018-2026		SUV	YM+	越野车			Kicks	S1
-TM	Nissan Leaf	Nissan	Leaf	2011-2025		Hatchback	2L+	两厢车	Hatchback	Hatchback	Leaf	H1
 TM	Nissan Leaf	Nissan	Leaf	2026		CUV	YM+	越野车	CUV	CUV	Leaf	S1
-TM	Nissan Maxima	Nissan	Maxima	1981-1984		Wagon	2XXL-525	两厢车	Wagon	Wagon	Maxima	H2
+TM	Nissan Leaf	Nissan	Leaf	2011-2025		Hatchback	2L+	两厢车	Hatchback	Hatchback	Leaf	H1
 TM	Nissan Maxima	Nissan	Maxima	1981-1984		Sedan	3XL	三厢车	Sedan	Sedan	Maxima	A2
 TM	Nissan Maxima	Nissan	Maxima	1985-1988		Sedan	3L	三厢车	Sedan	Sedan	Maxima	A1
 TM	Nissan Maxima	Nissan	Maxima	1989-2003		Sedan	3XL	三厢车	Sedan	Sedan	Maxima	A2
 TM	Nissan Maxima	Nissan	Maxima	2004-2008		Sedan	3XXL	三厢车	Sedan	Sedan	Maxima	A4
 TM	Nissan Maxima	Nissan	Maxima	2009-2014		Sedan	3XL	三厢车	Sedan	Sedan	Maxima	A2
 TM	Nissan Maxima	Nissan	Maxima	2016-2023		Sedan	3XXL	三厢车	Sedan	Sedan	Maxima	A4
+TM	Nissan Maxima	Nissan	Maxima	1981-1984		Wagon	2XXL-525	两厢车	Wagon	Wagon	Maxima	H2
 TM	Nissan Murano	Nissan	Murano	2003-2014		SUV	YL	越野车			Murano	S2
 TM	Nissan Murano	Nissan	Murano	2015-2026		SUV	YXL	越野车			Murano	S3
 TM	Nissan Pathfinder	Nissan	Pathfinder	1987		SUV	YM+	越野车			Pathfinder	S1
@@ -874,22 +949,28 @@ TM	Nissan Pathfinder	Nissan	Pathfinder	2005-2011		SUV	YL	越野车			Pathfinder	
 TM	Nissan Pathfinder	Nissan	Pathfinder	2012-2026	Incl: Rock Creek	SUV	YXL	越野车	Incl: Rock Creek	Inc:RockCrk	Pathfinder	S3
 TM	Nissan Rogue	Nissan	Rogue	2008-2026	Incl: PHEV	SUV	YL	越野车	Incl: PHEV	Incl: PHEV	Rogue	S2
 TM	Nissan Rogue Sport	Nissan	Rogue Sport	2017-2022		SUV	YM+	越野车			Rogue Sport	S1
-TM	Nissan Sentra	Nissan	Sentra	1982-1986		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Sentra	H1
 TM	Nissan Sentra	Nissan	Sentra	1982-2026		Sedan	3L	三厢车	Sedan	Sedan	Sentra	A1
 TM	Nissan Sentra	Nissan	Sentra	1982-1994		Coupe	3M-0	跑车	Coupe	Coupe	Sentra	C2
-TM	Nissan Versa	Nissan	Versa	2007-2019		Hatchback	2L+	两厢车	Hatchback	Hatchback	Versa	H1
+TM	Nissan Sentra	Nissan	Sentra	1982-1986		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Sentra	H1
 TM	Nissan Versa	Nissan	Versa	2007-2026		Sedan	3L	三厢车	Sedan	Sedan	Versa	A1
+TM	Nissan Versa	Nissan	Versa	2007-2019		Hatchback	2L+	两厢车	Hatchback	Hatchback	Versa	H1
 TM	Nissan Versa Note	Nissan	Versa Note	2014-2019		Hatchback	2L+	两厢车			Versa Note	H1
 TM	Nissan Xterra	Nissan	Xterra	2000-2015		SUV	YM+	越野车			Xterra	S1
 TM	Nissan Z	Nissan	Z	2023-2026	Incl: NISMO	Coupe	3M-0	跑车	Incl: NISMO	Incl: NISMO	Z	C2
-TM	Oldsmobile 88	Oldsmobile	88	1949-1950		Coupe	3XL+0	跑车	Coupe	Coupe	88	C5
 TM	Oldsmobile 88	Oldsmobile	88	1951-1958		Sedan	3XXL	三厢车	Sedan	Sedan	88	A4
-TM	Oldsmobile 88	Oldsmobile	88	1957-1985		Coupe	3XXXXL-0	跑车	Coupe	Coupe	88	C7
 TM	Oldsmobile 88	Oldsmobile	88	1961-1965		Sedan	3XXXL	三厢车	Sedan	Sedan	88	C6
 TM	Oldsmobile 88	Oldsmobile	88	1968		Sedan	3XXXL	三厢车	Sedan	Sedan	88	C6
 TM	Oldsmobile 88	Oldsmobile	88	1977-1979		Sedan	3XXXL	三厢车	Sedan	Sedan	88	C6
-TM	Oldsmobile 88	Oldsmobile	88	1986-1989		Coupe	3XL+0	跑车	Coupe	Coupe	88	C5
 TM	Oldsmobile 88	Oldsmobile	88	1986-1999		Sedan	3XXL	三厢车	Sedan	Sedan	88	A4
+TM	Oldsmobile 88	Oldsmobile	88	1949-1950		Coupe	3XL+0	跑车	Coupe	Coupe	88	C5
+TM	Oldsmobile 88	Oldsmobile	88	1957-1985		Coupe	3XXXXL-0	跑车	Coupe	Coupe	88	C7
+TM	Oldsmobile 88	Oldsmobile	88	1986-1989		Coupe	3XL+0	跑车	Coupe	Coupe	88	C5
+TM	Oldsmobile 88	Oldsmobile	88	1951-1956		Coupe	无可用尺码		Coupe	Coupe	88	#N/A
+TM	Oldsmobile 88	Oldsmobile	88	1957-1985		Hatchback/Wagon	无可用尺码		Hatchback/Wagon	Hbk/Wgn	88	#N/A
+TM	Oldsmobile 88	Oldsmobile	88	1959-1960		Sedan	无可用尺码		Sedan	Sedan	88	#N/A
+TM	Oldsmobile 88	Oldsmobile	88	1966-1967		Sedan	无可用尺码		Sedan	Sedan	88	#N/A
+TM	Oldsmobile 88	Oldsmobile	88	1969-1976		Sedan	无可用尺码		Sedan	Sedan	88	#N/A
+TM	Oldsmobile 88	Oldsmobile	88	1980-1985		Sedan	无可用尺码		Sedan	Sedan	88	#N/A
 TM	Oldsmobile Achieva	Oldsmobile	Achieva	1992-1998		Sedan	3XL	三厢车	Sedan	Sedan	Achieva	A2
 TM	Oldsmobile Achieva	Oldsmobile	Achieva	1992-1998		Coupe	3XL-0	跑车	Coupe	Coupe	Achieva	C4
 TM	Oldsmobile Alero	Oldsmobile	Alero	1999-2004		Sedan	3XL	三厢车	Sedan	Sedan	Alero	A2
@@ -898,59 +979,71 @@ TM	Oldsmobile Aurora	Oldsmobile	Aurora	1995-2003		Sedan	3XXL	三厢车			Aurora	
 TM	Oldsmobile Bravada	Oldsmobile	Bravada	1991-1994		SUV	YM+	越野车			Bravada	S1
 TM	Oldsmobile Bravada	Oldsmobile	Bravada	1996-2001		SUV	YL	越野车			Bravada	S2
 TM	Oldsmobile Bravada	Oldsmobile	Bravada	2002-2004		SUV	YXL	越野车			Bravada	S3
-TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1961-1996	Ciera/Cutlass/F-85	Wagon	2XXL-525	两厢车	Wagon Ciera/Cutlass/F-85	Wgn Ciera/F85	Cutlass	H2
 TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1961	F-85/Cutlass	Sedan	3XL	三厢车	Sedan F-85/Cutlass	Sdn F85/Cutlass	Cutlass	A2
-TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1962-1991	Ciera/Cutlass/F-85	Convertible/Coupe	3XL-0	跑车	Convertible/Coupe Ciera/Cutlass/F-85	Conv/Cpe Cie/F85	Cutlass	C4
 TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1962-1972	Incl: Cutlass/F-85	Sedan	3XXL	三厢车	Sedan Incl: Cutlass/F-85	Sdn Inc:F85	Cutlass	A4
+TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1973-1977		Sedan	3XXXL	三厢车	Sedan	Sedan	Cutlass	C6
+TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1978-1999	FWD/RWD/Supreme	Sedan	3XXL	三厢车	Sedan FWD/RWD/Supreme	Sdn FWD/RWD/Supr	Cutlass	A4
+TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1983-1989	Ciera	Sedan	3XL	三厢车	Sedan Ciera	Sedan Ciera	Cutlass	A2
+TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1990	Ciera	Sedan	3XXL	三厢车	Sedan Ciera	Sedan Ciera	Cutlass	A4
+TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1991-1996	Ciera	Sedan	3XL	三厢车	Sedan Ciera	Sedan Ciera	Cutlass	A2
+TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1962-1991	Ciera/Cutlass/F-85	Convertible/Coupe	3XL-0	跑车	Convertible/Coupe Ciera/Cutlass/F-85	Conv/Cpe Cie/F85	Cutlass	C4
 TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1964		Convertible	3XL+0	跑车	Convertible	Convertible	Cutlass	C5
 TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1968		Convertible	3XL+0	跑车	Convertible	Convertible	Cutlass	C5
 TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1968		Coupe	3XL+0	跑车	Coupe	Coupe	Cutlass	C5
-TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1973-1977		Sedan	3XXXL	三厢车	Sedan	Sedan	Cutlass	C6
 TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1973-1977		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Cutlass	C7
-TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1978-1999	FWD/RWD/Supreme	Sedan	3XXL	三厢车	Sedan FWD/RWD/Supreme	Sdn FWD/RWD/Supr	Cutlass	A4
 TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1979-1997	RWD/Supreme	Coupe	3XL+0	跑车	Coupe RWD/Supreme	Cpe RWD/Supr	Cutlass	C5
-TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1983-1989	Ciera	Sedan	3XL	三厢车	Sedan Ciera	Sedan Ciera	Cutlass	A2
 TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1989-1991		Coupe	3XL-0	跑车	Coupe	Coupe	Cutlass	C4
-TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1990	Ciera	Sedan	3XXL	三厢车	Sedan Ciera	Sedan Ciera	Cutlass	A4
-TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1991-1996	Ciera	Sedan	3XL	三厢车	Sedan Ciera	Sedan Ciera	Cutlass	A2
+TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1961-1996	Ciera/Cutlass/F-85	Wagon	2XXL-525	两厢车	Wagon Ciera/Cutlass/F-85	Wgn Ciera/F85	Cutlass	H2
+TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1965-1972		Coupe	无可用尺码		Coupe	Coupe	Cutlass	#N/A
+TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1965-1973		Convertible	无可用尺码		Convertible	Convertible	Cutlass	#N/A
+TM	Oldsmobile Cutlass	Oldsmobile	Cutlass	1968-1972		Wagon	无可用尺码		Wagon	Wagon	Cutlass	#N/A
 TM	Oldsmobile Intrigue	Oldsmobile	Intrigue	1998-2002		Sedan	3XXL	三厢车			Intrigue	A4
 TM	Plymouth Acclaim	Plymouth	Acclaim	1989-1995		Sedan	3L	三厢车			Acclaim	A1
 TM	Plymouth Barracuda	Plymouth	Barracuda	1964-1973		Coupe/Fastback	3XL-0	跑车	Coupe/Fastback	Cpe/Fastbk	Barracuda	C4
 TM	Plymouth Barracuda	Plymouth	Barracuda	1974		Coupe	3XL+0	跑车	Coupe	Coupe	Barracuda	C5
 TM	Plymouth Breeze	Plymouth	Breeze	1996-2000		Sedan	3XL	三厢车			Breeze	A2
 TM	Plymouth Fury	Plymouth	Fury	1959-1961		Sedan	3XXXL	三厢车	Sedan	Sedan	Fury	C6
+TM	Plymouth Fury	Plymouth	Fury	1962-1964		Sedan	3XXL	三厢车	Sedan	Sedan	Fury	A4
+TM	Plymouth Fury	Plymouth	Fury	1965-1972		Sedan	3XXXL	三厢车	Sedan	Sedan	Fury	C6
+TM	Plymouth Fury	Plymouth	Fury	1975-1978		Sedan	3XXXL	三厢车	Sedan	Sedan	Fury	C6
 TM	Plymouth Fury	Plymouth	Fury	1959-1961		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Fury	C7
 TM	Plymouth Fury	Plymouth	Fury	1962		Convertible	3XL+0	跑车	Convertible	Convertible	Fury	C5
 TM	Plymouth Fury	Plymouth	Fury	1962-1963		Coupe	3XL+0	跑车	Coupe	Coupe	Fury	C5
-TM	Plymouth Fury	Plymouth	Fury	1962-1964		Sedan	3XXL	三厢车	Sedan	Sedan	Fury	A4
-TM	Plymouth Fury	Plymouth	Fury	1965-1972		Sedan	3XXXL	三厢车	Sedan	Sedan	Fury	C6
 TM	Plymouth Fury	Plymouth	Fury	1965-1978		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Fury	C7
-TM	Plymouth Fury	Plymouth	Fury	1975-1978		Sedan	3XXXL	三厢车	Sedan	Sedan	Fury	C6
+TM	Plymouth Fury	Plymouth	Fury	1956-1958	Incl: Belvedere Fury	Coupe/Hardtop	无可用尺码		Coupe/Hardtop Incl: Belvedere Fury	Cpe/HTop Inc:Belv	Fury	#N/A
+TM	Plymouth Fury	Plymouth	Fury	1962-1964		Wagon	无可用尺码		Wagon	Wagon	Fury	#N/A
+TM	Plymouth Fury	Plymouth	Fury	1963-1964		Convertible	无可用尺码		Convertible	Convertible	Fury	#N/A
+TM	Plymouth Fury	Plymouth	Fury	1963-1964		Coupe	无可用尺码		Coupe	Coupe	Fury	#N/A
+TM	Plymouth Fury	Plymouth	Fury	1973-1974		Sedan	无可用尺码		Sedan	Sedan	Fury	#N/A
 TM	Plymouth Laser	Plymouth	Laser	1990-1994		Coupe	3M-0	跑车			Laser	C2
 TM	Plymouth Neon	Plymouth	Neon	1995-2001		Sedan	3L	三厢车	Sedan	Sedan	Neon	A1
 TM	Plymouth Neon	Plymouth	Neon	1995-1999		Coupe	3M-0	跑车	Coupe	Coupe	Neon	C2
 TM	Plymouth Road Runner	Plymouth	Road Runner	1968-1970		Coupe	3XL+0	跑车			Road Runner	C5
 TM	Plymouth Road Runner	Plymouth	Road Runner	1972		Coupe	3XL+0	跑车			Road Runner	C5
 TM	Plymouth Road Runner	Plymouth	Road Runner	1973-1975		Coupe	3XXXXL-0	跑车			Road Runner	C7
+TM	Plymouth Road Runner	Plymouth	Road Runner	1971		Coupe	无可用尺码				Road Runner	#N/A
 TM	Plymouth Sundance	Plymouth	Sundance	1992-1994		Hatchback	2L+	两厢车			Sundance	H1
-TM	Plymouth Valiant	Plymouth	Valiant	1960-1966		Wagon	2XXL-525	两厢车	Wagon	Wagon	Valiant	H2
 TM	Plymouth Valiant	Plymouth	Valiant	1960-1962		Sedan	3L	三厢车	Sedan	Sedan	Valiant	A1
 TM	Plymouth Valiant	Plymouth	Valiant	1963-1972		Sedan	3XL	三厢车	Sedan	Sedan	Valiant	A2
+TM	Plymouth Valiant	Plymouth	Valiant	1973-1976		Sedan	3XXL	三厢车	Sedan	Sedan	Valiant	A4
 TM	Plymouth Valiant	Plymouth	Valiant	1963-1972		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	Valiant	C4
 TM	Plymouth Valiant	Plymouth	Valiant	1973-1976	Duster/Scamp	Coupe	3XL+0	跑车	Coupe Duster/Scamp	Cpe Duster/Scamp	Valiant	C5
-TM	Plymouth Valiant	Plymouth	Valiant	1973-1976		Sedan	3XXL	三厢车	Sedan	Sedan	Valiant	A4
+TM	Plymouth Valiant	Plymouth	Valiant	1960-1966		Wagon	2XXL-525	两厢车	Wagon	Wagon	Valiant	H2
 TM	Polestar 1	Polestar	1	2020-2021		Coupe	3L-0	跑车			1	C3
 TM	Polestar 2	Polestar	2	2021-2025		Hatchback	2XXL-525	两厢车			2	H2
 TM	Polestar 3	Polestar	3	2025-2026		SUV	YXL	越野车			3	S3
 TM	Polestar 4	Polestar	4	2026		Coupe SUV	YXL	越野车			4	S3
-TM	Pontiac Astre	Pontiac	Astre	1975-1977	Incl: Safari	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: Safari	Hbk/Wgn Inc:Safari	Astre	H1
 TM	Pontiac Astre	Pontiac	Astre	1975-1977		Sedan	3L	三厢车	Sedan	Sedan	Astre	A1
+TM	Pontiac Astre	Pontiac	Astre	1975-1977	Incl: Safari	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: Safari	Hbk/Wgn Inc:Safari	Astre	H1
 TM	Pontiac Aztec	Pontiac	Aztec	2001-2005		CUV	YL	越野车			Aztec	S2
-TM	Pontiac Bonneville	Pontiac	Bonneville	1957-1981		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Bonneville	C7
 TM	Pontiac Bonneville	Pontiac	Bonneville	1958		Sedan	3XXXL	三厢车	Sedan	Sedan	Bonneville	C6
 TM	Pontiac Bonneville	Pontiac	Bonneville	1961-1964		Sedan	3XXXL	三厢车	Sedan	Sedan	Bonneville	C6
 TM	Pontiac Bonneville	Pontiac	Bonneville	1977-1981		Sedan	3XXXL	三厢车	Sedan	Sedan	Bonneville	C6
 TM	Pontiac Bonneville	Pontiac	Bonneville	1982-2005		Sedan	3XXL	三厢车	Sedan	Sedan	Bonneville	A4
+TM	Pontiac Bonneville	Pontiac	Bonneville	1957-1981		Convertible/Coupe	3XXXXL-0	跑车	Convertible/Coupe	Conv/Cpe	Bonneville	C7
+TM	Pontiac Bonneville	Pontiac	Bonneville	1958-1981	Incl: Grand Safari/Safari	Hatchback/Wagon	无可用尺码		Hatchback/Wagon Incl: Grand Safari/Safari	Hbk/Wgn Inc:Safari	Bonneville	#N/A
+TM	Pontiac Bonneville	Pontiac	Bonneville	1959-1960		Sedan	无可用尺码		Sedan	Sedan	Bonneville	#N/A
+TM	Pontiac Bonneville	Pontiac	Bonneville	1965-1976		Sedan	无可用尺码		Sedan	Sedan	Bonneville	#N/A
 TM	Pontiac Firebird	Pontiac	Firebird	1967-1973	Incl: Trans Am	Convertible/Coupe	3XL-0	跑车	Convertible/Coupe Incl: Trans Am	Conv/Cpe Inc:TAm	Firebird	C4
 TM	Pontiac Firebird	Pontiac	Firebird	1974-1981	Trans Am	Coupe	3XL+0	跑车	Coupe Trans Am	Coupe Trans Am	Firebird	C5
 TM	Pontiac Firebird	Pontiac	Firebird	1982-1990	Trans Am	Coupe	3XL-0	跑车	Coupe Trans Am	Coupe Trans Am	Firebird	C4
@@ -960,31 +1053,37 @@ TM	Pontiac G5	Pontiac	G5	2007-2009		Coupe	3L-0	跑车			G5	C3
 TM	Pontiac G6	Pontiac	G6	2005-2010		Sedan	3XL	三厢车	Sedan	Sedan	G6	A2
 TM	Pontiac G6	Pontiac	G6	2006-2009		Convertible	3XL-0	跑车	Convertible	Convertible	G6	C4
 TM	Pontiac G8	Pontiac	G8	2008-2009		Fastback	3XXL	三厢车			G8	A4
+TM	Pontiac Grand Am	Pontiac	Grand Am	1992-2005		Sedan	3XL	三厢车	Sedan	Sedan	Grand Am	A2
+TM	Pontiac Grand Am	Pontiac	Grand Am	1992-2005		Coupe	3XL-0	跑车	Coupe	Coupe	Grand Am	C4
+TM	Pontiac Grand Prix	Pontiac	Grand Prix	1997-2008		Sedan	3XXL	三厢车	Sedan	Sedan	Grand Prix	A4
+TM	Pontiac Grand Prix	Pontiac	Grand Prix	1963-1977		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Grand Prix	C7
+TM	Pontiac Grand Prix	Pontiac	Grand Prix	1978-2002		Coupe	3XL+0	跑车	Coupe	Coupe	Grand Prix	C5
 TM	Pontiac GTO	Pontiac	GTO	1964		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	GTO	C5
 TM	Pontiac GTO	Pontiac	GTO	1968-1970		Coupe	3XL+0	跑车	Coupe	Coupe	GTO	C5
 TM	Pontiac GTO	Pontiac	GTO	1974		Coupe	3XL+0	跑车	Coupe	Coupe	GTO	C5
 TM	Pontiac GTO	Pontiac	GTO	2004-2006		Coupe	3XL-0	跑车	Coupe	Coupe	GTO	C4
-TM	Pontiac Grand Am	Pontiac	Grand Am	1992-2005		Sedan	3XL	三厢车	Sedan	Sedan	Grand Am	A2
-TM	Pontiac Grand Am	Pontiac	Grand Am	1992-2005		Coupe	3XL-0	跑车	Coupe	Coupe	Grand Am	C4
-TM	Pontiac Grand Prix	Pontiac	Grand Prix	1963-1977		Coupe	3XXXXL-0	跑车	Coupe	Coupe	Grand Prix	C7
-TM	Pontiac Grand Prix	Pontiac	Grand Prix	1978-2002		Coupe	3XL+0	跑车	Coupe	Coupe	Grand Prix	C5
-TM	Pontiac Grand Prix	Pontiac	Grand Prix	1997-2008		Sedan	3XXL	三厢车	Sedan	Sedan	Grand Prix	A4
+TM	Pontiac GTO	Pontiac	GTO	1965-1967		Convertible/Coupe	无可用尺码		Convertible/Coupe	Conv/Cpe	GTO	#N/A
+TM	Pontiac GTO	Pontiac	GTO	1971-1972		Coupe	无可用尺码		Coupe	Coupe	GTO	#N/A
+TM	Pontiac LeMans	Pontiac	LeMans	1964-1972		Sedan	3XXL	三厢车	Sedan	Sedan	LeMans	A4
+TM	Pontiac LeMans	Pontiac	LeMans	1973-1976		Sedan	3XXXL	三厢车	Sedan	Sedan	LeMans	C6
+TM	Pontiac LeMans	Pontiac	LeMans	1977-1980		Sedan	3XXL	三厢车	Sedan	Sedan	LeMans	A4
+TM	Pontiac LeMans	Pontiac	LeMans	1988-1993		Sedan	3L	三厢车	Sedan	Sedan	LeMans	A1
 TM	Pontiac LeMans	Pontiac	LeMans	1961-1963	Tempest/LeMans	Convertible	3XL+0	跑车	Convertible Tempest/LeMans	Conv Temp/LeMans	LeMans	C5
 TM	Pontiac LeMans	Pontiac	LeMans	1961-1963	Tempest/LeMans	Coupe	3XL+0	跑车	Coupe Tempest/LeMans	Cpe Temp/LeMans	LeMans	C5
 TM	Pontiac LeMans	Pontiac	LeMans	1962	Tempest/LeMans	Coupe	3XL-0	跑车	Coupe Tempest/LeMans	Cpe Temp/LeMans	LeMans	C4
-TM	Pontiac LeMans	Pontiac	LeMans	1963-1967	Incl: LeMans/Safari/Tempest	Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon Incl: LeMans/Safari/Tempest	Hbk/Wgn Inc:Saf/T	LeMans	H2
-TM	Pontiac LeMans	Pontiac	LeMans	1964-1970		Convertible	3XL+0	跑车	Convertible	Convertible	LeMans	C5
 TM	Pontiac LeMans	Pontiac	LeMans	1964-1968		Coupe	3XL+0	跑车	Coupe	Coupe	LeMans	C5
-TM	Pontiac LeMans	Pontiac	LeMans	1964-1972		Sedan	3XXL	三厢车	Sedan	Sedan	LeMans	A4
+TM	Pontiac LeMans	Pontiac	LeMans	1964-1970		Convertible	3XL+0	跑车	Convertible	Convertible	LeMans	C5
 TM	Pontiac LeMans	Pontiac	LeMans	1970-1971		Coupe	3XL+0	跑车	Coupe	Coupe	LeMans	C5
-TM	Pontiac LeMans	Pontiac	LeMans	1973-1976		Sedan	3XXXL	三厢车	Sedan	Sedan	LeMans	C6
 TM	Pontiac LeMans	Pontiac	LeMans	1973-1977	Incl: Can Am	Coupe	3XXXXL-0	跑车	Coupe Incl: Can Am	Cpe Inc:CanAm	LeMans	C7
-TM	Pontiac LeMans	Pontiac	LeMans	1977-1980		Sedan	3XXL	三厢车	Sedan	Sedan	LeMans	A4
-TM	Pontiac LeMans	Pontiac	LeMans	1978-1980		Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon	Hbk/Wgn	LeMans	H2
 TM	Pontiac LeMans	Pontiac	LeMans	1978-1981		Coupe	3XL+0	跑车	Coupe	Coupe	LeMans	C5
-TM	Pontiac LeMans	Pontiac	LeMans	1988-1993		Hatchback	2L+	两厢车	Hatchback	Hatchback	LeMans	H1
-TM	Pontiac LeMans	Pontiac	LeMans	1988-1993		Sedan	3L	三厢车	Sedan	Sedan	LeMans	A1
 TM	Pontiac LeMans	Pontiac	LeMans	1993		Coupe	3M-0	跑车	Coupe	Coupe	LeMans	C2
+TM	Pontiac LeMans	Pontiac	LeMans	1963-1967	Incl: LeMans/Safari/Tempest	Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon Incl: LeMans/Safari/Tempest	Hbk/Wgn Inc:Saf/T	LeMans	H2
+TM	Pontiac LeMans	Pontiac	LeMans	1978-1980		Hatchback/Wagon	2XXL-525	两厢车	Hatchback/Wagon	Hbk/Wgn	LeMans	H2
+TM	Pontiac LeMans	Pontiac	LeMans	1988-1993		Hatchback	2L+	两厢车	Hatchback	Hatchback	LeMans	H1
+TM	Pontiac LeMans	Pontiac	LeMans	1965-1967		Coupe	无可用尺码		Coupe	Coupe	LeMans	#N/A
+TM	Pontiac LeMans	Pontiac	LeMans	1967		Convertible	无可用尺码		Convertible	Convertible	LeMans	#N/A
+TM	Pontiac LeMans	Pontiac	LeMans	1968-1977		Hatchback/Wagon	无可用尺码		Hatchback/Wagon	Hbk/Wgn	LeMans	#N/A
+TM	Pontiac LeMans	Pontiac	LeMans	1972		Convertible/Coupe	无可用尺码		Convertible/Coupe	Conv/Cpe	LeMans	#N/A
 TM	Pontiac Solstice	Pontiac	Solstice	2006-2009		Coupe/Roadster	3S-0	跑车			Solstice	C1
 TM	Pontiac Sunfire	Pontiac	Sunfire	1995-2005		Sedan	3L	三厢车	Sedan	Sedan	Sunfire	A1
 TM	Pontiac Sunfire	Pontiac	Sunfire	1995-2005		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	Sunfire	C3
@@ -1008,66 +1107,71 @@ TM	Porsche Cayenne	Porsche	Cayenne	2011-2026		SUV	YXL	越野车	SUV	SUV	Cayenne	
 TM	Porsche Cayenne	Porsche	Cayenne	2019-2026		Coupe	3XL+0	跑车	Coupe	Coupe	Cayenne	C5
 TM	Porsche Cayman	Porsche	Cayman	2009-2025		Coupe	3M-0	跑车			Cayman	C2
 TM	Porsche Macan	Porsche	Macan	2015-2026		SUV	YL	越野车			Macan	S2
-TM	Porsche Panamera	Porsche	Panamera	2010-2016	Incl: Executive LWB	Hatchback/Liftback	2XXL-525	两厢车	Hatchback/Liftback Incl: Executive LWB	Hbk/Lftbk Inc:LWB	Panamera	H2
 TM	Porsche Panamera	Porsche	Panamera	2017-2026	Incl: Executive LWB	Liftback/Sportback	3XXL	三厢车	Liftback/Sportback Incl: Executive LWB	Lftbk/Sptbk Inc:LW	Panamera	A4
+TM	Porsche Panamera	Porsche	Panamera	2010-2016	Incl: Executive LWB	Hatchback/Liftback	2XXL-525	两厢车	Hatchback/Liftback Incl: Executive LWB	Hbk/Lftbk Inc:LWB	Panamera	H2
 TM	Porsche Panamera	Porsche	Panamera	2018-2023	Sport Turismo	Wagon	2XXL-525	两厢车	Wagon Sport Turismo	Wgn SportTur	Panamera	H2
 TM	Porsche Taycan	Porsche	Taycan	2020-2026	Incl: Turbo GT	Sedan	3XXL	三厢车	Sedan Incl: Turbo GT	Sdn Inc:TurboGT	Taycan	A4
 TM	Porsche Taycan	Porsche	Taycan	2021-2026	Incl: Cross Turismo/Sport Turismo	Wagon	2XXL-525	两厢车	Wagon Incl: Cross Turismo/Sport Turismo	Wgn Inc:Cross/Spt	Taycan	H2
 TM	Rivian R1S	Rivian	R1S	2022-2026		SUV	YXL	越野车			R1S	S3
+TM	Saab 900	Saab	900	1986-1998		Convertible	3L-0	跑车	Convertible	Convertible	900	C3
+TM	Saab 900	Saab	900	1979-1998		Hatchback	2XXL-525	两厢车	Hatchback	Hatchback	900	H2
 TM	Saab 9-3	Saab	9-3	1999-2011		Sedan	3L	三厢车	Sedan	Sedan	9-3	A1
 TM	Saab 9-3	Saab	9-3	1999-2011		Convertible	3L-0	跑车	Convertible	Convertible	9-3	C3
 TM	Saab 9-3	Saab	9-3	2006-2011		Wagon	2XXL-525	两厢车	Wagon	Wagon	9-3	H2
-TM	Saab 9-5	Saab	9-5	1999-2009		Wagon	2XXL-525	两厢车	Wagon	Wagon	9-5	H2
 TM	Saab 9-5	Saab	9-5	1999-2009		Sedan	3XL	三厢车	Sedan	Sedan	9-5	A2
 TM	Saab 9-5	Saab	9-5	2010-2011		Sedan	3XXL	三厢车	Sedan	Sedan	9-5	A4
-TM	Saab 900	Saab	900	1979-1998		Hatchback	2XXL-525	两厢车	Hatchback	Hatchback	900	H2
-TM	Saab 900	Saab	900	1986-1998		Convertible	3L-0	跑车	Convertible	Convertible	900	C3
+TM	Saab 9-5	Saab	9-5	1999-2009		Wagon	2XXL-525	两厢车	Wagon	Wagon	9-5	H2
 TM	Saturn Astra	Saturn	Astra	2008-2009		Hatchback	2L+	两厢车			Astra	H1
 TM	Saturn Aura	Saturn	Aura	2007-2009		Sedan	3XL	三厢车			Aura	A2
 TM	Saturn Ion	Saturn	Ion	2003-2007		Sedan	3L	三厢车	Sedan	Sedan	Ion	A1
 TM	Saturn Ion	Saturn	Ion	2003-2007		Coupe	3L-0	跑车	Coupe	Coupe	Ion	C3
-TM	Saturn L-Series	Saturn	L-Series	2000-2004		Wagon	2XXL-525	两厢车	Wagon	Wagon	L-Series	H2
 TM	Saturn L-Series	Saturn	L-Series	2000-2005		Sedan	3XL	三厢车	Sedan	Sedan	L-Series	A2
+TM	Saturn L-Series	Saturn	L-Series	2000-2004		Wagon	2XXL-525	两厢车	Wagon	Wagon	L-Series	H2
 TM	Saturn Outlook	Saturn	Outlook	2007-2010		SUV	YXL	越野车			Outlook	S3
+TM	Saturn Sky	Saturn	Sky	2007-2010		Roadster	3S-0	跑车			Sky	C1
 TM	Saturn S-Series	Saturn	S-Series	1991-2002		Sedan	3L	三厢车	Sedan	Sedan	S-Series	A1
 TM	Saturn S-Series	Saturn	S-Series	1991-1996		Coupe	3M-0	跑车	Coupe	Coupe	S-Series	C2
-TM	Saturn S-Series	Saturn	S-Series	1993-1997		Wagon	2L+	两厢车	Wagon	Wagon	S-Series	H1
 TM	Saturn S-Series	Saturn	S-Series	1997-2002		Coupe	3L-0	跑车	Coupe	Coupe	S-Series	C3
-TM	Saturn Sky	Saturn	Sky	2007-2010		Roadster	3S-0	跑车			Sky	C1
+TM	Saturn S-Series	Saturn	S-Series	1993-1997		Wagon	2L+	两厢车	Wagon	Wagon	S-Series	H1
+TM	Saturn S-Series	Saturn	S-Series	1998-2001		Wagon	无可用尺码		Wagon	Wagon	S-Series	#N/A
 TM	Saturn Vue	Saturn	Vue	2002-2007		SUV	YL	越野车			Vue	S2
 TM	Saturn Vue	Saturn	Vue	2008-2010		SUV	YM+	越野车			Vue	S1
 TM	Scion FR-S	Scion	FR-S	2013-2016		Coupe	3M-0	跑车			FR-S	C2
-TM	Scion XA	Scion	XA	2004-2006		Hatchback	2L+	两厢车			XA	H1
 TM	Scion iA	Scion	iA	2016		Sedan	3L	三厢车			iA	A1
 TM	Scion iM	Scion	iM	2016		Hatchback	2L+	两厢车			iM	H1
+TM	Scion iQ	Scion	iQ	2012-2015		Hatchback	无可用尺码				iQ	#N/A
 TM	Scion tC	Scion	tC	2005-2016		Coupe	3M-0	跑车			tC	C2
+TM	Scion XA	Scion	XA	2004-2006		Hatchback	2L+	两厢车			XA	H1
 TM	Scion xB	Scion	xB	2004-2015		Hatchback/Wagon	2L+	两厢车			xB	H1
 TM	Scion xD	Scion	xD	2008-2014		Hatchback	2L+	两厢车			xD	H1
 TM	Subaru Ascent	Subaru	Ascent	2019-2026		SUV	YXL	越野车			Ascent	S3
 TM	Subaru BRZ	Subaru	BRZ	2013-2020		Coupe	3M-0	跑车			BRZ	C2
 TM	Subaru Crosstrek	Subaru	Crosstrek	2013-2026	Incl: Wilderness	CUV	YM+	越野车	Incl: Wilderness	Inc:Wild	Crosstrek	S1
 TM	Subaru Forester	Subaru	Forester	1998-2013		SUV	YM+	越野车			Forester	S1
-TM	Subaru Forester	Subaru	Forester	2014-2026	Incl: Wilderness	SUV	YL	越野车	Incl: Wilderness	Inc:Wild	Forester	S2
-TM	Subaru Impreza	Subaru	Impreza	1993-2026	Incl: Outback Sport	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: Outback Sport	Hbk/Wgn Inc:Outbk	Impreza	H1
+TM	Subaru Forester	Subaru	Forester	2014-2026	Incl: Wilderness	SUV	YL	越野车	Incl: Wilderness	Incl: Wilderness	Forester	S2
 TM	Subaru Impreza	Subaru	Impreza	1993-2023		Sedan	3L	三厢车	Sedan	Sedan	Impreza	A1
 TM	Subaru Impreza	Subaru	Impreza	1995-2001		Coupe	3M-0	跑车	Coupe	Coupe	Impreza	C2
-TM	Subaru Legacy	Subaru	Legacy	1990-2007		Wagon	2XXL-525	两厢车	Wagon	Wagon	Legacy	H2
+TM	Subaru Impreza	Subaru	Impreza	1993-2026	Incl: Outback Sport	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: Outback Sport	Hbk/Wgn Inc:Outbk	Impreza	H1
 TM	Subaru Legacy	Subaru	Legacy	1990-2009		Sedan	3L	三厢车	Sedan	Sedan	Legacy	A1
 TM	Subaru Legacy	Subaru	Legacy	2010-2025		Sedan	3XL	三厢车	Sedan	Sedan	Legacy	A2
-TM	Subaru Outback	Subaru	Outback	1995-2026	Incl: Wilderness	Hatchback/Wagon	2XXL-525	两厢车	Incl: Wilderness	Inc:Wild	Outback	H2
+TM	Subaru Legacy	Subaru	Legacy	1990-2007		Wagon	2XXL-525	两厢车	Wagon	Wagon	Legacy	H2
+TM	Subaru Outback	Subaru	Outback	1995-2026	Incl: Wilderness	Hatchback/Wagon	2XXL-525	两厢车	Incl: Wilderness	Incl: Wilderness	Outback	H2
 TM	Subaru Outback Sport	Subaru	Outback Sport	1995-2011	Incl: Outback Sport	Hatchback/Wagon	2L+	两厢车	Incl: Outback Sport	Inc:Outbk	Outback Sport	H1
 TM	Subaru Solterra	Subaru	Solterra	2023-2026		SUV	YL	越野车			Solterra	S2
 TM	Subaru Tribeca	Subaru	Tribeca	2006-2014		SUV	YXL	越野车			Tribeca	S3
-TM	Subaru WRX	Subaru	WRX	2002-2014	STI/WRX	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon STI/WRX	Hbk/Wgn STI/WRX	WRX	H1
 TM	Subaru WRX	Subaru	WRX	2002-2026	STI/WRX	Sedan	3L	三厢车	Sedan STI/WRX	Sedan STI/WRX	WRX	A1
-TM	Suzuki Aerio	Suzuki	Aerio	2002-2005		Wagon	2L+	两厢车	Wagon	Wagon	Aerio	H1
+TM	Subaru WRX	Subaru	WRX	2002-2014	STI/WRX	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon STI/WRX	Hbk/Wgn STI/WRX	WRX	H1
 TM	Suzuki Aerio	Suzuki	Aerio	2002-2007		Sedan	3L	三厢车	Sedan	Sedan	Aerio	A1
+TM	Suzuki Aerio	Suzuki	Aerio	2002-2005		Wagon	2L+	两厢车	Wagon	Wagon	Aerio	H1
 TM	Suzuki Forenza	Suzuki	Forenza	2004-2008		Sedan	3L	三厢车	Sedan	Sedan	Forenza	A1
+TM	Suzuki Forenza	Suzuki	Forenza	2004-2008		Wagon	无可用尺码		Wagon	Wagon	Forenza	#N/A
 TM	Suzuki Grand Vitara	Suzuki	Grand Vitara	1999-2013		SUV	YM+	越野车			Grand Vitara	S1
-TM	Suzuki SX4	Suzuki	SX4	2007-2013		Hatchback/Sportback	2L+	两厢车	Hatchback/Sportback	Hbk/Sptbk	SX4	H1
-TM	Suzuki SX4	Suzuki	SX4	2008-2013		Sedan	3L	三厢车	Sedan	Sedan	SX4	A1
 TM	Suzuki Sidekick	Suzuki	Sidekick	1992		SUV	YM+	越野车			Sidekick	S1
 TM	Suzuki Sidekick	Suzuki	Sidekick	1994-1998	Incl: Sport	SUV	YM+	越野车	Incl: Sport	Incl: Sport	Sidekick	S1
+TM	Suzuki Sidekick	Suzuki	Sidekick	1989-1991		SUV	无可用尺码				Sidekick	#N/A
+TM	Suzuki Sidekick	Suzuki	Sidekick	1993		SUV	无可用尺码				Sidekick	#N/A
+TM	Suzuki SX4	Suzuki	SX4	2008-2013		Sedan	3L	三厢车	Sedan	Sedan	SX4	A1
+TM	Suzuki SX4	Suzuki	SX4	2007-2013		Hatchback/Sportback	2L+	两厢车	Hatchback/Sportback	Hbk/Sptbk	SX4	H1
 TM	Suzuki XL7	Suzuki	XL7	2002-2006		SUV	YL	越野车			XL7	S2
 TM	Suzuki XL7	Suzuki	XL7	2007-2009	XL7	SUV	YXL	越野车	XL7	XL7	XL7	S3
 TM	Tesla Model 3	Tesla	Model 3	2017-2023		Sedan	3L	三厢车			Model 3	A1
@@ -1082,18 +1186,21 @@ TM	Toyota 4Runner	Toyota	4Runner	2014-2026		SUV	YXL	越野车			4Runner	S3
 TM	Toyota 86	Toyota	86	2017-2026		Coupe	3M-0	跑车			86	C2
 TM	Toyota Avalon	Toyota	Avalon	1995-2004		Sedan	3XL	三厢车			Avalon	A2
 TM	Toyota Avalon	Toyota	Avalon	2005-2022		Sedan	3XXL	三厢车			Avalon	A4
-TM	Toyota C-HR	Toyota	C-HR	2018-2022		CUV	YM+	越野车			C-HR	S1
-TM	Toyota Camry	Toyota	Camry	1983-1986		Hatchback	2L+	两厢车	Hatchback	Hatchback	Camry	H1
+TM	Toyota bZ	Toyota	bZ	2026		SUV	YL	越野车			bZ	S2
+TM	Toyota bZ	Toyota	bZ	2026	Woodland	SUV	YXL	越野车	Woodland	Woodland	bZ	S3
+TM	Toyota bZ4X	Toyota	bZ4X	2023-2025		SUV	YL	越野车			bZ4X	S2
 TM	Toyota Camry	Toyota	Camry	1983-1991		Sedan	3L	三厢车	Sedan	Sedan	Camry	A1
-TM	Toyota Camry	Toyota	Camry	1987-1996		Wagon	2XXL-525	两厢车	Wagon	Wagon	Camry	H2
 TM	Toyota Camry	Toyota	Camry	1992-2017		Sedan	3XL	三厢车	Sedan	Sedan	Camry	A2
 TM	Toyota Camry	Toyota	Camry	2018-2026		Sedan	3XXL	三厢车	Sedan	Sedan	Camry	A4
+TM	Toyota Camry	Toyota	Camry	1983-1986		Hatchback	2L+	两厢车	Hatchback	Hatchback	Camry	H1
+TM	Toyota Camry	Toyota	Camry	1987-1996		Wagon	2XXL-525	两厢车	Wagon	Wagon	Camry	H2
 TM	Toyota Celica	Toyota	Celica	1971-1999	Incl: All-Trac	Convertible/Coupe	3M-0	跑车	Convertible/Coupe Incl: All-Trac	Conv/Cpe Inc:ATrac	Celica	C2
 TM	Toyota Celica	Toyota	Celica	2000-2005		Hatchback	2L+	两厢车	Hatchback	Hatchback	Celica	H1
-TM	Toyota Corolla	Toyota	Corolla	1968-2026	Incl: GR Corolla	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: GR Corolla	Hbk/Wgn Inc:GR	Corolla	H1
+TM	Toyota C-HR	Toyota	C-HR	2018-2022		CUV	YM+	越野车			C-HR	S1
 TM	Toyota Corolla	Toyota	Corolla	1968-2026		Sedan	3L	三厢车	Sedan	Sedan	Corolla	A1
 TM	Toyota Corolla	Toyota	Corolla	1968-1974		Coupe	3S-0	跑车	Coupe	Coupe	Corolla	C1
 TM	Toyota Corolla	Toyota	Corolla	1980-1991		Coupe	3M-0	跑车	Coupe	Coupe	Corolla	C2
+TM	Toyota Corolla	Toyota	Corolla	1968-2026	Incl: GR Corolla	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: GR Corolla	Hbk/Wgn Inc:GR	Corolla	H1
 TM	Toyota Corolla Cross	Toyota	Corolla Cross	2022-2026		SUV	YM+	越野车			Corolla Cross	S1
 TM	Toyota Corolla GR	Toyota	Corolla GR	2023-2026		Hatchback	2L+	两厢车			Corolla GR	H1
 TM	Toyota Corolla iM	Toyota	Corolla iM	2017-2018		Hatchback	2L+	两厢车			Corolla iM	H1
@@ -1107,9 +1214,9 @@ TM	Toyota Highlander	Toyota	Highlander	2014-2026		SUV	YXL	越野车			Highlander
 TM	Toyota Land Cruiser	Toyota	Land Cruiser	1958-1997		SUV	YL	越野车			Land Cruiser	S2
 TM	Toyota Land Cruiser	Toyota	Land Cruiser	1998-2021		SUV	YXL	越野车			Land Cruiser	S3
 TM	Toyota Land Cruiser 250	Toyota	Land Cruiser 250	2024-2026		SUV	YXL	越野车			LandCruiser 250	S3
+TM	Toyota Matrix	Toyota	Matrix	2003-2013		Hatchback	2L+	两厢车			Matrix	H1
 TM	Toyota MIRAI	Toyota	MIRAI	2016-2024		Sedan	3XXL	三厢车			MIRAI	A4
 TM	Toyota MR2	Toyota	MR2	1985-2005		Convertible/Coupe	3S-0	跑车			MR2	C1
-TM	Toyota Matrix	Toyota	Matrix	2003-2013		Hatchback	2L+	两厢车			Matrix	H1
 TM	Toyota Prius	Toyota	Prius	2001-2003		Sedan	3L	三厢车	Sedan	Sedan	Prius	A1
 TM	Toyota Prius	Toyota	Prius	2004-2015		Hatchback	2L+	两厢车	Hatchback	Hatchback	Prius	H1
 TM	Toyota Prius	Toyota	Prius	2016-2026		Hatchback	2XXL-525	两厢车	Hatchback	Hatchback	Prius	H2
@@ -1122,6 +1229,7 @@ TM	Toyota RAV4	Toyota	RAV4	2006-2012		SUV	YL	越野车			RAV4	S2
 TM	Toyota RAV4	Toyota	RAV4	2013-2018	Incl: EV	SUV	YM+	越野车	Incl: EV	Incl: EV	RAV4	S1
 TM	Toyota RAV4	Toyota	RAV4	2019-2025		SUV	YL	越野车			RAV4	S2
 TM	Toyota RAV4	Toyota	RAV4	2026		SUV	YM+	越野车			RAV4	S1
+TM	Toyota RAV4	Toyota	RAV4	1996-2000		SUV	无可用尺码				RAV4	#N/A
 TM	Toyota Sequoia	Toyota	Sequoia	2001-2026		SUV	YXXL-545	越野车			Sequoia	S4
 TM	Toyota Sienna	Toyota	Sienna	1998-2026	Incl: Woodland	Minivan	2XXL-525	两厢车	Incl: Woodland	Incl: Woodland	Sienna	H2
 TM	Toyota Solara	Toyota	Solara	1999-2008		Convertible/Coupe	3XL-0	跑车			Solara	C4
@@ -1129,43 +1237,44 @@ TM	Toyota Supra	Toyota	Supra	1979-1981		Coupe	3L-0	跑车			Supra	C3
 TM	Toyota Supra	Toyota	Supra	1982-1986		Coupe	3M-0	跑车			Supra	C2
 TM	Toyota Supra	Toyota	Supra	1987-1992		Coupe	3L-0	跑车			Supra	C3
 TM	Toyota Supra	Toyota	Supra	1993-2026		Coupe	3M-0	跑车			Supra	C2
-TM	Toyota Tercel	Toyota	Tercel	1980-1988	Incl: 4WD	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: 4WD	Hbk/Wgn Inc:4WD	Tercel	H1
 TM	Toyota Tercel	Toyota	Tercel	1980-1999		Sedan	3L	三厢车	Sedan	Sedan	Tercel	A1
 TM	Toyota Tercel	Toyota	Tercel	1989-1990		Coupe	3M-0	跑车	Coupe	Coupe	Tercel	C2
 TM	Toyota Tercel	Toyota	Tercel	1995-1999		Coupe	3S-0	跑车	Coupe	Coupe	Tercel	C1
-TM	Toyota Venza	Toyota	Venza	2009-2015		Wagon	2XXL-525	两厢车	Wagon	Wagon	Venza	H2
+TM	Toyota Tercel	Toyota	Tercel	1980-1988	Incl: 4WD	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: 4WD	Hbk/Wgn Inc:4WD	Tercel	H1
 TM	Toyota Venza	Toyota	Venza	2021-2024		SUV	YL	越野车	SUV	SUV	Venza	S2
+TM	Toyota Venza	Toyota	Venza	2009-2015		Wagon	2XXL-525	两厢车	Wagon	Wagon	Venza	H2
 TM	Toyota Yaris	Toyota	Yaris	2007-2020		Sedan	3L	三厢车	Sedan	Sedan	Yaris	A1
 TM	Toyota Yaris	Toyota	Yaris	2012-2020		Hatchback	2L+	两厢车	Hatchback	Hatchback	Yaris	H1
+TM	Toyota Yaris	Toyota	Yaris	2007-2011		Hatchback	无可用尺码		Hatchback	Hatchback	Yaris	#N/A
 TM	Toyota Yaris iA	Toyota	Yaris iA	2017-2018		Sedan	3L	三厢车			Yaris iA	A1
-TM	Toyota bZ	Toyota	bZ	2026		SUV	YL	越野车			bZ	S2
-TM	Toyota bZ	Toyota	bZ	2026	Woodland	SUV	YXL	越野车	Woodland	Woodland	bZ	S3
-TM	Toyota bZ4X	Toyota	bZ4X	2023-2025		SUV	YL	越野车			bZ4X	S2
 TM	VinFast VF8	VinFast	VF8	2023-2025		SUV	YL	越野车			VF8	S2
 TM	Volkswagen Arteon	Volkswagen	Arteon	2019-2024		Hatchback	2XXL-525	两厢车			Arteon	H2
 TM	Volkswagen Atlas	Volkswagen	Atlas	2018-2026	Incl: Cross Sport	SUV	YXL	越野车	Incl: Cross Sport	Inc:CrossSpt	Atlas	S3
 TM	Volkswagen Atlas Cross	Volkswagen	Atlas Cross	2021-2026	Cross Sport	SUV	YXL	越野车	Cross Sport	Cross Sport	Atlas Cross	S3
-TM	Volkswagen Beetle	Volkswagen	Beetle	1998-2019	Incl: Dune	Hatchback	2L+	两厢车	Hatchback Incl: Dune	Hbk Inc:Dune	Beetle	H1
 TM	Volkswagen Beetle	Volkswagen	Beetle	1998-2010		Convertible	3S-0	跑车	Convertible	Convertible	Beetle	C1
 TM	Volkswagen Beetle	Volkswagen	Beetle	2012-2019	Incl: Dune	Convertible	3M-0	跑车	Convertible Incl: Dune	Conv Inc:Dune	Beetle	C2
+TM	Volkswagen Beetle	Volkswagen	Beetle	1998-2019	Incl: Dune	Hatchback	2L+	两厢车	Hatchback Incl: Dune	Hbk Inc:Dune	Beetle	H1
 TM	Volkswagen Eos	Volkswagen	Eos	2007-2016		Convertible	3M-0	跑车			Eos	C2
 TM	Volkswagen Golf	Volkswagen	Golf	1999-2021	Incl: Diesel/R	Hatchback	2L+	两厢车	Hatchback Incl: Diesel/R	Hbk Inc:R	Golf	H1
 TM	Volkswagen Golf	Volkswagen	Golf	2015-2026	GTI	Hatchback	2L+	两厢车	Hatchback GTI	Hatchback GTI	Golf	H1
 TM	Volkswagen Golf	Volkswagen	Golf	2022-2026	GTI/R	Hatchback	2L+	两厢车	Hatchback GTI/R	Hatchback GTI/R	Golf	H1
 TM	Volkswagen Golf	Volkswagen	Golf	2022-2026	R	Hatchback	2L+	两厢车	Hatchback R	Hatchback R	Golf	H1
+TM	Volkswagen Golf	Volkswagen	Golf	2015-2019		Wagon	无可用尺码		Wagon	Wagon	Golf	#N/A
 TM	Volkswagen ID.4	Volkswagen	ID.4	2021-2026		SUV	YM+	越野车			ID.4	S1
 TM	Volkswagen Jetta	Volkswagen	Jetta	1980-2018	Incl: Diesel	Sedan	3L	三厢车	Sedan Incl: Diesel	Sedan	Jetta	A1
 TM	Volkswagen Jetta	Volkswagen	Jetta	2019-2026	GLI	Sedan	3XL	三厢车	Sedan GLI	Sedan GLI	Jetta	A2
-TM	Volkswagen Passat	Volkswagen	Passat	1974-1981		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Passat	H1
-TM	Volkswagen Passat	Volkswagen	Passat	1982-1988		Wagon	2XXL-525	两厢车	Wagon	Wagon	Passat	H2
+TM	Volkswagen Jetta	Volkswagen	Jetta	2009-2014		Wagon	无可用尺码		Wagon	Wagon	Jetta	#N/A
 TM	Volkswagen Passat	Volkswagen	Passat	1982-1997		Sedan	3L	三厢车	Sedan	Sedan	Passat	A1
-TM	Volkswagen Passat	Volkswagen	Passat	1995-2010		Wagon	2XXL-525	两厢车	Wagon	Wagon	Passat	H2
 TM	Volkswagen Passat	Volkswagen	Passat	1998-2019		Sedan	3XL	三厢车	Sedan	Sedan	Passat	A2
 TM	Volkswagen Passat	Volkswagen	Passat	2020-2022		Sedan	3XXL	三厢车	Sedan	Sedan	Passat	A4
+TM	Volkswagen Passat	Volkswagen	Passat	1974-1981		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Passat	H1
+TM	Volkswagen Passat	Volkswagen	Passat	1982-1988		Wagon	2XXL-525	两厢车	Wagon	Wagon	Passat	H2
+TM	Volkswagen Passat	Volkswagen	Passat	1995-2010		Wagon	2XXL-525	两厢车	Wagon	Wagon	Passat	H2
+TM	Volkswagen Passat	Volkswagen	Passat	1990-1994		Wagon	无可用尺码		Wagon	Wagon	Passat	#N/A
 TM	Volkswagen Passat CC	Volkswagen	Passat CC	2009-2017		Sportback	3XL	三厢车			Passat CC	A2
 TM	Volkswagen Phaeton	Volkswagen	Phaeton	2004-2006		Sedan	3XXL	三厢车			Phaeton	A4
-TM	Volkswagen Rabbit	Volkswagen	Rabbit	1975-2009	Incl: GTI	Hatchback	2L+	两厢车	Hatchback Incl: GTI	Hbk Inc:GTI	Rabbit	H1
 TM	Volkswagen Rabbit	Volkswagen	Rabbit	1980		Convertible	3S-0	跑车	Convertible	Convertible	Rabbit	C1
+TM	Volkswagen Rabbit	Volkswagen	Rabbit	1975-2009	Incl: GTI	Hatchback	2L+	两厢车	Hatchback Incl: GTI	Hbk Inc:GTI	Rabbit	H1
 TM	Volkswagen Taos	Volkswagen	Taos	2022-2026		SUV	YM+	越野车			Taos	S1
 TM	Volkswagen Tiguan	Volkswagen	Tiguan	2009-2017		SUV	YM+	越野车			Tiguan	S1
 TM	Volkswagen Tiguan	Volkswagen	Tiguan	2018-2026		SUV	YL	越野车			Tiguan	S2

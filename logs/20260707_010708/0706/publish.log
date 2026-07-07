@@ -1,0 +1,3 @@
+cwd: D:\Home\Scripts\publish_tables_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/build_site.py
+
