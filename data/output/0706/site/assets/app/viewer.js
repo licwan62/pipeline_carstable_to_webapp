@@ -38,6 +38,7 @@
   const directoryMetadata = new Map();
   const tsvIndexes = new Map();
   const sizeReferenceIndex = new Map();
+  const sizeReferenceOrder = new Map();
   const defaultSourceFilter = "ALL";
   const searchState = {
     scopeKey: "",
@@ -57,6 +58,7 @@
     visibleColumns: null,
     fieldOrder: [],
     dimensionUnit: "imperial",
+    tableFontSize: "md",
     resultLimit: 200,
     resultPage: 1,
     sortField: "",
@@ -373,6 +375,18 @@
               </div>
             </section>
             <section class="settings-block">
+              <h4>表格字号</h4>
+              <div class="settings-segmented" role="group" aria-label="表格字号">
+                ${[
+                  ["sm", "紧凑"],
+                  ["md", "标准"],
+                  ["lg", "舒展"]
+                ].map(([value, label]) => `
+                  <button type="button" data-size-font="${value}" class="${searchState.tableFontSize === value ? "is-active" : ""}">${label}</button>
+                `).join("")}
+              </div>
+            </section>
+            <section class="settings-block">
               <h4>排序</h4>
               <div class="settings-sort-row">
                 <label class="sort-control">
@@ -567,6 +581,13 @@
       button.addEventListener("click", () => {
         searchState.dimensionUnit = button.dataset.sizeUnit || "imperial";
         ensureSizeFieldState();
+        render();
+      });
+    });
+
+    app.querySelectorAll("[data-size-font]").forEach((button) => {
+      button.addEventListener("click", () => {
+        searchState.tableFontSize = button.dataset.sizeFont || "md";
         render();
       });
     });
@@ -1165,7 +1186,7 @@
     const tableWidth = resultTableWidth(tableColumns);
     return `
       <div class="results-table-wrap size-results-wrap">
-        <table class="results-table size-results-table ${searchState.dimensionUnit === "metric" ? "dimension-theme-yellow" : "dimension-theme-blue"}" style="--result-table-width: ${tableWidth}px">
+        <table class="results-table size-results-table table-font-${escapeHtml(searchState.tableFontSize)} ${searchState.dimensionUnit === "metric" ? "dimension-theme-yellow" : "dimension-theme-blue"}" style="--result-table-width: ${tableWidth}px">
           <colgroup>
             ${tableColumns.map((column) => {
               const width = searchState.columnWidths[column.key] || column.width;
@@ -1247,12 +1268,22 @@
 
   function sizeHeaderLabelMarkup(column) {
     const filterValue = searchState.columnFilters[column.key];
-    const filteredClass = hasColumnFilterValue(filterValue) ? " is-filtered" : "";
+    const isFiltered = hasColumnFilterValue(filterValue);
+    const filteredClass = isFiltered ? " is-filtered" : "";
+    const sortState = headerSortState(column.key);
+    const sortLabel = sortState === "asc" ? "取消升序，切换为降序" : sortState === "desc" ? "取消排序" : "升序排序";
     return `
-      <button class="th-label th-filter-trigger${filteredClass}" type="button" data-size-open-filter="${escapeHtml(column.key)}" aria-expanded="${searchState.openFilter === column.key ? "true" : "false"}" title="筛选 ${escapeHtml(column.label)}">
-        <span>${escapeHtml(column.label)}</span>
-      </button>
+      <div class="th-label th-header-control">
+        <button class="th-filter-trigger${filteredClass}" type="button" data-size-open-filter="${escapeHtml(column.key)}" aria-expanded="${searchState.openFilter === column.key ? "true" : "false"}" title="筛选 ${escapeHtml(column.label)}">
+          <span>${escapeHtml(column.label)}</span>
+        </button>
+        <button class="th-sort-toggle sort-${escapeHtml(sortState)}" type="button" data-size-sort-toggle="${escapeHtml(column.key)}" aria-label="${escapeHtml(column.label)} ${sortLabel}" title="${escapeHtml(sortLabel)}"></button>
+      </div>
     `;
+  }
+
+  function headerSortState(key) {
+    return sameColumn(searchState.sortField, key) ? searchState.sortDirection : "none";
   }
 
   function sizeHeaderFilterMarkup(column, tableColumns) {
@@ -1323,8 +1354,14 @@
     if (sameColumn(key, "YEAR")) {
       return [...values].sort((left, right) => Number(right) - Number(left));
     }
+    if (isSizeColumn(key)) {
+      return [...values].sort(compareSizeValues);
+    }
     if (sameColumn(key, "BED")) {
       return [...values].sort(compareBedValues);
+    }
+    if (isRangeFilterColumn(key)) {
+      return [...values].sort(compareValues);
     }
     return values;
   }
@@ -1576,6 +1613,15 @@
         }
       });
     });
+    app.querySelectorAll("[data-size-sort-toggle]").forEach((button) => {
+      if (button.dataset.bound === "true") return;
+      button.dataset.bound = "true";
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        cycleHeaderSort(button.dataset.sizeSortToggle);
+      });
+    });
     app.querySelectorAll(".size-results-table th.is-filter-open").forEach((cell) => {
       if (cell.dataset.hoverBound === "true") return;
       cell.dataset.hoverBound = "true";
@@ -1591,6 +1637,21 @@
         }, 0);
       });
     });
+  }
+
+  function cycleHeaderSort(key) {
+    if (!sameColumn(searchState.sortField, key)) {
+      searchState.sortField = key;
+      searchState.sortDirection = "asc";
+    } else if (searchState.sortDirection === "asc") {
+      searchState.sortDirection = "desc";
+    } else {
+      searchState.sortField = "";
+      searchState.sortDirection = "asc";
+    }
+    searchState.resultPage = 1;
+    searchState.openFilter = "";
+    updateSearchResults();
   }
 
   function scheduleHeaderFilterClose() {
@@ -1627,7 +1688,7 @@
     if (sameColumn(key, "TYPE")) return record.type || resultColumnValue(record, key);
     if (sameColumn(key, "SIZE")) return resultColumnValue(record, key) || "NULL";
     if (isDimensionColumn(key) && searchState.dimensionUnit === "metric") {
-      return dimensionDisplay(key, resultColumnValue(record, key));
+      return numericDisplayValue(dimensionDisplay(key, resultColumnValue(record, key)));
     }
     if (isLengthMarginColumn(key) && searchState.dimensionUnit === "metric") {
       const number = Number(resultColumnValue(record, key));
@@ -1764,7 +1825,7 @@
   function dimensionDisplay(column, value) {
     const number = Number(value);
     if (!Number.isFinite(number)) return value;
-    return searchState.dimensionUnit === "metric" && isDimensionColumn(column) ? number.toFixed(1) : value;
+    return searchState.dimensionUnit === "metric" && isDimensionColumn(column) ? (number * 2.54).toFixed(1) : value;
   }
 
   function darkenHex(hex, amount) {
@@ -1784,6 +1845,8 @@
     if (sameColumn(column, "CAB")) return configuredRecordValue(record, "cab") || record.values[column] || "";
     if (sameColumn(column, "BED")) return configuredRecordValue(record, "bed") || record.values[column] || "";
     if (sameColumn(column, "TYPE")) return record.values[column] || record.type || "";
+    if (isDimensionColumn(column)) return dimensionSourceValue(record, column);
+    if (isLengthMarginColumn(column)) return sourceValue(record, column) || record.values[column] || "";
     return record.values[column] || "";
   }
 
@@ -1853,7 +1916,31 @@
   function sortSizeRows(rows) {
     if (!searchState.sortField) return rows;
     const direction = searchState.sortDirection === "desc" ? -1 : 1;
-    return [...rows].sort((left, right) => compareValues(resultColumnValue(left, searchState.sortField), resultColumnValue(right, searchState.sortField)) * direction);
+    return [...rows].sort((left, right) => compareSortValues(left, right, searchState.sortField) * direction);
+  }
+
+  function compareSortValues(left, right, field) {
+    if (isSizeColumn(field)) {
+      return compareSizeValues(resultColumnValue(left, field), resultColumnValue(right, field));
+    }
+    if (isRangeFilterColumn(field)) {
+      return compareValues(sizeColumnFilterValue(left, field), sizeColumnFilterValue(right, field));
+    }
+    return compareValues(resultColumnValue(left, field), resultColumnValue(right, field));
+  }
+
+  function compareSizeValues(left, right) {
+    const leftRank = sizeReferenceRank(left);
+    const rightRank = sizeReferenceRank(right);
+    if (leftRank !== rightRank) {
+      return leftRank - rightRank;
+    }
+    return compareValues(left, right);
+  }
+
+  function sizeReferenceRank(value) {
+    const key = cleanField(value).toUpperCase();
+    return sizeReferenceOrder.has(key) ? sizeReferenceOrder.get(key) : Number.MAX_SAFE_INTEGER;
   }
 
   function compareValues(left, right) {
@@ -1901,6 +1988,33 @@
 
   function sourceValue(record, source) {
     return cleanField(record.values[source] || record.values[cleanField(source).toUpperCase()] || record.values[cleanField(source).toLowerCase()]);
+  }
+
+  function dimensionSourceValue(record, column) {
+    const candidates = dimensionSourceColumns(column);
+    for (const candidate of candidates) {
+      const value = sourceValue(record, candidate) || record.values[candidate];
+      if (cleanField(value)) return cleanField(value);
+    }
+    return "";
+  }
+
+  function dimensionSourceColumns(column) {
+    if (sameColumn(column, "L-IN") || sameColumn(column, "L-CM") || sameColumn(column, "长_in")) {
+      return ["L-IN", "L-CM", "长_in", "长"];
+    }
+    if (sameColumn(column, "W-IN") || sameColumn(column, "W-CM") || sameColumn(column, "宽_in")) {
+      return ["W-IN", "W-CM", "宽_in", "宽"];
+    }
+    if (sameColumn(column, "H-IN") || sameColumn(column, "H-CM") || sameColumn(column, "高_in")) {
+      return ["H-IN", "H-CM", "高_in", "高"];
+    }
+    return [column];
+  }
+
+  function numericDisplayValue(value) {
+    const number = Number(value);
+    return Number.isFinite(number) ? number.toFixed(1) : "";
   }
 
   function filterConfig(key) {
@@ -2056,16 +2170,21 @@
       const rows = path.endsWith(".json") ? (JSON.parse(text).rows || []) : parseTsv(text);
       const matchField = viewConfig.size_reference?.match_field || "通用尺码";
       sizeReferenceIndex.clear();
-      rows.forEach((row) => {
+      sizeReferenceOrder.clear();
+      rows.forEach((row, index) => {
         [row[matchField], row["型号"], row["内部尺码"], row["通用尺码"]].forEach((value) => {
           const key = cleanField(value).toUpperCase();
           if (key && !sizeReferenceIndex.has(key)) {
             sizeReferenceIndex.set(key, row);
           }
+          if (key && !sizeReferenceOrder.has(key)) {
+            sizeReferenceOrder.set(key, index);
+          }
         });
       });
     } catch (error) {
       sizeReferenceIndex.clear();
+      sizeReferenceOrder.clear();
     }
   }
 

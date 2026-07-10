@@ -1230,6 +1230,34 @@ button {
   align-items: end;
 }
 
+.settings-segmented {
+  display: inline-grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
+  width: min(100%, 260px);
+  min-height: 36px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.settings-segmented button {
+  border: 0;
+  border-left: 1px solid var(--line);
+  background: #ffffff;
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.settings-segmented button:first-child {
+  border-left: 0;
+}
+
+.settings-segmented button.is-active {
+  background: var(--accent);
+  color: #ffffff;
+}
+
 .unit-toggle {
   display: inline-flex;
   align-self: flex-end;
@@ -1350,18 +1378,18 @@ body.is-resizing-column {
   min-width: 760px;
   border-collapse: collapse;
   font-family: "D-DIN-PRO", Arial, Helvetica, sans-serif;
-  font-size: 18px;
+  font-size: 17px;
 }
 
-.table-font-sm .results-table {
-  font-size: 16px;
+.results-table.table-font-sm {
+  font-size: 15px;
 }
 
-.table-font-md .results-table {
-  font-size: 18px;
+.results-table.table-font-md {
+  font-size: 17px;
 }
 
-.table-font-lg .results-table {
+.results-table.table-font-lg {
   font-size: 19px;
 }
 
@@ -1453,11 +1481,11 @@ body.is-resizing-column {
   z-index: 16;
 }
 
-.table-font-sm .results-table th {
+.results-table.table-font-sm th {
   font-size: 13px;
 }
 
-.table-font-lg .results-table th {
+.results-table.table-font-lg th {
   font-size: 15px;
 }
 
@@ -1469,12 +1497,18 @@ body.is-resizing-column {
   white-space: normal;
 }
 
-.th-filter-trigger {
+.th-header-control {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 10px;
+  grid-template-columns: minmax(0, 1fr) 14px;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
+  width: 100%;
+}
+
+.th-filter-trigger {
+  position: relative;
+  display: block;
   width: 100%;
   border: 0;
   background: transparent;
@@ -1488,43 +1522,53 @@ body.is-resizing-column {
 }
 
 .th-filter-trigger > span {
-  grid-column: 1;
+  display: block;
   overflow: hidden;
   min-width: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.th-filter-trigger::after {
-  grid-column: 2;
-  display: block;
-  flex: 0 0 auto;
+.th-sort-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 20px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+  color: #667085;
+  opacity: 0.78;
+  padding: 0;
+}
+
+.th-sort-toggle::before {
   width: 0;
   height: 0;
-  border-top: 5px solid #667085;
+  border-top: 5px solid currentColor;
   border-right: 4px solid transparent;
   border-left: 4px solid transparent;
   content: "";
 }
 
-.th-filter-trigger::before {
-  position: absolute;
-  top: -6px;
-  right: -10px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 13px;
-  height: 13px;
-  border-color: var(--accent);
-  background: var(--accent);
-  color: #ffffff;
-  content: "✓";
-  border-radius: 50%;
-  font-size: 9px;
-  font-weight: 900;
-  line-height: 1;
-  visibility: hidden;
+.th-sort-toggle.sort-asc::before {
+  border-top: 0;
+  border-bottom: 5px solid currentColor;
+}
+
+.th-sort-toggle.sort-asc,
+.th-sort-toggle.sort-desc {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.th-sort-toggle:focus,
+.th-sort-toggle:hover {
+  color: var(--accent);
+  opacity: 1;
+  outline: none;
 }
 
 .th-filter-trigger:focus,
@@ -1533,13 +1577,19 @@ body.is-resizing-column {
   outline: none;
 }
 
-.th-filter-trigger:focus::after,
-.th-filter-trigger:hover::after {
-  border-top-color: var(--accent);
+.th-filter-trigger.is-filtered {
+  color: var(--accent-dark);
 }
 
-.th-filter-trigger.is-filtered::before {
-  visibility: visible;
+.th-filter-trigger.is-filtered::after {
+  position: absolute;
+  right: 0;
+  bottom: -7px;
+  left: 0;
+  height: 2px;
+  background: var(--accent);
+  content: "";
+  opacity: 0.85;
 }
 
 .header-filter-popover {
@@ -1594,11 +1644,11 @@ body.is-resizing-column {
   font-weight: 600;
 }
 
-.table-font-sm .header-filter-select {
+.results-table.table-font-sm .header-filter-select {
   font-size: 12px;
 }
 
-.table-font-lg .header-filter-select {
+.results-table.table-font-lg .header-filter-select {
   font-size: 14px;
 }
 
