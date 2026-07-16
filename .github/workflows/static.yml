@@ -25,7 +25,7 @@ jobs:
   # Single deploy job since we're just deploying
   deploy:
     env:
-      SITE_DIR: data/output/0706/site
+      SITE_DIR: data/output/site
       CUSTOM_DOMAIN: fitment.leex.asia
     environment:
       name: github-pages

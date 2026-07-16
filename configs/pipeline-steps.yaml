@@ -1,0 +1,163 @@
+# 高级配置：流水线命令、内部路径和产物校验。
+# 日常使用请修改 pipeline.yaml，不建议直接修改本文件。
+
+variables:
+  compress_output_root: "{middle_dir}/01_compress"
+  compress_all_stem: "{case_name}_ALL尺码匹配"
+  compress_tm_stem: "{case_name}_TM尺码匹配"
+  compress_hnt_stem: "{case_name}_HNT尺码匹配"
+  all_non_pickup_tsv: "{compress_output_root}/{compress_all_stem}/compress/{compress_all_stem}_非皮卡高度压缩表.tsv"
+  all_pickup_tsv: "{compress_output_root}/{compress_all_stem}/compress/{compress_all_stem}_皮卡高度压缩表.tsv"
+  tm_non_pickup_tsv: "{compress_output_root}/{compress_tm_stem}/compress/{compress_tm_stem}_非皮卡高度压缩表.tsv"
+  tm_pickup_tsv: "{compress_output_root}/{compress_tm_stem}/compress/{compress_tm_stem}_皮卡高度压缩表.tsv"
+  hnt_non_pickup_tsv: "{compress_output_root}/{compress_hnt_stem}/compress/{compress_hnt_stem}_非皮卡高度压缩表.tsv"
+  hnt_pickup_tsv: "{compress_output_root}/{compress_hnt_stem}/compress/{compress_hnt_stem}_皮卡高度压缩表.tsv"
+
+  user_size_dir: "{middle_dir}/02_user_size_workbooks"
+  user_size_template: "{root}/data/template/尺码适配表.xlsx"
+  user_size_non_pickup_table_name: "非皮卡高度压缩表"
+  user_size_pickup_table_name: "皮卡高度压缩表"
+  all_user_size_workbook: "{user_size_dir}/ALL_用户尺码模板.xlsx"
+  tm_user_size_workbook: "{user_size_dir}/TM_用户尺码模板.xlsx"
+  hnt_user_size_workbook: "{user_size_dir}/HNT_用户尺码模板.xlsx"
+
+  user_size_export_dir: "{middle_dir}/03_user_size_exports"
+  all_user_size_export_dir: "{user_size_export_dir}/ALL"
+  tm_user_size_export_dir: "{user_size_export_dir}/TM"
+  hnt_user_size_export_dir: "{user_size_export_dir}/HNT"
+  all_user_non_pickup_tsv: "{all_user_size_export_dir}/non_pickup.tsv"
+  all_user_pickup_tsv: "{all_user_size_export_dir}/pickup.tsv"
+  tm_user_non_pickup_tsv: "{tm_user_size_export_dir}/non_pickup.tsv"
+  tm_user_pickup_tsv: "{tm_user_size_export_dir}/pickup.tsv"
+  hnt_user_non_pickup_tsv: "{hnt_user_size_export_dir}/non_pickup.tsv"
+  hnt_user_pickup_tsv: "{hnt_user_size_export_dir}/pickup.tsv"
+
+  html_output_dir: "{middle_dir}/04_html"
+  publish_workspace: "{middle_dir}/05_publish_workspace"
+  publish_repo_path: "{root}/../publish_tables_to_webapp"
+
+steps:
+  compress:
+    repo: "compress"
+    command:
+      - "{python}"
+      - "process_tsv.py"
+      - "{input_file}"
+      - "--output-dir"
+      - "{compress_output_root}"
+      - "--field-profile"
+      - "{root}/configs/compress-field-profile.yaml"
+      - "--check-atom"
+    check_exists:
+      - "{all_non_pickup_tsv}"
+      - "{all_pickup_tsv}"
+      - "{tm_non_pickup_tsv}"
+      - "{tm_pickup_tsv}"
+      - "{hnt_non_pickup_tsv}"
+      - "{hnt_pickup_tsv}"
+
+  atom_validate:
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/validate_atom_checks.py"
+      - "--root"
+      - "{compress_output_root}"
+
+  user_size_template:
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/build_user_size_templates.py"
+      - "--case-name"
+      - "{case_name}"
+      - "--compress-root"
+      - "{compress_output_root}"
+      - "--output-dir"
+      - "{user_size_dir}"
+      - "--template"
+      - "{user_size_template}"
+      - "--non-pickup-table-name"
+      - "{user_size_non_pickup_table_name}"
+      - "--pickup-table-name"
+      - "{user_size_pickup_table_name}"
+    check_exists:
+      - "{all_user_size_workbook}"
+      - "{tm_user_size_workbook}"
+      - "{hnt_user_size_workbook}"
+    pause_after: "请打开 {user_size_dir} 里的三个用户尺码模板工作簿，让公式计算用户尺码 SIZE，并按需人工调整后保存。保存完成再按 Enter 继续生成 HTML。"
+
+  user_size_validate:
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/validate_user_size_templates.py"
+      - "{all_user_size_workbook}"
+      - "{tm_user_size_workbook}"
+      - "{hnt_user_size_workbook}"
+
+  inplace_table:
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/export_all_user_size_tables.py"
+      - "--workbook-dir"
+      - "{user_size_dir}"
+      - "--output-root"
+      - "{user_size_export_dir}"
+    check_exists:
+      - "{all_user_non_pickup_tsv}"
+      - "{all_user_pickup_tsv}"
+      - "{tm_user_non_pickup_tsv}"
+      - "{tm_user_pickup_tsv}"
+      - "{hnt_user_non_pickup_tsv}"
+      - "{hnt_user_pickup_tsv}"
+
+  get_html:
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/generate_all_html.py"
+      - "--export-root"
+      - "{user_size_export_dir}"
+      - "--output-root"
+      - "{html_output_dir}"
+      - "--config-path"
+      - "{root}/configs/html-user-size-preference.yaml"
+      - "--html-script"
+      - "{root}/../generate_size_chart_html/tsv_to_size_chart_html.py"
+    check_exists:
+      - "{html_output_dir}/ALL/nonpick/output_001.html"
+      - "{html_output_dir}/ALL/nonpick/size-chart.css"
+      - "{html_output_dir}/ALL/pick/output_001.html"
+      - "{html_output_dir}/ALL/pick/size-chart.css"
+      - "{html_output_dir}/TM/nonpick/output_001.html"
+      - "{html_output_dir}/TM/nonpick/size-chart.css"
+      - "{html_output_dir}/TM/pick/output_001.html"
+      - "{html_output_dir}/TM/pick/size-chart.css"
+      - "{html_output_dir}/HNT/nonpick/output_001.html"
+      - "{html_output_dir}/HNT/nonpick/size-chart.css"
+      - "{html_output_dir}/HNT/pick/output_001.html"
+      - "{html_output_dir}/HNT/pick/size-chart.css"
+    pause_after: "请检查 {html_output_dir}。如需人工修改，请直接覆盖该目录内 HTML/CSS 后继续。"
+
+  publish:
+    repo: "pipeline"
+    command:
+      - "{python}"
+      - "tools/build_publish_site.py"
+      - "--publish-repo"
+      - "{publish_repo_path}"
+      - "--html-root"
+      - "{html_output_dir}"
+      - "--xlsx-source"
+      - "{input_file}"
+      - "--workspace"
+      - "{publish_workspace}"
+      - "--site-output"
+      - "{output_dir}/site"
+    check_exists:
+      - "{output_dir}/site/index.html"
+      - "{output_dir}/site/size-chart.html"
+      - "{output_dir}/site/size-match.html"
+      - "{output_dir}/site/data/source/html/TM/nonpick/output_001.html"

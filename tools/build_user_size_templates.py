@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import argparse
 import csv
+from collections import defaultdict, deque
 from copy import copy
 from pathlib import Path
 
 from openpyxl import load_workbook
+from openpyxl.formula.translate import Translator
 from openpyxl.worksheet.formula import ArrayFormula
 from openpyxl.worksheet.table import Table
 
@@ -50,6 +52,41 @@ def copy_cell_template(source, target) -> None:
         target.value = copy(source.value)
 
 
+def cell_snapshot(cell) -> dict[str, object]:
+    value: object
+    if isinstance(cell.value, ArrayFormula):
+        value = ("array_formula", cell.value.text)
+    else:
+        value = copy(cell.value)
+    return {
+        "value": value,
+        "coordinate": cell.coordinate,
+        "style": copy(cell._style),
+        "hyperlink": copy(cell.hyperlink),
+        "comment": copy(cell.comment),
+    }
+
+
+def apply_cell_snapshot(snapshot: dict[str, object], target) -> None:
+    target._style = copy(snapshot["style"])
+    target.hyperlink = copy(snapshot["hyperlink"])
+    target.comment = copy(snapshot["comment"])
+    value = snapshot["value"]
+    if isinstance(value, tuple) and value[0] == "array_formula":
+        target.value = ArrayFormula(target.coordinate, value[1])
+    elif isinstance(value, str) and value.startswith("="):
+        target.value = Translator(value, origin=str(snapshot["coordinate"])).translate_formula(target.coordinate)
+    else:
+        target.value = copy(value)
+
+
+def snapshot_is_formula(snapshot: dict[str, object]) -> bool:
+    value = snapshot["value"]
+    return (isinstance(value, tuple) and value[0] == "array_formula") or (
+        isinstance(value, str) and value.startswith("=")
+    )
+
+
 def reset_sheet_to_template_rows(sheet) -> None:
     if sheet.max_row > DATA_ROW:
         sheet.delete_rows(DATA_ROW + 1, sheet.max_row - DATA_ROW)
@@ -82,6 +119,104 @@ def write_rows(sheet, rows: list[dict[str, str]], value_columns: set[str]) -> No
                 target.value = row.get(header, "")
 
     expand_table(sheet, len(rows))
+
+
+def normalize_key_value(value: object) -> str:
+    if value is None:
+        return ""
+    return str(value).replace("\u00a0", " ").replace("\u200b", "").strip()
+
+
+def sync_rows(sheet, template_sheet, rows: list[dict[str, str]], value_columns: set[str]) -> dict[str, int]:
+    headers = sheet_headers(sheet)
+    template_headers = sheet_headers(template_sheet)
+    if headers != template_headers:
+        raise ValueError(f"Sheet '{sheet.title}' headers do not match the current template.")
+
+    key_headers = [header for header in headers if header in value_columns]
+    existing: dict[tuple[str, ...], deque[list[dict[str, object]]]] = defaultdict(deque)
+    for row_index in range(DATA_ROW, sheet.max_row + 1):
+        key = tuple(normalize_key_value(sheet.cell(row_index, headers.index(header) + 1).value) for header in key_headers)
+        snapshots = [cell_snapshot(sheet.cell(row_index, column)) for column in range(1, len(headers) + 1)]
+        existing[key].append(snapshots)
+
+    template_snapshots = [cell_snapshot(template_sheet.cell(DATA_ROW, column)) for column in range(1, len(headers) + 1)]
+    if sheet.max_row >= DATA_ROW:
+        sheet.delete_rows(DATA_ROW, sheet.max_row - DATA_ROW + 1)
+
+    preserved = 0
+    added = 0
+    formula_cells_refreshed = 0
+    for row_index, row in enumerate(rows, start=DATA_ROW):
+        key = tuple(normalize_key_value(row.get(header, "")) for header in key_headers)
+        if existing[key]:
+            snapshots = existing[key].popleft()
+            preserved += 1
+            matched_existing = True
+        else:
+            snapshots = template_snapshots
+            added += 1
+            matched_existing = False
+
+        for column_index, (header, existing_snapshot, template_snapshot) in enumerate(
+            zip(headers, snapshots, template_snapshots),
+            start=1,
+        ):
+            snapshot = existing_snapshot
+            if matched_existing and snapshot_is_formula(template_snapshot):
+                is_manual_size = (
+                    header == "SIZE"
+                    and not snapshot_is_formula(existing_snapshot)
+                    and bool(normalize_key_value(existing_snapshot["value"]))
+                )
+                if not is_manual_size:
+                    snapshot = template_snapshot
+                    formula_cells_refreshed += 1
+            target = sheet.cell(row_index, column_index)
+            apply_cell_snapshot(snapshot, target)
+            if header in value_columns:
+                target.value = row.get(header, "")
+
+    removed = sum(len(items) for items in existing.values())
+    expand_table(sheet, len(rows))
+    return {
+        "preserved": preserved,
+        "added": added,
+        "removed": removed,
+        "formula_cells_refreshed": formula_cells_refreshed,
+    }
+
+
+def sync_store_workbook(
+    *,
+    output_path: Path,
+    template_path: Path,
+    non_pickup_data: list[dict[str, str]],
+    pickup_data: list[dict[str, str]],
+) -> None:
+    workbook = load_workbook(output_path, data_only=False)
+    template = load_workbook(template_path, data_only=False)
+    try:
+        non_pickup_stats = sync_rows(
+            workbook[NON_PICKUP_SHEET],
+            template[NON_PICKUP_SHEET],
+            non_pickup_data,
+            {"店铺", "CAR", "MAKE", "MODEL", "YEAR", "VERSION", "CONST", "BACKSIZE"},
+        )
+        pickup_stats = sync_rows(
+            workbook[PICKUP_SHEET],
+            template[PICKUP_SHEET],
+            pickup_data,
+            {"店铺", "MAKE", "MODEL", "YEAR", "VERSION", "CAB", "BED", "BACKSIZE"},
+        )
+        workbook.save(output_path)
+    finally:
+        workbook.close()
+        template.close()
+    print(
+        f"Synced existing workbook: {output_path} | "
+        f"non-pickup={non_pickup_stats} | pickup={pickup_stats}"
+    )
 
 
 def non_pickup_rows(rows: list[dict[str, str]], store: str) -> list[dict[str, str]]:
@@ -126,6 +261,7 @@ def build_store_workbook(
     non_pickup_table_name: str,
     pickup_table_name: str,
     overwrite: bool,
+    sync_existing: bool,
 ) -> Path:
     stem = f"{case_name}_{STORE_STEMS[store]}"
     compress_dir = compress_root / stem / "compress"
@@ -134,8 +270,18 @@ def build_store_workbook(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / f"{store}_用户尺码模板.xlsx"
+    non_pickup_data = non_pickup_rows(read_tsv(non_pickup_path), store)
+    pickup_data = pickup_rows(read_tsv(pickup_path), store)
     if output_path.exists() and not overwrite:
         if is_compatible_existing_workbook(output_path):
+            if sync_existing:
+                sync_store_workbook(
+                    output_path=output_path,
+                    template_path=template_path,
+                    non_pickup_data=non_pickup_data,
+                    pickup_data=pickup_data,
+                )
+                return output_path
             print(f"Template already exists, keep manual edits: {output_path}")
             return output_path
         print(f"Existing workbook is not based on current template, regenerate: {output_path}")
@@ -143,12 +289,12 @@ def build_store_workbook(
     workbook = load_workbook(template_path, data_only=False)
     write_rows(
         workbook[NON_PICKUP_SHEET],
-        non_pickup_rows(read_tsv(non_pickup_path), store),
+        non_pickup_data,
         {"店铺", "CAR", "MAKE", "MODEL", "YEAR", "VERSION", "CONST", "BACKSIZE"},
     )
     write_rows(
         workbook[PICKUP_SHEET],
-        pickup_rows(read_tsv(pickup_path), store),
+        pickup_data,
         {"店铺", "MAKE", "MODEL", "YEAR", "VERSION", "CAB", "BED", "BACKSIZE"},
     )
     workbook.save(output_path)
@@ -160,23 +306,26 @@ def is_compatible_existing_workbook(path: Path) -> bool:
         workbook = load_workbook(path, read_only=False, data_only=False)
     except Exception:
         return False
-    required_sheets = {
-        "ref-ALL尺码表",
-        "排序规则",
-        "皮卡前台名",
-        "MODEL缩写",
-        "TYPE缩写",
-        "CAB缩写",
-        NON_PICKUP_SHEET,
-        PICKUP_SHEET,
-    }
-    if not required_sheets.issubset(set(workbook.sheetnames)):
-        return False
-    for sheet_name in [NON_PICKUP_SHEET, PICKUP_SHEET]:
-        sheet = workbook[sheet_name]
-        if sheet_name not in sheet.tables:
+    try:
+        required_sheets = {
+            "ref-ALL尺码表",
+            "排序规则",
+            "皮卡前台名",
+            "MODEL缩写",
+            "TYPE缩写",
+            "CAB缩写",
+            NON_PICKUP_SHEET,
+            PICKUP_SHEET,
+        }
+        if not required_sheets.issubset(set(workbook.sheetnames)):
             return False
-    return True
+        for sheet_name in [NON_PICKUP_SHEET, PICKUP_SHEET]:
+            sheet = workbook[sheet_name]
+            if sheet_name not in sheet.tables:
+                return False
+        return True
+    finally:
+        workbook.close()
 
 
 def parse_args() -> argparse.Namespace:
@@ -188,6 +337,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--non-pickup-table-name", default="非皮卡高度压缩表")
     parser.add_argument("--pickup-table-name", default="皮卡高度压缩表")
     parser.add_argument("--overwrite", action="store_true", help="Overwrite existing middle workbooks.")
+    parser.add_argument(
+        "--sync-existing",
+        action="store_true",
+        help="Reconcile compressed rows while preserving unchanged rows and manual SIZE edits.",
+    )
     return parser.parse_args()
 
 
@@ -203,6 +357,7 @@ def main() -> None:
             non_pickup_table_name=args.non_pickup_table_name,
             pickup_table_name=args.pickup_table_name,
             overwrite=args.overwrite,
+            sync_existing=args.sync_existing,
         )
         print(f"Template ready: {output_path}")
     print("请用 Excel/WPS 打开每个工作簿，确认公式计算出的用户尺码 SIZE 后保存；需要时可人工调整模板表。")

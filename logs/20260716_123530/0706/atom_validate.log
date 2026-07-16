@@ -1,0 +1,7 @@
+cwd: D:\Home\Scripts\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/validate_incremental_atom_scope.py --incremental-root D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_123530\incremental_atom_check --full-root D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_123530\data\middle\01_compress --compress-repo D:\Home\Scripts\compress_to_size_chart
+
+[ALL尺码匹配] 新增原子=4，组合键作用域=4，历史重叠原子=0
+[TM尺码匹配] 新增原子=4，组合键作用域=4，历史重叠原子=0
+[HNT尺码匹配] 新增原子=4，组合键作用域=4，历史重叠原子=0
+增量原子核验通过：作用域 12 条，其中历史重叠 0 条。

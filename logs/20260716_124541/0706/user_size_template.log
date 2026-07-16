@@ -1,0 +1,10 @@
+cwd: D:\Home\Scripts\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/build_user_size_templates.py --case-name 0706 --compress-root D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_124541\data\middle\01_compress --output-dir D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_124541\data\middle\02_user_size_workbooks --template D:\Home\Scripts\pipeline_carstable_to_webapp\data\template\尺码适配表.xlsx --non-pickup-table-name 非皮卡高度压缩表 --pickup-table-name 皮卡高度压缩表 --sync-existing
+
+Synced existing workbook: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_124541\data\middle\02_user_size_workbooks\ALL_用户尺码模板.xlsx | non-pickup={'preserved': 1378, 'added': 0, 'removed': 0} | pickup={'preserved': 147, 'added': 1, 'removed': 0}
+Template ready: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_124541\data\middle\02_user_size_workbooks\ALL_用户尺码模板.xlsx
+Synced existing workbook: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_124541\data\middle\02_user_size_workbooks\TM_用户尺码模板.xlsx | non-pickup={'preserved': 1306, 'added': 0, 'removed': 0} | pickup={'preserved': 147, 'added': 1, 'removed': 0}
+Template ready: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_124541\data\middle\02_user_size_workbooks\TM_用户尺码模板.xlsx
+Synced existing workbook: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_124541\data\middle\02_user_size_workbooks\HNT_用户尺码模板.xlsx | non-pickup={'preserved': 1282, 'added': 0, 'removed': 0} | pickup={'preserved': 135, 'added': 1, 'removed': 0}
+Template ready: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_124541\data\middle\02_user_size_workbooks\HNT_用户尺码模板.xlsx
+请用 Excel/WPS 打开每个工作簿，确认公式计算出的用户尺码 SIZE 后保存；需要时可人工调整模板表。

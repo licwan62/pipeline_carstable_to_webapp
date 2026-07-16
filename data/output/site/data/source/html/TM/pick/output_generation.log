@@ -1,0 +1,57 @@
+Size chart generation log
+Generated at: 2026-07-16T13:06:03
+Config: D:\Home\Scripts\pipeline_carstable_to_webapp\configs\html-user-size-preference.yaml
+Output directory: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_130519\data\middle\04_html\TM\pick
+CSS: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_130519\data\middle\04_html\TM\pick\size-chart.css
+Pages: 1
+Table chunks: 29
+Unique titles: 27
+Page table chunks: 29
+
+Inputs:
+- D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_130519\data\middle\03_user_size_exports\TM\pickup.tsv
+  Sheet: 皮卡压缩表
+  Profile: pickup
+  Rows after filtering: 135
+  Titles: 27
+  Brand column: TITLE
+  Stripe column: CAB
+  Table columns: YEAR, CAB, BED, SIZE
+  Store column: 店铺
+  Store value: (all)
+
+Logo settings:
+Enabled: True
+Directory: D:\Home\Scripts\generate_size_chart_html\img_logos
+Logo files indexed: 49
+Matched titles: 27
+Missing titles: 0
+
+Logo matches:
+- MATCH: Cadillac Escalade EXT -> img_logos/Cadillac.png
+- MATCH: Chevrolet C/K -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Colorado -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 1500 -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 2500HD/3500HD -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado EV -> img_logos/Chevrolet.png
+- MATCH: Dodge Dakota -> img_logos/Dodge.png
+- MATCH: Ford F-150 -> img_logos/Ford.png
+- MATCH: Ford Maverick -> img_logos/Ford.png
+- MATCH: Ford Ranger -> img_logos/Ford.png
+- MATCH: Ford Explorer Sport Trac -> img_logos/Ford.png
+- MATCH: Ford F-250/F-350 Super Duty -> img_logos/Ford.png
+- MATCH: GMC Canyon -> img_logos/GMC.png
+- MATCH: GMC Sierra 1500/2500HD/3500HD -> img_logos/GMC.png
+- MATCH: GMC Sierra EV -> img_logos/GMC.png
+- MATCH: Honda Ridgeline -> img_logos/Honda.png
+- MATCH: Hyundai Hyundai Santa Cruz -> img_logos/Hyundai.png
+- MATCH: Ineos Automotive Grenadier -> img_logos/Ineos.png
+- MATCH: Jeep Gladiator -> img_logos/Jeep.png
+- MATCH: Nissan Frontier -> img_logos/Nissan.png
+- MATCH: Ram 1500 -> img_logos/Ram.png
+- MATCH: Ram 2500/3500 -> img_logos/Ram.png
+- MATCH: Ram 1500 Classic -> img_logos/Ram.png
+- MATCH: Rivian R1T -> img_logos/RIVIAN.png
+- MATCH: Toyota Tacoma -> img_logos/Toyota.png
+- MATCH: Toyota Tundra -> img_logos/Toyota.png
+- MATCH: Chevrolet Suburban -> img_logos/Chevrolet.png

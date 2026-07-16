@@ -1,0 +1,39 @@
+cwd: D:\Home\Scripts\compress_to_size_chart
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe process_tsv.py D:\Home\Scripts\pipeline_carstable_to_webapp\data\input\0716_incr.xlsx --output-dir D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check --field-profile D:\Home\Scripts\pipeline_carstable_to_webapp\configs\compress-field-profile.yaml --check-atom --no-progress
+
+读取工作表: ALL尺码匹配 (2 rows)
+读取工作表: TM尺码匹配 (2 rows)
+读取工作表: HNT尺码匹配 (2 rows)
+
+处理工作表 1/3: ALL尺码匹配
+写入完成
+Input table: ALL尺码匹配
+Output dir: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_ALL尺码匹配
+Pickup lossless TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_ALL尺码匹配\compress\0716_incr_ALL尺码匹配_皮卡无损压缩.tsv
+Pickup high TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_ALL尺码匹配\compress\0716_incr_ALL尺码匹配_皮卡高度压缩表.tsv
+Log TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_ALL尺码匹配\compress\0716_incr_ALL尺码匹配_压缩log.tsv
+Atom TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_ALL尺码匹配\compress\0716_incr_ALL尺码匹配_原子事实表.tsv
+Pickup atom check TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_ALL尺码匹配\check\0716_incr_ALL尺码匹配_皮卡原子检查.tsv
+Excel: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_ALL尺码匹配\0716_incr_ALL尺码匹配_output.xlsx
+
+处理工作表 2/3: TM尺码匹配
+写入完成
+Input table: TM尺码匹配
+Output dir: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_TM尺码匹配
+Pickup lossless TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_TM尺码匹配\compress\0716_incr_TM尺码匹配_皮卡无损压缩.tsv
+Pickup high TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_TM尺码匹配\compress\0716_incr_TM尺码匹配_皮卡高度压缩表.tsv
+Log TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_TM尺码匹配\compress\0716_incr_TM尺码匹配_压缩log.tsv
+Atom TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_TM尺码匹配\compress\0716_incr_TM尺码匹配_原子事实表.tsv
+Pickup atom check TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_TM尺码匹配\check\0716_incr_TM尺码匹配_皮卡原子检查.tsv
+Excel: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_TM尺码匹配\0716_incr_TM尺码匹配_output.xlsx
+
+处理工作表 3/3: HNT尺码匹配
+写入完成
+Input table: HNT尺码匹配
+Output dir: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_HNT尺码匹配
+Pickup lossless TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_HNT尺码匹配\compress\0716_incr_HNT尺码匹配_皮卡无损压缩.tsv
+Pickup high TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_HNT尺码匹配\compress\0716_incr_HNT尺码匹配_皮卡高度压缩表.tsv
+Log TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_HNT尺码匹配\compress\0716_incr_HNT尺码匹配_压缩log.tsv
+Atom TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_HNT尺码匹配\compress\0716_incr_HNT尺码匹配_原子事实表.tsv
+Pickup atom check TSV: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_HNT尺码匹配\check\0716_incr_HNT尺码匹配_皮卡原子检查.tsv
+Excel: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_125044\incremental_atom_check\0716_incr_HNT尺码匹配\0716_incr_HNT尺码匹配_output.xlsx

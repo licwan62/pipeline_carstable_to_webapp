@@ -1,0 +1,6 @@
+/bak/
+/.restore-stage-*/
+/.restore-rollback-*/
+__pycache__/
+*.py[cod]
+/work/

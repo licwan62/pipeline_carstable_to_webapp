@@ -1,0 +1,12 @@
+cwd: D:\Home\Scripts\compress_to_size_chart
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe process_tsv.py D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_120333\data\input\0706.xlsx --output-dir D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_120333\data\middle\01_compress --field-profile D:\Home\Scripts\pipeline_carstable_to_webapp/configs/compress-field-profile.yaml
+
+读取工作表: ALL尺码匹配 (4424 rows)
+读取工作表: TM尺码匹配 (4424 rows)
+读取工作表: HNT尺码匹配 (4424 rows)
+
+处理工作表 1/3: ALL尺码匹配
+[进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/650 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡高度压缩 | MAKE=Buick | MODEL=LeSabre | 已完成MODEL=87/650 | 合并项数量=61 | 尝试次数=90 | 用时=10s
+[进度] 非皮卡高度压缩 | MAKE=Buick | MODEL=LeSabre | 已完成MODEL=87/650 | 合并项数量=66 | 尝试次数=177 | 用时=20s
+[进度] 非皮卡高度压缩 | MAKE=Cadillac | MODEL=ELR | 已完成MODEL=108/650 | 合并项数量=88 | 尝试次数=260 | 用时=30s

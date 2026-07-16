@@ -1,0 +1,4 @@
+cwd: D:\Home\Scripts\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/validate_atom_checks.py --root D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_124541\incremental_atom_check
+
+原子核验通过：12 行全部为 OK。
