@@ -179,6 +179,7 @@ user_size_template
 user_size_validate
 inplace_table
 get_html
+export_images
 publish
 ```
 
@@ -202,14 +203,20 @@ python run_all.py --case . --from-step inplace_table --to-step inplace_table
 
 ## 默认流程
 
-1. `compress`：调用 `compress_to_size_chart/process_tsv.py`，读取输入 Excel 的尺码匹配工作表，输出压缩 TSV 和原子检查表到 `data/middle/01_compress/`。
-2. `atom_validate`：确认所有原子检查结果均为 `OK`，发现未命中、重复命中或尺码不一致时立即停止。
-3. `user_size_template`：基于 `data/template/尺码适配表.xlsx` 生成三个中间工作簿到 `data/middle/02_user_size_workbooks/`。
-4. 人工打开中间工作簿，让模板公式计算用户展示尺码 `SIZE`，按需调整后保存。
-5. `user_size_validate`：校验三个中间工作簿结构是否完整。
-6. `inplace_table`：把 ALL/TM/HNT 中间工作簿导出成 HTML 专用 TSV，并过滤 `SIZE` 空白或 `无可用尺码` 的行。
-7. `get_html`：分别生成 ALL/TM/HNT HTML。
-8. `publish`：在本项目的 `05_publish_workspace` 中临时复刻 webapp 构建结构，借用 `publish_tables_to_webapp/tools/build_site.py` 构建，并输出到 `data/output/site/`。
+1. `compress`：调用 `compress_to_size_chart/process_tsv.py`，读取输入 Excel 的尺码匹配工作表，输出压缩 TSV 到 `data/middle/<任务名>/01_compress/`。
+2. `user_size_template`：基于 `data/template/尺码适配表.xlsx` 生成一个合并的中间工作簿到 `data/middle/<任务名>/02_user_size_workbooks/`，ALL/TM/HNT 由“店铺”列区分。
+3. 人工打开该中间工作簿，让模板公式计算用户展示尺码 `SIZE`，按需调整后保存。
+4. `user_size_validate`：校验中间工作簿结构是否完整。
+5. `inplace_table`：按“店铺”列把合并工作簿导出为 ALL/TM/HNT 三组 HTML 专用 TSV，并过滤 `SIZE` 空白或 `无可用尺码` 的行。
+6. `get_html`：分别生成 ALL/TM/HNT HTML。
+7. `export_images`：递归截图 `04_html` 中的 `output_*.html`，输出 JPG 到 `data/output/<任务名>/images/`，并保留 ALL/TM/HNT 与 nonpick/pick 目录层级。
+8. `publish`：在本项目的 `05_publish_workspace` 中临时复刻 webapp 构建结构，借用 `publish_tables_to_webapp/tools/build_site.py` 构建，并输出到 `data/output/<任务名>/site/`。
+
+`get_html` 的非皮卡表会固定 `YEAR` 列宽；当 `MODEL / TYPE` 文字溢出时，只在这两列之间重新分配宽度，再缩小单元格字体。`YEAR` 固定宽度由 `configs/html-user-size-preference.yaml` 中的 `nonpick_year_col_width` 设置，动态列的最小比例由 `nonpick_model_col_min_ratio` 和 `nonpick_type_col_min_ratio` 设置。
+
+`user_size_template` 写入的店铺、车型、年份、版本、结构、尺码等源数据全部强制为 Excel 文本类型和 `@` 文本格式；复用已有中间工作簿时也会修正这些源数据列，同时保留人工内容。`user_size_validate` 会拒绝包含数字、日期或非文本单元格格式的源数据列，`inplace_table` 导出的所有 TSV 字段会再次统一转换为字符串。
+
+如需让某一个店铺在 `get_html` 阶段显示 `BACKSIZE`、其他店铺仍显示 `SIZE`，在 `configs/html-user-size-preference.yaml` 中设置 `special_store_value`，并通过 `special_store_non_pickup_size_column` 和 `special_store_pickup_size_column` 指定特殊源列。留空表示关闭特殊店铺覆盖。
 
 ## 配置文件
 
@@ -333,13 +340,28 @@ data/template/尺码适配表.xlsx
 ## 输出位置
 
 ```text
-data/middle/01_compress/             压缩 TSV 和压缩工作簿
-data/middle/02_user_size_workbooks/ 用户尺码中间工作簿
-data/middle/03_user_size_exports/   HTML 专用 TSV
-data/middle/04_html/                生成的 HTML/CSS，目录结构为 ALL/TM/HNT + nonpick/pick
-data/middle/05_publish_workspace/   临时 webapp 构建工作区
-data/output/site/                   最终静态站点
+data/middle/<任务名>/01_compress/              压缩 TSV 和压缩工作簿
+data/middle/<任务名>/02_user_size_workbooks/  用户尺码中间工作簿
+data/middle/<任务名>/03_user_size_exports/    HTML 专用 TSV
+data/middle/<任务名>/04_html/                 生成的 HTML/CSS，目录结构为 ALL/TM/HNT + nonpick/pick
+data/middle/<任务名>/05_publish_workspace/   临时 webapp 构建工作区
+data/output/<任务名>/site/                    最终静态站点
 logs/<运行时间>/<任务名>/                     每步日志
+```
+
+只导出某个任务的图片可运行：
+
+```powershell
+python run_all.py --case 0727 --from-step export_images --to-step export_images
+```
+
+也可以直接调用脚本；下面的命令会递归处理 HTML 并保留目录层级：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/Export-HtmlPagesToImages.ps1 `
+  -InputDir data/middle/0727/04_html `
+  -OutputDir data/output/0727/images `
+  -HtmlPattern "output_*.html"
 ```
 
 发布时 `data/middle/04_html/ALL/TM/HNT` 会复制到本项目的 `data/middle/05_publish_workspace/data/source/html/`，不会写入 `publish_tables_to_webapp/data/source/html/`。目录要保持 `TM/nonpick/output_001.html`、`TM/pick/output_001.html` 这类结构，否则旧页面清单或缓存页面可能请求不到文件。

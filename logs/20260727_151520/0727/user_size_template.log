@@ -1,0 +1,6 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/build_user_size_templates.py --case-name 0727 --compress-root D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\01_compress --output D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\02_user_size_workbooks\0727_用户尺码模板.xlsx --template D:\Licheng\Repo\pipeline_carstable_to_webapp\data\template\尺码适配表.xlsx --non-pickup-table-name 非皮卡高度压缩表 --pickup-table-name 皮卡高度压缩表
+
+Template already exists, keep manual edits: D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\02_user_size_workbooks\0727_用户尺码模板.xlsx
+Template ready: D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\02_user_size_workbooks\0727_用户尺码模板.xlsx
+请用 Excel/WPS 打开该工作簿，确认公式计算出的用户尺码 SIZE 后保存；需要时可人工调整模板表。

@@ -1,0 +1,9 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/export_all_user_size_tables.py --workbook D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\02_user_size_workbooks\0727_用户尺码模板.xlsx --output-root D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\03_user_size_exports
+
+Exported 1148 non-pickup row(s), 144 pickup row(s): D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\03_user_size_exports\ALL
+Exported 1216 non-pickup row(s), 144 pickup row(s): D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\03_user_size_exports\TM
+Exported 1156 non-pickup row(s), 124 pickup row(s): D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\03_user_size_exports\HNT
+[ALL] C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\export_user_size_tables.py --workbook D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\02_user_size_workbooks\0727_鐢ㄦ埛灏虹爜妯℃澘.xlsx --output-dir D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\03_user_size_exports\ALL --store ALL
+[TM] C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\export_user_size_tables.py --workbook D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\02_user_size_workbooks\0727_鐢ㄦ埛灏虹爜妯℃澘.xlsx --output-dir D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\03_user_size_exports\TM --store TM
+[HNT] C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\export_user_size_tables.py --workbook D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\02_user_size_workbooks\0727_鐢ㄦ埛灏虹爜妯℃澘.xlsx --output-dir D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\03_user_size_exports\HNT --store HNT

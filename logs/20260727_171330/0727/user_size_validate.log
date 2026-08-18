@@ -1,0 +1,4 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/validate_user_size_templates.py D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\02_user_size_workbooks\0727_用户尺码模板.xlsx
+
+鐢ㄦ埛灏虹爜妯℃澘鏍￠獙閫氳繃銆�

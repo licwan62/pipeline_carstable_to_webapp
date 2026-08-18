@@ -1,0 +1,14 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/validate_user_size_templates.py D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\02_user_size_workbooks\0727_用户尺码模板.xlsx
+
+Traceback (most recent call last):
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\validate_user_size_templates.py", line 111, in <module>
+    main()
+    ~~~~^^
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\validate_user_size_templates.py", line 99, in main
+    errors.extend(validate_workbook(workbook))
+                  ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\validate_user_size_templates.py", line 78, in validate_workbook
+    cell_errors.append(f"{cell.coordinate}({column_name}: {', '.join(reasons)})")
+                          ^^^^^^^^^^^^^^^
+AttributeError: 'EmptyCell' object has no attribute 'coordinate'

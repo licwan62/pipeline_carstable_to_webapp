@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import copy
 import datetime as dt
+import locale
 import shutil
 import subprocess
 import sys
@@ -201,7 +202,7 @@ def run_step(
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
-            encoding="utf-8",
+            encoding=locale.getpreferredencoding(False),
             errors="replace",
         )
 

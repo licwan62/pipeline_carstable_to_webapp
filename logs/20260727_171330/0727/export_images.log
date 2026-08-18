@@ -1,0 +1,21 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: powershell.exe -NoProfile -ExecutionPolicy Bypass -File D:\Licheng\Repo\pipeline_carstable_to_webapp/tools/Export-HtmlPagesToImages.ps1 -InputDir D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\0727\04_html -OutputDir D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images -HtmlPattern output_*.html -Format jpg
+
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\ALL\nonpick\output_001.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\ALL\nonpick\output_002.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\ALL\nonpick\output_003.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\ALL\nonpick\output_004.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\ALL\nonpick\output_005.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\ALL\pick\output_001.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\HNT\nonpick\output_001.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\HNT\nonpick\output_002.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\HNT\nonpick\output_003.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\HNT\nonpick\output_004.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\HNT\nonpick\output_005.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\HNT\pick\output_001.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\TM\nonpick\output_001.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\TM\nonpick\output_002.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\TM\nonpick\output_003.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\TM\nonpick\output_004.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\TM\nonpick\output_005.jpg
+Wrote D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\0727\images\TM\pick\output_001.jpg

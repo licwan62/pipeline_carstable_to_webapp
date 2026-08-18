@@ -1,5 +1,6 @@
 {
     "powerquery.client.additionalSymbolsDirectories": [
-        "d:/Home/Scripts/pipeline_carstable_to_webapp/.vscode/excel-pq-symbols"
+        "d:/Home/Scripts/pipeline_carstable_to_webapp/.vscode/excel-pq-symbols",
+        "d:/Licheng/Repo/pipeline_carstable_to_webapp/.vscode/excel-pq-symbols"
     ]
 }

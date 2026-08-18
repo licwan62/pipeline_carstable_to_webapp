@@ -38,13 +38,13 @@ def table_records(workbook, sheet_name: str, table_name: str) -> list[dict[str, 
     return records
 
 
-def sheet_records(workbook, sheet_name: str) -> list[dict[str, str]]:
+def sheet_records(workbook, sheet_name: str, store: str | None = None) -> list[dict[str, str]]:
     sheet = workbook[sheet_name]
     headers = [clean(cell.value) for cell in sheet[1]]
     records: list[dict[str, str]] = []
     for row in sheet.iter_rows(min_row=2, values_only=True):
         record = {header: clean(value) for header, value in zip(headers, row) if header}
-        if any(record.values()):
+        if any(record.values()) and (store is None or record.get("店铺") == store):
             records.append(record)
     return records
 
@@ -134,11 +134,11 @@ def pickup_title(row: dict[str, str], title_rows: list[dict[str, str]]) -> tuple
     return f"{make} {model}".strip(), ""
 
 
-def export_non_pickup(workbook, output_path: Path) -> int:
+def export_non_pickup(workbook, output_path: Path, store: str | None = None) -> int:
     size_map, category_map = build_size_maps(workbook)
     model_map = build_simple_map(workbook, "MODEL缩写", "MODEL缩写表", "长MODEL", "短MODEL")
     type_rows, word_map = build_type_rows(workbook)
-    rows = sheet_records(workbook, NON_PICKUP_SHEET)
+    rows = sheet_records(workbook, NON_PICKUP_SHEET, store)
 
     const_sets: dict[str, set[str]] = {}
     for row in rows:
@@ -177,11 +177,11 @@ def export_non_pickup(workbook, output_path: Path) -> int:
     return len(output_rows)
 
 
-def export_pickup(workbook, output_path: Path) -> int:
+def export_pickup(workbook, output_path: Path, store: str | None = None) -> int:
     size_map, _category_map = build_size_maps(workbook)
     cab_map = build_simple_map(workbook, "CAB缩写", "CAB缩写表", "LONG-CAB", "SHORT-CAB")
     title_rows = build_pickup_title_rows(workbook)
-    rows = sheet_records(workbook, PICKUP_SHEET)
+    rows = sheet_records(workbook, PICKUP_SHEET, store)
 
     output_rows: list[dict[str, str]] = []
     for row in rows:
@@ -210,27 +210,32 @@ def export_pickup(workbook, output_path: Path) -> int:
     return len(output_rows)
 
 
-def write_tsv(path: Path, rows: list[dict[str, str]]) -> None:
+def write_tsv(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    fieldnames = list(rows[0].keys()) if rows else []
+    text_rows = [
+        {clean(key): clean(value) for key, value in row.items()}
+        for row in rows
+    ]
+    fieldnames = list(text_rows[0].keys()) if text_rows else []
     with path.open("w", encoding="utf-8-sig", newline="") as file:
         writer = csv.DictWriter(file, delimiter="\t", fieldnames=fieldnames)
         writer.writeheader()
-        writer.writerows(rows)
+        writer.writerows(text_rows)
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Export calculated user-size workbook tables to TSV for HTML generation.")
     parser.add_argument("--workbook", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
+    parser.add_argument("--store", choices=STORES, help="Only export rows for this store.")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
     workbook = load_workbook(args.workbook, read_only=False, data_only=True)
-    non_pickup_count = export_non_pickup(workbook, args.output_dir / "non_pickup.tsv")
-    pickup_count = export_pickup(workbook, args.output_dir / "pickup.tsv")
+    non_pickup_count = export_non_pickup(workbook, args.output_dir / "non_pickup.tsv", args.store)
+    pickup_count = export_pickup(workbook, args.output_dir / "pickup.tsv", args.store)
     print(f"Exported {non_pickup_count} non-pickup row(s), {pickup_count} pickup row(s): {args.output_dir}")
     if non_pickup_count == 0 and pickup_count == 0:
         raise SystemExit("No usable SIZE rows after filtering blank and 无可用尺码.")
