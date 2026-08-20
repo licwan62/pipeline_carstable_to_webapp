@@ -21,9 +21,9 @@ def read_tsv(path: Path) -> pd.DataFrame:
     return pd.read_csv(path, sep="\t", dtype=str, encoding="utf-8-sig", keep_default_na=False)
 
 
-def dataset_for_path(path: Path) -> str | None:
+def dataset_for_path(path: Path, datasets: tuple[str, ...] = DATASETS) -> str | None:
     text = str(path)
-    return next((dataset for dataset in DATASETS if dataset in text), None)
+    return next((dataset for dataset in datasets if dataset in text), None)
 
 
 def atom_scope_keys(atom_frame: pd.DataFrame) -> set[tuple[str, str, str]]:
@@ -44,16 +44,16 @@ def filter_atoms_by_scope(atom_frame: pd.DataFrame, keys: set[tuple[str, str, st
     return atom_frame.loc[mask].copy().reset_index(drop=True)
 
 
-def atom_files_by_dataset(root: Path) -> dict[str, Path]:
+def atom_files_by_dataset(root: Path, datasets: tuple[str, ...] = DATASETS) -> dict[str, Path]:
     result: dict[str, Path] = {}
     for path in sorted(root.rglob("*_原子事实表.tsv")):
-        dataset = dataset_for_path(path)
+        dataset = dataset_for_path(path, datasets)
         if not dataset:
             continue
         if dataset in result:
             raise ValueError(f"{root} 中存在多份 {dataset} 原子事实表")
         result[dataset] = path
-    missing = [dataset for dataset in DATASETS if dataset not in result]
+    missing = [dataset for dataset in datasets if dataset not in result]
     if missing:
         raise FileNotFoundError(f"{root} 缺少原子事实表: {', '.join(missing)}")
     return result
@@ -64,17 +64,18 @@ def validate_incremental_scope(
     incremental_root: Path,
     full_root: Path,
     compress_repo: Path,
+    datasets: tuple[str, ...] = DATASETS,
 ) -> tuple[int, int, list[str]]:
     sys.path.insert(0, str(compress_repo.resolve()))
     from check_atom import build_atom_check  # type: ignore[import-not-found]
 
-    incremental_atoms = atom_files_by_dataset(incremental_root)
-    full_atoms = atom_files_by_dataset(full_root)
+    incremental_atoms = atom_files_by_dataset(incremental_root, datasets)
+    full_atoms = atom_files_by_dataset(full_root, datasets)
     scoped_count = 0
     overlap_count = 0
     errors: list[str] = []
 
-    for dataset in DATASETS:
+    for dataset in datasets:
         incremental_frame = read_tsv(incremental_atoms[dataset])
         full_frame = read_tsv(full_atoms[dataset])
         keys = atom_scope_keys(incremental_frame)
@@ -135,6 +136,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--incremental-root", type=Path, required=True)
     parser.add_argument("--full-root", type=Path, required=True)
     parser.add_argument("--compress-repo", type=Path, required=True)
+    parser.add_argument("--dataset", action="append", dest="datasets")
     args = parser.parse_args(argv)
 
     try:
@@ -142,6 +144,7 @@ def main(argv: list[str] | None = None) -> int:
             incremental_root=args.incremental_root.resolve(),
             full_root=args.full_root.resolve(),
             compress_repo=args.compress_repo.resolve(),
+            datasets=tuple(args.datasets) if args.datasets else DATASETS,
         )
     except (FileNotFoundError, ValueError, KeyError, OSError) as exc:
         print(f"增量原子核验失败: {exc}", file=sys.stderr)

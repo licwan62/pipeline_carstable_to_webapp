@@ -66,9 +66,13 @@ def merge_tables(base_path: Path, incremental_path: Path, output_path: Path) -> 
     return len(base), len(incremental), len(merged)
 
 
-def merge_compress_outputs(base_root: Path, incremental_root: Path) -> dict[str, dict[str, tuple[int, int, int]]]:
+def merge_compress_outputs(
+    base_root: Path,
+    incremental_root: Path,
+    datasets: tuple[str, ...] = DATASETS,
+) -> dict[str, dict[str, tuple[int, int, int]]]:
     summary: dict[str, dict[str, tuple[int, int, int]]] = {}
-    for dataset in DATASETS:
+    for dataset in datasets:
         base_project = dataset_dir(base_root, dataset)
         incremental_project = dataset_dir(incremental_root, dataset)
         dataset_summary: dict[str, tuple[int, int, int]] = {}

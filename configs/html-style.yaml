@@ -1,4 +1,31 @@
-# HTML 公共视觉样式。两种数据配置通过 extends 引用本文件。
+# HTML 唯一配置：数据列、过滤规则与视觉样式都在这里维护。
+
+title: FIND THE RIGHT SIZE
+subtitle: FOR YOUR CAR COVER
+show_title: false
+exclude_rows: 'SIZE=""; BACKSIZE=无可用尺码'
+
+non_pickup_sheet: 非皮卡压缩表
+non_pickup_store_column: 店铺
+non_pickup_stripe_column: MODEL
+non_pickup_make_column: MAKE
+non_pickup_model_column: SHORT-MODEL,MODEL
+non_pickup_type_column: TYPE
+non_pickup_size_column: SIZE
+
+pickup_sheet: 皮卡压缩表
+pickup_store_column: 店铺
+pickup_brand_column: TITLE
+pickup_title_column: TITLE
+pickup_stripe_column: CAB
+pickup_table_columns: YEAR,CAB,BED,SIZE
+pickup_model_column: SHORT-MODEL,MODEL
+pickup_cab_column: SHORT-CAB,CAB
+pickup_size_column: SIZE
+
+special_store_value: "ALL"
+special_store_non_pickup_size_column: BACKSIZE
+special_store_pickup_size_column: BACKSIZE
 
 # 分页与画布
 profile_page_mode: new-page
@@ -17,7 +44,7 @@ min_rows_per_brand_chunk: 2
 line_height: 1
 table_row_height_px: 30
 brand_height_px: 50
-pickup_brand_height_px: 60px
+pickup_brand_height_px: 50px
 make_padding_y: 5px
 header_height_px: 30
 brand_block_gap_px: 10
@@ -57,6 +84,8 @@ size_align: center
 nonpick_model_col_width: 27%
 nonpick_year_col_width: 25%
 nonpick_type_col_width: 33%
+nonpick_model_col_min_ratio: 18%
+nonpick_type_col_min_ratio: 20%
 nonpick_size_col_width: 15%
 pick_year_col_width: 25%
 pick_cab_col_width: 40%
@@ -71,13 +100,13 @@ make_font_weight: 700
 brand_padding_x: 10px
 brand_title_transform: uppercase
 description_font_family: D-DIN-PRO, Helvetica, sans-serif
-description_font_size: 12px
+description_font_size: 14px
 description_font_weight: 400
 description_margin_top: 2px
 description_text_transform: none
 brand_part_font_size: 18px
 header_font_family: D-DIN-PRO, Helvetica, sans-serif
-header_font_size: 20px
+header_font_size: 18px
 header_font_weight: 600
 header_padding_y: 1px
 header_padding_x: 5px
@@ -109,7 +138,7 @@ type_header_align: center
 pickup_make_font_family: D-DIN-PRO, Helvetica, sans-serif
 pickup_brand_title_align: left
 pickup_description_font_family: D-DIN-PRO, Helvetica, sans-serif
-pickup_description_font_size: 30px
+pickup_description_font_size: 16px
 pickup_description_font_weight: 400
 pickup_description_margin_top: 5px
 

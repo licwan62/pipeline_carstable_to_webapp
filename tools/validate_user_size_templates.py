@@ -8,7 +8,6 @@ from openpyxl.utils import get_column_letter
 
 
 REQUIRED_SHEETS = ["非皮卡压缩表", "皮卡压缩表"]
-REQUIRED_STORES = {"ALL", "TM", "HNT"}
 TEXT_NUMBER_FORMAT = "@"
 TEXT_COLUMNS_BY_SHEET = {
     "非皮卡压缩表": {"店铺", "CAR", "MAKE", "MODEL", "YEAR", "VERSION", "CONST", "BACKSIZE"},
@@ -48,9 +47,8 @@ def validate_workbook(path: Path) -> list[str]:
             )
             if values[0] is not None
         }
-        missing_stores = sorted(REQUIRED_STORES - stores)
-        if missing_stores:
-            errors.append(f"{path} / {sheet_name}: 缺少店铺数据 {', '.join(missing_stores)}")
+        if not stores:
+            errors.append(f"{path} / {sheet_name}: 店铺列没有数据")
 
         text_columns = TEXT_COLUMNS_BY_SHEET[sheet_name]
         text_column_indexes = {

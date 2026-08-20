@@ -10,7 +10,6 @@ from openpyxl.utils.cell import range_boundaries
 
 
 NULL_SIZE = "无可用尺码"
-STORES = ["ALL", "TM", "HNT"]
 NON_PICKUP_SHEET = "非皮卡压缩表"
 PICKUP_SHEET = "皮卡压缩表"
 
@@ -227,7 +226,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Export calculated user-size workbook tables to TSV for HTML generation.")
     parser.add_argument("--workbook", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
-    parser.add_argument("--store", choices=STORES, help="Only export rows for this store.")
+    parser.add_argument("--store", help="Only export rows for this store.")
     return parser.parse_args()
 
 

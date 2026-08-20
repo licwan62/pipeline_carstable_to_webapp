@@ -346,31 +346,29 @@ def execute_case_pipeline(
         pause = step.get("pause_after")
         if pause:
             pause_variables = variables
-            staged_workbook_dir: Path | None = None
+            staged_workbook: Path | None = None
+            manual_workbook: Path | None = None
             if step_name == "user_size_template" and manual_workbook_dir is not None:
-                staged_workbook_dir = Path(variables["user_size_dir"])
-                print(f"[manual-workbooks] {staged_workbook_dir} -> {manual_workbook_dir}")
+                staged_workbook = Path(variables["user_size_workbook"])
+                manual_workbook = manual_workbook_dir / staged_workbook.name
+                print(f"[manual-workbook] {staged_workbook} -> {manual_workbook}")
                 if not dry_run:
                     manual_workbook_dir.mkdir(parents=True, exist_ok=True)
-                    for workbook in staged_workbook_dir.glob("*.xlsx"):
-                        shutil.copy2(workbook, manual_workbook_dir / workbook.name)
+                    shutil.copy2(staged_workbook, manual_workbook)
                 pause_variables = dict(variables)
                 pause_variables["user_size_dir"] = str(manual_workbook_dir)
+                pause_variables["user_size_workbook"] = str(manual_workbook)
             wait_for_manual_check(
                 str(pause),
                 pause_variables,
                 dry_run,
                 require_interactive=require_interactive_checks,
             )
-            if staged_workbook_dir is not None and not dry_run:
-                expected = [manual_workbook_dir / f"{store}_用户尺码模板.xlsx" for store in ("ALL", "TM", "HNT")]
-                missing = [path for path in expected if not path.is_file()]
-                if missing:
-                    missing_text = "\n".join(f"- {path}" for path in missing)
-                    raise FileNotFoundError(f"人工确认目录缺少工作簿:\n{missing_text}")
-                for workbook in expected:
-                    shutil.copy2(workbook, staged_workbook_dir / workbook.name)
-                print(f"[manual-workbooks] saved changes synced back to {staged_workbook_dir}")
+            if staged_workbook is not None and manual_workbook is not None and not dry_run:
+                if not manual_workbook.is_file():
+                    raise FileNotFoundError(f"人工确认目录缺少工作簿: {manual_workbook}")
+                shutil.copy2(manual_workbook, staged_workbook)
+                print(f"[manual-workbook] saved changes synced back to {staged_workbook}")
 
 
 def select_project_data_dir(container: Path, case_name: str, markers: tuple[str, ...]) -> Path:
@@ -542,7 +540,7 @@ def run_incremental(
     print(f"Base project: {base_path}")
     print(f"Case directory: {base_case['project_dir']}")
     print(f"Source middle: {base_case['source_dirs']['middle']}")
-    print(f"User size workbooks: {base_case['source_dirs']['middle'] / '02_user_size_workbooks'}")
+    print(f"User size JSON: {base_case['source_dirs']['middle'] / '02_user_size.json'}")
     print(f"Incremental input: {incremental_path}")
     print(f"Isolated workspace: {stage_root}")
     if dry_run:
@@ -571,9 +569,7 @@ def run_incremental(
                 details = "\n".join(f"- {error}" for error in backup_errors[:20])
                 raise ValueError(f"Base backup verification failed:\n{details}")
 
-        profile = resolve_from_root(
-            config.get("incremental", {}).get("field_profile", "configs/compress-field-profile.yaml")
-        )
+        profile = resolve_from_root("configs/pipeline.yaml")
         compress_repo = resolve_from_root(config["repos"]["compress"])
         increment_log_dir = logs_root / base_case["case_name"]
         increment_log_dir.mkdir(parents=True, exist_ok=True)
@@ -621,11 +617,16 @@ def run_incremental(
                 copied_increment.unlink()
 
         merged_path = staged_dirs["input"] / base_path.name
-        summary = merge_workbooks(base_path, incremental_path, merged_path)
+        input_sheets = tuple(str(sheet) for sheet in config.get("input", {}).get("sheets", []))
+        if not input_sheets:
+            raise ValueError("pipeline config must define input.sheets")
+        summary = merge_workbooks(base_path, incremental_path, merged_path, sheet_names=input_sheets)
         for sheet_name, counts in summary.items():
             print(f"[merge] {sheet_name}: added={counts['appended']} duplicate={counts['duplicates']}")
 
-        compress_merge_summary = merge_compress_outputs(staged_dirs["middle"] / "01_compress", check_root)
+        compress_merge_summary = merge_compress_outputs(
+            staged_dirs["middle"] / "01_compress", check_root, datasets=input_sheets
+        )
         for dataset, tables in compress_merge_summary.items():
             atom_counts = tables["原子事实表.tsv"]
             print(
@@ -638,6 +639,7 @@ def run_incremental(
         staged_config["paths"]["middle_dir"] = str(staged_dirs["middle"])
         staged_config["paths"]["output_dir"] = str(staged_dirs["output"])
         staged_config["steps"]["compress"]["enabled"] = False
+        staged_config["steps"]["atom_validate"]["enabled"] = True
         staged_config["steps"]["atom_validate"]["command"] = [
             sys.executable,
             "tools/validate_incremental_atom_scope.py",
@@ -648,10 +650,8 @@ def run_incremental(
             "--compress-repo",
             str(compress_repo),
         ]
-        template_command = staged_config["steps"].get("user_size_template", {}).get("command", [])
-        if "--sync-existing" not in template_command:
-            template_command.append("--sync-existing")
-
+        for input_sheet in input_sheets:
+            staged_config["steps"]["atom_validate"]["command"].extend(["--dataset", input_sheet])
         staged_case = {
             "case_name": base_case["case_name"],
             "input_file": merged_path,

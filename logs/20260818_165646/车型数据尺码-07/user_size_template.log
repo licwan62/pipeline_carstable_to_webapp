@@ -1,0 +1,50 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/build_user_size_json.py --case-name 车型数据尺码-07 --compress-root D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress --config D:\Licheng\Repo\pipeline_carstable_to_webapp/configs/pipeline.yaml --rules D:\Licheng\Repo\pipeline_carstable_to_webapp\data\rules\user-size-rules.json --ai-config D:\Licheng\Repo\pipeline_carstable_to_webapp\configs\ai-user-size.yaml --output D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\02_user_size.json
+
+Traceback (most recent call last):
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_user_size_json.py", line 151, in <module>
+    main()
+    ~~~~^^
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_user_size_json.py", line 144, in main
+    result = build(args.case_name, args.compress_root, args.config, args.rules, args.ai_config)
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_user_size_json.py", line 115, in build
+    enriched = ai_abbreviations(candidates, ai_config, examples)
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_user_size_json.py", line 58, in ai_abbreviations
+    with urllib.request.urlopen(request, timeout=int(ai_config.get("timeout_seconds", 120))) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 489, in open
+    response = self._open(req, data)
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 506, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+                              '_open', req)
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 1367, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        context=self._context)
+                        ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 1323, in do_open
+    r = h.getresponse()
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 1459, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\http\client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\socket.py", line 723, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+TimeoutError: The read operation timed out

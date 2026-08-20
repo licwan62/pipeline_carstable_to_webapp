@@ -3,18 +3,23 @@ excel_source:
   match_data_path: data/generated/size-match.json
 match_sources:
   - name: ALL
-    label: ALL尺码匹配表
-    sheet: ALL尺码匹配
+    label: 全尺码匹配表
+    sheet: 全尺码匹配表
     header_row: 1
     columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
   - name: TM
-    label: TM尺码匹配表
+    label: TM尺码匹配
     sheet: TM尺码匹配
     header_row: 1
     columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
   - name: HNT
-    label: HNT尺码匹配表
+    label: HNT尺码匹配
     sheet: HNT尺码匹配
+    header_row: 1
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
+  - name: TM-拆分
+    label: TM-拆分尺码匹配
+    sheet: TM-拆分尺码匹配
     header_row: 1
     columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
 filters:
@@ -44,7 +49,7 @@ table_fields:
     label: BED
     source: BED
 size_reference:
-  sheet: ALL尺码
+  sheet: 全尺码
   header_row: 1
   data_path: data/generated/size-ref.json
   match_field: 通用尺码

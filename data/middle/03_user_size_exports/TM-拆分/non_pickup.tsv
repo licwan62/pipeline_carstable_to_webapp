@@ -1,0 +1,130 @@
+﻿店铺	CAR	MAKE	MODEL	YEAR	VERSION	CONST	CATAGORY	LONG-TYPE	TYPE	SHORT-MODEL
+TM-拆分	Acura Legend	Acura	Legend	1991-1995		Sedan	跑车			Legend
+TM-拆分	Acura RL	Acura	RL	1996-2004		Sedan	跑车			RL
+TM-拆分	Acura RLX	Acura	RLX	2014-2020		Sedan	跑车			RLX
+TM-拆分	Acura TL	Acura	TL	1999-2014	SH-AWD/Type-S	Sedan	跑车	SH-AWD/Type-S	SH-AWD/Type-S	TL
+TM-拆分	Acura TLX	Acura	TLX	2021-2025	Type S	Sedan	跑车	Type S	Type S	TLX
+TM-拆分	Audi A6	Audi	A6	1998-2026		Sedan	跑车			A6
+TM-拆分	Audi A6 e-tron/S6 e-tron	Audi	A6 e-tron/S6 e-tron	2025		Liftback	跑车			A6/S6 etron
+TM-拆分	Audi A6/S6	Audi	A6/S6	1995-2025		Sedan	跑车			A6/S6
+TM-拆分	Audi A6/S6/RS6	Audi	A6/S6/RS6	2001-2004		Sedan	跑车			A6/S6/RS6
+TM-拆分	Audi A7/S7/RS7	Audi	A7/S7/RS7	2012-2025		Liftback	跑车			A7/S7/RS7
+TM-拆分	Audi A8/S8	Audi	A8/S8	1997-2026	Incl: LWB	Sedan	跑车	Incl: LWB	Incl: LWB	A8/S8
+TM-拆分	Audi RS7	Audi	RS7	2026		Liftback	跑车			RS7
+TM-拆分	Audi e-tron GT/RS e-tron GT	Audi	e-tron GT/RS e-tron GT	2022-2024		Sedan	跑车			RS e-tron GT
+TM-拆分	Audi e-tron GT/S e-tron GT/RS e-tron GT	Audi	e-tron GT/S e-tron GT/RS e-tron GT	2025-2026		Sedan	跑车			S/RS etron GT
+TM-拆分	BMW 5 Series	BMW	5 Series	2010-2026	Incl: GT/M5	Sedan	跑车	Incl: GT/M5	Incl: GT/M5	5 Series
+TM-拆分	BMW 6 Series	BMW	6 Series	2013-2019	Gran Coupe	Sedan	跑车	Gran Coupe	Gran Coupe	6 Series
+TM-拆分	BMW 7 Series	BMW	7 Series	1987-2026		Sedan	跑车			7 Series
+TM-拆分	BMW 8 Series	BMW	8 Series	2020-2026	Gran Coupe	Sedan	跑车	Gran Coupe	Gran Coupe	8 Series
+TM-拆分	BMW i5	BMW	i5	2024-2026		Sedan	跑车			i5
+TM-拆分	BMW i7	BMW	i7	2023-2026		Sedan	跑车			i7
+TM-拆分	Buick Century	Buick	Century	1998-2005		Sedan	跑车			Century
+TM-拆分	Buick LaCrosse	Buick	LaCrosse	2005-2019		Sedan	跑车			LaCrosse
+TM-拆分	Buick LeSabre	Buick	LeSabre	1959-2005		Sedan	跑车			LeSabre
+TM-拆分	Buick Lucerne	Buick	Lucerne	2006-2011		Sedan	跑车			Lucerne
+TM-拆分	Buick Park Avenue	Buick	Park Avenue	1991-2005		Sedan	跑车			Park Avenue
+TM-拆分	Buick Regal	Buick	Regal	1991-2020		Liftback/Sedan	跑车			Regal
+TM-拆分	Buick Roadmaster	Buick	Roadmaster	1936-1996		Sedan	跑车			Roadmaster
+TM-拆分	Buick Skylark	Buick	Skylark	1965-1994		Sedan	跑车			Skylark
+TM-拆分	Cadillac CT5	Cadillac	CT5	2020-2026	Incl: Blackwing	Sedan	跑车	Incl: Blackwing	Incl: Blackwing	CT5
+TM-拆分	Cadillac CT6	Cadillac	CT6	2016-2020	Incl: Blackwing/PHEV	Sedan	跑车	Incl: Blackwing/PHEV	Inc:Black/PHEV	CT6
+TM-拆分	Cadillac CTS	Cadillac	CTS	2014-2019		Sedan	跑车			CTS
+TM-拆分	Cadillac Catera	Cadillac	Catera	1997-2001		Sedan	跑车			Catera
+TM-拆分	Cadillac DTS	Cadillac	DTS	2006-2011		Sedan	跑车			DTS
+TM-拆分	Cadillac DTS-L	Cadillac	DTS-L	2007-2011		Sedan	跑车			DTS-L
+TM-拆分	Cadillac DeVille	Cadillac	DeVille	1985-2005		Sedan	跑车			DeVille
+TM-拆分	Cadillac STS	Cadillac	STS	2005-2011	Incl: STS-V	Sedan	跑车	Incl: STS-V	Incl: STS-V	STS
+TM-拆分	Cadillac Seville	Cadillac	Seville	1976-2004	Incl: SLS/STS	Sedan	跑车	Incl: SLS/STS	Incl: SLS/STS	Seville
+TM-拆分	Cadillac XTS	Cadillac	XTS	2015-2019		Sedan	跑车			XTS
+TM-拆分	Chevrolet Bel Air	Chevrolet	Bel Air	1953-1971	Incl: 2dr/4dr	Sedan	跑车	Incl: 2dr/4dr	Incl: 2dr/4dr	Bel Air
+TM-拆分	Chevrolet Caprice	Chevrolet	Caprice	1966-1970		Sedan	跑车			Caprice
+TM-拆分	Chevrolet Chevelle	Chevrolet	Chevelle	1964-1977		Sedan	跑车			Chevelle
+TM-拆分	Chevrolet Impala	Chevrolet	Impala	1973-2020	Incl: Impala SS/SS	Sedan	跑车	Incl: Impala SS/SS	Incl: Impala SS/SS	Impala
+TM-拆分	Chevrolet Lumina	Chevrolet	Lumina	1990-2001		Sedan	跑车			Lumina
+TM-拆分	Chevrolet Malibu	Chevrolet	Malibu	1964-2025		Sedan	跑车			Malibu
+TM-拆分	Chevrolet Nova	Chevrolet	Nova	1973-1979		Sedan	跑车			Nova
+TM-拆分	Chevrolet SS	Chevrolet	SS	2014-2017		Sedan	跑车			SS
+TM-拆分	Chrysler 200	Chrysler	200	2015-2017		Sedan	跑车			200
+TM-拆分	Chrysler 200 Series	Chrysler	200 Series	2015-2017		Sedan	跑车			200 Series
+TM-拆分	Chrysler 300	Chrysler	300	2005-2023		Sedan	跑车			300
+TM-拆分	Chrysler 300 series	Chrysler	300 series	1999-2023	Incl: 300M	Sedan	跑车	Incl: 300M	Incl: 300M	300 series
+TM-拆分	Chrysler 300M	Chrysler	300M	1999-2004		Sedan	跑车			300M
+TM-拆分	Chrysler Concorde	Chrysler	Concorde	1993-2004		Sedan	跑车			Concorde
+TM-拆分	Chrysler LHS	Chrysler	LHS	1994-2001		Sedan	跑车			LHS
+TM-拆分	Dodge Avenger	Dodge	Avenger	2008-2014		Sedan	跑车			Avenger
+TM-拆分	Dodge Charger	Dodge	Charger	2006-2026		Sedan	跑车			Charger
+TM-拆分	Dodge Intrepid	Dodge	Intrepid	1993-2004		Sedan	跑车			Intrepid
+TM-拆分	Ford Crown Victoria	Ford	Crown Victoria	1983-2011		Sedan	跑车			Crown Victoria
+TM-拆分	Ford Five Hundred	Ford	Five Hundred	2005-2007		Sedan	跑车			Five Hundred
+TM-拆分	Ford Taurus	Ford	Taurus	1992-2019	Incl: SHO	Sedan	跑车	Incl: SHO	Incl: SHO	Taurus
+TM-拆分	Ford Thunderbird	Ford	Thunderbird	1967-1971	4dr Landau	Sedan	跑车	4dr Landau	4dr Landau	Thunderbird
+TM-拆分	Genesis EQ900	Genesis	EQ900	2017-2026	G90	Sedan	跑车	G90	G90	EQ900
+TM-拆分	Genesis G80	Genesis	G80	2017-2026	Incl: Sport	Sedan	跑车	Incl: Sport	Incl: Sport	G80
+TM-拆分	Genesis G90	Genesis	G90	2017-2026		Sedan	跑车			G90
+TM-拆分	Honda Accord	Honda	Accord	2008-2026		Sedan	跑车			Accord
+TM-拆分	Honda Clarity	Honda	Clarity	2017-2021		Sedan	跑车			Clarity
+TM-拆分	Honda Clarity Plug In	Honda	Clarity Plug In	2018-2021		Sedan	跑车			Clarity Plug In
+TM-拆分	Hyundai Azera	Hyundai	Azera	2006-2017		Sedan	跑车			Azera
+TM-拆分	Hyundai Equus	Hyundai	Equus	2011-2016		Sedan	跑车			Equus
+TM-拆分	Hyundai Genesis	Hyundai	Genesis	2009-2016	Incl: 5.0 R-Spec	Sedan	跑车	Incl: 5.0 R-Spec	Inc:5.0RSpc	Genesis
+TM-拆分	Hyundai IONIQ 6	Hyundai	IONIQ 6	2026	N	Sedan	跑车	N	N	IONIQ 6
+TM-拆分	Hyundai Sonata	Hyundai	Sonata	2020-2026		Sedan	跑车			Sonata
+TM-拆分	Infiniti I	Infiniti	I	2000-2004		Sedan	跑车			I
+TM-拆分	Infiniti M	Infiniti	M	2003-2013		Sedan	跑车			M
+TM-拆分	Infiniti Q45	Infiniti	Q45	1990-2006		Sedan	跑车			Q45
+TM-拆分	Infiniti Q70	Infiniti	Q70	2014-2019		Sedan	跑车			Q70
+TM-拆分	Infiniti Q70L	Infiniti	Q70L	2015-2019		Sedan	跑车			Q70L
+TM-拆分	Jaguar S-Type	Jaguar	S-Type	2000-2008		Sedan	跑车			S-Type
+TM-拆分	Jaguar XF	Jaguar	XF	2009-2024		Sedan	跑车			XF
+TM-拆分	Jaguar XJ	Jaguar	XJ	1979-2019	Incl: LWB/SWB	Sedan	跑车	Incl: LWB/SWB	Incl: LWB/SWB	XJ
+TM-拆分	Karma Automotive GS-6	Karma Automotive	GS-6	2021-2022		Sedan	跑车			GS-6
+TM-拆分	Karma Automotive Revero	Karma Automotive	Revero	2017-2025	Incl: GT/GTS	Sedan	跑车	Incl: GT/GTS	Incl: GT/GTS	Revero
+TM-拆分	Kia Amanti	Kia	Amanti	2004-2009		Sedan	跑车			Amanti
+TM-拆分	Kia Cadenza	Kia	Cadenza	2014-2020		Sedan	跑车			Cadenza
+TM-拆分	Kia K5	Kia	K5	2021-2026		Sedan	跑车			K5
+TM-拆分	Kia K900	Kia	K900	2015-2020		Sedan	跑车			K900
+TM-拆分	Lexus ES	Lexus	ES	2013-2026		Sedan	跑车			ES
+TM-拆分	Lexus GS	Lexus	GS	1993-1997		Sedan	跑车			GS
+TM-拆分	Lexus LS	Lexus	LS	1990-2026	Incl: L	Sedan	跑车	Incl: L	Incl: L	LS
+TM-拆分	Lincoln Continental	Lincoln	Continental	1961-2020		Sedan	跑车			Continental
+TM-拆分	Lincoln LS	Lincoln	LS	2000-2006		Sedan	跑车			LS
+TM-拆分	Lincoln MKS	Lincoln	MKS	2009-2016		Sedan	跑车			MKS
+TM-拆分	Lincoln MKZ	Lincoln	MKZ	2013-2020		Sedan	跑车			MKZ
+TM-拆分	Lincoln Town Car	Lincoln	Town Car	1998-2011		Sedan	跑车			Town Car
+TM-拆分	Lucid Motors Air	Lucid Motors	Air	2022-2026		Sedan	跑车			Air
+TM-拆分	Maserati Ghibli	Maserati	Ghibli	2014-2024		Sedan	跑车			Ghibli
+TM-拆分	Maserati Quattroporte	Maserati	Quattroporte	2005-2024		Sedan	跑车			Quattroporte
+TM-拆分	Mazda 6	Mazda	6	2009-2021		Sedan	跑车			6
+TM-拆分	Mercedes-Benz CLS-Class	Mercedes-Benz	CLS-Class	2006-2023	4dr coupe/AMG	Sedan	跑车	4dr coupe/AMG	4dr coupe/AMG	CLS-Class
+TM-拆分	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	2010-2026	Incl: AMG/PHEV	Sedan	跑车	Incl: AMG/PHEV	Incl: AMG/PHEV	E-Class
+TM-拆分	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	1994-2026	Incl: AMG/LWB/Maybach/S 550e PHEV/S 560e PHEV	Sedan	跑车	Incl: AMG/LWB/Maybach/S 550e PHEV/S 560e PHEV	Inc:AMG/LWB/Maybch	S-Class
+TM-拆分	Mercury Cougar	Mercury	Cougar	1980-1982		Sedan	跑车			Cougar
+TM-拆分	Mercury Grand Marquis	Mercury	Grand Marquis	1979-2011		Sedan	跑车			Grand Marquis
+TM-拆分	Mercury Marauder	Mercury	Marauder	2003-2004		Sedan	跑车			Marauder
+TM-拆分	Mercury Marquis	Mercury	Marquis	1979-1986		Sedan	跑车			Marquis
+TM-拆分	Mercury Monterey	Mercury	Monterey	1952-1964		Sedan	跑车			Monterey
+TM-拆分	Mercury Sable	Mercury	Sable	1986-2009		Sedan	跑车			Sable
+TM-拆分	Mitsubishi Diamante	Mitsubishi	Diamante	1994-2004		Sedan	跑车			Diamante
+TM-拆分	Nissan Altima	Nissan	Altima	2019-2026		Sedan	跑车			Altima
+TM-拆分	Nissan Maxima	Nissan	Maxima	2004-2023		Sedan	跑车			Maxima
+TM-拆分	Oldsmobile 88	Oldsmobile	88	1951-1999		Sedan	跑车			88
+TM-拆分	Oldsmobile Aurora	Oldsmobile	Aurora	1995-2003		Sedan	跑车			Aurora
+TM-拆分	Oldsmobile Cutlass	Oldsmobile	Cutlass	1962-1999	Incl: Ciera/Cutlass/F-85/FWD/RWD/Supreme	Sedan	跑车	Incl: Ciera/Cutlass/F-85/FWD/RWD/Supreme	Inc:Ciera/Cut/F85	Cutlass
+TM-拆分	Oldsmobile Intrigue	Oldsmobile	Intrigue	1998-2002		Sedan	跑车			Intrigue
+TM-拆分	Plymouth Fury	Plymouth	Fury	1959-1978	Incl: 4dr Hardtop V-800	Sedan	跑车	Incl: 4dr Hardtop V-800	Inc:4dr HTop V800	Fury
+TM-拆分	Plymouth Valiant	Plymouth	Valiant	1973-1976		Sedan	跑车			Valiant
+TM-拆分	Pontiac Bonneville	Pontiac	Bonneville	1958-2005		Sedan	跑车			Bonneville
+TM-拆分	Pontiac G8	Pontiac	G8	2008-2009		Fastback	跑车			G8
+TM-拆分	Pontiac Grand Prix	Pontiac	Grand Prix	1997-2008		Sedan	跑车			Grand Prix
+TM-拆分	Pontiac LeMans	Pontiac	LeMans	1964-1980		Sedan	跑车			LeMans
+TM-拆分	Porsche Panamera	Porsche	Panamera	2017-2026	Incl: Executive LWB	Liftback	跑车	Incl: Executive LWB	Inc:Exec LWB	Panamera
+TM-拆分	Porsche Taycan	Porsche	Taycan	2020-2026	Incl: Turbo GT	Sedan	跑车	Incl: Turbo GT	Incl: Turbo GT	Taycan
+TM-拆分	Saab 9-5	Saab	9-5	2010-2011		Sedan	跑车			9-5
+TM-拆分	Toyota Avalon	Toyota	Avalon	2005-2022		Sedan	跑车			Avalon
+TM-拆分	Toyota Camry	Toyota	Camry	2018-2026		Sedan	跑车			Camry
+TM-拆分	Toyota Crown	Toyota	Crown	2023-2026		Sedan	跑车			Crown
+TM-拆分	Toyota MIRAI	Toyota	MIRAI	2016-2024		Sedan	跑车			MIRAI
+TM-拆分	Volkswagen Passat	Volkswagen	Passat	2020-2022		Sedan	跑车			Passat
+TM-拆分	Volkswagen Phaeton	Volkswagen	Phaeton	2004-2006		Sedan	跑车			Phaeton
+TM-拆分	Volvo S90	Volvo	S90	2017-2025		Sedan	跑车			S90

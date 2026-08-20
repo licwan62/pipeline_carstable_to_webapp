@@ -1,44 +1,15 @@
 # 配置维护指南
 
-| 想修改的内容 | 修改文件 |
-|---|---|
-| 相邻项目路径、工作区、模板、步骤开关 | `pipeline.yaml` |
-| Excel 工作表名或输入列名 | `compress-field-profile.yaml` |
-| HTML 使用哪些数据列、过滤哪些记录 | `html-user-size-preference.yaml` |
-| 页面尺寸、字体、颜色、列宽、Logo、尺码徽章 | `html-style.yaml` |
-| 直接用压缩尺码 `BACKSIZE` 生成 HTML | `html-direct-from-compress-preference.yaml` |
-| 脚本命令、中间目录结构、产物检查 | `pipeline-steps.yaml`（高级） |
+项目保留三份 YAML 配置：
 
-## 最常用操作
+- `pipeline.yaml`：输入工作表、字段映射、目录、命令与步骤开关。
+- `html-style.yaml`：HTML 数据列、过滤规则和全部视觉样式。
+- `ai-user-size.yaml`：AI 接口、模型、超时和 MODEL/TYPE/CAB 最大长度。
 
-关闭某一步：
+`pipeline.yaml` 的 `input.sheets` 是工作表与店铺数据集的唯一来源。压缩输出目录、合并用户尺码工作簿、TSV 店铺目录和 HTML 店铺目录都由代码动态生成，不需要配置对应路径。
 
-```yaml
-# pipeline.yaml
-steps:
-  publish:
-    enabled: false
-```
+用户尺码规则保存在 `data/rules/user-size-rules.json`，流水线直接生成紧凑的 `data/middle/02_user_size.json`，不再依赖 Excel 公式计算或人工保存。
 
-修改 HTML 页面背景：
+可选 AI 缩写补全只读取环境变量：`AI_ENRICH=1`、`AI_API_KEY`、`AI_MODEL`，兼容接口可另设 `AI_BASE_URL`。API Key 不写入 YAML；补全结果保存进规则 JSON 的 `ai_cache`，后续直接复用。
 
-```yaml
-# html-style.yaml
-page_background: "#ffffff"
-```
-
-修改 Excel 输入列的候选名称：
-
-```yaml
-# compress-field-profile.yaml
-columns:
-  最终尺码:
-    - 确认尺码
-    - 自动尺码
-```
-
-## 配置继承
-
-- `pipeline.yaml` 用 `include` 载入 `pipeline-steps.yaml`，主文件中的同名值优先。
-- 两份 HTML 数据配置用 `extends` 继承 `html-style.yaml`，数据字段和视觉样式互不重复。
-- YAML 中 `#` 表示注释，因此十六进制颜色必须加引号。
+全量 `atom_validate` 默认关闭；压缩脚本仍保留每张表自身的 `--check-atom` 检查。

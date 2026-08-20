@@ -1,0 +1,16 @@
+cwd: D:\Licheng\Repo\compress_to_size_chart
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe process_tsv.py D:\Licheng\Repo\pipeline_carstable_to_webapp\data\input\0807.xlsx --output-dir D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress --field-profile D:\Licheng\Repo\pipeline_carstable_to_webapp/configs/compress-field-profile.yaml --check-atom
+
+Traceback (most recent call last):
+  File "D:\Licheng\Repo\compress_to_size_chart\process_tsv.py", line 3024, in <module>
+    main()
+    ~~~~^^
+  File "D:\Licheng\Repo\compress_to_size_chart\process_tsv.py", line 2971, in main
+    input_tables = read_input_tables(input_path, encoding=args.encoding, field_profile=field_profile)
+  File "D:\Licheng\Repo\compress_to_size_chart\process_tsv.py", line 432, in read_input_tables
+    return read_excel_input_tables(path, profile_input_sheets(field_profile))
+  File "D:\Licheng\Repo\compress_to_size_chart\process_tsv.py", line 412, in read_excel_input_tables
+    sheet_name = resolve_excel_sheet_name(requested_sheet, excel_file.sheet_names)
+  File "D:\Licheng\Repo\compress_to_size_chart\process_tsv.py", line 345, in resolve_excel_sheet_name
+    raise ValueError(f"Excel sheet not found: {requested_sheet}. Available sheets: {available_text}")
+ValueError: Excel sheet not found: ALL尺码匹配. Available sheets: 参数、全尺码、HNT尺码、TM尺码、全尺码匹配表、TM尺码匹配、HNT尺码匹配

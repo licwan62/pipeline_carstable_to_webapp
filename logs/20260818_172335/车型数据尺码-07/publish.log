@@ -1,0 +1,26 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/build_publish_site.py --publish-repo D:\Licheng\Repo\pipeline_carstable_to_webapp\..\publish_tables_to_webapp --html-root D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\04_html --xlsx-source D:\Licheng\Repo\pipeline_carstable_to_webapp\data\input\车型数据尺码-07.xlsx --pipeline-config D:\Licheng\Repo\pipeline_carstable_to_webapp/configs/pipeline.yaml --workspace D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\05_publish_workspace --site-output D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output/site
+
+Traceback (most recent call last):
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\05_publish_workspace\tools\export_xlsx_sources.py", line 220, in <module>
+    main()
+    ~~~~^^
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\05_publish_workspace\tools\export_xlsx_sources.py", line 182, in main
+    config = parse_yaml_config(CONFIG_PATH)
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\05_publish_workspace\tools\export_xlsx_sources.py", line 42, in parse_yaml_config
+    parent.append(item)
+    ^^^^^^^^^^^^^
+AttributeError: 'dict' object has no attribute 'append'
+[configure_publish] match sheets=['全尺码匹配表', 'TM尺码匹配', 'HNT尺码匹配', 'TM-拆分尺码匹配']; size reference=全尺码
+[export_xlsx_sources] C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\05_publish_workspace\tools\export_xlsx_sources.py --xlsx-source D:\Licheng\Repo\pipeline_carstable_to_webapp\data\input\车型数据尺码-07.xlsx
+Traceback (most recent call last):
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_publish_site.py", line 155, in <module>
+    main()
+    ~~~~^^
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_publish_site.py", line 138, in main
+    subprocess.run(export_command, cwd=workspace, check=True)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\cc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe', 'D:\\Licheng\\Repo\\pipeline_carstable_to_webapp\\data\\middle\\05_publish_workspace\\tools\\export_xlsx_sources.py', '--xlsx-source', 'D:\\Licheng\\Repo\\pipeline_carstable_to_webapp\\data\\input\\车型数据尺码-07.xlsx']' returned non-zero exit status 1.

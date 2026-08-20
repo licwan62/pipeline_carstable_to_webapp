@@ -19,11 +19,8 @@ pipeline_carstable_to_webapp/
 ├─ bak/                       # 本地存档（默认不提交 Git）
 ├─ configs/
 │  ├─ pipeline.yaml
-│  ├─ pipeline-steps.yaml
-│  ├─ compress-field-profile.yaml
 │  ├─ html-style.yaml
-│  ├─ html-user-size-preference.yaml
-│  └─ html-direct-from-compress-preference.yaml
+│  └─ ai-user-size.yaml
 ├─ data/
 │  ├─ input/
 │  ├─ middle/
@@ -160,7 +157,7 @@ python run_all.py --case bak/20260716_111604 --incremental data/input/0716_incr.
 
 为保证合并后的工作簿可以立即被压缩器稳定读取，三个“尺码匹配”工作表中的公式会固化为文件里已经计算并保存的值；其他工作表保持原结构。提交增量文件前应先用 Excel/WPS 打开并保存一次，确保公式缓存是最新的。
 
-增量模式包含人工确认环节：三个用户尺码工作簿会复制到 `data/middle/02_user_size_workbooks`。请在这个目录打开文件，让新增行公式计算完成并保存，然后回到终端按 Enter；脚本会把修改同步回隔离区继续运行。非交互环境不会跳过这个确认。
+增量模式包含人工确认环节：合并的用户尺码工作簿会复制到 `data/middle/02_user_size_workbooks`。请在这个目录打开文件，让新增行公式计算完成并保存，然后回到终端按 Enter；脚本会把修改同步回隔离区继续运行。非交互环境不会跳过这个确认。
 
 ## 断点续跑
 
@@ -204,19 +201,17 @@ python run_all.py --case . --from-step inplace_table --to-step inplace_table
 ## 默认流程
 
 1. `compress`：调用 `compress_to_size_chart/process_tsv.py`，读取输入 Excel 的尺码匹配工作表，输出压缩 TSV 到 `data/middle/<任务名>/01_compress/`。
-2. `user_size_template`：基于 `data/template/尺码适配表.xlsx` 生成一个合并的中间工作簿到 `data/middle/<任务名>/02_user_size_workbooks/`，ALL/TM/HNT 由“店铺”列区分。
-3. 人工打开该中间工作簿，让模板公式计算用户展示尺码 `SIZE`，按需调整后保存。
-4. `user_size_validate`：校验中间工作簿结构是否完整。
-5. `inplace_table`：按“店铺”列把合并工作簿导出为 ALL/TM/HNT 三组 HTML 专用 TSV，并过滤 `SIZE` 空白或 `无可用尺码` 的行。
+2. `user_size_template`：读取 `data/rules/user-size-rules.json`，直接生成已缩写、排序的紧凑用户尺码 JSON。
+3. `inplace_table`：按 JSON 中的“店铺”列导出各店铺 HTML 专用 TSV，并过滤 `SIZE` 空白或 `无可用尺码` 的行。
 6. `get_html`：分别生成 ALL/TM/HNT HTML。
 7. `export_images`：递归截图 `04_html` 中的 `output_*.html`，输出 JPG 到 `data/output/<任务名>/images/`，并保留 ALL/TM/HNT 与 nonpick/pick 目录层级。
 8. `publish`：在本项目的 `05_publish_workspace` 中临时复刻 webapp 构建结构，借用 `publish_tables_to_webapp/tools/build_site.py` 构建，并输出到 `data/output/<任务名>/site/`。
 
-`get_html` 的非皮卡表会固定 `YEAR` 列宽；当 `MODEL / TYPE` 文字溢出时，只在这两列之间重新分配宽度，再缩小单元格字体。`YEAR` 固定宽度由 `configs/html-user-size-preference.yaml` 中的 `nonpick_year_col_width` 设置，动态列的最小比例由 `nonpick_model_col_min_ratio` 和 `nonpick_type_col_min_ratio` 设置。
+`get_html` 的非皮卡表会固定 `YEAR` 列宽；当 `MODEL / TYPE` 文字溢出时，只在这两列之间重新分配宽度，再缩小单元格字体。相关列宽都在 `configs/html-style.yaml` 中设置。
 
 `user_size_template` 写入的店铺、车型、年份、版本、结构、尺码等源数据全部强制为 Excel 文本类型和 `@` 文本格式；复用已有中间工作簿时也会修正这些源数据列，同时保留人工内容。`user_size_validate` 会拒绝包含数字、日期或非文本单元格格式的源数据列，`inplace_table` 导出的所有 TSV 字段会再次统一转换为字符串。
 
-如需让某一个店铺在 `get_html` 阶段显示 `BACKSIZE`、其他店铺仍显示 `SIZE`，在 `configs/html-user-size-preference.yaml` 中设置 `special_store_value`，并通过 `special_store_non_pickup_size_column` 和 `special_store_pickup_size_column` 指定特殊源列。留空表示关闭特殊店铺覆盖。
+如需让某一个店铺在 `get_html` 阶段显示 `BACKSIZE`、其他店铺仍显示 `SIZE`，在 `configs/html-style.yaml` 中设置 `special_store_value` 及对应尺码列。留空表示关闭特殊店铺覆盖。
 
 ## 配置文件
 
@@ -249,11 +244,7 @@ steps:
     enabled: true
 ```
 
-`pipeline.yaml` 通过 `include: pipeline-steps.yaml` 载入高级配置；主文件里的同名设置会覆盖高级配置。
-
-### `configs/pipeline-steps.yaml`
-
-高级流程定义，包含内部变量、具体命令、产物检查和人工暂停提示。日常运行不需要修改。只有新增步骤、替换脚本或调整中间目录结构时才改这个文件。
+`pipeline.yaml` 是唯一的流水线配置，包含输入工作表、字段映射、步骤命令、产物检查和人工暂停提示。
 
 每个步骤支持：
 
@@ -265,9 +256,7 @@ copy_after:     # 步骤后复制文件/目录
 pause_after:    # 需要人工处理时暂停提示
 ```
 
-### `configs/compress-field-profile.yaml`
-
-压缩输入字段映射。它告诉 `process_tsv.py` 读取哪些 Excel sheet，以及输入列如何映射到压缩脚本的标准字段。
+输入工作表和压缩字段映射也直接写在 `pipeline.yaml`：
 
 关键设置：
 
@@ -286,11 +275,11 @@ columns:
     - 对应尺码
 ```
 
-如果输入工作簿名或列名变化，优先改这里。
+`input.sheets` 是数据集的唯一来源；后续工作簿、TSV 和 HTML 目录由代码动态推导。
 
-### `configs/html-user-size-preference.yaml`
+### `configs/html-style.yaml`
 
-HTML 数据字段配置。它面向 `inplace_table` 导出的 TSV，核心是使用用户展示尺码 `SIZE`：
+HTML 数据字段、过滤规则和视觉样式统一维护在这里：
 
 ```yaml
 exclude_rows: SIZE=""; BACKSIZE=无可用尺码
@@ -298,15 +287,7 @@ non_pickup_size_column: SIZE
 pickup_size_column: SIZE
 ```
 
-它通过 `extends: html-style.yaml` 继承公共视觉样式。
-
-### `configs/html-style.yaml`
-
-统一维护页面尺寸、分页、列宽、字体、颜色、Logo 和尺码徽章。两种 HTML 数据配置都会继承它，因此样式只需修改一次。十六进制颜色需要保留引号，例如 `"#ffffff"`。
-
-### `configs/html-direct-from-compress-preference.yaml`
-
-备用数据字段配置：直接从压缩 TSV 生成 HTML 时使用 `BACKSIZE`。当前默认流程不用它；它同样继承 `html-style.yaml`，不再重复保存整份视觉样式。
+同时维护页面尺寸、分页、列宽、字体、颜色、Logo 和尺码徽章。十六进制颜色需要保留引号，例如 `"#ffffff"`。
 
 ## 用户尺码模板
 

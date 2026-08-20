@@ -1,0 +1,6 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/export_user_size_json_tables.py --input D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\02_user_size.json --output-root D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\03_user_size_exports
+
+ALL: non-pickup=1040, pickup=144
+HNT: non-pickup=1161, pickup=124
+TM: non-pickup=1245, pickup=144

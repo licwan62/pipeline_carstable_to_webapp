@@ -1,0 +1,9 @@
+cwd: D:\Licheng\Repo\compress_to_size_chart
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe process_tsv.py D:\Licheng\Repo\pipeline_carstable_to_webapp\data\input\车型数据尺码-07.xlsx --output-dir D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress --field-profile D:\Licheng\Repo\pipeline_carstable_to_webapp/configs/compress-field-profile.yaml --check-atom
+
+读取工作表: 全尺码匹配表 (4799 rows)
+读取工作表: TM尺码匹配 (4799 rows)
+读取工作表: HNT尺码匹配 (4799 rows)
+
+处理工作表 1/3: 全尺码匹配表
+[进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/660 | 合并项数量=0 | 尝试次数=0 | 用时=0s

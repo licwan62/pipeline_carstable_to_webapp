@@ -1,18 +1,18 @@
 Size chart generation log
-Generated at: 2026-07-16T13:06:04
-Config: D:\Home\Scripts\pipeline_carstable_to_webapp\configs\html-user-size-preference.yaml
-Output directory: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_130519\data\middle\04_html\HNT\nonpick
-CSS: D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_130519\data\middle\04_html\HNT\nonpick\size-chart.css
+Generated at: 2026-08-18T17:26:03
+Config: C:\Users\cc\AppData\Local\Temp\html-config-nyfwo2y1\preference.yaml
+Output directory: D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\04_html\HNT\nonpick
+CSS: D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\04_html\HNT\nonpick\size-chart.css
 Pages: 5
-Table chunks: 68
+Table chunks: 67
 Unique titles: 48
-Page table chunks: 11, 14, 16, 16, 11
+Page table chunks: 10, 13, 17, 16, 11
 
 Inputs:
-- D:\Home\Scripts\pipeline_carstable_to_webapp\work\incremental\0706_20260716_130519\data\middle\03_user_size_exports\HNT\non_pickup.tsv
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\03_user_size_exports\HNT\non_pickup.tsv
   Sheet: 非皮卡压缩表
   Profile: non-pickup
-  Rows after filtering: 1150
+  Rows after filtering: 1161
   Titles: 49
   Brand column: MAKE
   Stripe column: MODEL
@@ -22,7 +22,7 @@ Inputs:
 
 Logo settings:
 Enabled: True
-Directory: D:\Home\Scripts\generate_size_chart_html\img_logos
+Directory: D:\Licheng\Repo\generate_size_chart_html\img_logos
 Logo files indexed: 49
 Matched titles: 48
 Missing titles: 0

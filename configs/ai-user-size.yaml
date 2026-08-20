@@ -1,0 +1,16 @@
+# 用户尺码缩写 AI 配置。API Key 不要写在本文件中。
+enabled: true
+base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+model: "qwen3.7-max"
+# 推荐：api_key_env 填环境变量名（例如 AI_API_KEY）。也支持另设 api_key 直接填值。
+api_key_env: "sk-ws-H.EHDMRMP.y2pw.MEUCIQDMoI_I7-EPPU1jnnnIYhbgjnxPvJinyoT5F4IbbLYeYwIgUNFrHMA552DUCqJZD94yM4evFsnZhn1V8iWzfELnli8"
+timeout_seconds: 120
+batch_size: 10
+retries: 2
+enable_thinking: false
+retry_rejected: false
+
+max_length:
+  type: 18
+  model: 15
+  cab: 12

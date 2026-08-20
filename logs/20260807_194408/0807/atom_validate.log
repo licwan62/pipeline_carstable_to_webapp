@@ -1,0 +1,55 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/validate_atom_checks.py --root D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress
+
+原子核验失败，共检查 45901 行：
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:256: MISS - Audi A3/S3 2015
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:257: MISS - Audi A3/S3 2016
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:258: MISS - Audi A3/S3/RS3 2017
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:259: MISS - Audi A3/S3/RS3 2018
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:260: MISS - Audi A3/S3/RS3 2019
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:261: MISS - Audi A3/S3/RS3 2020
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:262: MISS - Audi A3/S3/RS3 2022
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:263: MISS - Audi A3/S3/RS3 2023
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:264: MISS - Audi A3/S3/RS3 2024
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:265: MISS - Audi A3/S3/RS3 2025
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:266: MISS - Audi A3/S3/RS3 2026
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:272: MULTI - Audi A4 2002
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:274: MULTI - Audi A4 2003
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:295: MISS - Audi A4/S4 2000
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:296: MISS - Audi A4/S4 2000
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:297: MISS - Audi A4/S4 2001
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:298: MISS - Audi A4/S4 2001
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:299: MISS - Audi A4/S4 2004
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:300: MISS - Audi A4/S4 2004
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:301: MISS - Audi A4/S4 2004
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:302: MISS - Audi A4/S4 2005
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:303: MISS - Audi A4/S4 2005
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:304: MISS - Audi A4/S4 2005
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:305: MISS - Audi A4/S4 2006
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:306: MISS - Audi A4/S4 2006
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:307: MISS - Audi A4/S4 2006
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:308: MISS - Audi A4/S4 2007
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:309: MISS - Audi A4/S4 2007
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:310: MISS - Audi A4/S4 2008
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:311: MISS - Audi A4/S4 2009
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:312: MISS - Audi A4/S4 2010
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:313: MISS - Audi A4/S4 2011
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:314: MISS - Audi A4/S4 2012
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:315: MISS - Audi A4/S4 2013
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:316: MISS - Audi A4/S4 2014
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:317: MISS - Audi A4/S4 2015
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:318: MISS - Audi A4/S4 2016
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:319: MISS - Audi A4/S4 2017
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:320: MISS - Audi A4/S4 2018
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:321: MISS - Audi A4/S4 2019
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:322: MISS - Audi A4/S4 2020
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:323: MISS - Audi A4/S4 2021
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:324: MISS - Audi A4/S4 2022
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:325: MISS - Audi A4/S4 2023
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:326: MISS - Audi A4/S4 2024
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:327: MISS - Audi A4/S4 2025
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:328: MISS - Audi A4/S4/RS4 2007
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:329: MISS - Audi A4/S4/RS4 2008
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:330: MISS - Audi A4/S4/RS4 2008
+- D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress\0807_HNT尺码匹配\check\0807_HNT尺码匹配_非皮卡原子检查.tsv:331: MISS - Audi A5/S5 2008
+- 其余 1372 个错误已省略
