@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import json
+from decimal import Decimal, InvalidOperation, ROUND_HALF_UP
 from pathlib import Path
 from typing import Any
 
@@ -10,6 +11,16 @@ import openpyxl
 
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "config" / "size-chart-view.yaml"
+DIMENSION_ALIASES = {
+    "L-MM": (("L-MM", "长_mm"), ("L-CM", "长_cm"), ("L-IN", "长_in", "长")),
+    "W-MM": (("W-MM", "宽_mm"), ("W-CM", "宽_cm"), ("W-IN", "宽_in", "宽")),
+    "H-MM": (("H-MM", "高_mm"), ("H-CM", "高_cm"), ("H-IN", "高_in", "高")),
+}
+LEGACY_DIMENSION_FIELDS = {
+    alias
+    for millimetre_aliases, centimetre_aliases, inch_aliases in DIMENSION_ALIASES.values()
+    for alias in (*centimetre_aliases, *inch_aliases)
+}
 
 
 def clean(value: Any) -> str:
@@ -20,6 +31,45 @@ def clean(value: Any) -> str:
     if isinstance(value, float):
         return f"{value:.3f}".rstrip("0").rstrip(".")
     return str(value).strip()
+
+
+def rounded_integer(value: Any, factor: str = "1") -> str:
+    """Return a numeric measurement as a conventional half-up integer."""
+    text = clean(value)
+    if not text:
+        return ""
+    try:
+        number = Decimal(text.replace(",", "")) * Decimal(factor)
+    except InvalidOperation:
+        return text
+    return str(int(number.quantize(Decimal("1"), rounding=ROUND_HALF_UP)))
+
+
+def first_value(row: dict[str, Any], candidates: tuple[str, ...]) -> Any:
+    for candidate in candidates:
+        value = row.get(candidate)
+        if clean(value):
+            return value
+    return None
+
+
+def dimension_mm(row: dict[str, Any], output_field: str) -> str:
+    millimetres, centimetres, inches = DIMENSION_ALIASES[output_field]
+    for candidates, factor in ((millimetres, "1"), (centimetres, "10"), (inches, "25.4")):
+        value = first_value(row, candidates)
+        if value is not None:
+            return rounded_integer(value, factor)
+    return ""
+
+
+def match_measurement_factor(row: dict[str, Any]) -> str:
+    if any(clean(row.get(alias)) for aliases, _, _ in DIMENSION_ALIASES.values() for alias in aliases):
+        return "1"
+    if any(clean(row.get(alias)) for _, _, aliases in DIMENSION_ALIASES.values() for alias in aliases):
+        return "25.4"
+    if any(clean(row.get(alias)) for _, aliases, _ in DIMENSION_ALIASES.values() for alias in aliases):
+        return "10"
+    return "1"
 
 
 def parse_yaml_config(path: Path) -> dict[str, Any]:
@@ -113,11 +163,15 @@ def normalize_size_reference(headers: list[str], rows: list[dict[str, str]]) -> 
     for row in rows:
         if not clean(row.get("内部尺码")):
             continue
-        item = dict(row)
+        item = {key: value for key, value in row.items() if key not in LEGACY_DIMENSION_FIELDS}
         item["型号"] = clean(row.get("内部尺码"))
+        for field in DIMENSION_ALIASES:
+            value = dimension_mm(row, field)
+            if value:
+                item[field.replace("-MM", "_mm").replace("L_", "长_").replace("W_", "宽_").replace("H_", "高_")] = value
         normalized_rows.append(item)
 
-    preferred = ["型号", "分类", "CAB", "长_in", "宽_in", "高_in", "通用尺码", "原长宽高_in", "长宽高_mm", "备注"]
+    preferred = ["型号", "分类", "CAB", "长_mm", "宽_mm", "高_mm", "通用尺码", "备注"]
     output_headers = [header for header in preferred if any(clean(row.get(header)) for row in normalized_rows)]
     return {"headers": output_headers, "rows": normalized_rows}
 
@@ -128,7 +182,15 @@ def normalize_match_rows(source: str, rows: list[dict[str, str]]) -> list[dict[s
         size = clean(row.get("确认尺码"))
         if not clean(row.get("MAKE")) and not clean(row.get("MODEL")):
             continue
-        values = dict(row)
+        values = {key: value for key, value in row.items() if key not in LEGACY_DIMENSION_FIELDS}
+        for field in DIMENSION_ALIASES:
+            value = dimension_mm(row, field)
+            if value:
+                values[field] = value
+        measurement_factor = match_measurement_factor(row)
+        for field in ("T-MM", "自动长度余量", "长度余量", "相差数值"):
+            if clean(row.get(field)):
+                values[field] = rounded_integer(row[field], measurement_factor if field != "T-MM" else "1")
         values["CONST"] = clean(row.get("结构")) or clean(row.get("分类"))
         values["TYPE"] = clean(row.get("结构")) or clean(row.get("分类"))
         values["SIZE"] = size
@@ -147,7 +209,7 @@ def normalize_match_rows(source: str, rows: list[dict[str, str]]) -> list[dict[s
                 "values": values,
                 "title": " ".join(part for part in [clean(row.get("MAKE")), clean(row.get("MODEL"))] if part),
                 "description": "",
-                "searchText": " ".join(clean(value) for value in row.values()),
+                "searchText": " ".join(clean(value) for value in values.values()),
                 "directory": source,
                 "source": source,
                 "sourceTags": [source.lower()],

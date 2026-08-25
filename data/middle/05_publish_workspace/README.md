@@ -50,6 +50,8 @@ tools/
 - HTML 来源 / 二级网页：`data/source/html/<店铺>/<类型>/output_*.html`
 - 网页查询数据：`data/generated/size-match.json` 和 `data/generated/size-ref.json`
 
+`size-match` 的长、宽、高和长度余量以整数毫米导出。导出器优先读取 `L-MM / W-MM / H-MM`，也能将旧的 IN/CM 列换算为 MM。页面可将标准毫米值切换为 MM/CM/IN 整数显示；尺码配色在 `config/size-chart-view.yaml` 的 `size_colors` 中维护。
+
 `config/size-chart-view.yaml` 控制 Excel 读取路径、工作表名、字段和 JSON 输出路径。
 
 ## 日常维护

@@ -82,5 +82,5 @@ steps:
   publish:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/build_publish_site.py, --publish-repo, "{publish_repo_path}", --html-root, "{html_output_dir}", --xlsx-source, "{input_file}", --pipeline-config, "{root}/configs/pipeline.yaml", --workspace, "{publish_workspace}", --site-output, "{case_output}/site"]
+    command: ["{python}", tools/build_publish_site.py, --publish-repo, "{publish_repo_path}", --html-root, "{html_output_dir}", --xlsx-source, "{input_file}", --pipeline-config, "{root}/configs/pipeline.yaml", --html-style-config, "{root}/configs/html-style.yaml", --workspace, "{publish_workspace}", --site-output, "{case_output}/site"]
     check_exists: ["{case_output}/site/index.html"]

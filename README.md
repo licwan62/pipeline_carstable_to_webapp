@@ -209,6 +209,8 @@ python run_all.py --case . --from-step inplace_table --to-step inplace_table
 
 `get_html` 的非皮卡表会固定 `YEAR` 列宽；当 `MODEL / TYPE` 文字溢出时，只在这两列之间重新分配宽度，再缩小单元格字体。相关列宽都在 `configs/html-style.yaml` 中设置。
 
+`publish` 生成的 `size-match` 以 `L-MM / W-MM / H-MM / 长度余量` 作为标准数据：新表的毫米值直接四舍五入为整数，兼容旧表时会先将英寸或厘米换算为毫米。网页可在 MM/CM/IN 之间切换，显示值均为整数。`size-match` 的尺码配色会从 `configs/html-style.yaml` 同步至发布配置，与 size-chart 保持一致。
+
 `user_size_template` 写入的店铺、车型、年份、版本、结构、尺码等源数据全部强制为 Excel 文本类型和 `@` 文本格式；复用已有中间工作簿时也会修正这些源数据列，同时保留人工内容。`user_size_validate` 会拒绝包含数字、日期或非文本单元格格式的源数据列，`inplace_table` 导出的所有 TSV 字段会再次统一转换为字符串。
 
 如需让某一个店铺在 `get_html` 阶段显示 `BACKSIZE`、其他店铺仍显示 `SIZE`，在 `configs/html-style.yaml` 中设置 `special_store_value` 及对应尺码列。留空表示关闭特殊店铺覆盖。

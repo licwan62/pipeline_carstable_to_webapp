@@ -12,6 +12,7 @@ import yaml
 
 SKELETON_DIRS = ["assets", "config", "data/generated", "pages"]
 SKELETON_FILES = ["README.md", ".nojekyll"]
+MATCH_COLUMNS = "MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE"
 
 
 class IndentedSafeDumper(yaml.SafeDumper):
@@ -45,7 +46,12 @@ def store_name(sheet_name: str) -> str:
     return name or sheet_name
 
 
-def configure_excel_sources(workspace: Path, pipeline_config: Path, xlsx_source: Path) -> None:
+def configure_excel_sources(
+    workspace: Path,
+    pipeline_config: Path,
+    xlsx_source: Path,
+    html_style_config: Path | None = None,
+) -> None:
     """Materialize publish sources from the pipeline's configured input sheets."""
     view_path = workspace / "config" / "size-chart-view.yaml"
     with pipeline_config.open("r", encoding="utf-8") as handle:
@@ -62,21 +68,31 @@ def configure_excel_sources(workspace: Path, pipeline_config: Path, xlsx_source:
     if missing:
         raise KeyError(f"Configured input worksheets do not exist: {missing}")
 
-    defaults = (view.get("match_sources") or [{}])[0]
-    default_columns = defaults.get(
-        "columns",
-        "MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE",
-    )
     view["match_sources"] = [
         {
             "name": store_name(sheet),
             "label": sheet,
             "sheet": sheet,
             "header_row": 1,
-            "columns": default_columns,
+            # The current match worksheets expose millimetres.  Do not inherit the
+            # publish repository's historical IN/CM columns when materialising a
+            # pipeline workspace.
+            "columns": MATCH_COLUMNS,
         }
         for sheet in configured_sheets
     ]
+
+    if html_style_config:
+        with html_style_config.open("r", encoding="utf-8") as handle:
+            html_style = yaml.safe_load(handle) or {}
+        view["size_colors"] = {
+            "a": html_style.get("size_a_background", "#1777c8"),
+            "c": html_style.get("size_c_background", "#d62828"),
+            "h": html_style.get("size_h_background", "#00a6a6"),
+            "s": html_style.get("size_s_background", "#f28c28"),
+            "other": html_style.get("size_other_background", html_style.get("size_badge_background", "#6b7280")),
+            "text": html_style.get("size_badge_text_color", "#ffffff"),
+        }
 
     reference_candidates = ["全尺码", "ALL尺码"]
     reference_sheet = next((name for name in reference_candidates if name in workbook_sheets), None)
@@ -107,6 +123,7 @@ def main() -> None:
     parser.add_argument("--html-root", type=Path, required=True)
     parser.add_argument("--xlsx-source", type=Path, required=True)
     parser.add_argument("--pipeline-config", type=Path, required=True)
+    parser.add_argument("--html-style-config", type=Path)
     parser.add_argument("--workspace", type=Path, required=True)
     parser.add_argument("--site-output", type=Path, required=True)
     args = parser.parse_args()
@@ -115,6 +132,7 @@ def main() -> None:
     html_root = args.html_root.resolve()
     xlsx_source = args.xlsx_source.resolve()
     pipeline_config = args.pipeline_config.resolve()
+    html_style_config = args.html_style_config.resolve() if args.html_style_config else None
     workspace = args.workspace.resolve()
     site_output = args.site_output.resolve()
 
@@ -126,6 +144,8 @@ def main() -> None:
         raise FileNotFoundError(f"XLSX source does not exist: {xlsx_source}")
     if not pipeline_config.exists():
         raise FileNotFoundError(f"Pipeline config does not exist: {pipeline_config}")
+    if html_style_config and not html_style_config.exists():
+        raise FileNotFoundError(f"HTML style config does not exist: {html_style_config}")
 
     if workspace.exists():
         shutil.rmtree(workspace)
@@ -139,7 +159,7 @@ def main() -> None:
     copy_file(publish_repo / "tools" / "build_site.py", workspace / "tools" / "build_site.py")
     copy_file(publish_repo / "tools" / "export_xlsx_sources.py", workspace / "tools" / "export_xlsx_sources.py")
     copy_tree(html_root, workspace / "data" / "source" / "html")
-    configure_excel_sources(workspace, pipeline_config, xlsx_source)
+    configure_excel_sources(workspace, pipeline_config, xlsx_source, html_style_config)
 
     export_command = [
         sys.executable,

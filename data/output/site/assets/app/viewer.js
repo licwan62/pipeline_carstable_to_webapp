@@ -22,6 +22,14 @@
     excel_source: {
       match_data_path: "data/generated/size-match.json"
     },
+    size_colors: {
+      a: "#1777c8",
+      c: "#d62828",
+      h: "#00a6a6",
+      s: "#f28c28",
+      other: "#6b7280",
+      text: "#ffffff"
+    },
     match_sources: [],
     size_reference: {
       data_path: "data/generated/size-ref.json",
@@ -57,7 +65,7 @@
     columnWidths: {},
     visibleColumns: null,
     fieldOrder: [],
-    dimensionUnit: "imperial",
+    dimensionUnit: "mm",
     tableFontSize: "md",
     resultLimit: 200,
     resultPage: 1,
@@ -238,8 +246,7 @@
           ${isSearchPage ? `
             <div class="sidebar-tools">
               <div class="unit-toggle size-unit-toggle sidebar-unit-toggle" role="group" aria-label="长宽高单位">
-                <button type="button" data-size-unit="imperial" class="${searchState.dimensionUnit === "imperial" ? "is-active" : ""}">IN</button>
-                <button type="button" data-size-unit="metric" class="${searchState.dimensionUnit === "metric" ? "is-active" : ""}">CM</button>
+                ${["mm", "cm", "in"].map((unit) => `<button type="button" data-size-unit="${unit}" class="${searchState.dimensionUnit === unit ? "is-active" : ""}" aria-pressed="${searchState.dimensionUnit === unit ? "true" : "false"}">${unit.toUpperCase()}</button>`).join("")}
               </div>
               <button class="settings-launch" type="button" data-open-settings>表格设置</button>
             </div>
@@ -579,7 +586,18 @@
 
     app.querySelectorAll("[data-size-unit]").forEach((button) => {
       button.addEventListener("click", () => {
-        searchState.dimensionUnit = button.dataset.sizeUnit || "imperial";
+        const nextUnit = button.dataset.sizeUnit || "mm";
+        if (nextUnit === searchState.dimensionUnit) return;
+        searchState.dimensionUnit = nextUnit;
+        Object.keys(searchState.columnFilters).forEach((key) => {
+          if (isRangeFilterColumn(key)) delete searchState.columnFilters[key];
+        });
+        if (isDimensionColumn(searchState.sortField) || isLengthMarginColumn(searchState.sortField)) {
+          searchState.sortField = "";
+          searchState.sortDirection = "asc";
+        }
+        searchState.openFilter = "";
+        searchState.resultPage = 1;
         ensureSizeFieldState();
         render();
       });
@@ -1186,7 +1204,7 @@
     const tableWidth = resultTableWidth(tableColumns);
     return `
       <div class="results-table-wrap size-results-wrap">
-        <table class="results-table size-results-table table-font-${escapeHtml(searchState.tableFontSize)} ${searchState.dimensionUnit === "metric" ? "dimension-theme-yellow" : "dimension-theme-blue"}" style="--result-table-width: ${tableWidth}px">
+        <table class="results-table size-results-table table-font-${escapeHtml(searchState.tableFontSize)} ${searchState.dimensionUnit === "in" ? "dimension-theme-blue" : "dimension-theme-yellow"}" style="--result-table-width: ${tableWidth}px">
           <colgroup>
             ${tableColumns.map((column) => {
               const width = searchState.columnWidths[column.key] || column.width;
@@ -1261,7 +1279,7 @@
       const refAttr = ref ? ` data-size-ref="${escapeHtml(cleanField(value).toUpperCase())}"` : "";
       const refClass = ref ? " size-cell-has-ref" : "";
       const displayValue = value || "NULL";
-      return `<td class="size-cell size-sticky-col size-sticky-size${refClass}"${refAttr} style="--size-bg: ${sizeBackground(value)}; --size-fg: #ffffff"><strong>${escapeHtml(displayValue)}</strong></td>`;
+      return `<td class="size-cell size-sticky-col size-sticky-size${refClass}"${refAttr} style="--size-bg: ${sizeBackground(value)}; --size-fg: ${sizeTextColor()}"><strong>${escapeHtml(displayValue)}</strong></td>`;
     }
     return `<td>${escapeHtml(value || "")}</td>`;
   }
@@ -1687,12 +1705,12 @@
     if (sameColumn(key, "BED")) return configuredRecordValue(record, "bed");
     if (sameColumn(key, "TYPE")) return record.type || resultColumnValue(record, key);
     if (sameColumn(key, "SIZE")) return resultColumnValue(record, key) || "NULL";
-    if (isDimensionColumn(key) && searchState.dimensionUnit === "metric") {
+    if (isDimensionColumn(key)) {
       return numericDisplayValue(dimensionDisplay(key, resultColumnValue(record, key)));
     }
-    if (isLengthMarginColumn(key) && searchState.dimensionUnit === "metric") {
+    if (isLengthMarginColumn(key)) {
       const number = Number(resultColumnValue(record, key));
-      return Number.isFinite(number) ? (number * 2.54).toFixed(1) : "";
+      return Number.isFinite(number) ? String(Math.round(number)) : "";
     }
     return resultColumnValue(record, key);
   }
@@ -1768,9 +1786,9 @@
       <div class="size-reference-title">${escapeHtml(model)}</div>
       <div class="size-reference-common">${escapeHtml(commonSize ? `通用尺码 ${commonSize}` : `匹配 ${cleanField(size)}`)}</div>
       <div class="size-reference-dims">
-        ${sizeReferenceDimension("长", ref["长_in"])}
-        ${sizeReferenceDimension("宽", ref["宽_in"])}
-        ${sizeReferenceDimension("高", ref["高_in"])}
+        ${sizeReferenceDimension("长", ref["长_mm"])}
+        ${sizeReferenceDimension("宽", ref["宽_mm"])}
+        ${sizeReferenceDimension("高", ref["高_mm"])}
       </div>
     `;
   }
@@ -1785,29 +1803,28 @@
     if (!Number.isFinite(number)) {
       return cleanField(value);
     }
-    if (searchState.dimensionUnit === "metric") {
-      return `${(number * 2.54).toFixed(1)} cm`;
-    }
-    return `${cleanField(value)} in`;
+    return `${measurementDisplay(number)} ${searchState.dimensionUnit}`;
   }
 
   function sizeBackground(value) {
-    const text = cleanField(value).toUpperCase();
     const ref = sizeReferenceFor(value);
     const colorKey = cleanField(ref?.["通用尺码"] || value).toUpperCase();
-    const base = ({ A: "#1777c8", C: "#d62828", H: "#00a6a6", S: "#f28c28", T: "#6b7280" })[colorKey[0]] || "#6b7280";
-    const number = Number((colorKey.match(/\d+/) || ["0"])[0]);
-    return darkenHex(base, Math.min(0.34, Math.max(0, (number - 1) * 0.055)));
+    const family = ["A", "C", "H", "S"].includes(colorKey[0]) ? colorKey[0].toLowerCase() : "other";
+    return viewConfig.size_colors?.[family] || defaultViewConfig.size_colors[family];
+  }
+
+  function sizeTextColor() {
+    return viewConfig.size_colors?.text || defaultViewConfig.size_colors.text;
   }
 
   function lengthMarginStyle(value) {
     const number = Number(value);
     if (!Number.isFinite(number)) return "";
-    if (number >= 5 && number <= 15) {
+    if (number >= 127 && number <= 381) {
       return "--dimension-bg: #e6f6ec; --dimension-fg: #137333;";
     }
-    const distance = number < 5 ? 5 - number : number - 15;
-    const intensity = Math.min(1, distance / 15);
+    const distance = number < 127 ? 127 - number : number - 381;
+    const intensity = Math.min(1, distance / 381);
     const red = Math.round(244 - intensity * 80);
     const green = Math.round(226 - intensity * 150);
     const blue = Math.round(226 - intensity * 150);
@@ -1816,26 +1833,21 @@
 
   function lengthMarginDisplay(value) {
     const number = Number(value);
-    if (searchState.dimensionUnit !== "metric" || !Number.isFinite(number)) {
+    if (!Number.isFinite(number)) {
       return value;
     }
-    return (number * 2.54).toFixed(1);
+    return measurementDisplay(number);
   }
 
   function dimensionDisplay(column, value) {
     const number = Number(value);
     if (!Number.isFinite(number)) return value;
-    return searchState.dimensionUnit === "metric" && isDimensionColumn(column) ? (number * 2.54).toFixed(1) : value;
+    return isDimensionColumn(column) ? measurementDisplay(number) : value;
   }
 
-  function darkenHex(hex, amount) {
-    const normalized = hex.replace("#", "");
-    const value = Number.parseInt(normalized, 16);
-    if (!Number.isFinite(value)) return hex;
-    const r = Math.round(((value >> 16) & 255) * (1 - amount));
-    const g = Math.round(((value >> 8) & 255) * (1 - amount));
-    const b = Math.round((value & 255) * (1 - amount));
-    return `rgb(${r}, ${g}, ${b})`;
+  function measurementDisplay(millimetres) {
+    const factors = { mm: 1, cm: 0.1, in: 1 / 25.4 };
+    return String(Math.round(millimetres * (factors[searchState.dimensionUnit] || 1)));
   }
 
   function resultColumnValue(record, column) {
@@ -2000,21 +2012,21 @@
   }
 
   function dimensionSourceColumns(column) {
-    if (sameColumn(column, "L-IN") || sameColumn(column, "L-CM") || sameColumn(column, "长_in")) {
-      return ["L-IN", "L-CM", "长_in", "长"];
+    if (["L-MM", "L-CM", "L-IN", "长_mm", "长_cm", "长_in"].some((item) => sameColumn(column, item))) {
+      return ["L-MM", "长_mm"];
     }
-    if (sameColumn(column, "W-IN") || sameColumn(column, "W-CM") || sameColumn(column, "宽_in")) {
-      return ["W-IN", "W-CM", "宽_in", "宽"];
+    if (["W-MM", "W-CM", "W-IN", "宽_mm", "宽_cm", "宽_in"].some((item) => sameColumn(column, item))) {
+      return ["W-MM", "宽_mm"];
     }
-    if (sameColumn(column, "H-IN") || sameColumn(column, "H-CM") || sameColumn(column, "高_in")) {
-      return ["H-IN", "H-CM", "高_in", "高"];
+    if (["H-MM", "H-CM", "H-IN", "高_mm", "高_cm", "高_in"].some((item) => sameColumn(column, item))) {
+      return ["H-MM", "高_mm"];
     }
     return [column];
   }
 
   function numericDisplayValue(value) {
     const number = Number(value);
-    return Number.isFinite(number) ? number.toFixed(1) : "";
+    return Number.isFinite(number) ? String(Math.round(number)) : "";
   }
 
   function filterConfig(key) {
@@ -2083,7 +2095,7 @@
   }
 
   function parseSizeViewYaml(text) {
-    const result = { filters: {}, table_fields: {}, excel_source: {}, match_sources: [], size_reference: {} };
+    const result = { filters: {}, table_fields: {}, excel_source: {}, match_sources: [], size_reference: {}, size_colors: {} };
     let section = "";
     let keyName = "";
     let currentMatchSource = null;
@@ -2127,6 +2139,11 @@
         result.size_reference[rawKey.trim()] = parseYamlValue(rawValue.join(":").trim());
         return;
       }
+      if (indent === 2 && section === "size_colors" && trimmed.includes(":")) {
+        const [rawKey, ...rawValue] = trimmed.split(":");
+        result.size_colors[rawKey.trim()] = parseYamlValue(rawValue.join(":").trim());
+        return;
+      }
       if (indent >= 4 && keyName && trimmed.includes(":")) {
         const [rawKey, ...rawValue] = trimmed.split(":");
         result[section][keyName][rawKey.trim()] = parseYamlValue(rawValue.join(":").trim());
@@ -2149,7 +2166,8 @@
       table_fields: { ...fallback.table_fields },
       excel_source: { ...fallback.excel_source, ...(parsed.excel_source || {}) },
       match_sources: parsed.match_sources || fallback.match_sources || [],
-      size_reference: { ...fallback.size_reference, ...(parsed.size_reference || {}) }
+      size_reference: { ...fallback.size_reference, ...(parsed.size_reference || {}) },
+      size_colors: { ...fallback.size_colors, ...(parsed.size_colors || {}) }
     };
     Object.entries(parsed.filters || {}).forEach(([key, value]) => {
       merged.filters[key] = { ...(merged.filters[key] || {}), ...value };
@@ -2270,7 +2288,7 @@
   }
 
   function isDimensionColumn(column) {
-    return ["L-IN", "W-IN", "H-IN", "L-CM", "W-CM", "H-CM", "长_in", "宽_in", "高_in"].some((item) => sameColumn(column, item));
+    return ["L-MM", "W-MM", "H-MM", "L-CM", "W-CM", "H-CM", "L-IN", "W-IN", "H-IN", "长_mm", "宽_mm", "高_mm", "长_cm", "宽_cm", "高_cm", "长_in", "宽_in", "高_in"].some((item) => sameColumn(column, item));
   }
 
   function isLengthMarginColumn(column) {
@@ -2282,16 +2300,17 @@
   }
 
   function sizeStickyClass(column) {
-    if (sameColumn(column, "L-IN") || sameColumn(column, "L-CM") || sameColumn(column, "长_in")) return "size-sticky-l";
-    if (sameColumn(column, "W-IN") || sameColumn(column, "W-CM") || sameColumn(column, "宽_in")) return "size-sticky-w";
-    if (sameColumn(column, "H-IN") || sameColumn(column, "H-CM") || sameColumn(column, "高_in")) return "size-sticky-h";
+    if (["L-MM", "L-CM", "L-IN", "长_mm", "长_cm", "长_in"].some((item) => sameColumn(column, item))) return "size-sticky-l";
+    if (["W-MM", "W-CM", "W-IN", "宽_mm", "宽_cm", "宽_in"].some((item) => sameColumn(column, item))) return "size-sticky-w";
+    if (["H-MM", "H-CM", "H-IN", "高_mm", "高_cm", "高_in"].some((item) => sameColumn(column, item))) return "size-sticky-h";
     if (isLengthMarginColumn(column)) return "size-sticky-margin";
     if (sameColumn(column, "SIZE")) return "size-sticky-size";
     return "";
   }
 
   function activeDimensionColumns() {
-    return searchState.dimensionUnit === "metric" ? ["L-CM", "W-CM", "H-CM"] : ["L-IN", "W-IN", "H-IN"];
+    const suffix = searchState.dimensionUnit.toUpperCase();
+    return [`L-${suffix}`, `W-${suffix}`, `H-${suffix}`];
   }
 
   function sameColumn(left, right) {

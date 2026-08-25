@@ -1,27 +1,34 @@
 excel_source:
   path: data/source/tables/车型数据尺码.xlsx
   match_data_path: data/generated/size-match.json
+size_colors:
+  a: '#1777c8'
+  c: '#d62828'
+  h: '#00a6a6'
+  s: '#f28c28'
+  other: '#6b7280'
+  text: '#ffffff'
 match_sources:
   - name: ALL
     label: 全尺码匹配表
     sheet: 全尺码匹配表
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
   - name: TM
     label: TM尺码匹配
     sheet: TM尺码匹配
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
   - name: HNT
     label: HNT尺码匹配
     sheet: HNT尺码匹配
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
   - name: TM-拆分
     label: TM-拆分尺码匹配
     sheet: TM-拆分尺码匹配
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-IN,W-IN,H-IN,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
 filters:
   construct:
     label: 结构
