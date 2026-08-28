@@ -211,6 +211,8 @@ python run_all.py --case . --from-step inplace_table --to-step inplace_table
 
 `publish` 生成的 `size-match` 以 `L-MM / W-MM / H-MM / 长度余量` 作为标准数据：新表的毫米值直接四舍五入为整数，兼容旧表时会先将英寸或厘米换算为毫米。网页可在 MM/CM/IN 之间切换，显示值均为整数。`size-match` 的尺码配色会从 `configs/html-style.yaml` 同步至发布配置，与 size-chart 保持一致。
 
+发布查询数据采用“来源 + 品牌”二级懒加载：`size-match.json` 是轻量清单，记录按 ALL、TM、HNT 等来源及 MAKE 写入带内容哈希的 `size-match-*.json`。页面选择品牌后才加载对应分片并复用浏览器缓存；结果始终分页显示，避免一次渲染数千行。最终尺码与自动尺码一致且最终长度余量为空时，自动长度余量会作为安全回退。构建和 Pages 工作流都会验证配置字段、分片记录数及尺码参考字段后再发布。
+
 `user_size_template` 写入的店铺、车型、年份、版本、结构、尺码等源数据全部强制为 Excel 文本类型和 `@` 文本格式；复用已有中间工作簿时也会修正这些源数据列，同时保留人工内容。`user_size_validate` 会拒绝包含数字、日期或非文本单元格格式的源数据列，`inplace_table` 导出的所有 TSV 字段会再次统一转换为字符串。
 
 如需让某一个店铺在 `get_html` 阶段显示 `BACKSIZE`、其他店铺仍显示 `SIZE`，在 `configs/html-style.yaml` 中设置 `special_store_value` 及对应尺码列。留空表示关闭特殊店铺覆盖。

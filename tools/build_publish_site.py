@@ -158,6 +158,7 @@ def main() -> None:
 
     copy_file(publish_repo / "tools" / "build_site.py", workspace / "tools" / "build_site.py")
     copy_file(publish_repo / "tools" / "export_xlsx_sources.py", workspace / "tools" / "export_xlsx_sources.py")
+    copy_file(publish_repo / "tools" / "validate_generated_data.py", workspace / "tools" / "validate_generated_data.py")
     copy_tree(html_root, workspace / "data" / "source" / "html")
     configure_excel_sources(workspace, pipeline_config, xlsx_source, html_style_config)
 
