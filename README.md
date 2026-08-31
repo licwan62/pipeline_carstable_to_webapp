@@ -352,3 +352,28 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/Export-HtmlPagesTo
 发布时 `data/middle/04_html/ALL/TM/HNT` 会复制到本项目的 `data/middle/05_publish_workspace/data/source/html/`，不会写入 `publish_tables_to_webapp/data/source/html/`。目录要保持 `TM/nonpick/output_001.html`、`TM/pick/output_001.html` 这类结构，否则旧页面清单或缓存页面可能请求不到文件。
 
 发布构建时会自动扫描临时工作区 `data/source/html/` 下包含 `output_*.html` 的目录，并把列表写入生成的网站页面。
+
+## GitHub Pages 与 Nginx 手动发布
+
+将完整站点生成到 `data/output/site/` 并推送到 `main` 后，GitHub Actions 会同时：
+
+1. 校验并发布 GitHub Pages。
+2. 生成 `carstable-webapp-nginx-<提交 SHA>.zip`。ZIP 根目录直接包含 `index.html`、`assets/`、`config/` 和 `data/`，可在对应工作流运行页的摘要或 Artifacts 区域下载。
+
+把 ZIP 解压到服务器目录，例如 `/var/www/carstable`，然后使用以下 Nginx 配置：
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+
+    root /var/www/carstable;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
+启用配置后先执行 `sudo nginx -t`，验证成功再执行 `sudo systemctl reload nginx`。如果网站挂在域名的子路径下，还需为该子路径设置匹配的 `location` 和 `alias`；直接使用域名根路径时无需修改站点文件。
