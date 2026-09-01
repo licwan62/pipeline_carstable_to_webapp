@@ -86,13 +86,13 @@ python cleanup.py --force
 pip install -r requirements.txt
 ```
 
-把待处理的 `.xlsx` 放进：
+把待处理的一个或多个 `.xlsx`、`.xlsm`、`.csv` 放进：
 
 ```text
 data/input/
 ```
 
-工作区一次只处理一个项目。若 `data/input` 中有多个 xlsx，请只保留一个，或使用 `--case` 指定其中一个。
+同一目录中的文件会作为一次任务的多个匹配来源处理。来源名称、页面标签和运行时工作表名称默认根据各自文件名自动生成。
 
 试跑，不真正执行外部步骤：
 
@@ -248,7 +248,7 @@ steps:
     enabled: true
 ```
 
-`pipeline.yaml` 是唯一的流水线配置，包含输入工作表、字段映射、步骤命令、产物检查和人工暂停提示。
+`pipeline.yaml` 是唯一的流水线配置，包含输入发现规则、匹配来源模板、字段映射、步骤命令、产物检查和人工暂停提示。
 
 每个步骤支持：
 
@@ -260,16 +260,22 @@ copy_after:     # 步骤后复制文件/目录
 pause_after:    # 需要人工处理时暂停提示
 ```
 
-输入工作表和压缩字段映射也直接写在 `pipeline.yaml`：
+输入文件规则、匹配来源模板和压缩字段映射也直接写在 `pipeline.yaml`：
 
 关键设置：
 
 ```yaml
+file_rules:
+  input_patterns: ["*.xlsx", "*.xlsm", "*.csv"]
+
 input:
-  sheets:
-    - ALL尺码匹配
-    - TM尺码匹配
-    - HNT尺码匹配
+  case_name: combined
+  match_source:
+    name: "{stem}"
+    label: "{stem}尺码匹配表"
+    sheet: "{stem}尺码匹配"
+    header_row: 1
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
 
 columns:
   最终尺码:
@@ -279,7 +285,7 @@ columns:
     - 对应尺码
 ```
 
-`input.sheets` 是数据集的唯一来源；后续工作簿、TSV 和 HTML 目录由代码动态推导。
+`{stem}` 表示不含扩展名的文件名。例如 `ALL.csv` 会生成 `ALL / ALL尺码匹配表 / ALL尺码匹配`。运行时展开后的 `match_sources` 写入 `data/middle/00_input/pipeline.generated.yaml`；`header_row` 和 `columns` 等限制会原样用于网页数据导出与校验。
 
 ### `configs/html-style.yaml`
 

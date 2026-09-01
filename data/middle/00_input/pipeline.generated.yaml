@@ -1,0 +1,225 @@
+repos:
+  pipeline: .
+  compress: ../compress_to_size_chart
+paths:
+  input_dir: data/input
+  middle_dir: data/middle
+  output_dir: data/output
+  logs_dir: logs
+file_rules:
+  input_patterns:
+    - '*.xlsx'
+    - '*.xlsm'
+    - '*.csv'
+input:
+  case_name: combined
+  match_source:
+    name: '{stem}'
+    label: '{stem}尺码匹配表'
+    sheet: '{stem}尺码匹配'
+    header_row: 1
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+  csv:
+    encoding: utf-8-sig
+  header_aliases:
+    S8MAKE: MAKE
+  required_fields:
+    - 品牌
+    - 前台车型
+    - 年份区间
+    - 最终尺码
+  sheets:
+    - 07-FULL尺码匹配
+    - 07-HNT尺码匹配
+    - 07-TM尺码匹配
+    - 07-TM拆尺码匹配
+    - 新分析0831尺码匹配
+  match_sources:
+    - name: 07-FULL
+      label: 07-FULL尺码匹配表
+      sheet: 07-FULL尺码匹配
+      header_row: 1
+      columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+      file: 07-FULL.csv
+    - name: 07-HNT
+      label: 07-HNT尺码匹配表
+      sheet: 07-HNT尺码匹配
+      header_row: 1
+      columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+      file: 07-HNT.csv
+    - name: 07-TM
+      label: 07-TM尺码匹配表
+      sheet: 07-TM尺码匹配
+      header_row: 1
+      columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+      file: 07-TM.csv
+    - name: 07-TM拆
+      label: 07-TM拆尺码匹配表
+      sheet: 07-TM拆尺码匹配
+      header_row: 1
+      columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+      file: 07-TM拆.csv
+    - name: 新分析0831
+      label: 新分析0831尺码匹配表
+      sheet: 新分析0831尺码匹配
+      header_row: 1
+      columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+      file: 新分析0831.csv
+columns:
+  品牌:
+    - MAKE
+    - 品牌
+  前台车型:
+    - MODEL
+    - 前台车型
+  结构:
+    - 结构
+  版本:
+    - 版本
+  年份区间:
+    - YEAR
+    - 年份区间
+  最终尺码:
+    - 确认尺码
+    - 自动尺码
+    - 最终尺码
+    - 对应尺码
+  驾驶室类型:
+    - CAB
+    - 驾驶室类型
+  货斗长度_ft:
+    - BED
+    - 货斗长度_ft
+  子车系:
+    - SUB-MODEL
+    - 子车系
+  分类:
+    - 分类
+defaults:
+  分类: ''
+variables:
+  compress_output_root: '{case_middle}/01_compress'
+  user_size_json: '{case_middle}/02_user_size.json'
+  user_size_rules: '{root}/data/rules/user-size-rules.json'
+  user_size_ai_config: '{root}/configs/ai-user-size.yaml'
+  user_size_export_dir: '{case_middle}/03_user_size_exports'
+  html_output_dir: '{case_middle}/04_html'
+  publish_workspace: '{case_middle}/05_publish_workspace'
+  publish_repo_path: '{root}/../publish_tables_to_webapp'
+steps:
+  prepare_inputs:
+    enabled: true
+    repo: pipeline
+    command:
+      - '{python}'
+      - tools/materialize_input_sources.py
+      - --input-dir
+      - '{input_dir}'
+      - --config
+      - '{source_config}'
+      - --output-workbook
+      - '{input_file}'
+      - --output-config
+      - '{pipeline_config}'
+    check_exists:
+      - '{input_file}'
+      - '{pipeline_config}'
+  compress:
+    enabled: true
+    repo: pipeline
+    command:
+      - '{python}'
+      - tools/compress_configured_sheets.py
+      - --input
+      - '{input_file}'
+      - --output-root
+      - '{compress_output_root}'
+      - --config
+      - '{pipeline_config}'
+      - --compress-script
+      - '{root}/../compress_to_size_chart/process_tsv.py'
+    check_exists:
+      - '{compress_output_root}'
+  atom_validate:
+    enabled: false
+    repo: pipeline
+    command:
+      - '{python}'
+      - tools/validate_atom_checks.py
+      - --root
+      - '{compress_output_root}'
+  user_size_template:
+    enabled: true
+    repo: pipeline
+    command:
+      - '{python}'
+      - tools/build_user_size_json.py
+      - --case-name
+      - '{case_name}'
+      - --compress-root
+      - '{compress_output_root}'
+      - --config
+      - '{pipeline_config}'
+      - --rules
+      - '{user_size_rules}'
+      - --ai-config
+      - '{user_size_ai_config}'
+      - --output
+      - '{user_size_json}'
+    check_exists:
+      - '{user_size_json}'
+  user_size_validate:
+    enabled: false
+    repo: pipeline
+    command: []
+  inplace_table:
+    enabled: true
+    repo: pipeline
+    command:
+      - '{python}'
+      - tools/export_user_size_json_tables.py
+      - --input
+      - '{user_size_json}'
+      - --output-root
+      - '{user_size_export_dir}'
+    check_exists:
+      - '{user_size_export_dir}'
+  get_html:
+    enabled: true
+    repo: pipeline
+    command:
+      - '{python}'
+      - tools/generate_all_html.py
+      - --export-root
+      - '{user_size_export_dir}'
+      - --output-root
+      - '{html_output_dir}'
+      - --config-path
+      - '{root}/configs/html-style.yaml'
+      - --html-script
+      - '{root}/../generate_size_chart_html/tsv_to_size_chart_html.py'
+    check_exists:
+      - '{html_output_dir}'
+    pause_after: 请检查 {html_output_dir}。如需人工修改，请直接覆盖该目录内 HTML/CSS 后继续。
+  publish:
+    enabled: true
+    repo: pipeline
+    command:
+      - '{python}'
+      - tools/build_publish_site.py
+      - --publish-repo
+      - '{publish_repo_path}'
+      - --html-root
+      - '{html_output_dir}'
+      - --xlsx-source
+      - '{input_file}'
+      - --pipeline-config
+      - '{pipeline_config}'
+      - --html-style-config
+      - '{root}/configs/html-style.yaml'
+      - --workspace
+      - '{publish_workspace}'
+      - --site-output
+      - '{case_output}/site'
+    check_exists:
+      - '{case_output}/site/index.html'

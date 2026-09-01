@@ -1,0 +1,6 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/materialize_input_sources.py --input-dir D:\Licheng\Repo\pipeline_carstable_to_webapp\data\input --config D:\Licheng\Repo\pipeline_carstable_to_webapp\configs\pipeline.yaml --output-workbook D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\00_input\combined.xlsx --output-config D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\00_input\pipeline.generated.yaml
+
+[input-source] 新分析0831.csv -> 新分析0831 / 新分析0831尺码匹配
+Materialized 1 input source(s): D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\00_input\combined.xlsx
+Runtime config: D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\00_input\pipeline.generated.yaml

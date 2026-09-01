@@ -13,6 +13,8 @@ from typing import Any
 
 import yaml
 
+from tools.materialize_input_sources import discover_input_files
+
 
 ROOT = Path(__file__).parent.resolve()
 ERROR_LOG_TAIL_LINES = 40
@@ -71,37 +73,39 @@ def resolve_from_root(path: str | Path) -> Path:
 
 def scan_cases(config: dict[str, Any], only_case: str | None = None) -> list[dict[str, Any]]:
     paths = config["paths"]
-    file_rules = config.get("file_rules", {})
     input_dir = resolve_from_root(paths["input_dir"])
-    pattern = file_rules.get("input_pattern", "*.xlsx")
+    input_files = discover_input_files(input_dir, config)
+    if not input_files:
+        return []
 
-    cases: list[dict[str, Any]] = []
-    for input_file in sorted(input_dir.glob(pattern)):
-        if input_file.name.startswith("~$"):
-            continue
+    case_name = str((config.get("input") or {}).get("case_name") or "combined").strip()
+    if not case_name:
+        raise ValueError("input.case_name must not be empty")
+    if only_case and case_name != only_case:
+        return []
 
-        case_name = input_file.stem
-        if only_case and case_name != only_case:
-            continue
-
-        cases.append(
-            {
-                "case_name": case_name,
-                "input_file": input_file.resolve(),
-                "case_middle": resolve_from_root(paths["middle_dir"]),
-                "case_output": resolve_from_root(paths["output_dir"]),
-            }
-        )
-
-    return cases
+    case_middle = resolve_from_root(paths["middle_dir"])
+    prepared_root = case_middle / "00_input"
+    return [
+        {
+            "case_name": case_name,
+            "input_files": input_files,
+            "input_file": prepared_root / f"{case_name}.xlsx",
+            "pipeline_config": prepared_root / "pipeline.generated.yaml",
+            "case_middle": case_middle,
+            "case_output": resolve_from_root(paths["output_dir"]),
+        }
+    ]
 
 
 def build_variables(case: dict[str, Any], config: dict[str, Any]) -> dict[str, str]:
     paths = config["paths"]
     variables = {
         "root": str(ROOT),
+        "source_config": str(config.get("_config_path") or resolve_from_root("configs/pipeline.yaml")),
         "case_name": str(case["case_name"]),
         "input_file": str(case["input_file"]),
+        "pipeline_config": str(case.get("pipeline_config") or resolve_from_root("configs/pipeline.yaml")),
         "case_middle": str(case["case_middle"]),
         "case_output": str(case["case_output"]),
         "input_dir": str(resolve_from_root(paths["input_dir"])),
@@ -693,7 +697,7 @@ def run_incremental(
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run the fitment pipeline for xlsx files.")
+    parser = argparse.ArgumentParser(description="Run the fitment pipeline for configured Excel/CSV inputs.")
     parser.add_argument("--config", default="configs/pipeline.yaml", help="Path to pipeline config yaml.")
     parser.add_argument(
         "--case",
@@ -712,7 +716,9 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="Print commands without running them.")
     args = parser.parse_args()
 
-    config = load_config(resolve_from_root(args.config))
+    source_config = resolve_from_root(args.config)
+    config = load_config(source_config)
+    config["_config_path"] = str(source_config)
     if args.list_steps:
         print("\n".join(enabled_step_names(config)))
         return 0
@@ -739,13 +745,8 @@ def main() -> int:
     cases = scan_cases(config)
 
     if not cases:
-        print("No input xlsx files found.")
+        print("No configured Excel/CSV input files found.")
         return 0
-    if len(cases) > 1:
-        names = ", ".join(case["case_name"] for case in cases)
-        print(f"Workspace mode only supports one project at a time. Found: {names}")
-        print("Keep one xlsx in data/input.")
-        return 2
 
     logs_root = resolve_from_root(Path(config["paths"]["logs_dir"]) / run_id)
     logs_root.mkdir(parents=True, exist_ok=True)

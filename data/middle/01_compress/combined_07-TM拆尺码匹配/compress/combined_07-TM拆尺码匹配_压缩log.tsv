@@ -1,0 +1,6 @@
+﻿压缩类型	阶段	MAKE	MODEL	合并MODEL	CAB	BED_FT	BACKSIZE	候选YEAR	候选CONST	候选VERSION	合并CAB	合并BED_FT	合并YEAR	合并CONST	合并VERSION	结果	原因
+非皮卡	高度压缩两两组合	Audi	A6/A6	A6	/	/	3XXXL-0	1998-2000/2026	Sedan/Sedan	/			1998-2026	Sedan		success	
+非皮卡	高度压缩两两组合	Audi	A8/S8/A8/S8	A8/S8	/	/	3XXXL-0	2000-2018/2019-2026	Sedan/Sedan	LWB/			2000-2026	Sedan	Incl: LWB	success	
+非皮卡	高度压缩两两组合	Cadillac	Seville/Seville	Seville	/	/	3XXXL-0	1981/1983-1984	Sedan/Sedan	/			1981-1984	Sedan		success	
+非皮卡	高度压缩两两组合	Chevrolet	Bel Air/Bel Air	Bel Air	/	/	3XXXL-0	1959/1966	Sedan/Sedan	2dr/			1959-1966	Sedan	Incl: 2dr	success	
+非皮卡	高度压缩两两组合	Chevrolet	Bel Air/Bel Air	Bel Air	/	/	3XXXL-0	1959-1966/1970-1971	Sedan/Sedan	Incl: 2dr/			1959-1971	Sedan	Incl: 2dr	success	

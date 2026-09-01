@@ -1,0 +1,7 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/build_publish_site.py --publish-repo D:\Licheng\Repo\pipeline_carstable_to_webapp\..\publish_tables_to_webapp --html-root D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\04_html --xlsx-source D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\00_input\combined.xlsx --pipeline-config D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\00_input\pipeline.generated.yaml --html-style-config D:\Licheng\Repo\pipeline_carstable_to_webapp/configs/html-style.yaml --workspace D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\05_publish_workspace --site-output D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output/site
+
+[configure_publish] match sheets=['新分析0831尺码匹配']; size reference=reuse existing generated data
+[export_xlsx_sources] C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\05_publish_workspace\tools\export_xlsx_sources.py --xlsx-source D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\00_input\combined.xlsx --skip-size-reference
+[build_site] C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\05_publish_workspace\tools\build_site.py
+Built site: D:\Licheng\Repo\pipeline_carstable_to_webapp\data\output\site

@@ -41,13 +41,22 @@ def store_name(input_sheet: str) -> str:
 
 def configured_stores(config_path: Path) -> list[tuple[str, str]]:
     config = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
-    sheets = config.get("input", {}).get("sheets", [])
-    if not sheets:
-        raise ValueError(f"No input.sheets configured in {config_path}")
-    stores = [(store_name(str(sheet)), str(sheet)) for sheet in sheets]
+    input_config = config.get("input", {})
+    match_sources = input_config.get("match_sources") or []
+    if match_sources:
+        stores = []
+        for source in match_sources:
+            if not isinstance(source, dict) or not source.get("name") or not source.get("sheet"):
+                raise ValueError(f"Invalid input.match_sources entry in {config_path}: {source!r}")
+            stores.append((str(source["name"]), str(source["sheet"])))
+    else:
+        sheets = input_config.get("sheets", [])
+        stores = [(store_name(str(sheet)), str(sheet)) for sheet in sheets]
+    if not stores:
+        raise ValueError(f"No input.match_sources or input.sheets configured in {config_path}")
     labels = [store for store, _ in stores]
     if len(labels) != len(set(labels)):
-        raise ValueError(f"input.sheets produce duplicate store names: {labels}")
+        raise ValueError(f"Configured inputs produce duplicate store names: {labels}")
     return stores
 
 

@@ -1,0 +1,145 @@
+﻿原子行号	压缩命中数	检查结果	压缩行号	命中尺码	压缩类型	MAKE	MODEL	YEAR	VERSION	CONST	CAB	BED_FT	BACKSIZE	命中压缩行
+2	1	OK	2	3XXXL-0	非皮卡	Acura	RL	1996		Sedan			3XXXL-0	2: Acura RL 1996-2004  Sedan   3XXXL-0
+3	1	OK	2	3XXXL-0	非皮卡	Acura	RL	1997		Sedan			3XXXL-0	2: Acura RL 1996-2004  Sedan   3XXXL-0
+4	1	OK	2	3XXXL-0	非皮卡	Acura	RL	1998		Sedan			3XXXL-0	2: Acura RL 1996-2004  Sedan   3XXXL-0
+5	1	OK	2	3XXXL-0	非皮卡	Acura	RL	1999		Sedan			3XXXL-0	2: Acura RL 1996-2004  Sedan   3XXXL-0
+6	1	OK	2	3XXXL-0	非皮卡	Acura	RL	2000		Sedan			3XXXL-0	2: Acura RL 1996-2004  Sedan   3XXXL-0
+7	1	OK	2	3XXXL-0	非皮卡	Acura	RL	2001		Sedan			3XXXL-0	2: Acura RL 1996-2004  Sedan   3XXXL-0
+8	1	OK	2	3XXXL-0	非皮卡	Acura	RL	2002		Sedan			3XXXL-0	2: Acura RL 1996-2004  Sedan   3XXXL-0
+9	1	OK	2	3XXXL-0	非皮卡	Acura	RL	2003		Sedan			3XXXL-0	2: Acura RL 1996-2004  Sedan   3XXXL-0
+10	1	OK	2	3XXXL-0	非皮卡	Acura	RL	2004		Sedan			3XXXL-0	2: Acura RL 1996-2004  Sedan   3XXXL-0
+11	1	OK	3	3XXXL-0	非皮卡	Acura	RLX	2014		Sedan			3XXXL-0	3: Acura RLX 2014-2020  Sedan   3XXXL-0
+12	1	OK	3	3XXXL-0	非皮卡	Acura	RLX	2015		Sedan			3XXXL-0	3: Acura RLX 2014-2020  Sedan   3XXXL-0
+13	1	OK	3	3XXXL-0	非皮卡	Acura	RLX	2016		Sedan			3XXXL-0	3: Acura RLX 2014-2020  Sedan   3XXXL-0
+14	1	OK	3	3XXXL-0	非皮卡	Acura	RLX	2017		Sedan			3XXXL-0	3: Acura RLX 2014-2020  Sedan   3XXXL-0
+15	1	OK	3	3XXXL-0	非皮卡	Acura	RLX	2018		Sedan			3XXXL-0	3: Acura RLX 2014-2020  Sedan   3XXXL-0
+16	1	OK	3	3XXXL-0	非皮卡	Acura	RLX	2019		Sedan			3XXXL-0	3: Acura RLX 2014-2020  Sedan   3XXXL-0
+17	1	OK	3	3XXXL-0	非皮卡	Acura	RLX	2020		Sedan			3XXXL-0	3: Acura RLX 2014-2020  Sedan   3XXXL-0
+18	1	OK	4	3XXXL-0	非皮卡	Audi	A6	1998		Sedan			3XXXL-0	4: Audi A6 1998-2026  Sedan   3XXXL-0
+19	1	OK	4	3XXXL-0	非皮卡	Audi	A6	1999		Sedan			3XXXL-0	4: Audi A6 1998-2026  Sedan   3XXXL-0
+20	1	OK	4	3XXXL-0	非皮卡	Audi	A6	2000		Sedan			3XXXL-0	4: Audi A6 1998-2026  Sedan   3XXXL-0
+21	1	OK	4	3XXXL-0	非皮卡	Audi	A6	2026		Sedan			3XXXL-0	4: Audi A6 1998-2026  Sedan   3XXXL-0
+22	0	MISS			非皮卡	Audi	A6/S6	2005		Sedan			3XXXL-0	
+23	0	MISS			非皮卡	Audi	A6/S6	2006		Sedan			3XXXL-0	
+24	0	MISS			非皮卡	Audi	A6/S6	2007		Sedan			3XXXL-0	
+25	0	MISS			非皮卡	Audi	A6/S6	2008		Sedan			3XXXL-0	
+26	0	MISS			非皮卡	Audi	A6/S6	2009		Sedan			3XXXL-0	
+27	0	MISS			非皮卡	Audi	A6/S6	2010		Sedan			3XXXL-0	
+28	0	MISS			非皮卡	Audi	A6/S6	2011		Sedan			3XXXL-0	
+29	0	MISS			非皮卡	Audi	A6/S6	2012		Sedan			3XXXL-0	
+30	0	MISS			非皮卡	Audi	A6/S6	2013		Sedan			3XXXL-0	
+31	0	MISS			非皮卡	Audi	A6/S6	2014		Sedan			3XXXL-0	
+32	0	MISS			非皮卡	Audi	A6/S6	2015		Sedan			3XXXL-0	
+33	0	MISS			非皮卡	Audi	A6/S6	2016		Sedan			3XXXL-0	
+34	0	MISS			非皮卡	Audi	A6/S6	2017		Sedan			3XXXL-0	
+35	0	MISS			非皮卡	Audi	A6/S6	2018		Sedan			3XXXL-0	
+36	0	MISS			非皮卡	Audi	A6/S6	2019		Sedan			3XXXL-0	
+37	0	MISS			非皮卡	Audi	A6/S6	2020		Sedan			3XXXL-0	
+38	0	MISS			非皮卡	Audi	A6/S6	2021		Sedan			3XXXL-0	
+39	0	MISS			非皮卡	Audi	A6/S6	2022		Sedan			3XXXL-0	
+40	0	MISS			非皮卡	Audi	A6/S6	2023		Sedan			3XXXL-0	
+41	0	MISS			非皮卡	Audi	A6/S6	2024		Sedan			3XXXL-0	
+42	0	MISS			非皮卡	Audi	A6/S6	2025		Sedan			3XXXL-0	
+43	0	MISS			非皮卡	Audi	A8/S8	2000	LWB	Sedan			3XXXL-0	
+44	0	MISS			非皮卡	Audi	A8/S8	2001	LWB	Sedan			3XXXL-0	
+45	0	MISS			非皮卡	Audi	A8/S8	2002	LWB	Sedan			3XXXL-0	
+46	0	MISS			非皮卡	Audi	A8/S8	2003	LWB	Sedan			3XXXL-0	
+47	0	MISS			非皮卡	Audi	A8/S8	2004	LWB	Sedan			3XXXL-0	
+48	0	MISS			非皮卡	Audi	A8/S8	2005	LWB	Sedan			3XXXL-0	
+49	0	MISS			非皮卡	Audi	A8/S8	2006	LWB	Sedan			3XXXL-0	
+50	0	MISS			非皮卡	Audi	A8/S8	2007	LWB	Sedan			3XXXL-0	
+51	0	MISS			非皮卡	Audi	A8/S8	2008	LWB	Sedan			3XXXL-0	
+52	0	MISS			非皮卡	Audi	A8/S8	2009	LWB	Sedan			3XXXL-0	
+53	0	MISS			非皮卡	Audi	A8/S8	2010	LWB	Sedan			3XXXL-0	
+54	0	MISS			非皮卡	Audi	A8/S8	2011	LWB	Sedan			3XXXL-0	
+55	0	MISS			非皮卡	Audi	A8/S8	2012	LWB	Sedan			3XXXL-0	
+56	0	MISS			非皮卡	Audi	A8/S8	2013	LWB	Sedan			3XXXL-0	
+57	0	MISS			非皮卡	Audi	A8/S8	2014	LWB	Sedan			3XXXL-0	
+58	0	MISS			非皮卡	Audi	A8/S8	2015	LWB	Sedan			3XXXL-0	
+59	0	MISS			非皮卡	Audi	A8/S8	2016	LWB	Sedan			3XXXL-0	
+60	0	MISS			非皮卡	Audi	A8/S8	2017	LWB	Sedan			3XXXL-0	
+61	0	MISS			非皮卡	Audi	A8/S8	2018	LWB	Sedan			3XXXL-0	
+62	0	MISS			非皮卡	Audi	A8/S8	2019		Sedan			3XXXL-0	
+63	0	MISS			非皮卡	Audi	A8/S8	2020		Sedan			3XXXL-0	
+64	0	MISS			非皮卡	Audi	A8/S8	2021		Sedan			3XXXL-0	
+65	0	MISS			非皮卡	Audi	A8/S8	2022		Sedan			3XXXL-0	
+66	0	MISS			非皮卡	Audi	A8/S8	2023		Sedan			3XXXL-0	
+67	0	MISS			非皮卡	Audi	A8/S8	2024		Sedan			3XXXL-0	
+68	0	MISS			非皮卡	Audi	A8/S8	2025		Sedan			3XXXL-0	
+69	0	MISS			非皮卡	Audi	A8/S8	2026		Sedan			3XXXL-0	
+70	0	MISS			非皮卡	Audi	e-tron GT/RS e-tron GT	2022		Sedan			3XXXL-0	
+71	0	MISS			非皮卡	Audi	e-tron GT/RS e-tron GT	2023		Sedan			3XXXL-0	
+72	0	MISS			非皮卡	Audi	e-tron GT/RS e-tron GT	2024		Sedan			3XXXL-0	
+73	0	MISS			非皮卡	Audi	e-tron GT/S e-tron GT/RS e-tron GT	2025		Sedan			3XXXL-0	
+74	0	MISS			非皮卡	Audi	e-tron GT/S e-tron GT/RS e-tron GT	2026		Sedan			3XXXL-0	
+75	1	OK	9	3XXXL-0	非皮卡	BMW	5 Series	2017		Sedan			3XXXL-0	9: BMW 5 Series 2017-2026  Sedan   3XXXL-0
+76	1	OK	9	3XXXL-0	非皮卡	BMW	5 Series	2018		Sedan			3XXXL-0	9: BMW 5 Series 2017-2026  Sedan   3XXXL-0
+77	1	OK	9	3XXXL-0	非皮卡	BMW	5 Series	2019		Sedan			3XXXL-0	9: BMW 5 Series 2017-2026  Sedan   3XXXL-0
+78	1	OK	9	3XXXL-0	非皮卡	BMW	5 Series	2020		Sedan			3XXXL-0	9: BMW 5 Series 2017-2026  Sedan   3XXXL-0
+79	1	OK	9	3XXXL-0	非皮卡	BMW	5 Series	2021		Sedan			3XXXL-0	9: BMW 5 Series 2017-2026  Sedan   3XXXL-0
+80	1	OK	9	3XXXL-0	非皮卡	BMW	5 Series	2022		Sedan			3XXXL-0	9: BMW 5 Series 2017-2026  Sedan   3XXXL-0
+81	1	OK	9	3XXXL-0	非皮卡	BMW	5 Series	2023		Sedan			3XXXL-0	9: BMW 5 Series 2017-2026  Sedan   3XXXL-0
+82	1	OK	9	3XXXL-0	非皮卡	BMW	5 Series	2024		Sedan			3XXXL-0	9: BMW 5 Series 2017-2026  Sedan   3XXXL-0
+83	1	OK	9	3XXXL-0	非皮卡	BMW	5 Series	2025		Sedan			3XXXL-0	9: BMW 5 Series 2017-2026  Sedan   3XXXL-0
+84	1	OK	9	3XXXL-0	非皮卡	BMW	5 Series	2026		Sedan			3XXXL-0	9: BMW 5 Series 2017-2026  Sedan   3XXXL-0
+85	1	OK	10	3XXXL-0	非皮卡	BMW	8 Series	2020	Gran Coupe	Sedan			3XXXL-0	10: BMW 8 Series 2020-2026 Gran Coupe Sedan   3XXXL-0
+86	1	OK	10	3XXXL-0	非皮卡	BMW	8 Series	2021	Gran Coupe	Sedan			3XXXL-0	10: BMW 8 Series 2020-2026 Gran Coupe Sedan   3XXXL-0
+87	1	OK	10	3XXXL-0	非皮卡	BMW	8 Series	2022	Gran Coupe	Sedan			3XXXL-0	10: BMW 8 Series 2020-2026 Gran Coupe Sedan   3XXXL-0
+88	1	OK	10	3XXXL-0	非皮卡	BMW	8 Series	2023	Gran Coupe	Sedan			3XXXL-0	10: BMW 8 Series 2020-2026 Gran Coupe Sedan   3XXXL-0
+89	1	OK	10	3XXXL-0	非皮卡	BMW	8 Series	2024	Gran Coupe	Sedan			3XXXL-0	10: BMW 8 Series 2020-2026 Gran Coupe Sedan   3XXXL-0
+90	1	OK	10	3XXXL-0	非皮卡	BMW	8 Series	2025	Gran Coupe	Sedan			3XXXL-0	10: BMW 8 Series 2020-2026 Gran Coupe Sedan   3XXXL-0
+91	1	OK	10	3XXXL-0	非皮卡	BMW	8 Series	2026	Gran Coupe	Sedan			3XXXL-0	10: BMW 8 Series 2020-2026 Gran Coupe Sedan   3XXXL-0
+92	1	OK	11	3XXXL-0	非皮卡	Buick	LeSabre	1982		Sedan			3XXXL-0	11: Buick LeSabre 1982-1985  Sedan   3XXXL-0
+93	1	OK	11	3XXXL-0	非皮卡	Buick	LeSabre	1983		Sedan			3XXXL-0	11: Buick LeSabre 1982-1985  Sedan   3XXXL-0
+94	1	OK	11	3XXXL-0	非皮卡	Buick	LeSabre	1984		Sedan			3XXXL-0	11: Buick LeSabre 1982-1985  Sedan   3XXXL-0
+95	1	OK	11	3XXXL-0	非皮卡	Buick	LeSabre	1985		Sedan			3XXXL-0	11: Buick LeSabre 1982-1985  Sedan   3XXXL-0
+96	1	OK	12	3XXXL-0	非皮卡	Buick	Lucerne	2006		Sedan			3XXXL-0	12: Buick Lucerne 2006-2011  Sedan   3XXXL-0
+97	1	OK	12	3XXXL-0	非皮卡	Buick	Lucerne	2007		Sedan			3XXXL-0	12: Buick Lucerne 2006-2011  Sedan   3XXXL-0
+98	1	OK	12	3XXXL-0	非皮卡	Buick	Lucerne	2008		Sedan			3XXXL-0	12: Buick Lucerne 2006-2011  Sedan   3XXXL-0
+99	1	OK	12	3XXXL-0	非皮卡	Buick	Lucerne	2009		Sedan			3XXXL-0	12: Buick Lucerne 2006-2011  Sedan   3XXXL-0
+100	1	OK	12	3XXXL-0	非皮卡	Buick	Lucerne	2010		Sedan			3XXXL-0	12: Buick Lucerne 2006-2011  Sedan   3XXXL-0
+101	1	OK	12	3XXXL-0	非皮卡	Buick	Lucerne	2011		Sedan			3XXXL-0	12: Buick Lucerne 2006-2011  Sedan   3XXXL-0
+102	1	OK	13	3XXXL-0	非皮卡	Buick	Roadmaster	1937		Sedan			3XXXL-0	13: Buick Roadmaster 1937-1940  Sedan   3XXXL-0
+103	1	OK	13	3XXXL-0	非皮卡	Buick	Roadmaster	1938		Sedan			3XXXL-0	13: Buick Roadmaster 1937-1940  Sedan   3XXXL-0
+104	1	OK	13	3XXXL-0	非皮卡	Buick	Roadmaster	1939		Sedan			3XXXL-0	13: Buick Roadmaster 1937-1940  Sedan   3XXXL-0
+105	1	OK	13	3XXXL-0	非皮卡	Buick	Roadmaster	1940		Sedan			3XXXL-0	13: Buick Roadmaster 1937-1940  Sedan   3XXXL-0
+106	1	OK	14	3XXXL-0	非皮卡	Cadillac	DeVille	1998		Sedan			3XXXL-0	14: Cadillac DeVille 1998-2005  Sedan   3XXXL-0
+107	1	OK	14	3XXXL-0	非皮卡	Cadillac	DeVille	1999		Sedan			3XXXL-0	14: Cadillac DeVille 1998-2005  Sedan   3XXXL-0
+108	1	OK	14	3XXXL-0	非皮卡	Cadillac	DeVille	2000		Sedan			3XXXL-0	14: Cadillac DeVille 1998-2005  Sedan   3XXXL-0
+109	1	OK	14	3XXXL-0	非皮卡	Cadillac	DeVille	2001		Sedan			3XXXL-0	14: Cadillac DeVille 1998-2005  Sedan   3XXXL-0
+110	1	OK	14	3XXXL-0	非皮卡	Cadillac	DeVille	2002		Sedan			3XXXL-0	14: Cadillac DeVille 1998-2005  Sedan   3XXXL-0
+111	1	OK	14	3XXXL-0	非皮卡	Cadillac	DeVille	2003		Sedan			3XXXL-0	14: Cadillac DeVille 1998-2005  Sedan   3XXXL-0
+112	1	OK	14	3XXXL-0	非皮卡	Cadillac	DeVille	2004		Sedan			3XXXL-0	14: Cadillac DeVille 1998-2005  Sedan   3XXXL-0
+113	1	OK	14	3XXXL-0	非皮卡	Cadillac	DeVille	2005		Sedan			3XXXL-0	14: Cadillac DeVille 1998-2005  Sedan   3XXXL-0
+114	1	OK	15	3XXXL-0	非皮卡	Cadillac	Seville	1981		Sedan			3XXXL-0	15: Cadillac Seville 1981-1984  Sedan   3XXXL-0
+115	1	OK	15	3XXXL-0	非皮卡	Cadillac	Seville	1983		Sedan			3XXXL-0	15: Cadillac Seville 1981-1984  Sedan   3XXXL-0
+116	1	OK	15	3XXXL-0	非皮卡	Cadillac	Seville	1984		Sedan			3XXXL-0	15: Cadillac Seville 1981-1984  Sedan   3XXXL-0
+117	1	OK	16	3XXXL-0	非皮卡	Chevrolet	Bel Air	1959	2dr	Sedan			3XXXL-0	16: Chevrolet Bel Air 1959-1971 Incl: 2dr Sedan   3XXXL-0
+118	1	OK	16	3XXXL-0	非皮卡	Chevrolet	Bel Air	1966		Sedan			3XXXL-0	16: Chevrolet Bel Air 1959-1971 Incl: 2dr Sedan   3XXXL-0
+119	1	OK	16	3XXXL-0	非皮卡	Chevrolet	Bel Air	1970		Sedan			3XXXL-0	16: Chevrolet Bel Air 1959-1971 Incl: 2dr Sedan   3XXXL-0
+120	1	OK	16	3XXXL-0	非皮卡	Chevrolet	Bel Air	1971		Sedan			3XXXL-0	16: Chevrolet Bel Air 1959-1971 Incl: 2dr Sedan   3XXXL-0
+121	1	OK	17	3XXXL-0	非皮卡	Chevrolet	Caprice	1966		Sedan			3XXXL-0	17: Chevrolet Caprice 1966-1967  Sedan   3XXXL-0
+122	1	OK	17	3XXXL-0	非皮卡	Chevrolet	Caprice	1967		Sedan			3XXXL-0	17: Chevrolet Caprice 1966-1967  Sedan   3XXXL-0
+123	1	OK	18	3XXXL-0	非皮卡	Chevrolet	Nova	1975		Sedan			3XXXL-0	18: Chevrolet Nova 1975  Sedan   3XXXL-0
+124	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2011		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+125	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2012		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+126	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2013		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+127	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2014		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+128	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2015		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+129	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2016		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+130	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2017		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+131	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2018		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+132	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2019		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+133	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2020		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+134	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2021		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+135	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2022		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+136	1	OK	19	3XXXL-0	非皮卡	Chrysler	300	2023		Sedan			3XXXL-0	19: Chrysler 300 2011-2023  Sedan   3XXXL-0
+137	1	OK	20	3XXXL-0	非皮卡	Chrysler	300 series	1999	300M	Sedan			3XXXL-0	20: Chrysler 300 series 1999-2004 300M Sedan   3XXXL-0
+138	1	OK	20	3XXXL-0	非皮卡	Chrysler	300 series	2000	300M	Sedan			3XXXL-0	20: Chrysler 300 series 1999-2004 300M Sedan   3XXXL-0
+139	1	OK	20	3XXXL-0	非皮卡	Chrysler	300 series	2001	300M	Sedan			3XXXL-0	20: Chrysler 300 series 1999-2004 300M Sedan   3XXXL-0
+140	1	OK	20	3XXXL-0	非皮卡	Chrysler	300 series	2002	300M	Sedan			3XXXL-0	20: Chrysler 300 series 1999-2004 300M Sedan   3XXXL-0
+141	1	OK	20	3XXXL-0	非皮卡	Chrysler	300 series	2003	300M	Sedan			3XXXL-0	20: Chrysler 300 series 1999-2004 300M Sedan   3XXXL-0
+142	1	OK	20	3XXXL-0	非皮卡	Chrysler	300 series	2004	300M	Sedan			3XXXL-0	20: Chrysler 300 series 1999-2004 300M Sedan   3XXXL-0
+143	1	OK	21	3XXXL-0	非皮卡	Dodge	Charger	2024		Sedan			3XXXL-0	21: Dodge Charger 2024-2026  Sedan   3XXXL-0
+144	1	OK	21	3XXXL-0	非皮卡	Dodge	Charger	2025		Sedan			3XXXL-0	21: Dodge Charger 2024-2026  Sedan   3XXXL-0
+145	1	OK	21	3XXXL-0	非皮卡	Dodge	Charger	2026		Sedan			3XXXL-0	21: Dodge Charger 2024-2026  Sedan   3XXXL-0

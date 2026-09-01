@@ -11,11 +11,24 @@ paths:
   logs_dir: "logs"
 
 file_rules:
-  input_pattern: "*.xlsx"
+  input_patterns: ["*.xlsx", "*.xlsm", "*.csv"]
 
-# 工作表名称同时决定压缩输出目录；店铺名按名称前缀动态推导。
+# 每个 Excel/CSV 文件生成一个匹配来源；stem 是不含扩展名的文件名。
+# 例如 ALL.csv 会生成 name=ALL、label=ALL尺码匹配表、sheet=ALL尺码匹配。
 input:
-  sheets: [全尺码匹配表, TM尺码匹配, HNT尺码匹配, TM-拆分尺码匹配]
+  case_name: combined
+  match_source:
+    name: "{stem}"
+    label: "{stem}尺码匹配表"
+    sheet: "{stem}尺码匹配"
+    header_row: 1
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+  csv:
+    encoding: utf-8-sig
+  # 修正已知来源中的表头笔误；物化时统一为下游标准字段。
+  header_aliases:
+    S8MAKE: MAKE
+  required_fields: [品牌, 前台车型, 年份区间, 最终尺码]
 
 columns:
   品牌: [MAKE, 品牌]
@@ -43,10 +56,16 @@ variables:
   publish_repo_path: "{root}/../publish_tables_to_webapp"
 
 steps:
+  prepare_inputs:
+    enabled: true
+    repo: pipeline
+    command: ["{python}", tools/materialize_input_sources.py, --input-dir, "{input_dir}", --config, "{source_config}", --output-workbook, "{input_file}", --output-config, "{pipeline_config}"]
+    check_exists: ["{input_file}", "{pipeline_config}"]
+
   compress:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/compress_configured_sheets.py, --input, "{input_file}", --output-root, "{compress_output_root}", --config, "{root}/configs/pipeline.yaml", --compress-script, "{root}/../compress_to_size_chart/process_tsv.py"]
+    command: ["{python}", tools/compress_configured_sheets.py, --input, "{input_file}", --output-root, "{compress_output_root}", --config, "{pipeline_config}", --compress-script, "{root}/../compress_to_size_chart/process_tsv.py"]
     check_exists: ["{compress_output_root}"]
 
   # 压缩内部已逐表执行原子检查，不再统一验证整个历史目录。
@@ -58,7 +77,7 @@ steps:
   user_size_template:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/build_user_size_json.py, --case-name, "{case_name}", --compress-root, "{compress_output_root}", --config, "{root}/configs/pipeline.yaml", --rules, "{user_size_rules}", --ai-config, "{user_size_ai_config}", --output, "{user_size_json}"]
+    command: ["{python}", tools/build_user_size_json.py, --case-name, "{case_name}", --compress-root, "{compress_output_root}", --config, "{pipeline_config}", --rules, "{user_size_rules}", --ai-config, "{user_size_ai_config}", --output, "{user_size_json}"]
     check_exists: ["{user_size_json}"]
 
   user_size_validate:
@@ -82,5 +101,5 @@ steps:
   publish:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/build_publish_site.py, --publish-repo, "{publish_repo_path}", --html-root, "{html_output_dir}", --xlsx-source, "{input_file}", --pipeline-config, "{root}/configs/pipeline.yaml", --html-style-config, "{root}/configs/html-style.yaml", --workspace, "{publish_workspace}", --site-output, "{case_output}/site"]
+    command: ["{python}", tools/build_publish_site.py, --publish-repo, "{publish_repo_path}", --html-root, "{html_output_dir}", --xlsx-source, "{input_file}", --pipeline-config, "{pipeline_config}", --html-style-config, "{root}/configs/html-style.yaml", --workspace, "{publish_workspace}", --site-output, "{case_output}/site"]
     check_exists: ["{case_output}/site/index.html"]

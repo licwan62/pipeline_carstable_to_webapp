@@ -51,7 +51,7 @@ def configure_excel_sources(
     pipeline_config: Path,
     xlsx_source: Path,
     html_style_config: Path | None = None,
-) -> None:
+) -> bool:
     """Materialize publish sources from the pipeline's configured input sheets."""
     view_path = workspace / "config" / "size-chart-view.yaml"
     with pipeline_config.open("r", encoding="utf-8") as handle:
@@ -59,7 +59,40 @@ def configure_excel_sources(
     with view_path.open("r", encoding="utf-8") as handle:
         view = yaml.safe_load(handle) or {}
 
-    configured_sheets = list((pipeline.get("input") or {}).get("sheets") or [])
+    input_config = pipeline.get("input") or {}
+    configured_sources = list(input_config.get("match_sources") or [])
+    if not configured_sources:
+        configured_sources = [
+            {
+                "name": store_name(str(sheet)),
+                "label": str(sheet),
+                "sheet": str(sheet),
+                "header_row": 1,
+                "columns": MATCH_COLUMNS,
+            }
+            for sheet in input_config.get("sheets") or []
+        ]
+    if not configured_sources:
+        raise ValueError("Pipeline config must define input.match_sources or input.sheets")
+
+    normalized_sources = []
+    for source in configured_sources:
+        if not isinstance(source, dict):
+            raise ValueError(f"Invalid input.match_sources entry: {source!r}")
+        missing_fields = [field for field in ("name", "sheet") if not source.get(field)]
+        if missing_fields:
+            raise ValueError(f"input.match_sources entry is missing {missing_fields}: {source!r}")
+        normalized_sources.append(
+            {
+                "name": str(source["name"]),
+                "label": str(source.get("label") or source["name"]),
+                "sheet": str(source["sheet"]),
+                "header_row": int(source.get("header_row", 1)),
+                "columns": str(source.get("columns") or MATCH_COLUMNS),
+            }
+        )
+
+    configured_sheets = [source["sheet"] for source in normalized_sources]
     workbook = openpyxl.load_workbook(xlsx_source, read_only=True, data_only=True)
     workbook_sheets = set(workbook.sheetnames)
     workbook.close()
@@ -68,19 +101,7 @@ def configure_excel_sources(
     if missing:
         raise KeyError(f"Configured input worksheets do not exist: {missing}")
 
-    view["match_sources"] = [
-        {
-            "name": store_name(sheet),
-            "label": sheet,
-            "sheet": sheet,
-            "header_row": 1,
-            # The current match worksheets expose millimetres.  Do not inherit the
-            # publish repository's historical IN/CM columns when materialising a
-            # pipeline workspace.
-            "columns": MATCH_COLUMNS,
-        }
-        for sheet in configured_sheets
-    ]
+    view["match_sources"] = normalized_sources
 
     if html_style_config:
         with html_style_config.open("r", encoding="utf-8") as handle:
@@ -96,12 +117,8 @@ def configure_excel_sources(
 
     reference_candidates = ["全尺码", "ALL尺码"]
     reference_sheet = next((name for name in reference_candidates if name in workbook_sheets), None)
-    if reference_sheet is None:
-        raise KeyError(
-            f"No size-reference worksheet found; expected one of {reference_candidates}, "
-            f"available sheets: {sorted(workbook_sheets)}"
-        )
-    view.setdefault("size_reference", {})["sheet"] = reference_sheet
+    if reference_sheet is not None:
+        view.setdefault("size_reference", {})["sheet"] = reference_sheet
 
     with view_path.open("w", encoding="utf-8", newline="\n") as handle:
         yaml.dump(
@@ -113,8 +130,9 @@ def configure_excel_sources(
         )
     print(
         f"[configure_publish] match sheets={configured_sheets}; "
-        f"size reference={reference_sheet}"
+        f"size reference={reference_sheet or 'reuse existing generated data'}"
     )
+    return reference_sheet is not None
 
 
 def main() -> None:
@@ -160,7 +178,9 @@ def main() -> None:
     copy_file(publish_repo / "tools" / "export_xlsx_sources.py", workspace / "tools" / "export_xlsx_sources.py")
     copy_file(publish_repo / "tools" / "validate_generated_data.py", workspace / "tools" / "validate_generated_data.py")
     copy_tree(html_root, workspace / "data" / "source" / "html")
-    configure_excel_sources(workspace, pipeline_config, xlsx_source, html_style_config)
+    exports_size_reference = configure_excel_sources(
+        workspace, pipeline_config, xlsx_source, html_style_config
+    )
 
     export_command = [
         sys.executable,
@@ -168,6 +188,8 @@ def main() -> None:
         "--xlsx-source",
         str(xlsx_source),
     ]
+    if not exports_size_reference:
+        export_command.append("--skip-size-reference")
     print(f"[export_xlsx_sources] {' '.join(export_command)}")
     subprocess.run(export_command, cwd=workspace, check=True)
 

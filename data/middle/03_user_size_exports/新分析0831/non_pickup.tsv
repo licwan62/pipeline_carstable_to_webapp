@@ -1,0 +1,740 @@
+﻿店铺	CAR	MAKE	MODEL	YEAR	VERSION	CONST	BACKSIZE	CATAGORY	LONG-TYPE	TYPE	SHORT-MODEL	SIZE
+新分析0831	Acura ADX	Acura	ADX	2025-2026		SUV	YL	越野车			ADX	S2
+新分析0831	Acura CL	Acura	CL	1997-2003		Coupe	3XL-0	跑车			CL	C4
+新分析0831	Acura ILX	Acura	ILX	2016-2022		Sedan	3L	三厢车			ILX	A1
+新分析0831	Acura Integra	Acura	Integra	1994-2001		Coupe	3M-0	跑车	Coupe	Coupe	Integra	C2
+新分析0831	Acura Integra	Acura	Integra	1986-1993		Hatchback	2L+	两厢车	Hatchback	Hatchback	Integra	H1
+新分析0831	Acura Legend	Acura	Legend	1986-1995		Sedan	3XL	三厢车	Sedan	Sedan	Legend	A2
+新分析0831	Acura Legend	Acura	Legend	1987-1995		Coupe	3XL-0	跑车	Coupe	Coupe	Legend	C4
+新分析0831	Acura MDX	Acura	MDX	2001-2009		SUV	YL	越野车			MDX	S2
+新分析0831	Acura MDX	Acura	MDX	2010-2020		SUV	YXL	越野车			MDX	S3
+新分析0831	Acura NSX	Acura	NSX	1991-2022	Incl: Type S	Coupe	3M-0	跑车	Incl: Type S	Incl: Type S	NSX	C2
+新分析0831	Acura RDX	Acura	RDX	2010-2026		SUV	YL	越野车			RDX	S2
+新分析0831	Acura RL	Acura	RL	1996-2004		Sedan	3XL	三厢车			RL	A2
+新分析0831	Acura RLX	Acura	RLX	2014-2020		Sedan	3XL	三厢车			RLX	A2
+新分析0831	Acura RSX	Acura	RSX	2002-2006		Hatchback	2L+	两厢车			RSX	H1
+新分析0831	Acura SLX	Acura	SLX	1996		SUV	YL	越野车			SLX	S2
+新分析0831	Acura SLX	Acura	SLX	1998-1999		SUV	YL	越野车			SLX	S2
+新分析0831	Acura TL	Acura	TL	1996-2014	Incl: SH-AWD/Type-S	Sedan	3XL	三厢车	Incl: SH-AWD/Type-S	Inc:SH-AWD/Type-S	TL	A2
+新分析0831	Acura TLX	Acura	TLX	2015-2025	Incl: Type S	Sedan	3XL	三厢车	Incl: Type S	Incl: Type S	TLX	A2
+新分析0831	Acura TSX	Acura	TSX	2004-2014		Sedan	3L	三厢车	Sedan	Sedan	TSX	A1
+新分析0831	Acura ZDX	Acura	ZDX	2010-2013		SUV	YXL	越野车			ZDX	S3
+新分析0831	Alfa Romeo 4C	Alfa Romeo	4C	2015-2020		Convertible/Coupe	3S-0	跑车			4C	C1
+新分析0831	Alfa Romeo GIULIA	Alfa Romeo	GIULIA	2017-2026	Incl: Quadrifoglio	Sedan	3L	三厢车	Incl: Quadrifoglio	Inc:Quad	GIULIA	A1
+新分析0831	Alfa Romeo Stelvio	Alfa Romeo	Stelvio	2018-2026		SUV	YL	越野车			Stelvio	S2
+新分析0831	Audi 90	Audi	90	1995		Sedan	3L	三厢车			90	A1
+新分析0831	Audi A3	Audi	A3	2006-2013		Hatchback	2L+	两厢车			A3	H1
+新分析0831	Audi A3 e-tron	Audi	A3 e-tron	2016-2018		Hatchback	2L+	两厢车			A3 e-tron	H1
+新分析0831	Audi A4	Audi	A4	2009		Sedan	3L	三厢车	Sedan	Sedan	A4	A1
+新分析0831	Audi A4	Audi	A4	2003		Convertible	3L-0	跑车	Convertible	Convertible	A4	C3
+新分析0831	Audi A4	Audi	A4	1999-2003		Wagon	2L+	两厢车	Wagon	Wagon	A4	H1
+新分析0831	Audi A4/S4	Audi	A4/S4	2006-2016		Sedan	3L	三厢车	Sedan	Sedan	A4/S4	A1
+新分析0831	Audi A4/S4	Audi	A4/S4	2017-2025		Sedan	3XL	三厢车	Sedan	Sedan	A4/S4	A2
+新分析0831	Audi A4/S4	Audi	A4/S4	2004-2009		Convertible	3L-0	跑车	Convertible	Convertible	A4/S4	C3
+新分析0831	Audi A4/S4	Audi	A4/S4	2000-2005		Wagon	2L+	两厢车	Wagon	Wagon	A4/S4	H1
+新分析0831	Audi A4/S4/RS4	Audi	A4/S4/RS4	2007-2008		Sedan	3L	三厢车	Sedan	Sedan	A4/S4/RS4	A1
+新分析0831	Audi A4/S4/RS4	Audi	A4/S4/RS4	2008		Convertible	3L-0	跑车	Convertible	Convertible	A4/S4/RS4	C3
+新分析0831	Audi A5/S5	Audi	A5/S5	2026		Liftback	3XL	三厢车	Liftback	Liftback	A5/S5	A2
+新分析0831	Audi A5/S5	Audi	A5/S5	2008-2024		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	A5/S5	C3
+新分析0831	Audi A5/S5/RS5	Audi	A5/S5/RS5	2018-2025		Liftback	3XL	三厢车	Liftback	Liftback	A5/S5/RS5	A2
+新分析0831	Audi A5/S5/RS5	Audi	A5/S5/RS5	2013-2024		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	A5/S5/RS5	C3
+新分析0831	Audi A6	Audi	A6	1998-2026		Sedan	3XL	三厢车			A6	A2
+新分析0831	Audi A6 e-tron/S6 e-tron	Audi	A6 e-tron/S6 e-tron	2025		Liftback	3XL	三厢车			A6/S6 etron	A2
+新分析0831	Audi A6/S6	Audi	A6/S6	1995-2025		Sedan	3XL	三厢车	Sedan	Sedan	A6/S6	A2
+新分析0831	Audi A6/S6/RS6	Audi	A6/S6/RS6	2001-2004		Sedan	3XL	三厢车			A6/S6/RS6	A2
+新分析0831	Audi A7/S7/RS7	Audi	A7/S7/RS7	2012-2025		Liftback	3XL	三厢车			A7/S7/RS7	A2
+新分析0831	Audi A8/S8	Audi	A8/S8	1997-2003		Sedan	3XL	三厢车			A8/S8	A2
+新分析0831	Audi A8/S8	Audi	A8/S8	2011-2018	LWB	Sedan	3XXL	三厢车	LWB	LWB	A8/S8	A4
+新分析0831	Audi A8/S8	Audi	A8/S8	2019-2026		Sedan	3XXL	三厢车			A8/S8	A4
+新分析0831	Audi Cabriolet	Audi	Cabriolet	1995-1998		Convertible	3M-0	跑车			Cabriolet	C2
+新分析0831	Audi Q5	Audi	Q5	2009-2013		SUV	YL	越野车			Q5	S2
+新分析0831	Audi Q5/SQ5	Audi	Q5/SQ5	2014-2026	Incl: Sportback	SUV	YL	越野车	Incl: Sportback	Incl: Sportback	Q5/SQ5	S2
+新分析0831	Audi Q6/SQ6 e-tron	Audi	Q6/SQ6 e-tron	2025	Incl: Sportback	SUV	YL	越野车	Incl: Sportback	Incl: Sportback	Q6/SQ6 e-tron	S2
+新分析0831	Audi Q8	Audi	Q8	2019		SUV	YXL	越野车			Q8	S3
+新分析0831	Audi Q8 e-tron/SQ8 e-tron	Audi	Q8 e-tron/SQ8 e-tron	2024-2025	Incl: Sportback	SUV	YXL	越野车	Incl: Sportback	Incl: Sportback	Q8/SQ8 etron	S3
+新分析0831	Audi Q8/SQ8/RS Q8	Audi	Q8/SQ8/RS Q8	2020-2026		SUV	YXL	越野车			Q8/SQ8/RS Q8	S3
+新分析0831	Audi R8/R8 GT	Audi	R8/R8 GT	2008-2023	Incl: Spyder	Convertible/Coupe	3M-0	跑车	Incl: Spyder	Incl: Spyder	R8/R8 GT	C2
+新分析0831	Audi RS7	Audi	RS7	2026		Liftback	3XL	三厢车			RS7	A2
+新分析0831	Audi TT/TTS/TT RS	Audi	TT/TTS/TT RS	2000-2023		Convertible/Coupe	3S-0	跑车			TT/TTS/TT RS	C1
+新分析0831	Audi e-tron GT/RS e-tron GT	Audi	e-tron GT/RS e-tron GT	2022-2024		Sedan	3XL	三厢车			RS e-tron GT	A2
+新分析0831	Audi e-tron GT/S e-tron GT/RS e-tron GT	Audi	e-tron GT/S e-tron GT/RS e-tron GT	2025-2026		Sedan	3XL	三厢车			S/RS etron GT	A2
+新分析0831	Audi e-tron/S e-tron	Audi	e-tron/S e-tron	2019-2023	Sportback/SUV	SUV	YXL	越野车	Sportback/SUV	Sptbk/SUV	e-tron/S e-tron	S3
+新分析0831	BMW 1 Series	BMW	1 Series	2008-2013		Convertible/Coupe	3M-0	跑车			1 Series	C2
+新分析0831	BMW 2 Series	BMW	2 Series	2014-2021		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	2 Series	C2
+新分析0831	BMW 2 Series	BMW	2 Series	2022-2026	M2	Coupe	3L-0	跑车	Coupe M2	Coupe M2	2 Series	C3
+新分析0831	BMW 3 Series	BMW	3 Series	2012-2026		Sedan	3L	三厢车	Sedan	Sedan	3 Series	A1
+新分析0831	BMW 3 Series	BMW	3 Series	1977-2006		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	3 Series	C2
+新分析0831	BMW 3 Series	BMW	3 Series	2007-2013		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	3 Series	C3
+新分析0831	BMW 3 Series	BMW	3 Series	2000-2012		Wagon	2L+	两厢车	Wagon	Wagon	3 Series	H1
+新分析0831	BMW 4 Series	BMW	4 Series	2015-2020	Gran Coupe	Sedan	3L	三厢车	Sedan Gran Coupe	Sedan Gran Coupe	4 Series	A1
+新分析0831	BMW 4 Series	BMW	4 Series	2022-2026	Gran Coupe	Sedan	3XL	三厢车	Sedan Gran Coupe	Sedan Gran Coupe	4 Series	A2
+新分析0831	BMW 4 Series	BMW	4 Series	2014-2020		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	4 Series	C3
+新分析0831	BMW 4 Series	BMW	4 Series	2021-2026	M4	Convertible/Coupe	3XL-0	跑车	Convertible/Coupe M4	Conv/Cpe M4	4 Series	C4
+新分析0831	BMW 5 Series	BMW	5 Series	1975-2003		Sedan	3L	三厢车	Sedan	Sedan	5 Series	A1
+新分析0831	BMW 5 Series	BMW	5 Series	2004-2023	Incl: GT	Sedan	3XL	三厢车	Sedan Incl: GT	Sedan Incl: GT	5 Series	A2
+新分析0831	BMW 6 Series	BMW	6 Series	2013-2019	Gran Coupe	Sedan	3XL	三厢车	Sedan Gran Coupe	Sedan Gran Coupe	6 Series	A2
+新分析0831	BMW 6 Series	BMW	6 Series	1977-2019		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	6 Series	C4
+新分析0831	BMW 7 Series	BMW	7 Series	2009-2026		Sedan	3XXL	三厢车			7 Series	A4
+新分析0831	BMW 8 Series	BMW	8 Series	1991-2026		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	8 Series	C4
+新分析0831	BMW X3	BMW	X3	2011-2026		SUV	YL	越野车			X3	S2
+新分析0831	BMW X4	BMW	X4	2015-2025		SUV	YL	越野车			X4	S2
+新分析0831	BMW X5	BMW	X5	2000-2006		SUV	YL	越野车			X5	S2
+新分析0831	BMW X5	BMW	X5	2007-2026		SUV	YXL	越野车			X5	S3
+新分析0831	BMW X6	BMW	X6	2008-2026		SUV	YXL	越野车			X6	S3
+新分析0831	BMW Z3	BMW	Z3	1996-2002		Convertible/Coupe	3S-0	跑车			Z3	C1
+新分析0831	BMW Z4	BMW	Z4	2003-2008		Convertible	3S-0	跑车			Z4	C1
+新分析0831	BMW Z4	BMW	Z4	2009-2026		Convertible	3M-0	跑车			Z4	C2
+新分析0831	BMW i3	BMW	i3	2014-2021		Hatchback	2M	两厢车			i3	H0
+新分析0831	BMW i4	BMW	i4	2022-2026		Fastback	3XL	三厢车			i4	A2
+新分析0831	BMW i7	BMW	i7	2023-2026		Sedan	3XXL	三厢车			i7	A4
+新分析0831	BMW i8	BMW	i8	2014-2020		Convertible/Coupe	3L-0	跑车			i8	C3
+新分析0831	BMW iX	BMW	iX	2022-2026		SUV	YXL	越野车			iX	S3
+新分析0831	Buick Cascada	Buick	Cascada	2016-2019		Convertible	3L-0	跑车			Cascada	C3
+新分析0831	Buick Century	Buick	Century	1998-2005		Sedan	3XL	三厢车	Sedan	Sedan	Century	A2
+新分析0831	Buick Century	Buick	Century	1954-1956		Wagon	2XXL	两厢车	Wagon	Wagon	Century	H2
+新分析0831	Buick Enclave	Buick	Enclave	2025-2026		SUV	YXXL-545	越野车			Enclave	S4
+新分析0831	Buick Envision	Buick	Envision	2016-2026		SUV	YL	越野车			Envision	S2
+新分析0831	Buick Envista	Buick	Envista	2024-2026		SUV	YL	越野车			Envista	S2
+新分析0831	Buick LaCrosse	Buick	LaCrosse	2005-2019		Sedan	3XL	三厢车			LaCrosse	A2
+新分析0831	Buick Rainier	Buick	Rainier	2004-2007		SUV	YXL	越野车			Rainier	S3
+新分析0831	Buick Reatta	Buick	Reatta	1988-1991		Convertible/Coupe	3L-0	跑车			Reatta	C3
+新分析0831	Buick Regal	Buick	Regal	2011-2020		Liftback/Sedan	3XL	三厢车	Liftback/Sedan	Liftback/Sedan	Regal	A2
+新分析0831	Buick Rendezvous	Buick	Rendezvous	2002-2007		Crossover	YL	越野车			Rendezvous	S2
+新分析0831	Buick Riviera	Buick	Riviera	1973		Coupe	3XXXXL-0	跑车			Riviera	C7
+新分析0831	Buick Skylark	Buick	Skylark	1980-1991		Sedan	3L	三厢车	Sedan	Sedan	Skylark	A1
+新分析0831	Buick Skylark	Buick	Skylark	1992-1998		Sedan	3XL	三厢车	Sedan	Sedan	Skylark	A2
+新分析0831	Buick Skylark	Buick	Skylark	1980-1991		Coupe	3L-0	跑车	Coupe	Coupe	Skylark	C3
+新分析0831	Buick Skylark	Buick	Skylark	1992-1997		Coupe	3XL-0	跑车	Coupe	Coupe	Skylark	C4
+新分析0831	Buick Verano	Buick	Verano	2012-2017		Sedan	3L	三厢车			Verano	A1
+新分析0831	Cadillac ATS	Cadillac	ATS	2013-2019		Sedan	3L	三厢车	Sedan	Sedan	ATS	A1
+新分析0831	Cadillac ATS	Cadillac	ATS	2015-2019		Coupe	3L-0	跑车	Coupe	Coupe	ATS	C3
+新分析0831	Cadillac CT4	Cadillac	CT4	2020-2026		Sedan	3XL	三厢车			CT4	A2
+新分析0831	Cadillac CT5	Cadillac	CT5	2020-2026	Incl: Blackwing	Sedan	3XL	三厢车	Incl: Blackwing	Incl: Blackwing	CT5	A2
+新分析0831	Cadillac CT6	Cadillac	CT6	2019-2020	Incl: Blackwing	Sedan	3XXL	三厢车	Incl: Blackwing	Incl: Blackwing	CT6	A4
+新分析0831	Cadillac CTS	Cadillac	CTS	2003-2019	Incl: CTS-V	Sedan	3XL	三厢车	Sedan Incl: CTS-V	Sdn Inc:CTS-V	CTS	A2
+新分析0831	Cadillac CTS	Cadillac	CTS	2011-2015		Coupe	3XL-0	跑车	Coupe	Coupe	CTS	C4
+新分析0831	Cadillac Catera	Cadillac	Catera	1997-2001		Sedan	3XL	三厢车			Catera	A2
+新分析0831	Cadillac DTS	Cadillac	DTS	2006-2011		Sedan	3XXL	三厢车			DTS	A4
+新分析0831	Cadillac DTS-L	Cadillac	DTS-L	2007-2011		Sedan	3XXXL	三厢车			DTS-L	C6
+新分析0831	Cadillac ELR	Cadillac	ELR	2014-2016		Coupe	3L-0	跑车			ELR	C3
+新分析0831	Cadillac Escalade	Cadillac	Escalade	2003-2026	ESV	SUV	YXXL-585	越野车	ESV	ESV	Escalade	S5
+新分析0831	Cadillac Escalade	Cadillac	Escalade	2021-2026		SUV	YXXL-545	越野车			Escalade	S4
+新分析0831	Cadillac Lyriq	Cadillac	Lyriq	2023-2026	Incl: Lyriq-V	SUV	YXL	越野车	Incl: Lyriq-V	Incl: Lyriq-V	Lyriq	S3
+新分析0831	Cadillac Optiq	Cadillac	Optiq	2025-2026		SUV	YL	越野车			Optiq	S2
+新分析0831	Cadillac SRX	Cadillac	SRX	2010-2016		SUV	YL	越野车	SUV	SUV	SRX	S2
+新分析0831	Cadillac STS	Cadillac	STS	2005-2011	Incl: STS-V	Sedan	3XL	三厢车	Incl: STS-V	Incl: STS-V	STS	A2
+新分析0831	Cadillac XLR	Cadillac	XLR	2004-2009	Incl: XLR-V	Convertible	3M-0	跑车	Incl: XLR-V	Incl: XLR-V	XLR	C2
+新分析0831	Cadillac XT5	Cadillac	XT5	2017-2026		SUV	YL	越野车			XT5	S2
+新分析0831	Chevrolet Astro	Chevrolet	Astro	1985-1994		Wagon	2L+	两厢车			Astro	H1
+新分析0831	Chevrolet Aveo	Chevrolet	Aveo	2004-2005		Hatchback	2M	两厢车	Hatchback	Hatchback	Aveo	H0
+新分析0831	Chevrolet Aveo	Chevrolet	Aveo	2006		Hatchback	2L+	两厢车	Hatchback	Hatchback	Aveo	H1
+新分析0831	Chevrolet Aveo	Chevrolet	Aveo	2007-2011		Hatchback	2M	两厢车	Hatchback	Hatchback	Aveo	H0
+新分析0831	Chevrolet Beretta	Chevrolet	Beretta	1987-1996		Coupe	3XL-0	跑车			Beretta	C4
+新分析0831	Chevrolet Beretta	Chevrolet	Beretta	1992-1994	GT/GTZ	Coupe	3L-0	跑车	GT/GTZ	GT/GTZ	Beretta	C3
+新分析0831	Chevrolet Blazer	Chevrolet	Blazer	1973-1994		SUV	YL	越野车			Blazer	S2
+新分析0831	Chevrolet Blazer	Chevrolet	Blazer	1998-2005	4dr	SUV	YL	越野车	4dr	4dr	Blazer	S2
+新分析0831	Chevrolet Blazer	Chevrolet	Blazer	2019-2026		SUV	YXL	越野车			Blazer	S3
+新分析0831	Chevrolet Blazer EV	Chevrolet	Blazer EV	2024-2026	Incl: SS	Crossover	YXL	越野车	Incl: SS	Incl: SS	Blazer EV	S3
+新分析0831	Chevrolet Bolt	Chevrolet	Bolt	2017-2023		Hatchback	2M	两厢车			Bolt	H0
+新分析0831	Chevrolet Bolt	Chevrolet	Bolt	2027		Hatchback	2L+	两厢车			Bolt	H1
+新分析0831	Chevrolet Camaro	Chevrolet	Camaro	1967-1969		Convertible/Coupe	3L-0	跑车			Camaro	C3
+新分析0831	Chevrolet Camaro	Chevrolet	Camaro	1970-2024	Incl: IROC-Z/Z28/ZL1	Convertible/Coupe	3XL-0	跑车	Incl: IROC-Z/Z28/ZL1	Inc:IROC/Z28/ZL1	Camaro	C4
+新分析0831	Chevrolet Cavalier	Chevrolet	Cavalier	1993-2004		Sedan	3L	三厢车	Sedan	Sedan	Cavalier	A1
+新分析0831	Chevrolet Cavalier	Chevrolet	Cavalier	1983-1990		Coupe	3M-0	跑车	Coupe	Coupe	Cavalier	C2
+新分析0831	Chevrolet Cavalier	Chevrolet	Cavalier	1991-2005		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	Cavalier	C3
+新分析0831	Chevrolet Cavalier	Chevrolet	Cavalier	1983-1988		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Cavalier	H1
+新分析0831	Chevrolet Chevy Van	Chevrolet	Chevy Van	1964-1966	G10 Short	Wagon	2L+	两厢车	G10 Short	G10 Short	Chevy Van	H1
+新分析0831	Chevrolet Cobalt	Chevrolet	Cobalt	2005-2010		Sedan	3L	三厢车	Sedan	Sedan	Cobalt	A1
+新分析0831	Chevrolet Cobalt	Chevrolet	Cobalt	2005-2010	Incl: SS	Coupe	3L-0	跑车	Coupe Incl: SS	Coupe Incl: SS	Cobalt	C3
+新分析0831	Chevrolet Corsica	Chevrolet	Corsica	1987-1996		Sedan	3L	三厢车			Corsica	A1
+新分析0831	Chevrolet Corvette	Chevrolet	Corvette	1953-1967		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	Corvette	C2
+新分析0831	Chevrolet Corvette	Chevrolet	Corvette	1968-1982		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	Corvette	C3
+新分析0831	Chevrolet Corvette	Chevrolet	Corvette	1984-1996	Incl: ZR-1	Convertible/Coupe	3M-0	跑车	Convertible/Coupe Incl: ZR-1	Conv/Cpe Inc:ZR1	Corvette	C2
+新分析0831	Chevrolet Corvette	Chevrolet	Corvette	1997-2004		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	Corvette	C3
+新分析0831	Chevrolet Corvette	Chevrolet	Corvette	2005-2019	Incl: Z06/ZR1	Coupe	3M-0	跑车	Coupe Incl: Z06/ZR1	Cpe Inc:Z06/ZR1	Corvette	C2
+新分析0831	Chevrolet Corvette	Chevrolet	Corvette	2020-2026	Incl: ZR1	Coupe	3XL-0	跑车	Coupe Incl: ZR1	Coupe Incl: ZR1	Corvette	C4
+新分析0831	Chevrolet Cruze	Chevrolet	Cruze	2011-2019		Sedan	3L	三厢车	Sedan	Sedan	Cruze	A1
+新分析0831	Chevrolet Cruze	Chevrolet	Cruze	2017-2019		Hatchback	2L+	两厢车	Hatchback	Hatchback	Cruze	H1
+新分析0831	Chevrolet Equinox	Chevrolet	Equinox	2005-2026		SUV	YL	越野车			Equinox	S2
+新分析0831	Chevrolet Equinox EV	Chevrolet	Equinox EV	2024		SUV	YXL	越野车			Equinox EV	S3
+新分析0831	Chevrolet Equinox EV	Chevrolet	Equinox EV	2025-2026		SUV	YL	越野车			Equinox EV	S2
+新分析0831	Chevrolet HHR	Chevrolet	HHR	2006-2011	Incl: Panel/Panel SS/SS	Wagon	2L+	两厢车	Incl: Panel/Panel SS/SS	Inc:Panel/SS	HHR	H1
+新分析0831	Chevrolet K5 Blazer	Chevrolet	K5 Blazer	1973-1994		SUV	YL	越野车			K5 Blazer	S2
+新分析0831	Chevrolet Lumina	Chevrolet	Lumina	1990-1994		Sedan	3XL	三厢车	Sedan	Sedan	Lumina	A2
+新分析0831	Chevrolet Lumina	Chevrolet	Lumina	1990-1994		Coupe	3XL-0	跑车	Coupe	Coupe	Lumina	C4
+新分析0831	Chevrolet Malibu	Chevrolet	Malibu	1997-2025		Sedan	3XL	三厢车	Sedan	Sedan	Malibu	A2
+新分析0831	Chevrolet Metro	Chevrolet	Metro	1998-2000		Hatchback	2M	两厢车	Hatchback	Hatchback	Metro	H0
+新分析0831	Chevrolet Monte Carlo	Chevrolet	Monte Carlo	1995-1999		Coupe	3XL+0	跑车			Monte Carlo	C5
+新分析0831	Chevrolet Monte Carlo	Chevrolet	Monte Carlo	2000-2007		Coupe	3XL-0	跑车			Monte Carlo	C4
+新分析0831	Chevrolet Nova	Chevrolet	Nova	1987-1988		Hatchback	2L+	两厢车	Hatchback	Hatchback	Nova	H1
+新分析0831	Chevrolet S-10 Blazer	Chevrolet	S-10 Blazer	1995-2004	4dr	SUV	YL	越野车	4dr	4dr	S-10 Blazer	S2
+新分析0831	Chevrolet SS	Chevrolet	SS	2014-2017		Sedan	3XL	三厢车			SS	A2
+新分析0831	Chevrolet Sonic	Chevrolet	Sonic	2012-2020		Hatchback	2M	两厢车	Hatchback	Hatchback	Sonic	H0
+新分析0831	Chevrolet Spark	Chevrolet	Spark	2013-2015		Hatchback	2M	两厢车			Spark	H0
+新分析0831	Chevrolet Suburban	Chevrolet	Suburban	1947-1954		SUV	YL	越野车			Suburban	S2
+新分析0831	Chevrolet Suburban	Chevrolet	Suburban	1970-1972		SUV	YXXL-545	越野车			Suburban	S4
+新分析0831	Chevrolet Suburban	Chevrolet	Suburban	1973-2026		SUV	YXXL-585	越野车			Suburban	S5
+新分析0831	Chevrolet Tahoe	Chevrolet	Tahoe	1995-1999	2dr 4WD	SUV	YL	越野车	2dr 4WD	2dr 4WD	Tahoe	S2
+新分析0831	Chevrolet Tahoe	Chevrolet	Tahoe	2021-2026		SUV	YXXL-545	越野车			Tahoe	S4
+新分析0831	Chevrolet Trailblazer	Chevrolet	Trailblazer	2002-2009	Incl: SS	SUV	YXL	越野车	Incl: SS	Incl: SS	Trailblazer	S3
+新分析0831	Chevrolet Uplander	Chevrolet	Uplander	2005-2008	LWB	Wagon	2XXL	两厢车	LWB	LWB	Uplander	H2
+新分析0831	Chevrolet Volt	Chevrolet	Volt	2011-2015		Hatchback	2L+	两厢车			Volt	H1
+新分析0831	Chrysler 200	Chrysler	200	2011-2017		Sedan	3XL	三厢车	Sedan	Sedan	200	A2
+新分析0831	Chrysler 200	Chrysler	200	2011-2014		Convertible	3XL-0	跑车	Convertible	Convertible	200	C4
+新分析0831	Chrysler 200 Series	Chrysler	200 Series	2011-2017		Sedan	3XL	三厢车	Sedan	Sedan	200 Series	A2
+新分析0831	Chrysler 200 Series	Chrysler	200 Series	2011-2014		Convertible	3XL-0	跑车	Convertible	Convertible	200 Series	C4
+新分析0831	Chrysler 300	Chrysler	300	2005-2010		Sedan	3XL	三厢车			300	A2
+新分析0831	Chrysler 300 series	Chrysler	300 series	1999-2010	Incl: 300M	Sedan	3XL	三厢车	Incl: 300M	Incl: 300M	300 series	A2
+新分析0831	Chrysler 300M	Chrysler	300M	1999-2004		Sedan	3XL	三厢车			300M	A2
+新分析0831	Chrysler Cirrus	Chrysler	Cirrus	1995-1997		Sedan	3L	三厢车			Cirrus	A1
+新分析0831	Chrysler Cirrus	Chrysler	Cirrus	1998-2000		Sedan	3XL	三厢车			Cirrus	A2
+新分析0831	Chrysler Concorde	Chrysler	Concorde	1998-2004		Sedan	3XXL	三厢车			Concorde	A4
+新分析0831	Chrysler Crossfire	Chrysler	Crossfire	2004-2008		Convertible/Coupe	3S-0	跑车			Crossfire	C1
+新分析0831	Chrysler LHS	Chrysler	LHS	1994-2001		Sedan	3XXL	三厢车			LHS	A4
+新分析0831	Chrysler PT Cruiser	Chrysler	PT Cruiser	2001-2010		Wagon	2L+	两厢车			PT Cruiser	H1
+新分析0831	Chrysler Pacifica	Chrysler	Pacifica	2017-2026		MPV	2XXL	两厢车	MPV	MPV	Pacifica	H2
+新分析0831	Chrysler Sebring	Chrysler	Sebring	2001-2010		Sedan	3XL	三厢车	Sedan	Sedan	Sebring	A2
+新分析0831	Chrysler Sebring	Chrysler	Sebring	1995-2010		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	Sebring	C4
+新分析0831	Chrysler Town & Country	Chrysler	Town & Country	2008-2016		MPV	2XXL	两厢车			Town & Country	H2
+新分析0831	Chrysler Voyager	Chrysler	Voyager	2020-2026		MPV	2XXL	两厢车			Voyager	H2
+新分析0831	Dodge Avenger	Dodge	Avenger	2008-2014		Sedan	3XL	三厢车	Sedan	Sedan	Avenger	A2
+新分析0831	Dodge Avenger	Dodge	Avenger	1995-2000		Coupe	3XL-0	跑车	Coupe	Coupe	Avenger	C4
+新分析0831	Dodge Caliber	Dodge	Caliber	2007-2012		Hatchback	2L+	两厢车			Caliber	H1
+新分析0831	Dodge Caravan	Dodge	Caravan	1984-1995	SWB	MPV	2L+	两厢车	SWB	SWB	Caravan	H1
+新分析0831	Dodge Caravan	Dodge	Caravan	2008-2020	LWB	MPV	2XXL	两厢车	LWB	LWB	Caravan	H2
+新分析0831	Dodge Challenger	Dodge	Challenger	1978-1983		Coupe	3L-0	跑车			Challenger	C3
+新分析0831	Dodge Challenger	Dodge	Challenger	2008-2023	Incl: Widebody	Coupe	3XL-0	跑车	Incl: Widebody	Incl: Widebody	Challenger	C4
+新分析0831	Dodge Charger	Dodge	Charger	2015-2023		Sedan	3XL	三厢车	Sedan	Sedan	Charger	A2
+新分析0831	Dodge Charger	Dodge	Charger	2024-2026		Sedan	3XXL	三厢车	Sedan	Sedan	Charger	A4
+新分析0831	Dodge Charger	Dodge	Charger	1982-1987		Hatchback	2L+	两厢车	Hatchback	Hatchback	Charger	H1
+新分析0831	Dodge Dart	Dodge	Dart	2013-2016		Sedan	3L	三厢车			Dart	A1
+新分析0831	Dodge Daytona	Dodge	Daytona	1984-1991		Hatchback	2L+	两厢车			Daytona	H1
+新分析0831	Dodge Durango	Dodge	Durango	1998-2003		SUV	YXL	越野车			Durango	S3
+新分析0831	Dodge Journey	Dodge	Journey	2009-2020		Crossover/SUV	YXL	越野车			Journey	S3
+新分析0831	Dodge Ramcharger	Dodge	Ramcharger	1974-1993	2WD/4WD	SUV	YL	越野车	2WD/4WD	2WD/4WD	Ramcharger	S2
+新分析0831	Dodge Stealth	Dodge	Stealth	1991-1996	R/T Turbo	Coupe	3L-0	跑车	R/T Turbo	R/T Turbo	Stealth	C3
+新分析0831	Dodge Stratus	Dodge	Stratus	1995-2000		Sedan	3L	三厢车			Stratus	A1
+新分析0831	Dodge Stratus	Dodge	Stratus	2001-2006		Sedan	3XL	三厢车			Stratus	A2
+新分析0831	Dodge Viper	Dodge	Viper	1992-2017	Incl: ACR/GTS	Convertible/Coupe/Roadster	3M-0	跑车	Incl: ACR/GTS	Incl: ACR/GTS	Viper	C2
+新分析0831	FIAT 500L	FIAT	500L	2014-2020		Wagon	2L+	两厢车			500L	H1
+新分析0831	Fiat 124 Spider	Fiat	124 Spider	2017-2020	Abarth	Convertible	3S-0	跑车	Abarth	Abarth	124 Spider	C1
+新分析0831	Ford Bronco	Ford	Bronco	2021-2026	4dr	SUV	YL	越野车	4dr	4dr	Bronco	S2
+新分析0831	Ford C-MAX	Ford	C-MAX	2013-2018	Incl: PHEV	Hatchback	2L+	两厢车	Incl: PHEV	Incl: PHEV	C-MAX	H1
+新分析0831	Ford Edge	Ford	Edge	2007-2024		SUV	YL	越野车			Edge	S2
+新分析0831	Ford Escort	Ford	Escort	1998-2003	ZX2	Coupe	3M-0	跑车	Coupe ZX2	Coupe ZX2	Escort	C2
+新分析0831	Ford Escort	Ford	Escort	1981-1999		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Escort	H1
+新分析0831	Ford Excursion	Ford	Excursion	2000-2005		SUV	YXXL-585	越野车			Excursion	S5
+新分析0831	Ford Expedition	Ford	Expedition	2007-2026	EL/MAX	SUV	YXXL-585	越野车	EL/MAX	EL/MAX	Expedition	S5
+新分析0831	Ford Expedition	Ford	Expedition	2018-2026	Incl: Tremor	SUV	YXXL-545	越野车	Incl: Tremor	Incl: Tremor	Expedition	S4
+新分析0831	Ford Explorer	Ford	Explorer	2002		SUV	YXL	越野车			Explorer	S3
+新分析0831	Ford Explorer	Ford	Explorer	2003-2005		SUV	YL	越野车			Explorer	S2
+新分析0831	Ford Explorer	Ford	Explorer	2006-2015		SUV	YXL	越野车			Explorer	S3
+新分析0831	Ford Fiesta	Ford	Fiesta	2011-2019	Incl: ST	Hatchback	2M	两厢车	Hatchback Incl: ST	Hbk Inc:ST	Fiesta	H0
+新分析0831	Ford Focus	Ford	Focus	2008-2011		Coupe	3M-0	跑车	Coupe	Coupe	Focus	C2
+新分析0831	Ford Focus	Ford	Focus	2000-2018	Incl: RS/ZX3/ZX5	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: RS/ZX3/ZX5	Hbk/Wgn Inc:RS/ZX	Focus	H1
+新分析0831	Ford Fusion	Ford	Fusion	2006-2020		Sedan	3XL	三厢车			Fusion	A2
+新分析0831	Ford GT	Ford	GT	2005-2006		Coupe	3L-0	跑车			GT	C3
+新分析0831	Ford GT	Ford	GT	2017-2022		Coupe	3XL-0	跑车			GT	C4
+新分析0831	Ford Mustang	Ford	Mustang	1965-1968		Convertible/Coupe/Fastback	3L-0	跑车	Convertible/Coupe/Fastback	Conv/Cpe/Fastbk	Mustang	C3
+新分析0831	Ford Mustang	Ford	Mustang	1969-1973	Incl: Hardtop/SportsRoof	Convertible/Coupe/Fastback	3XL-0	跑车	Convertible/Coupe/Fastback Incl: Hardtop/SportsRoof	Conv/Cpe/Fastbk	Mustang	C4
+新分析0831	Ford Mustang	Ford	Mustang	1974-1986		Coupe	3M-0	跑车	Coupe	Coupe	Mustang	C2
+新分析0831	Ford Mustang	Ford	Mustang	1984-2004	Mach 1/Notchback/SVO/SVT Cobra	Coupe	3L-0	跑车	Coupe Mach 1/Notchback/SVO/SVT Cobra	Cpe Mach1/Ntbk/SVO	Mustang	C3
+新分析0831	Ford Mustang	Ford	Mustang	1987-2004		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	Mustang	C3
+新分析0831	Ford Mustang	Ford	Mustang	2005-2026	Incl: Dark Horse	Convertible/Coupe	3XL-0	跑车	Convertible/Coupe Incl: Dark Horse	Conv/Cpe Inc:DH	Mustang	C4
+新分析0831	Ford Mustang	Ford	Mustang	1974-1986		Hatchback	2L+	两厢车	Hatchback	Hatchback	Mustang	H1
+新分析0831	Ford Mustang Mach-E	Ford	Mustang Mach-E	2021-2026	Incl: Rally	Crossover/SUV	YL	越野车	Incl: Rally	Incl: Rally	Mustang Mach-E	S2
+新分析0831	Ford Taurus	Ford	Taurus	1986-2007		Sedan	3XL	三厢车	Sedan	Sedan	Taurus	A2
+新分析0831	Ford Thunderbird	Ford	Thunderbird	1955		Convertible	3M-0	跑车	Convertible	Convertible	Thunderbird	C2
+新分析0831	Ford Thunderbird	Ford	Thunderbird	1956-1957		Convertible	3L-0	跑车	Convertible	Convertible	Thunderbird	C3
+新分析0831	Ford Thunderbird	Ford	Thunderbird	1983-1986		Coupe	3XL-0	跑车	Coupe	Coupe	Thunderbird	C4
+新分析0831	Ford Thunderbird	Ford	Thunderbird	1989-1997		Coupe	3XL+0	跑车	Coupe	Coupe	Thunderbird	C5
+新分析0831	Ford Thunderbird	Ford	Thunderbird	2002-2005		Coupe	3L-0	跑车	Coupe	Coupe	Thunderbird	C3
+新分析0831	GMC Acadia	GMC	Acadia	2017-2023		SUV	YXL	越野车			Acadia	S3
+新分析0831	GMC Envoy	GMC	Envoy	2002-2009		SUV	YXL	越野车			Envoy	S3
+新分析0831	GMC Jimmy	GMC	Jimmy	1995-2000	4dr	SUV	YL	越野车	4dr	4dr	Jimmy	S2
+新分析0831	GMC Terrain	GMC	Terrain	2010-2017		SUV	YL	越野车			Terrain	S2
+新分析0831	GMC Yukon	GMC	Yukon	1992-1997	2dr	SUV	YL	越野车	2dr	2dr	Yukon	S2
+新分析0831	GMC Yukon	GMC	Yukon	2021-2026		SUV	YXXL-545	越野车			Yukon	S4
+新分析0831	GMC Yukon XL	GMC	Yukon XL	2000-2026		SUV	YXXL-585	越野车			Yukon XL	S5
+新分析0831	Genesis EQ900	Genesis	EQ900	2017-2026	G90	Sedan	3XXL	三厢车	G90	G90	EQ900	A4
+新分析0831	Genesis G70	Genesis	G70	2019-2026		Sedan	3L	三厢车			G70	A1
+新分析0831	Genesis G80	Genesis	G80	2017-2026	Incl: Sport	Sedan	3XL	三厢车	Incl: Sport	Incl: Sport	G80	A2
+新分析0831	Genesis G90	Genesis	G90	2017-2026		Sedan	3XXL	三厢车			G90	A4
+新分析0831	Genesis GV70	Genesis	GV70	2022-2026		SUV	YL	越野车			GV70	S2
+新分析0831	Genesis GV80	Genesis	GV80	2021-2026		SUV	YXL	越野车			GV80	S3
+新分析0831	Honda Accord	Honda	Accord	1986-1993		Sedan	3L	三厢车	Sedan	Sedan	Accord	A1
+新分析0831	Honda Accord	Honda	Accord	1994-2026		Sedan	3XL	三厢车	Sedan	Sedan	Accord	A2
+新分析0831	Honda Accord	Honda	Accord	1988-1997		Coupe	3L-0	跑车	Coupe	Coupe	Accord	C3
+新分析0831	Honda Accord	Honda	Accord	1998-2017		Coupe	3XL-0	跑车	Coupe	Coupe	Accord	C4
+新分析0831	Honda Accord	Honda	Accord	1976-1981		Hatchback	2M	两厢车	Hatchback	Hatchback	Accord	H0
+新分析0831	Honda Accord	Honda	Accord	1982-1989		Hatchback	2L+	两厢车	Hatchback	Hatchback	Accord	H1
+新分析0831	Honda CR-V	Honda	CR-V	2023-2026		SUV	YL	越野车			CR-V	S2
+新分析0831	Honda CR-Z	Honda	CR-Z	2011-2016		Hatchback	2M	两厢车			CR-Z	H0
+新分析0831	Honda Civic	Honda	Civic	2016-2026		Sedan	3L	三厢车	Sedan	Sedan	Civic	A1
+新分析0831	Honda Civic	Honda	Civic	1988-1991	CRX	Coupe	3S-0	跑车	Coupe CRX	Coupe CRX	Civic	C1
+新分析0831	Honda Civic	Honda	Civic	1992-2020		Coupe	3M-0	跑车	Coupe	Coupe	Civic	C2
+新分析0831	Honda Civic	Honda	Civic	1973-1983		Wagon	2M	两厢车	Wagon	Wagon	Civic	H0
+新分析0831	Honda Civic	Honda	Civic	1980-2000		Hatchback	2M	两厢车	Hatchback	Hatchback	Civic	H0
+新分析0831	Honda Civic	Honda	Civic	1984-1987		Wagon	2L+	两厢车	Wagon	Wagon	Civic	H1
+新分析0831	Honda Civic	Honda	Civic	1988-1991		Wagon	2M	两厢车	Wagon	Wagon	Civic	H0
+新分析0831	Honda Civic	Honda	Civic	2017-2021	Type R	Hatchback	2L+	两厢车	Hatchback Type R	Hbk Type R	Civic	H1
+新分析0831	Honda Civic	Honda	Civic	2017-2026		Hatchback	2L+	两厢车	Hatchback	Hatchback	Civic	H1
+新分析0831	Honda Clarity	Honda	Clarity	2017-2021		Sedan	3XL	三厢车			Clarity	A2
+新分析0831	Honda Clarity Plug In	Honda	Clarity Plug In	2018-2021		Sedan	3XL	三厢车			Clarity Plug In	A2
+新分析0831	Honda Fit	Honda	Fit	2007-2020		Hatchback	2M	两厢车			Fit	H0
+新分析0831	Honda Insight	Honda	Insight	2019-2022		Sedan	3L	三厢车	Sedan	Sedan	Insight	A1
+新分析0831	Honda Insight	Honda	Insight	2000-2006		Hatchback	2M	两厢车	Hatchback	Hatchback	Insight	H0
+新分析0831	Honda Insight	Honda	Insight	2010-2014		Hatchback	2L+	两厢车	Hatchback	Hatchback	Insight	H1
+新分析0831	Honda Odyssey	Honda	Odyssey	2005-2026		MPV	2XXL	两厢车			Odyssey	H2
+新分析0831	Honda Passport	Honda	Passport	2019-2025		SUV	YL	越野车			Passport	S2
+新分析0831	Honda Passport	Honda	Passport	2026		SUV	YXL	越野车			Passport	S3
+新分析0831	Honda Pilot	Honda	Pilot	2003-2008		SUV	YL	越野车			Pilot	S2
+新分析0831	Honda Pilot	Honda	Pilot	2009-2022		SUV	YXL	越野车			Pilot	S3
+新分析0831	Honda Prelude	Honda	Prelude	1979-1982		Coupe	3S-0	跑车			Prelude	C1
+新分析0831	Honda Prelude	Honda	Prelude	1983-2026		Coupe	3M-0	跑车			Prelude	C2
+新分析0831	Honda Prologue	Honda	Prologue	2024-2026		SUV	YXL	越野车			Prologue	S3
+新分析0831	Honda S2000	Honda	S2000	2000-2009		Convertible	3S-0	跑车			S2000	C1
+新分析0831	Hyundai Accent	Hyundai	Accent	1995-1999		Hatchback	2M	两厢车	Hatchback	Hatchback	Accent	H0
+新分析0831	Hyundai Accent	Hyundai	Accent	2000-2005		Hatchback	2L+	两厢车	Hatchback	Hatchback	Accent	H1
+新分析0831	Hyundai Accent	Hyundai	Accent	2006-2017		Hatchback	2M	两厢车	Hatchback	Hatchback	Accent	H0
+新分析0831	Hyundai Azera	Hyundai	Azera	2006-2017		Sedan	3XL	三厢车			Azera	A2
+新分析0831	Hyundai Elantra	Hyundai	Elantra	2017-2026		Sedan	3L	三厢车	Sedan	Sedan	Elantra	A1
+新分析0831	Hyundai Elantra	Hyundai	Elantra	1996-2020		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Elantra	H1
+新分析0831	Hyundai Elantra GT	Hyundai	Elantra GT	2013-2020		Hatchback	2L+	两厢车			Elantra GT	H1
+新分析0831	Hyundai Elantra Tour	Hyundai	Elantra Tour	2009-2012		Wagon	2L+	两厢车			Elantra Tour	H1
+新分析0831	Hyundai Genesis	Hyundai	Genesis	2009-2016	Incl: 5.0 R-Spec	Sedan	3XL	三厢车	Incl: 5.0 R-Spec	Inc:5.0RSpc	Genesis	A2
+新分析0831	Hyundai IONIQ 5	Hyundai	IONIQ 5	2022-2026	Incl: N	SUV	YL	越野车	Incl: N	Incl: N	IONIQ 5	S2
+新分析0831	Hyundai IONIQ 6	Hyundai	IONIQ 6	2023-2026	Incl: N	Sedan	3XL	三厢车	Incl: N	Incl: N	IONIQ 6	A2
+新分析0831	Hyundai Ioniq	Hyundai	Ioniq	2017-2022		Hatchback	2L+	两厢车			Ioniq	H1
+新分析0831	Hyundai Nexo	Hyundai	Nexo	2019-2024		SUV	YL	越野车			Nexo	S2
+新分析0831	Hyundai Palisade	Hyundai	Palisade	2020-2025		SUV	YXL	越野车			Palisade	S3
+新分析0831	Hyundai Santa Fe	Hyundai	Santa Fe	2007-2026	Incl: Sport	SUV	YL	越野车	Incl: Sport	Incl: Sport	Santa Fe	S2
+新分析0831	Hyundai Santa Fe	Hyundai	Santa Fe	2013-2019	XL	SUV	YXL	越野车	XL	XL	Santa Fe	S3
+新分析0831	Hyundai Sonata	Hyundai	Sonata	1989-2002		Sedan	3L	三厢车			Sonata	A1
+新分析0831	Hyundai Sonata	Hyundai	Sonata	2003-2026		Sedan	3XL	三厢车			Sonata	A2
+新分析0831	Hyundai Tiburon	Hyundai	Tiburon	1997-2008		Coupe	3M-0	跑车			Tiburon	C2
+新分析0831	Hyundai Tucson	Hyundai	Tucson	2025-2026		SUV	YL	越野车			Tucson	S2
+新分析0831	Hyundai Veloster	Hyundai	Veloster	2012-2022	Incl: N/Turbo	Hatchback	2L+	两厢车	Incl: N/Turbo	Incl: N/Turbo	Veloster	H1
+新分析0831	Hyundai Veracruz	Hyundai	Veracruz	2007-2012		SUV	YL	越野车			Veracruz	S2
+新分析0831	Hyundai XG	Hyundai	XG	2001-2005		Sedan	3XL	三厢车			XG	A2
+新分析0831	Ineos Automotive Grenadier	Ineos Automotive	Grenadier	2024-2026		SUV	YXL	越野车			Grenadier	S3
+新分析0831	Infiniti FX	Infiniti	FX	2003-2008		Crossover	YL	越野车			FX	S2
+新分析0831	Infiniti FX	Infiniti	FX	2009-2013		Crossover	YXL	越野车			FX	S3
+新分析0831	Infiniti G	Infiniti	G	2003-2013		Sedan	3XL	三厢车	Sedan	Sedan	G	A2
+新分析0831	Infiniti G	Infiniti	G	2003-2013		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	G	C3
+新分析0831	Infiniti I	Infiniti	I	1996-2004		Sedan	3XL	三厢车			I	A2
+新分析0831	Infiniti JX	Infiniti	JX	2013		Crossover	YXL	越野车			JX	S3
+新分析0831	Infiniti M	Infiniti	M	2003-2013		Sedan	3XL	三厢车	Sedan	Sedan	M	A2
+新分析0831	Infiniti M	Infiniti	M	1990-1992		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	M	C4
+新分析0831	Infiniti Q40	Infiniti	Q40	2015		Sedan	3XL	三厢车			Q40	A2
+新分析0831	Infiniti Q50	Infiniti	Q50	2014-2024	Incl: Red Sport	Sedan	3XL	三厢车	Incl: Red Sport	Incl: Red Sport	Q50	A2
+新分析0831	Infiniti Q60	Infiniti	Q60	2014-2022	Incl: Red Sport	Convertible/Coupe	3L-0	跑车	Incl: Red Sport	Incl: Red Sport	Q60	C3
+新分析0831	Infiniti Q70	Infiniti	Q70	2014-2019		Sedan	3XL	三厢车			Q70	A2
+新分析0831	Infiniti QX4	Infiniti	QX4	1997-2003		SUV	YL	越野车			QX4	S2
+新分析0831	Infiniti QX50	Infiniti	QX50	2016-2025		SUV	YL	越野车			QX50	S2
+新分析0831	Infiniti QX55	Infiniti	QX55	2022-2025		SUV	YL	越野车			QX55	S2
+新分析0831	Infiniti QX56	Infiniti	QX56	2004-2013		SUV	YXXL-545	越野车			QX56	S4
+新分析0831	Infiniti QX60	Infiniti	QX60	2014-2016		SUV	YXL	越野车			QX60	S3
+新分析0831	Infiniti QX70	Infiniti	QX70	2014-2017		Crossover	YXL	越野车			QX70	S3
+新分析0831	Infiniti QX80	Infiniti	QX80	2014-2024		SUV	YXXL-545	越野车			QX80	S4
+新分析0831	Jaguar F-Pace	Jaguar	F-Pace	2017-2023		SUV	YL	越野车			F-Pace	S2
+新分析0831	Jaguar F-Type	Jaguar	F-Type	2014-2024	Incl: P450/P575/R/R75/SVR/V6/V8 S	Convertible/Coupe	3M-0	跑车	Incl: P450/P575/R/R75/SVR/V6/V8 S	Inc:R/SVR	F-Type	C2
+新分析0831	Jaguar I-Pace	Jaguar	I-Pace	2019-2024		SUV	YL	越野车			I-Pace	S2
+新分析0831	Jaguar S-Type	Jaguar	S-Type	2000-2008		Sedan	3XL	三厢车			S-Type	A2
+新分析0831	Jaguar X-Type	Jaguar	X-Type	2002-2008		Sedan	3L	三厢车	Sedan	Sedan	X-Type	A1
+新分析0831	Jaguar XE	Jaguar	XE	2017-2020		Sedan	3L	三厢车			XE	A1
+新分析0831	Jaguar XF	Jaguar	XF	2009-2024		Sedan	3XL	三厢车	Sedan	Sedan	XF	A2
+新分析0831	Jaguar XJ	Jaguar	XJ	1995-2003	SWB	Sedan	3XL	三厢车	SWB	SWB	XJ	A2
+新分析0831	Jaguar XJ	Jaguar	XJ	2004-2019	LWB	Sedan	3XXL	三厢车	LWB	LWB	XJ	A4
+新分析0831	Jaguar XJS	Jaguar	XJS	1976-1996		Convertible/Coupe	3XL-0	跑车			XJS	C4
+新分析0831	Jaguar XK	Jaguar	XK	1997-2015	Incl: XKR/XKR-S	Convertible/Coupe	3XL-0	跑车	Incl: XKR/XKR-S	Incl: XKR/XKR-S	XK	C4
+新分析0831	Jeep Cherokee	Jeep	Cherokee	2026		SUV	YL	越野车			Cherokee	S2
+新分析0831	Jeep Commander	Jeep	Commander	2006-2010		SUV	YL	越野车			Commander	S2
+新分析0831	Jeep Grand Cherokee	Jeep	Grand Cherokee	2005-2021		SUV	YL	越野车			Grand Cherokee	S2
+新分析0831	Jeep Grand Cherokee	Jeep	Grand Cherokee	2014-2021	SRT	SUV	YXL	越野车	SRT	SRT	Grand Cherokee	S3
+新分析0831	Jeep Grand Cherokee	Jeep	Grand Cherokee	2022-2026		SUV	YXL	越野车			Grand Cherokee	S3
+新分析0831	Jeep Grand Wagoneer	Jeep	Grand Wagoneer	1984-1991		SUV	YL	越野车			Grand Wagoneer	S2
+新分析0831	Jeep Wagoneer	Jeep	Wagoneer	1963-1991		SUV	YL	越野车			Wagoneer	S2
+新分析0831	Jeep Wagoneer S	Jeep	Wagoneer S	2025-2026		SUV	YXL	越野车			Wagoneer S	S3
+新分析0831	Jeep Wrangler	Jeep	Wrangler	2013-2026	4dr Rubicon/4dr Unlimited	SUV	YL	越野车	4dr Rubicon/4dr Unlimited	4drRub/4drUnl	Wrangler	S2
+新分析0831	Karma Automotive Revero	Karma Automotive	Revero	2017-2020	GT/GTS	Sedan	3XL	三厢车	GT/GTS	GT/GTS	Revero	A2
+新分析0831	Kia Amanti	Kia	Amanti	2004-2009		Sedan	3XL	三厢车			Amanti	A2
+新分析0831	Kia Borrego	Kia	Borrego	2009		SUV	YXL	越野车			Borrego	S3
+新分析0831	Kia Cadenza	Kia	Cadenza	2014-2020		Sedan	3XL	三厢车			Cadenza	A2
+新分析0831	Kia Carnival	Kia	Carnival	2007-2026	Incl: Sedona LWB	MPV	2XXL	两厢车	Incl: Sedona LWB	Incl: Sedona LWB	Carnival	H2
+新分析0831	Kia EV6	Kia	EV6	2022-2026		Crossover	YL	越野车			EV6	S2
+新分析0831	Kia EV9	Kia	EV9	2024-2026		SUV	YXL	越野车			EV9	S3
+新分析0831	Kia Forte	Kia	Forte	2014-2024		Sedan	3L	三厢车	Sedan	Sedan	Forte	A1
+新分析0831	Kia Forte	Kia	Forte	2010-2016	Incl: Koup	Coupe	3M-0	跑车	Coupe Incl: Koup	Coupe Incl: Koup	Forte	C2
+新分析0831	Kia Forte	Kia	Forte	2014-2018	Forte5	Hatchback	2L+	两厢车	Hatchback Forte5	Hbk Forte5	Forte	H1
+新分析0831	Kia K5	Kia	K5	2021-2026		Sedan	3XL	三厢车			K5	A2
+新分析0831	Kia Optima	Kia	Optima	2001-2020	Incl: Hybrid/PHEV	Sedan	3XL	三厢车	Incl: Hybrid/PHEV	Inc:Hy/PHEV	Optima	A2
+新分析0831	Kia Rio	Kia	Rio	2001-2005	Rio5	Wagon	2L+	两厢车	Wagon Rio5	Wagon Rio5	Rio	H1
+新分析0831	Kia Rio	Kia	Rio	2006-2023	Rio5	Hatchback	2M	两厢车	Hatchback Rio5	Hatchback Rio5	Rio	H0
+新分析0831	Kia Sorento	Kia	Sorento	2011-2026	Incl: PHEV	SUV	YL	越野车	Incl: PHEV	Incl: PHEV	Sorento	S2
+新分析0831	Kia Soul	Kia	Soul	2010-2019	Incl: EV	Hatchback/Wagon	2M	两厢车	Hatchback/Wagon Incl: EV	Hbk/Wgn Inc:EV	Soul	H0
+新分析0831	Kia Soul	Kia	Soul	2020-2025		Wagon	2L+	两厢车	Wagon	Wagon	Soul	H1
+新分析0831	Kia Spectra	Kia	Spectra	2002-2009		Hatchback	2L+	两厢车	Hatchback	Hatchback	Spectra	H1
+新分析0831	Kia Sportage	Kia	Sportage	2023-2026	Incl: PHEV	SUV	YL	越野车	Incl: PHEV	Incl: PHEV	Sportage	S2
+新分析0831	Kia Stinger	Kia	Stinger	2018-2023	Incl: GT	Coupe/Fastback/Liftback	3XL-0	跑车	Incl: GT	Incl: GT	Stinger	C4
+新分析0831	Kia Telluride	Kia	Telluride	2020-2026		SUV	YXL	越野车			Telluride	S3
+新分析0831	Land Rover Discovery	Land Rover	Discovery	2000-2016		SUV	YL	越野车			Discovery	S2
+新分析0831	Land Rover Discovery	Land Rover	Discovery	2017-2024		SUV	YXL	越野车			Discovery	S3
+新分析0831	Land Rover Evoque	Land Rover	Evoque	2012-2018		Coupe	3M-0	跑车	Coupe	Coupe	Evoque	C2
+新分析0831	Land Rover LR3	Land Rover	LR3	2005-2009		SUV	YL	越野车			LR3	S2
+新分析0831	Land Rover LR4	Land Rover	LR4	2010-2016		SUV	YL	越野车			LR4	S2
+新分析0831	Land Rover Range Rover	Land Rover	Range Rover	1993-2002	Incl: LWB	SUV	YL	越野车	Incl: LWB	Incl: LWB	Range Rover	S2
+新分析0831	Land Rover Range Rover	Land Rover	Range Rover	2003-2021		SUV	YXL	越野车			Range Rover	S3
+新分析0831	Land Rover Range Rover	Land Rover	Range Rover	2022-2026	LWB	SUV	YXXL-545	越野车	LWB	LWB	Range Rover	S4
+新分析0831	Land Rover Range Rover Evoque	Land Rover	Range Rover Evoque	2012-2019		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	RangeRov Evoq	C2
+新分析0831	Land Rover Range Rover Sport	Land Rover	Range Rover Sport	2006-2013		SUV	YL	越野车			RangeRov Sport	S2
+新分析0831	Land Rover Range Rover Sport	Land Rover	Range Rover Sport	2014-2026		SUV	YXL	越野车			RangeRov Sport	S3
+新分析0831	Land Rover Range Rover Velar	Land Rover	Range Rover Velar	2018-2026		SUV	YL	越野车			RangeRov Velar	S2
+新分析0831	Lexus CT	Lexus	CT	2011-2017		Hatchback	2L+	两厢车			CT	H1
+新分析0831	Lexus ES	Lexus	ES	1991		Sedan	3L	三厢车			ES	A1
+新分析0831	Lexus ES	Lexus	ES	1992-2025		Sedan	3XL	三厢车			ES	A2
+新分析0831	Lexus GS	Lexus	GS	1993-2020		Sedan	3XL	三厢车			GS	A2
+新分析0831	Lexus GX	Lexus	GX	2003-2013		SUV	YL	越野车			GX	S2
+新分析0831	Lexus GX	Lexus	GX	2014-2026	Incl: Overtrail	SUV	YXL	越野车	Incl: Overtrail	Incl: Overtrail	GX	S3
+新分析0831	Lexus HS	Lexus	HS	2010-2012		Sedan	3L	三厢车			HS	A1
+新分析0831	Lexus IS	Lexus	IS	2006-2021		Sedan	3L	三厢车	Sedan	Sedan	IS	A1
+新分析0831	Lexus IS	Lexus	IS	2022-2026		Sedan	3XL	三厢车	Sedan	Sedan	IS	A2
+新分析0831	Lexus IS	Lexus	IS	2010-2015		Convertible	3L-0	跑车	Convertible	Convertible	IS	C3
+新分析0831	Lexus LC	Lexus	LC	2018-2026		Convertible/Coupe	3XL-0	跑车			LC	C4
+新分析0831	Lexus LFA	Lexus	LFA	2012		Coupe	3M-0	跑车			LFA	C2
+新分析0831	Lexus LS	Lexus	LS	1995-2009		Sedan	3XL	三厢车			LS	A2
+新分析0831	Lexus LS	Lexus	LS	2013-2017	L	Sedan	3XXL	三厢车	L	L	LS	A4
+新分析0831	Lexus LS	Lexus	LS	2018-2026		Sedan	3XXL	三厢车			LS	A4
+新分析0831	Lexus LX	Lexus	LX	1996-1997		SUV	YL	越野车			LX	S2
+新分析0831	Lexus LX	Lexus	LX	1998-2011		SUV	YXL	越野车			LX	S3
+新分析0831	Lexus LX	Lexus	LX	2013-2015		SUV	YXL	越野车			LX	S3
+新分析0831	Lexus NX	Lexus	NX	2018-2026		SUV	YL	越野车			NX	S2
+新分析0831	Lexus RC	Lexus	RC	2015-2025	Incl: RC F	Coupe	3L-0	跑车	Incl: RC F	Incl: RC F	RC	C3
+新分析0831	Lexus RX	Lexus	RX	2004-2015		SUV	YL	越野车			RX	S2
+新分析0831	Lexus RX	Lexus	RX	2016-2026	Incl: RX L	SUV	YXL	越野车	Incl: RX L	Incl: RX L	RX	S3
+新分析0831	Lexus RZ	Lexus	RZ	2023-2026		SUV	YL	越野车			RZ	S2
+新分析0831	Lexus SC	Lexus	SC	1992-2000		Coupe	3XL-0	跑车	Coupe	Coupe	SC	C4
+新分析0831	Lexus SC	Lexus	SC	2002-2010		Convertible	3M-0	跑车	Convertible	Convertible	SC	C2
+新分析0831	Lincoln Aviator	Lincoln	Aviator	2003-2005		SUV	YXL	越野车			Aviator	S3
+新分析0831	Lincoln LS	Lincoln	LS	2000-2006		Sedan	3XL	三厢车			LS	A2
+新分析0831	Lincoln MKS	Lincoln	MKS	2013-2016		Sedan	3XXL	三厢车			MKS	A4
+新分析0831	Lincoln MKT	Lincoln	MKT	2010-2019		Crossover	YXXL-545	越野车			MKT	S4
+新分析0831	Lincoln MKX	Lincoln	MKX	2007-2018		Crossover	YL	越野车			MKX	S2
+新分析0831	Lincoln MKZ	Lincoln	MKZ	2008-2020		Sedan	3XL	三厢车			MKZ	A2
+新分析0831	Lincoln Mark VII	Lincoln	Mark VII	1984-1992		Coupe	3XL+0	跑车			Mark VII	C5
+新分析0831	Lincoln Nautilus	Lincoln	Nautilus	2019-2023		SUV	YL	越野车			Nautilus	S2
+新分析0831	Lincoln Nautilus	Lincoln	Nautilus	2024-2026		SUV	YXL	越野车			Nautilus	S3
+新分析0831	Lincoln Navigator	Lincoln	Navigator	2003-2026		SUV	YXXL-545	越野车			Navigator	S4
+新分析0831	Lincoln Navigator	Lincoln	Navigator	2007-2026	L	SUV	YXXL-585	越野车	L	L	Navigator	S5
+新分析0831	Lincoln Zephyr	Lincoln	Zephyr	2006		Sedan	3XL	三厢车			Zephyr	A2
+新分析0831	Lucid Motors Air	Lucid Motors	Air	2022-2026		Sedan	3XL	三厢车			Air	A2
+新分析0831	MINI Clubman	MINI	Clubman	2008-2014		Wagon	2M	两厢车			Clubman	H0
+新分析0831	MINI Clubman	MINI	Clubman	2016-2024		Wagon	2L+	两厢车			Clubman	H1
+新分析0831	MINI Convertible	MINI	Convertible	2011-2026	Incl: JCW	Convertible	3S-0	跑车	Incl: JCW	Incl: JCW	Convertible	C1
+新分析0831	MINI Cooper	MINI	Cooper	2007-2026	Incl: 2dr/2dr S/2dr SE/4dr/4dr S	Hatchback	2M	两厢车	Incl: 2dr/2dr S/2dr SE/4dr/4dr S	Inc:2dr/4dr	Cooper	H0
+新分析0831	MINI Cooper SE	MINI	Cooper SE	2020-2024		Hatchback	2M	两厢车			Cooper SE	H0
+新分析0831	MINI Coupe	MINI	Coupe	2012-2015		Coupe	3S-0	跑车			Coupe	C1
+新分析0831	MINI Hardtop	MINI	Hardtop	2007-2024	2dr/4dr	Hatchback	2M	两厢车	2dr/4dr	2dr/4dr	Hardtop	H0
+新分析0831	MINI Hatchback	MINI	Hatchback	2007-2024	2dr/2dr Cooper SE/4dr	Hatchback	2M	两厢车	2dr/2dr Cooper SE/4dr	2dr/2drCprSE/4dr	Hatchback	H0
+新分析0831	MINI Roadster	MINI	Roadster	2012-2015	Incl: JCW	Convertible	3S-0	跑车	Incl: JCW	Incl: JCW	Roadster	C1
+新分析0831	Maserati Ghibli	Maserati	Ghibli	2014-2024		Sedan	3XL	三厢车			Ghibli	A2
+新分析0831	Maserati GranTurismo	Maserati	GranTurismo	2008-2026		Convertible/Coupe	3XL-0	跑车			GranTurismo	C4
+新分析0831	Maserati Grecale	Maserati	Grecale	2023-2026		SUV	YXL	越野车			Grecale	S3
+新分析0831	Maserati Levante	Maserati	Levante	2017-2018		SUV	YXL	越野车			Levante	S3
+新分析0831	Maserati Levante	Maserati	Levante	2024		SUV	YXL	越野车			Levante	S3
+新分析0831	Maserati MC20	Maserati	MC20	2022-2025	Incl: Cielo	Convertible/Coupe	3L-0	跑车	Incl: Cielo	Incl: Cielo	MC20	C3
+新分析0831	Maserati Quattroporte	Maserati	Quattroporte	2014-2024		Sedan	3XXL	三厢车			Quattroporte	A4
+新分析0831	Mazda 2	Mazda	2	2011-2014		Hatchback	2M	两厢车			2	H0
+新分析0831	Mazda 3	Mazda	3	2010-2026		Sedan	3L	三厢车	Sedan	Sedan	3	A1
+新分析0831	Mazda 3	Mazda	3	2004-2026		Hatchback	2L+	两厢车	Hatchback	Hatchback	3	H1
+新分析0831	Mazda 6	Mazda	6	2009-2021		Sedan	3XL	三厢车	Sedan	Sedan	6	A2
+新分析0831	Mazda CX-5	Mazda	CX-5	2026		SUV	YL	越野车			CX-5	S2
+新分析0831	Mazda CX-50	Mazda	CX-50	2023-2026		SUV	YL	越野车			CX-50	S2
+新分析0831	Mazda CX-7	Mazda	CX-7	2007-2012		SUV	YL	越野车			CX-7	S2
+新分析0831	Mazda MX-5	Mazda	MX-5	1990-2026	Incl: RF	Convertible/Coupe	3S-0	跑车	Incl: RF	Incl: RF	MX-5	C1
+新分析0831	Mazda MX-6	Mazda	MX-6	1990-1992		Coupe	3M-0	跑车			MX-6	C2
+新分析0831	Mazda MX-6	Mazda	MX-6	1993-1997		Coupe	3L-0	跑车			MX-6	C3
+新分析0831	Mazda Miata	Mazda	Miata	1990-2026	Incl: RF/soft top	Convertible/Coupe	3S-0	跑车	Incl: RF/soft top	Inc:RF/Sf	Miata	C1
+新分析0831	Mazda Millenia	Mazda	Millenia	1995-2002		Sedan	3XL	三厢车			Millenia	A2
+新分析0831	Mazda Protege	Mazda	Protege	2002-2003	Protege5	Hatchback	2L+	两厢车	Hatchback Protege5	Hbk Protege5	Protege	H1
+新分析0831	Mazda RX-7	Mazda	RX-7	1979-1995		Convertible/Coupe	3M-0	跑车			RX-7	C2
+新分析0831	Mazda RX-8	Mazda	RX-8	2009-2011		Coupe	3M-0	跑车			RX-8	C2
+新分析0831	Mazda Speed3	Mazda	Speed3	2007-2013		Hatchback	2L+	两厢车			Speed3	H1
+新分析0831	Mercedes-Benz B-Class	Mercedes-Benz	B-Class	2014-2017		Hatchback	2L+	两厢车			B-Class	H1
+新分析0831	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2005-2015	AMG/PHEV	Sedan	3L	三厢车	Sedan AMG/PHEV	Sedan AMG/PHEV	C-Class	A1
+新分析0831	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2008-2021		Sedan	3L	三厢车	Sedan	Sedan	C-Class	A1
+新分析0831	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2016-2026	AMG	Sedan	3XL	三厢车	Sedan AMG	Sedan AMG	C-Class	A2
+新分析0831	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2022-2026		Sedan	3XL	三厢车	Sedan	Sedan	C-Class	A2
+新分析0831	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2012-2023	Incl: AMG	Convertible/Coupe	3L-0	跑车	Convertible/Coupe Incl: AMG	Conv/Cpe Inc:AMG	C-Class	C3
+新分析0831	Mercedes-Benz C-Class	Mercedes-Benz	C-Class	2002-2005	Incl: SportCoupe	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: SportCoupe	Hbk/Wgn Inc:SptCpe	C-Class	H1
+新分析0831	Mercedes-Benz CL-Class	Mercedes-Benz	CL-Class	1998-1999		Coupe	3XL+0	跑车			CL-Class	C5
+新分析0831	Mercedes-Benz CL-Class	Mercedes-Benz	CL-Class	2000-2006		Coupe	3XL-0	跑车			CL-Class	C4
+新分析0831	Mercedes-Benz CL-Class	Mercedes-Benz	CL-Class	2007-2014	Incl: AMG	Coupe	3XL+0	跑车	Incl: AMG	Incl: AMG	CL-Class	C5
+新分析0831	Mercedes-Benz CLA-Class	Mercedes-Benz	CLA-Class	2014-2027	Incl: AMG	Sedan	3L	三厢车	Incl: AMG	Incl: AMG	CLA-Class	A1
+新分析0831	Mercedes-Benz CLK-Class	Mercedes-Benz	CLK-Class	1998-2009		Convertible/Coupe	3L-0	跑车			CLK-Class	C3
+新分析0831	Mercedes-Benz CLS-Class	Mercedes-Benz	CLS-Class	2006-2018	4dr coupe/AMG	Sedan	3XL	三厢车	4dr coupe/AMG	4dr coupe/AMG	CLS-Class	A2
+新分析0831	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	1994-2026	Incl: AMG/PHEV	Sedan	3XL	三厢车	Sedan Incl: AMG/PHEV	Sdn Inc:AMG/PHEV	E-Class	A2
+新分析0831	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	1994-2017	Incl: Cabriolet	Convertible/Coupe	3L-0	跑车	Convertible/Coupe Incl: Cabriolet	Conv/Cpe Inc:Cabr	E-Class	C3
+新分析0831	Mercedes-Benz E-Class	Mercedes-Benz	E-Class	2018-2023		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	E-Class	C4
+新分析0831	Mercedes-Benz EQB	Mercedes-Benz	EQB	2022-2025		SUV	YL	越野车			EQB	S2
+新分析0831	Mercedes-Benz G-Class	Mercedes-Benz	G-Class	2003-2018	AMG	SUV	YL	越野车	AMG	AMG	G-Class	S2
+新分析0831	Mercedes-Benz GLC-Class	Mercedes-Benz	GLC-Class	2016-2026	Incl: AMG	Crossover/SUV	YL	越野车	Incl: AMG	Incl: AMG	GLC-Class	S2
+新分析0831	Mercedes-Benz GLE-Class	Mercedes-Benz	GLE-Class	2016-2019		SUV	YL	越野车	SUV	SUV	GLE-Class	S2
+新分析0831	Mercedes-Benz GLE-Class	Mercedes-Benz	GLE-Class	2020-2026		SUV	YXL	越野车	SUV	SUV	GLE-Class	S3
+新分析0831	Mercedes-Benz GLE-Class	Mercedes-Benz	GLE-Class	2016-2026		Coupe	3XL-0	跑车	Coupe	Coupe	GLE-Class	C4
+新分析0831	Mercedes-Benz M-Class	Mercedes-Benz	M-Class	2002-2015	Incl: AMG/Diesel	SUV	YL	越野车	Incl: AMG/Diesel	Inc:AMG	M-Class	S2
+新分析0831	Mercedes-Benz ML-Class	Mercedes-Benz	ML-Class	2002-2015		SUV	YL	越野车			ML-Class	S2
+新分析0831	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2007-2026	Incl: AMG/S 550e PHEV/S 560e PHEV	Sedan	3XXL	三厢车	Sedan Incl: AMG/S 550e PHEV/S 560e PHEV	Sdn Inc:AMG/PHEV	S-Class	A4
+新分析0831	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2016-2026	Maybach	Sedan	3XXXL	三厢车	Sedan Maybach	Sedan Maybach	S-Class	C6
+新分析0831	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2015	PHEV	Coupe	3XL-0	跑车	Coupe PHEV	Coupe PHEV	S-Class	C4
+新分析0831	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2015-2017		Coupe	3XL+0	跑车	Coupe	Coupe	S-Class	C5
+新分析0831	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2018		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	S-Class	C4
+新分析0831	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2019		Convertible/Coupe	3XL+0	跑车	Convertible/Coupe	Conv/Cpe	S-Class	C5
+新分析0831	Mercedes-Benz S-Class	Mercedes-Benz	S-Class	2020		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	S-Class	C4
+新分析0831	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	1954-1971		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	SL-Class	C2
+新分析0831	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	1957-1989	300SL/560SL	Convertible	3L-0	跑车	Convertible 300SL/560SL	Conv 300/560SL	SL-Class	C3
+新分析0831	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	1972-1989		Convertible	3L-0	跑车	Convertible	Convertible	SL-Class	C3
+新分析0831	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	1990-2012	Incl: 300 SL/500 SL/600 SL/SL320/SL500/SL600	Convertible	3M-0	跑车	Convertible Incl: 300 SL/500 SL/600 SL/SL320/SL500/SL600	Conv Inc:SL Series	SL-Class	C2
+新分析0831	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	2003-2010	AMG	Convertible	3M-0	跑车	Convertible AMG	Convertible AMG	SL-Class	C2
+新分析0831	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	2011-2026	AMG	Convertible	3L-0	跑车	Convertible AMG	Convertible AMG	SL-Class	C3
+新分析0831	Mercedes-Benz SL-Class	Mercedes-Benz	SL-Class	2013-2026		Convertible	3L-0	跑车	Convertible	Convertible	SL-Class	C3
+新分析0831	Mercedes-Benz SLC-Class	Mercedes-Benz	SLC-Class	2017-2020	Incl: AMG	Convertible	3S-0	跑车	Incl: AMG	Incl: AMG	SLC-Class	C1
+新分析0831	Mercedes-Benz SLK-Class	Mercedes-Benz	SLK-Class	1998-2016	Incl: AMG	Convertible	3S-0	跑车	Incl: AMG	Incl: AMG	SLK-Class	C1
+新分析0831	Mercury Cougar	Mercury	Cougar	1983		Coupe	3XL-0	跑车	Coupe	Coupe	Cougar	C4
+新分析0831	Mercury Cougar	Mercury	Cougar	1984-1997		Coupe	3XL+0	跑车	Coupe	Coupe	Cougar	C5
+新分析0831	Mercury Marauder	Mercury	Marauder	2003-2004		Sedan	3XXL	三厢车			Marauder	A4
+新分析0831	Mercury Milan	Mercury	Milan	2006-2011		Sedan	3XL	三厢车			Milan	A2
+新分析0831	Mercury Monterey	Mercury	Monterey	1952-1956		Hatchback/Wagon	2XXL	两厢车	Hatchback/Wagon	Hbk/Wgn	Monterey	H2
+新分析0831	Mercury Mountaineer	Mercury	Mountaineer	1997-2005		SUV	YL	越野车			Mountaineer	S2
+新分析0831	Mercury Mountaineer	Mercury	Mountaineer	2006-2010		SUV	YXL	越野车			Mountaineer	S3
+新分析0831	Mercury Sable	Mercury	Sable	1986-1995		Sedan	3XL	三厢车	Sedan	Sedan	Sable	A2
+新分析0831	Mercury Tracer	Mercury	Tracer	1991-1999		Wagon	2L+	两厢车	Wagon	Wagon	Tracer	H1
+新分析0831	Mitsubishi 3000GT	Mitsubishi	3000GT	1991		Coupe	3M-0	跑车	Coupe	Coupe	3000GT	C2
+新分析0831	Mitsubishi 3000GT	Mitsubishi	3000GT	1992-1999		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	3000GT	C3
+新分析0831	Mitsubishi Diamante	Mitsubishi	Diamante	1992-2004		Sedan	3XL	三厢车			Diamante	A2
+新分析0831	Mitsubishi Eclipse	Mitsubishi	Eclipse	1990-2005	Incl: Spyder	Convertible/Coupe	3M-0	跑车	Convertible/Coupe Incl: Spyder	Conv/Cpe Inc:Spydr	Eclipse	C2
+新分析0831	Mitsubishi Eclipse	Mitsubishi	Eclipse	2006-2012	Incl: Spyder	Convertible/Coupe	3L-0	跑车	Convertible/Coupe Incl: Spyder	Conv/Cpe Inc:Spydr	Eclipse	C3
+新分析0831	Mitsubishi Eclipse	Mitsubishi	Eclipse	1995-1999		Hatchback	2L+	两厢车	Hatchback	Hatchback	Eclipse	H1
+新分析0831	Mitsubishi Endeavor	Mitsubishi	Endeavor	2004-2011		SUV	YL	越野车			Endeavor	S2
+新分析0831	Mitsubishi Galant	Mitsubishi	Galant	1989-1993		Sedan	3L	三厢车			Galant	A1
+新分析0831	Mitsubishi Galant	Mitsubishi	Galant	1994-2012		Sedan	3XL	三厢车			Galant	A2
+新分析0831	Mitsubishi Lancer	Mitsubishi	Lancer	2004-2017		Sedan	3L	三厢车	Sedan	Sedan	Lancer	A1
+新分析0831	Mitsubishi Mirage	Mitsubishi	Mirage	2014-2024		Hatchback	2M	两厢车	Hatchback	Hatchback	Mirage	H0
+新分析0831	Mitsubishi Montero	Mitsubishi	Montero	1991-2006	Incl: 4dr LWB	SUV	YL	越野车	Incl: 4dr LWB	Incl: 4dr LWB	Montero	S2
+新分析0831	Mitsubishi Outlander	Mitsubishi	Outlander	2007-2026		SUV	YL	越野车			Outlander	S2
+新分析0831	Mitsubishi i-MiEV	Mitsubishi	i-MiEV	2012-2017		Hatchback	2M	两厢车			i-MiEV	H0
+新分析0831	Nissan 240SX	Nissan	240SX	1989-1998		Convertible/Coupe	3M-0	跑车	Convertible/Coupe	Conv/Cpe	240SX	C2
+新分析0831	Nissan 240SX	Nissan	240SX	1989-1993	Incl: Fastback	Hatchback	2L+	两厢车	Hatchback Incl: Fastback	Hbk Inc:Fastbk	240SX	H1
+新分析0831	Nissan 300ZX	Nissan	300ZX	1984-1985		Coupe	3M-0	跑车	Coupe	Coupe	300ZX	C2
+新分析0831	Nissan 300ZX	Nissan	300ZX	1986-1989		Coupe	3L-0	跑车	Coupe	Coupe	300ZX	C3
+新分析0831	Nissan 300ZX	Nissan	300ZX	1990-1996	Incl: 2+2/2+2 Coupe/2-Seater	Convertible/Coupe	3M-0	跑车	Convertible/Coupe Incl: 2+2/2+2 Coupe/2-Seater	Conv/Cpe Inc:2+2	300ZX	C2
+新分析0831	Nissan 350Z	Nissan	350Z	2003-2009		Convertible/Coupe	3M-0	跑车			350Z	C2
+新分析0831	Nissan 370Z	Nissan	370Z	2009-2020	Incl: NISMO	Convertible/Coupe	3M-0	跑车	Incl: NISMO	Incl: NISMO	370Z	C2
+新分析0831	Nissan Altima	Nissan	Altima	1993-2001		Sedan	3L	三厢车	Sedan	Sedan	Altima	A1
+新分析0831	Nissan Altima	Nissan	Altima	2002-2026		Sedan	3XL	三厢车	Sedan	Sedan	Altima	A2
+新分析0831	Nissan Altima	Nissan	Altima	2008-2013		Coupe	3L-0	跑车	Coupe	Coupe	Altima	C3
+新分析0831	Nissan Ariya	Nissan	Ariya	2023-2026		SUV	YL	越野车			Ariya	S2
+新分析0831	Nissan Armada	Nissan	Armada	2004-2024		SUV	YXXL-545	越野车			Armada	S4
+新分析0831	Nissan Cube	Nissan	Cube	2009-2014		Wagon	2M	两厢车			Cube	H0
+新分析0831	Nissan GT-R	Nissan	GT-R	2009-2024	Incl: NISMO	Coupe	3L-0	跑车	Incl: NISMO	Incl: NISMO	GT-R	C3
+新分析0831	Nissan Leaf	Nissan	Leaf	2011-2025		Hatchback	2L+	两厢车	Hatchback	Hatchback	Leaf	H1
+新分析0831	Nissan Maxima	Nissan	Maxima	1981-1984		Sedan	3XL	三厢车	Sedan	Sedan	Maxima	A2
+新分析0831	Nissan Maxima	Nissan	Maxima	1985-1988		Sedan	3L	三厢车	Sedan	Sedan	Maxima	A1
+新分析0831	Nissan Maxima	Nissan	Maxima	1989-2023		Sedan	3XL	三厢车	Sedan	Sedan	Maxima	A2
+新分析0831	Nissan Murano	Nissan	Murano	2003-2014		SUV	YL	越野车			Murano	S2
+新分析0831	Nissan Murano	Nissan	Murano	2015-2026		SUV	YXL	越野车			Murano	S3
+新分析0831	Nissan Pathfinder	Nissan	Pathfinder	1988-1995	Wide-body	SUV	YL	越野车	Wide-body	Wide-body	Pathfinder	S2
+新分析0831	Nissan Pathfinder	Nissan	Pathfinder	2005-2011		SUV	YL	越野车			Pathfinder	S2
+新分析0831	Nissan Pathfinder	Nissan	Pathfinder	2012		SUV	YXL	越野车			Pathfinder	S3
+新分析0831	Nissan Rogue	Nissan	Rogue	2008-2026	Incl: PHEV	SUV	YL	越野车	Incl: PHEV	Incl: PHEV	Rogue	S2
+新分析0831	Nissan Sentra	Nissan	Sentra	2007-2026		Sedan	3L	三厢车	Sedan	Sedan	Sentra	A1
+新分析0831	Nissan Sentra	Nissan	Sentra	1982-1987		Coupe	3M-0	跑车	Coupe	Coupe	Sentra	C2
+新分析0831	Nissan Sentra	Nissan	Sentra	1988-1989		Coupe	3S-0	跑车	Coupe	Coupe	Sentra	C1
+新分析0831	Nissan Sentra	Nissan	Sentra	1990-1994		Coupe	3M-0	跑车	Coupe	Coupe	Sentra	C2
+新分析0831	Nissan Sentra	Nissan	Sentra	1982-1986		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Sentra	H1
+新分析0831	Nissan Versa	Nissan	Versa	2007-2012		Hatchback	2L+	两厢车	Hatchback	Hatchback	Versa	H1
+新分析0831	Nissan Versa	Nissan	Versa	2014-2019		Hatchback	2M	两厢车	Hatchback	Hatchback	Versa	H0
+新分析0831	Nissan Versa Note	Nissan	Versa Note	2014-2019		Hatchback	2M	两厢车			Versa Note	H0
+新分析0831	Nissan Z	Nissan	Z	2023-2026	Incl: NISMO	Coupe	3M-0	跑车	Incl: NISMO	Incl: NISMO	Z	C2
+新分析0831	Oldsmobile Achieva	Oldsmobile	Achieva	1992-1998		Sedan	3XL	三厢车	Sedan	Sedan	Achieva	A2
+新分析0831	Oldsmobile Achieva	Oldsmobile	Achieva	1992-1998		Coupe	3XL-0	跑车	Coupe	Coupe	Achieva	C4
+新分析0831	Oldsmobile Alero	Oldsmobile	Alero	1999-2004		Sedan	3XL	三厢车	Sedan	Sedan	Alero	A2
+新分析0831	Oldsmobile Alero	Oldsmobile	Alero	1999-2004		Coupe	3XL-0	跑车	Coupe	Coupe	Alero	C4
+新分析0831	Oldsmobile Aurora	Oldsmobile	Aurora	1995-1999		Sedan	3XXL	三厢车			Aurora	A4
+新分析0831	Oldsmobile Bravada	Oldsmobile	Bravada	2002-2004		SUV	YXL	越野车			Bravada	S3
+新分析0831	Oldsmobile Cutlass	Oldsmobile	Cutlass	1997-1999	FWD	Sedan	3XL	三厢车	Sedan FWD	Sedan FWD	Cutlass	A2
+新分析0831	Oldsmobile Cutlass	Oldsmobile	Cutlass	1968-1972		Wagon	2XXL	两厢车	Wagon	Wagon	Cutlass	H2
+新分析0831	Oldsmobile Intrigue	Oldsmobile	Intrigue	1998-2002		Sedan	3XL	三厢车			Intrigue	A2
+新分析0831	Plymouth Acclaim	Plymouth	Acclaim	1989-1995		Sedan	3L	三厢车			Acclaim	A1
+新分析0831	Plymouth Breeze	Plymouth	Breeze	1996-2000		Sedan	3XL	三厢车			Breeze	A2
+新分析0831	Plymouth Laser	Plymouth	Laser	1990-1994		Coupe	3M-0	跑车			Laser	C2
+新分析0831	Plymouth Neon	Plymouth	Neon	1995-1999		Coupe	3M-0	跑车	Coupe	Coupe	Neon	C2
+新分析0831	Plymouth Sundance	Plymouth	Sundance	1992-1994		Hatchback	2L+	两厢车			Sundance	H1
+新分析0831	Plymouth Valiant	Plymouth	Valiant	1963		Sedan	3XL	三厢车	Sedan	Sedan	Valiant	A2
+新分析0831	Plymouth Valiant	Plymouth	Valiant	1963		Convertible/Coupe	3XL-0	跑车	Convertible/Coupe	Conv/Cpe	Valiant	C4
+新分析0831	Polestar 1	Polestar	1	2020-2021		Coupe	3L-0	跑车			1	C3
+新分析0831	Polestar 3	Polestar	3	2025-2026		SUV	YXL	越野车			3	S3
+新分析0831	Polestar 4	Polestar	4	2026		SUV	YL	越野车			4	S2
+新分析0831	Pontiac Astre	Pontiac	Astre	1975-1977	Incl: Safari	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: Safari	Hbk/Wgn Inc:Safari	Astre	H1
+新分析0831	Pontiac Firebird	Pontiac	Firebird	1967-2002	Incl: Trans Am	Convertible/Coupe	3XL-0	跑车	Incl: Trans Am	Incl: Trans Am	Firebird	C4
+新分析0831	Pontiac G3	Pontiac	G3	2009		Hatchback	2M	两厢车			G3	H0
+新分析0831	Pontiac G5	Pontiac	G5	2007-2009		Coupe	3L-0	跑车			G5	C3
+新分析0831	Pontiac G6	Pontiac	G6	2005-2010		Sedan	3XL	三厢车	Sedan	Sedan	G6	A2
+新分析0831	Pontiac G6	Pontiac	G6	2006-2009		Convertible	3XL-0	跑车	Convertible	Convertible	G6	C4
+新分析0831	Pontiac G8	Pontiac	G8	2008-2009		Fastback	3XL	三厢车			G8	A2
+新分析0831	Pontiac GTO	Pontiac	GTO	2004-2006		Coupe	3XL-0	跑车	Coupe	Coupe	GTO	C4
+新分析0831	Pontiac Grand Am	Pontiac	Grand Am	1992-1998		Sedan	3XL	三厢车	Sedan	Sedan	Grand Am	A2
+新分析0831	Pontiac Grand Am	Pontiac	Grand Am	1999-2005		Sedan	3L	三厢车	Sedan	Sedan	Grand Am	A1
+新分析0831	Pontiac Grand Am	Pontiac	Grand Am	1992-1998		Coupe	3XL-0	跑车	Coupe	Coupe	Grand Am	C4
+新分析0831	Pontiac Grand Am	Pontiac	Grand Am	1999-2005		Coupe	3L-0	跑车	Coupe	Coupe	Grand Am	C3
+新分析0831	Pontiac Grand Prix	Pontiac	Grand Prix	1997-2008		Sedan	3XL	三厢车	Sedan	Sedan	Grand Prix	A2
+新分析0831	Pontiac Grand Prix	Pontiac	Grand Prix	1988-2002		Coupe	3XL-0	跑车	Coupe	Coupe	Grand Prix	C4
+新分析0831	Pontiac LeMans	Pontiac	LeMans	1993		Coupe	3M-0	跑车	Coupe	Coupe	LeMans	C2
+新分析0831	Pontiac LeMans	Pontiac	LeMans	1964-1967		Hatchback/Wagon	2XXL	两厢车	Hatchback/Wagon	Hbk/Wgn	LeMans	H2
+新分析0831	Pontiac LeMans	Pontiac	LeMans	1988-1993		Hatchback	2L+	两厢车	Hatchback	Hatchback	LeMans	H1
+新分析0831	Pontiac Solstice	Pontiac	Solstice	2006-2009		Convertible/Coupe	3S-0	跑车			Solstice	C1
+新分析0831	Pontiac Sunfire	Pontiac	Sunfire	1995-2005		Sedan	3L	三厢车	Sedan	Sedan	Sunfire	A1
+新分析0831	Pontiac Sunfire	Pontiac	Sunfire	1995-2005		Convertible/Coupe	3L-0	跑车	Convertible/Coupe	Conv/Cpe	Sunfire	C3
+新分析0831	Pontiac Torrent	Pontiac	Torrent	2006-2009		SUV	YL	越野车			Torrent	S2
+新分析0831	Pontiac Vibe	Pontiac	Vibe	2003-2010		Hatchback	2L+	两厢车			Vibe	H1
+新分析0831	Porsche 911	Porsche	911	1965-2024	Incl: Dakar	Coupe	3M-0	跑车	Coupe Incl: Dakar	Coupe Incl: Dakar	911	C2
+新分析0831	Porsche 911	Porsche	911	1976-2012	GT2/GT2 RS/GT3/GT3 RS/Turbo	Coupe	3M-0	跑车	Coupe GT2/GT2 RS/GT3/GT3 RS/Turbo	Cpe GT2/GT3/Turbo	911	C2
+新分析0831	Porsche 911	Porsche	911	1983-2016		Convertible/Targa	3M-0	跑车	Convertible/Targa	Convertible/Targa	911	C2
+新分析0831	Porsche 911	Porsche	911	2014-2016	GT3/GT3 RS	Coupe	3M-0	跑车	Coupe GT3/GT3 RS	Coupe GT3/GT3 RS	911	C2
+新分析0831	Porsche 911	Porsche	911	2014-2026	GT2 RS/Turbo	Coupe	3M-0	跑车	Coupe GT2 RS/Turbo	Coupe GT2 RS/Turbo	911	C2
+新分析0831	Porsche 911	Porsche	911	2017-2019	Incl: Speedster	Convertible	3L-0	跑车	Convertible Incl: Speedster	Conv Inc:Spdstr	911	C3
+新分析0831	Porsche 911	Porsche	911	2018-2019	GT3	Coupe	3L-0	跑车	Coupe GT3	Coupe GT3	911	C3
+新分析0831	Porsche 911	Porsche	911	2019	GT3 RS	Coupe	3M-0	跑车	Coupe GT3 RS	Coupe GT3 RS	911	C2
+新分析0831	Porsche 911	Porsche	911	2020-2024		Convertible/Targa	3M-0	跑车	Convertible/Targa	Convertible/Targa	911	C2
+新分析0831	Porsche 911	Porsche	911	2022-2025	GT3/GT3 RS	Coupe	3L-0	跑车	Coupe GT3/GT3 RS	Coupe GT3/GT3 RS	911	C3
+新分析0831	Porsche 911	Porsche	911	2025-2026		Coupe	3L-0	跑车	Coupe	Coupe	911	C3
+新分析0831	Porsche 912	Porsche	912	1965-1969		Coupe	3S-0	跑车			912	C1
+新分析0831	Porsche 912	Porsche	912	1976	912E	Coupe	3M-0	跑车	912E	912E	912	C2
+新分析0831	Porsche Boxster	Porsche	Boxster	1997-2025		Convertible/Coupe	3M-0	跑车			Boxster	C2
+新分析0831	Porsche Cayenne	Porsche	Cayenne	2003-2010		SUV	YL	越野车	SUV	SUV	Cayenne	S2
+新分析0831	Porsche Cayenne	Porsche	Cayenne	2011-2026		SUV	YXL	越野车	SUV	SUV	Cayenne	S3
+新分析0831	Porsche Cayenne	Porsche	Cayenne	2019-2026		Coupe	3XL-0	跑车	Coupe	Coupe	Cayenne	C4
+新分析0831	Porsche Cayman	Porsche	Cayman	2009-2025		Coupe	3M-0	跑车			Cayman	C2
+新分析0831	Porsche Macan	Porsche	Macan	2015-2026		SUV	YL	越野车			Macan	S2
+新分析0831	Porsche Panamera	Porsche	Panamera	2017-2023	Executive LWB	Liftback	3XXL	三厢车	Liftback Executive LWB	Lftbk Exec LWB	Panamera	A4
+新分析0831	Porsche Panamera	Porsche	Panamera	2014-2016	Executive LWB	Liftback	2XXL	两厢车	Liftback Executive LWB	Lftbk Exec LWB	Panamera	H2
+新分析0831	Porsche Taycan	Porsche	Taycan	2020-2026	Incl: Turbo GT	Sedan	3XL	三厢车	Sedan Incl: Turbo GT	Sdn Inc:TurboGT	Taycan	A2
+新分析0831	Saab 9-3	Saab	9-3	1999-2011		Sedan	3L	三厢车	Sedan	Sedan	9-3	A1
+新分析0831	Saab 9-3	Saab	9-3	1999-2011		Convertible	3L-0	跑车	Convertible	Convertible	9-3	C3
+新分析0831	Saab 9-5	Saab	9-5	1999-2011		Sedan	3XL	三厢车	Sedan	Sedan	9-5	A2
+新分析0831	Saab 900	Saab	900	1986-1998		Convertible	3L-0	跑车	Convertible	Convertible	900	C3
+新分析0831	Saturn Astra	Saturn	Astra	2008-2009		Hatchback	2L+	两厢车			Astra	H1
+新分析0831	Saturn Aura	Saturn	Aura	2007-2009		Sedan	3XL	三厢车			Aura	A2
+新分析0831	Saturn Ion	Saturn	Ion	2003-2007		Sedan	3L	三厢车	Sedan	Sedan	Ion	A1
+新分析0831	Saturn Ion	Saturn	Ion	2003-2007		Coupe	3L-0	跑车	Coupe	Coupe	Ion	C3
+新分析0831	Saturn L-Series	Saturn	L-Series	2000-2005		Sedan	3XL	三厢车	Sedan	Sedan	L-Series	A2
+新分析0831	Saturn S-Series	Saturn	S-Series	1991-1996		Coupe	3M-0	跑车	Coupe	Coupe	S-Series	C2
+新分析0831	Saturn S-Series	Saturn	S-Series	1997-2002		Coupe	3L-0	跑车	Coupe	Coupe	S-Series	C3
+新分析0831	Saturn S-Series	Saturn	S-Series	1993-2001		Wagon	2L+	两厢车	Wagon	Wagon	S-Series	H1
+新分析0831	Saturn Sky	Saturn	Sky	2007-2010		Convertible	3S-0	跑车			Sky	C1
+新分析0831	Scion FR-S	Scion	FR-S	2013-2016		Coupe	3M-0	跑车			FR-S	C2
+新分析0831	Scion XA	Scion	XA	2004-2006		Hatchback	2M	两厢车			XA	H0
+新分析0831	Scion iM	Scion	iM	2016		Hatchback	2L+	两厢车			iM	H1
+新分析0831	Scion tC	Scion	tC	2005-2016		Coupe	3M-0	跑车			tC	C2
+新分析0831	Scion xB	Scion	xB	2004-2006		Hatchback	2M	两厢车	Hatchback	Hatchback	xB	H0
+新分析0831	Scion xB	Scion	xB	2008-2015		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	xB	H1
+新分析0831	Scion xD	Scion	xD	2008-2014		Hatchback	2M	两厢车			xD	H0
+新分析0831	Subaru Ascent	Subaru	Ascent	2019-2026		SUV	YXL	越野车			Ascent	S3
+新分析0831	Subaru BRZ	Subaru	BRZ	2013-2020		Coupe	3M-0	跑车			BRZ	C2
+新分析0831	Subaru Forester	Subaru	Forester	2022-2026	Incl: Wilderness	SUV	YL	越野车	Incl: Wilderness	Incl: Wilderness	Forester	S2
+新分析0831	Subaru Impreza	Subaru	Impreza	2008-2023		Sedan	3L	三厢车	Sedan	Sedan	Impreza	A1
+新分析0831	Subaru Impreza	Subaru	Impreza	1995-2001		Coupe	3M-0	跑车	Coupe	Coupe	Impreza	C2
+新分析0831	Subaru Impreza	Subaru	Impreza	1993-2026	Incl: Outback Sport	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: Outback Sport	Hbk/Wgn Inc:Outbk	Impreza	H1
+新分析0831	Subaru Legacy	Subaru	Legacy	1997-2009		Sedan	3L	三厢车	Sedan	Sedan	Legacy	A1
+新分析0831	Subaru Legacy	Subaru	Legacy	2010-2025		Sedan	3XL	三厢车	Sedan	Sedan	Legacy	A2
+新分析0831	Subaru Outback Sport	Subaru	Outback Sport	1995-2011	Incl: Outback Sport	Hatchback/Wagon	2L+	两厢车	Incl: Outback Sport	Inc:Outbk	Outback Sport	H1
+新分析0831	Subaru Solterra	Subaru	Solterra	2023-2026		SUV	YL	越野车			Solterra	S2
+新分析0831	Subaru Tribeca	Subaru	Tribeca	2006-2014		SUV	YXL	越野车			Tribeca	S3
+新分析0831	Subaru WRX	Subaru	WRX	2008-2026	STI/WRX	Sedan	3L	三厢车	Sedan STI/WRX	Sedan STI/WRX	WRX	A1
+新分析0831	Subaru WRX	Subaru	WRX	2002-2014	STI/WRX	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon STI/WRX	Hbk/Wgn STI/WRX	WRX	H1
+新分析0831	Suzuki Aerio	Suzuki	Aerio	2002-2005		Wagon	2L+	两厢车	Wagon	Wagon	Aerio	H1
+新分析0831	Suzuki SX4	Suzuki	SX4	2007-2013		Hatchback	2M	两厢车	Hatchback	Hatchback	SX4	H0
+新分析0831	Suzuki XL7	Suzuki	XL7	2002-2006		SUV	YL	越野车			XL7	S2
+新分析0831	Suzuki XL7	Suzuki	XL7	2007-2009	XL7	SUV	YXL	越野车	XL7	XL7	XL7	S3
+新分析0831	Tesla Model 3	Tesla	Model 3	2017-2026		Sedan	3L	三厢车			Model 3	A1
+新分析0831	Tesla Model Y	Tesla	Model Y	2020-2026	Incl: Performance	Crossover/SUV	YL	越野车	Incl: Performance	Inc:Perf	Model Y	S2
+新分析0831	Tesla Model Y L	Tesla	Model Y L	2026		SUV	YXL	越野车			Model Y L	S3
+新分析0831	Toyota 4Runner	Toyota	4Runner	1999-2013		SUV	YL	越野车			4Runner	S2
+新分析0831	Toyota 4Runner	Toyota	4Runner	2014-2026		SUV	YXL	越野车			4Runner	S3
+新分析0831	Toyota 86	Toyota	86	2017-2026		Coupe	3M-0	跑车			86	C2
+新分析0831	Toyota Avalon	Toyota	Avalon	1995-2022		Sedan	3XL	三厢车			Avalon	A2
+新分析0831	Toyota Camry	Toyota	Camry	1992-2026		Sedan	3XL	三厢车	Sedan	Sedan	Camry	A2
+新分析0831	Toyota Camry	Toyota	Camry	1983-1986		Hatchback	2L+	两厢车	Hatchback	Hatchback	Camry	H1
+新分析0831	Toyota Celica	Toyota	Celica	1971-1999	Incl: All-Trac	Convertible/Coupe	3M-0	跑车	Convertible/Coupe Incl: All-Trac	Conv/Cpe Inc:ATrac	Celica	C2
+新分析0831	Toyota Celica	Toyota	Celica	2000-2005		Hatchback	2L+	两厢车	Hatchback	Hatchback	Celica	H1
+新分析0831	Toyota Corolla	Toyota	Corolla	2014-2026		Sedan	3L	三厢车	Sedan	Sedan	Corolla	A1
+新分析0831	Toyota Corolla	Toyota	Corolla	1968-1983		Coupe	3S-0	跑车	Coupe	Coupe	Corolla	C1
+新分析0831	Toyota Corolla	Toyota	Corolla	1984-1991		Coupe	3M-0	跑车	Coupe	Coupe	Corolla	C2
+新分析0831	Toyota Corolla	Toyota	Corolla	1968-1974		Wagon	2M	两厢车	Wagon	Wagon	Corolla	H0
+新分析0831	Toyota Corolla	Toyota	Corolla	1975-2026	Incl: GR Corolla	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: GR Corolla	Hbk/Wgn Inc:GR	Corolla	H1
+新分析0831	Toyota Corolla GR	Toyota	Corolla GR	2023-2026		Hatchback	2L+	两厢车			Corolla GR	H1
+新分析0831	Toyota Corolla iM	Toyota	Corolla iM	2017-2018		Hatchback	2L+	两厢车			Corolla iM	H1
+新分析0831	Toyota Crown	Toyota	Crown	2023-2026		Sedan	3XL	三厢车			Crown	A2
+新分析0831	Toyota FJ Cruiser	Toyota	FJ Cruiser	2007-2014		SUV	YL	越野车			FJ Cruiser	S2
+新分析0831	Toyota Highlander	Toyota	Highlander	2001-2013		SUV	YL	越野车			Highlander	S2
+新分析0831	Toyota Highlander	Toyota	Highlander	2014-2026		SUV	YXL	越野车			Highlander	S3
+新分析0831	Toyota Land Cruiser	Toyota	Land Cruiser	1981-1997		SUV	YL	越野车	SUV	SUV	Land Cruiser	S2
+新分析0831	Toyota Land Cruiser	Toyota	Land Cruiser	1998-2026		SUV	YXL	越野车	SUV	SUV	Land Cruiser	S3
+新分析0831	Toyota MIRAI	Toyota	MIRAI	2016-2024		Sedan	3XL	三厢车			MIRAI	A2
+新分析0831	Toyota MR2	Toyota	MR2	1985-2005		Convertible/Coupe	3S-0	跑车			MR2	C1
+新分析0831	Toyota Matrix	Toyota	Matrix	2003-2013		Hatchback	2L+	两厢车			Matrix	H1
+新分析0831	Toyota Prius	Toyota	Prius	2004-2015		Hatchback	2L+	两厢车	Hatchback	Hatchback	Prius	H1
+新分析0831	Toyota Prius C	Toyota	Prius C	2012-2019		Hatchback	2M	两厢车			Prius C	H0
+新分析0831	Toyota Prius Plug-in Hybrid	Toyota	Prius Plug-in Hybrid	2012-2015		Hatchback	2L+	两厢车			Prius PHEV	H1
+新分析0831	Toyota Sequoia	Toyota	Sequoia	2023-2026		SUV	YXXL-545	越野车			Sequoia	S4
+新分析0831	Toyota Sienna	Toyota	Sienna	2021-2026	Incl: Woodland	MPV	2XXL	两厢车	Incl: Woodland	Incl: Woodland	Sienna	H2
+新分析0831	Toyota Solara	Toyota	Solara	1999-2008		Convertible/Coupe	3XL-0	跑车			Solara	C4
+新分析0831	Toyota Supra	Toyota	Supra	1979-1981		Coupe	3L-0	跑车			Supra	C3
+新分析0831	Toyota Supra	Toyota	Supra	1982-1986		Coupe	3M-0	跑车			Supra	C2
+新分析0831	Toyota Supra	Toyota	Supra	1987-1992		Coupe	3L-0	跑车			Supra	C3
+新分析0831	Toyota Supra	Toyota	Supra	1993-2026		Coupe	3M-0	跑车			Supra	C2
+新分析0831	Toyota Tercel	Toyota	Tercel	1989-1990		Coupe	3M-0	跑车	Coupe	Coupe	Tercel	C2
+新分析0831	Toyota Tercel	Toyota	Tercel	1980-1988	Incl: 4WD	Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon Incl: 4WD	Hbk/Wgn Inc:4WD	Tercel	H1
+新分析0831	Toyota Venza	Toyota	Venza	2021-2024		SUV	YL	越野车	SUV	SUV	Venza	S2
+新分析0831	Toyota Yaris	Toyota	Yaris	2007-2020		Hatchback	2M	两厢车	Hatchback	Hatchback	Yaris	H0
+新分析0831	Toyota bZ	Toyota	bZ	2026	Incl: Woodland	SUV	YL	越野车	Incl: Woodland	Incl: Woodland	bZ	S2
+新分析0831	Toyota bZ4X	Toyota	bZ4X	2023-2025		SUV	YL	越野车			bZ4X	S2
+新分析0831	VinFast VF8	VinFast	VF8	2023-2025	Eco/Plus	SUV	YL	越野车	Eco/Plus	Eco/Plus	VF8	S2
+新分析0831	Volkswagen Atlas	Volkswagen	Atlas	2020-2026	Cross Sport	SUV	YXL	越野车	Cross Sport	Cross Sport	Atlas	S3
+新分析0831	Volkswagen Atlas Cross	Volkswagen	Atlas Cross	2021-2026	Cross Sport	SUV	YXL	越野车	Cross Sport	Cross Sport	Atlas Cross	S3
+新分析0831	Volkswagen Beetle	Volkswagen	Beetle	1998-2010		Convertible	3S-0	跑车	Convertible	Convertible	Beetle	C1
+新分析0831	Volkswagen Beetle	Volkswagen	Beetle	2012-2019	Incl: Dune	Convertible	3M-0	跑车	Convertible Incl: Dune	Conv Inc:Dune	Beetle	C2
+新分析0831	Volkswagen Beetle	Volkswagen	Beetle	1998-2010		Hatchback	2M	两厢车	Hatchback	Hatchback	Beetle	H0
+新分析0831	Volkswagen Beetle	Volkswagen	Beetle	2012-2019	Incl: Dune	Hatchback	2L+	两厢车	Hatchback Incl: Dune	Hbk Inc:Dune	Beetle	H1
+新分析0831	Volkswagen Dasher	Volkswagen	Dasher	1978	2dr/4dr Station	Hatchback/Wagon	2L+	两厢车	2dr/4dr Station	2dr/4dr Station	Dasher	H1
+新分析0831	Volkswagen Eos	Volkswagen	Eos	2007-2016		Convertible	3M-0	跑车			Eos	C2
+新分析0831	Volkswagen Golf	Volkswagen	Golf	1999		Hatchback	2M	两厢车	Hatchback	Hatchback	Golf	H0
+新分析0831	Volkswagen Golf	Volkswagen	Golf	2000-2021	Incl: Diesel/R	Hatchback	2L+	两厢车	Hatchback Incl: Diesel/R	Hbk Inc:R	Golf	H1
+新分析0831	Volkswagen Golf	Volkswagen	Golf	2015-2026	GTI	Hatchback	2L+	两厢车	Hatchback GTI	Hatchback GTI	Golf	H1
+新分析0831	Volkswagen Golf	Volkswagen	Golf	2022-2026	GTI/R	Hatchback	2L+	两厢车	Hatchback GTI/R	Hatchback GTI/R	Golf	H1
+新分析0831	Volkswagen Golf	Volkswagen	Golf	2022-2026	R	Hatchback	2L+	两厢车	Hatchback R	Hatchback R	Golf	H1
+新分析0831	Volkswagen Jetta	Volkswagen	Jetta	2011-2022	Incl: GLI	Sedan	3L	三厢车	Sedan Incl: GLI	Sedan Incl: GLI	Jetta	A1
+新分析0831	Volkswagen Jetta	Volkswagen	Jetta	2023-2026	GLI	Sedan	3XL	三厢车	Sedan GLI	Sedan GLI	Jetta	A2
+新分析0831	Volkswagen Jetta	Volkswagen	Jetta	2009-2014		Wagon	2L+	两厢车	Wagon	Wagon	Jetta	H1
+新分析0831	Volkswagen Passat	Volkswagen	Passat	1982-1985		Sedan	3L	三厢车	Sedan	Sedan	Passat	A1
+新分析0831	Volkswagen Passat	Volkswagen	Passat	1987-2005		Sedan	3L	三厢车	Sedan	Sedan	Passat	A1
+新分析0831	Volkswagen Passat	Volkswagen	Passat	2006-2022		Sedan	3XL	三厢车	Sedan	Sedan	Passat	A2
+新分析0831	Volkswagen Passat	Volkswagen	Passat	1974-1981		Hatchback/Wagon	2L+	两厢车	Hatchback/Wagon	Hbk/Wgn	Passat	H1
+新分析0831	Volkswagen Passat CC	Volkswagen	Passat CC	2009-2017		Sedan	3XL	三厢车			Passat CC	A2
+新分析0831	Volkswagen Rabbit	Volkswagen	Rabbit	1980		Convertible	3S-0	跑车	Convertible	Convertible	Rabbit	C1
+新分析0831	Volkswagen Rabbit	Volkswagen	Rabbit	1975-1984	Incl: GTI	Hatchback	2M	两厢车	Hatchback Incl: GTI	Hbk Inc:GTI	Rabbit	H0
+新分析0831	Volkswagen Rabbit	Volkswagen	Rabbit	2006-2009		Hatchback	2L+	两厢车	Hatchback	Hatchback	Rabbit	H1
+新分析0831	Volkswagen Tiguan	Volkswagen	Tiguan	2018-2026		SUV	YL	越野车			Tiguan	S2
+新分析0831	Volkswagen Touareg	Volkswagen	Touareg	2004-2017		SUV	YL	越野车			Touareg	S2
+新分析0831	Volvo C30	Volvo	C30	2008-2013		Hatchback	2L+	两厢车			C30	H1
+新分析0831	Volvo C70	Volvo	C70	1998-2013		Convertible	3L-0	跑车			C70	C3
+新分析0831	Volvo S60	Volvo	S60	2001-2018		Sedan	3L	三厢车			S60	A1
+新分析0831	Volvo S60	Volvo	S60	2019-2025		Sedan	3XL	三厢车			S60	A2
+新分析0831	Volvo S80	Volvo	S80	1999-2016		Sedan	3XL	三厢车			S80	A2
+新分析0831	Volvo S90	Volvo	S90	1997-2017		Sedan	3XL	三厢车			S90	A2
+新分析0831	Volvo V40	Volvo	V40	2000-2001		Wagon	2L+	两厢车			V40	H1
+新分析0831	Volvo V40	Volvo	V40	2004		Wagon	2L+	两厢车			V40	H1
+新分析0831	Volvo V50	Volvo	V50	2005-2009		Wagon	2L+	两厢车			V50	H1
+新分析0831	Volvo XC60	Volvo	XC60	2018-2026		SUV	YL	越野车			XC60	S2
+新分析0831	Volvo XC90	Volvo	XC90	2003-2014		SUV	YL	越野车			XC90	S2
+新分析0831	Volvo XC90	Volvo	XC90	2016-2026		SUV	YXL	越野车			XC90	S3
