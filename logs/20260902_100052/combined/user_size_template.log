@@ -1,0 +1,4 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/build_user_size_json.py --case-name combined --compress-root D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress --config D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\00_input\pipeline.generated.yaml --rules D:\Licheng\Repo\pipeline_carstable_to_webapp\data\rules\user-size-rules.json --ai-config D:\Licheng\Repo\pipeline_carstable_to_webapp\configs\ai-user-size.yaml --output D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\02_user_size.json
+
+User-size JSON written: D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\02_user_size.json

@@ -1,0 +1,9 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/compress_configured_sheets.py --input D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\00_input\combined.xlsx --output-root D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\01_compress --config D:\Licheng\Repo\pipeline_carstable_to_webapp\data\middle\00_input\pipeline.generated.yaml --compress-script D:\Licheng\Repo\pipeline_carstable_to_webapp/../compress_to_size_chart/process_tsv.py
+
+[reuse] 07-FULL尺码匹配
+[reuse] 07-HNT尺码匹配
+[reuse] 07-TM尺码匹配
+[reuse] 07-TM拆尺码匹配
+[reuse] 新分析0831尺码匹配
+All configured sheet outputs already exist; compression skipped.
