@@ -22,7 +22,7 @@ input:
     label: "{stem}尺码匹配表"
     sheet: "{stem}尺码匹配"
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
   csv:
     encoding: utf-8-sig
   # 修正已知来源中的表头笔误；物化时统一为下游标准字段。

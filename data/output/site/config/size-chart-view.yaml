@@ -13,27 +13,27 @@ match_sources:
     label: 07-FULL尺码匹配表
     sheet: 07-FULL尺码匹配
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
   - name: 07-HNT
     label: 07-HNT尺码匹配表
     sheet: 07-HNT尺码匹配
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
   - name: 07-TM
     label: 07-TM尺码匹配表
     sheet: 07-TM尺码匹配
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
   - name: 07-TM拆
     label: 07-TM拆尺码匹配表
     sheet: 07-TM拆尺码匹配
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
   - name: 新分析0831
     label: 新分析0831尺码匹配表
     sheet: 新分析0831尺码匹配
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
 filters:
   construct:
     label: 结构

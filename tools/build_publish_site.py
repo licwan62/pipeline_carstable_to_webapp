@@ -12,7 +12,7 @@ import yaml
 
 SKELETON_DIRS = ["assets", "config", "data/generated", "pages"]
 SKELETON_FILES = ["README.md", ".nojekyll"]
-MATCH_COLUMNS = "MODEL,版本,YEAR,TYPE,CAB,BED,L-MM,W-MM,H-MM,长度余量,SIZE"
+MATCH_COLUMNS = "MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE"
 
 
 class IndentedSafeDumper(yaml.SafeDumper):

@@ -51,14 +51,13 @@
   let configuredMatchApplicationIndex = null;
   const sizeReferenceIndex = new Map();
   const sizeReferenceOrder = new Map();
-  const defaultSourceFilter = "ALL";
   const initialSearchQuery = initialQuery();
   const searchState = {
     scopeKey: "",
     records: [],
     columns: [],
     query: initialSearchQuery,
-    selectedSource: initialSearchQuery.trim() ? "" : defaultSourceFilter,
+    selectedSource: "",
     selectedMake: "",
     selectedModel: "",
     selectedYear: "",
@@ -91,6 +90,7 @@
   let globalSearchTimer = 0;
   let frameSearchTimer = 0;
   let headerFilterCloseTimer = 0;
+  let copyFeedbackTimer = 0;
 
   function initialQuery() {
     return new URLSearchParams(window.location.search).get("q") || "";
@@ -290,6 +290,7 @@
           </div>
           <div class="active-filter-chips" aria-label="Active filters"></div>
           <div class="search-results"></div>
+          <div class="copy-feedback" role="status" aria-live="polite"></div>
         </section>
         ${sizeSettingsModalMarkup()}
         ` : `
@@ -734,7 +735,7 @@
 
   function resetSearchFilters() {
     searchState.scopeKey = "";
-    searchState.selectedSource = searchState.query.trim() ? "" : defaultSourceFilter;
+    searchState.selectedSource = defaultSourceFilter();
     searchState.selectedMake = "";
     searchState.requiresMakeSelection = false;
     searchState.selectedModel = "";
@@ -1194,9 +1195,10 @@
     searchState.resultPage = Math.min(maxPage, Math.max(1, searchState.resultPage || 1));
     const start = (searchState.resultPage - 1) * limit;
     const visibleMatches = matches.slice(start, start + limit);
-    summary.textContent = matches.length > visibleMatches.length
+    const summaryText = matches.length > visibleMatches.length
       ? `匹配结果：${formatCount(matches.length)} 条记录，当前第 ${formatCount(searchState.resultPage)} / ${formatCount(maxPage)} 页。`
       : `匹配结果：${formatCount(matches.length)} 条记录。`;
+    renderSearchSummary(summary, summaryText, matches);
     updateActiveFilterChips();
     bindActiveFilterChips();
     results.innerHTML = searchState.resultView === "outline"
@@ -1508,7 +1510,7 @@
           </thead>
           <tbody>
             ${records.map((record) => `
-              <tr>
+              <tr class="copyable-result-row" tabindex="0" data-copy-text="${escapeHtml(copyTextForRecord(record))}" title="点击复制车型信息">
                 ${tableColumns.map((column) => resultCellMarkup(record, column)).join("")}
               </tr>
             `).join("")}
@@ -1535,10 +1537,10 @@
     }
 
     const hierarchy = ["MODEL", "版本", "TYPE", "CAB", "BED", "YEAR"];
-    const dataColumns = [...activeDimensionColumns(), "长度余量", "SIZE"];
+    const dataColumns = ["销量合计", ...activeDimensionColumns(), "长度余量", "SIZE"];
     return `
       <div class="results-outline-wrap">
-        <div class="results-outline table-font-${escapeHtml(searchState.tableFontSize)}">
+        <div class="results-outline table-font-${escapeHtml(searchState.tableFontSize)}" style="--outline-data-columns: ${dataColumns.length}">
           <div class="outline-column-header">
             <strong>MODEL / 版本 / TYPE / CAB / BED / YEAR</strong>
             ${dataColumns.map((column) => `<span>${escapeHtml(column)}</span>`).join("")}
@@ -1606,7 +1608,7 @@
       `
       : `<i aria-hidden="true"></i><span>${escapeHtml(recordLabel || `记录 ${index + 1}`)}</span>`;
     return `
-      <div class="outline-data-row" role="row" style="--outline-leaf-depth: ${visualDepth}">
+      <div class="outline-data-row copyable-result-row" role="row" tabindex="0" data-copy-text="${escapeHtml(copyTextForRecord(record))}" title="点击复制车型信息" style="--outline-leaf-depth: ${visualDepth}">
         <span class="outline-record-label">${labelMarkup}</span>
         ${dataColumns.map((column) => outlineDataCellMarkup(record, column)).join("")}
       </div>
@@ -1615,6 +1617,9 @@
 
   function outlineDataCellMarkup(record, column) {
     const value = resultColumnValue(record, column);
+    if (isSalesTotalColumn(column)) {
+      return `<span class="outline-value outline-sales-total"><strong>${escapeHtml(formatSalesTotal(value) || "-")}</strong></span>`;
+    }
     if (isDimensionColumn(column)) {
       return `<span class="outline-value outline-dimension"><strong>${escapeHtml(dimensionDisplay(column, value) || "-")}</strong></span>`;
     }
@@ -1652,7 +1657,7 @@
 
   function resultColumns(records) {
     const usedColumns = searchState.columns;
-    const fallbackColumns = ["MODEL", "版本", "YEAR", "TYPE", "CAB", "BED", "SIZE"];
+    const fallbackColumns = ["MODEL", "版本", "YEAR", "TYPE", "CAB", "BED", "销量合计", "SIZE"];
     const columns = usedColumns.length ? usedColumns : fallbackColumns;
     const withModel = records.some((record) => record.model) && !columns.some((column) => sameColumn(column, "MODEL"))
       ? ["MODEL", ...columns]
@@ -1667,6 +1672,9 @@
 
   function resultCellMarkup(record, column) {
     const value = column.key === "MAKE" ? record.make : resultColumnValue(record, column.key);
+    if (isSalesTotalColumn(column.key)) {
+      return `<td class="sales-total-cell"><strong>${escapeHtml(formatSalesTotal(value) || "-")}</strong></td>`;
+    }
     if (column.dimension || isLengthMarginColumn(column.key)) {
       const displayValue = isLengthMarginColumn(column.key) ? lengthMarginDisplay(value) : dimensionDisplay(column.key, value);
       return `<td class="dimension-cell size-dimension-cell size-sticky-col ${sizeStickyClass(column.key)}" style="${escapeHtml(isLengthMarginColumn(column.key) ? lengthMarginStyle(value) : "")}"><strong>${escapeHtml(displayValue || "-")}</strong></td>`;
@@ -1857,7 +1865,7 @@
 
   function clearPrimaryFilter(key) {
     if (key === "source") {
-      searchState.selectedSource = searchState.query.trim() ? "" : defaultSourceFilter;
+      searchState.selectedSource = defaultSourceFilter();
       searchState.selectedMake = "";
       searchState.selectedModel = "";
       searchState.selectedYear = "";
@@ -2096,7 +2104,61 @@
     app.querySelectorAll(".header-filter-popover.is-closing").forEach((popover) => popover.classList.remove("is-closing"));
   }
 
-  function bindSizeLinkedRows() {}
+  function bindSizeLinkedRows() {
+    app.querySelectorAll(".copyable-result-row[data-copy-text]").forEach((row) => {
+      row.addEventListener("click", () => copyResultRow(row));
+      row.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        copyResultRow(row);
+      });
+    });
+  }
+
+  async function copyResultRow(row) {
+    const text = cleanField(row.dataset.copyText);
+    if (!text) return;
+    try {
+      await writeClipboardText(text);
+      showCopyFeedback(row, `已复制：${text}`, true);
+    } catch (error) {
+      showCopyFeedback(row, "复制失败，请重试。", false);
+    }
+  }
+
+  async function writeClipboardText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    const input = document.createElement("textarea");
+    input.value = text;
+    input.setAttribute("readonly", "");
+    input.style.position = "fixed";
+    input.style.left = "-9999px";
+    document.body.appendChild(input);
+    input.select();
+    input.setSelectionRange(0, text.length);
+    const copied = typeof document.execCommand === "function" && document.execCommand("copy");
+    input.remove();
+    if (!copied) throw new Error("Clipboard API is unavailable.");
+  }
+
+  function showCopyFeedback(row, message, succeeded) {
+    const feedback = app.querySelector(".copy-feedback");
+    if (!feedback) return;
+    if (copyFeedbackTimer) window.clearTimeout(copyFeedbackTimer);
+    app.querySelectorAll(".copyable-result-row.is-copied").forEach((item) => item.classList.remove("is-copied"));
+    row.classList.toggle("is-copied", succeeded);
+    feedback.textContent = message;
+    feedback.classList.toggle("is-error", !succeeded);
+    feedback.classList.add("is-open");
+    copyFeedbackTimer = window.setTimeout(() => {
+      row.classList.remove("is-copied");
+      feedback.classList.remove("is-open", "is-error");
+      copyFeedbackTimer = 0;
+    }, 1800);
+  }
 
   function sizeColumnFilterValue(record, key) {
     if (sameColumn(key, "SOURCE")) return sourceFilterValue(record);
@@ -2288,6 +2350,39 @@
     if (isDimensionColumn(column)) return dimensionSourceValue(record, column);
     if (isLengthMarginColumn(column)) return sourceValue(record, column) || record.values[column] || "";
     return record.values[column] || "";
+  }
+
+  function copyTextForRecord(record) {
+    const year = cleanField(resultColumnValue(record, "YEAR") || record.year);
+    const make = cleanField(record.make);
+    const model = cleanField(resultColumnValue(record, "MODEL") || record.model);
+    const type = cleanField(resultColumnValue(record, "TYPE") || record.type || record.construct);
+    return [year, make, model, type].filter(Boolean).join(" ");
+  }
+
+  function salesTotalNumber(value) {
+    const text = cleanField(value).replace(/,/g, "");
+    if (!text) return null;
+    const number = Number(text);
+    return Number.isFinite(number) ? number : null;
+  }
+
+  function formatSalesTotal(value) {
+    const number = salesTotalNumber(value);
+    return number === null ? cleanField(value) : formatCount(number);
+  }
+
+  function renderSearchSummary(element, message, records) {
+    element.textContent = "";
+    const messageNode = document.createElement("span");
+    messageNode.textContent = message;
+    element.appendChild(messageNode);
+    const salesValues = records.map((record) => salesTotalNumber(resultColumnValue(record, "销量合计"))).filter((value) => value !== null);
+    if (!salesValues.length) return;
+    const salesNode = document.createElement("strong");
+    salesNode.className = "sales-total-summary";
+    salesNode.textContent = `销量合计：${formatCount(salesValues.reduce((total, value) => total + value, 0))}`;
+    element.appendChild(salesNode);
   }
 
   function sizeDisplayFields() {
@@ -2520,6 +2615,12 @@
     } catch (error) {
       viewConfig = defaultViewConfig;
     }
+    searchState.selectedSource = defaultSourceFilter();
+  }
+
+  function defaultSourceFilter() {
+    if (searchState.query.trim()) return "";
+    return cleanField(viewConfig.match_sources?.[0]?.name);
   }
 
   function parseSizeViewYaml(text) {
@@ -2656,6 +2757,7 @@
     if (sameColumn(column, "TYPE")) return "130px";
     if (sameColumn(column, "CAB")) return "110px";
     if (sameColumn(column, "BED")) return "90px";
+    if (isSalesTotalColumn(column)) return "122px";
     if (isLengthMarginColumn(column)) return "100px";
     if (isDimensionColumn(column)) return "82px";
     if (isSizeColumn(column)) return "104px";
@@ -2723,8 +2825,12 @@
     return sameColumn(column, "长度余量");
   }
 
+  function isSalesTotalColumn(column) {
+    return sameColumn(column, "销量合计");
+  }
+
   function isRangeFilterColumn(column) {
-    return isDimensionColumn(column) || isLengthMarginColumn(column);
+    return isDimensionColumn(column) || isLengthMarginColumn(column) || isSalesTotalColumn(column);
   }
 
   function sizeStickyClass(column) {

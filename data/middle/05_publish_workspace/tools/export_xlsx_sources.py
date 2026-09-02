@@ -186,6 +186,7 @@ def normalize_match_rows(source: str, rows: list[dict[str, str]]) -> list[dict[s
         if not clean(row.get("MAKE")) and not clean(row.get("MODEL")):
             continue
         values = {key: value for key, value in row.items() if key not in LEGACY_DIMENSION_FIELDS}
+        values["销量合计"] = rounded_integer(row.get("销量合计"))
         for field in DIMENSION_ALIASES:
             value = dimension_mm(row, field)
             if value:
