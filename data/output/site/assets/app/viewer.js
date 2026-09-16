@@ -40,6 +40,9 @@
   const sidebarStorageKey = "sizeChartSidebarCollapsed";
   let sidebarCollapsed = readSidebarCollapsed();
   let settingsOpen = false;
+  let mobileMenuOpen = false;
+  const mobileLayout = window.matchMedia("(max-width: 760px)");
+  mobileLayout.addEventListener("change", () => render());
   let viewConfig = defaultViewConfig;
   const frameStates = new Map();
   const directoryIndexes = new Map();
@@ -190,22 +193,39 @@
     `;
   }
 
-  function sourceOutlineMarkup() {
+  function sourceOptions() {
     const configuredSources = (viewConfig.match_sources || []).map((source) => source.name).filter(Boolean);
     const loadedSources = uniqueInOrder(searchState.records.map((record) => sourceFilterValue(record)));
     const sources = uniqueInOrder([...configuredSources, ...loadedSources]);
-    return `
-      <ol class="chart-outline-list source-outline-list">
-        ${sources.map((source) => `
-          <li>
-            <button class="chart-outline-node source-outline-node${searchState.selectedSource === source ? " is-active" : ""}" type="button" data-sidebar-source="${escapeHtml(source)}" aria-pressed="${searchState.selectedSource === source ? "true" : "false"}">
-              <span class="chart-outline-dot"></span>
-              <span>${escapeHtml(sourceLabel(source))}</span>
-            </button>
-          </li>
-        `).join("")}
-      </ol>
-    `;
+    return sources;
+  }
+
+  function sourceSelectMarkup() {
+    const sources = sourceOptions();
+    return `<select class="search-select" data-lazy-source aria-label="SOURCE">
+      ${searchState.selectedSource ? "" : '<option value="" selected>所有来源</option>'}
+      ${sources.map((source) => `<option value="${escapeHtml(source)}"${searchState.selectedSource === source ? " selected" : ""}>${escapeHtml(sourceLabel(source))}</option>`).join("")}
+    </select>`;
+  }
+
+  function sourceOutlineMarkup() {
+    return `<ol class="chart-outline-list source-outline-list">${sourceOptions().map((source) => `
+      <li><button class="chart-outline-node source-outline-node${searchState.selectedSource === source ? " is-active" : ""}" type="button" data-sidebar-source="${escapeHtml(source)}" aria-pressed="${searchState.selectedSource === source}">
+        <span class="chart-outline-dot"></span><span>${escapeHtml(sourceLabel(source))}</span>
+      </button></li>`).join("")}</ol>`;
+  }
+
+  function selectSource(value) {
+    searchState.selectedSource = value;
+    searchState.selectedMake = "";
+    searchState.selectedSize = "";
+    searchState.availableMakes = [];
+    searchState.requiresMakeSelection = false;
+    ["selectedModel", "selectedYear", "selectedConstruct", "selectedCab", "selectedBed", "openFilter", "sortField", "scopeKey"].forEach((key) => { searchState[key] = ""; });
+    searchState.columnFilters = {};
+    searchState.sortDirection = "asc";
+    searchState.resultPage = 1;
+    render();
   }
 
   function directoryLeaf(directoryName) {
@@ -223,10 +243,11 @@
     const selectedChartFileCount = chartFileCount(selectedChartDirectories);
     const isSearchPage = pageMode !== "charts";
     app.innerHTML = `
-      <main class="viewer-main viewer-shell${sidebarCollapsed ? " is-sidebar-collapsed" : ""}">
+      <main class="viewer-main viewer-shell${isSearchPage ? " size-match-shell" : ""}${mobileMenuOpen ? " is-mobile-menu-open" : ""}${sidebarCollapsed ? " is-sidebar-collapsed" : ""}">
+        ${isSearchPage ? '<button class="mobile-menu-backdrop" type="button" aria-label="关闭菜单" data-close-mobile-menu></button>' : ""}
         <aside class="viewer-side" aria-label="Page outline">
           <div class="sidebar-head">
-            <button class="sidebar-toggle" type="button" aria-label="${sidebarCollapsed ? "展开侧栏" : "收起侧栏"}" aria-expanded="${sidebarCollapsed ? "false" : "true"}">
+            <button class="sidebar-toggle" type="button" aria-label="${mobileLayout.matches && isSearchPage ? (mobileMenuOpen ? "关闭菜单" : "打开菜单") : (sidebarCollapsed ? "展开侧栏" : "收起侧栏")}" aria-expanded="${mobileLayout.matches && isSearchPage ? mobileMenuOpen : !sidebarCollapsed}">
               <span>☰</span>
             </button>
           </div>
@@ -236,14 +257,10 @@
             <a href="size-ref.html" title="尺码参考"><span class="nav-icon">参</span><span class="nav-label">尺码参考</span></a>
             <a class="${isSearchPage ? "is-active" : ""}" href="size-match.html" title="尺码配对"><span class="nav-icon">尺</span><span class="nav-label">尺码配对</span></a>
           </nav>
-          ${isSearchPage ? `
-            <nav class="sidebar-outline source-outline" aria-label="Source filter">
-              <div class="sidebar-filter-title">Source</div>
-              <div class="chart-outline" aria-label="Source filter">
-                ${sourceOutlineMarkup()}
-              </div>
-            </nav>
-          ` : ""}
+          ${isSearchPage ? `<nav class="sidebar-outline source-outline" aria-label="Source filter">
+            <div class="sidebar-filter-title">SOURCE</div>
+            <div class="chart-outline">${sourceOutlineMarkup()}</div>
+          </nav>` : ""}
           ${!isSearchPage ? `
             <nav class="sidebar-outline size-chart-outline" aria-label="Size chart outline">
               <div class="chart-outline" aria-label="Size chart folders">
@@ -273,9 +290,7 @@
           <div class="lazy-load-scope">
             <label>
               <span>SOURCE</span>
-              <select class="search-select" data-lazy-source ${searchState.status === "loading" ? "disabled" : ""}>
-                ${(viewConfig.match_sources || []).map((source) => `<option value="${escapeHtml(source.name)}"${searchState.selectedSource === source.name ? " selected" : ""}>${escapeHtml(sourceLabel(source.name))}</option>`).join("")}
-              </select>
+              ${sourceSelectMarkup()}
             </label>
             <label>
               <span>MAKE</span>
@@ -294,6 +309,7 @@
           </div>
           <div class="search-result-toolbar">
             <div class="search-summary" role="status"></div>
+            <button class="settings-launch toolbar-settings" type="button" data-open-settings>字段与排序</button>
             <div class="result-view-toggle" role="group" aria-label="结果视图">
               ${[
                 ["table", "表格"],
@@ -340,6 +356,27 @@
       loadSearchIndex(currentSearchDirectories());
     } else {
       resizeFrames();
+    }
+    arrangeMobileControls();
+  }
+
+  function arrangeMobileControls() {
+    if (!mobileLayout.matches || pageMode === "charts") return;
+    const side = app.querySelector(".viewer-side");
+    let menu = side.querySelector(".mobile-menu-content");
+    if (!menu) {
+      menu = document.createElement("div");
+      menu.className = "mobile-menu-content";
+      side.appendChild(menu);
+      [".sidebar-nav", ".source-outline", ".sidebar-tools", ".lazy-load-scope", ".result-view-toggle", ".active-filter-chips", ".search-reset"].forEach((selector) => {
+        const control = app.querySelector(selector);
+        if (control) menu.appendChild(control);
+      });
+    }
+    const pagination = app.querySelector(".search-results .result-limit-bar");
+    if (pagination) {
+      menu.querySelector(".result-limit-bar")?.remove();
+      menu.appendChild(pagination);
     }
   }
 
@@ -394,7 +431,7 @@
           <div class="settings-dialog-header">
             <div>
               <h3>表格设置</h3>
-              <p>显示字段和排序</p>
+              <p>勾选显示字段，使用箭头调整展示顺序</p>
             </div>
             <button type="button" class="settings-close" data-close-settings aria-label="关闭">×</button>
           </div>
@@ -406,15 +443,15 @@
                   <span>字段</span>
                   <span>顺序</span>
                 </div>
-                ${sizeDisplayFields().map((field) => `
+                ${sizeDisplayFields().map((field, index, fields) => `
                   <div class="field-option">
                     <label>
                       <input type="checkbox" data-size-field-toggle value="${escapeHtml(field.key)}" ${isSizeColumnVisible(field.key) ? "checked" : ""}>
                       <span>${escapeHtml(field.label)}</span>
                     </label>
                     <div class="field-order-actions">
-                      <button type="button" data-size-move-field="${escapeHtml(field.key)}" data-move-direction="-1" title="上移">↑</button>
-                      <button type="button" data-size-move-field="${escapeHtml(field.key)}" data-move-direction="1" title="下移">↓</button>
+                      <button type="button" data-size-move-field="${escapeHtml(field.key)}" data-move-direction="-1" aria-label="上移 ${escapeHtml(field.label)}" ${index === 0 ? "disabled" : ""} title="上移">↑</button>
+                      <button type="button" data-size-move-field="${escapeHtml(field.key)}" data-move-direction="1" aria-label="下移 ${escapeHtml(field.label)}" ${index === fields.length - 1 ? "disabled" : ""} title="下移">↓</button>
                     </div>
                   </div>
                 `).join("")}
@@ -454,15 +491,28 @@
   function bind() {
     const sidebarToggle = app.querySelector(".sidebar-toggle");
     sidebarToggle.addEventListener("click", () => {
-      sidebarCollapsed = !sidebarCollapsed;
-      saveSidebarCollapsed(sidebarCollapsed);
-      render();
+      if (mobileLayout.matches && pageMode !== "charts") {
+        mobileMenuOpen = !mobileMenuOpen;
+        app.querySelector(".viewer-shell").classList.toggle("is-mobile-menu-open", mobileMenuOpen);
+        sidebarToggle.setAttribute("aria-expanded", String(mobileMenuOpen));
+        sidebarToggle.setAttribute("aria-label", mobileMenuOpen ? "关闭菜单" : "打开菜单");
+      } else {
+        sidebarCollapsed = !sidebarCollapsed;
+        saveSidebarCollapsed(sidebarCollapsed);
+        render();
+      }
+    });
+
+    app.querySelector("[data-close-mobile-menu]")?.addEventListener("click", () => sidebarToggle.click());
+    app.querySelector(".viewer-side")?.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && mobileMenuOpen) { sidebarToggle.click(); sidebarToggle.focus(); }
     });
 
     app.querySelectorAll("[data-open-settings]").forEach((button) => {
       button.addEventListener("click", () => {
         settingsOpen = true;
         render();
+        app.querySelector("[data-close-settings]")?.focus();
       });
     });
 
@@ -471,6 +521,21 @@
         settingsOpen = false;
         render();
       });
+    });
+
+    const settingsDialog = app.querySelector(".settings-dialog");
+    settingsDialog?.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        settingsOpen = false;
+        render();
+        app.querySelector(mobileLayout.matches ? ".sidebar-toggle" : ".toolbar-settings")?.focus();
+      } else if (event.key === "Tab") {
+        const controls = Array.from(settingsDialog.querySelectorAll("button:not(:disabled), input, select:not(:disabled)"));
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
     });
 
     app.querySelectorAll("[data-settings-overlay]").forEach((overlay) => {
@@ -482,25 +547,11 @@
       });
     });
 
+    app.querySelectorAll("[data-lazy-source]").forEach((select) => {
+      select.addEventListener("change", () => selectSource(select.value));
+    });
     app.querySelectorAll("[data-sidebar-source]").forEach((button) => {
-      button.addEventListener("click", () => {
-        searchState.selectedSource = button.dataset.sidebarSource || "";
-        searchState.selectedMake = "";
-        searchState.selectedSize = "";
-        searchState.availableMakes = [];
-        searchState.requiresMakeSelection = false;
-        searchState.selectedModel = "";
-        searchState.selectedYear = "";
-        searchState.selectedConstruct = "";
-        searchState.selectedCab = "";
-        searchState.selectedBed = "";
-        searchState.columnFilters = {};
-        searchState.openFilter = "";
-        searchState.sortField = "";
-        searchState.sortDirection = "asc";
-        searchState.resultPage = 1;
-        render();
-      });
+      button.addEventListener("click", () => selectSource(button.dataset.sidebarSource));
     });
 
     const lazyMakeSelect = app.querySelector("[data-lazy-make]");
@@ -720,8 +771,16 @@
     app.querySelectorAll("[data-size-move-field]").forEach((button) => {
       button.addEventListener("click", (event) => {
         event.preventDefault();
-        moveSizeField(button.dataset.sizeMoveField, Number(button.dataset.moveDirection));
+        const bodyScroll = app.querySelector(".settings-dialog-body")?.scrollTop || 0;
+        const listScroll = app.querySelector(".settings-field-list")?.scrollTop || 0;
+        const key = button.dataset.sizeMoveField;
+        const direction = button.dataset.moveDirection;
+        moveSizeField(key, Number(direction));
         render();
+        app.querySelector(".settings-dialog-body").scrollTop = bodyScroll;
+        app.querySelector(".settings-field-list").scrollTop = listScroll;
+        const nextButton = Array.from(app.querySelectorAll("[data-size-move-field]")).find((item) => item.dataset.sizeMoveField === key && item.dataset.moveDirection === direction);
+        nextButton?.focus({ preventScroll: true });
       });
     });
 
@@ -1208,6 +1267,7 @@
   }
 
   function updateSearchResults() {
+    app.querySelector(".mobile-menu-content .result-limit-bar")?.remove();
     const summary = app.querySelector(".search-summary");
     const results = app.querySelector(".search-results");
     if (!summary || !results) {
@@ -1227,7 +1287,9 @@
       return;
     }
 
-    const matches = sortSizeRows(getSearchMatches());
+    const matches = searchState.resultView === "outline"
+      ? getSearchMatches().slice().sort((left, right) => outlineStartYear(left) - outlineStartYear(right))
+      : sortSizeRows(getSearchMatches());
     const limit = pageSizeFor(matches.length);
     const maxPage = Math.max(1, Math.ceil(matches.length / limit));
     searchState.resultPage = Math.min(maxPage, Math.max(1, searchState.resultPage || 1));
@@ -1247,6 +1309,7 @@
     bindSizeHeaderFilterPopovers();
     bindSizeTableFilters();
     bindSizeReferenceHovers();
+    arrangeMobileControls();
   }
 
   function getSearchMatches() {
@@ -1331,8 +1394,14 @@
     app.querySelectorAll("[data-sidebar-source]").forEach((button) => {
       const active = button.dataset.sidebarSource === searchState.selectedSource;
       button.classList.toggle("is-active", active);
-      button.setAttribute("aria-pressed", active ? "true" : "false");
+      button.setAttribute("aria-pressed", String(active));
     });
+    const select = app.querySelector("[data-lazy-source]");
+    if (select) {
+      const markup = sourceSelectMarkup();
+      select.innerHTML = markup.slice(markup.indexOf(">") + 1, markup.lastIndexOf("</select>"));
+      select.value = searchState.selectedSource;
+    }
   }
 
   function backgroundCacheStatusText() {
@@ -1578,6 +1647,12 @@
         </label>
       </div>
     `;
+  }
+
+  function outlineStartYear(record) {
+    const value = cleanField(resultColumnValue(record, "YEAR") || record.year);
+    const match = value.match(/\b(?:19|20)\d{2}\b/);
+    return match ? Number(match[0]) : Number.MAX_SAFE_INTEGER;
   }
 
   function renderResultsOutline(records, totalCount, maxPage) {
@@ -2494,6 +2569,7 @@
 
   function ensureSizeFieldState() {
     const fields = sizeDisplayFields();
+    const knownFields = new Set(searchState.fieldOrder.map((field) => cleanField(field).toUpperCase()));
     if (!searchState.fieldOrder.length) {
       searchState.fieldOrder = fields.map((field) => field.key);
     } else {
@@ -2510,7 +2586,7 @@
     } else {
       const visible = new Set(Array.from(searchState.visibleColumns).map((field) => cleanField(field).toUpperCase()));
       fields.forEach((field) => {
-        if (!visible.has(cleanField(field.key).toUpperCase())) {
+        if (!knownFields.has(cleanField(field.key).toUpperCase()) && !visible.has(cleanField(field.key).toUpperCase())) {
           searchState.visibleColumns.add(field.key);
           visible.add(cleanField(field.key).toUpperCase());
         }
