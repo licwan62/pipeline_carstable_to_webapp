@@ -1814,11 +1814,15 @@
     const withModel = records.some((record) => record.model) && !columns.some((column) => sameColumn(column, "MODEL"))
       ? ["MODEL", ...columns]
       : columns;
-    const ordered = sortSizeFields(withModel.map((column) => ({ key: column, label: column }))).map((field) => field.key);
+    const hasVehicleType = records.some((record) => cleanField(record.values?.["分类"]));
+    const withVehicleType = hasVehicleType && !withModel.some((column) => sameColumn(column, "类型"))
+      ? withModel.flatMap((column) => sameColumn(column, "TYPE") ? [column, "类型"] : [column])
+      : withModel;
+    const ordered = sortSizeFields(withVehicleType.map((column) => ({ key: column, label: column }))).map((field) => field.key);
     const visible = ordered.filter((column) => isSizeColumnVisible(column) || isSizeColumn(column));
     const rightColumns = [...activeDimensionColumns(), "长度余量"].filter((column) => visible.some((item) => sameColumn(item, column)) || records.some((record) => resultColumnValue(record, column)));
     const withoutRight = visible.filter((column) => !isSizeColumn(column) && !isDimensionColumn(column) && !isLengthMarginColumn(column) && !rightColumns.some((item) => sameColumn(item, column)));
-    const hasSize = withModel.some((column) => isSizeColumn(column)) || records.some((record) => record.values.SIZE || record.size);
+    const hasSize = withVehicleType.some((column) => isSizeColumn(column)) || records.some((record) => record.values.SIZE || record.size);
     return hasSize ? [...withoutRight, ...rightColumns, "SIZE"] : [...withoutRight, ...rightColumns];
   }
 
