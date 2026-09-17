@@ -1,0 +1,10 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/materialize_input_sources.py --input-dir D:\Licheng\Repo\pipeline_carstable_to_webapp\input --config D:\Licheng\Repo\pipeline_carstable_to_webapp\configs\pipeline.yaml --output-dir D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\00_input\tables --output-config D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\00_input\pipeline.generated.json
+
+[input-source] 07-FULL.csv -> 07-FULL / 001-07-FULL.csv (4354 data rows)
+[input-source] 07-HNT.csv -> 07-HNT / 002-07-HNT.csv (4354 data rows)
+[input-source] 07-TM.csv -> 07-TM / 003-07-TM.csv (4354 data rows)
+[input-source] 07-TM拆.csv -> 07-TM拆 / 004-07-TM拆.csv (78 data rows)
+[input-source] 新分析0831.csv -> 新分析0831 / 005-新分析0831.csv (4354 data rows)
+Materialized 5 input source(s): D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\00_input\tables
+Runtime config: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\00_input\pipeline.generated.json

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import copy
 import datetime as dt
+import json
 import locale
 import shutil
 import subprocess
@@ -18,6 +19,14 @@ from tools.materialize_input_sources import discover_input_files
 
 ROOT = Path(__file__).parent.resolve()
 ERROR_LOG_TAIL_LINES = 40
+STEP_ALIASES = {
+    "prepare_inputs": "normalize_store_inputs",
+    "compress": "compress_store_fitment",
+    "user_size_json": "build_user_size_json",
+    "inplace_table": "export_store_csv",
+    "get_html": "generate_store_html",
+    "publish": "build_public_site",
+}
 
 
 def rename_with_retry(source: Path, target: Path, attempts: int = 20) -> None:
@@ -71,46 +80,87 @@ def resolve_from_root(path: str | Path) -> Path:
     return (ROOT / path).resolve()
 
 
-def scan_cases(config: dict[str, Any], only_case: str | None = None) -> list[dict[str, Any]]:
+def configured_public_dir(paths: dict[str, Any]) -> Path:
+    """Resolve the publish root, accepting legacy configs during migration."""
+    configured = paths.get("public_dir") or paths.get("output_dir")
+    if not configured:
+        raise ValueError("paths.public_dir is required")
+    return resolve_from_root(configured)
+
+
+def next_artifact_dir(config: dict[str, Any], *, today: dt.date | None = None) -> Path:
+    artifact_root = resolve_from_root(config["paths"]["artifact_root"])
+    date_text = (today or dt.date.today()).isoformat()
+    used: set[int] = set()
+    if artifact_root.is_dir():
+        for path in artifact_root.glob(f"{date_text}_??_*"):
+            try:
+                used.add(int(path.name.split("_", 2)[1]))
+            except (IndexError, ValueError):
+                continue
+    sequence = next((number for number in range(1, 100) if number not in used), None)
+    if sequence is None:
+        raise RuntimeError(f"Artifact sequence exhausted for {date_text}")
+    return artifact_root / f"{date_text}_{sequence:02d}_pipeline"
+
+
+def resolve_artifact_dir(config: dict[str, Any], requested: Path | None) -> Path:
+    if requested is None:
+        return next_artifact_dir(config)
+    if requested.is_absolute():
+        return requested.resolve()
+    if len(requested.parts) == 1:
+        return (resolve_from_root(config["paths"]["artifact_root"]) / requested).resolve()
+    return resolve_from_root(requested)
+
+
+def scan_cases(
+    config: dict[str, Any], artifact_dir: Path, only_case: str | None = None
+) -> list[dict[str, Any]]:
     paths = config["paths"]
     input_dir = resolve_from_root(paths["input_dir"])
     input_files = discover_input_files(input_dir, config)
     if not input_files:
         return []
 
-    case_name = str((config.get("input") or {}).get("case_name") or "combined").strip()
+    manifest_path = artifact_dir / "artifact.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.is_file() else {}
+    case_name = str(manifest.get("case") or (config.get("input") or {}).get("case_name") or "stores").strip()
     if not case_name:
         raise ValueError("input.case_name must not be empty")
     if only_case and case_name != only_case:
         return []
 
-    case_middle = resolve_from_root(paths["middle_dir"])
-    prepared_root = case_middle / "00_input"
+    prepared_root = artifact_dir / "00_input"
     return [
         {
             "case_name": case_name,
             "input_files": input_files,
-            "input_file": prepared_root / f"{case_name}.xlsx",
-            "pipeline_config": prepared_root / "pipeline.generated.yaml",
-            "case_middle": case_middle,
-            "case_output": resolve_from_root(paths["output_dir"]),
+            "input_tables_dir": prepared_root / "tables",
+            "pipeline_config": prepared_root / "pipeline.generated.json",
+            "case_middle": artifact_dir,
+            "artifact_dir": artifact_dir,
+            "case_public": configured_public_dir(paths),
         }
     ]
 
 
 def build_variables(case: dict[str, Any], config: dict[str, Any]) -> dict[str, str]:
     paths = config["paths"]
+    public_dir = str(configured_public_dir(paths))
     variables = {
         "root": str(ROOT),
         "source_config": str(config.get("_config_path") or resolve_from_root("configs/pipeline.yaml")),
         "case_name": str(case["case_name"]),
-        "input_file": str(case["input_file"]),
+        "input_tables_dir": str(case["input_tables_dir"]),
         "pipeline_config": str(case.get("pipeline_config") or resolve_from_root("configs/pipeline.yaml")),
         "case_middle": str(case["case_middle"]),
-        "case_output": str(case["case_output"]),
+        "case_public": str(case["case_public"]),
+        "case_output": str(case["case_public"]),
         "input_dir": str(resolve_from_root(paths["input_dir"])),
-        "middle_dir": str(resolve_from_root(paths["middle_dir"])),
-        "output_dir": str(resolve_from_root(paths["output_dir"])),
+        "artifact_dir": str(case["artifact_dir"]),
+        "public_dir": public_dir,
+        "output_dir": public_dir,
         "logs_dir": str(resolve_from_root(paths["logs_dir"])),
         "python": sys.executable,
     }
@@ -120,6 +170,17 @@ def build_variables(case: dict[str, Any], config: dict[str, Any]) -> dict[str, s
         if "/" in formatted or "\\" in formatted:
             formatted = str(Path(formatted))
         variables[key] = formatted
+
+    legacy_stage_dirs = {
+        "compressed_fitment_dir": case["artifact_dir"] / "01_compress",
+        "store_csv_dir": case["artifact_dir"] / "03_user_size_exports",
+        "store_html_dir": case["artifact_dir"] / "04_html",
+        "site_workspace_dir": case["artifact_dir"] / "05_publish_workspace",
+    }
+    for variable_name, legacy_path in legacy_stage_dirs.items():
+        configured_path = Path(variables.get(variable_name, ""))
+        if legacy_path.exists() and not configured_path.exists():
+            variables[variable_name] = str(legacy_path)
 
     return variables
 
@@ -294,6 +355,8 @@ def selected_step_names(
     to_step: str | None,
 ) -> set[str]:
     names = enabled_step_names(config)
+    from_step = STEP_ALIASES.get(from_step, from_step)
+    to_step = STEP_ALIASES.get(to_step, to_step)
     if from_step and from_step not in names:
         raise ValueError(f"Unknown --from-step '{from_step}'. Available steps: {', '.join(names)}")
     if to_step and to_step not in names:
@@ -316,8 +379,9 @@ def execute_case_pipeline(
     require_interactive_checks: bool = False,
     manual_workbook_dir: Path | None = None,
 ) -> None:
-    case["case_middle"].mkdir(parents=True, exist_ok=True)
-    case["case_output"].mkdir(parents=True, exist_ok=True)
+    if not dry_run:
+        case["artifact_dir"].mkdir(parents=True, exist_ok=True)
+        case["case_public"].mkdir(parents=True, exist_ok=True)
     case_log_dir = logs_root / case["case_name"]
     case_log_dir.mkdir(parents=True, exist_ok=True)
 
@@ -349,30 +413,12 @@ def execute_case_pipeline(
 
         pause = step.get("pause_after")
         if pause:
-            pause_variables = variables
-            staged_workbook: Path | None = None
-            manual_workbook: Path | None = None
-            if step_name == "user_size_template" and manual_workbook_dir is not None:
-                staged_workbook = Path(variables["user_size_workbook"])
-                manual_workbook = manual_workbook_dir / staged_workbook.name
-                print(f"[manual-workbook] {staged_workbook} -> {manual_workbook}")
-                if not dry_run:
-                    manual_workbook_dir.mkdir(parents=True, exist_ok=True)
-                    shutil.copy2(staged_workbook, manual_workbook)
-                pause_variables = dict(variables)
-                pause_variables["user_size_dir"] = str(manual_workbook_dir)
-                pause_variables["user_size_workbook"] = str(manual_workbook)
             wait_for_manual_check(
                 str(pause),
-                pause_variables,
+                variables,
                 dry_run,
                 require_interactive=require_interactive_checks,
             )
-            if staged_workbook is not None and manual_workbook is not None and not dry_run:
-                if not manual_workbook.is_file():
-                    raise FileNotFoundError(f"人工确认目录缺少工作簿: {manual_workbook}")
-                shutil.copy2(manual_workbook, staged_workbook)
-                print(f"[manual-workbook] saved changes synced back to {staged_workbook}")
 
 
 def select_project_data_dir(container: Path, case_name: str, markers: tuple[str, ...]) -> Path:
@@ -387,10 +433,19 @@ def select_project_data_dir(container: Path, case_name: str, markers: tuple[str,
 
 def find_project_case(project_dir: Path, incremental_path: Path | None = None) -> dict[str, Any]:
     project_dir = resolve_from_root(project_dir)
-    data_root = project_dir / "data"
-    input_dir = data_root / "input"
+    artifact_root = project_dir / "artifact"
+    legacy_data_root = project_dir / "data"
+    if (artifact_root / "input").is_dir():
+        workspace_root = artifact_root
+        public_root = project_dir / "public"
+        legacy_layout = False
+    else:
+        workspace_root = legacy_data_root
+        public_root = legacy_data_root / "output"
+        legacy_layout = True
+    input_dir = workspace_root / "input"
     if not input_dir.is_dir():
-        raise FileNotFoundError(f"Case directory has no data/input: {project_dir}")
+        raise FileNotFoundError(f"Case directory has no artifact/input or legacy data/input: {project_dir}")
 
     candidates = sorted(
         path.resolve()
@@ -407,11 +462,14 @@ def find_project_case(project_dir: Path, incremental_path: Path | None = None) -
     base_path = candidates[0]
     case_name = base_path.stem
     middle = select_project_data_dir(
-        data_root / "middle",
+        workspace_root / "middle",
         case_name,
         ("01_compress", "02_user_size_workbooks"),
     )
-    output = select_project_data_dir(data_root / "output", case_name, ("site",))
+    if legacy_layout:
+        output = select_project_data_dir(public_root, case_name, ("site",))
+    else:
+        output = public_root
     result = {
         "case_name": base_path.stem,
         "input_file": base_path,
@@ -455,7 +513,7 @@ def replace_workspace_transactionally(
     """Promote a staged workspace without renaming the live root directories.
 
     Windows directory watchers (Explorer, WPS cloud, antivirus, etc.) can deny a
-    rename of ``data/middle`` even when none of its files is open.  Keep a local
+    rename of ``artifact/middle`` even when none of its files is open. Keep a local
     rollback copy and mirror each staged directory in place instead.
     """
     for name, staged in staged_dirs.items():
@@ -554,7 +612,7 @@ def run_incremental(
     current_dirs = {
         "input": resolve_from_root(config["paths"]["input_dir"]),
         "middle": resolve_from_root(config["paths"]["middle_dir"]),
-        "output": resolve_from_root(config["paths"]["output_dir"]),
+        "output": configured_public_dir(config["paths"]),
     }
     manual_workbook_dir = current_dirs["middle"] / "02_user_size_workbooks"
     fingerprint_ignored = (manual_workbook_dir,)
@@ -602,7 +660,11 @@ def run_incremental(
             dry_run=False,
         )
 
-        staged_dirs = {name: stage_root / "data" / name for name in current_dirs}
+        staged_dirs = {
+            "input": stage_root / "artifact" / "input",
+            "middle": stage_root / "artifact" / "middle",
+            "output": stage_root / "public",
+        }
         source_dirs = base_case["source_dirs"]
         for name, current in current_dirs.items():
             source = Path(source_dirs[name])
@@ -641,7 +703,8 @@ def run_incremental(
         staged_config = copy.deepcopy(config)
         staged_config["paths"]["input_dir"] = str(staged_dirs["input"])
         staged_config["paths"]["middle_dir"] = str(staged_dirs["middle"])
-        staged_config["paths"]["output_dir"] = str(staged_dirs["output"])
+        staged_config["paths"]["public_dir"] = str(staged_dirs["output"])
+        staged_config["paths"].pop("output_dir", None)
         staged_config["steps"]["compress"]["enabled"] = False
         staged_config["steps"]["atom_validate"]["enabled"] = True
         staged_config["steps"]["atom_validate"]["command"] = [
@@ -660,7 +723,7 @@ def run_incremental(
             "case_name": base_case["case_name"],
             "input_file": merged_path,
             "case_middle": staged_dirs["middle"],
-            "case_output": staged_dirs["output"],
+            "case_public": staged_dirs["output"],
         }
         execute_case_pipeline(
             case=staged_case,
@@ -700,17 +763,11 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Run the fitment pipeline for configured Excel/CSV inputs.")
     parser.add_argument("--config", default="configs/pipeline.yaml", help="Path to pipeline config yaml.")
     parser.add_argument(
-        "--case",
+        "--artifact",
         type=Path,
-        default=Path("."),
-        help=r"Project directory containing data/, e.g. . or bak\20260716_111604.",
+        help="Artifact batch name/path to resume; omitted creates YYYY-MM-DD_NN_pipeline.",
     )
-    parser.add_argument(
-        "--incremental",
-        type=Path,
-        help="New-vehicle xlsx to atom-check and merge into the selected --case directory.",
-    )
-    parser.add_argument("--from-step", help="Resume from this configured step, e.g. user_size_validate.")
+    parser.add_argument("--from-step", help="Resume from this configured step, e.g. build_user_size_json.")
     parser.add_argument("--to-step", help="Stop after this configured step.")
     parser.add_argument("--list-steps", action="store_true", help="Print enabled step names and exit.")
     parser.add_argument("--dry-run", action="store_true", help="Print commands without running them.")
@@ -724,25 +781,14 @@ def main() -> int:
         return 0
 
     run_id = dt.datetime.now().strftime("%Y%m%d_%H%M%S")
-    if args.incremental:
-        if args.from_step or args.to_step:
-            parser.error("--incremental always runs the complete isolated pipeline; step ranges are not supported.")
-        try:
-            return run_incremental(
-                config=config,
-                incremental_path=args.incremental,
-                case_dir=args.case,
-                dry_run=args.dry_run,
-                run_id=run_id,
-            )
-        except Exception as exc:
-            print(f"FAILED: {exc}")
-            return 1
-    if resolve_from_root(args.case) != ROOT:
-        parser.error("A non-workspace --case directory is only valid together with --incremental.")
+    if args.from_step and not args.artifact:
+        parser.error("--from-step requires --artifact so the existing batch can be resumed safely.")
 
     selected_steps = selected_step_names(config, from_step=args.from_step, to_step=args.to_step)
-    cases = scan_cases(config)
+    artifact_dir = resolve_artifact_dir(config, args.artifact)
+    if args.artifact and not artifact_dir.is_dir():
+        parser.error(f"--artifact does not exist: {artifact_dir}")
+    cases = scan_cases(config, artifact_dir)
 
     if not cases:
         print("No configured Excel/CSV input files found.")
@@ -754,6 +800,7 @@ def main() -> int:
     stop_on_error = config.get("run", {}).get("stop_on_error", True)
 
     print(f"Found {len(cases)} case(s): {', '.join(case['case_name'] for case in cases)}")
+    print(f"Artifact: {artifact_dir}")
     print(f"Logs: {logs_root}")
 
     failures: list[str] = []
@@ -779,6 +826,29 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
+    if not args.dry_run:
+        enabled_steps = enabled_step_names(config)
+        completed = bool(enabled_steps) and enabled_steps[-1] in selected_steps
+        manifest_path = artifact_dir / "artifact.json"
+        previous_manifest = (
+            json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.is_file() else {}
+        )
+        timestamp = dt.datetime.now().astimezone().isoformat(timespec="seconds")
+        manifest = {
+            "version": 2,
+            "layout": "store-pipeline-v2",
+            "created_at": previous_manifest.get("created_at", timestamp),
+            "updated_at": timestamp,
+            "status": "complete" if completed else "partial",
+            "case": cases[0]["case_name"],
+            "inputs": [str(path.relative_to(ROOT)).replace("\\", "/") for path in cases[0]["input_files"]],
+            "format": "csv-json",
+            "steps": enabled_steps if completed else [step for step in enabled_steps if step in selected_steps],
+            "public": str(configured_public_dir(config["paths"]).relative_to(ROOT)).replace("\\", "/"),
+        }
+        manifest_path.write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
     print("\nAll cases completed.")
     return 0
 

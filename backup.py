@@ -14,7 +14,8 @@ from typing import Any
 
 ROOT = Path(__file__).parent.resolve()
 BACKUP_DIR_NAME = "bak"
-SOURCE_DIR_NAMES = ("data", "configs")
+SOURCE_DIR_NAMES = ("input", "artifact", "public", "configs")
+LEGACY_SOURCE_DIR_NAMES = ("data", "configs")
 MANIFEST_NAME = "manifest.json"
 INCOMPLETE_MARKER_NAME = ".incomplete"
 BUFFER_SIZE = 1024 * 1024
@@ -77,7 +78,7 @@ def next_backup_name(backup_root: Path, preferred: str | None = None) -> str:
 
 
 def detect_project_name(root: Path) -> str | None:
-    input_dir = root / "data" / "input"
+    input_dir = root / "input"
     if not input_dir.is_dir():
         return None
     input_files = sorted(
@@ -211,9 +212,56 @@ def list_backups(root: Path = ROOT) -> list[dict[str, Any]]:
     return backups
 
 
+def migrate_legacy_backup(backup_dir: Path, staging: Path) -> None:
+    """Convert a verified data/configs archive into input/artifact/public layout."""
+    legacy_data = backup_dir / "data"
+    legacy_input = legacy_data / "input"
+    if legacy_input.is_dir():
+        shutil.copytree(legacy_input, staging / "input", copy_function=shutil.copy2)
+    else:
+        (staging / "input").mkdir(parents=True)
+
+    artifact = staging / "artifact"
+    artifact.mkdir(parents=True)
+    legacy_batch = artifact / "legacy_import"
+    legacy_batch.mkdir()
+    for source_name in ("middle", "rules", "template"):
+        source = legacy_data / source_name
+        if source.is_dir():
+            target = legacy_batch if source_name == "middle" else legacy_batch / source_name
+            shutil.copytree(source, target, dirs_exist_ok=True, copy_function=shutil.copy2)
+
+    legacy_output = legacy_data / "output"
+    public = staging / "public"
+    site_candidates: list[Path] = []
+    if (legacy_output / "index.html").is_file():
+        site_candidates.append(legacy_output)
+    if (legacy_output / "site" / "index.html").is_file():
+        site_candidates.append(legacy_output / "site")
+    site_candidates.extend(
+        path for path in sorted(legacy_output.glob("*/site")) if (path / "index.html").is_file()
+    )
+    unique_candidates = list(dict.fromkeys(path.resolve() for path in site_candidates))
+    if len(unique_candidates) > 1:
+        choices = ", ".join(str(path) for path in unique_candidates)
+        raise ValueError(f"旧存档包含多个可发布站点，无法自动选择: {choices}")
+    if unique_candidates:
+        shutil.copytree(unique_candidates[0], public, copy_function=shutil.copy2)
+    else:
+        public.mkdir()
+
+    if legacy_output.is_dir():
+        shutil.copytree(legacy_output, legacy_batch / "legacy-output", copy_function=shutil.copy2)
+    shutil.copytree(backup_dir / "configs", staging / "configs", copy_function=shutil.copy2)
+    legacy_rules = legacy_data / "rules" / "user-size-rules.json"
+    active_rules = staging / "configs" / "user-size-rules.json"
+    if legacy_rules.is_file() and not active_rules.exists():
+        shutil.copy2(legacy_rules, active_rules)
+
+
 def restore_backup(root: Path, name: str, *, force: bool = False) -> tuple[Path, Path]:
     if not force:
-        raise PermissionError("恢复会替换当前 data 和 configs；请确认后加 --force。")
+        raise PermissionError("恢复会替换当前 input、artifact、public 和 configs；请确认后加 --force。")
 
     root = root.resolve()
     backup_dir = get_backup_dir(root, name)
@@ -229,8 +277,14 @@ def restore_backup(root: Path, name: str, *, force: bool = False) -> tuple[Path,
     rollback = root / f".restore-rollback-{operation_id}"
 
     try:
-        for source_name in SOURCE_DIR_NAMES:
-            shutil.copytree(backup_dir / source_name, staging / source_name, copy_function=shutil.copy2)
+        archived_sources = tuple(source["path"] for source in load_manifest(backup_dir).get("sources", []))
+        if set(SOURCE_DIR_NAMES).issubset(archived_sources):
+            for source_name in SOURCE_DIR_NAMES:
+                shutil.copytree(backup_dir / source_name, staging / source_name, copy_function=shutil.copy2)
+        elif set(LEGACY_SOURCE_DIR_NAMES).issubset(archived_sources):
+            migrate_legacy_backup(backup_dir, staging)
+        else:
+            raise ValueError(f"存档目录结构不受支持: {', '.join(archived_sources)}")
 
         rollback.mkdir()
         for source_name in SOURCE_DIR_NAMES:
@@ -257,7 +311,7 @@ def restore_backup(root: Path, name: str, *, force: bool = False) -> tuple[Path,
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="存档或恢复项目的 data 和 configs 目录。")
+    parser = argparse.ArgumentParser(description="存档或恢复项目的 input、artifact、public 和 configs 目录。")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     create_parser = subparsers.add_parser("create", help="创建一个完整存档。")
@@ -267,7 +321,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--clean",
         "--no-keep-workspace",
         action="store_true",
-        help="存档校验成功后清空 input、middle 和 output 工作区。",
+        help="存档校验成功后清空 input 和 public；历史 artifact 保留。",
     )
 
     subparsers.add_parser("list", help="列出已有存档。")
@@ -277,7 +331,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     restore_parser = subparsers.add_parser("restore", help="恢复一个存档。")
     restore_parser.add_argument("name", help="要恢复的存档名。")
-    restore_parser.add_argument("--force", action="store_true", help="确认替换当前 data 和 configs。")
+    restore_parser.add_argument("--force", action="store_true", help="确认替换当前 input、artifact、public 和 configs。")
     return parser
 
 

@@ -6,7 +6,6 @@ import subprocess
 import sys
 from pathlib import Path
 
-import openpyxl
 import yaml
 
 
@@ -35,24 +34,12 @@ def copy_file(source: Path, target: Path) -> None:
     shutil.copy2(source, target)
 
 
-def store_name(sheet_name: str) -> str:
-    if sheet_name.startswith(("全尺码", "ALL尺码")):
-        return "ALL"
-    name = sheet_name
-    for suffix in ("尺码匹配表", "尺码匹配"):
-        if name.endswith(suffix):
-            name = name[: -len(suffix)]
-            break
-    return name or sheet_name
-
-
-def configure_excel_sources(
+def configure_csv_sources(
     workspace: Path,
     pipeline_config: Path,
-    xlsx_source: Path,
     html_style_config: Path | None = None,
-) -> bool:
-    """Materialize publish sources from the pipeline's configured input sheets."""
+) -> None:
+    """Configure publish metadata for normalized CSV sources."""
     view_path = workspace / "config" / "size-chart-view.yaml"
     with pipeline_config.open("r", encoding="utf-8") as handle:
         pipeline = yaml.safe_load(handle) or {}
@@ -60,46 +47,26 @@ def configure_excel_sources(
         view = yaml.safe_load(handle) or {}
 
     input_config = pipeline.get("input") or {}
-    configured_sources = list(input_config.get("match_sources") or [])
-    if not configured_sources:
-        configured_sources = [
-            {
-                "name": store_name(str(sheet)),
-                "label": str(sheet),
-                "sheet": str(sheet),
-                "header_row": 1,
-                "columns": MATCH_COLUMNS,
-            }
-            for sheet in input_config.get("sheets") or []
-        ]
-    if not configured_sources:
-        raise ValueError("Pipeline config must define input.match_sources or input.sheets")
+    configured_stores = list(input_config.get("stores") or [])
+    if not configured_stores:
+        raise ValueError("Pipeline config must define input.stores")
 
     normalized_sources = []
-    for source in configured_sources:
-        if not isinstance(source, dict):
-            raise ValueError(f"Invalid input.match_sources entry: {source!r}")
-        missing_fields = [field for field in ("name", "sheet") if not source.get(field)]
+    for store in configured_stores:
+        if not isinstance(store, dict):
+            raise ValueError(f"Invalid input.stores entry: {store!r}")
+        missing_fields = [field for field in ("store", "sheet") if not store.get(field)]
         if missing_fields:
-            raise ValueError(f"input.match_sources entry is missing {missing_fields}: {source!r}")
+            raise ValueError(f"input.stores entry is missing {missing_fields}: {store!r}")
         normalized_sources.append(
             {
-                "name": str(source["name"]),
-                "label": str(source.get("label") or source["name"]),
-                "sheet": str(source["sheet"]),
-                "header_row": int(source.get("header_row", 1)),
-                "columns": str(source.get("columns") or MATCH_COLUMNS),
+                "name": str(store["store"]),
+                "label": str(store.get("label") or store["store"]),
+                "sheet": str(store["sheet"]),
+                "header_row": int(store.get("header_row", 1)),
+                "columns": str(store.get("columns") or MATCH_COLUMNS),
             }
         )
-
-    configured_sheets = [source["sheet"] for source in normalized_sources]
-    workbook = openpyxl.load_workbook(xlsx_source, read_only=True, data_only=True)
-    workbook_sheets = set(workbook.sheetnames)
-    workbook.close()
-
-    missing = [sheet for sheet in configured_sheets if sheet not in workbook_sheets]
-    if missing:
-        raise KeyError(f"Configured input worksheets do not exist: {missing}")
 
     view["match_sources"] = normalized_sources
 
@@ -115,11 +82,6 @@ def configure_excel_sources(
             "text": html_style.get("size_badge_text_color", "#ffffff"),
         }
 
-    reference_candidates = ["全尺码", "ALL尺码"]
-    reference_sheet = next((name for name in reference_candidates if name in workbook_sheets), None)
-    if reference_sheet is not None:
-        view.setdefault("size_reference", {})["sheet"] = reference_sheet
-
     with view_path.open("w", encoding="utf-8", newline="\n") as handle:
         yaml.dump(
             view,
@@ -129,17 +91,15 @@ def configure_excel_sources(
             sort_keys=False,
         )
     print(
-        f"[configure_publish] match sheets={configured_sheets}; "
-        f"size reference={reference_sheet or 'reuse existing generated data'}"
+        f"[configure_publish] stores="
+        f"{[source['name'] for source in normalized_sources]}; reuse existing size reference"
     )
-    return reference_sheet is not None
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build a webapp site in a local workspace without modifying the publish repo.")
     parser.add_argument("--publish-repo", type=Path, required=True)
     parser.add_argument("--html-root", type=Path, required=True)
-    parser.add_argument("--xlsx-source", type=Path, required=True)
     parser.add_argument("--pipeline-config", type=Path, required=True)
     parser.add_argument("--html-style-config", type=Path)
     parser.add_argument("--workspace", type=Path, required=True)
@@ -148,7 +108,6 @@ def main() -> None:
 
     publish_repo = args.publish_repo.resolve()
     html_root = args.html_root.resolve()
-    xlsx_source = args.xlsx_source.resolve()
     pipeline_config = args.pipeline_config.resolve()
     html_style_config = args.html_style_config.resolve() if args.html_style_config else None
     workspace = args.workspace.resolve()
@@ -158,8 +117,6 @@ def main() -> None:
         raise FileNotFoundError(f"Publish repo does not exist: {publish_repo}")
     if not html_root.exists():
         raise FileNotFoundError(f"HTML root does not exist: {html_root}")
-    if not xlsx_source.exists():
-        raise FileNotFoundError(f"XLSX source does not exist: {xlsx_source}")
     if not pipeline_config.exists():
         raise FileNotFoundError(f"Pipeline config does not exist: {pipeline_config}")
     if html_style_config and not html_style_config.exists():
@@ -176,21 +133,18 @@ def main() -> None:
 
     copy_file(publish_repo / "tools" / "build_site.py", workspace / "tools" / "build_site.py")
     copy_file(publish_repo / "tools" / "export_xlsx_sources.py", workspace / "tools" / "export_xlsx_sources.py")
+    copy_file(Path(__file__).with_name("export_csv_sources.py"), workspace / "tools" / "export_csv_sources.py")
     copy_file(publish_repo / "tools" / "validate_generated_data.py", workspace / "tools" / "validate_generated_data.py")
     copy_tree(html_root, workspace / "data" / "source" / "html")
-    exports_size_reference = configure_excel_sources(
-        workspace, pipeline_config, xlsx_source, html_style_config
-    )
+    configure_csv_sources(workspace, pipeline_config, html_style_config)
 
     export_command = [
         sys.executable,
-        str(workspace / "tools" / "export_xlsx_sources.py"),
-        "--xlsx-source",
-        str(xlsx_source),
+        str(workspace / "tools" / "export_csv_sources.py"),
+        "--pipeline-config",
+        str(pipeline_config),
     ]
-    if not exports_size_reference:
-        export_command.append("--skip-size-reference")
-    print(f"[export_xlsx_sources] {' '.join(export_command)}")
+    print(f"[export_csv_sources] {' '.join(export_command)}")
     subprocess.run(export_command, cwd=workspace, check=True)
 
     command = [sys.executable, str(workspace / "tools" / "build_site.py")]

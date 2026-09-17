@@ -5,20 +5,19 @@ repos:
   compress: "../compress_to_size_chart"
 
 paths:
-  input_dir: "data/input"
-  middle_dir: "data/middle"
-  output_dir: "data/output"
+  input_dir: "input"
+  artifact_root: "artifact"
+  public_dir: "public"
   logs_dir: "logs"
 
 file_rules:
   input_patterns: ["*.xlsx", "*.xlsm", "*.csv"]
 
-# 每个 Excel/CSV 文件生成一个匹配来源；stem 是不含扩展名的文件名。
-# 例如 ALL.csv 会生成 name=ALL、label=ALL尺码匹配表、sheet=ALL尺码匹配。
+# 每个 Excel/CSV 文件就是一个店铺；stem 是不含扩展名的店铺名。
+# 例如 07-HNT.csv 会生成 store=07-HNT、label=07-HNT尺码匹配表。
 input:
-  case_name: combined
-  match_source:
-    name: "{stem}"
+  store:
+    store: "{stem}"
     label: "{stem}尺码匹配表"
     sheet: "{stem}尺码匹配"
     header_row: 1
@@ -46,60 +45,48 @@ defaults:
   分类: ""
 
 variables:
-  compress_output_root: "{case_middle}/01_compress"
-  user_size_json: "{case_middle}/02_user_size.json"
-  user_size_rules: "{root}/data/rules/user-size-rules.json"
-  user_size_ai_config: "{root}/configs/ai-user-size.yaml"
-  user_size_export_dir: "{case_middle}/03_user_size_exports"
-  html_output_dir: "{case_middle}/04_html"
-  publish_workspace: "{case_middle}/05_publish_workspace"
-  publish_repo_path: "{root}/../publish_tables_to_webapp"
+  compressed_fitment_dir: "{artifact_dir}/01_compressed_fitment"
+  user_size_json_file: "{artifact_dir}/02_user_size.json"
+  user_size_rules_file: "{root}/configs/user-size-rules.json"
+  user_size_ai_config_file: "{root}/configs/ai-user-size.yaml"
+  store_csv_dir: "{artifact_dir}/03_store_csv"
+  store_html_dir: "{artifact_dir}/04_store_html"
+  site_workspace_dir: "{artifact_dir}/05_site_workspace"
+  webapp_repo: "{root}/../publish_tables_to_webapp"
 
 steps:
-  prepare_inputs:
+  normalize_store_inputs:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/materialize_input_sources.py, --input-dir, "{input_dir}", --config, "{source_config}", --output-workbook, "{input_file}", --output-config, "{pipeline_config}"]
-    check_exists: ["{input_file}", "{pipeline_config}"]
+    command: ["{python}", tools/materialize_input_sources.py, --input-dir, "{input_dir}", --config, "{source_config}", --output-dir, "{input_tables_dir}", --output-config, "{pipeline_config}"]
+    check_exists: ["{input_tables_dir}", "{pipeline_config}"]
 
-  compress:
+  compress_store_fitment:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/compress_configured_sheets.py, --input, "{input_file}", --output-root, "{compress_output_root}", --config, "{pipeline_config}", --compress-script, "{root}/../compress_to_size_chart/process_tsv.py"]
-    check_exists: ["{compress_output_root}"]
+    command: ["{python}", tools/compress_configured_sheets.py, --output-root, "{compressed_fitment_dir}", --config, "{pipeline_config}", --compress-script, "{root}/../compress_to_size_chart/process_tsv.py"]
+    check_exists: ["{compressed_fitment_dir}"]
 
-  # 压缩内部已逐表执行原子检查，不再统一验证整个历史目录。
-  atom_validate:
-    enabled: false
-    repo: pipeline
-    command: ["{python}", tools/validate_atom_checks.py, --root, "{compress_output_root}"]
-
-  user_size_template:
+  build_user_size_json:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/build_user_size_json.py, --case-name, "{case_name}", --compress-root, "{compress_output_root}", --config, "{pipeline_config}", --rules, "{user_size_rules}", --ai-config, "{user_size_ai_config}", --output, "{user_size_json}"]
-    check_exists: ["{user_size_json}"]
+    command: ["{python}", tools/build_user_size_json.py, --compress-root, "{compressed_fitment_dir}", --config, "{pipeline_config}", --rules, "{user_size_rules_file}", --ai-config, "{user_size_ai_config_file}", --output, "{user_size_json_file}"]
+    check_exists: ["{user_size_json_file}"]
 
-  user_size_validate:
-    enabled: false
-    repo: pipeline
-    command: []
-
-  inplace_table:
+  export_store_csv:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/export_user_size_json_tables.py, --input, "{user_size_json}", --output-root, "{user_size_export_dir}"]
-    check_exists: ["{user_size_export_dir}"]
+    command: ["{python}", tools/export_user_size_json_tables.py, --input, "{user_size_json_file}", --output-root, "{store_csv_dir}"]
+    check_exists: ["{store_csv_dir}"]
 
-  get_html:
+  generate_store_html:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/generate_all_html.py, --export-root, "{user_size_export_dir}", --output-root, "{html_output_dir}", --config-path, "{root}/configs/html-style.yaml", --html-script, "{root}/../generate_size_chart_html/tsv_to_size_chart_html.py"]
-    check_exists: ["{html_output_dir}"]
-    pause_after: "请检查 {html_output_dir}。如需人工修改，请直接覆盖该目录内 HTML/CSS 后继续。"
+    command: ["{python}", tools/generate_all_html.py, --export-root, "{store_csv_dir}", --output-root, "{store_html_dir}", --config-path, "{root}/configs/html-style.yaml", --html-script, "{root}/../generate_size_chart_html/tsv_to_size_chart_html.py"]
+    check_exists: ["{store_html_dir}"]
 
-  publish:
+  build_public_site:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/build_publish_site.py, --publish-repo, "{publish_repo_path}", --html-root, "{html_output_dir}", --xlsx-source, "{input_file}", --pipeline-config, "{pipeline_config}", --html-style-config, "{root}/configs/html-style.yaml", --workspace, "{publish_workspace}", --site-output, "{case_output}/site"]
-    check_exists: ["{case_output}/site/index.html"]
+    command: ["{python}", tools/build_publish_site.py, --publish-repo, "{webapp_repo}", --html-root, "{store_html_dir}", --pipeline-config, "{pipeline_config}", --html-style-config, "{root}/configs/html-style.yaml", --workspace, "{site_workspace_dir}", --site-output, "{public_dir}"]
+    check_exists: ["{case_public}/index.html"]

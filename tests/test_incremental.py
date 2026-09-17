@@ -9,9 +9,6 @@ from openpyxl import Workbook, load_workbook
 
 from run_all import find_project_case, load_config, replace_workspace_transactionally, workspace_fingerprint
 from tools.generate_all_html import load_profile
-from openpyxl.worksheet.table import Table
-
-from tools.build_user_size_templates import sync_rows
 from tools.merge_incremental_workbook import DEFAULT_SHEETS, FITMENT_KEY_COLUMNS, merge_workbooks
 from tools.merge_incremental_compress_outputs import merge_compress_outputs
 from tools.validate_atom_checks import validate_atom_checks
@@ -201,37 +198,7 @@ class AtomCheckTests(unittest.TestCase):
             self.assertEqual(errors, [])
 
 
-class UserSizeSyncTests(unittest.TestCase):
-    def test_sync_preserves_manual_rows_and_adds_formula_rows(self) -> None:
-        existing_workbook = Workbook()
-        existing_sheet = existing_workbook.active
-        existing_sheet.title = "非皮卡压缩表"
-        existing_sheet.append(["MAKE", "MODEL", "SIZE", "CALC"])
-        existing_sheet.append(["Make", "Old", "MANUAL", "=A2"])
-        existing_sheet.add_table(Table(displayName="非皮卡压缩表", ref="A1:D2"))
-
-        template_workbook = Workbook()
-        template_sheet = template_workbook.active
-        template_sheet.title = "非皮卡压缩表"
-        template_sheet.append(["MAKE", "MODEL", "SIZE", "CALC"])
-        template_sheet.append(["", "", "=A2&B2", "=B2"])
-
-        stats = sync_rows(
-            existing_sheet,
-            template_sheet,
-            [{"MAKE": "Make", "MODEL": "Old"}, {"MAKE": "Make", "MODEL": "New"}],
-            {"MAKE", "MODEL"},
-        )
-
-        self.assertEqual(
-            stats,
-            {"preserved": 1, "added": 1, "removed": 0, "formula_cells_refreshed": 1},
-        )
-        self.assertEqual(existing_sheet["C2"].value, "MANUAL")
-        self.assertEqual(existing_sheet["C3"].value, "=A3&B3")
-        self.assertEqual(existing_sheet["D2"].value, "=B2")
-        self.assertEqual(existing_sheet["D3"].value, "=B3")
-
+class WorkspaceFingerprintTests(unittest.TestCase):
     def test_manual_workbook_directory_is_excluded_from_workspace_fingerprint(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_dir:
             root = Path(temporary_dir)
@@ -314,16 +281,16 @@ class CaseDirectoryTests(unittest.TestCase):
     def test_finds_flat_workspace_layout(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_dir:
             root = Path(temporary_dir)
-            (root / "data/input").mkdir(parents=True)
-            (root / "data/input/0706.xlsx").touch()
-            (root / "data/middle/02_user_size_workbooks").mkdir(parents=True)
-            (root / "data/output/site").mkdir(parents=True)
+            (root / "artifact/input").mkdir(parents=True)
+            (root / "artifact/input/0706.xlsx").touch()
+            (root / "artifact/middle/02_user_size_workbooks").mkdir(parents=True)
+            (root / "public").mkdir()
 
             case = find_project_case(root)
 
             self.assertEqual(case["case_name"], "0706")
-            self.assertEqual(case["source_dirs"]["middle"], root / "data/middle")
-            self.assertEqual(case["source_dirs"]["output"], root / "data/output")
+            self.assertEqual(case["source_dirs"]["middle"], root / "artifact/middle")
+            self.assertEqual(case["source_dirs"]["output"], root / "public")
 
     def test_finds_legacy_nested_archive_layout(self) -> None:
         with tempfile.TemporaryDirectory() as temporary_dir:

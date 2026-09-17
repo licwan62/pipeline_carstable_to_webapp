@@ -17,7 +17,7 @@ concurrency:
 jobs:
   deploy:
     env:
-      SITE_DIR: data/output/site
+      SITE_DIR: public
       NGINX_ZIP: carstable-webapp-nginx-${{ github.sha }}.zip
     environment:
       name: github-pages

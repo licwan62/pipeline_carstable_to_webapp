@@ -13,7 +13,7 @@ import yaml
 SIZE_FREE_STORES = {"TM-拆分"}
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generate ALL/TM/HNT HTML outputs from exported TSV tables.")
+    parser = argparse.ArgumentParser(description="Generate HTML outputs from exported CSV tables.")
     parser.add_argument("--export-root", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--config-path", type=Path, required=True)
@@ -47,21 +47,28 @@ def has_data_rows(path: Path) -> bool:
     if not path.is_file():
         return False
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
-        reader = csv.reader(handle, delimiter="\t")
+        reader = csv.reader(handle)
         next(reader, None)
         return next(reader, None) is not None
 
 
 def add_generator_size_columns(source: Path, target: Path) -> Path:
     with source.open("r", encoding="utf-8-sig", newline="") as handle:
-        reader = csv.DictReader(handle, delimiter="\t")
+        reader = csv.DictReader(handle)
         rows = list(reader)
         columns = list(reader.fieldnames or [])
     columns.extend(column for column in ("BACKSIZE", "SIZE") if column not in columns)
     with target.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=columns, delimiter="\t")
+        writer = csv.DictWriter(handle, fieldnames=columns)
         writer.writeheader()
         writer.writerows(rows)
+    return target
+
+
+def csv_to_tsv(source: Path, target: Path) -> Path:
+    with source.open("r", encoding="utf-8-sig", newline="") as input_file:
+        with target.open("w", encoding="utf-8-sig", newline="") as output_file:
+            csv.writer(output_file, delimiter="\t").writerows(csv.reader(input_file))
     return target
 
 
@@ -76,26 +83,32 @@ def generate_all(args: argparse.Namespace, config_path: Path) -> None:
         if store_output.exists():
             shutil.rmtree(store_output)
 
-        non_pickup_input = args.export_root / store / "non_pickup.tsv"
-        pickup_input = args.export_root / store / "pickup.tsv"
+        non_pickup_input = args.export_root / store / "non_pickup.csv"
+        pickup_input = args.export_root / store / "pickup.csv"
         store_config = config_path
         extra_non_args: list[str] = []
         extra_pick_args: list[str] = []
         if store in SIZE_FREE_STORES:
             temporary_root = config_path.parent
-            non_pickup_input = add_generator_size_columns(non_pickup_input, temporary_root / f"{store}-non-pickup.tsv")
-            pickup_input = add_generator_size_columns(pickup_input, temporary_root / f"{store}-pickup.tsv")
+            non_pickup_input = add_generator_size_columns(non_pickup_input, temporary_root / f"{store}-non-pickup.csv")
+            pickup_input = add_generator_size_columns(pickup_input, temporary_root / f"{store}-pickup.csv")
             special_profile = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
             special_profile["exclude_rows"] = "BACKSIZE=无可用尺码"
             store_config = temporary_root / f"{store}-preference.yaml"
             store_config.write_text(yaml.safe_dump(special_profile, allow_unicode=True, sort_keys=False), encoding="utf-8")
             extra_non_args = ["--table-columns", "MODEL,YEAR,TYPE"]
             extra_pick_args = ["--table-columns", "YEAR,CAB,BED"]
+        generator_non_pickup = csv_to_tsv(
+            non_pickup_input, config_path.parent / f"{store}-non-pickup.tsv"
+        )
+        generator_pickup = csv_to_tsv(
+            pickup_input, config_path.parent / f"{store}-pickup.tsv"
+        )
         non_pickup_command = [
             sys.executable,
             str(args.html_script),
             "--non-pickup-input",
-            str(non_pickup_input),
+            str(generator_non_pickup),
             "--order",
             "non-pickup",
             "--config-path",
@@ -114,7 +127,7 @@ def generate_all(args: argparse.Namespace, config_path: Path) -> None:
             sys.executable,
             str(args.html_script),
             "--pickup-input",
-            str(pickup_input),
+            str(generator_pickup),
             "--order",
             "pickup",
             "--config-path",

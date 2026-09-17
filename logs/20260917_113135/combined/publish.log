@@ -1,0 +1,7 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/build_publish_site.py --publish-repo D:\Licheng\Repo\pipeline_carstable_to_webapp\..\publish_tables_to_webapp --html-root D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\04_html --pipeline-config D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\00_input\pipeline.generated.json --html-style-config D:\Licheng\Repo\pipeline_carstable_to_webapp/configs/html-style.yaml --workspace D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\05_publish_workspace --site-output D:\Licheng\Repo\pipeline_carstable_to_webapp\public
+
+[configure_publish] stores=['07-FULL', '07-HNT', '07-TM', '07-TM拆', '新分析0831']; reuse existing size reference
+[export_csv_sources] C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\05_publish_workspace\tools\export_csv_sources.py --pipeline-config D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\00_input\pipeline.generated.json
+[build_site] C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\05_publish_workspace\tools\build_site.py
+Built site: D:\Licheng\Repo\pipeline_carstable_to_webapp\public

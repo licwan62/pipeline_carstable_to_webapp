@@ -13,16 +13,16 @@ def records(table: dict) -> list[dict[str, str]]:
     return [dict(zip(columns, row)) for row in table["rows"]]
 
 
-def write_tsv(path: Path, rows: list[dict[str, str]], columns: list[str]) -> None:
+def write_csv(path: Path, rows: list[dict[str, str]], columns: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8-sig", newline="") as file:
-        writer = csv.DictWriter(file, fieldnames=columns, delimiter="\t", extrasaction="ignore")
+        writer = csv.DictWriter(file, fieldnames=columns, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows)
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Export compact user-size JSON into per-store TSV files.")
+    parser = argparse.ArgumentParser(description="Export compact user-size JSON into per-store CSV files.")
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--store", action="append", help="Only export this store (repeatable).")
@@ -44,8 +44,8 @@ def main() -> None:
             pick = [row for row in pick_rows if row.get("店铺") == store and row.get("SIZE") not in ("", "无可用尺码") and row.get("BACKSIZE") != "无可用尺码"]
             non_columns = payload["non_pickup"]["columns"]
             pick_columns = payload["pickup"]["columns"]
-        write_tsv(args.output_root / store / "non_pickup.tsv", non, non_columns)
-        write_tsv(args.output_root / store / "pickup.tsv", pick, pick_columns)
+        write_csv(args.output_root / store / "non_pickup.csv", non, non_columns)
+        write_csv(args.output_root / store / "pickup.csv", pick, pick_columns)
         print(f"{store}: non-pickup={len(non)}, pickup={len(pick)}")
 
 

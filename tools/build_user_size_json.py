@@ -12,20 +12,32 @@ from pathlib import Path
 
 import yaml
 
-from build_user_size_templates import configured_stores
-
-
 NON_COLUMNS = ["店铺","CAR","MAKE","MODEL","YEAR","VERSION","CONST","BACKSIZE","CATAGORY","LONG-TYPE","TYPE","SHORT-MODEL","SIZE"]
 PICK_COLUMNS = ["店铺","MAKE","MODEL","YEAR","VERSION","CAB","BED","BACKSIZE","SHORT-CAB","TITLE","DESCRIPTION","SIZE"]
 
 
-def read_tsv(path: Path) -> list[dict[str, str]]:
+def load_runtime_config(path: Path) -> dict:
+    text = path.read_text(encoding="utf-8")
+    return json.loads(text) if path.suffix.casefold() == ".json" else (yaml.safe_load(text) or {})
+
+
+def configured_stores(config_path: Path) -> list[tuple[str, str]]:
+    configured = list((load_runtime_config(config_path).get("input") or {}).get("stores") or [])
+    if not configured:
+        raise ValueError(f"No input.stores configured in {config_path}")
+    stores = [(str(store["store"]), str(store["sheet"])) for store in configured]
+    if len({store for store, _ in stores}) != len(stores):
+        raise ValueError(f"Configured inputs produce duplicate store names: {stores}")
+    return stores
+
+
+def read_csv(path: Path) -> list[dict[str, str]]:
     with path.open("r", encoding="utf-8-sig", newline="") as file:
-        return list(csv.DictReader(file, delimiter="\t"))
+        return list(csv.DictReader(file))
 
 
-def read_optional_tsv(path: Path) -> list[dict[str, str]]:
-    return read_tsv(path) if path.is_file() else []
+def read_optional_csv(path: Path) -> list[dict[str, str]]:
+    return read_csv(path) if path.is_file() else []
 
 
 def compact_table(columns: list[str], rows: list[dict[str, str]]) -> dict:
@@ -87,7 +99,7 @@ def ai_abbreviations(
     return accepted
 
 
-def build(case_name: str, compress_root: Path, config: Path, rules_path: Path, ai_config_path: Path, selected_sheets: set[str] | None = None) -> dict:
+def build(compress_root: Path, config: Path, rules_path: Path, ai_config_path: Path, selected_stores: set[str] | None = None) -> dict:
     rules = json.loads(rules_path.read_text(encoding="utf-8"))
     ai_config = yaml.safe_load(ai_config_path.read_text(encoding="utf-8")) or {}
     limits = {key: int(value) for key, value in ai_config.get("max_length", {}).items()}
@@ -107,15 +119,15 @@ def build(case_name: str, compress_root: Path, config: Path, rules_path: Path, a
     non_pickup: list[dict[str, str]] = []
     pickup: list[dict[str, str]] = []
     stores = configured_stores(config)
-    if selected_sheets is not None:
-        unknown = selected_sheets - {sheet for _, sheet in stores}
+    if selected_stores is not None:
+        unknown = selected_stores - {store for store, _ in stores}
         if unknown:
-            raise ValueError(f"Unknown configured sheets: {sorted(unknown)}")
-        stores = [(store, sheet) for store, sheet in stores if sheet in selected_sheets]
-    for store, input_sheet in stores:
-        stem = f"{case_name}_{input_sheet}"
+            raise ValueError(f"Unknown configured stores: {sorted(unknown)}")
+        stores = [(store, sheet) for store, sheet in stores if store in selected_stores]
+    for store, _input_sheet in stores:
+        stem = store
         folder = compress_root / stem / "compress"
-        non_rows = read_optional_tsv(folder / f"{stem}_非皮卡高度压缩表.tsv")
+        non_rows = read_optional_csv(folder / f"{stem}_非皮卡高度压缩表.csv")
         const_counts = Counter(row.get("CAR", "") for row in non_rows)
         distinct_consts: dict[str, set[str]] = {}
         for row in non_rows:
@@ -129,7 +141,7 @@ def build(case_name: str, compress_root: Path, config: Path, rules_path: Path, a
             derived = {**row, "店铺": store, "CATAGORY": size.get("category", ""), "LONG-TYPE": long_type, "TYPE": type_cache.get(long_type, matches[0]["short"] if matches else long_type), "SHORT-MODEL": model_map.get(row.get("MODEL", ""), row.get("MODEL", "")), "SIZE": size.get("generic", "")}
             non_pickup.append(derived)
 
-        for row in read_optional_tsv(folder / f"{stem}_皮卡高度压缩表.tsv"):
+        for row in read_optional_csv(folder / f"{stem}_皮卡高度压缩表.csv"):
             front = pickup_front.get((row.get("MAKE", ""), row.get("MODEL", "")), {})
             size = sizes.get(row.get("BACKSIZE", ""), {})
             pickup.append({**row, "店铺": store, "SHORT-CAB": cab_map.get(row.get("CAB", ""), row.get("CAB", "")), "TITLE": front.get("TITLE", f"{row.get('MAKE','')} {row.get('MODEL','')}".strip()), "DESCRIPTION": pickup_description.get(row.get("MAKE", ""), ""), "SIZE": size.get("generic", "")})
@@ -168,27 +180,26 @@ def build(case_name: str, compress_root: Path, config: Path, rules_path: Path, a
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build sorted user-size data directly as compact JSON.")
-    parser.add_argument("--case-name", required=True)
     parser.add_argument("--compress-root", type=Path, required=True)
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--rules", type=Path, required=True)
     parser.add_argument("--ai-config", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--sheet", action="append", help="Only rebuild this configured sheet (repeatable).")
+    parser.add_argument("--store", action="append", help="Only rebuild this configured store (repeatable).")
     args = parser.parse_args()
-    selected = set(args.sheet) if args.sheet else None
-    result = build(args.case_name, args.compress_root, args.config, args.rules, args.ai_config, selected)
+    selected = set(args.store) if args.store else None
+    result = build(args.compress_root, args.config, args.rules, args.ai_config, selected)
     if selected and args.output.is_file():
         previous = json.loads(args.output.read_text(encoding="utf-8"))
-        selected_stores = {store for store, sheet in configured_stores(args.config) if sheet in selected}
+        selected_store_names = set(selected)
         for table_name in ("non_pickup", "pickup"):
             columns = previous[table_name]["columns"]
             store_index = columns.index("店铺")
-            kept = [row for row in previous[table_name]["rows"] if row[store_index] not in selected_stores]
+            kept = [row for row in previous[table_name]["rows"] if row[store_index] not in selected_store_names]
             result[table_name]["rows"] = kept + result[table_name]["rows"]
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    print(f"User-size JSON written: {args.output}" + (f" (updated: {', '.join(args.sheet)})" if args.sheet else ""))
+    print(f"User-size JSON written: {args.output}" + (f" (updated: {', '.join(args.store)})" if args.store else ""))
 
 
 if __name__ == "__main__":

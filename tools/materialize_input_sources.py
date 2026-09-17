@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import copy
 import csv
+import json
 import re
 from pathlib import Path
 from typing import Any, Iterable
@@ -14,8 +15,8 @@ import yaml
 EXCEL_SUFFIXES = {".xlsx", ".xlsm"}
 SUPPORTED_SUFFIXES = EXCEL_SUFFIXES | {".csv"}
 INVALID_SHEET_CHARS = re.compile(r"[\\/*?:\[\]]")
-DEFAULT_SOURCE_RULE = {
-    "name": "{stem}",
+DEFAULT_STORE_RULE = {
+    "store": "{stem}",
     "label": "{stem}尺码匹配表",
     "sheet": "{stem}尺码匹配",
     "header_row": 1,
@@ -28,11 +29,6 @@ DEFAULT_REQUIRED_ALIASES = {
     "年份区间": ("YEAR", "年份区间"),
     "最终尺码": ("确认尺码", "自动尺码", "最终尺码", "对应尺码"),
 }
-
-
-class IndentedSafeDumper(yaml.SafeDumper):
-    def increase_indent(self, flow: bool = False, indentless: bool = False):
-        return super().increase_indent(flow, indentless=False)
 
 
 def deep_merge(base: dict[str, Any], overrides: dict[str, Any]) -> dict[str, Any]:
@@ -97,7 +93,7 @@ def render_template(value: Any, path: Path) -> str:
     try:
         return str(value).format(**variables).strip()
     except KeyError as exc:
-        raise ValueError(f"Unknown input.match_source template variable: {exc.args[0]}") from exc
+        raise ValueError(f"Unknown input.store template variable: {exc.args[0]}") from exc
 
 
 def safe_sheet_name(value: str) -> str:
@@ -107,29 +103,29 @@ def safe_sheet_name(value: str) -> str:
     return cleaned[:31]
 
 
-def build_match_source(path: Path, config: dict[str, Any]) -> dict[str, Any]:
+def build_store(path: Path, config: dict[str, Any]) -> dict[str, Any]:
     input_config = config.get("input") or {}
-    configured_rule = input_config.get("match_source") or {}
+    configured_rule = input_config.get("store") or {}
     if not isinstance(configured_rule, dict):
-        raise ValueError("input.match_source must be a mapping")
-    rule = {**DEFAULT_SOURCE_RULE, **configured_rule}
-    source = {
-        "name": render_template(rule["name"], path),
+        raise ValueError("input.store must be a mapping")
+    rule = {**DEFAULT_STORE_RULE, **configured_rule}
+    store = {
+        "store": render_template(rule["store"], path),
         "label": render_template(rule["label"], path),
         "sheet": safe_sheet_name(render_template(rule["sheet"], path)),
         "header_row": int(rule.get("header_row", 1)),
-        "columns": str(rule.get("columns", DEFAULT_SOURCE_RULE["columns"])),
+        "columns": str(rule.get("columns", DEFAULT_STORE_RULE["columns"])),
     }
-    if not source["name"] or not source["label"]:
-        raise ValueError(f"Generated source name/label is empty for {path.name}")
-    if source["header_row"] < 1:
-        raise ValueError("input.match_source.header_row must be at least 1")
-    source["file"] = path.name
-    return source
+    if not store["store"] or not store["label"]:
+        raise ValueError(f"Generated store/label is empty for {path.name}")
+    if store["header_row"] < 1:
+        raise ValueError("input.store.header_row must be at least 1")
+    store["file"] = path.name
+    return store
 
 
-def select_excel_sheet(workbook: Any, path: Path, source: dict[str, Any], config: dict[str, Any]) -> str:
-    rule = (config.get("input") or {}).get("match_source") or {}
+def select_excel_sheet(workbook: Any, path: Path, store: dict[str, Any], config: dict[str, Any]) -> str:
+    rule = (config.get("input") or {}).get("store") or {}
     configured = rule.get("source_sheet")
     if configured:
         requested = render_template(configured, path)
@@ -140,7 +136,7 @@ def select_excel_sheet(workbook: Any, path: Path, source: dict[str, Any], config
             )
         return requested
 
-    candidates = [source["sheet"], source["name"], path.stem, source["label"]]
+    candidates = [store["sheet"], store["store"], path.stem, store["label"]]
     for candidate in candidates:
         if candidate in workbook.sheetnames:
             return candidate
@@ -151,8 +147,8 @@ def select_excel_sheet(workbook: Any, path: Path, source: dict[str, Any], config
     if len(workbook.sheetnames) == 1:
         return workbook.sheetnames[0]
     raise ValueError(
-        f"Cannot select a worksheet from {path.name}; generated source sheet is '{source['sheet']}', "
-        f"available: {workbook.sheetnames}. Set input.match_source.source_sheet if needed."
+        f"Cannot select a worksheet from {path.name}; generated store sheet is '{store['sheet']}', "
+        f"available: {workbook.sheetnames}. Set input.store.source_sheet if needed."
     )
 
 
@@ -215,25 +211,32 @@ def validate_headers(headers: Iterable[Any], config: dict[str, Any], path: Path)
         if not available.intersection(accepted):
             missing.append(f"{canonical} ({'/'.join(sorted(accepted))})")
     if missing:
-        raise ValueError(f"Input source {path.name} is missing required fields: {', '.join(missing)}")
+        raise ValueError(f"Store input {path.name} is missing required fields: {', '.join(missing)}")
 
 
-def copy_rows(rows: Iterable[Iterable[Any]], target: Any, config: dict[str, Any], path: Path) -> int:
+def write_csv_rows(
+    rows: Iterable[Iterable[Any]],
+    output_path: Path,
+    config: dict[str, Any],
+    path: Path,
+) -> int:
     iterator = iter(rows)
     try:
         try:
             headers = normalize_headers(next(iterator), config, path)
         except StopIteration as exc:
-            raise ValueError(f"Input source is empty: {path.name}") from exc
+            raise ValueError(f"Store input is empty: {path.name}") from exc
         validate_headers(headers, config, path)
-        target.append(headers)
-
-        row_count = 0
-        for row in iterator:
-            target.append(list(row))
-            row_count += 1
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        with output_path.open("w", encoding="utf-8-sig", newline="") as handle:
+            writer = csv.writer(handle)
+            writer.writerow(headers)
+            row_count = 0
+            for row in iterator:
+                writer.writerow(list(row))
+                row_count += 1
         if row_count == 0:
-            raise ValueError(f"Input source has a header but no data rows: {path.name}")
+            raise ValueError(f"Store input has a header but no data rows: {path.name}")
         return row_count
     finally:
         close = getattr(iterator, "close", None)
@@ -244,7 +247,7 @@ def copy_rows(rows: Iterable[Iterable[Any]], target: Any, config: dict[str, Any]
 def materialize_inputs(
     input_dir: Path,
     config_path: Path,
-    output_workbook: Path,
+    output_dir: Path,
     output_config: Path,
 ) -> list[dict[str, Any]]:
     config = load_config(config_path)
@@ -253,66 +256,61 @@ def materialize_inputs(
         patterns = ", ".join(input_patterns(config))
         raise FileNotFoundError(f"No supported input files found in {input_dir} (patterns: {patterns})")
 
-    sources = [build_match_source(path, config) for path in files]
-    names = [str(source["name"]) for source in sources]
-    sheets = [str(source["sheet"]) for source in sources]
+    stores = [build_store(path, config) for path in files]
+    names = [str(store["store"]) for store in stores]
+    sheets = [str(store["sheet"]) for store in stores]
     if len(names) != len(set(names)):
-        raise ValueError(f"Input filenames produce duplicate match source names: {names}")
+        raise ValueError(f"Input filenames produce duplicate store names: {names}")
     if len(sheets) != len(set(sheets)):
         raise ValueError(f"Input filenames produce duplicate worksheet names: {sheets}")
 
-    combined = openpyxl.Workbook(write_only=True)
-    for path, source in zip(files, sources, strict=True):
-        target_sheet = combined.create_sheet(str(source["sheet"]))
+    output_dir.mkdir(parents=True, exist_ok=True)
+    for index, (path, store) in enumerate(zip(files, stores, strict=True), start=1):
+        output_path = output_dir / f"{index:03d}-{safe_sheet_name(str(store['store']))}.csv"
         if path.suffix.casefold() in EXCEL_SUFFIXES:
             workbook = openpyxl.load_workbook(path, read_only=True, data_only=True)
             try:
-                selected_sheet = select_excel_sheet(workbook, path, source, config)
-                row_count = copy_rows(
-                    workbook[selected_sheet].iter_rows(values_only=True), target_sheet, config, path
+                selected_sheet = select_excel_sheet(workbook, path, store, config)
+                row_count = write_csv_rows(
+                    workbook[selected_sheet].iter_rows(values_only=True), output_path, config, path
                 )
             finally:
                 workbook.close()
         else:
-            row_count = copy_rows(csv_rows(path, config), target_sheet, config, path)
+            row_count = write_csv_rows(csv_rows(path, config), output_path, config, path)
+        store["path"] = output_path.relative_to(output_config.parent).as_posix()
         print(
-            f"[input-source] {path.name} -> {source['name']} / {source['sheet']} "
+            f"[store] {path.name} -> {store['store']} / {output_path.name} "
             f"({row_count} data rows)"
         )
 
-    output_workbook.parent.mkdir(parents=True, exist_ok=True)
-    combined.save(output_workbook)
-
     runtime_config = dict(config)
     runtime_input = dict(runtime_config.get("input") or {})
-    runtime_input["sheets"] = sheets
-    runtime_input["match_sources"] = sources
+    runtime_input.pop("sheets", None)
+    runtime_input.pop("match_sources", None)
+    runtime_input["stores"] = stores
     runtime_config["input"] = runtime_input
     output_config.parent.mkdir(parents=True, exist_ok=True)
-    with output_config.open("w", encoding="utf-8", newline="\n") as handle:
-        yaml.dump(
-            runtime_config,
-            handle,
-            Dumper=IndentedSafeDumper,
-            allow_unicode=True,
-            sort_keys=False,
-        )
-    print(f"Materialized {len(sources)} input source(s): {output_workbook}")
+    output_config.write_text(
+        json.dumps(runtime_config, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    print(f"Materialized {len(stores)} store(s): {output_dir}")
     print(f"Runtime config: {output_config}")
-    return sources
+    return stores
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Combine configured Excel/CSV inputs and generate match_sources.")
+    parser = argparse.ArgumentParser(description="Normalize one Excel/CSV file per store into CSV plus JSON metadata.")
     parser.add_argument("--input-dir", type=Path, required=True)
     parser.add_argument("--config", type=Path, required=True)
-    parser.add_argument("--output-workbook", type=Path, required=True)
+    parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--output-config", type=Path, required=True)
     args = parser.parse_args()
     materialize_inputs(
         args.input_dir.resolve(),
         args.config.resolve(),
-        args.output_workbook.resolve(),
+        args.output_dir.resolve(),
         args.output_config.resolve(),
     )
 

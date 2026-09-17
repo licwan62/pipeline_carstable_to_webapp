@@ -1,0 +1,43 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/compress_configured_sheets.py --output-root D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\01_compress --config D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\00_input\pipeline.generated.json --compress-script D:\Licheng\Repo\pipeline_carstable_to_webapp/../compress_to_size_chart/process_tsv.py
+
+[进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/660 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Corvette | 已完成MODEL=139/660 | 合并项数量=181 | 尝试次数=682 | 用时=20s
+[进度] 非皮卡高度压缩 | MAKE=Infiniti | MODEL=QX60 | 已完成MODEL=296/660 | 合并项数量=279 | 尝试次数=911 | 用时=30s
+[进度] 非皮卡高度压缩 | MAKE=Mercedes-Benz | MODEL=GLK-Class | 已完成MODEL=445/660 | 合并项数量=401 | 尝试次数=1166 | 用时=40s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=531/660 | 合并项数量=539 | 尝试次数=1664 | 用时=50s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=S60 | 已完成MODEL=647/660 | 合并项数量=641 | 尝试次数=2735 | 用时=60s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=XC90 | 已完成MODEL=660/660 | 合并项数量=645 | 尝试次数=2740 | 用时=61s
+[进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/35 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=2/35 | 合并项数量=8 | 尝试次数=101 | 用时=10s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=S10 | 已完成MODEL=5/35 | 合并项数量=26 | 尝试次数=256 | 用时=20s
+[进度] 皮卡高度压缩 | MAKE=Ford | MODEL=F-150 | 已完成MODEL=14/35 | 合并项数量=47 | 尝试次数=597 | 用时=30s
+[进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=35/35 | 合并项数量=89 | 尝试次数=788 | 用时=34s
+[进度] 非皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/14282 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡原子检查 | MAKE=Acura | MODEL=ADX | 已完成行=1342/14282 | 合并项数量=0 | 尝试次数=0 | 用时=10s
+[进度] 非皮卡原子检查 | MAKE=Volvo | MODEL=XC90 | 已完成行=14282/14282 | 合并项数量=0 | 尝试次数=0 | 用时=16s
+[进度] 皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/2395 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡原子检查 | MAKE=Chevrolet | MODEL=C/K | 已完成行=324/2395 | 合并项数量=0 | 尝试次数=0 | 用时=10s
+[进度] 皮卡原子检查 | MAKE=Ford | MODEL=F-100 | 已完成行=943/2395 | 合并项数量=0 | 尝试次数=0 | 用时=20s
+[进度] 皮卡原子检查 | MAKE=GMC | MODEL=Sierra 1500 | 已完成行=1539/2395 | 合并项数量=0 | 尝试次数=0 | 用时=30s
+[进度] 皮卡原子检查 | MAKE=Nissan | MODEL=Frontier | 已完成行=1861/2395 | 合并项数量=0 | 尝试次数=0 | 用时=40s
+[进度] 皮卡原子检查 | MAKE=Ram | MODEL=2500/3500 | 已完成行=2106/2395 | 合并项数量=0 | 尝试次数=0 | 用时=50s
+[进度] 皮卡原子检查 | MAKE=Toyota | MODEL=Tundra | 已完成行=2370/2395 | 合并项数量=0 | 尝试次数=0 | 用时=60s
+[进度] 皮卡原子检查 | MAKE=Toyota | MODEL=Tundra | 已完成行=2395/2395 | 合并项数量=0 | 尝试次数=0 | 用时=61s
+写入完成
+Input table: combined_新分析0831尺码匹配
+Output dir: C:\Users\cc\AppData\Local\Temp\compress-csv-gfl7d1ju\output\combined_新分析0831尺码匹配
+Non-pickup lossless TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-gfl7d1ju\output\combined_新分析0831尺码匹配\compress\combined_新分析0831尺码匹配_非皮卡无损压缩表.tsv
+Non-pickup high TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-gfl7d1ju\output\combined_新分析0831尺码匹配\compress\combined_新分析0831尺码匹配_非皮卡高度压缩表.tsv
+Pickup lossless TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-gfl7d1ju\output\combined_新分析0831尺码匹配\compress\combined_新分析0831尺码匹配_皮卡无损压缩.tsv
+Pickup high TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-gfl7d1ju\output\combined_新分析0831尺码匹配\compress\combined_新分析0831尺码匹配_皮卡高度压缩表.tsv
+Log TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-gfl7d1ju\output\combined_新分析0831尺码匹配\compress\combined_新分析0831尺码匹配_压缩log.tsv
+Atom TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-gfl7d1ju\output\combined_新分析0831尺码匹配\compress\combined_新分析0831尺码匹配_原子事实表.tsv
+Non-pickup atom check TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-gfl7d1ju\output\combined_新分析0831尺码匹配\check\combined_新分析0831尺码匹配_非皮卡原子检查.tsv
+Pickup atom check TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-gfl7d1ju\output\combined_新分析0831尺码匹配\check\combined_新分析0831尺码匹配_皮卡原子检查.tsv
+Excel: C:\Users\cc\AppData\Local\Temp\compress-csv-gfl7d1ju\output\combined_新分析0831尺码匹配\combined_新分析0831尺码匹配_output.xlsx
+[reuse] 07-FULL尺码匹配
+[reuse] 07-HNT尺码匹配
+[reuse] 07-TM尺码匹配
+[reuse] 07-TM拆尺码匹配
+[compress-new] 新分析0831尺码匹配: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_01_pipeline\00_input\tables\005-新分析0831.csv
