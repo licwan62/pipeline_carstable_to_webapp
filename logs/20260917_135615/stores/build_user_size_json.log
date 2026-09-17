@@ -1,0 +1,12 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/build_user_size_json.py --compress-root D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\01_compressed_fitment --config D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\00_input\pipeline.generated.json --rules D:\Licheng\Repo\pipeline_carstable_to_webapp\configs\user-size-rules.json --ai-config D:\Licheng\Repo\pipeline_carstable_to_webapp\configs\ai-user-size.yaml --output D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\02_user_size.json
+
+AI abbreviation type: batch 1, accepted 4/58
+AI abbreviation type: batch 2, accepted 5/58
+AI abbreviation type: batch 3, accepted 15/58
+AI abbreviation type: batch 4, accepted 25/58
+AI abbreviation type: batch 5, accepted 28/58
+AI abbreviation type: batch 6, accepted 36/58
+AI abbreviation cab: batch 1, accepted 3/17
+AI abbreviation cab: batch 2, accepted 6/17
+User-size JSON written: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\02_user_size.json

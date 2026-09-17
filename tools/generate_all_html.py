@@ -57,7 +57,7 @@ def add_generator_size_columns(source: Path, target: Path) -> Path:
         reader = csv.DictReader(handle)
         rows = list(reader)
         columns = list(reader.fieldnames or [])
-    columns.extend(column for column in ("BACKSIZE", "SIZE") if column not in columns)
+    columns.extend(column for column in ("SIZE", "SIZE-CODE") if column not in columns)
     with target.open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=columns)
         writer.writeheader()
@@ -93,7 +93,7 @@ def generate_all(args: argparse.Namespace, config_path: Path) -> None:
             non_pickup_input = add_generator_size_columns(non_pickup_input, temporary_root / f"{store}-non-pickup.csv")
             pickup_input = add_generator_size_columns(pickup_input, temporary_root / f"{store}-pickup.csv")
             special_profile = yaml.safe_load(config_path.read_text(encoding="utf-8")) or {}
-            special_profile["exclude_rows"] = "BACKSIZE=无可用尺码"
+            special_profile["exclude_rows"] = "SIZE=无可用尺码"
             store_config = temporary_root / f"{store}-preference.yaml"
             store_config.write_text(yaml.safe_dump(special_profile, allow_unicode=True, sort_keys=False), encoding="utf-8")
             extra_non_args = ["--table-columns", "MODEL,YEAR,TYPE"]

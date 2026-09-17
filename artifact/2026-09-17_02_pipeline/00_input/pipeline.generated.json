@@ -1,0 +1,249 @@
+{
+  "repos": {
+    "pipeline": ".",
+    "compress": "../compress_to_size_chart"
+  },
+  "paths": {
+    "input_dir": "input/0917",
+    "artifact_root": "artifact",
+    "public_dir": "public",
+    "logs_dir": "logs"
+  },
+  "file_rules": {
+    "input_patterns": [
+      "*.xlsx",
+      "*.xlsm",
+      "*.csv"
+    ]
+  },
+  "input": {
+    "store": {
+      "store": "{stem}",
+      "label": "{stem}尺码匹配表",
+      "sheet": "{stem}尺码匹配",
+      "header_row": 1,
+      "columns": "MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE"
+    },
+    "csv": {
+      "encoding": "utf-8-sig"
+    },
+    "header_aliases": {
+      "S8MAKE": "MAKE"
+    },
+    "required_fields": [
+      "品牌",
+      "前台车型",
+      "年份区间",
+      "最终尺码"
+    ],
+    "stores": [
+      {
+        "store": "HNT全量",
+        "label": "HNT全量尺码匹配表",
+        "sheet": "HNT全量尺码匹配",
+        "header_row": 1,
+        "columns": "MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE",
+        "file": "HNT全量.csv",
+        "path": "tables/001-HNT全量.csv"
+      },
+      {
+        "store": "TM_拆分全量",
+        "label": "TM_拆分全量尺码匹配表",
+        "sheet": "TM_拆分全量尺码匹配",
+        "header_row": 1,
+        "columns": "MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE",
+        "file": "TM_拆分全量.csv",
+        "path": "tables/002-TM_拆分全量.csv"
+      },
+      {
+        "store": "TM全量",
+        "label": "TM全量尺码匹配表",
+        "sheet": "TM全量尺码匹配",
+        "header_row": 1,
+        "columns": "MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE",
+        "file": "TM全量.csv",
+        "path": "tables/003-TM全量.csv"
+      },
+      {
+        "store": "全尺码全量",
+        "label": "全尺码全量尺码匹配表",
+        "sheet": "全尺码全量尺码匹配",
+        "header_row": 1,
+        "columns": "MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE",
+        "file": "全尺码全量.csv",
+        "path": "tables/004-全尺码全量.csv"
+      }
+    ]
+  },
+  "columns": {
+    "品牌": [
+      "MAKE",
+      "品牌"
+    ],
+    "前台车型": [
+      "MODEL",
+      "前台车型"
+    ],
+    "结构": [
+      "结构"
+    ],
+    "版本": [
+      "版本"
+    ],
+    "年份区间": [
+      "YEAR",
+      "年份区间"
+    ],
+    "最终尺码": [
+      "确认尺码",
+      "自动尺码",
+      "最终尺码",
+      "对应尺码"
+    ],
+    "驾驶室类型": [
+      "CAB",
+      "驾驶室类型"
+    ],
+    "货斗长度_ft": [
+      "BED",
+      "货斗长度_ft"
+    ],
+    "子车系": [
+      "SUB-MODEL",
+      "子车系"
+    ],
+    "分类": [
+      "分类"
+    ]
+  },
+  "defaults": {
+    "分类": ""
+  },
+  "variables": {
+    "compressed_fitment_dir": "{artifact_dir}/01_compressed_fitment",
+    "user_size_json_file": "{artifact_dir}/02_user_size.json",
+    "user_size_rules_file": "{root}/configs/user-size-rules.json",
+    "user_size_ai_config_file": "{root}/configs/ai-user-size.yaml",
+    "store_csv_dir": "{artifact_dir}/03_store_csv",
+    "store_html_dir": "{artifact_dir}/04_store_html",
+    "site_workspace_dir": "{artifact_dir}/05_site_workspace",
+    "webapp_repo": "{root}/../publish_tables_to_webapp"
+  },
+  "steps": {
+    "normalize_store_inputs": {
+      "enabled": true,
+      "repo": "pipeline",
+      "command": [
+        "{python}",
+        "tools/materialize_input_sources.py",
+        "--input-dir",
+        "{input_dir}",
+        "--config",
+        "{source_config}",
+        "--output-dir",
+        "{input_tables_dir}",
+        "--output-config",
+        "{pipeline_config}"
+      ],
+      "check_exists": [
+        "{input_tables_dir}",
+        "{pipeline_config}"
+      ]
+    },
+    "compress_store_fitment": {
+      "enabled": true,
+      "repo": "pipeline",
+      "command": [
+        "{python}",
+        "tools/compress_configured_sheets.py",
+        "--output-root",
+        "{compressed_fitment_dir}",
+        "--config",
+        "{pipeline_config}",
+        "--compress-script",
+        "{root}/../compress_to_size_chart/process_tsv.py"
+      ],
+      "check_exists": [
+        "{compressed_fitment_dir}"
+      ]
+    },
+    "build_user_size_json": {
+      "enabled": true,
+      "repo": "pipeline",
+      "command": [
+        "{python}",
+        "tools/build_user_size_json.py",
+        "--compress-root",
+        "{compressed_fitment_dir}",
+        "--config",
+        "{pipeline_config}",
+        "--rules",
+        "{user_size_rules_file}",
+        "--ai-config",
+        "{user_size_ai_config_file}",
+        "--output",
+        "{user_size_json_file}"
+      ],
+      "check_exists": [
+        "{user_size_json_file}"
+      ]
+    },
+    "export_store_csv": {
+      "enabled": true,
+      "repo": "pipeline",
+      "command": [
+        "{python}",
+        "tools/export_user_size_json_tables.py",
+        "--input",
+        "{user_size_json_file}",
+        "--output-root",
+        "{store_csv_dir}"
+      ],
+      "check_exists": [
+        "{store_csv_dir}"
+      ]
+    },
+    "generate_store_html": {
+      "enabled": true,
+      "repo": "pipeline",
+      "command": [
+        "{python}",
+        "tools/generate_all_html.py",
+        "--export-root",
+        "{store_csv_dir}",
+        "--output-root",
+        "{store_html_dir}",
+        "--config-path",
+        "{root}/configs/html-style.yaml",
+        "--html-script",
+        "{root}/../generate_size_chart_html/tsv_to_size_chart_html.py"
+      ],
+      "check_exists": [
+        "{store_html_dir}"
+      ]
+    },
+    "build_public_site": {
+      "enabled": true,
+      "repo": "pipeline",
+      "command": [
+        "{python}",
+        "tools/build_publish_site.py",
+        "--publish-repo",
+        "{webapp_repo}",
+        "--html-root",
+        "{store_html_dir}",
+        "--pipeline-config",
+        "{pipeline_config}",
+        "--html-style-config",
+        "{root}/configs/html-style.yaml",
+        "--workspace",
+        "{site_workspace_dir}",
+        "--site-output",
+        "{public_dir}"
+      ],
+      "check_exists": [
+        "{case_public}/index.html"
+      ]
+    }
+  }
+}

@@ -1,0 +1,142 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/compress_configured_sheets.py --output-root D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\01_compressed_fitment --config D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\00_input\pipeline.generated.json --compress-script D:\Licheng\Repo\pipeline_carstable_to_webapp/../compress_to_size_chart/process_tsv.py
+
+[进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/660 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Corvette | 已完成MODEL=139/660 | 合并项数量=199 | 尝试次数=656 | 用时=22s
+[进度] 非皮卡高度压缩 | MAKE=Ford | MODEL=Mustang | 已完成MODEL=221/660 | 合并项数量=266 | 尝试次数=762 | 用时=33s
+[进度] 非皮卡高度压缩 | MAKE=Jaguar | MODEL=XJ | 已完成MODEL=308/660 | 合并项数量=326 | 尝试次数=971 | 用时=44s
+[进度] 非皮卡高度压缩 | MAKE=MINI | MODEL=Cooper SE | 已完成MODEL=394/660 | 合并项数量=390 | 尝试次数=1102 | 用时=55s
+[进度] 非皮卡高度压缩 | MAKE=Mercury | MODEL=Sable | 已完成MODEL=460/660 | 合并项数量=480 | 尝试次数=1510 | 用时=65s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=Firebird | 已完成MODEL=521/660 | 合并项数量=583 | 尝试次数=2146 | 用时=75s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=531/660 | 合并项数量=607 | 尝试次数=2413 | 用时=97s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=S60 | 已完成MODEL=647/660 | 合并项数量=709 | 尝试次数=3478 | 用时=107s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=XC90 | 已完成MODEL=660/660 | 合并项数量=712 | 尝试次数=3481 | 用时=107s
+[进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/35 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=2/35 | 合并项数量=9 | 尝试次数=128 | 用时=10s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=2/35 | 合并项数量=20 | 尝试次数=307 | 用时=20s
+[进度] 皮卡高度压缩 | MAKE=Ford | MODEL=F-150 | 已完成MODEL=14/35 | 合并项数量=54 | 尝试次数=668 | 用时=30s
+[进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=35/35 | 合并项数量=99 | 尝试次数=894 | 用时=35s
+[进度] 非皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/14145 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡原子检查 | MAKE=Cadillac | MODEL=ATS | 已完成行=2949/14145 | 合并项数量=0 | 尝试次数=0 | 用时=10s
+[进度] 非皮卡原子检查 | MAKE=Volvo | MODEL=XC90 | 已完成行=14145/14145 | 合并项数量=0 | 尝试次数=0 | 用时=15s
+[进度] 皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/2333 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡原子检查 | MAKE=Chevrolet | MODEL=C/K | 已完成行=350/2333 | 合并项数量=0 | 尝试次数=0 | 用时=10s
+[进度] 皮卡原子检查 | MAKE=Ford | MODEL=F-100 | 已完成行=985/2333 | 合并项数量=0 | 尝试次数=0 | 用时=20s
+[进度] 皮卡原子检查 | MAKE=GMC | MODEL=Sierra 1500 | 已完成行=1622/2333 | 合并项数量=0 | 尝试次数=0 | 用时=30s
+[进度] 皮卡原子检查 | MAKE=Toyota | MODEL=Tundra | 已完成行=2246/2333 | 合并项数量=0 | 尝试次数=0 | 用时=40s
+[进度] 皮卡原子检查 | MAKE=Toyota | MODEL=Tundra | 已完成行=2333/2333 | 合并项数量=0 | 尝试次数=0 | 用时=41s
+写入完成
+Input table: HNT全量
+Output dir: C:\Users\cc\AppData\Local\Temp\compress-csv-dm37p79l\output\HNT全量
+Non-pickup lossless TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-dm37p79l\output\HNT全量\compress\HNT全量_非皮卡无损压缩表.tsv
+Non-pickup high TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-dm37p79l\output\HNT全量\compress\HNT全量_非皮卡高度压缩表.tsv
+Pickup lossless TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-dm37p79l\output\HNT全量\compress\HNT全量_皮卡无损压缩.tsv
+Pickup high TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-dm37p79l\output\HNT全量\compress\HNT全量_皮卡高度压缩表.tsv
+Log TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-dm37p79l\output\HNT全量\compress\HNT全量_压缩log.tsv
+Atom TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-dm37p79l\output\HNT全量\compress\HNT全量_原子事实表.tsv
+Non-pickup atom check TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-dm37p79l\output\HNT全量\check\HNT全量_非皮卡原子检查.tsv
+Pickup atom check TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-dm37p79l\output\HNT全量\check\HNT全量_皮卡原子检查.tsv
+Excel: C:\Users\cc\AppData\Local\Temp\compress-csv-dm37p79l\output\HNT全量\HNT全量_output.xlsx
+[进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/660 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Corvette | 已完成MODEL=139/660 | 合并项数量=236 | 尝试次数=781 | 用时=20s
+[进度] 非皮卡高度压缩 | MAKE=Infiniti | MODEL=QX50 | 已完成MODEL=293/660 | 合并项数量=393 | 尝试次数=1075 | 用时=30s
+[进度] 非皮卡高度压缩 | MAKE=Mercedes-Benz | MODEL=E-Class | 已完成MODEL=436/660 | 合并项数量=541 | 尝试次数=1387 | 用时=40s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=531/660 | 合并项数量=752 | 尝试次数=2780 | 用时=79s
+[进度] 非皮卡高度压缩 | MAKE=Volkswagen | MODEL=Phaeton | 已完成MODEL=634/660 | 合并项数量=901 | 尝试次数=3829 | 用时=89s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=XC90 | 已完成MODEL=660/660 | 合并项数量=912 | 尝试次数=3840 | 用时=90s
+[进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/35 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=2/35 | 合并项数量=13 | 尝试次数=172 | 用时=10s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=S10 | 已完成MODEL=5/35 | 合并项数量=40 | 尝试次数=619 | 用时=20s
+[进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=34/35 | 合并项数量=156 | 尝试次数=980 | 用时=30s
+[进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=35/35 | 合并项数量=160 | 尝试次数=995 | 用时=30s
+[进度] 非皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/13755 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡原子检查 | MAKE=Mitsubishi | MODEL=Eclipse | 已完成行=9992/13755 | 合并项数量=0 | 尝试次数=0 | 用时=10s
+[进度] 非皮卡原子检查 | MAKE=Volvo | MODEL=XC90 | 已完成行=13755/13755 | 合并项数量=0 | 尝试次数=0 | 用时=11s
+[进度] 皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/2236 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡原子检查 | MAKE=Chevrolet | MODEL=Silverado 1500 | 已完成行=546/2236 | 合并项数量=0 | 尝试次数=0 | 用时=10s
+[进度] 皮卡原子检查 | MAKE=Ford | MODEL=F-250/F-350 Super Duty | 已完成行=1173/2236 | 合并项数量=0 | 尝试次数=0 | 用时=20s
+[进度] 皮卡原子检查 | MAKE=Ram | MODEL=1500 | 已完成行=1802/2236 | 合并项数量=0 | 尝试次数=0 | 用时=30s
+[进度] 皮卡原子检查 | MAKE=Toyota | MODEL=Tundra | 已完成行=2236/2236 | 合并项数量=0 | 尝试次数=0 | 用时=37s
+写入完成
+Input table: TM_拆分全量
+Output dir: C:\Users\cc\AppData\Local\Temp\compress-csv-txqrh1tp\output\TM_拆分全量
+Non-pickup lossless TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-txqrh1tp\output\TM_拆分全量\compress\TM_拆分全量_非皮卡无损压缩表.tsv
+Non-pickup high TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-txqrh1tp\output\TM_拆分全量\compress\TM_拆分全量_非皮卡高度压缩表.tsv
+Pickup lossless TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-txqrh1tp\output\TM_拆分全量\compress\TM_拆分全量_皮卡无损压缩.tsv
+Pickup high TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-txqrh1tp\output\TM_拆分全量\compress\TM_拆分全量_皮卡高度压缩表.tsv
+Log TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-txqrh1tp\output\TM_拆分全量\compress\TM_拆分全量_压缩log.tsv
+Atom TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-txqrh1tp\output\TM_拆分全量\compress\TM_拆分全量_原子事实表.tsv
+Non-pickup atom check TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-txqrh1tp\output\TM_拆分全量\check\TM_拆分全量_非皮卡原子检查.tsv
+Pickup atom check TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-txqrh1tp\output\TM_拆分全量\check\TM_拆分全量_皮卡原子检查.tsv
+Excel: C:\Users\cc\AppData\Local\Temp\compress-csv-txqrh1tp\output\TM_拆分全量\TM_拆分全量_output.xlsx
+[进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/660 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Corvette | 已完成MODEL=139/660 | 合并项数量=193 | 尝试次数=595 | 用时=19s
+[进度] 非皮卡高度压缩 | MAKE=Jaguar | MODEL=F-Type | 已完成MODEL=301/660 | 合并项数量=303 | 尝试次数=841 | 用时=29s
+[进度] 非皮卡高度压缩 | MAKE=Mercedes-Benz | MODEL=S-Class | 已完成MODEL=448/660 | 合并项数量=432 | 尝试次数=1135 | 用时=39s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=531/660 | 合并项数量=586 | 尝试次数=2232 | 用时=63s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=S80 | 已完成MODEL=650/660 | 合并项数量=687 | 尝试次数=3297 | 用时=73s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=XC90 | 已完成MODEL=660/660 | 合并项数量=690 | 尝试次数=3300 | 用时=74s
+[进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/35 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=2/35 | 合并项数量=9 | 尝试次数=112 | 用时=10s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=S10 | 已完成MODEL=5/35 | 合并项数量=29 | 尝试次数=274 | 用时=20s
+[进度] 皮卡高度压缩 | MAKE=Ram | MODEL=1500 | 已完成MODEL=28/35 | 合并项数量=76 | 尝试次数=686 | 用时=30s
+[进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=35/35 | 合并项数量=93 | 尝试次数=779 | 用时=32s
+[进度] 非皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/14160 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡原子检查 | MAKE=Cadillac | MODEL=CT4 | 已完成行=2980/14160 | 合并项数量=0 | 尝试次数=0 | 用时=10s
+[进度] 非皮卡原子检查 | MAKE=Volvo | MODEL=XC90 | 已完成行=14160/14160 | 合并项数量=0 | 尝试次数=0 | 用时=15s
+[进度] 皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/2341 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡原子检查 | MAKE=Chevrolet | MODEL=C/K | 已完成行=337/2341 | 合并项数量=0 | 尝试次数=0 | 用时=10s
+[进度] 皮卡原子检查 | MAKE=Ford | MODEL=F-100 | 已完成行=968/2341 | 合并项数量=0 | 尝试次数=0 | 用时=20s
+[进度] 皮卡原子检查 | MAKE=GMC | MODEL=Sierra 1500 | 已完成行=1607/2341 | 合并项数量=0 | 尝试次数=0 | 用时=30s
+[进度] 皮卡原子检查 | MAKE=Toyota | MODEL=Tundra | 已完成行=2249/2341 | 合并项数量=0 | 尝试次数=0 | 用时=40s
+[进度] 皮卡原子检查 | MAKE=Toyota | MODEL=Tundra | 已完成行=2341/2341 | 合并项数量=0 | 尝试次数=0 | 用时=41s
+写入完成
+Input table: TM全量
+Output dir: C:\Users\cc\AppData\Local\Temp\compress-csv-nrunuizp\output\TM全量
+Non-pickup lossless TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-nrunuizp\output\TM全量\compress\TM全量_非皮卡无损压缩表.tsv
+Non-pickup high TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-nrunuizp\output\TM全量\compress\TM全量_非皮卡高度压缩表.tsv
+Pickup lossless TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-nrunuizp\output\TM全量\compress\TM全量_皮卡无损压缩.tsv
+Pickup high TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-nrunuizp\output\TM全量\compress\TM全量_皮卡高度压缩表.tsv
+Log TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-nrunuizp\output\TM全量\compress\TM全量_压缩log.tsv
+Atom TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-nrunuizp\output\TM全量\compress\TM全量_原子事实表.tsv
+Non-pickup atom check TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-nrunuizp\output\TM全量\check\TM全量_非皮卡原子检查.tsv
+Pickup atom check TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-nrunuizp\output\TM全量\check\TM全量_皮卡原子检查.tsv
+Excel: C:\Users\cc\AppData\Local\Temp\compress-csv-nrunuizp\output\TM全量\TM全量_output.xlsx
+[进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/660 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡高度压缩 | MAKE=Chevrolet | MODEL=Corvette | 已完成MODEL=139/660 | 合并项数量=193 | 尝试次数=1003 | 用时=20s
+[进度] 非皮卡高度压缩 | MAKE=Jaguar | MODEL=F-Pace | 已完成MODEL=301/660 | 合并项数量=298 | 尝试次数=1284 | 用时=30s
+[进度] 非皮卡高度压缩 | MAKE=Mercedes-Benz | MODEL=S-Class | 已完成MODEL=448/660 | 合并项数量=418 | 尝试次数=1583 | 用时=40s
+[进度] 非皮卡高度压缩 | MAKE=Pontiac | MODEL=LeMans | 已完成MODEL=531/660 | 合并项数量=580 | 尝试次数=2407 | 用时=52s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=S40 | 已完成MODEL=647/660 | 合并项数量=678 | 尝试次数=3475 | 用时=62s
+[进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=XC90 | 已完成MODEL=660/660 | 合并项数量=683 | 尝试次数=3480 | 用时=63s
+[进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/35 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=2/35 | 合并项数量=7 | 尝试次数=78 | 用时=10s
+[进度] 皮卡高度压缩 | MAKE=Chevrolet | MODEL=C/K | 已完成MODEL=2/35 | 合并项数量=15 | 尝试次数=194 | 用时=20s
+[进度] 皮卡高度压缩 | MAKE=Ford | MODEL=F-150 | 已完成MODEL=14/35 | 合并项数量=47 | 尝试次数=513 | 用时=30s
+[进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=35/35 | 合并项数量=93 | 尝试次数=779 | 用时=37s
+[进度] 非皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/14319 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 非皮卡原子检查 | MAKE=Acura | MODEL=ADX | 已完成行=1377/14319 | 合并项数量=0 | 尝试次数=0 | 用时=10s
+[进度] 非皮卡原子检查 | MAKE=Volvo | MODEL=XC90 | 已完成行=14319/14319 | 合并项数量=0 | 尝试次数=0 | 用时=17s
+[进度] 皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/2341 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[进度] 皮卡原子检查 | MAKE=Ford | MODEL=F-150 | 已完成行=75/2341 | 合并项数量=0 | 尝试次数=0 | 用时=10s
+[进度] 皮卡原子检查 | MAKE=Toyota | MODEL=Tundra | 已完成行=139/2341 | 合并项数量=0 | 尝试次数=0 | 用时=20s
+[进度] 皮卡原子检查 | MAKE=Chevrolet | MODEL=S10 | 已完成行=538/2341 | 合并项数量=0 | 尝试次数=0 | 用时=30s
+[进度] 皮卡原子检查 | MAKE=Ford | MODEL=F-150 | 已完成行=1149/2341 | 合并项数量=0 | 尝试次数=0 | 用时=40s
+[进度] 皮卡原子检查 | MAKE=GMC | MODEL=Sierra EV | 已完成行=1765/2341 | 合并项数量=0 | 尝试次数=0 | 用时=50s
+[进度] 皮卡原子检查 | MAKE=Toyota | MODEL=Tundra | 已完成行=2341/2341 | 合并项数量=0 | 尝试次数=0 | 用时=59s
+写入完成
+Input table: 全尺码全量
+Output dir: C:\Users\cc\AppData\Local\Temp\compress-csv-bhk8zrxu\output\全尺码全量
+Non-pickup lossless TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-bhk8zrxu\output\全尺码全量\compress\全尺码全量_非皮卡无损压缩表.tsv
+Non-pickup high TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-bhk8zrxu\output\全尺码全量\compress\全尺码全量_非皮卡高度压缩表.tsv
+Pickup lossless TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-bhk8zrxu\output\全尺码全量\compress\全尺码全量_皮卡无损压缩.tsv
+Pickup high TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-bhk8zrxu\output\全尺码全量\compress\全尺码全量_皮卡高度压缩表.tsv
+Log TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-bhk8zrxu\output\全尺码全量\compress\全尺码全量_压缩log.tsv
+Atom TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-bhk8zrxu\output\全尺码全量\compress\全尺码全量_原子事实表.tsv
+Non-pickup atom check TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-bhk8zrxu\output\全尺码全量\check\全尺码全量_非皮卡原子检查.tsv
+Pickup atom check TSV: C:\Users\cc\AppData\Local\Temp\compress-csv-bhk8zrxu\output\全尺码全量\check\全尺码全量_皮卡原子检查.tsv
+Excel: C:\Users\cc\AppData\Local\Temp\compress-csv-bhk8zrxu\output\全尺码全量\全尺码全量_output.xlsx
+[compress-new] HNT全量: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\00_input\tables\001-HNT全量.csv
+[compress-new] TM_拆分全量: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\00_input\tables\002-TM_拆分全量.csv
+[compress-new] TM全量: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\00_input\tables\003-TM全量.csv
+[compress-new] 全尺码全量: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\00_input\tables\004-全尺码全量.csv

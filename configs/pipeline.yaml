@@ -5,7 +5,7 @@ repos:
   compress: "../compress_to_size_chart"
 
 paths:
-  input_dir: "input"
+  input_dir: "input/0917"
   artifact_root: "artifact"
   public_dir: "public"
   logs_dir: "logs"

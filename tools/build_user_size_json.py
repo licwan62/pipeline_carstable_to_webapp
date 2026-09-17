@@ -12,8 +12,8 @@ from pathlib import Path
 
 import yaml
 
-NON_COLUMNS = ["店铺","CAR","MAKE","MODEL","YEAR","VERSION","CONST","BACKSIZE","CATAGORY","LONG-TYPE","TYPE","SHORT-MODEL","SIZE"]
-PICK_COLUMNS = ["店铺","MAKE","MODEL","YEAR","VERSION","CAB","BED","BACKSIZE","SHORT-CAB","TITLE","DESCRIPTION","SIZE"]
+NON_COLUMNS = ["店铺","CAR","MAKE","MODEL","YEAR","VERSION","CONST","SIZE","SIZE-CODE","CATAGORY","LONG-TYPE","TYPE","SHORT-MODEL"]
+PICK_COLUMNS = ["店铺","MAKE","MODEL","YEAR","VERSION","CAB","BED","SIZE","SIZE-CODE","SHORT-CAB","TITLE","DESCRIPTION"]
 
 
 def load_runtime_config(path: Path) -> dict:
@@ -42,6 +42,18 @@ def read_optional_csv(path: Path) -> list[dict[str, str]]:
 
 def compact_table(columns: list[str], rows: list[dict[str, str]]) -> dict:
     return {"columns": columns, "rows": [[row.get(column, "") for column in columns] for row in rows]}
+
+
+def normalized_size(row: dict[str, str], sizes: dict[str, dict]) -> tuple[str, str, dict]:
+    """Return canonical SIZE, SIZE-CODE, and size metadata.
+
+    New compressed tables provide SIZE/SIZE-CODE. BACKSIZE remains a read-only
+    compatibility fallback for older compressor output.
+    """
+    size_value = row.get("SIZE", "").strip() or row.get("BACKSIZE", "").strip()
+    metadata = sizes.get(size_value, {})
+    size_code = row.get("SIZE-CODE", "").strip() or str(metadata.get("generic", "")).strip()
+    return size_value, size_code, metadata
 
 
 def ai_abbreviations(
@@ -137,14 +149,14 @@ def build(compress_root: Path, config: Path, rules_path: Path, ai_config_path: P
             long_type = version.strip() if len(distinct_consts.get(car, set())) == 1 else " ".join(x for x in (const.strip(), version.strip()) if x)
             matches = [item for item in type_rows if item["long"].strip() == long_type.strip() and item["car"].strip() in ("", car.strip())]
             matches.sort(key=lambda item: item["car"].strip() == car.strip(), reverse=True)
-            size = sizes.get(row.get("BACKSIZE", ""), {})
-            derived = {**row, "店铺": store, "CATAGORY": size.get("category", ""), "LONG-TYPE": long_type, "TYPE": type_cache.get(long_type, matches[0]["short"] if matches else long_type), "SHORT-MODEL": model_map.get(row.get("MODEL", ""), row.get("MODEL", "")), "SIZE": size.get("generic", "")}
+            size_value, size_code, size = normalized_size(row, sizes)
+            derived = {**row, "店铺": store, "SIZE": size_value, "SIZE-CODE": size_code, "CATAGORY": size.get("category", ""), "LONG-TYPE": long_type, "TYPE": type_cache.get(long_type, matches[0]["short"] if matches else long_type), "SHORT-MODEL": model_map.get(row.get("MODEL", ""), row.get("MODEL", ""))}
             non_pickup.append(derived)
 
         for row in read_optional_csv(folder / f"{stem}_皮卡高度压缩表.csv"):
             front = pickup_front.get((row.get("MAKE", ""), row.get("MODEL", "")), {})
-            size = sizes.get(row.get("BACKSIZE", ""), {})
-            pickup.append({**row, "店铺": store, "SHORT-CAB": cab_map.get(row.get("CAB", ""), row.get("CAB", "")), "TITLE": front.get("TITLE", f"{row.get('MAKE','')} {row.get('MODEL','')}".strip()), "DESCRIPTION": pickup_description.get(row.get("MAKE", ""), ""), "SIZE": size.get("generic", "")})
+            size_value, size_code, _size = normalized_size(row, sizes)
+            pickup.append({**row, "店铺": store, "SIZE": size_value, "SIZE-CODE": size_code, "SHORT-CAB": cab_map.get(row.get("CAB", ""), row.get("CAB", "")), "TITLE": front.get("TITLE", f"{row.get('MAKE','')} {row.get('MODEL','')}".strip()), "DESCRIPTION": pickup_description.get(row.get("MAKE", ""), "")})
 
     candidates = {
         "model": sorted({row["MODEL"] for row in non_pickup if row["SHORT-MODEL"] == row["MODEL"] and len(row["MODEL"]) > limits.get("model", 12) and (retry_rejected or row["MODEL"] not in rejected.get("model", []))}),
@@ -175,7 +187,7 @@ def build(compress_root: Path, config: Path, rules_path: Path, ai_config_path: P
         return (int(head) if head.isdigit() else 9999, value)
     non_pickup.sort(key=lambda row: (row.get("MAKE", ""), row.get("MODEL", ""), category_rank.get(row.get("CATAGORY", ""), 999), year_key(row.get("YEAR", ""))))
     pickup.sort(key=lambda row: (row.get("TITLE", ""), row.get("MODEL", ""), year_key(row.get("YEAR", "")), row.get("CAB", ""), row.get("BED", "")))
-    return {"version": 1, "non_pickup": compact_table(NON_COLUMNS, non_pickup), "pickup": compact_table(PICK_COLUMNS, pickup)}
+    return {"version": 2, "non_pickup": compact_table(NON_COLUMNS, non_pickup), "pickup": compact_table(PICK_COLUMNS, pickup)}
 
 
 def main() -> None:

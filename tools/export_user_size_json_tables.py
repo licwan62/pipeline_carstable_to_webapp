@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 SIZE_FREE_STORES = {"TM-拆分"}
-SIZE_COLUMNS = {"BACKSIZE", "SIZE"}
+SIZE_COLUMNS = {"SIZE", "SIZE-CODE"}
 
 def records(table: dict) -> list[dict[str, str]]:
     columns = table["columns"]
@@ -40,8 +40,8 @@ def main() -> None:
             non_columns = [column for column in payload["non_pickup"]["columns"] if column not in SIZE_COLUMNS]
             pick_columns = [column for column in payload["pickup"]["columns"] if column not in SIZE_COLUMNS]
         else:
-            non = [row for row in non_rows if row.get("店铺") == store and row.get("SIZE") not in ("", "无可用尺码") and row.get("BACKSIZE") != "无可用尺码"]
-            pick = [row for row in pick_rows if row.get("店铺") == store and row.get("SIZE") not in ("", "无可用尺码") and row.get("BACKSIZE") != "无可用尺码"]
+            non = [row for row in non_rows if row.get("店铺") == store and row.get("SIZE-CODE") not in ("", "无可用尺码") and row.get("SIZE") != "无可用尺码"]
+            pick = [row for row in pick_rows if row.get("店铺") == store and row.get("SIZE-CODE") not in ("", "无可用尺码") and row.get("SIZE") != "无可用尺码"]
             non_columns = payload["non_pickup"]["columns"]
             pick_columns = payload["pickup"]["columns"]
         write_csv(args.output_root / store / "non_pickup.csv", non, non_columns)
