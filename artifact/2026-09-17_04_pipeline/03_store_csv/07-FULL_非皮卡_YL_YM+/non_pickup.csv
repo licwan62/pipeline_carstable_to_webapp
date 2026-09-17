@@ -1,0 +1,230 @@
+﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
+07-FULL,Acura ADX,Acura,ADX,2025-2026,,SUV,YL,S2,越野车,,,ADX
+07-FULL,Acura MDX,Acura,MDX,2001-2006,,SUV,YL,S2,越野车,,,MDX
+07-FULL,Acura RDX,Acura,RDX,2010-2026,,SUV,YL,S2,越野车,,,RDX
+07-FULL,Acura SLX,Acura,SLX,1996,,SUV,YL,S2,越野车,,,SLX
+07-FULL,Acura SLX,Acura,SLX,1998-1999,,SUV,YL,S2,越野车,,,SLX
+07-FULL,Alfa Romeo Stelvio,Alfa Romeo,Stelvio,2018-2026,,SUV,YL,S2,越野车,,,Stelvio
+07-FULL,Audi Q5,Audi,Q5,2009-2013,,SUV,YL,S2,越野车,,,Q5
+07-FULL,Audi Q5/SQ5,Audi,Q5/SQ5,2014-2026,Incl: Sportback,SUV,YL,S2,越野车,Incl: Sportback,Incl: Sportback,Q5/SQ5
+07-FULL,Audi Q6/SQ6 e-tron,Audi,Q6/SQ6 e-tron,2025,Incl: Sportback,SUV,YL,S2,越野车,Incl: Sportback,Incl: Sportback,Q6/SQ6 e-tron
+07-FULL,BMW X3,BMW,X3,2011-2026,,SUV,YL,S2,越野车,,,X3
+07-FULL,BMW X4,BMW,X4,2015-2025,,SUV,YL,S2,越野车,,,X4
+07-FULL,BMW X5,BMW,X5,2000-2006,,SUV,YL,S2,越野车,,,X5
+07-FULL,Buick Envision,Buick,Envision,2016-2026,,SUV,YL,S2,越野车,,,Envision
+07-FULL,Buick Envista,Buick,Envista,2024-2026,,SUV,YL,S2,越野车,,,Envista
+07-FULL,Buick Rendezvous,Buick,Rendezvous,2002-2007,,Crossover,YL,S2,越野车,,,Rendezvous
+07-FULL,Cadillac Optiq,Cadillac,Optiq,2025-2026,,SUV,YL,S2,越野车,,,Optiq
+07-FULL,Cadillac XT4,Cadillac,XT4,2019-2023,,SUV,YL,S2,越野车,,,XT4
+07-FULL,Cadillac XT5,Cadillac,XT5,2017-2026,,SUV,YL,S2,越野车,,,XT5
+07-FULL,Chevrolet Blazer,Chevrolet,Blazer,1973-2005,Incl: 4dr/4dr LS 4WD,SUV,YL,S2,越野车,Incl: 4dr/4dr LS 4WD,Inc:4dr/LS 4WD,Blazer
+07-FULL,Chevrolet Equinox,Chevrolet,Equinox,2005-2026,,SUV,YL,S2,越野车,,,Equinox
+07-FULL,Chevrolet K5 Blazer,Chevrolet,K5 Blazer,1973-1994,,SUV,YL,S2,越野车,,,K5 Blazer
+07-FULL,Chevrolet S-10 Blazer,Chevrolet,S-10 Blazer,1995-2004,4dr,SUV,YL,S2,越野车,4dr,4dr,S-10 Blazer
+07-FULL,Chevrolet Suburban,Chevrolet,Suburban,1947-1954,,SUV,YL,S2,越野车,,,Suburban
+07-FULL,Chevrolet Tahoe,Chevrolet,Tahoe,1995-1999,2dr 4WD,SUV,YL,S2,越野车,2dr 4WD,2dr 4WD,Tahoe
+07-FULL,Dodge Ramcharger,Dodge,Ramcharger,1974-1993,2WD/4WD,SUV,YL,S2,越野车,2WD/4WD,2WD/4WD,Ramcharger
+07-FULL,Ford Bronco,Ford,Bronco,1992-1996,2dr,SUV,YL,S2,越野车,2dr,2dr,Bronco
+07-FULL,Ford Bronco,Ford,Bronco,2021-2026,4dr,SUV,YL,S2,越野车,4dr,4dr,Bronco
+07-FULL,Ford Edge,Ford,Edge,2007-2024,,SUV,YL,S2,越野车,,,Edge
+07-FULL,Ford Escape,Ford,Escape,2020-2022,,SUV,YL,S2,越野车,,,Escape
+07-FULL,Ford Explorer,Ford,Explorer,2003-2005,,SUV,YL,S2,越野车,,,Explorer
+07-FULL,Ford Mustang Mach-E,Ford,Mustang Mach-E,2021-2026,Incl: Rally,Crossover/SUV,YL,S2,越野车,Incl: Rally,Incl: Rally,Mustang Mach-E
+07-FULL,GMC Jimmy,GMC,Jimmy,1995-2000,4dr,SUV,YL,S2,越野车,4dr,4dr,Jimmy
+07-FULL,GMC Terrain,GMC,Terrain,2010-2024,,SUV,YL,S2,越野车,,,Terrain
+07-FULL,GMC Yukon,GMC,Yukon,1992-1997,2dr,SUV,YL,S2,越野车,2dr,2dr,Yukon
+07-FULL,Genesis GV70,Genesis,GV70,2022-2026,,SUV,YL,S2,越野车,,,GV70
+07-FULL,Honda CR-V,Honda,CR-V,2017-2026,,SUV,YL,S2,越野车,,,CR-V
+07-FULL,Honda Pilot,Honda,Pilot,2003-2008,,SUV,YL,S2,越野车,,,Pilot
+07-FULL,Hyundai IONIQ 5,Hyundai,IONIQ 5,2022-2026,Incl: N,SUV,YL,S2,越野车,Incl: N,Incl: N,IONIQ 5
+07-FULL,Hyundai Nexo,Hyundai,Nexo,2019-2024,,SUV,YL,S2,越野车,,,Nexo
+07-FULL,Hyundai Santa Fe,Hyundai,Santa Fe,2007-2023,Incl: Sport,SUV,YL,S2,越野车,Incl: Sport,Incl: Sport,Santa Fe
+07-FULL,Hyundai Tucson,Hyundai,Tucson,2022-2026,,SUV,YL,S2,越野车,,,Tucson
+07-FULL,Infiniti EX,Infiniti,EX,2008-2013,EX35/EX37,SUV,YL,S2,越野车,EX35/EX37,EX35/EX37,EX
+07-FULL,Infiniti FX,Infiniti,FX,2003-2008,,Crossover,YL,S2,越野车,,,FX
+07-FULL,Infiniti QX4,Infiniti,QX4,1997-2003,,SUV,YL,S2,越野车,,,QX4
+07-FULL,Infiniti QX50,Infiniti,QX50,2014-2025,,SUV,YL,S2,越野车,,,QX50
+07-FULL,Infiniti QX55,Infiniti,QX55,2022-2025,,SUV,YL,S2,越野车,,,QX55
+07-FULL,Jaguar F-Pace,Jaguar,F-Pace,2017-2023,,SUV,YL,S2,越野车,,,F-Pace
+07-FULL,Jaguar I-Pace,Jaguar,I-Pace,2019-2024,,SUV,YL,S2,越野车,,,I-Pace
+07-FULL,Jeep Cherokee,Jeep,Cherokee,1974-1983,,SUV,YL,S2,越野车,,,Cherokee
+07-FULL,Jeep Cherokee,Jeep,Cherokee,2014-2026,,SUV,YL,S2,越野车,,,Cherokee
+07-FULL,Jeep Commander,Jeep,Commander,2006-2010,,SUV,YL,S2,越野车,,,Commander
+07-FULL,Jeep Grand Cherokee,Jeep,Grand Cherokee,1999-2021,,SUV,YL,S2,越野车,,,Grand Cherokee
+07-FULL,Jeep Grand Wagoneer,Jeep,Grand Wagoneer,1984-1991,,SUV,YL,S2,越野车,,,Grand Wagoneer
+07-FULL,Jeep Wagoneer,Jeep,Wagoneer,1963-1991,,SUV,YL,S2,越野车,,,Wagoneer
+07-FULL,Jeep Wrangler,Jeep,Wrangler,2013-2026,4dr Rubicon/4dr Unlimited,SUV,YL,S2,越野车,4dr Rubicon/4dr Unlimited,4drRub/4drUnl,Wrangler
+07-FULL,Kia EV6,Kia,EV6,2022-2026,,Crossover,YL,S2,越野车,,,EV6
+07-FULL,Kia Sorento,Kia,Sorento,2011-2026,Incl: PHEV,SUV,YL,S2,越野车,Incl: PHEV,Incl: PHEV,Sorento
+07-FULL,Kia Sportage,Kia,Sportage,2023-2026,Incl: PHEV,SUV,YL,S2,越野车,Incl: PHEV,Incl: PHEV,Sportage
+07-FULL,Land Rover Discovery,Land Rover,Discovery,2000-2004,,SUV,YL,S2,越野车,,,Discovery
+07-FULL,Land Rover Range Rover,Land Rover,Range Rover,1993-2002,Incl: LWB,SUV,YL,S2,越野车,Incl: LWB,Incl: LWB,Range Rover
+07-FULL,Land Rover Range Rover Sport,Land Rover,Range Rover Sport,2006-2013,,SUV,YL,S2,越野车,,,RangeRov Sport
+07-FULL,Land Rover Range Rover Velar,Land Rover,Range Rover Velar,2018-2026,,SUV,YL,S2,越野车,,,RangeRov Velar
+07-FULL,Lexus GX,Lexus,GX,2003-2013,,SUV,YL,S2,越野车,,,GX
+07-FULL,Lexus LX,Lexus,LX,1996-1997,,SUV,YL,S2,越野车,,,LX
+07-FULL,Lexus NX,Lexus,NX,2015-2026,,SUV,YL,S2,越野车,,,NX
+07-FULL,Lexus RX,Lexus,RX,2004-2015,,SUV,YL,S2,越野车,,,RX
+07-FULL,Lexus RZ,Lexus,RZ,2023-2026,,SUV,YL,S2,越野车,,,RZ
+07-FULL,Lincoln Corsair,Lincoln,Corsair,2020-2026,,SUV,YL,S2,越野车,,,Corsair
+07-FULL,Lincoln MKX,Lincoln,MKX,2007-2018,,Crossover,YL,S2,越野车,,,MKX
+07-FULL,Lincoln Nautilus,Lincoln,Nautilus,2019-2023,,SUV,YL,S2,越野车,,,Nautilus
+07-FULL,Mazda 5,Mazda,5,2006-2011,,SUV,YL,S2,越野车,,,5
+07-FULL,Mazda CX-5,Mazda,CX-5,2026,,SUV,YL,S2,越野车,,,CX-5
+07-FULL,Mazda CX-50,Mazda,CX-50,2023-2026,,SUV,YL,S2,越野车,,,CX-50
+07-FULL,Mazda CX-7,Mazda,CX-7,2007-2012,,SUV,YL,S2,越野车,,,CX-7
+07-FULL,Mercedes-Benz EQB,Mercedes-Benz,EQB,2022-2025,,SUV,YL,S2,越野车,,,EQB
+07-FULL,Mercedes-Benz G-Class,Mercedes-Benz,G-Class,2003-2018,AMG,SUV,YL,S2,越野车,AMG,AMG,G-Class
+07-FULL,Mercedes-Benz GLB-Class,Mercedes-Benz,GLB-Class,2020-2026,,SUV,YL,S2,越野车,,,GLB-Class
+07-FULL,Mercedes-Benz GLC-Class,Mercedes-Benz,GLC-Class,2016-2026,Incl: AMG,Crossover/SUV,YL,S2,越野车,Incl: AMG,Incl: AMG,GLC-Class
+07-FULL,Mercedes-Benz GLE-Class,Mercedes-Benz,GLE-Class,2016-2019,,SUV,YL,S2,越野车,SUV,SUV,GLE-Class
+07-FULL,Mercedes-Benz M-Class,Mercedes-Benz,M-Class,2002-2015,Incl: AMG/Diesel,SUV,YL,S2,越野车,Incl: AMG/Diesel,Inc:AMG,M-Class
+07-FULL,Mercedes-Benz ML-Class,Mercedes-Benz,ML-Class,2002-2015,,SUV,YL,S2,越野车,,,ML-Class
+07-FULL,Mercury Mountaineer,Mercury,Mountaineer,1997-1998,,SUV,YL,S2,越野车,,,Mountaineer
+07-FULL,Mitsubishi Montero,Mitsubishi,Montero,1989-2000,Incl: 4dr LS LWB/4dr LWB,SUV,YL,S2,越野车,Incl: 4dr LS LWB/4dr LWB,Inc:4dr LS/LWB,Montero
+07-FULL,Mitsubishi Montero Sport,Mitsubishi,Montero Sport,1997-2004,,SUV,YL,S2,越野车,,,Montero Sport
+07-FULL,Mitsubishi Outlander,Mitsubishi,Outlander,2007-2026,,SUV,YL,S2,越野车,,,Outlander
+07-FULL,Nissan Ariya,Nissan,Ariya,2023-2026,,SUV,YL,S2,越野车,,,Ariya
+07-FULL,Nissan Murano,Nissan,Murano,2003-2014,,SUV,YL,S2,越野车,,,Murano
+07-FULL,Nissan Pathfinder,Nissan,Pathfinder,1988-1995,Wide-body,SUV,YL,S2,越野车,Wide-body,Wide-body,Pathfinder
+07-FULL,Nissan Pathfinder,Nissan,Pathfinder,2005-2011,,SUV,YL,S2,越野车,,,Pathfinder
+07-FULL,Nissan Rogue,Nissan,Rogue,2008-2026,Incl: PHEV,SUV,YL,S2,越野车,Incl: PHEV,Incl: PHEV,Rogue
+07-FULL,Oldsmobile Bravada,Oldsmobile,Bravada,1996-2001,,SUV,YL,S2,越野车,,,Bravada
+07-FULL,Pontiac Aztec,Pontiac,Aztec,2001-2005,,Crossover,YL,S2,越野车,,,Aztec
+07-FULL,Pontiac Torrent,Pontiac,Torrent,2006-2009,,SUV,YL,S2,越野车,,,Torrent
+07-FULL,Porsche Cayenne,Porsche,Cayenne,2003-2010,,SUV,YL,S2,越野车,SUV,SUV,Cayenne
+07-FULL,Porsche Macan,Porsche,Macan,2015-2026,,SUV,YL,S2,越野车,,,Macan
+07-FULL,Saturn Vue,Saturn,Vue,2002-2007,,SUV,YL,S2,越野车,,,Vue
+07-FULL,Subaru Forester,Subaru,Forester,2014-2026,Incl: Wilderness,SUV,YL,S2,越野车,Incl: Wilderness,Incl: Wilderness,Forester
+07-FULL,Subaru Solterra,Subaru,Solterra,2023-2026,,SUV,YL,S2,越野车,,,Solterra
+07-FULL,Suzuki XL7,Suzuki,XL7,2002-2006,,SUV,YL,S2,越野车,,,XL7
+07-FULL,Tesla Model Y,Tesla,Model Y,2020-2026,Incl: Performance,Crossover/SUV,YL,S2,越野车,Incl: Performance,Inc:Perf,Model Y
+07-FULL,Toyota 4Runner,Toyota,4Runner,1999-2013,,SUV,YL,S2,越野车,,,4Runner
+07-FULL,Toyota FJ Cruiser,Toyota,FJ Cruiser,2007-2014,,SUV,YL,S2,越野车,,,FJ Cruiser
+07-FULL,Toyota Highlander,Toyota,Highlander,2001-2013,,SUV,YL,S2,越野车,,,Highlander
+07-FULL,Toyota Land Cruiser,Toyota,Land Cruiser,1981-1997,,SUV,YL,S2,越野车,SUV,SUV,Land Cruiser
+07-FULL,Toyota RAV4,Toyota,RAV4,2006-2012,,SUV,YL,S2,越野车,,,RAV4
+07-FULL,Toyota RAV4,Toyota,RAV4,2019-2025,,SUV,YL,S2,越野车,,,RAV4
+07-FULL,Toyota Venza,Toyota,Venza,2021-2024,,SUV,YL,S2,越野车,SUV,SUV,Venza
+07-FULL,Toyota bZ,Toyota,bZ,2026,,SUV,YL,S2,越野车,,,bZ
+07-FULL,Toyota bZ4X,Toyota,bZ4X,2023-2025,,SUV,YL,S2,越野车,,,bZ4X
+07-FULL,VinFast VF8,VinFast,VF8,2023-2025,Eco/Plus,SUV,YL,S2,越野车,Eco/Plus,Eco/Plus,VF8
+07-FULL,Volkswagen Tiguan,Volkswagen,Tiguan,2018-2026,,SUV,YL,S2,越野车,,,Tiguan
+07-FULL,Volkswagen Touareg,Volkswagen,Touareg,2004-2017,,SUV,YL,S2,越野车,,,Touareg
+07-FULL,Volvo XC60,Volvo,XC60,2010-2026,,SUV,YL,S2,越野车,,,XC60
+07-FULL,Volvo XC90,Volvo,XC90,2003-2014,,SUV,YL,S2,越野车,,,XC90
+07-FULL,Acura RDX,Acura,RDX,2007-2009,,SUV,YM+,S1,越野车,,,RDX
+07-FULL,Acura SLX,Acura,SLX,1997,,SUV,YM+,S1,越野车,,,SLX
+07-FULL,Alfa Romeo Tonale,Alfa Romeo,Tonale,2024-2026,,SUV,YM+,S1,越野车,,,Tonale
+07-FULL,Audi Q3,Audi,Q3,2015-2026,,SUV,YM+,S1,越野车,,,Q3
+07-FULL,Audi Q4 e-tron,Audi,Q4 e-tron,2022-2026,Incl: Sportback,SUV,YM+,S1,越野车,Incl: Sportback,Incl: Sportback,Q4 e-tron
+07-FULL,BMW X1,BMW,X1,2013-2026,Incl: M35i,SUV,YM+,S1,越野车,Incl: M35i,Incl: M35i,X1
+07-FULL,BMW X2,BMW,X2,2018-2026,Incl: M35i,Crossover/SUV,YM+,S1,越野车,Incl: M35i,Incl: M35i,X2
+07-FULL,BMW X3,BMW,X3,2004-2010,,SUV,YM+,S1,越野车,,,X3
+07-FULL,Buick Encore,Buick,Encore,2013-2022,,SUV,YM+,S1,越野车,,,Encore
+07-FULL,Buick Encore GX,Buick,Encore GX,2020-2026,,SUV,YM+,S1,越野车,,,Encore GX
+07-FULL,Cadillac XT4,Cadillac,XT4,2024-2025,,SUV,YM+,S1,越野车,,,XT4
+07-FULL,Chevrolet Blazer,Chevrolet,Blazer,1969-1972,,SUV,YM+,S1,越野车,,,Blazer
+07-FULL,Chevrolet Blazer,Chevrolet,Blazer,1995-2004,2dr/2dr Base 4WD,SUV,YM+,S1,越野车,2dr/2dr Base 4WD,2dr/2dr Base 4WD,Blazer
+07-FULL,Chevrolet Bolt EUV,Chevrolet,Bolt EUV,2022-2023,,SUV,YM+,S1,越野车,,,Bolt EUV
+07-FULL,Chevrolet Captiva,Chevrolet,Captiva,2012-2015,,SUV,YM+,S1,越野车,,,Captiva
+07-FULL,Chevrolet K5 Blazer,Chevrolet,K5 Blazer,1969-1972,,SUV,YM+,S1,越野车,,,K5 Blazer
+07-FULL,Chevrolet S-10 Blazer,Chevrolet,S-10 Blazer,1983-2005,Incl: 2dr/2dr 2WD/2dr 4WD/4dr 2WD,SUV,YM+,S1,越野车,Incl: 2dr/2dr 2WD/2dr 4WD/4dr 2WD,Incl: 2dr/2dr 2WD/2dr 4WD/4dr 2WD,S-10 Blazer
+07-FULL,Chevrolet Suburban,Chevrolet,Suburban,1935-1940,,SUV,YM+,S1,越野车,,,Suburban
+07-FULL,Chevrolet Tracker,Chevrolet,Tracker,1999-2004,4dr,SUV,YM+,S1,越野车,4dr,4dr,Tracker
+07-FULL,Chevrolet Trailblazer,Chevrolet,Trailblazer,2021-2026,,SUV,YM+,S1,越野车,,,Trailblazer
+07-FULL,Chevrolet Trax,Chevrolet,Trax,2015-2026,,SUV,YM+,S1,越野车,,,Trax
+07-FULL,Dodge Hornet,Dodge,Hornet,2023-2025,,Crossover,YM+,S1,越野车,,,Hornet
+07-FULL,Dodge Nitro,Dodge,Nitro,2007-2010,,SUV,YM+,S1,越野车,,,Nitro
+07-FULL,Fiat 500X,Fiat,500X,2016-2023,,SUV,YM+,S1,越野车,,,500X
+07-FULL,Ford Bronco,Ford,Bronco,1978-1991,2dr,SUV,YM+,S1,越野车,2dr,2dr,Bronco
+07-FULL,Ford Bronco,Ford,Bronco,2022-2026,2dr,SUV,YM+,S1,越野车,2dr,2dr,Bronco
+07-FULL,Ford Bronco Sport,Ford,Bronco Sport,2021-2026,4dr/4dr Badlands,SUV,YM+,S1,越野车,4dr/4dr Badlands,4dr/4dr Badlands,Bronco Sport
+07-FULL,Ford EcoSport,Ford,EcoSport,2018-2022,,SUV,YM+,S1,越野车,,,EcoSport
+07-FULL,Ford Escape,Ford,Escape,2001-2019,,SUV,YM+,S1,越野车,,,Escape
+07-FULL,Ford Escape,Ford,Escape,2023-2026,,SUV,YM+,S1,越野车,,,Escape
+07-FULL,Ford Explorer,Ford,Explorer,1991-2001,,SUV,YM+,S1,越野车,,,Explorer
+07-FULL,GMC Jimmy,GMC,Jimmy,1983-2001,Incl: 2dr,SUV,YM+,S1,越野车,Incl: 2dr,Incl: 2dr,Jimmy
+07-FULL,GMC Jimmy,GMC,Jimmy,1991-1994,4dr,SUV,YM+,S1,越野车,4dr,4dr,Jimmy
+07-FULL,GMC Terrain,GMC,Terrain,2025-2026,,SUV,YM+,S1,越野车,,,Terrain
+07-FULL,Genesis GV60,Genesis,GV60,2023-2026,,SUV,YM+,S1,越野车,,,GV60
+07-FULL,Honda CR-V,Honda,CR-V,1997-2016,,SUV,YM+,S1,越野车,,,CR-V
+07-FULL,Honda Element,Honda,Element,2003-2009,,Crossover,YM+,S1,越野车,,,Element
+07-FULL,Honda HR-V,Honda,HR-V,2016-2026,,SUV,YM+,S1,越野车,,,HR-V
+07-FULL,Honda Passport,Honda,Passport,1994-2002,,SUV,YM+,S1,越野车,,,Passport
+07-FULL,Hyundai Kona,Hyundai,Kona,2019-2026,,Crossover,YM+,S1,越野车,,,Kona
+07-FULL,Hyundai Santa Fe,Hyundai,Santa Fe,2001-2006,,SUV,YM+,S1,越野车,,,Santa Fe
+07-FULL,Hyundai Tucson,Hyundai,Tucson,2005-2021,,SUV,YM+,S1,越野车,,,Tucson
+07-FULL,Hyundai Venue,Hyundai,Venue,2020-2026,,SUV,YM+,S1,越野车,,,Venue
+07-FULL,Infiniti QX30,Infiniti,QX30,2017-2019,,SUV,YM+,S1,越野车,,,QX30
+07-FULL,Jaguar E-Pace,Jaguar,E-Pace,2018-2024,,SUV,YM+,S1,越野车,,,E-Pace
+07-FULL,Jeep Cherokee,Jeep,Cherokee,1984-2001,,SUV,YM+,S1,越野车,,,Cherokee
+07-FULL,Jeep Compass,Jeep,Compass,2007-2026,,SUV,YM+,S1,越野车,,,Compass
+07-FULL,Jeep Grand Cherokee,Jeep,Grand Cherokee,1993-1998,,SUV,YM+,S1,越野车,,,Grand Cherokee
+07-FULL,Jeep Liberty,Jeep,Liberty,2002-2012,,SUV,YM+,S1,越野车,,,Liberty
+07-FULL,Jeep Patriot,Jeep,Patriot,2007-2017,,SUV,YM+,S1,越野车,,,Patriot
+07-FULL,Jeep Renegade,Jeep,Renegade,2015-2023,,SUV,YM+,S1,越野车,,,Renegade
+07-FULL,Jeep Wrangler,Jeep,Wrangler,2004-2012,2dr Rubicon/2dr Unlimited/2dr Unlimited Rubicon/4dr Unlimited,SUV,YM+,S1,越野车,2dr Rubicon/2dr Unlimited/2dr Unlimited Rubicon/4dr Unlimited,2dr/4dr Unltd/Rub,Wrangler
+07-FULL,Jeep Wrangler,Jeep,Wrangler,2013-2026,2dr/2dr Xtreme,SUV,YM+,S1,越野车,2dr/2dr Xtreme,2dr/2dr Xtreme,Wrangler
+07-FULL,Kia NIRO,Kia,NIRO,2017-2026,Incl: EV,Crossover,YM+,S1,越野车,Incl: EV,Incl: EV,NIRO
+07-FULL,Kia Rondo,Kia,Rondo,2007-2010,,SUV,YM+,S1,越野车,,,Rondo
+07-FULL,Kia SELTOS,Kia,SELTOS,2021-2025,,SUV,YM+,S1,越野车,,,SELTOS
+07-FULL,Kia Sorento,Kia,Sorento,2003-2009,,SUV,YM+,S1,越野车,,,Sorento
+07-FULL,Kia Sportage,Kia,Sportage,1995-2022,Incl: 2dr/4dr,SUV,YM+,S1,越野车,Incl: 2dr/4dr,Incl: 2dr/4dr,Sportage
+07-FULL,Land Rover Defender,Land Rover,Defender,2020-2026,90,SUV,YM+,S1,越野车,90,90,Defender
+07-FULL,Land Rover Discovery,Land Rover,Discovery,1994-1999,,SUV,YM+,S1,越野车,,,Discovery
+07-FULL,Land Rover Discovery Sport,Land Rover,Discovery Sport,2015-2026,,SUV,YM+,S1,越野车,,,Discovery Sport
+07-FULL,Land Rover Evoque,Land Rover,Evoque,2020-2026,,SUV,YM+,S1,越野车,SUV,SUV,Evoque
+07-FULL,Land Rover Freelander,Land Rover,Freelander,2002-2005,,SUV,YM+,S1,越野车,,,Freelander
+07-FULL,Land Rover LR2,Land Rover,LR2,2008-2015,,SUV,YM+,S1,越野车,,,LR2
+07-FULL,Land Rover Range Rover,Land Rover,Range Rover,1987-1992,,SUV,YM+,S1,越野车,,,Range Rover
+07-FULL,Land Rover Range Rover Evoque,Land Rover,Range Rover Evoque,2020-2026,,SUV,YM+,S1,越野车,SUV,SUV,RangeRov Evoq
+07-FULL,Lexus RX,Lexus,RX,1999-2003,,SUV,YM+,S1,越野车,,,RX
+07-FULL,Lexus UX,Lexus,UX,2019-2026,,SUV,YM+,S1,越野车,,,UX
+07-FULL,Lincoln Corsair,Lincoln,Corsair,2020-2021,PHEV,SUV,YM+,S1,越野车,PHEV,PHEV,Corsair
+07-FULL,Lincoln MKC,Lincoln,MKC,2015-2019,,SUV,YM+,S1,越野车,,,MKC
+07-FULL,MINI Countryman,MINI,Countryman,2011-2026,Incl: JCW,SUV,YM+,S1,越野车,Incl: JCW,Incl: JCW,Countryman
+07-FULL,MINI Paceman,MINI,Paceman,2013-2016,Incl: JCW ALL4,Crossover/SUV,YM+,S1,越野车,Incl: JCW ALL4,Incl: JCW ALL4,Paceman
+07-FULL,Mazda 5,Mazda,5,2012-2015,,SUV,YM+,S1,越野车,,,5
+07-FULL,Mazda CX-3,Mazda,CX-3,2016-2021,,SUV,YM+,S1,越野车,,,CX-3
+07-FULL,Mazda CX-30,Mazda,CX-30,2020-2026,,SUV,YM+,S1,越野车,,,CX-30
+07-FULL,Mazda CX-5,Mazda,CX-5,2013-2025,,SUV,YM+,S1,越野车,,,CX-5
+07-FULL,Mazda MX-30,Mazda,MX-30,2022-2023,,SUV,YM+,S1,越野车,,,MX-30
+07-FULL,Mazda Tribute,Mazda,Tribute,2001-2011,,SUV,YM+,S1,越野车,,,Tribute
+07-FULL,Mercedes-Benz GLA-Class,Mercedes-Benz,GLA-Class,2015-2026,Incl: AMG,SUV,YM+,S1,越野车,Incl: AMG,Incl: AMG,GLA-Class
+07-FULL,Mercedes-Benz GLK-Class,Mercedes-Benz,GLK-Class,2011-2015,,SUV,YM+,S1,越野车,,,GLK-Class
+07-FULL,Mercedes-Benz M-Class,Mercedes-Benz,M-Class,1998-2001,,SUV,YM+,S1,越野车,,,M-Class
+07-FULL,Mercedes-Benz ML-Class,Mercedes-Benz,ML-Class,1998-2001,,SUV,YM+,S1,越野车,,,ML-Class
+07-FULL,Mercury Mariner,Mercury,Mariner,2005-2011,,SUV,YM+,S1,越野车,,,Mariner
+07-FULL,Mitsubishi Eclipse Cross,Mitsubishi,Eclipse Cross,2018-2026,,Crossover,YM+,S1,越野车,,,Eclipse Cross
+07-FULL,Mitsubishi Montero,Mitsubishi,Montero,1983-1989,2dr SWB,SUV,YM+,S1,越野车,2dr SWB,2dr SWB,Montero
+07-FULL,Mitsubishi Outlander,Mitsubishi,Outlander,2003-2006,,SUV,YM+,S1,越野车,,,Outlander
+07-FULL,Mitsubishi Outlander Sport,Mitsubishi,Outlander Sport,2011-2025,,SUV,YM+,S1,越野车,,,Outlander Sport
+07-FULL,Nissan Juke,Nissan,Juke,2011-2017,,Crossover,YM+,S1,越野车,,,Juke
+07-FULL,Nissan Kicks,Nissan,Kicks,2018-2026,,SUV,YM+,S1,越野车,,,Kicks
+07-FULL,Nissan Leaf,Nissan,Leaf,2026,,Crossover,YM+,S1,越野车,Crossover,Crossover,Leaf
+07-FULL,Nissan Pathfinder,Nissan,Pathfinder,1987-2004,Incl: Narrow-body,SUV,YM+,S1,越野车,Incl: Narrow-body,Incl: Narrow-body,Pathfinder
+07-FULL,Nissan Rogue Sport,Nissan,Rogue Sport,2017-2022,,SUV,YM+,S1,越野车,,,Rogue Sport
+07-FULL,Nissan Xterra,Nissan,Xterra,2000-2015,,SUV,YM+,S1,越野车,,,Xterra
+07-FULL,Oldsmobile Bravada,Oldsmobile,Bravada,1991-1994,,SUV,YM+,S1,越野车,,,Bravada
+07-FULL,Saturn Vue,Saturn,Vue,2008-2010,,SUV,YM+,S1,越野车,,,Vue
+07-FULL,Subaru Crosstrek,Subaru,Crosstrek,2013-2026,Incl: Wilderness,Crossover,YM+,S1,越野车,Incl: Wilderness,Inc:Wild,Crosstrek
+07-FULL,Subaru Forester,Subaru,Forester,1998-2013,,SUV,YM+,S1,越野车,,,Forester
+07-FULL,Suzuki Grand Vitara,Suzuki,Grand Vitara,1999-2013,,SUV,YM+,S1,越野车,,,Grand Vitara
+07-FULL,Suzuki Sidekick,Suzuki,Sidekick,1992,,SUV,YM+,S1,越野车,,,Sidekick
+07-FULL,Suzuki Sidekick,Suzuki,Sidekick,1994-1998,Incl: Sport,SUV,YM+,S1,越野车,Incl: Sport,Incl: Sport,Sidekick
+07-FULL,Toyota 4Runner,Toyota,4Runner,1984-1998,,SUV,YM+,S1,越野车,,,4Runner
+07-FULL,Toyota C-HR,Toyota,C-HR,2018-2022,,Crossover,YM+,S1,越野车,,,C-HR
+07-FULL,Toyota Corolla Cross,Toyota,Corolla Cross,2022-2026,,SUV,YM+,S1,越野车,,,Corolla Cross
+07-FULL,Toyota RAV4,Toyota,RAV4,2001-2005,,SUV,YM+,S1,越野车,,,RAV4
+07-FULL,Toyota RAV4,Toyota,RAV4,2013-2018,Incl: EV,SUV,YM+,S1,越野车,Incl: EV,Incl: EV,RAV4
+07-FULL,Toyota RAV4,Toyota,RAV4,2026,,SUV,YM+,S1,越野车,,,RAV4
+07-FULL,Volkswagen ID.4,Volkswagen,ID.4,2021-2026,,SUV,YM+,S1,越野车,,,ID.4
+07-FULL,Volkswagen Taos,Volkswagen,Taos,2022-2026,,SUV,YM+,S1,越野车,,,Taos
+07-FULL,Volkswagen Tiguan,Volkswagen,Tiguan,2009-2017,,SUV,YM+,S1,越野车,,,Tiguan
+07-FULL,Volvo C40,Volvo,C40,2022-2024,,SUV,YM+,S1,越野车,,,C40
+07-FULL,Volvo C40 Recharge,Volvo,C40 Recharge,2022-2024,,SUV,YM+,S1,越野车,,,C40 Recharge
+07-FULL,Volvo EC40,Volvo,EC40,2025-2026,,Crossover,YM+,S1,越野车,,,EC40
+07-FULL,Volvo EX30,Volvo,EX30,2025-2026,,SUV,YM+,S1,越野车,,,EX30
+07-FULL,Volvo EX40,Volvo,EX40,2025-2026,,SUV,YM+,S1,越野车,,,EX40
+07-FULL,Volvo XC40,Volvo,XC40,2019-2025,,SUV,YM+,S1,越野车,,,XC40

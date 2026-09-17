@@ -1,0 +1,15 @@
+﻿店铺,MAKE,MODEL,YEAR,VERSION,CAB,BED,SIZE,SIZE-CODE,SHORT-CAB,TITLE,DESCRIPTION
+07-FULL,Chevrolet,C/K,1973-1991,Incl: R/V,Crew,8,PK-XXL,T6,Crew,Chevrolet C/K,
+07-FULL,Chevrolet,Silverado 1500,1999-2013,,Extended,8,PK-XXL,T6,Extended,Chevrolet Silverado 1500,
+07-FULL,Chevrolet,Silverado 2500HD/3500HD,2015-2019,,Double,8,PK-XXL,T6,Double,Chevrolet Silverado 2500HD/3500HD,
+07-FULL,Chevrolet,Silverado 2500HD/3500HD,2020-2026,,Crew,6.8,PK-XXL,T6,Crew,Chevrolet Silverado 2500HD/3500HD,
+07-FULL,Ford,F-150,2009-2026,,SuperCrew,6.5,PK-XXL,T6,SuperCrew,Ford F-150,Includes Raptor
+07-FULL,Ford,F-250/F-350 Super Duty,1999-2016,,SuperCab,8,PK-XXL,T6,SuperCab,Ford F-250/F-350 Super Duty,Includes Raptor
+07-FULL,Ford,F-250/F-350 Super Duty,1999-2026,,Crew,6.8,PK-XXL,T6,Crew,Ford F-250/F-350 Super Duty,Includes Raptor
+07-FULL,Ford,F-250/F-350 Super Duty,2017-2026,,Regular,8,PK-XXL,T6,Regular,Ford F-250/F-350 Super Duty,Includes Raptor
+07-FULL,Ford,F-250/F-350 Super Duty,2017-2026,,SuperCab,6.8,PK-XXL,T6,SuperCab,Ford F-250/F-350 Super Duty,Includes Raptor
+07-FULL,GMC,Sierra 1500,1999-2013,,Extended,8,PK-XXL,T6,Extended,GMC Sierra 1500/2500HD/3500HD,
+07-FULL,GMC,Sierra 2500HD/3500HD,2001-2026,,Crew/Double,6.8,PK-XXL,T6,Crew/Double,GMC Sierra 1500/2500HD/3500HD,
+07-FULL,Ram,1500,2025-2026,RHO,Crew,5.6,PK-XXL,T6,Crew,Ram 1500,
+07-FULL,Ram,2500/3500,1994-2026,,Quad/Mega,6.4-8,PK-XXL,T6,Quad/Mega,Ram 2500/3500,
+07-FULL,Toyota,Tundra,2007-2021,,Double,8.1,PK-XXL,T6,Double,Toyota Tundra,

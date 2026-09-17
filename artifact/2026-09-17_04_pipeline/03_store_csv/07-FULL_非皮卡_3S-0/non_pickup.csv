@@ -1,0 +1,25 @@
+﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
+07-FULL,Alfa Romeo 4C,Alfa Romeo,4C,2015-2020,,Convertible/Coupe,3S-0,C1,跑车,,,4C
+07-FULL,Audi TT/TTS/TT RS,Audi,TT/TTS/TT RS,2000-2006,,Convertible/Coupe,3S-0,C1,跑车,,,TT/TTS/TT RS
+07-FULL,BMW Z3,BMW,Z3,1996-2002,,Convertible/Coupe,3S-0,C1,跑车,,,Z3
+07-FULL,BMW Z4,BMW,Z4,2003-2008,,Convertible,3S-0,C1,跑车,,,Z4
+07-FULL,Chrysler Crossfire,Chrysler,Crossfire,2004-2008,,Convertible/Coupe,3S-0,C1,跑车,,,Crossfire
+07-FULL,Fiat 124 Spider,Fiat,124 Spider,2017-2020,Abarth,Convertible,3S-0,C1,跑车,Abarth,Abarth,124 Spider
+07-FULL,Fiat 500,Fiat,500,2012-2019,Incl: Abarth,Convertible,3S-0,C1,跑车,Convertible Incl: Abarth,Conv Inc:Abarth,500
+07-FULL,Honda Civic,Honda,Civic,1988-1991,CRX,Coupe,3S-0,C1,跑车,Coupe CRX,Coupe CRX,Civic
+07-FULL,Honda Prelude,Honda,Prelude,1979-1982,,Coupe,3S-0,C1,跑车,,,Prelude
+07-FULL,Honda S2000,Honda,S2000,2000-2009,,Convertible,3S-0,C1,跑车,,,S2000
+07-FULL,MINI Convertible,MINI,Convertible,2005-2026,Incl: JCW,Convertible,3S-0,C1,跑车,Incl: JCW,Incl: JCW,Convertible
+07-FULL,MINI Coupe,MINI,Coupe,2012-2015,,Coupe,3S-0,C1,跑车,,,Coupe
+07-FULL,MINI Roadster,MINI,Roadster,2012-2015,Incl: JCW,Convertible,3S-0,C1,跑车,Incl: JCW,Incl: JCW,Roadster
+07-FULL,Mazda MX-5,Mazda,MX-5,1990-2026,Incl: RF,Convertible/Coupe,3S-0,C1,跑车,Incl: RF,Incl: RF,MX-5
+07-FULL,Mazda Miata,Mazda,Miata,1990-2026,Incl: RF/soft top,Convertible/Coupe,3S-0,C1,跑车,Incl: RF/soft top,Inc:RF/Sf,Miata
+07-FULL,Mercedes-Benz SLC-Class,Mercedes-Benz,SLC-Class,2017-2020,Incl: AMG,Convertible,3S-0,C1,跑车,Incl: AMG,Incl: AMG,SLC-Class
+07-FULL,Mercedes-Benz SLK-Class,Mercedes-Benz,SLK-Class,1998-2016,Incl: AMG,Convertible,3S-0,C1,跑车,Incl: AMG,Incl: AMG,SLK-Class
+07-FULL,Pontiac Solstice,Pontiac,Solstice,2006-2009,,Convertible/Coupe,3S-0,C1,跑车,,,Solstice
+07-FULL,Porsche 912,Porsche,912,1965-1969,,Coupe,3S-0,C1,跑车,,,912
+07-FULL,Saturn Sky,Saturn,Sky,2007-2010,,Convertible,3S-0,C1,跑车,,,Sky
+07-FULL,Toyota Corolla,Toyota,Corolla,1968-1974,,Coupe,3S-0,C1,跑车,Coupe,Coupe,Corolla
+07-FULL,Toyota MR2,Toyota,MR2,1985-2005,,Convertible/Coupe,3S-0,C1,跑车,,,MR2
+07-FULL,Volkswagen Beetle,Volkswagen,Beetle,1998-2010,,Convertible,3S-0,C1,跑车,Convertible,Convertible,Beetle
+07-FULL,Volkswagen Rabbit,Volkswagen,Rabbit,1980,,Convertible,3S-0,C1,跑车,Convertible,Convertible,Rabbit

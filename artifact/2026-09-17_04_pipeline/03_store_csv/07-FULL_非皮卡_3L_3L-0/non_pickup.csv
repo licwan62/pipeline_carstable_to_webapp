@@ -1,0 +1,125 @@
+﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
+07-FULL,Acura ILX,Acura,ILX,2013-2022,,Sedan,3L,A1,三厢车,,,ILX
+07-FULL,Acura Integra,Acura,Integra,1994-2001,,Sedan,3L,A1,三厢车,Sedan,Sedan,Integra
+07-FULL,Acura TSX,Acura,TSX,2004-2008,,Sedan,3L,A1,三厢车,Sedan,Sedan,TSX
+07-FULL,Alfa Romeo GIULIA,Alfa Romeo,GIULIA,2017-2026,Incl: Quadrifoglio,Sedan,3L,A1,三厢车,Incl: Quadrifoglio,Inc:Quad,GIULIA
+07-FULL,Audi 90,Audi,90,1995,,Sedan,3L,A1,三厢车,,,90
+07-FULL,Audi A3/S3/RS3,Audi,A3/S3/RS3,2022-2026,,Sedan,3L,A1,三厢车,,,A3/S3/RS3
+07-FULL,Audi A4,Audi,A4,2002-2003,,Sedan,3L,A1,三厢车,Sedan,Sedan,A4
+07-FULL,Audi A4/S4,Audi,A4/S4,2004-2006,,Sedan,3L,A1,三厢车,Sedan,Sedan,A4/S4
+07-FULL,Audi A4/S4/RS4,Audi,A4/S4/RS4,2007-2008,,Sedan,3L,A1,三厢车,Sedan,Sedan,A4/S4/RS4
+07-FULL,BMW 2 Series,BMW,2 Series,2020-2026,Gran Coupe,Sedan,3L,A1,三厢车,Sedan Gran Coupe,Sdn GranCoupe,2 Series
+07-FULL,BMW 3 Series,BMW,3 Series,2006-2018,,Sedan,3L,A1,三厢车,Sedan,Sedan,3 Series
+07-FULL,BMW 4 Series,BMW,4 Series,2015-2020,Gran Coupe,Sedan,3L,A1,三厢车,Sedan Gran Coupe,Sedan Gran Coupe,4 Series
+07-FULL,BMW 5 Series,BMW,5 Series,1975-1988,,Sedan,3L,A1,三厢车,Sedan,Sedan,5 Series
+07-FULL,Buick Skylark,Buick,Skylark,1980-1991,,Sedan,3L,A1,三厢车,Sedan,Sedan,Skylark
+07-FULL,Buick Verano,Buick,Verano,2012-2017,,Sedan,3L,A1,三厢车,,,Verano
+07-FULL,Cadillac ATS,Cadillac,ATS,2013-2019,,Sedan,3L,A1,三厢车,Sedan,Sedan,ATS
+07-FULL,Chevrolet Cavalier,Chevrolet,Cavalier,1990-2004,,Sedan,3L,A1,三厢车,Sedan,Sedan,Cavalier
+07-FULL,Chevrolet Cobalt,Chevrolet,Cobalt,2005-2010,,Sedan,3L,A1,三厢车,Sedan,Sedan,Cobalt
+07-FULL,Chevrolet Corsica,Chevrolet,Corsica,1987-1996,,Sedan,3L,A1,三厢车,,,Corsica
+07-FULL,Chevrolet Cruze,Chevrolet,Cruze,2011-2019,,Sedan,3L,A1,三厢车,Sedan,Sedan,Cruze
+07-FULL,Chevrolet Nova,Chevrolet,Nova,1962-1967,,Sedan,3L,A1,三厢车,Sedan,Sedan,Nova
+07-FULL,Dodge Dart,Dodge,Dart,2013-2016,,Sedan,3L,A1,三厢车,,,Dart
+07-FULL,Ford Focus,Ford,Focus,2012-2018,,Sedan,3L,A1,三厢车,Sedan,Sedan,Focus
+07-FULL,Genesis G70,Genesis,G70,2019-2026,,Sedan,3L,A1,三厢车,,,G70
+07-FULL,Honda Accord,Honda,Accord,1986-1989,,Sedan,3L,A1,三厢车,Sedan,Sedan,Accord
+07-FULL,Honda Civic,Honda,Civic,2012-2026,,Sedan,3L,A1,三厢车,Sedan,Sedan,Civic
+07-FULL,Honda Insight,Honda,Insight,2019-2022,,Sedan,3L,A1,三厢车,Sedan,Sedan,Insight
+07-FULL,Hyundai Elantra,Hyundai,Elantra,2011-2020,,Sedan,3L,A1,三厢车,Sedan,Sedan,Elantra
+07-FULL,Hyundai Sonata,Hyundai,Sonata,1989-1998,,Sedan,3L,A1,三厢车,,,Sonata
+07-FULL,Jaguar X-Type,Jaguar,X-Type,2002-2008,,Sedan,3L,A1,三厢车,Sedan,Sedan,X-Type
+07-FULL,Jaguar XE,Jaguar,XE,2017-2020,,Sedan,3L,A1,三厢车,,,XE
+07-FULL,Kia Forte,Kia,Forte,2010-2024,,Sedan,3L,A1,三厢车,Sedan,Sedan,Forte
+07-FULL,Lexus ES,Lexus,ES,1991,,Sedan,3L,A1,三厢车,,,ES
+07-FULL,Lexus HS,Lexus,HS,2010-2012,,Sedan,3L,A1,三厢车,,,HS
+07-FULL,Lexus IS,Lexus,IS,2006-2020,,Sedan,3L,A1,三厢车,Sedan,Sedan,IS
+07-FULL,Mazda 3,Mazda,3,2004-2026,,Sedan,3L,A1,三厢车,Sedan,Sedan,3
+07-FULL,Mercedes-Benz A-Class,Mercedes-Benz,A-Class,2019-2022,Incl: AMG,Sedan,3L,A1,三厢车,Incl: AMG,Incl: AMG,A-Class
+07-FULL,Mercedes-Benz C-Class,Mercedes-Benz,C-Class,2001-2021,Incl: PHEV,Sedan,3L,A1,三厢车,Sedan Incl: PHEV,Sdn Inc:PHEV,C-Class
+07-FULL,Mercedes-Benz C-Class,Mercedes-Benz,C-Class,2002-2006,AMG,Sedan,3L,A1,三厢车,Sedan AMG,Sedan AMG,C-Class
+07-FULL,Mercedes-Benz CLA-Class,Mercedes-Benz,CLA-Class,2014-2025,,Sedan,3L,A1,三厢车,,,CLA-Class
+07-FULL,Mercedes-Benz CLA-Class,Mercedes-Benz,CLA-Class,2014-2026,AMG,Sedan,3L,A1,三厢车,AMG,AMG,CLA-Class
+07-FULL,Mitsubishi Galant,Mitsubishi,Galant,1989-1993,,Sedan,3L,A1,三厢车,,,Galant
+07-FULL,Mitsubishi Lancer,Mitsubishi,Lancer,2004-2017,,Sedan,3L,A1,三厢车,Sedan,Sedan,Lancer
+07-FULL,Nissan Altima,Nissan,Altima,1993-1997,,Sedan,3L,A1,三厢车,Sedan,Sedan,Altima
+07-FULL,Nissan Maxima,Nissan,Maxima,1985-1988,,Sedan,3L,A1,三厢车,Sedan,Sedan,Maxima
+07-FULL,Nissan Sentra,Nissan,Sentra,2007-2026,,Sedan,3L,A1,三厢车,Sedan,Sedan,Sentra
+07-FULL,Plymouth Acclaim,Plymouth,Acclaim,1989-1995,,Sedan,3L,A1,三厢车,,,Acclaim
+07-FULL,Plymouth Valiant,Plymouth,Valiant,1960-1962,,Sedan,3L,A1,三厢车,Sedan,Sedan,Valiant
+07-FULL,Pontiac Sunfire,Pontiac,Sunfire,1995-2005,,Sedan,3L,A1,三厢车,Sedan,Sedan,Sunfire
+07-FULL,Saab 9-3,Saab,9-3,1999-2011,,Sedan,3L,A1,三厢车,Sedan,Sedan,9-3
+07-FULL,Saturn Ion,Saturn,Ion,2003-2007,,Sedan,3L,A1,三厢车,Sedan,Sedan,Ion
+07-FULL,Saturn S-Series,Saturn,S-Series,2000-2002,,Sedan,3L,A1,三厢车,Sedan,Sedan,S-Series
+07-FULL,Subaru Impreza,Subaru,Impreza,2008-2023,,Sedan,3L,A1,三厢车,Sedan,Sedan,Impreza
+07-FULL,Subaru Legacy,Subaru,Legacy,1992-2009,,Sedan,3L,A1,三厢车,Sedan,Sedan,Legacy
+07-FULL,Subaru WRX,Subaru,WRX,2008-2026,STI/WRX,Sedan,3L,A1,三厢车,Sedan STI/WRX,Sedan STI/WRX,WRX
+07-FULL,Tesla Model 3,Tesla,Model 3,2017-2023,,Sedan,3L,A1,三厢车,,,Model 3
+07-FULL,Toyota Corolla,Toyota,Corolla,2003-2026,,Sedan,3L,A1,三厢车,Sedan,Sedan,Corolla
+07-FULL,Volkswagen Jetta,Volkswagen,Jetta,2006-2018,,Sedan,3L,A1,三厢车,Sedan,Sedan,Jetta
+07-FULL,Volkswagen Passat,Volkswagen,Passat,1982-1985,,Sedan,3L,A1,三厢车,Sedan,Sedan,Passat
+07-FULL,Volkswagen Passat,Volkswagen,Passat,1987-1997,,Sedan,3L,A1,三厢车,Sedan,Sedan,Passat
+07-FULL,Volvo S60,Volvo,S60,2001-2018,,Sedan,3L,A1,三厢车,,,S60
+07-FULL,Acura NSX,Acura,NSX,2022,Type S,Coupe,3L-0,C3,跑车,Type S,Type S,NSX
+07-FULL,Audi A4,Audi,A4,2003,,Convertible,3L-0,C3,跑车,Convertible,Convertible,A4
+07-FULL,Audi A4/S4,Audi,A4/S4,2004-2009,,Convertible,3L-0,C3,跑车,Convertible,Convertible,A4/S4
+07-FULL,Audi A4/S4/RS4,Audi,A4/S4/RS4,2008,,Convertible,3L-0,C3,跑车,Convertible,Convertible,A4/S4/RS4
+07-FULL,Audi A5/S5,Audi,A5/S5,2008-2024,,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe,Conv/Cpe,A5/S5
+07-FULL,Audi A5/S5/RS5,Audi,A5/S5/RS5,2013-2017,,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe,Conv/Cpe,A5/S5/RS5
+07-FULL,BMW 2 Series,BMW,2 Series,2022-2026,M2,Coupe,3L-0,C3,跑车,Coupe M2,Coupe M2,2 Series
+07-FULL,BMW 3 Series,BMW,3 Series,2007-2013,,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe,Conv/Cpe,3 Series
+07-FULL,BMW 4 Series,BMW,4 Series,2014-2020,,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe,Conv/Cpe,4 Series
+07-FULL,BMW i8,BMW,i8,2014-2020,,Convertible/Coupe,3L-0,C3,跑车,,,i8
+07-FULL,Buick Cascada,Buick,Cascada,2016-2019,,Convertible,3L-0,C3,跑车,,,Cascada
+07-FULL,Buick Reatta,Buick,Reatta,1988-1991,,Convertible/Coupe,3L-0,C3,跑车,,,Reatta
+07-FULL,Buick Skylark,Buick,Skylark,1980-1991,,Coupe,3L-0,C3,跑车,Coupe,Coupe,Skylark
+07-FULL,Cadillac ATS,Cadillac,ATS,2015-2019,,Coupe,3L-0,C3,跑车,Coupe,Coupe,ATS
+07-FULL,Chevrolet Beretta,Chevrolet,Beretta,1992-1994,GT/GTZ,Coupe,3L-0,C3,跑车,GT/GTZ,GT/GTZ,Beretta
+07-FULL,Chevrolet Cavalier,Chevrolet,Cavalier,1989-2005,,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe,Conv/Cpe,Cavalier
+07-FULL,Chevrolet Cobalt,Chevrolet,Cobalt,2005-2010,Incl: SS,Coupe,3L-0,C3,跑车,Coupe Incl: SS,Coupe Incl: SS,Cobalt
+07-FULL,Chevrolet Corvette,Chevrolet,Corvette,1984-2004,Incl: ZR-1,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe Incl: ZR-1,Conv/Cpe Inc:ZR1,Corvette
+07-FULL,Chevrolet Nova,Chevrolet,Nova,1962-1967,,Coupe,3L-0,C3,跑车,Coupe,Coupe,Nova
+07-FULL,Dodge Challenger,Dodge,Challenger,1978-1983,,Coupe,3L-0,C3,跑车,,,Challenger
+07-FULL,Dodge Stealth,Dodge,Stealth,1991-1996,R/T Turbo,Coupe,3L-0,C3,跑车,R/T Turbo,R/T Turbo,Stealth
+07-FULL,Ford GT,Ford,GT,2005-2006,,Coupe,3L-0,C3,跑车,,,GT
+07-FULL,Ford Mustang,Ford,Mustang,1965-1968,,Convertible/Coupe/Fastback,3L-0,C3,跑车,Convertible/Coupe/Fastback,Conv/Cpe/Fastbk,Mustang
+07-FULL,Ford Mustang,Ford,Mustang,1979-2004,Incl: Mach 1/Notchback/SVO/SVT Cobra,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe Incl: Mach 1/Notchback/SVO/SVT Cobra,Conv/Cpe Inc:Mach1,Mustang
+07-FULL,Ford Thunderbird,Ford,Thunderbird,1957,,Convertible,3L-0,C3,跑车,Convertible,Convertible,Thunderbird
+07-FULL,Honda Accord,Honda,Accord,1988-1990,,Coupe,3L-0,C3,跑车,Coupe,Coupe,Accord
+07-FULL,Honda Prelude,Honda,Prelude,2026,,Coupe,3L-0,C3,跑车,,,Prelude
+07-FULL,Infiniti G,Infiniti,G,2003-2013,,Coupe,3L-0,C3,跑车,Coupe,Coupe,G
+07-FULL,Infiniti Q60,Infiniti,Q60,2014-2022,Incl: Red Sport,Convertible/Coupe,3L-0,C3,跑车,Incl: Red Sport,Incl: Red Sport,Q60
+07-FULL,Kia Forte,Kia,Forte,2014-2016,Koup,Coupe,3L-0,C3,跑车,Coupe Koup,Coupe Koup,Forte
+07-FULL,Land Rover Evoque,Land Rover,Evoque,2012-2018,,Coupe,3L-0,C3,跑车,Coupe,Coupe,Evoque
+07-FULL,Land Rover Range Rover Evoque,Land Rover,Range Rover Evoque,2017-2019,,Convertible,3L-0,C3,跑车,Convertible,Convertible,RangeRov Evoq
+07-FULL,Lexus IS,Lexus,IS,2010-2015,,Convertible,3L-0,C3,跑车,Convertible,Convertible,IS
+07-FULL,Lexus RC,Lexus,RC,2015-2018,,Coupe,3L-0,C3,跑车,,,RC
+07-FULL,Lexus RC,Lexus,RC,2025,,Coupe,3L-0,C3,跑车,,,RC
+07-FULL,Lexus SC,Lexus,SC,2002-2010,,Convertible,3L-0,C3,跑车,Convertible,Convertible,SC
+07-FULL,Maserati MC20,Maserati,MC20,2022-2025,Incl: Cielo,Convertible/Coupe,3L-0,C3,跑车,Incl: Cielo,Incl: Cielo,MC20
+07-FULL,Mazda MX-6,Mazda,MX-6,1993-1997,,Coupe,3L-0,C3,跑车,,,MX-6
+07-FULL,Mercedes-Benz C-Class,Mercedes-Benz,C-Class,2012-2023,,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe,Conv/Cpe,C-Class
+07-FULL,Mercedes-Benz CLK-Class,Mercedes-Benz,CLK-Class,1998-2009,,Convertible/Coupe,3L-0,C3,跑车,,,CLK-Class
+07-FULL,Mercedes-Benz E-Class,Mercedes-Benz,E-Class,1994-2017,Incl: Cabriolet,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe Incl: Cabriolet,Conv/Cpe Inc:Cabr,E-Class
+07-FULL,Mercedes-Benz SL-Class,Mercedes-Benz,SL-Class,1957-2020,300SL/560SL/AMG,Convertible,3L-0,C3,跑车,Convertible 300SL/560SL/AMG,Conv 300/560/AMG,SL-Class
+07-FULL,Mercedes-Benz SL-Class,Mercedes-Benz,SL-Class,1972-1989,,Convertible,3L-0,C3,跑车,Convertible,Convertible,SL-Class
+07-FULL,Mercedes-Benz SL-Class,Mercedes-Benz,SL-Class,2003-2020,,Convertible,3L-0,C3,跑车,Convertible,Convertible,SL-Class
+07-FULL,Mitsubishi 3000GT,Mitsubishi,3000GT,1991-1999,,Convertible/Coupe,3L-0,C3,跑车,,,3000GT
+07-FULL,Mitsubishi Eclipse,Mitsubishi,Eclipse,2006-2012,Incl: Spyder,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe Incl: Spyder,Conv/Cpe Inc:Spydr,Eclipse
+07-FULL,Nissan 300ZX,Nissan,300ZX,1986-1989,,Coupe,3L-0,C3,跑车,Coupe,Coupe,300ZX
+07-FULL,Nissan Altima,Nissan,Altima,2008-2013,,Coupe,3L-0,C3,跑车,Coupe,Coupe,Altima
+07-FULL,Nissan GT-R,Nissan,GT-R,2009-2016,,Coupe,3L-0,C3,跑车,,,GT-R
+07-FULL,Polestar 1,Polestar,1,2020-2021,,Coupe,3L-0,C3,跑车,,,1
+07-FULL,Pontiac G5,Pontiac,G5,2007-2009,,Coupe,3L-0,C3,跑车,,,G5
+07-FULL,Pontiac Sunfire,Pontiac,Sunfire,1995-2005,,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe,Conv/Cpe,Sunfire
+07-FULL,Porsche 911,Porsche,911,2016-2019,GT2 RS/GT3 RS/Speedster,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe GT2 RS/GT3 RS/Speedster,Conv/Cpe GT2/3RS,911
+07-FULL,Porsche 911,Porsche,911,2017-2019,Incl: GT3,Convertible/Coupe,3L-0,C3,跑车,Convertible/Coupe Incl: GT3,Conv/Cpe Inc:GT3,911
+07-FULL,Porsche 911,Porsche,911,2021-2026,Dakar/GT3/GT3 RS/Turbo,Coupe,3L-0,C3,跑车,Coupe Dakar/GT3/GT3 RS/Turbo,Cpe Dakar/GT3/T,911
+07-FULL,Porsche 911,Porsche,911,2025-2026,,Coupe,3L-0,C3,跑车,Coupe,Coupe,911
+07-FULL,Saab 9-3,Saab,9-3,1999-2011,,Convertible,3L-0,C3,跑车,Convertible,Convertible,9-3
+07-FULL,Saab 900,Saab,900,1986-1998,,Convertible,3L-0,C3,跑车,Convertible,Convertible,900
+07-FULL,Saturn Ion,Saturn,Ion,2003-2007,,Coupe,3L-0,C3,跑车,Coupe,Coupe,Ion
+07-FULL,Saturn S-Series,Saturn,S-Series,1997-2002,,Coupe,3L-0,C3,跑车,Coupe,Coupe,S-Series
+07-FULL,Toyota Supra,Toyota,Supra,1979-1981,,Coupe,3L-0,C3,跑车,,,Supra
+07-FULL,Toyota Supra,Toyota,Supra,1987-1992,,Coupe,3L-0,C3,跑车,,,Supra
+07-FULL,Volvo C70,Volvo,C70,2006-2013,,Convertible,3L-0,C3,跑车,,,C70

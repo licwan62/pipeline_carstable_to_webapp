@@ -1,0 +1,87 @@
+﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
+07-FULL,Acura Integra,Acura,Integra,1986-1993,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Integra
+07-FULL,Acura RSX,Acura,RSX,2002-2006,,Hatchback,2L+,H1,两厢车,,,RSX
+07-FULL,Audi A3,Audi,A3,2006-2013,,Hatchback,2L+,H1,两厢车,,,A3
+07-FULL,Audi A3 e-tron,Audi,A3 e-tron,2016-2018,,Hatchback,2L+,H1,两厢车,,,A3 e-tron
+07-FULL,Audi A4,Audi,A4,1999,,Wagon,2L+,H1,两厢车,Wagon,Wagon,A4
+07-FULL,Audi A4/S4,Audi,A4/S4,2000-2001,,Wagon,2L+,H1,两厢车,Wagon,Wagon,A4/S4
+07-FULL,BMW 3 Series,BMW,3 Series,2000-2005,,Wagon,2L+,H1,两厢车,Wagon,Wagon,3 Series
+07-FULL,Chevrolet Aveo,Chevrolet,Aveo,2006,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Aveo
+07-FULL,Chevrolet Bolt,Chevrolet,Bolt,2017-2027,,Hatchback,2L+,H1,两厢车,,,Bolt
+07-FULL,Chevrolet Cavalier,Chevrolet,Cavalier,1983-1988,,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon,Hbk/Wgn,Cavalier
+07-FULL,Chevrolet Cruze,Chevrolet,Cruze,2017-2019,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Cruze
+07-FULL,Chevrolet HHR,Chevrolet,HHR,2006-2011,Incl: Panel/Panel SS/SS,Wagon,2L+,H1,两厢车,Incl: Panel/Panel SS/SS,Inc:Panel/SS,HHR
+07-FULL,Chevrolet Nova,Chevrolet,Nova,1987-1988,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Nova
+07-FULL,Chevrolet Volt,Chevrolet,Volt,2011-2015,,Hatchback,2L+,H1,两厢车,,,Volt
+07-FULL,Chrysler PT Cruiser,Chrysler,PT Cruiser,2001-2010,,Wagon,2L+,H1,两厢车,,,PT Cruiser
+07-FULL,Dodge Caliber,Dodge,Caliber,2007-2012,,Hatchback,2L+,H1,两厢车,,,Caliber
+07-FULL,Dodge Caravan,Dodge,Caravan,1984-1990,SWB,MPV,2L+,H1,两厢车,SWB,SWB,Caravan
+07-FULL,Dodge Charger,Dodge,Charger,1982-1987,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Charger
+07-FULL,Dodge Daytona,Dodge,Daytona,1984-1986,,Hatchback,2L+,H1,两厢车,,,Daytona
+07-FULL,FIAT 500L,FIAT,500L,2014-2020,,Wagon,2L+,H1,两厢车,,,500L
+07-FULL,Ford C-MAX,Ford,C-MAX,2013-2018,Incl: PHEV,Hatchback,2L+,H1,两厢车,Incl: PHEV,Incl: PHEV,C-MAX
+07-FULL,Ford Escort,Ford,Escort,1981-1999,,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon,Hbk/Wgn,Escort
+07-FULL,Ford Focus,Ford,Focus,2000-2018,Incl: RS/ZX3/ZX5,Hatchback,2L+,H1,两厢车,Hatchback Incl: RS/ZX3/ZX5,Hbk Inc:RS/Z3/Z5,Focus
+07-FULL,Ford Mustang,Ford,Mustang,1974-1978,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Mustang
+07-FULL,Honda Accord,Honda,Accord,1982-1989,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Accord
+07-FULL,Honda Civic,Honda,Civic,1984-1987,,Wagon,2L+,H1,两厢车,Wagon,Wagon,Civic
+07-FULL,Honda Civic,Honda,Civic,1996-2021,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Civic
+07-FULL,Honda Insight,Honda,Insight,2010-2014,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Insight
+07-FULL,Hyundai Accent,Hyundai,Accent,2000-2005,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Accent
+07-FULL,Hyundai Elantra,Hyundai,Elantra,1996-2020,,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon,Hbk/Wgn,Elantra
+07-FULL,Hyundai Elantra GT,Hyundai,Elantra GT,2013-2020,,Hatchback,2L+,H1,两厢车,,,Elantra GT
+07-FULL,Hyundai Elantra Tour,Hyundai,Elantra Tour,2009-2012,,Wagon,2L+,H1,两厢车,,,Elantra Tour
+07-FULL,Hyundai Ioniq,Hyundai,Ioniq,2017-2022,,Hatchback,2L+,H1,两厢车,,,Ioniq
+07-FULL,Hyundai Veloster,Hyundai,Veloster,2012-2022,Incl: N/Turbo,Hatchback,2L+,H1,两厢车,Incl: N/Turbo,Incl: N/Turbo,Veloster
+07-FULL,Kia Forte,Kia,Forte,2014-2018,Forte5,Hatchback,2L+,H1,两厢车,Hatchback Forte5,Hbk Forte5,Forte
+07-FULL,Kia Rio,Kia,Rio,2001-2005,Rio5,Wagon,2L+,H1,两厢车,Wagon Rio5,Wagon Rio5,Rio
+07-FULL,Kia Soul,Kia,Soul,2020-2025,,Wagon,2L+,H1,两厢车,Wagon,Wagon,Soul
+07-FULL,Kia Spectra,Kia,Spectra,2006-2009,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Spectra
+07-FULL,Lexus CT,Lexus,CT,2011-2017,,Hatchback,2L+,H1,两厢车,,,CT
+07-FULL,MINI Clubman,MINI,Clubman,2016-2024,,Wagon,2L+,H1,两厢车,,,Clubman
+07-FULL,Mazda 3,Mazda,3,2004-2006,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,3
+07-FULL,Mazda 3,Mazda,3,2010-2026,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,3
+07-FULL,Mazda Protege,Mazda,Protege,2002-2003,Protege5,Hatchback,2L+,H1,两厢车,Hatchback Protege5,Hbk Protege5,Protege
+07-FULL,Mazda Speed3,Mazda,Speed3,2007-2013,,Hatchback,2L+,H1,两厢车,,,Speed3
+07-FULL,Mercedes-Benz B-Class,Mercedes-Benz,B-Class,2014-2017,,Hatchback,2L+,H1,两厢车,,,B-Class
+07-FULL,Mercedes-Benz C-Class,Mercedes-Benz,C-Class,2002-2005,SportCoupe,Hatchback,2L+,H1,两厢车,Hatchback SportCoupe,Hbk SportCoupe,C-Class
+07-FULL,Mercury Tracer,Mercury,Tracer,1991-1999,,Wagon,2L+,H1,两厢车,Wagon,Wagon,Tracer
+07-FULL,Mitsubishi Eclipse,Mitsubishi,Eclipse,1995-1999,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Eclipse
+07-FULL,Nissan 240SX,Nissan,240SX,1989-1993,Incl: Fastback,Hatchback,2L+,H1,两厢车,Hatchback Incl: Fastback,Hbk Inc:Fastbk,240SX
+07-FULL,Nissan Leaf,Nissan,Leaf,2011-2025,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Leaf
+07-FULL,Nissan Sentra,Nissan,Sentra,1982-1986,,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon,Hbk/Wgn,Sentra
+07-FULL,Nissan Versa,Nissan,Versa,2007-2019,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Versa
+07-FULL,Nissan Versa Note,Nissan,Versa Note,2014-2019,,Hatchback,2L+,H1,两厢车,,,Versa Note
+07-FULL,Plymouth Sundance,Plymouth,Sundance,1992-1994,,Hatchback,2L+,H1,两厢车,,,Sundance
+07-FULL,Pontiac Astre,Pontiac,Astre,1975-1977,Incl: Safari,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon Incl: Safari,Hbk/Wgn Inc:Safari,Astre
+07-FULL,Pontiac LeMans,Pontiac,LeMans,1988-1993,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,LeMans
+07-FULL,Pontiac Vibe,Pontiac,Vibe,2003-2010,,Hatchback,2L+,H1,两厢车,,,Vibe
+07-FULL,Saturn Astra,Saturn,Astra,2008-2009,,Hatchback,2L+,H1,两厢车,,,Astra
+07-FULL,Saturn S-Series,Saturn,S-Series,1993-1997,,Wagon,2L+,H1,两厢车,Wagon,Wagon,S-Series
+07-FULL,Scion iM,Scion,iM,2016,,Hatchback,2L+,H1,两厢车,,,iM
+07-FULL,Scion xB,Scion,xB,2008-2015,,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon,Hbk/Wgn,xB
+07-FULL,Subaru Impreza,Subaru,Impreza,1993-2026,Incl: Outback Sport,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon Incl: Outback Sport,Hbk/Wgn Inc:Outbk,Impreza
+07-FULL,Subaru Outback Sport,Subaru,Outback Sport,1995-2011,Incl: Outback Sport,Hatchback/Wagon,2L+,H1,两厢车,Incl: Outback Sport,Inc:Outbk,Outback Sport
+07-FULL,Subaru WRX,Subaru,WRX,2002-2014,STI/WRX,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon STI/WRX,Hbk/Wgn STI/WRX,WRX
+07-FULL,Suzuki Aerio,Suzuki,Aerio,2002-2005,,Wagon,2L+,H1,两厢车,Wagon,Wagon,Aerio
+07-FULL,Toyota Camry,Toyota,Camry,1983-1986,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Camry
+07-FULL,Toyota Celica,Toyota,Celica,2000-2005,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Celica
+07-FULL,Toyota Corolla,Toyota,Corolla,1975-2026,Incl: GR Corolla,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon Incl: GR Corolla,Hbk/Wgn Inc:GR,Corolla
+07-FULL,Toyota Corolla GR,Toyota,Corolla GR,2023-2026,,Hatchback,2L+,H1,两厢车,,,Corolla GR
+07-FULL,Toyota Corolla iM,Toyota,Corolla iM,2017-2018,,Hatchback,2L+,H1,两厢车,,,Corolla iM
+07-FULL,Toyota Matrix,Toyota,Matrix,2003-2013,,Hatchback,2L+,H1,两厢车,,,Matrix
+07-FULL,Toyota Prius,Toyota,Prius,2004-2015,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Prius
+07-FULL,Toyota Prius Plug-in Hybrid,Toyota,Prius Plug-in Hybrid,2012-2015,,Hatchback,2L+,H1,两厢车,,,Prius PHEV
+07-FULL,Toyota Tercel,Toyota,Tercel,1980-1988,Incl: 4WD,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon Incl: 4WD,Hbk/Wgn Inc:4WD,Tercel
+07-FULL,Volkswagen Beetle,Volkswagen,Beetle,2012-2019,Incl: Dune,Hatchback,2L+,H1,两厢车,Hatchback Incl: Dune,Hbk Inc:Dune,Beetle
+07-FULL,Volkswagen Dasher,Volkswagen,Dasher,1978,2dr/4dr Station,Hatchback/Wagon,2L+,H1,两厢车,2dr/4dr Station,2dr/4dr Station,Dasher
+07-FULL,Volkswagen Golf,Volkswagen,Golf,2000-2021,Incl: Diesel/R,Hatchback,2L+,H1,两厢车,Hatchback Incl: Diesel/R,Hbk Inc:R,Golf
+07-FULL,Volkswagen Golf,Volkswagen,Golf,2015-2026,GTI,Hatchback,2L+,H1,两厢车,Hatchback GTI,Hatchback GTI,Golf
+07-FULL,Volkswagen Golf,Volkswagen,Golf,2022-2026,GTI/R,Hatchback,2L+,H1,两厢车,Hatchback GTI/R,Hatchback GTI/R,Golf
+07-FULL,Volkswagen Golf,Volkswagen,Golf,2022-2026,R,Hatchback,2L+,H1,两厢车,Hatchback R,Hatchback R,Golf
+07-FULL,Volkswagen Passat,Volkswagen,Passat,1974-1981,,Hatchback/Wagon,2L+,H1,两厢车,Hatchback/Wagon,Hbk/Wgn,Passat
+07-FULL,Volkswagen Rabbit,Volkswagen,Rabbit,2006-2009,,Hatchback,2L+,H1,两厢车,Hatchback,Hatchback,Rabbit
+07-FULL,Volvo C30,Volvo,C30,2008-2013,,Hatchback,2L+,H1,两厢车,,,C30
+07-FULL,Volvo V40,Volvo,V40,2000-2001,,Wagon,2L+,H1,两厢车,,,V40
+07-FULL,Volvo V40,Volvo,V40,2004,,Wagon,2L+,H1,两厢车,,,V40
+07-FULL,Volvo V50,Volvo,V50,2005-2009,,Wagon,2L+,H1,两厢车,,,V50

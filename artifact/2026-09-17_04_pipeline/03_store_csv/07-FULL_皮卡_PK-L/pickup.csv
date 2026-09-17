@@ -1,0 +1,22 @@
+﻿店铺,MAKE,MODEL,YEAR,VERSION,CAB,BED,SIZE,SIZE-CODE,SHORT-CAB,TITLE,DESCRIPTION
+07-FULL,Cadillac,Escalade EXT,2002-2013,,Crew,5.3,PK-L,T3,Crew,Cadillac Escalade EXT,
+07-FULL,Chevrolet,Avalanche,2002-2013,1500/2500,Crew,5.3,PK-L,T3,Crew,Chevrolet Avalanche,
+07-FULL,Chevrolet,Colorado,2015-2022,,Crew,6,PK-L,T3,Crew,Chevrolet Colorado,
+07-FULL,Chevrolet,Colorado,2023-2026,,Crew,5,PK-L,T3,Crew,Chevrolet Colorado,
+07-FULL,Chevrolet,Silverado 1500,1999-2008,,Extended,6.5,PK-L,T3,Extended,Chevrolet Silverado 1500,
+07-FULL,Chevrolet,Silverado 1500,2005,,Crew,5.8,PK-L,T3,Crew,Chevrolet Silverado 1500,
+07-FULL,Chevrolet,Silverado 1500,2007-2008,,Crew,5.8,PK-L,T3,Crew,Chevrolet Silverado 1500,
+07-FULL,Chevrolet,Silverado 1500,2014-2018,,Crew/Double,5.8-6.6,PK-L,T3,Crew/Double,Chevrolet Silverado 1500,
+07-FULL,Chevrolet,Silverado 2500HD/3500HD,2015-2017,,Double,6.8,PK-L,T3,Double,Chevrolet Silverado 2500HD/3500HD,
+07-FULL,Ford,F-150,1997-2008,,SuperCab/SuperCrew,5.5-6.5,PK-L,T3,SCab/SCrew,Ford F-150,Includes Raptor
+07-FULL,Ford,F-150,2010-2020,Raptor,SuperCab,5.5,PK-L,T3,SuperCab,Ford F-150,Includes Raptor
+07-FULL,GMC,Canyon,2015-2022,,Crew,6,PK-L,T3,Crew,GMC Canyon,
+07-FULL,GMC,Sierra 1500,1999-2006,,Extended,6.6,PK-L,T3,Extended,GMC Sierra 1500/2500HD/3500HD,
+07-FULL,GMC,Sierra 1500,2007-2018,,Crew/Double,5.8-6.6,PK-L,T3,Crew/Double,GMC Sierra 1500/2500HD/3500HD,
+07-FULL,Ineos Automotive,Grenadier,2024-2026,Quartermaster,Crew,5.1,PK-L,T3,Crew,Ineos Automotive Grenadier,
+07-FULL,Nissan,Frontier,2022-2026,,Crew,6,PK-L,T3,Crew,Nissan Frontier,Includes SC-V6
+07-FULL,Ram,1500,1994-2026,,Club/Quad,6.4,PK-L,T3,Club/Quad,Ram 1500,
+07-FULL,Ram,1500,2011-2018,,Crew,5.6,PK-L,T3,Crew,Ram 1500,
+07-FULL,Ram,1500 Classic,2019-2023,,Crew,5.6,PK-L,T3,Crew,Ram 1500 Classic,
+07-FULL,Toyota,Tacoma,2005-2026,,Double/XtraCab,6,PK-L,T3,Dbl/XCab,Toyota Tacoma,
+07-FULL,Toyota,Tundra,2007-2021,,CrewMax/Double,5.5-6.5,PK-L,T3,CMx/Dbl,Toyota Tundra,

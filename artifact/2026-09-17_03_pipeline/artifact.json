@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "layout": "store-pipeline-v2",
+  "created_at": "2026-09-17T00:00:00+08:00",
+  "updated_at": "2026-09-17T00:00:00+08:00",
+  "status": "partial",
+  "note": "Special ad-hoc run resumed from 2026-09-17_02_pipeline/02_user_size.json. Store 全尺码全量 only, split discretely by SIZE into per-size CSVs, HTML generated. Not published (build_public_site skipped intentionally).",
+  "case": "stores",
+  "source_state": "artifact/2026-09-17_02_pipeline/02_user_size.json",
+  "store": "全尺码全量",
+  "format": "csv-json-discrete-size",
+  "steps": [
+    "export_store_csv_discrete_size",
+    "generate_store_html"
+  ]
+}

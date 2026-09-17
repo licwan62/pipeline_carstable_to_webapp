@@ -1,0 +1,45 @@
+﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
+07-FULL,Audi A8/S8,Audi,A8/S8,2019-2026,,Sedan,3XXXL,C6,三厢车,,,A8/S8
+07-FULL,BMW 7 Series,BMW,7 Series,2023-2026,,Sedan,3XXXL,C6,三厢车,,,7 Series
+07-FULL,BMW i7,BMW,i7,2023-2026,,Sedan,3XXXL,C6,三厢车,,,i7
+07-FULL,Buick LeSabre,Buick,LeSabre,1959-1963,Incl: 2dr/4dr/4dr Hardtop,Sedan,3XXXL,C6,三厢车,Sedan Incl: 2dr/4dr/4dr Hardtop,Sedan Incl: 2dr/4dr/4dr Hardtop,LeSabre
+07-FULL,Buick LeSabre,Buick,LeSabre,1965-1968,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,LeSabre
+07-FULL,Buick LeSabre,Buick,LeSabre,1980,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,LeSabre
+07-FULL,Buick LeSabre,Buick,LeSabre,1982-1985,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,LeSabre
+07-FULL,Buick Roadmaster,Buick,Roadmaster,1936-1952,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Roadmaster
+07-FULL,Buick Roadmaster,Buick,Roadmaster,1954-1957,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Roadmaster
+07-FULL,Buick Roadmaster,Buick,Roadmaster,1992-1996,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Roadmaster
+07-FULL,Cadillac DTS-L,Cadillac,DTS-L,2007-2011,,Sedan,3XXXL,C6,三厢车,,,DTS-L
+07-FULL,Cadillac DeVille,Cadillac,DeVille,1994-1999,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,DeVille
+07-FULL,Chevrolet Bel Air,Chevrolet,Bel Air,1958-1966,Incl: 2dr/4dr,Sedan,3XXXL,C6,三厢车,Sedan Incl: 2dr/4dr,Sdn Inc:2dr/4dr,Bel Air
+07-FULL,Chevrolet Bel Air,Chevrolet,Bel Air,1970-1971,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Bel Air
+07-FULL,Chevrolet Caprice,Chevrolet,Caprice,1966-1970,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Caprice
+07-FULL,Chevrolet Chevelle,Chevrolet,Chevelle,1973-1977,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Chevelle
+07-FULL,Chevrolet Impala,Chevrolet,Impala,1974-1996,Incl: SS,Sedan,3XXXL,C6,三厢车,Sedan Incl: SS,Sedan Incl: SS,Impala
+07-FULL,Chevrolet Malibu,Chevrolet,Malibu,1975-1977,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Malibu
+07-FULL,Chrysler Concorde,Chrysler,Concorde,1998-2001,,Sedan,3XXXL,C6,三厢车,,,Concorde
+07-FULL,Ford Crown Victoria,Ford,Crown Victoria,1983-2011,,Sedan,3XXXL,C6,三厢车,,,Crown Victoria
+07-FULL,Ford Thunderbird,Ford,Thunderbird,1967-1971,4dr Landau,Sedan,3XXXL,C6,三厢车,Sedan 4dr Landau,Sedan 4dr Landau,Thunderbird
+07-FULL,Lincoln Continental,Lincoln,Continental,1961-1965,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Continental
+07-FULL,Lincoln Continental,Lincoln,Continental,1999-2001,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Continental
+07-FULL,Lincoln Town Car,Lincoln,Town Car,1998-2011,,Sedan,3XXXL,C6,三厢车,,,Town Car
+07-FULL,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2014,AMG,Sedan,3XXXL,C6,三厢车,Sedan AMG,Sedan AMG,S-Class
+07-FULL,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2016-2026,Maybach,Sedan,3XXXL,C6,三厢车,Sedan Maybach,Sedan Maybach,S-Class
+07-FULL,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2017-2026,AMG,Sedan,3XXXL,C6,三厢车,Sedan AMG,Sedan AMG,S-Class
+07-FULL,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2021-2026,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,S-Class
+07-FULL,Mercury Grand Marquis,Mercury,Grand Marquis,1979-2011,,Sedan,3XXXL,C6,三厢车,,,Grand Marquis
+07-FULL,Mercury Marauder,Mercury,Marauder,2003-2004,,Sedan,3XXXL,C6,三厢车,,,Marauder
+07-FULL,Mercury Marquis,Mercury,Marquis,1979-1982,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Marquis
+07-FULL,Mercury Monterey,Mercury,Monterey,1957-1958,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Monterey
+07-FULL,Mercury Monterey,Mercury,Monterey,1961-1964,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Monterey
+07-FULL,Oldsmobile 88,Oldsmobile,88,1961-1965,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,88
+07-FULL,Oldsmobile 88,Oldsmobile,88,1968,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,88
+07-FULL,Oldsmobile 88,Oldsmobile,88,1977-1979,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,88
+07-FULL,Oldsmobile Cutlass,Oldsmobile,Cutlass,1973-1977,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Cutlass
+07-FULL,Plymouth Fury,Plymouth,Fury,1959-1961,Incl: 4dr Hardtop V-800,Sedan,3XXXL,C6,三厢车,Sedan Incl: 4dr Hardtop V-800,Sdn Inc:4dr HTop,Fury
+07-FULL,Plymouth Fury,Plymouth,Fury,1965-1972,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Fury
+07-FULL,Plymouth Fury,Plymouth,Fury,1975-1978,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Fury
+07-FULL,Pontiac Bonneville,Pontiac,Bonneville,1958,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Bonneville
+07-FULL,Pontiac Bonneville,Pontiac,Bonneville,1961-1964,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Bonneville
+07-FULL,Pontiac Bonneville,Pontiac,Bonneville,1977-1981,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,Bonneville
+07-FULL,Pontiac LeMans,Pontiac,LeMans,1973-1976,,Sedan,3XXXL,C6,三厢车,Sedan,Sedan,LeMans

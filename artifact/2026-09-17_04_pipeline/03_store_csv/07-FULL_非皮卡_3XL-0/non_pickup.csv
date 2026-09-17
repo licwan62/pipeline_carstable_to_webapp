@@ -1,0 +1,57 @@
+﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
+07-FULL,Acura CL,Acura,CL,1997-1999,,Coupe,3XL-0,C4,跑车,,,CL
+07-FULL,Acura Legend,Acura,Legend,1987-1990,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Legend
+07-FULL,Audi A5/S5/RS5,Audi,A5/S5/RS5,2018-2024,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,A5/S5/RS5
+07-FULL,BMW 4 Series,BMW,4 Series,2021-2026,M4,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe M4,Conv/Cpe M4,4 Series
+07-FULL,BMW 6 Series,BMW,6 Series,1977-2010,,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe,Conv/Cpe,6 Series
+07-FULL,BMW 8 Series,BMW,8 Series,1991-2026,,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe,Conv/Cpe,8 Series
+07-FULL,Buick Skylark,Buick,Skylark,1992-1993,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Skylark
+07-FULL,Buick Skylark,Buick,Skylark,1995-1997,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Skylark
+07-FULL,Cadillac CTS,Cadillac,CTS,2011-2015,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,CTS
+07-FULL,Cadillac ELR,Cadillac,ELR,2014-2016,,Coupe,3XL-0,C4,跑车,,,ELR
+07-FULL,Cadillac Eldorado,Cadillac,Eldorado,1986-1991,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Eldorado
+07-FULL,Chevrolet Beretta,Chevrolet,Beretta,1987-1996,,Coupe,3XL-0,C4,跑车,,,Beretta
+07-FULL,Chevrolet Camaro,Chevrolet,Camaro,1967-1969,,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe,Conv/Cpe,Camaro
+07-FULL,Chevrolet Camaro,Chevrolet,Camaro,1982-1984,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Camaro
+07-FULL,Chevrolet Camaro,Chevrolet,Camaro,1987,IROC-Z,Convertible,3XL-0,C4,跑车,Convertible IROC-Z,Convertible IROC-Z,Camaro
+07-FULL,Chevrolet Camaro,Chevrolet,Camaro,2010-2024,Incl: ZL1,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe Incl: ZL1,Conv/Cpe Inc:ZL1,Camaro
+07-FULL,Chevrolet Corvette,Chevrolet,Corvette,1968-1982,,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe,Conv/Cpe,Corvette
+07-FULL,Chevrolet Corvette,Chevrolet,Corvette,2020-2026,Incl: ZR1,Coupe,3XL-0,C4,跑车,Coupe Incl: ZR1,Coupe Incl: ZR1,Corvette
+07-FULL,Chevrolet Nova,Chevrolet,Nova,1968-1972,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Nova
+07-FULL,Chrysler Sebring,Chrysler,Sebring,1995-2005,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Sebring
+07-FULL,Dodge Avenger,Dodge,Avenger,1995-2000,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Avenger
+07-FULL,Dodge Challenger,Dodge,Challenger,1970-1972,,Coupe,3XL-0,C4,跑车,,,Challenger
+07-FULL,Ford GT,Ford,GT,2017-2022,,Coupe,3XL-0,C4,跑车,,,GT
+07-FULL,Ford Mustang,Ford,Mustang,1969-1972,Incl: Hardtop/SportsRoof,Convertible/Coupe/Fastback,3XL-0,C4,跑车,Convertible/Coupe/Fastback Incl: Hardtop/SportsRoof,Conv/Cpe/Fastbk,Mustang
+07-FULL,Ford Mustang,Ford,Mustang,2005-2026,Incl: Dark Horse,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe Incl: Dark Horse,Conv/Cpe Inc:DH,Mustang
+07-FULL,Ford Thunderbird,Ford,Thunderbird,1956,,Convertible,3XL-0,C4,跑车,Convertible,Convertible,Thunderbird
+07-FULL,Ford Thunderbird,Ford,Thunderbird,2002-2005,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Thunderbird
+07-FULL,Honda Accord,Honda,Accord,1991-2017,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Accord
+07-FULL,Infiniti G,Infiniti,G,2009-2013,,Convertible,3XL-0,C4,跑车,Convertible,Convertible,G
+07-FULL,Infiniti M,Infiniti,M,1990-1992,,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe,Conv/Cpe,M
+07-FULL,Jaguar XJS,Jaguar,XJS,1976-1996,,Convertible/Coupe,3XL-0,C4,跑车,,,XJS
+07-FULL,Jaguar XK,Jaguar,XK,1997-2015,Incl: XKR/XKR-S,Convertible/Coupe,3XL-0,C4,跑车,Incl: XKR/XKR-S,Incl: XKR/XKR-S,XK
+07-FULL,Kia Stinger,Kia,Stinger,2018-2023,Incl: GT,Coupe/Fastback/Liftback,3XL-0,C4,跑车,Incl: GT,Incl: GT,Stinger
+07-FULL,Lexus LC,Lexus,LC,2018-2026,,Convertible/Coupe,3XL-0,C4,跑车,,,LC
+07-FULL,Lexus RC,Lexus,RC,2015-2025,RC F,Coupe,3XL-0,C4,跑车,RC F,RC F,RC
+07-FULL,Lexus RC,Lexus,RC,2019-2024,,Coupe,3XL-0,C4,跑车,,,RC
+07-FULL,Lexus SC,Lexus,SC,1992-2000,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,SC
+07-FULL,Mercedes-Benz C-Class,Mercedes-Benz,C-Class,2012-2015,AMG,Coupe,3XL-0,C4,跑车,Coupe AMG,Coupe AMG,C-Class
+07-FULL,Mercedes-Benz E-Class,Mercedes-Benz,E-Class,2018-2023,,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe,Conv/Cpe,E-Class
+07-FULL,Mercedes-Benz SL-Class,Mercedes-Benz,SL-Class,2022-2026,Incl: AMG,Convertible,3XL-0,C4,跑车,Convertible Incl: AMG,Conv Inc:AMG,SL-Class
+07-FULL,Mercury Cougar,Mercury,Cougar,1967-1970,,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe,Conv/Cpe,Cougar
+07-FULL,Nissan GT-R,Nissan,GT-R,2017-2024,NISMO,Coupe,3XL-0,C4,跑车,NISMO,NISMO,GT-R
+07-FULL,Oldsmobile Achieva,Oldsmobile,Achieva,1992-1998,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Achieva
+07-FULL,Oldsmobile Alero,Oldsmobile,Alero,1999-2004,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Alero
+07-FULL,Oldsmobile Cutlass,Oldsmobile,Cutlass,1962-1991,Ciera/Cutlass/F-85,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe Ciera/Cutlass/F-85,Conv/Cpe Cie/F85,Cutlass
+07-FULL,Plymouth Barracuda,Plymouth,Barracuda,1964-1966,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Barracuda
+07-FULL,Plymouth Barracuda,Plymouth,Barracuda,1970-1973,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Barracuda
+07-FULL,Plymouth Valiant,Plymouth,Valiant,1963-1972,,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe,Conv/Cpe,Valiant
+07-FULL,Pontiac Firebird,Pontiac,Firebird,1967-1972,Incl: Trans Am,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe Incl: Trans Am,Conv/Cpe Inc:TAm,Firebird
+07-FULL,Pontiac Firebird,Pontiac,Firebird,1982-1990,Trans Am,Coupe,3XL-0,C4,跑车,Coupe Trans Am,Coupe Trans Am,Firebird
+07-FULL,Pontiac G6,Pontiac,G6,2006-2009,,Convertible,3XL-0,C4,跑车,Convertible,Convertible,G6
+07-FULL,Pontiac GTO,Pontiac,GTO,2004-2006,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,GTO
+07-FULL,Pontiac Grand Am,Pontiac,Grand Am,1992-2005,,Coupe,3XL-0,C4,跑车,Coupe,Coupe,Grand Am
+07-FULL,Pontiac LeMans,Pontiac,LeMans,1961-1962,LeMans/Tempest/Tempest LeMans,Convertible/Coupe,3XL-0,C4,跑车,Convertible/Coupe LeMans/Tempest/Tempest LeMans,Conv/Cpe LeM/Tmpst,LeMans
+07-FULL,Toyota Solara,Toyota,Solara,1999-2003,,Convertible/Coupe,3XL-0,C4,跑车,,,Solara
+07-FULL,Volvo C70,Volvo,C70,1998-2004,,Convertible,3XL-0,C4,跑车,,,C70

@@ -1,0 +1,39 @@
+﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
+07-FULL,Audi A8/S8,Audi,A8/S8,2000-2018,LWB,Sedan,3XXL,A4,三厢车,LWB,LWB,A8/S8
+07-FULL,BMW 7 Series,BMW,7 Series,2002-2022,,Sedan,3XXL,A4,三厢车,,,7 Series
+07-FULL,Buick Lucerne,Buick,Lucerne,2006-2011,,Sedan,3XXL,A4,三厢车,,,Lucerne
+07-FULL,Buick Park Avenue,Buick,Park Avenue,1991-2005,,Sedan,3XXL,A4,三厢车,,,Park Avenue
+07-FULL,Buick Roadmaster,Buick,Roadmaster,1953,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,Roadmaster
+07-FULL,Buick Skylark,Buick,Skylark,1965-1972,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,Skylark
+07-FULL,Cadillac CT6,Cadillac,CT6,2016-2020,Incl: Blackwing/PHEV,Sedan,3XXL,A4,三厢车,Incl: Blackwing/PHEV,Inc:Black/PHEV,CT6
+07-FULL,Cadillac DTS,Cadillac,DTS,2006-2011,,Sedan,3XXL,A4,三厢车,,,DTS
+07-FULL,Cadillac DeVille,Cadillac,DeVille,1989-1993,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,DeVille
+07-FULL,Cadillac DeVille,Cadillac,DeVille,2000-2005,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,DeVille
+07-FULL,Cadillac Seville,Cadillac,Seville,1976-1985,,Sedan,3XXL,A4,三厢车,,,Seville
+07-FULL,Cadillac Seville,Cadillac,Seville,1992-1997,Incl: SLS/STS,Sedan,3XXL,A4,三厢车,Incl: SLS/STS,Incl: SLS/STS,Seville
+07-FULL,Chrysler Concorde,Chrysler,Concorde,2002-2004,,Sedan,3XXL,A4,三厢车,,,Concorde
+07-FULL,Chrysler LHS,Chrysler,LHS,1994-2001,,Sedan,3XXL,A4,三厢车,,,LHS
+07-FULL,Dodge Charger,Dodge,Charger,2024-2026,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,Charger
+07-FULL,Dodge Intrepid,Dodge,Intrepid,1998-2004,,Sedan,3XXL,A4,三厢车,,,Intrepid
+07-FULL,Genesis EQ900,Genesis,EQ900,2017-2026,G90,Sedan,3XXL,A4,三厢车,G90,G90,EQ900
+07-FULL,Genesis G90,Genesis,G90,2017-2026,,Sedan,3XXL,A4,三厢车,,,G90
+07-FULL,Hyundai Equus,Hyundai,Equus,2011-2016,,Sedan,3XXL,A4,三厢车,,,Equus
+07-FULL,Jaguar XJ,Jaguar,XJ,2004-2019,LWB,Sedan,3XXL,A4,三厢车,LWB,LWB,XJ
+07-FULL,Lexus LS,Lexus,LS,2010-2017,L,Sedan,3XXL,A4,三厢车,L,L,LS
+07-FULL,Lexus LS,Lexus,LS,2018-2026,,Sedan,3XXL,A4,三厢车,,,LS
+07-FULL,Lincoln Continental,Lincoln,Continental,1988-1998,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,Continental
+07-FULL,Lincoln Continental,Lincoln,Continental,2002,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,Continental
+07-FULL,Lincoln MKS,Lincoln,MKS,2009-2016,,Sedan,3XXL,A4,三厢车,,,MKS
+07-FULL,Maserati Quattroporte,Maserati,Quattroporte,2014-2024,,Sedan,3XXL,A4,三厢车,,,Quattroporte
+07-FULL,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,1994-2020,Incl: LWB/S 550e PHEV/S 560e PHEV,Sedan,3XXL,A4,三厢车,Sedan Incl: LWB/S 550e PHEV/S 560e PHEV,Sdn Inc:LWB/S550e,S-Class
+07-FULL,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2001-2013,AMG,Sedan,3XXL,A4,三厢车,Sedan AMG,Sedan AMG,S-Class
+07-FULL,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2015-2016,AMG,Sedan,3XXL,A4,三厢车,Sedan AMG,Sedan AMG,S-Class
+07-FULL,Mercury Monterey,Mercury,Monterey,1954-1956,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,Monterey
+07-FULL,Oldsmobile 88,Oldsmobile,88,1951-1958,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,88
+07-FULL,Oldsmobile Aurora,Oldsmobile,Aurora,1995-1999,,Sedan,3XXL,A4,三厢车,,,Aurora
+07-FULL,Oldsmobile Cutlass,Oldsmobile,Cutlass,1965-1972,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,Cutlass
+07-FULL,Plymouth Fury,Plymouth,Fury,1963-1964,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,Fury
+07-FULL,Pontiac LeMans,Pontiac,LeMans,1965-1972,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,LeMans
+07-FULL,Pontiac LeMans,Pontiac,LeMans,1977,,Sedan,3XXL,A4,三厢车,Sedan,Sedan,LeMans
+07-FULL,Porsche Panamera,Porsche,Panamera,2017-2023,Executive LWB,Liftback,3XXL,A4,三厢车,Liftback Executive LWB,Lftbk Exec LWB,Panamera
+07-FULL,Volkswagen Phaeton,Volkswagen,Phaeton,2004-2006,,Sedan,3XXL,A4,三厢车,,,Phaeton

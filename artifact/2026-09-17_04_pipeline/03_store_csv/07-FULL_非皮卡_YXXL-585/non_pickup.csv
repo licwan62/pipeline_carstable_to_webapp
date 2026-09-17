@@ -1,0 +1,9 @@
+﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
+07-FULL,Cadillac Escalade,Cadillac,Escalade,2003-2026,ESV,SUV,YXXL-585,S5,越野车,ESV,ESV,Escalade
+07-FULL,Chevrolet Suburban,Chevrolet,Suburban,1970-2026,,SUV,YXXL-585,S5,越野车,,,Suburban
+07-FULL,Ford Excursion,Ford,Excursion,2000-2005,,SUV,YXXL-585,S5,越野车,,,Excursion
+07-FULL,Ford Expedition,Ford,Expedition,2007-2026,EL/MAX,SUV,YXXL-585,S5,越野车,EL/MAX,EL/MAX,Expedition
+07-FULL,GMC Yukon XL,GMC,Yukon XL,2000-2026,,SUV,YXXL-585,S5,越野车,,,Yukon XL
+07-FULL,Jeep Grand Wagoneer,Jeep,Grand Wagoneer,2022-2026,Incl: L,SUV,YXXL-585,S5,越野车,Incl: L,Incl: L,Grand Wagoneer
+07-FULL,Jeep Wagoneer,Jeep,Wagoneer,2023-2025,Incl: L,SUV,YXXL-585,S5,越野车,Incl: L,Incl: L,Wagoneer
+07-FULL,Lincoln Navigator,Lincoln,Navigator,2007-2026,L,SUV,YXXL-585,S5,越野车,L,L,Navigator

@@ -1,0 +1,99 @@
+﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
+07-FULL,Acura MDX,Acura,MDX,2007-2026,Incl: Type S,SUV,YXL,S3,越野车,Incl: Type S,Incl: Type S,MDX
+07-FULL,Acura ZDX,Acura,ZDX,2010-2025,,SUV,YXL,S3,越野车,,,ZDX
+07-FULL,Audi Q7,Audi,Q7,2007-2019,,SUV,YXL,S3,越野车,,,Q7
+07-FULL,Audi Q7/SQ7,Audi,Q7/SQ7,2020-2026,,SUV,YXL,S3,越野车,,,Q7/SQ7
+07-FULL,Audi Q8,Audi,Q8,2019,,SUV,YXL,S3,越野车,,,Q8
+07-FULL,Audi Q8 e-tron/SQ8 e-tron,Audi,Q8 e-tron/SQ8 e-tron,2024-2025,Incl: Sportback,SUV,YXL,S3,越野车,Incl: Sportback,Incl: Sportback,Q8/SQ8 etron
+07-FULL,Audi Q8/SQ8/RS Q8,Audi,Q8/SQ8/RS Q8,2020-2026,,SUV,YXL,S3,越野车,,,Q8/SQ8/RS Q8
+07-FULL,Audi e-tron/S e-tron,Audi,e-tron/S e-tron,2019-2023,Sportback/SUV,SUV,YXL,S3,越野车,Sportback/SUV,Sptbk/SUV,e-tron/S e-tron
+07-FULL,BMW X5,BMW,X5,2007-2026,,SUV,YXL,S3,越野车,,,X5
+07-FULL,BMW X6,BMW,X6,2008-2026,,SUV,YXL,S3,越野车,,,X6
+07-FULL,BMW iX,BMW,iX,2022-2026,,SUV,YXL,S3,越野车,,,iX
+07-FULL,Buick Rainier,Buick,Rainier,2004-2007,,SUV,YXL,S3,越野车,,,Rainier
+07-FULL,Cadillac Escalade,Cadillac,Escalade,2002-2006,,SUV,YXL,S3,越野车,,,Escalade
+07-FULL,Cadillac Lyriq,Cadillac,Lyriq,2023-2026,Incl: Lyriq-V,SUV,YXL,S3,越野车,Incl: Lyriq-V,Incl: Lyriq-V,Lyriq
+07-FULL,Cadillac SRX,Cadillac,SRX,2010-2016,,SUV,YXL,S3,越野车,SUV,SUV,SRX
+07-FULL,Cadillac XT6,Cadillac,XT6,2020-2025,,SUV,YXL,S3,越野车,,,XT6
+07-FULL,Chevrolet Blazer,Chevrolet,Blazer,2019-2026,,SUV,YXL,S3,越野车,,,Blazer
+07-FULL,Chevrolet Blazer EV,Chevrolet,Blazer EV,2024-2026,Incl: SS,Crossover,YXL,S3,越野车,Incl: SS,Incl: SS,Blazer EV
+07-FULL,Chevrolet Equinox EV,Chevrolet,Equinox EV,2024-2026,,SUV,YXL,S3,越野车,,,Equinox EV
+07-FULL,Chevrolet Suburban,Chevrolet,Suburban,1941-1946,,SUV,YXL,S3,越野车,,,Suburban
+07-FULL,Chevrolet Suburban,Chevrolet,Suburban,1955-1966,,SUV,YXL,S3,越野车,,,Suburban
+07-FULL,Chevrolet Tahoe,Chevrolet,Tahoe,1995-2006,Incl: 4dr 2WD,SUV,YXL,S3,越野车,Incl: 4dr 2WD,Incl: 4dr 2WD,Tahoe
+07-FULL,Chevrolet Trailblazer,Chevrolet,Trailblazer,2002-2009,Incl: SS,SUV,YXL,S3,越野车,Incl: SS,Incl: SS,Trailblazer
+07-FULL,Chrysler Pacifica,Chrysler,Pacifica,2004-2008,,Crossover,YXL,S3,越野车,Crossover,Crossover,Pacifica
+07-FULL,Dodge Durango,Dodge,Durango,1998-2026,Incl: Hellcat/SRT,SUV,YXL,S3,越野车,Incl: Hellcat/SRT,Inc:HC/SRT,Durango
+07-FULL,Dodge Journey,Dodge,Journey,2009-2020,,Crossover/SUV,YXL,S3,越野车,,,Journey
+07-FULL,Ford Bronco,Ford,Bronco,2022-2026,4dr Raptor,SUV,YXL,S3,越野车,4dr Raptor,4dr Raptor,Bronco
+07-FULL,Ford Explorer,Ford,Explorer,2002,,SUV,YXL,S3,越野车,,,Explorer
+07-FULL,Ford Explorer,Ford,Explorer,2006-2025,Incl: Timberline,SUV,YXL,S3,越野车,Incl: Timberline,Inc:Timber,Explorer
+07-FULL,Ford Freestyle,Ford,Freestyle,2005-2007,,Crossover,YXL,S3,越野车,,,Freestyle
+07-FULL,GMC Acadia,GMC,Acadia,2007-2023,Incl: Limited,SUV,YXL,S3,越野车,Incl: Limited,Incl: Limited,Acadia
+07-FULL,GMC Envoy,GMC,Envoy,2002-2009,,SUV,YXL,S3,越野车,,,Envoy
+07-FULL,GMC Yukon,GMC,Yukon,1995-1999,4dr,SUV,YXL,S3,越野车,4dr,4dr,Yukon
+07-FULL,Genesis GV80,Genesis,GV80,2021-2026,,SUV,YXL,S3,越野车,,,GV80
+07-FULL,Honda Passport,Honda,Passport,2019-2026,,SUV,YXL,S3,越野车,,,Passport
+07-FULL,Honda Pilot,Honda,Pilot,2009-2026,Incl: TrailSport,SUV,YXL,S3,越野车,Incl: TrailSport,Inc:TrailSport,Pilot
+07-FULL,Honda Prologue,Honda,Prologue,2024-2026,,SUV,YXL,S3,越野车,,,Prologue
+07-FULL,Hyundai Ioniq 9,Hyundai,Ioniq 9,2026,,SUV,YXL,S3,越野车,,,Ioniq 9
+07-FULL,Hyundai Palisade,Hyundai,Palisade,2020-2026,,SUV,YXL,S3,越野车,,,Palisade
+07-FULL,Hyundai Santa Fe,Hyundai,Santa Fe,2013-2019,XL,SUV,YXL,S3,越野车,XL,XL,Santa Fe
+07-FULL,Hyundai Santa Fe,Hyundai,Santa Fe,2024-2026,,SUV,YXL,S3,越野车,,,Santa Fe
+07-FULL,Hyundai Veracruz,Hyundai,Veracruz,2007-2012,,SUV,YXL,S3,越野车,,,Veracruz
+07-FULL,Ineos Automotive Grenadier,Ineos Automotive,Grenadier,2024-2026,,SUV,YXL,S3,越野车,,,Grenadier
+07-FULL,Infiniti FX,Infiniti,FX,2009-2013,,Crossover,YXL,S3,越野车,,,FX
+07-FULL,Infiniti JX,Infiniti,JX,2013,,Crossover,YXL,S3,越野车,,,JX
+07-FULL,Infiniti QX60,Infiniti,QX60,2014-2026,,SUV,YXL,S3,越野车,,,QX60
+07-FULL,Infiniti QX70,Infiniti,QX70,2014-2017,,Crossover,YXL,S3,越野车,,,QX70
+07-FULL,Jeep Grand Cherokee,Jeep,Grand Cherokee,2014-2021,SRT,SUV,YXL,S3,越野车,SRT,SRT,Grand Cherokee
+07-FULL,Jeep Grand Cherokee,Jeep,Grand Cherokee,2022-2026,,SUV,YXL,S3,越野车,,,Grand Cherokee
+07-FULL,Jeep Wagoneer S,Jeep,Wagoneer S,2025-2026,,SUV,YXL,S3,越野车,,,Wagoneer S
+07-FULL,Jeep Wrangler,Jeep,Wrangler,2024-2026,4dr Xtreme,SUV,YXL,S3,越野车,4dr Xtreme,4dr Xtreme,Wrangler
+07-FULL,Kia Borrego,Kia,Borrego,2009,,SUV,YXL,S3,越野车,,,Borrego
+07-FULL,Kia EV9,Kia,EV9,2024-2026,,SUV,YXL,S3,越野车,,,EV9
+07-FULL,Kia Telluride,Kia,Telluride,2020-2026,,SUV,YXL,S3,越野车,,,Telluride
+07-FULL,Land Rover Defender,Land Rover,Defender,2020-2026,110/110 OCTA,SUV,YXL,S3,越野车,110/110 OCTA,110/110 OCTA,Defender
+07-FULL,Land Rover Discovery,Land Rover,Discovery,2010-2024,,SUV,YXL,S3,越野车,,,Discovery
+07-FULL,Land Rover LR3,Land Rover,LR3,2005-2009,,SUV,YXL,S3,越野车,,,LR3
+07-FULL,Land Rover LR4,Land Rover,LR4,2010-2016,,SUV,YXL,S3,越野车,,,LR4
+07-FULL,Land Rover Range Rover,Land Rover,Range Rover,2003-2026,,SUV,YXL,S3,越野车,,,Range Rover
+07-FULL,Land Rover Range Rover Sport,Land Rover,Range Rover Sport,2014-2026,,SUV,YXL,S3,越野车,,,RangeRov Sport
+07-FULL,Lexus GX,Lexus,GX,2014-2026,Incl: Overtrail,SUV,YXL,S3,越野车,Incl: Overtrail,Incl: Overtrail,GX
+07-FULL,Lexus LX,Lexus,LX,1998-2026,,SUV,YXL,S3,越野车,,,LX
+07-FULL,Lexus RX,Lexus,RX,2016-2026,Incl: RX L,SUV,YXL,S3,越野车,Incl: RX L,Incl: RX L,RX
+07-FULL,Lincoln Aviator,Lincoln,Aviator,2003-2026,,SUV,YXL,S3,越野车,,,Aviator
+07-FULL,Lincoln Nautilus,Lincoln,Nautilus,2024-2026,,SUV,YXL,S3,越野车,,,Nautilus
+07-FULL,Lucid Motors Gravity,Lucid Motors,Gravity,2025-2026,,SUV,YXL,S3,越野车,,,Gravity
+07-FULL,Maserati Grecale,Maserati,Grecale,2023-2026,,SUV,YXL,S3,越野车,,,Grecale
+07-FULL,Maserati Levante,Maserati,Levante,2017-2024,,SUV,YXL,S3,越野车,,,Levante
+07-FULL,Mazda CX-70,Mazda,CX-70,2025-2026,,SUV,YXL,S3,越野车,,,CX-70
+07-FULL,Mazda CX-9,Mazda,CX-9,2007-2023,,SUV,YXL,S3,越野车,,,CX-9
+07-FULL,Mazda CX-90,Mazda,CX-90,2026,,SUV,YXL,S3,越野车,,,CX-90
+07-FULL,Mercedes-Benz G-Class,Mercedes-Benz,G-Class,2019-2026,,SUV,YXL,S3,越野车,,,G-Class
+07-FULL,Mercedes-Benz GL-Class,Mercedes-Benz,GL-Class,2007-2012,,SUV,YXL,S3,越野车,,,GL-Class
+07-FULL,Mercedes-Benz GLE-Class,Mercedes-Benz,GLE-Class,2020-2026,,SUV,YXL,S3,越野车,SUV,SUV,GLE-Class
+07-FULL,Mercury Mountaineer,Mercury,Mountaineer,1999-2010,,SUV,YXL,S3,越野车,,,Mountaineer
+07-FULL,Mitsubishi Endeavor,Mitsubishi,Endeavor,2004-2011,,SUV,YXL,S3,越野车,,,Endeavor
+07-FULL,Mitsubishi Montero,Mitsubishi,Montero,2001-2006,,SUV,YXL,S3,越野车,,,Montero
+07-FULL,Nissan Murano,Nissan,Murano,2015-2026,,SUV,YXL,S3,越野车,,,Murano
+07-FULL,Nissan Pathfinder,Nissan,Pathfinder,2012-2026,Incl: Rock Creek,SUV,YXL,S3,越野车,Incl: Rock Creek,Inc:RockCrk,Pathfinder
+07-FULL,Oldsmobile Bravada,Oldsmobile,Bravada,2002-2004,,SUV,YXL,S3,越野车,,,Bravada
+07-FULL,Polestar 3,Polestar,3,2025-2026,,SUV,YXL,S3,越野车,,,3
+07-FULL,Polestar 4,Polestar,4,2026,,SUV,YXL,S3,越野车,,,4
+07-FULL,Porsche Cayenne,Porsche,Cayenne,2011-2026,,SUV,YXL,S3,越野车,SUV,SUV,Cayenne
+07-FULL,Rivian R1S,Rivian,R1S,2022-2026,,SUV,YXL,S3,越野车,,,R1S
+07-FULL,Saturn Outlook,Saturn,Outlook,2007-2010,,SUV,YXL,S3,越野车,,,Outlook
+07-FULL,Subaru Ascent,Subaru,Ascent,2019-2026,,SUV,YXL,S3,越野车,,,Ascent
+07-FULL,Subaru Tribeca,Subaru,Tribeca,2006-2014,,SUV,YXL,S3,越野车,,,Tribeca
+07-FULL,Suzuki XL7,Suzuki,XL7,2007-2009,XL7,SUV,YXL,S3,越野车,XL7,XL7,XL7
+07-FULL,Tesla Model X,Tesla,Model X,2016-2026,,SUV,YXL,S3,越野车,,,Model X
+07-FULL,Tesla Model Y L,Tesla,Model Y L,2026,,SUV,YXL,S3,越野车,,,Model Y L
+07-FULL,Toyota 4Runner,Toyota,4Runner,2014-2026,,SUV,YXL,S3,越野车,,,4Runner
+07-FULL,Toyota Highlander,Toyota,Highlander,2014-2026,,SUV,YXL,S3,越野车,,,Highlander
+07-FULL,Toyota Land Cruiser,Toyota,Land Cruiser,1998-2026,,SUV,YXL,S3,越野车,SUV,SUV,Land Cruiser
+07-FULL,Toyota bZ,Toyota,bZ,2026,Woodland,SUV,YXL,S3,越野车,Woodland,Woodland,bZ
+07-FULL,Volkswagen Atlas,Volkswagen,Atlas,2018-2026,Cross Sport/SE/SEL R-Line/Technology/V6 SE w,SUV,YXL,S3,越野车,Cross Sport/SE/SEL R-Line/Technology/V6 SE w,XSport/SE/SEL/Tech,Atlas
+07-FULL,Volkswagen Atlas Cross,Volkswagen,Atlas Cross,2021-2026,Cross Sport,SUV,YXL,S3,越野车,Cross Sport,Cross Sport,Atlas Cross
+07-FULL,Volvo EX90,Volvo,EX90,2025-2026,,SUV,YXL,S3,越野车,,,EX90
+07-FULL,Volvo XC90,Volvo,XC90,2016-2026,,SUV,YXL,S3,越野车,,,XC90

@@ -1,0 +1,25 @@
+﻿店铺,MAKE,MODEL,YEAR,VERSION,CAB,BED,SIZE,SIZE-CODE,SHORT-CAB,TITLE,DESCRIPTION
+07-FULL,Chevrolet,C/K,1988-2000,Incl: Classic,Extended,8,PK-XL+,T5,Extended,Chevrolet C/K,
+07-FULL,Chevrolet,C/K,1999-2000,Classic,Crew,6.5,PK-XL+,T5,Crew,Chevrolet C/K,
+07-FULL,Chevrolet,Silverado 1500,2004,,Crew,5.8,PK-XL+,T5,Crew,Chevrolet Silverado 1500,
+07-FULL,Chevrolet,Silverado 1500,2006,,Crew,5.8,PK-XL+,T5,Crew,Chevrolet Silverado 1500,
+07-FULL,Chevrolet,Silverado 1500,2009-2013,,Crew/Extended,5.8-6.5,PK-XL+,T5,Crew/Ext,Chevrolet Silverado 1500,
+07-FULL,Chevrolet,Silverado 1500,2019-2026,Incl: Trail Boss,Crew/Double,5.8-6.6,PK-XL+,T5,Crew/Double,Chevrolet Silverado 1500,
+07-FULL,Chevrolet,Silverado 1500HD,2001-2007,Incl: Classic,Crew,6.6,PK-XL+,T5,Crew,Chevrolet Silverado 1500HD,
+07-FULL,Chevrolet,Silverado 2500HD/3500HD,2008-2019,,Crew,6.5,PK-XL+,T5,Crew,Chevrolet Silverado 2500HD/3500HD,
+07-FULL,Chevrolet,Silverado 2500HD/3500HD,2020-2024,,Double,6.8,PK-XL+,T5,Double,Chevrolet Silverado 2500HD/3500HD,
+07-FULL,Chevrolet,Silverado EV,2024-2026,,Crew,5.9,PK-XL+,T5,Crew,Chevrolet Silverado EV,
+07-FULL,Ford,F-100,1974-1979,,SuperCab,8,PK-XL+,T5,SuperCab,Ford F-100,Includes Raptor
+07-FULL,Ford,F-150,1992-1998,,SuperCab,8,PK-XL+,T5,SuperCab,Ford F-150,Includes Raptor
+07-FULL,Ford,F-150,2009-2026,,SuperCab,6.5,PK-XL+,T5,SuperCab,Ford F-150,Includes Raptor
+07-FULL,Ford,F-150,2009-2026,Incl: Lightning/Raptor/Raptor R/Tremor,SuperCrew,5.5,PK-XL+,T5,SuperCrew,Ford F-150,Includes Raptor
+07-FULL,Ford,F-250/F-350 Super Duty,1999-2016,,SuperCab,6.8,PK-XL+,T5,SuperCab,Ford F-250/F-350 Super Duty,Includes Raptor
+07-FULL,GMC,Sierra 1500,2004-2006,,Crew,5.8,PK-XL+,T5,Crew,GMC Sierra 1500/2500HD/3500HD,
+07-FULL,GMC,Sierra 1500,2007-2013,,Extended,6.6,PK-XL+,T5,Extended,GMC Sierra 1500/2500HD/3500HD,
+07-FULL,GMC,Sierra 1500,2019-2026,,Crew/Double,5.8-6.6,PK-XL+,T5,Crew/Double,GMC Sierra 1500/2500HD/3500HD,
+07-FULL,GMC,Sierra EV,2024-2026,,Crew,5.9,PK-XL+,T5,Crew,GMC Sierra EV,
+07-FULL,Ram,1500,2009-2026,,Crew,6.4,PK-XL+,T5,Crew,Ram 1500,
+07-FULL,Ram,1500,2019-2026,Incl: TRX,Crew,5.6,PK-XL+,T5,Crew,Ram 1500,
+07-FULL,Ram,2500/3500,1994-2026,,Crew,6.4,PK-XL+,T5,Crew,Ram 2500/3500,
+07-FULL,Toyota,Tundra,2004-2006,,Double,6.5,PK-XL+,T5,Double,Toyota Tundra,
+07-FULL,Toyota,Tundra,2022-2026,,CrewMax/Double,5.5-6.5,PK-XL+,T5,CMx/Dbl,Toyota Tundra,

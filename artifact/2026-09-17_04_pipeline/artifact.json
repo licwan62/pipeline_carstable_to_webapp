@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "layout": "store-pipeline-v2",
+  "created_at": "2026-09-17T00:00:00+08:00",
+  "updated_at": "2026-09-17T00:00:00+08:00",
+  "status": "partial",
+  "note": "Special ad-hoc run resumed from artifact/2026-09-01_01_最后的老尺码/01_compress (legacy layout, tab-delimited compress output for store 07-FULL, bridged into the current CSV schema on the fly). Split discretely by SIZE into per-size CSVs, HTML generated and flattened into one directory, no size-title banner added. Not published (build_public_site skipped intentionally).",
+  "case": "combined",
+  "source_state": "artifact/2026-09-01_01_最后的老尺码/01_compress",
+  "store": "07-FULL",
+  "format": "csv-json-discrete-size",
+  "steps": [
+    "build_user_size_json (bridged legacy compress output)",
+    "export_store_csv_discrete_size",
+    "generate_store_html (flattened, no size banner)"
+  ]
+}
