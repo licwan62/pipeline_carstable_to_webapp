@@ -12,6 +12,11 @@ import yaml
 SKELETON_DIRS = ["assets", "config", "data/generated", "pages"]
 SKELETON_FILES = ["README.md", ".nojekyll"]
 MATCH_COLUMNS = "MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE"
+PRESERVED_FRONTEND_FILES = [
+    "assets/app/viewer.js",
+    "assets/app/viewer.css",
+    "size-match.html",
+]
 
 
 class IndentedSafeDumper(yaml.SafeDumper):
@@ -32,6 +37,14 @@ def copy_file(source: Path, target: Path) -> None:
         return
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(source, target)
+
+
+def preserve_frontend_overrides(site_output: Path, workspace: Path) -> None:
+    """Keep reviewed match-view UI customizations when rebuilding generated data."""
+    for relative in PRESERVED_FRONTEND_FILES:
+        source = site_output / relative
+        if source.is_file():
+            copy_file(source, workspace / relative)
 
 
 def configure_csv_sources(
@@ -137,6 +150,7 @@ def main() -> None:
     copy_file(publish_repo / "tools" / "validate_generated_data.py", workspace / "tools" / "validate_generated_data.py")
     copy_tree(html_root, workspace / "data" / "source" / "html")
     configure_csv_sources(workspace, pipeline_config, html_style_config)
+    preserve_frontend_overrides(site_output, workspace)
 
     export_command = [
         sys.executable,
