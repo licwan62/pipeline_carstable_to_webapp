@@ -59,7 +59,6 @@
     query: initialSearchQuery,
     selectedSource: "",
     selectedMake: "",
-    selectedSize: "",
     selectedModel: "",
     selectedYear: "",
     selectedConstruct: "",
@@ -271,17 +270,13 @@
             <button class="search-reset" type="button">Reset</button>
           </div>
           <div class="lazy-load-scope">
-            <label><span>SOURCE</span><select class="search-select" data-lazy-source ${searchState.status === "loading" ? "disabled" : ""}>
-              ${(viewConfig.match_sources || []).map((source) => `<option value="${escapeHtml(source.name)}"${searchState.selectedSource === source.name ? " selected" : ""}>${escapeHtml(sourceLabel(source.name))}</option>`).join("")}
-            </select></label>
             <label>
               <span>MAKE</span>
               <select class="search-select" data-lazy-make ${searchState.status === "loading" || !searchState.availableMakes.length ? "disabled" : ""}>
-                <option value="">全部 MAKE</option>
+                <option value="">请选择品牌</option>
                 ${searchState.availableMakes.map((make) => `<option value="${escapeHtml(make)}"${searchState.selectedMake === make ? " selected" : ""}>${escapeHtml(make)}</option>`).join("")}
               </select>
             </label>
-            <label><span>SIZE</span><select class="search-select" data-lazy-size ${searchState.status !== "ready" ? "disabled" : ""}><option value="">全部尺码</option></select></label>
             <p class="background-cache-status" data-cache-status data-state="${escapeHtml(searchState.cacheStatus)}" role="status" aria-live="polite">${escapeHtml(backgroundCacheStatusText())}</p>
           </div>
           <div class="search-result-toolbar">
@@ -478,7 +473,6 @@
       button.addEventListener("click", () => {
         searchState.selectedSource = button.dataset.sidebarSource || "";
         searchState.selectedMake = "";
-        searchState.selectedSize = "";
         searchState.availableMakes = [];
         searchState.requiresMakeSelection = false;
         searchState.selectedModel = "";
@@ -499,7 +493,6 @@
     if (lazyMakeSelect) {
       lazyMakeSelect.addEventListener("change", () => {
         searchState.selectedMake = lazyMakeSelect.value;
-        searchState.selectedSize = "";
         searchState.selectedModel = "";
         searchState.selectedYear = "";
         searchState.selectedConstruct = "";
@@ -514,23 +507,6 @@
         loadSearchIndex(currentSearchDirectories());
       });
     }
-
-    const lazySourceSelect = app.querySelector("[data-lazy-source]");
-    if (lazySourceSelect) lazySourceSelect.addEventListener("change", () => {
-      searchState.selectedSource = lazySourceSelect.value;
-      searchState.selectedMake = "";
-      searchState.selectedSize = "";
-      searchState.availableMakes = [];
-      searchState.scopeKey = "";
-      searchState.resultPage = 1;
-      render();
-    });
-    const lazySizeSelect = app.querySelector("[data-lazy-size]");
-    if (lazySizeSelect) lazySizeSelect.addEventListener("change", () => {
-      searchState.selectedSize = lazySizeSelect.value;
-      searchState.resultPage = 1;
-      updateSearchResults();
-    });
 
     app.querySelectorAll("[data-dir]").forEach((button) => {
       button.addEventListener("click", () => {
@@ -761,7 +737,6 @@
     searchState.scopeKey = "";
     searchState.selectedSource = defaultSourceFilter();
     searchState.selectedMake = "";
-    searchState.selectedSize = "";
     searchState.requiresMakeSelection = false;
     searchState.selectedModel = "";
     searchState.selectedYear = "";
@@ -790,7 +765,7 @@
     const scopeKey = usesConfiguredSources
       ? (usesGlobalIndex
         ? "configured:global"
-        : `configured:${searchState.selectedSource}:${searchState.selectedMake || "all-makes"}`)
+        : `configured:${searchState.selectedSource}:${searchState.selectedMake || "default-make"}`)
       : scopeDirectories.map((directory) => directory.name).join("|");
     if (searchState.scopeKey === scopeKey && (searchState.status === "ready" || searchState.status === "loading")) {
       updateSearchControls();
@@ -803,7 +778,7 @@
     searchState.status = "loading";
     searchState.message = usesGlobalIndex
       ? "正在加载全部数据用于全局搜索..."
-      : (searchState.selectedMake ? `Loading ${searchState.selectedMake} records...` : "正在加载全部 MAKE...");
+      : (searchState.selectedMake ? `Loading ${searchState.selectedMake} records...` : "正在加载默认品牌...");
     updateLazyMakeControl();
     updateSearchControls();
     updateSearchResults();
@@ -830,7 +805,7 @@
         });
       });
       const resolvedScopeKey = usesConfiguredSources && !usesGlobalIndex
-        ? `configured:${searchState.selectedSource}:${searchState.selectedMake || "all-makes"}`
+        ? `configured:${searchState.selectedSource}:${searchState.selectedMake || "default-make"}`
         : scopeKey;
       setSearchIndex(resolvedScopeKey, records, columns);
       if (usesConfiguredSources && !usesGlobalIndex) {
@@ -1244,7 +1219,6 @@
       if (searchState.selectedSource && sourceFilterValue(record) !== searchState.selectedSource) {
         return false;
       }
-      if (searchState.selectedSize && !sameText(resultColumnValue(record, "SIZE") || record.size, searchState.selectedSize)) return false;
       if (searchState.selectedModel && record.model !== searchState.selectedModel) {
         return false;
       }
@@ -1297,18 +1271,11 @@
     const makeSelect = app.querySelector("[data-lazy-make]");
     if (!makeSelect) return;
     makeSelect.innerHTML = `
-      <option value="">全部 MAKE</option>
+      <option value="">请选择品牌</option>
       ${searchState.availableMakes.map((make) => `<option value="${escapeHtml(make)}">${escapeHtml(make)}</option>`).join("")}
     `;
     makeSelect.value = searchState.selectedMake;
     makeSelect.disabled = searchState.status === "loading" || !searchState.availableMakes.length;
-    const sizeSelect = app.querySelector("[data-lazy-size]");
-    if (sizeSelect) {
-      const sizes = unique(searchState.records.map((record) => resultColumnValue(record, "SIZE") || record.size).filter(Boolean));
-      sizeSelect.innerHTML = `<option value="">全部尺码</option>${sizes.map((size) => `<option value="${escapeHtml(size)}">${escapeHtml(size)}</option>`).join("")}`;
-      sizeSelect.value = searchState.selectedSize;
-      sizeSelect.disabled = searchState.status !== "ready" || !sizes.length;
-    }
   }
 
   function updateSourceOutlineState() {
@@ -1406,14 +1373,14 @@
       searchState.availableMakes = uniqueInOrder(
         sources.flatMap((source) => source.make_groups.map((group) => cleanField(group.make)).filter(Boolean))
       ).sort((left, right) => left.localeCompare(right));
-      const resolvedMake = cleanField(selectedMake);
+      const resolvedMake = selectedMake || searchState.availableMakes[0] || "";
       searchState.selectedMake = resolvedMake;
       searchState.requiresMakeSelection = false;
 
       return Promise.all(sources.flatMap((source) => {
         const configured = configuredSources.find((item) => item.name === source.name) || {};
         return source.make_groups
-          .filter((group) => !resolvedMake || cleanField(group.make) === resolvedMake)
+          .filter((group) => cleanField(group.make) === cleanField(resolvedMake))
           .map((group) => loadConfiguredMatchSource(path, payload, source, configured, group));
       }));
     }
@@ -1543,7 +1510,7 @@
           </thead>
           <tbody>
             ${records.map((record) => `
-              <tr class="copyable-result-row">
+              <tr class="copyable-result-row" tabindex="0" data-copy-text="${escapeHtml(copyTextForRecord(record))}" title="点击复制车型信息">
                 ${tableColumns.map((column) => resultCellMarkup(record, column)).join("")}
               </tr>
             `).join("")}
@@ -1569,11 +1536,15 @@
       return '<div class="empty-results">No rows match the current selection.</div>';
     }
 
-    const hierarchy = ["MAKE", "MODEL", "TYPE", "YEAR"];
-    const dataColumns = ["SIZE", "长度余量", ...activeDimensionColumns()];
+    const hierarchy = ["MODEL", "版本", "TYPE", "CAB", "BED", "YEAR"];
+    const dataColumns = ["销量合计", ...activeDimensionColumns(), "长度余量", "SIZE"];
     return `
       <div class="results-outline-wrap">
-        <div class="results-outline results-outline-tree table-font-${escapeHtml(searchState.tableFontSize)}">
+        <div class="results-outline table-font-${escapeHtml(searchState.tableFontSize)}" style="--outline-data-columns: ${dataColumns.length}">
+          <div class="outline-column-header">
+            <strong>MODEL / 版本 / TYPE / CAB / BED / YEAR</strong>
+            ${dataColumns.map((column) => `<span>${escapeHtml(column)}</span>`).join("")}
+          </div>
           <div class="outline-tree" role="tree">
             ${outlineLevelMarkup(records, hierarchy, dataColumns, 0, 0)}
           </div>
@@ -1585,13 +1556,13 @@
 
   function outlineLevelMarkup(records, hierarchy, dataColumns, depth, visualDepth) {
     if (depth >= hierarchy.length) {
-      return records.map((record, index) => outlineRecordMarkup(record, dataColumns, index, visualDepth, "YEAR")).join("");
+      return records.map((record, index) => outlineDataRowMarkup(record, dataColumns, index, visualDepth)).join("");
     }
 
     const field = hierarchy[depth];
     if (depth === hierarchy.length - 1) {
       return records.map((record, index) => (
-        outlineRecordMarkup(record, dataColumns, index, visualDepth, field)
+        outlineDataRowMarkup(record, dataColumns, index, visualDepth, field)
       )).join("");
     }
 
@@ -1626,28 +1597,22 @@
     }).join("");
   }
 
-  function outlineRecordMarkup(record, dataColumns, index, visualDepth, leafField) {
-    const leafValue = cleanField(resultColumnValue(record, leafField)) || `记录 ${index + 1}`;
-    return `<details class="outline-group outline-record-node" open style="--outline-depth: ${visualDepth}" role="treeitem"><summary><span class="outline-branch" aria-hidden="true"></span><span class="outline-field-name">${escapeHtml(leafField)}</span><strong class="vehicle-copy-target" tabindex="0" data-copy-text="${escapeHtml(copyTextForRecord(record))}" title="点击复制车型信息">${escapeHtml(leafValue)}</strong></summary><div class="outline-record-fields" role="group">${outlineCombinedLeafMarkup(record, ["SIZE", "长度余量"], visualDepth + 1, "size")}${outlineCombinedLeafMarkup(record, activeDimensionColumns(), visualDepth + 1, "dimensions")}</div></details>`;
-  }
-
-  function outlineCombinedLeafMarkup(record, columns, visualDepth, kind) {
-    const items = columns.map((column) => {
-      const value = resultColumnValue(record, column);
-      const label = isSizeColumn(column) ? "SIZE" : isLengthMarginColumn(column) ? "长度余量" : outlineDimensionLabel(column);
-      const display = isDimensionColumn(column) ? dimensionDisplay(column, value) : isLengthMarginColumn(column) ? lengthMarginDisplay(value) : (value || "NULL");
-      const ref = isSizeColumn(column) ? sizeReferenceFor(value) : null;
-      const style = isSizeColumn(column) ? ` style="--outline-value-color: ${sizeBackground(value)}"` : isLengthMarginColumn(column) ? ` style="${escapeHtml(lengthMarginStyle(value))}"` : "";
-      return `<span class="outline-combined-item outline-item-${isSizeColumn(column) ? "size" : isLengthMarginColumn(column) ? "margin" : cleanField(label)}${ref ? " size-cell-has-ref" : ""}"${ref ? ` data-size-ref="${escapeHtml(cleanField(value).toUpperCase())}"` : ""}${style}><b>${escapeHtml(label)}</b><strong>${escapeHtml(display || "-")}</strong></span>`;
-    }).join('<i aria-hidden="true"></i>');
-    const copyClass = kind === "dimensions" ? " dimension-copy-target" : "";
-    const copyAttrs = kind === "dimensions" ? ` tabindex="0" data-copy-text="${escapeHtml(copyDimensionsForRecord(record))}" title="点击复制长宽高"` : "";
-    return `<div class="outline-tree-leaf outline-combined-leaf outline-combined-${kind}${copyClass}"${copyAttrs} style="--outline-leaf-depth: ${visualDepth}">${items}</div>`;
-  }
-
-  function outlineDimensionLabel(column) {
-    const key = cleanField(column).toUpperCase();
-    return key.startsWith("L") ? "长" : key.startsWith("W") ? "宽" : key.startsWith("H") ? "高" : column;
+  function outlineDataRowMarkup(record, dataColumns, index, visualDepth, leafField = "") {
+    const recordLabel = [record.make, sourceFilterValue(record)].filter(Boolean).join(" · ");
+    const leafValue = leafField ? cleanField(resultColumnValue(record, leafField)) : "";
+    const labelMarkup = leafValue
+      ? `
+        <span class="outline-leaf-field">${escapeHtml(leafField)}</span>
+        <strong>${escapeHtml(leafValue)}</strong>
+        ${recordLabel ? `<small>${escapeHtml(recordLabel)}</small>` : ""}
+      `
+      : `<i aria-hidden="true"></i><span>${escapeHtml(recordLabel || `记录 ${index + 1}`)}</span>`;
+    return `
+      <div class="outline-data-row copyable-result-row" role="row" tabindex="0" data-copy-text="${escapeHtml(copyTextForRecord(record))}" title="点击复制车型信息" style="--outline-leaf-depth: ${visualDepth}">
+        <span class="outline-record-label">${labelMarkup}</span>
+        ${dataColumns.map((column) => outlineDataCellMarkup(record, column)).join("")}
+      </div>
+    `;
   }
 
   function outlineDataCellMarkup(record, column) {
@@ -1712,9 +1677,7 @@
     }
     if (column.dimension || isLengthMarginColumn(column.key)) {
       const displayValue = isLengthMarginColumn(column.key) ? lengthMarginDisplay(value) : dimensionDisplay(column.key, value);
-      const copyClass = column.dimension ? " dimension-copy-target" : "";
-      const copyAttrs = column.dimension ? ` tabindex="0" data-copy-text="${escapeHtml(copyDimensionsForRecord(record))}" title="点击复制长宽高"` : "";
-      return `<td class="dimension-cell size-dimension-cell size-sticky-col ${sizeStickyClass(column.key)}${copyClass}"${copyAttrs} style="${escapeHtml(isLengthMarginColumn(column.key) ? lengthMarginStyle(value) : "")}"><strong>${escapeHtml(displayValue || "-")}</strong></td>`;
+      return `<td class="dimension-cell size-dimension-cell size-sticky-col ${sizeStickyClass(column.key)}" style="${escapeHtml(isLengthMarginColumn(column.key) ? lengthMarginStyle(value) : "")}"><strong>${escapeHtml(displayValue || "-")}</strong></td>`;
     }
     if (column.size) {
       const ref = sizeReferenceFor(value);
@@ -1723,9 +1686,7 @@
       const displayValue = value || "NULL";
       return `<td class="size-cell size-sticky-col size-sticky-size${refClass}"${refAttr} style="--size-bg: ${sizeBackground(value)}; --size-fg: ${sizeTextColor()}"><strong>${escapeHtml(displayValue)}</strong></td>`;
     }
-    const vehicleField = ["MAKE", "MODEL", "版本", "TYPE", "YEAR", "CAB", "BED", "销量合计"].some((key) => sameColumn(column.key, key));
-    const vehicleAttrs = vehicleField ? ` class="vehicle-copy-target" tabindex="0" data-copy-text="${escapeHtml(copyTextForRecord(record))}" title="点击复制车型信息"` : "";
-    return `<td${vehicleAttrs}>${escapeHtml(value || "")}</td>`;
+    return `<td>${escapeHtml(value || "")}</td>`;
   }
 
   function sizeHeaderLabelMarkup(column) {
@@ -2144,12 +2105,11 @@
   }
 
   function bindSizeLinkedRows() {
-    app.querySelectorAll(".vehicle-copy-target[data-copy-text], .dimension-copy-target[data-copy-text]").forEach((row) => {
-      row.addEventListener("click", (event) => { event.preventDefault(); event.stopPropagation(); copyResultRow(row); });
+    app.querySelectorAll(".copyable-result-row[data-copy-text]").forEach((row) => {
+      row.addEventListener("click", () => copyResultRow(row));
       row.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
-        event.stopPropagation();
         copyResultRow(row);
       });
     });
@@ -2188,7 +2148,7 @@
     const feedback = app.querySelector(".copy-feedback");
     if (!feedback) return;
     if (copyFeedbackTimer) window.clearTimeout(copyFeedbackTimer);
-    app.querySelectorAll(".copyable-result-row.is-copied, .vehicle-copy-target.is-copied, .dimension-copy-target.is-copied").forEach((item) => item.classList.remove("is-copied"));
+    app.querySelectorAll(".copyable-result-row.is-copied").forEach((item) => item.classList.remove("is-copied"));
     row.classList.toggle("is-copied", succeeded);
     feedback.textContent = message;
     feedback.classList.toggle("is-error", !succeeded);
@@ -2398,10 +2358,6 @@
     const model = cleanField(resultColumnValue(record, "MODEL") || record.model);
     const type = cleanField(resultColumnValue(record, "TYPE") || record.type || record.construct);
     return [year, make, model, type].filter(Boolean).join(" ");
-  }
-
-  function copyDimensionsForRecord(record) {
-    return activeDimensionColumns().map((column) => dimensionDisplay(column, resultColumnValue(record, column))).join("\t");
   }
 
   function salesTotalNumber(value) {

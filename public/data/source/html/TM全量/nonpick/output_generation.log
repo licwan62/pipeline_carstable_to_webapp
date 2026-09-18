@@ -1,19 +1,19 @@
 Size chart generation log
-Generated at: 2026-09-17T14:26:30
-Config: C:\Users\cc\AppData\Local\Temp\html-config-g8dyl4gu\preference.yaml
-Output directory: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\04_store_html\TM全量\nonpick
-CSS: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-17_02_pipeline\04_store_html\TM全量\nonpick\size-chart.css
+Generated at: 2026-09-18T15:54:11
+Config: C:\Users\cc\AppData\Local\Temp\html-config-zkt9k4b9\preference.yaml
+Output directory: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-18_01_pipeline\04_store_html\TM全量\nonpick
+CSS: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-18_01_pipeline\04_store_html\TM全量\nonpick\size-chart.css
 Pages: 5
 Table chunks: 63
-Unique titles: 48
+Unique titles: 49
 Page table chunks: 11, 16, 15, 20, 1
 
 Inputs:
-- C:\Users\cc\AppData\Local\Temp\html-config-g8dyl4gu\TM全量-non-pickup.tsv
+- C:\Users\cc\AppData\Local\Temp\html-config-zkt9k4b9\TM全量-non-pickup.tsv
   Sheet: 非皮卡压缩表
   Profile: non-pickup
-  Rows after filtering: 966
-  Titles: 48
+  Rows after filtering: 971
+  Titles: 49
   Brand column: MAKE
   Stripe column: MODEL
   Table columns: MODEL, YEAR, TYPE, SIZE
@@ -25,7 +25,7 @@ Enabled: True
 Directory: D:\Licheng\Repo\generate_size_chart_html\img_logos
 Logo files indexed: 49
 Matched titles: 48
-Missing titles: 0
+Missing titles: 1
 
 Logo matches:
 - MATCH: Acura -> img_logos/Acura.png
@@ -53,6 +53,7 @@ Logo matches:
 - MATCH: Lexus -> img_logos/Lexus.png
 - MATCH: Lincoln -> img_logos/Lincoln.png
 - MATCH: Lucid Motors -> img_logos/Lucid%20Motors.png
+- MISSING: MG
 - MATCH: MINI -> img_logos/Mini.png
 - MATCH: Maserati -> img_logos/Maserati.png
 - MATCH: Mazda -> img_logos/Mazda.png
