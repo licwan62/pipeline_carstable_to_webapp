@@ -1,0 +1,23 @@
+cwd: D:\Home\Repo\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/compress_configured_sheets.py --output-root D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_01_pipeline\01_compressed_fitment --config D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_01_pipeline\00_input\pipeline.generated.json --compress-script D:\Home\Repo\pipeline_carstable_to_webapp/../compress_to_size_chart/process_tsv.py
+
+C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe: can't open file 'D:\\Home\\Repo\\pipeline_carstable_to_webapp\\..\\compress_to_size_chart\\process_tsv.py': [Errno 2] No such file or directory
+[compress-new] HNT全量: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_01_pipeline\00_input\tables\001-HNT全量.csv
+Traceback (most recent call last):
+  File "D:\Home\Repo\pipeline_carstable_to_webapp\tools\compress_configured_sheets.py", line 112, in <module>
+    main()
+    ~~~~^^
+  File "D:\Home\Repo\pipeline_carstable_to_webapp\tools\compress_configured_sheets.py", line 92, in main
+    subprocess.run(
+    ~~~~~~~~~~~~~~^
+        [
+        ^
+    ...<9 lines>...
+        check=True,
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\Lib\subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\hzwlc\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe', 'D:\\Home\\Repo\\pipeline_carstable_to_webapp\\..\\compress_to_size_chart\\process_tsv.py', 'C:\\Users\\hzwlc\\AppData\\Local\\Temp\\compress-csv-xg61h8ev\\HNT全量.tsv', '--output-dir', 'C:\\Users\\hzwlc\\AppData\\Local\\Temp\\compress-csv-xg61h8ev\\output', '--field-profile', 'C:\\Users\\hzwlc\\AppData\\Local\\Temp\\compress-csv-xg61h8ev\\profile.yaml', '--check-atom']' returned non-zero exit status 2.

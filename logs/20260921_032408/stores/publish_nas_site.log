@@ -1,0 +1,3 @@
+cwd: D:\Home\Repo\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/publish_site_copy.py --source D:\Home\Repo\pipeline_carstable_to_webapp\public --destination \\NAS8824B4\Web\car --best-effort
+
