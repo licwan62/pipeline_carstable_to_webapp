@@ -8,6 +8,7 @@ paths:
   input_dir: "input/0917"
   artifact_root: "artifact"
   public_dir: "public"
+  nas_publish_dir: '\\NAS8824B4\Web\car'
   logs_dir: "logs"
 
 file_rules:
@@ -90,3 +91,8 @@ steps:
     repo: pipeline
     command: ["{python}", tools/build_publish_site.py, --publish-repo, "{webapp_repo}", --html-root, "{store_html_dir}", --pipeline-config, "{pipeline_config}", --html-style-config, "{root}/configs/html-style.yaml", --workspace, "{site_workspace_dir}", --site-output, "{public_dir}"]
     check_exists: ["{case_public}/index.html"]
+
+  publish_nas_site:
+    enabled: true
+    repo: pipeline
+    command: ["{python}", tools/publish_site_copy.py, --source, "{public_dir}", --destination, "{nas_publish_dir}", --best-effort]

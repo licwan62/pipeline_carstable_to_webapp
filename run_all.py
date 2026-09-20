@@ -160,6 +160,7 @@ def build_variables(case: dict[str, Any], config: dict[str, Any]) -> dict[str, s
         "input_dir": str(resolve_from_root(paths["input_dir"])),
         "artifact_dir": str(case["artifact_dir"]),
         "public_dir": public_dir,
+        "nas_publish_dir": str(paths.get("nas_publish_dir", "")),
         "output_dir": public_dir,
         "logs_dir": str(resolve_from_root(paths["logs_dir"])),
         "python": sys.executable,

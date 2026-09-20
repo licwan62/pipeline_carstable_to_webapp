@@ -61,7 +61,7 @@ python run_all.py --artifact 2026-09-17_02_pipeline --from-step build_user_size_
 
 `--from-step` 必须同时指定 `--artifact`，避免把不完整结果误写进新批次。也可以用 `--to-step` 创建新批次并停在指定步骤。
 
-当前六个步骤统一采用“动作 + 产物”命名：
+当前七个步骤统一采用“动作 + 产物”命名：
 
 1. `normalize_store_inputs`：把每个店铺输入规范化为 CSV，并生成运行时 JSON。
 2. `compress_store_fitment`：生成每个店铺的压缩匹配数据和原子检查结果。
@@ -69,6 +69,7 @@ python run_all.py --artifact 2026-09-17_02_pipeline --from-step build_user_size_
 4. `export_store_csv`：按店铺导出 HTML 输入 CSV。
 5. `generate_store_html`：生成各店铺尺码表 HTML。
 6. `build_public_site`：构建并更新 `public/`。
+7. `publish_nas_site`：尝试将完整站点发布到 NAS；NAS 不可用时记录警告，但不影响 `public/` 构建成功。
 
 旧步骤名仍可用于 `--from-step`/`--to-step`，但 `--list-steps` 和新日志只显示上述标准名称。
 
@@ -88,6 +89,7 @@ configs/user-size-rules.json
 
 - 完整构建过程保存在对应 `artifact/<批次>/`。
 - 最新站点写入 `public/`。
+- 流水线随后尝试将站点发布到 `\\NAS8824B4\Web\car`。
 - GitHub Pages 工作流发布 `public/`。
 
 发布站点校验：
@@ -121,6 +123,7 @@ python cleanup.py --force
 - `paths.input_dir`：源文件目录。
 - `paths.artifact_root`：批次根目录。
 - `paths.public_dir`：当前发布目录。
+- `paths.nas_publish_dir`：NAS 发布目录。
 - `file_rules.input_patterns`：输入格式，默认支持 CSV/XLSX/XLSM。
 - `input.store`：由文件名生成店铺名和标签；每个输入文件就是一个店铺。
 - `columns`：输入字段别名。
