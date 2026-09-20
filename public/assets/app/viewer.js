@@ -190,15 +190,25 @@
     `;
   }
 
+  function storeOptions() {
+    const group = sourceGroup(searchState.selectedSource);
+    return (viewConfig.match_sources || []).filter((source) => sourceGroup(source.name) === group);
+  }
+
+  function sourceGroup(name) {
+    const configured = (viewConfig.match_sources || []).find((source) => source.name === name);
+    return cleanField(configured?.group) || cleanField(name);
+  }
+
   function sourceOutlineMarkup() {
-    const configuredSources = (viewConfig.match_sources || []).map((source) => source.name).filter(Boolean);
-    const loadedSources = uniqueInOrder(searchState.records.map((record) => sourceFilterValue(record)));
+    const configuredSources = uniqueInOrder((viewConfig.match_sources || []).map((source) => sourceGroup(source.name)).filter(Boolean));
+    const loadedSources = uniqueInOrder(searchState.records.map((record) => sourceGroup(sourceFilterValue(record))));
     const sources = uniqueInOrder([...configuredSources, ...loadedSources]);
     return `
       <ol class="chart-outline-list source-outline-list">
         ${sources.map((source) => `
           <li>
-            <button class="chart-outline-node source-outline-node${searchState.selectedSource === source ? " is-active" : ""}" type="button" data-sidebar-source="${escapeHtml(source)}" aria-pressed="${searchState.selectedSource === source ? "true" : "false"}">
+            <button class="chart-outline-node source-outline-node${sourceGroup(searchState.selectedSource) === source ? " is-active" : ""}" type="button" data-sidebar-source="${escapeHtml(source)}" aria-pressed="${sourceGroup(searchState.selectedSource) === source ? "true" : "false"}">
               <span class="chart-outline-dot"></span>
               <span>${escapeHtml(sourceLabel(source))}</span>
             </button>
@@ -271,8 +281,8 @@
             <button class="search-reset" type="button">Reset</button>
           </div>
           <div class="lazy-load-scope">
-            <label><span>SOURCE</span><select class="search-select" data-lazy-source ${searchState.status === "loading" ? "disabled" : ""}>
-              ${(viewConfig.match_sources || []).map((source) => `<option value="${escapeHtml(source.name)}"${searchState.selectedSource === source.name ? " selected" : ""}>${escapeHtml(sourceLabel(source.name))}</option>`).join("")}
+            <label${storeOptions().length > 1 ? "" : " hidden"}><span>店铺</span><select class="search-select" data-lazy-source ${searchState.status === "loading" ? "disabled" : ""}>
+              ${storeOptions().map((source) => `<option value="${escapeHtml(source.name)}"${searchState.selectedSource === source.name ? " selected" : ""}>${escapeHtml(cleanField(source.label) || sourceLabel(source.name))}</option>`).join("")}
             </select></label>
             <label>
               <span>MAKE</span>
@@ -1313,7 +1323,7 @@
 
   function updateSourceOutlineState() {
     app.querySelectorAll("[data-sidebar-source]").forEach((button) => {
-      const active = button.dataset.sidebarSource === searchState.selectedSource;
+      const active = button.dataset.sidebarSource === sourceGroup(searchState.selectedSource);
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-pressed", active ? "true" : "false");
     });
@@ -2658,6 +2668,13 @@
       }
     } catch (error) {
       viewConfig = defaultViewConfig;
+    }
+    if (config.matchDataPath) {
+      viewConfig = {
+        ...viewConfig,
+        excel_source: { ...(viewConfig.excel_source || {}), match_data_path: config.matchDataPath },
+        match_sources: config.matchSources || []
+      };
     }
     searchState.selectedSource = defaultSourceFilter();
   }

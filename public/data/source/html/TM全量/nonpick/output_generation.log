@@ -1,18 +1,18 @@
 Size chart generation log
-Generated at: 2026-09-18T15:54:11
-Config: C:\Users\cc\AppData\Local\Temp\html-config-zkt9k4b9\preference.yaml
-Output directory: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-18_01_pipeline\04_store_html\TM全量\nonpick
-CSS: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-18_01_pipeline\04_store_html\TM全量\nonpick\size-chart.css
+Generated at: 2026-09-21T03:14:00
+Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-gn2ncuam\preference.yaml
+Output directory: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_01_pipeline\04_store_html\TM全量\nonpick
+CSS: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_01_pipeline\04_store_html\TM全量\nonpick\size-chart.css
 Pages: 5
 Table chunks: 63
 Unique titles: 49
 Page table chunks: 11, 16, 15, 20, 1
 
 Inputs:
-- C:\Users\cc\AppData\Local\Temp\html-config-zkt9k4b9\TM全量-non-pickup.tsv
+- C:\Users\hzwlc\AppData\Local\Temp\html-config-gn2ncuam\TM全量-non-pickup.tsv
   Sheet: 非皮卡压缩表
   Profile: non-pickup
-  Rows after filtering: 971
+  Rows after filtering: 975
   Titles: 49
   Brand column: MAKE
   Stripe column: MODEL
@@ -22,7 +22,7 @@ Inputs:
 
 Logo settings:
 Enabled: True
-Directory: D:\Licheng\Repo\generate_size_chart_html\img_logos
+Directory: D:\Home\Scripts\generate_size_chart_html\img_logos
 Logo files indexed: 49
 Matched titles: 48
 Missing titles: 1

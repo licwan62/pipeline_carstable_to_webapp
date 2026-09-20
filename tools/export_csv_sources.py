@@ -30,6 +30,10 @@ def main() -> None:
         csv_path = (pipeline_path.parent / str(store["path"])).resolve()
         with csv_path.open("r", encoding="utf-8-sig", newline="") as handle:
             rows = list(csv.DictReader(handle))
+        # 全量表只有自动尺码；发布端按“确认尺码”取 SIZE，缺列时以自动尺码作为最终尺码。
+        for row in rows:
+            if not (row.get("确认尺码") or "").strip():
+                row["确认尺码"] = row.get("自动尺码", "")
         columns = [column for column in str(store.get("columns") or "").split(",") if column]
         if not columns:
             columns = ["MODEL", "YEAR", "TYPE", "CAB", "BED", "SIZE"]

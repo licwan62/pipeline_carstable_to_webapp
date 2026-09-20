@@ -2927,3 +2927,10 @@ body.is-resizing-column {
     grid-template-columns: 1fr;
   }
 }
+
+/* 参考表：列不换行，宽度自然撑开，横向滚动 */
+.size-ref-wrap { overflow-x: auto; }
+.size-ref-table { width: max-content; min-width: 100%; }
+.size-ref-table th, .size-ref-table td { white-space: nowrap; min-width: 88px; }
+.lazy-load-scope label[hidden] { display: none; }
+a.chart-outline-node { text-decoration: none; }

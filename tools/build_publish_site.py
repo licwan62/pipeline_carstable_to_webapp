@@ -8,6 +8,10 @@ from pathlib import Path
 
 import yaml
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from build_size_match_data import DEFAULT_SOURCE as SIZE_MATCH_SOURCE, build as build_size_match_data  # noqa: E402
+from build_size_rules_data import DEFAULT_SOURCE, build as build_size_rules_data  # noqa: E402
+
 
 SKELETON_DIRS = ["assets", "config", "data/generated", "pages"]
 SKELETON_FILES = ["README.md", ".nojekyll"]
@@ -16,6 +20,11 @@ PRESERVED_FRONTEND_FILES = [
     "assets/app/viewer.js",
     "assets/app/viewer.css",
     "size-match.html",
+    "size-ref.html",
+    "store-groups.html",
+    "assets/app/site-common.js",
+    "assets/app/size-ref.js",
+    "assets/app/store-groups.js",
 ]
 
 
@@ -109,6 +118,33 @@ def configure_csv_sources(
     )
 
 
+MATCH_PAGE_OVERRIDE = """      matchDataPath: "data/generated/size-match-full.json",
+      matchSources: [
+        { name: "US", label: "US 全量", group: "US" },
+        { name: "HNT", label: "US · HNT", group: "US" },
+        { name: "TM", label: "US · TM", group: "US" },
+        { name: "TM_拆分", label: "US · TM_拆分", group: "US" },
+        { name: "EU", label: "EU", group: "EU" },
+        { name: "RU", label: "RU", group: "RU" }
+      ],
+"""
+
+
+def apply_site_overrides(site_output: Path) -> None:
+    """构建完成后叠加项目自有页面和上游发布数据（build_site.py 会重建这些文件）。"""
+    copy_tree(Path(__file__).resolve().parents[1] / "site_overrides", site_output)
+    generated = site_output / "data" / "generated"
+    build_size_rules_data(DEFAULT_SOURCE, generated)
+    build_size_match_data(SIZE_MATCH_SOURCE, generated)
+    match_page = site_output / "size-match.html"
+    text = match_page.read_text(encoding="utf-8")
+    if "matchDataPath" not in text:
+        marker = 'sizeRefPath: "data/generated/size-ref.json",' + chr(10)
+        if marker not in text:
+            raise ValueError("size-match.html 缺少 sizeRefPath，无法注入 US/EU 数据源配置")
+        match_page.write_text(text.replace(marker, marker + MATCH_PAGE_OVERRIDE, 1), encoding="utf-8")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build a webapp site in a local workspace without modifying the publish repo.")
     parser.add_argument("--publish-repo", type=Path, required=True)
@@ -172,6 +208,7 @@ def main() -> None:
     if site_output.exists():
         shutil.rmtree(site_output)
     shutil.copytree(built_site, site_output)
+    apply_site_overrides(site_output)
     print(f"Built site: {site_output}")
 
 

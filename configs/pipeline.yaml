@@ -2,10 +2,10 @@
 # 可选 AI 补全通过环境变量启用：AI_ENRICH=1、AI_API_KEY、AI_MODEL、AI_BASE_URL。
 repos:
   pipeline: "."
-  compress: "../compress_to_size_chart"
+  compress: "../../Scripts/compress_to_size_chart"
 
 paths:
-  input_dir: "input/0917"
+  input_dir: "input/0921"
   artifact_root: "artifact"
   public_dir: "public"
   nas_publish_dir: '\\NAS8824B4\Web\car'
@@ -22,7 +22,7 @@ input:
     label: "{stem}尺码匹配表"
     sheet: "{stem}尺码匹配"
     header_row: 1
-    columns: MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
+    columns: DIMENSION-CODE,MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
   csv:
     encoding: utf-8-sig
   # 修正已知来源中的表头笔误；物化时统一为下游标准字段。
@@ -46,6 +46,7 @@ defaults:
   分类: ""
 
 variables:
+  scripts_root: "{root}/../../Scripts"
   compressed_fitment_dir: "{artifact_dir}/01_compressed_fitment"
   user_size_json_file: "{artifact_dir}/02_user_size.json"
   user_size_rules_file: "{root}/configs/user-size-rules.json"
@@ -53,7 +54,7 @@ variables:
   store_csv_dir: "{artifact_dir}/03_store_csv"
   store_html_dir: "{artifact_dir}/04_store_html"
   site_workspace_dir: "{artifact_dir}/05_site_workspace"
-  webapp_repo: "{root}/../publish_tables_to_webapp"
+  webapp_repo: "{scripts_root}/publish_tables_to_webapp"
 
 steps:
   normalize_store_inputs:
@@ -65,7 +66,7 @@ steps:
   compress_store_fitment:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/compress_configured_sheets.py, --output-root, "{compressed_fitment_dir}", --config, "{pipeline_config}", --compress-script, "{root}/../compress_to_size_chart/process_tsv.py"]
+    command: ["{python}", tools/compress_configured_sheets.py, --output-root, "{compressed_fitment_dir}", --config, "{pipeline_config}", --compress-script, "{scripts_root}/compress_to_size_chart/process_tsv.py"]
     check_exists: ["{compressed_fitment_dir}"]
 
   build_user_size_json:
@@ -83,7 +84,7 @@ steps:
   generate_store_html:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/generate_all_html.py, --export-root, "{store_csv_dir}", --output-root, "{store_html_dir}", --config-path, "{root}/configs/html-style.yaml", --html-script, "{root}/../generate_size_chart_html/tsv_to_size_chart_html.py"]
+    command: ["{python}", tools/generate_all_html.py, --export-root, "{store_csv_dir}", --output-root, "{store_html_dir}", --config-path, "{root}/configs/html-style.yaml", --html-script, "{scripts_root}/generate_size_chart_html/tsv_to_size_chart_html.py"]
     check_exists: ["{store_html_dir}"]
 
   build_public_site:
