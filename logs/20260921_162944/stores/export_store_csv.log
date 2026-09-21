@@ -1,0 +1,7 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/export_user_size_json_tables.py --input D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_05_pipeline\02_user_size.json --output-root D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_05_pipeline\03_store_csv
+
+HNT全量: non-pickup=918, pickup=113
+TM_拆分全量: non-pickup=145, pickup=0
+TM全量: non-pickup=975, pickup=135
+全尺码全量: non-pickup=1263, pickup=135

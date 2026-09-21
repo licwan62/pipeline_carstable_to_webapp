@@ -1,0 +1,22 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/build_publish_site.py --publish-repo D:\Licheng\Repo\pipeline_carstable_to_webapp\..\publish_tables_to_webapp --html-root D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_05_pipeline\04_store_html --pipeline-config D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_05_pipeline\00_input\pipeline.generated.json --html-style-config D:\Licheng\Repo\pipeline_carstable_to_webapp/configs/html-style.yaml --workspace D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_05_pipeline\05_site_workspace --site-output D:\Licheng\Repo\pipeline_carstable_to_webapp\public
+
+[configure_publish] stores=['HNT全量', 'TM_拆分全量', 'TM全量', '全尺码全量']; reuse existing size reference
+[export_csv_sources] C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_05_pipeline\05_site_workspace\tools\export_csv_sources.py --pipeline-config D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_05_pipeline\00_input\pipeline.generated.json
+[build_site] C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_05_pipeline\05_site_workspace\tools\build_site.py
+Traceback (most recent call last):
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_publish_site.py", line 216, in <module>
+    main()
+    ~~~~^^
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_publish_site.py", line 211, in main
+    apply_site_overrides(site_output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_publish_site.py", line 138, in apply_site_overrides
+    build_size_match_data(SIZE_MATCH_SOURCE, generated)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_size_match_data.py", line 73, in build
+    manifest, rows = read_verified(source_dir, NAME)
+                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\build_size_match_data.py", line 68, in read_verified
+    raise ValueError(f"{name} 与 {manifest['node']} 的 manifest.json sha256 不一致，请重新发布上游")
+ValueError: 全量表_汇总.csv 与 full-table-summary 的 manifest.json sha256 不一致，请重新发布上游

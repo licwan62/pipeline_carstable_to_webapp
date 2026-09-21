@@ -1,0 +1,4 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/publish_site_copy.py --source D:\Licheng\Repo\pipeline_carstable_to_webapp\public --destination \\NAS8824B4\Web\car --best-effort
+
+Published site: D:\Licheng\Repo\pipeline_carstable_to_webapp\public -> \\NAS8824B4\Web\car

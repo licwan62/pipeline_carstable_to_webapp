@@ -46,7 +46,7 @@ defaults:
   分类: ""
 
 variables:
-  scripts_root: "{root}/../../Scripts"
+  scripts_root: "{root}/.."
   compressed_fitment_dir: "{artifact_dir}/01_compressed_fitment"
   user_size_json_file: "{artifact_dir}/02_user_size.json"
   user_size_rules_file: "{root}/configs/user-size-rules.json"
