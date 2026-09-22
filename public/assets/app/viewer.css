@@ -950,42 +950,6 @@ button {
   line-height: 1.45;
 }
 
-.background-cache-status {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.background-cache-status::before {
-  flex: 0 0 auto;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #98a2b3;
-  content: "";
-}
-
-.background-cache-status[data-state="loading"]::before {
-  background: #f59e0b;
-  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.13);
-}
-
-.background-cache-status[data-state="ready"] {
-  color: #087443;
-}
-
-.background-cache-status[data-state="ready"]::before {
-  background: #12a564;
-}
-
-.background-cache-status[data-state="error"] {
-  color: #b42318;
-}
-
-.background-cache-status[data-state="error"]::before {
-  background: #d92d20;
-}
-
 .search-controls {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(136px, 1fr));
