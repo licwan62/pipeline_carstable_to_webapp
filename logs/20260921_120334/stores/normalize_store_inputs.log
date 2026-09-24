@@ -1,0 +1,9 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/materialize_input_sources.py --input-dir D:\Licheng\Repo\pipeline_carstable_to_webapp\input\0921 --config D:\Licheng\Repo\pipeline_carstable_to_webapp\configs\pipeline.yaml --output-dir D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_02_pipeline\00_input\tables --output-config D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_02_pipeline\00_input\pipeline.generated.json
+
+[store] HNT全量.csv -> HNT全量 / 001-HNT全量.csv (4371 data rows)
+[store] TM_拆分全量.csv -> TM_拆分全量 / 002-TM_拆分全量.csv (4371 data rows)
+[store] TM全量.csv -> TM全量 / 003-TM全量.csv (4371 data rows)
+[store] 全尺码全量.csv -> 全尺码全量 / 004-全尺码全量.csv (4371 data rows)
+Materialized 4 store(s): D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_02_pipeline\00_input\tables
+Runtime config: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_02_pipeline\00_input\pipeline.generated.json

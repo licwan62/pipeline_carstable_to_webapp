@@ -78,7 +78,7 @@ def build(source_dir: Path, out_dir: Path, store_dir: Path | None = None) -> dic
     store_rows = {store: read_verified(store_dir, file)[1] for store, file in STORES.items()}
     datasets = [(region, region, [r for r in rows if r["DIMENSION-ID"].endswith(f" {region}")]) for region in REGIONS]
     datasets[1:1] = [(store, "US", data) for store, data in store_rows.items()]  # US 全量之后紧跟 US 店铺
-    for name, group, dataset in datasets:
+    for source_index, (name, group, dataset) in enumerate(datasets, 1):
         by_make: dict[str, list[dict]] = {}
         for row in dataset:
             by_make.setdefault(row["MAKE"], []).append(to_record(row, name))
@@ -86,7 +86,7 @@ def build(source_dir: Path, out_dir: Path, store_dir: Path | None = None) -> dic
             raise ValueError(f"{name} 没有数据")
         groups = []
         for index, make in enumerate(sorted(by_make, key=str.lower), 1):
-            file_name = f"size-match-full-{slug(name)}-{index:03d}-{slug(make)}.json"
+            file_name = f"size-match-full-{source_index:02d}-{slug(name)}-{index:03d}-{slug(make)}.json"
             write_json(out_dir / file_name, {"name": name, "make": make, "columns": COLUMNS, "records": by_make[make]})
             groups.append({"make": make, "records_path": file_name, "record_count": len(by_make[make])})
         counts[name] = sum(g["record_count"] for g in groups)

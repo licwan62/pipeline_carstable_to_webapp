@@ -1,0 +1,23 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/compress_configured_sheets.py --output-root D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_02_pipeline\01_compressed_fitment --config D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_02_pipeline\00_input\pipeline.generated.json --compress-script D:\Licheng\Repo\pipeline_carstable_to_webapp\..\..\Scripts/compress_to_size_chart/process_tsv.py
+
+C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe: can't open file 'D:\\Licheng\\Repo\\pipeline_carstable_to_webapp\\..\\..\\Scripts\\compress_to_size_chart\\process_tsv.py': [Errno 2] No such file or directory
+[compress-new] HNT全量: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-09-21_02_pipeline\00_input\tables\001-HNT全量.csv
+Traceback (most recent call last):
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\compress_configured_sheets.py", line 112, in <module>
+    main()
+    ~~~~^^
+  File "D:\Licheng\Repo\pipeline_carstable_to_webapp\tools\compress_configured_sheets.py", line 92, in main
+    subprocess.run(
+    ~~~~~~~~~~~~~~^
+        [
+        ^
+    ...<9 lines>...
+        check=True,
+        ^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\cc\AppData\Local\Programs\Python\Python313\Lib\subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['C:\\Users\\cc\\AppData\\Local\\Programs\\Python\\Python313\\python.exe', 'D:\\Licheng\\Repo\\pipeline_carstable_to_webapp\\..\\..\\Scripts\\compress_to_size_chart\\process_tsv.py', 'C:\\Users\\cc\\AppData\\Local\\Temp\\compress-csv-s09hp09n\\HNT全量.tsv', '--output-dir', 'C:\\Users\\cc\\AppData\\Local\\Temp\\compress-csv-s09hp09n\\output', '--field-profile', 'C:\\Users\\cc\\AppData\\Local\\Temp\\compress-csv-s09hp09n\\profile.yaml', '--check-atom']' returned non-zero exit status 2.

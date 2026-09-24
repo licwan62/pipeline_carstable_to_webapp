@@ -47,8 +47,6 @@
   const tsvIndexes = new Map();
   const configuredMatchIndexPromises = new Map();
   let configuredMatchManifestPromise = null;
-  let configuredMatchAllIndexesPromise = null;
-  let configuredMatchApplicationIndex = null;
   const sizeReferenceIndex = new Map();
   const sizeReferenceOrder = new Map();
   const initialSearchQuery = initialQuery();
@@ -80,11 +78,7 @@
     status: "idle",
     message: "",
     availableMakes: [],
-    requiresMakeSelection: false,
-    cacheStatus: "idle",
-    cacheLoaded: 0,
-    cacheTotal: 0,
-    cacheRecordCount: 0
+    requiresMakeSelection: false
   };
   const maxResultPageSize = 500;
   let searchLoadToken = 0;
@@ -292,7 +286,6 @@
               </select>
             </label>
             <label><span>SIZE</span><select class="search-select" data-lazy-size ${searchState.status !== "ready" ? "disabled" : ""}><option value="">全部尺码</option></select></label>
-            <p class="background-cache-status" data-cache-status data-state="${escapeHtml(searchState.cacheStatus)}" role="status" aria-live="polite">${escapeHtml(backgroundCacheStatusText())}</p>
           </div>
           <div class="search-result-toolbar">
             <div class="search-summary" role="status"></div>
@@ -487,6 +480,7 @@
     app.querySelectorAll("[data-sidebar-source]").forEach((button) => {
       button.addEventListener("click", () => {
         searchState.selectedSource = button.dataset.sidebarSource || "";
+        searchState.scopeKey = "";
         searchState.selectedMake = "";
         searchState.selectedSize = "";
         searchState.availableMakes = [];
@@ -745,7 +739,7 @@
     resetButton.addEventListener("click", () => {
       window.clearTimeout(globalSearchTimer);
       searchState.query = "";
-      resetSearchFilters();
+      resetSearchFilters({ resetSource: true });
       updateSourceOutlineState();
       const globalInput = app.querySelector(".global-search-input");
       if (globalInput) {
@@ -767,9 +761,11 @@
     });
   }
 
-  function resetSearchFilters() {
+  function resetSearchFilters({ resetSource = false } = {}) {
     searchState.scopeKey = "";
-    searchState.selectedSource = defaultSourceFilter();
+    if (resetSource) {
+      searchState.selectedSource = defaultSourceFilter();
+    }
     searchState.selectedMake = "";
     searchState.selectedSize = "";
     searchState.requiresMakeSelection = false;
@@ -796,11 +792,8 @@
 
     const token = ++searchLoadToken;
     const usesConfiguredSources = Boolean(viewConfig.match_sources?.length);
-    const usesGlobalIndex = usesConfiguredSources && Boolean(searchState.query.trim());
     const scopeKey = usesConfiguredSources
-      ? (usesGlobalIndex
-        ? "configured:global"
-        : `configured:${searchState.selectedSource}:${searchState.selectedMake || "all-makes"}`)
+      ? `configured:${searchState.selectedSource}:${searchState.selectedMake || "all-makes"}`
       : scopeDirectories.map((directory) => directory.name).join("|");
     if (searchState.scopeKey === scopeKey && (searchState.status === "ready" || searchState.status === "loading")) {
       updateSearchControls();
@@ -811,18 +804,14 @@
     searchState.records = [];
     searchState.columns = [];
     searchState.status = "loading";
-    searchState.message = usesGlobalIndex
-      ? "正在加载全部数据用于全局搜索..."
-      : (searchState.selectedMake ? `Loading ${searchState.selectedMake} records...` : "正在加载全部 MAKE...");
+    searchState.message = searchState.selectedMake ? `Loading ${searchState.selectedMake} records...` : "正在加载全部 MAKE...";
     updateLazyMakeControl();
     updateSearchControls();
     updateSearchResults();
 
     try {
       const indexes = usesConfiguredSources
-        ? (usesGlobalIndex
-          ? await loadAllConfiguredMatchIndexes()
-          : await loadConfiguredMatchIndexes(searchState.selectedSource, searchState.selectedMake))
+        ? await loadConfiguredMatchIndexes(searchState.selectedSource, searchState.selectedMake)
         : await Promise.all(scopeDirectories.map(loadDirectoryIndex));
 
       if (token !== searchLoadToken) {
@@ -839,13 +828,7 @@
           }
         });
       });
-      const resolvedScopeKey = usesConfiguredSources && !usesGlobalIndex
-        ? `configured:${searchState.selectedSource}:${searchState.selectedMake || "all-makes"}`
-        : scopeKey;
-      setSearchIndex(resolvedScopeKey, records, columns);
-      if (usesConfiguredSources && !usesGlobalIndex) {
-        cacheConfiguredMatchIndexesInBackground();
-      }
+      setSearchIndex(scopeKey, records, columns);
     } catch (error) {
       if (token !== searchLoadToken) {
         return;
@@ -1329,28 +1312,25 @@
     });
   }
 
-  function backgroundCacheStatusText() {
-    if (searchState.cacheStatus === "ready") {
-      return `全部 JSON 加载成功 · 应用缓存已刷新 · ${formatCount(searchState.cacheTotal)} / ${formatCount(searchState.cacheTotal)} 个文件 · ${formatCount(searchState.cacheRecordCount)} 条记录`;
-    }
-    if (searchState.cacheStatus === "loading") {
-      return `后台缓存 JSON：${formatCount(searchState.cacheLoaded)} / ${formatCount(searchState.cacheTotal)} 个文件`;
-    }
-    if (searchState.cacheStatus === "error") {
-      return `后台缓存未完成：${formatCount(searchState.cacheLoaded)} / ${formatCount(searchState.cacheTotal)} 个文件，GLOBAL 搜索时将自动重试`;
-    }
-    return "后台缓存等待启动";
-  }
-
-  function updateBackgroundCacheStatus() {
-    const status = app.querySelector("[data-cache-status]");
-    if (!status) return;
-    status.dataset.state = searchState.cacheStatus;
-    status.textContent = backgroundCacheStatusText();
-  }
-
   function resolveManifestDataPath(manifestPath, recordsPath) {
     return new URL(recordsPath, new URL(manifestPath, document.baseURI)).href;
+  }
+
+  async function fetchJsonWithRetry(url, attempts = 3) {
+    let lastError;
+    for (let attempt = 0; attempt < attempts; attempt += 1) {
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`Cannot load ${url}`);
+        }
+        return await response.json();
+      } catch (error) {
+        lastError = error;
+        await new Promise((resolve) => window.setTimeout(resolve, 200 * (attempt + 1)));
+      }
+    }
+    throw lastError;
   }
 
   async function loadConfiguredMatchSource(manifestPath, payload, source, configured, makeGroup) {
@@ -1361,11 +1341,7 @@
         let sourcePayload = shard;
         if (shard.records_path) {
           const recordsPath = resolveManifestDataPath(manifestPath, shard.records_path);
-          const response = await fetch(recordsPath);
-          if (!response.ok) {
-            throw new Error(`Cannot load ${recordsPath}`);
-          }
-          sourcePayload = await response.json();
+          sourcePayload = await fetchJsonWithRetry(recordsPath);
         }
 
         const sourceName = sourcePayload.name || source.name;
@@ -1433,76 +1409,6 @@
       const configured = configuredSources.find((item) => item.name === source.name) || {};
       return loadConfiguredMatchSource(path, payload, source, configured);
     }));
-  }
-
-  function cacheConfiguredMatchIndexesInBackground() {
-    window.setTimeout(() => {
-      loadAllConfiguredMatchIndexes().catch(() => {
-        // The selected brand remains usable; the visible cache state offers a later retry.
-      });
-    }, 0);
-  }
-
-  async function loadAllConfiguredMatchIndexes() {
-    if (!configuredMatchAllIndexesPromise) {
-      configuredMatchAllIndexesPromise = (async () => {
-        const { path, payload } = await loadConfiguredMatchManifest();
-        const configuredSources = viewConfig.match_sources || [];
-        const configuredNames = configuredSources.map((source) => source.name);
-        const sources = (payload.sources || []).filter((source) => (
-          !configuredNames.length || configuredNames.includes(source.name)
-        ));
-
-        searchState.availableMakes = uniqueInOrder(
-          sources.flatMap((source) => (source.make_groups || []).map((group) => cleanField(group.make)).filter(Boolean))
-        ).sort((left, right) => left.localeCompare(right));
-
-        const shardPromises = sources.flatMap((source) => {
-          const configured = configuredSources.find((item) => item.name === source.name) || {};
-          if (Array.isArray(source.make_groups)) {
-            return source.make_groups.map((group) => loadConfiguredMatchSource(path, payload, source, configured, group));
-          }
-          return [loadConfiguredMatchSource(path, payload, source, configured)];
-        });
-        searchState.cacheStatus = "loading";
-        searchState.cacheLoaded = 0;
-        searchState.cacheTotal = shardPromises.length;
-        searchState.cacheRecordCount = 0;
-        updateBackgroundCacheStatus();
-
-        const indexes = await Promise.all(shardPromises.map(async (promise) => {
-          const index = await promise;
-          searchState.cacheLoaded += 1;
-          searchState.cacheRecordCount += index.records.length;
-          updateBackgroundCacheStatus();
-          return index;
-        }));
-        configuredMatchApplicationIndex = combineSearchIndexes(indexes);
-        searchState.cacheStatus = "ready";
-        updateLazyMakeControl();
-        updateBackgroundCacheStatus();
-        return [configuredMatchApplicationIndex];
-      })().catch((error) => {
-        configuredMatchAllIndexesPromise = null;
-        configuredMatchApplicationIndex = null;
-        searchState.cacheStatus = "error";
-        updateBackgroundCacheStatus();
-        throw error;
-      });
-    }
-    return configuredMatchAllIndexesPromise;
-  }
-
-  function combineSearchIndexes(indexes) {
-    const records = [];
-    const columns = [];
-    indexes.forEach((index) => {
-      records.push(...index.records);
-      index.columns.forEach((column) => {
-        if (column && !columns.includes(column)) columns.push(column);
-      });
-    });
-    return { records, columns };
   }
 
   function queryFilteredRecords() {
@@ -2680,7 +2586,6 @@
   }
 
   function defaultSourceFilter() {
-    if (searchState.query.trim()) return "";
     return cleanField(viewConfig.match_sources?.[0]?.name);
   }
 

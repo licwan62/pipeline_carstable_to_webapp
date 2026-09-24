@@ -1,0 +1,4 @@
+cwd: D:\Licheng\Repo\pipeline_carstable_to_webapp
+command: C:\Users\cc\AppData\Local\Programs\Python\Python313\python.exe tools/publish_site_copy.py --source D:\Licheng\Repo\pipeline_carstable_to_webapp\public --destination \\NAS8824B4\Web\car --best-effort
+
+WARNING: NAS publish failed: [WinError 5] 拒绝访问。: '\\\\NAS8824B4\\Web\\.car.deploy-5b214000c0ba4be5a56678fc43498156' -> '\\\\NAS8824B4\\Web\\car'

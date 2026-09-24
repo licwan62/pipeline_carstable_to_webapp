@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "layout": "store-pipeline-v2",
+  "created_at": "2026-09-21T14:50:01+08:00",
+  "updated_at": "2026-09-21T14:50:01+08:00",
+  "status": "complete",
+  "case": "stores",
+  "inputs": [
+    "input/0921/HNT全量.csv",
+    "input/0921/TM_拆分全量.csv",
+    "input/0921/TM全量.csv",
+    "input/0921/全尺码全量.csv"
+  ],
+  "format": "csv-json",
+  "steps": [
+    "normalize_store_inputs",
+    "compress_store_fitment",
+    "build_user_size_json",
+    "export_store_csv",
+    "generate_store_html",
+    "build_public_site",
+    "publish_nas_site"
+  ],
+  "public": "public"
+}

@@ -1,31 +1,31 @@
 {
   "approved_by": "user",
   "upstream_node": "size-calculation",
-  "upstream_version": "20260921_08",
+  "upstream_version": "20260921_20",
   "files": [
     {
       "input": "全尺码全量.csv",
       "source": "A0.尺码计算/output/全量表_US.csv",
-      "artifact_file": "A0.尺码计算/artifacts/2026-09-21_08_release/output/全量表_US-20260921_08.csv",
-      "sha256": "d0d492d6e487328f0519b8ed359b899932d2c7716f9e7807e380a0a329996dcc"
+      "artifact_file": "A0.尺码计算/artifacts/2026-09-21_20_release/output/全量表_US-20260921_20.csv",
+      "sha256": "75ad1e9eb80e3122bdab6cc927c7544c0eee5d921d60ba606a95b58203f0322b"
     },
     {
       "input": "HNT全量.csv",
       "source": "A0.尺码计算/output/店铺全量_HNT.csv",
-      "artifact_file": "A0.尺码计算/artifacts/2026-09-21_08_release/output/店铺全量_HNT-20260921_08.csv",
-      "sha256": "40265943d14e8d2d9fcd7fe37caaaadc7f6ff3830e6b9b868021624687b241e8"
+      "artifact_file": "A0.尺码计算/artifacts/2026-09-21_20_release/output/店铺全量_HNT-20260921_20.csv",
+      "sha256": "345c220f0138638a757381de06b68618f08fa2292a1e53b631e4970b69491fb2"
     },
     {
       "input": "TM全量.csv",
       "source": "A0.尺码计算/output/店铺全量_TM.csv",
-      "artifact_file": "A0.尺码计算/artifacts/2026-09-21_08_release/output/店铺全量_TM-20260921_08.csv",
-      "sha256": "942016d1dcbfa19cd4498c8340de5456a3be8d33b57aa44e0f6a62fb7ad03b5e"
+      "artifact_file": "A0.尺码计算/artifacts/2026-09-21_20_release/output/店铺全量_TM-20260921_20.csv",
+      "sha256": "c3b4b446f464ef30f70805c5973915df186a6309c630a4a5c219abee31093843"
     },
     {
       "input": "TM_拆分全量.csv",
       "source": "A0.尺码计算/output/店铺全量_TM_拆分.csv",
-      "artifact_file": "A0.尺码计算/artifacts/2026-09-21_08_release/output/店铺全量_TM_拆分-20260921_08.csv",
-      "sha256": "f211ef61a39cc40fe81cebe5db29a6d386f645576e6fabf0422d17cb66361743"
+      "artifact_file": "A0.尺码计算/artifacts/2026-09-21_20_release/output/店铺全量_TM_拆分-20260921_20.csv",
+      "sha256": "ecb510f3096272c9a6534625fd07f711b6b4ba414c7ff6f1cd0740fc7c73d9a4"
     }
   ]
 }
