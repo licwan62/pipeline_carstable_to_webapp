@@ -5,7 +5,7 @@ repos:
   compress: "../../Scripts/compress_to_size_chart"
 
 paths:
-  input_dir: "input/0921"
+  input_dir: "input/0925"
   artifact_root: "artifact"
   public_dir: "public"
   nas_publish_dir: '\\NAS8824B4\Web\car'

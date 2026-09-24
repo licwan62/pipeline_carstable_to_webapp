@@ -1,0 +1,25 @@
+{
+  "approved_by": "user",
+  "upstream_node": "full-generation",
+  "upstream_version": "20260925_05",
+  "files": [
+    {
+      "input": "全量生成_US.csv",
+      "source": "A1.全量生成/output/全量生成_US.csv",
+      "artifact_file": "A1.全量生成/artifacts/2026-09-25_05_full-generation-release/output/全量生成_US-20260925_05.csv",
+      "sha256": "cc6565a0858f5cc20f22af43bf55c47871500d91c70373f5f1816dd95bf4d996"
+    },
+    {
+      "input": "全量生成_EU.csv",
+      "source": "A1.全量生成/output/全量生成_EU.csv",
+      "artifact_file": "A1.全量生成/artifacts/2026-09-25_05_full-generation-release/output/全量生成_EU-20260925_05.csv",
+      "sha256": "523c39b693ca8b547170739d074f2620ce090ddcb8bea0d2db051af4c1cacbe9"
+    },
+    {
+      "input": "全量生成_RU.csv",
+      "source": "A1.全量生成/output/全量生成_RU.csv",
+      "artifact_file": "A1.全量生成/artifacts/2026-09-25_05_full-generation-release/output/全量生成_RU-20260925_05.csv",
+      "sha256": "b85896da5d7f635d4f3de21c09284ecb710a8a7e24c1daa02f24503a4cd3a498"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+cwd: D:\Home\Repo\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/compress_configured_sheets.py --output-root D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_01_pipeline\01_compressed_fitment --config D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_01_pipeline\00_input\pipeline.generated.json --compress-script D:\Home\Repo\pipeline_carstable_to_webapp\..\..\Scripts/compress_to_size_chart/process_tsv.py
+
