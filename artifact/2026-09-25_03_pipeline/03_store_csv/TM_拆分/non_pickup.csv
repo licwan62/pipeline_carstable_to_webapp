@@ -1,1 +1,159 @@
 ﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
+TM_拆分,Acura Legend,Acura,Legend,1991-1995,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,Legend
+TM_拆分,Acura RL,Acura,RL,1996-2004,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,RL
+TM_拆分,Acura RLX,Acura,RLX,2014-2020,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,RLX
+TM_拆分,Audi A6,Audi,A6,2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,A6
+TM_拆分,Audi A6/S6,Audi,A6/S6,2019-2025,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,A6/S6
+TM_拆分,Audi A7/S7/RS7,Audi,A7/S7/RS7,2012-2025,,Liftback,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,A7/S7/RS7
+TM_拆分,Audi A8/S8,Audi,A8/S8,1997-2026,Incl: LWB,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: LWB,Incl: LWB,A8/S8
+TM_拆分,Audi RS7,Audi,RS7,2026,,Liftback,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,RS7
+TM_拆分,Audi e-tron GT/RS e-tron GT,Audi,e-tron GT/RS e-tron GT,2022-2024,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,RS e-tron GT
+TM_拆分,Audi e-tron GT/S e-tron GT/RS e-tron GT,Audi,e-tron GT/S e-tron GT/RS e-tron GT,2025-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,S/RS etron GT
+TM_拆分,BMW 5 Series,BMW,5 Series,2010-2026,GT/M5,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan GT/M5,Sedan GT/M5,5 Series
+TM_拆分,BMW 5 Series,BMW,5 Series,2017-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,5 Series
+TM_拆分,BMW 6 Series,BMW,6 Series,2013-2019,Gran Coupe,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan Gran Coupe,Sedan Gran Coupe,6 Series
+TM_拆分,BMW 7 Series,BMW,7 Series,1995-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,7 Series
+TM_拆分,BMW 8 Series,BMW,8 Series,2020-2026,Gran Coupe,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan Gran Coupe,Sedan Gran Coupe,8 Series
+TM_拆分,BMW i5,BMW,i5,2024-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,i5
+TM_拆分,BMW i7,BMW,i7,2023-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,i7
+TM_拆分,Buick Century,Buick,Century,1957,,Convertible,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible,Convertible,Century
+TM_拆分,Buick LaCrosse,Buick,LaCrosse,2005-2019,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,LaCrosse
+TM_拆分,Buick LeSabre,Buick,LeSabre,1959-1973,Incl: 2dr/4dr/4dr Hardtop,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan Incl: 2dr/4dr/4dr Hardtop,Convertible/Coupe/Sedan Incl: 2dr/4dr/4dr Hardtop,LeSabre
+TM_拆分,Buick LeSabre,Buick,LeSabre,1977-1985,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,LeSabre
+TM_拆分,Buick Lucerne,Buick,Lucerne,2006-2011,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Lucerne
+TM_拆分,Buick Park Avenue,Buick,Park Avenue,1991-2005,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Park Avenue
+TM_拆分,Buick Regal,Buick,Regal,1973-1977,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Regal
+TM_拆分,Buick Riviera,Buick,Riviera,1963-1970,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Riviera
+TM_拆分,Buick Riviera,Buick,Riviera,1975-1985,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Riviera
+TM_拆分,Buick Riviera,Buick,Riviera,1996-1999,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Riviera
+TM_拆分,Buick Roadmaster,Buick,Roadmaster,1936-1996,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Roadmaster
+TM_拆分,Buick Skylark,Buick,Skylark,1953-1972,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Skylark
+TM_拆分,Buick Skylark,Buick,Skylark,1994,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Skylark
+TM_拆分,Cadillac CT5,Cadillac,CT5,2025-2026,Blackwing,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Blackwing,Blackwing,CT5
+TM_拆分,Cadillac CT6,Cadillac,CT6,2016-2020,Incl: Blackwing/PHEV,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: Blackwing/PHEV,Inc:Black/PHEV,CT6
+TM_拆分,Cadillac CTS,Cadillac,CTS,2014-2019,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,CTS
+TM_拆分,Cadillac DTS,Cadillac,DTS,2006-2011,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,DTS
+TM_拆分,Cadillac DTS-L,Cadillac,DTS-L,2007-2011,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,DTS-L
+TM_拆分,Cadillac DeVille,Cadillac,DeVille,1949-1957,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,DeVille
+TM_拆分,Cadillac DeVille,Cadillac,DeVille,1961-1967,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,DeVille
+TM_拆分,Cadillac DeVille,Cadillac,DeVille,1977-1984,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,DeVille
+TM_拆分,Cadillac DeVille,Cadillac,DeVille,1989-2005,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,DeVille
+TM_拆分,Cadillac Eldorado,Cadillac,Eldorado,1953-1958,,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe,Conv/Cpe,Eldorado
+TM_拆分,Cadillac Eldorado,Cadillac,Eldorado,1961-1985,,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe,Conv/Cpe,Eldorado
+TM_拆分,Cadillac STS,Cadillac,STS,2005-2011,Incl: STS-V,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: STS-V,Incl: STS-V,STS
+TM_拆分,Cadillac Seville,Cadillac,Seville,1976-1985,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Seville
+TM_拆分,Cadillac Seville,Cadillac,Seville,1992-1997,Incl: SLS/STS,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: SLS/STS,Incl: SLS/STS,Seville
+TM_拆分,Cadillac XTS,Cadillac,XTS,2015-2019,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,XTS
+TM_拆分,Chevrolet Bel Air,Chevrolet,Bel Air,1958-1975,Incl: 2dr/4dr/Hardtop,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan Incl: 2dr/4dr/Hardtop,Convertible/Coupe/Sedan Incl: 2dr/4dr/Hardtop,Bel Air
+TM_拆分,Chevrolet Camaro,Chevrolet,Camaro,1974,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Camaro
+TM_拆分,Chevrolet Camaro,Chevrolet,Camaro,1977-1981,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Camaro
+TM_拆分,Chevrolet Caprice,Chevrolet,Caprice,1966-1976,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Caprice
+TM_拆分,Chevrolet Chevelle,Chevrolet,Chevelle,1973-1977,Incl: Laguna Type S-3,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan Incl: Laguna Type S-3,Cpe/Sdn Inc:LagS3,Chevelle
+TM_拆分,Chevrolet Impala,Chevrolet,Impala,1973-2020,Incl: SS,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan Incl: SS,Convertible/Coupe/Sedan Incl: SS,Impala
+TM_拆分,Chevrolet Lumina,Chevrolet,Lumina,1990-2001,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Lumina
+TM_拆分,Chevrolet Malibu,Chevrolet,Malibu,1975-1977,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Malibu
+TM_拆分,Chevrolet Monte Carlo,Chevrolet,Monte Carlo,1970-1977,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Monte Carlo
+TM_拆分,Chevrolet Monte Carlo,Chevrolet,Monte Carlo,1995-2007,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Monte Carlo
+TM_拆分,Chevrolet SS,Chevrolet,SS,2014-2017,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,SS
+TM_拆分,Chrysler 300,Chrysler,300,2005-2023,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,300
+TM_拆分,Chrysler 300 series,Chrysler,300 series,1999-2023,Incl: 300M,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: 300M,Incl: 300M,300 series
+TM_拆分,Chrysler 300M,Chrysler,300M,1999-2004,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,300M
+TM_拆分,Chrysler Concorde,Chrysler,Concorde,1993-2004,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Concorde
+TM_拆分,Chrysler LHS,Chrysler,LHS,1994-2001,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,LHS
+TM_拆分,Dodge Challenger,Dodge,Challenger,2008-2023,Incl: Widebody,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: Widebody,Incl: Widebody,Challenger
+TM_拆分,Dodge Charger,Dodge,Charger,1966-2026,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Charger
+TM_拆分,Dodge Intrepid,Dodge,Intrepid,1993-2004,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Intrepid
+TM_拆分,Ford Crown Victoria,Ford,Crown Victoria,1983-2011,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Crown Victoria
+TM_拆分,Ford Five Hundred,Ford,Five Hundred,2005-2007,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Five Hundred
+TM_拆分,Ford Taurus,Ford,Taurus,1996-2019,Incl: SHO,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan Incl: SHO,Sedan Incl: SHO,Taurus
+TM_拆分,Ford Thunderbird,Ford,Thunderbird,1958-1979,Incl: 2dr Hardtop/4dr Landau/Landau,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan Incl: 2dr Hardtop/4dr Landau/Landau,Convertible/Coupe/Sedan Incl: 2dr Hardtop/4dr Landau/Landau,Thunderbird
+TM_拆分,Ford Thunderbird,Ford,Thunderbird,1983-1997,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Thunderbird
+TM_拆分,Genesis EQ900,Genesis,EQ900,2017-2026,G90,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",G90,G90,EQ900
+TM_拆分,Genesis G80,Genesis,G80,2017-2026,Incl: Sport,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: Sport,Incl: Sport,G80
+TM_拆分,Genesis G90,Genesis,G90,2017-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,G90
+TM_拆分,Honda Accord,Honda,Accord,2008-2012,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,Accord
+TM_拆分,Honda Accord,Honda,Accord,2023-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,Accord
+TM_拆分,Hyundai Equus,Hyundai,Equus,2011-2016,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Equus
+TM_拆分,Hyundai Genesis,Hyundai,Genesis,2009-2016,Incl: 5.0 R-Spec,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: 5.0 R-Spec,Inc:5.0RSpc,Genesis
+TM_拆分,Infiniti M,Infiniti,M,2003-2004,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,M
+TM_拆分,Infiniti Q45,Infiniti,Q45,1990-2006,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Q45
+TM_拆分,Infiniti Q70,Infiniti,Q70,2015-2019,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Q70
+TM_拆分,Infiniti Q70L,Infiniti,Q70L,2015-2019,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Q70L
+TM_拆分,Jaguar XF,Jaguar,XF,2009-2024,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,XF
+TM_拆分,Jaguar XJ,Jaguar,XJ,1979-1992,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,XJ
+TM_拆分,Jaguar XJ,Jaguar,XJ,1995-2019,LWB/SWB,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",LWB/SWB,LWB/SWB,XJ
+TM_拆分,Karma Automotive GS-6,Karma Automotive,GS-6,2021-2022,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,GS-6
+TM_拆分,Karma Automotive Revero,Karma Automotive,Revero,2017-2025,Incl: GT/GTS,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: GT/GTS,Incl: GT/GTS,Revero
+TM_拆分,Kia Amanti,Kia,Amanti,2004-2009,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Amanti
+TM_拆分,Kia Cadenza,Kia,Cadenza,2014-2020,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Cadenza
+TM_拆分,Kia K900,Kia,K900,2015-2020,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,K900
+TM_拆分,Lexus ES,Lexus,ES,2019-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,ES
+TM_拆分,Lexus GS,Lexus,GS,1993-1997,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,GS
+TM_拆分,Lexus LS,Lexus,LS,1995-2026,Incl: L,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: L,Incl: L,LS
+TM_拆分,Lincoln Continental,Lincoln,Continental,1940-1948,,Convertible,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible,Convertible,Continental
+TM_拆分,Lincoln Continental,Lincoln,Continental,1961-1969,,Convertible/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Sedan,Conv/Sdn,Continental
+TM_拆分,Lincoln Continental,Lincoln,Continental,1980,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Continental
+TM_拆分,Lincoln Continental,Lincoln,Continental,1988-2020,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,Continental
+TM_拆分,Lincoln MKS,Lincoln,MKS,2009-2016,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,MKS
+TM_拆分,Lincoln Mark VII,Lincoln,Mark VII,1984-1992,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Mark VII
+TM_拆分,Lincoln Mark VIII,Lincoln,Mark VIII,1993-1998,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Mark VIII
+TM_拆分,Lincoln Town Car,Lincoln,Town Car,1981-2011,Incl: L,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: L,Incl: L,Town Car
+TM_拆分,Lucid Motors Air,Lucid Motors,Air,2022-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Air
+TM_拆分,Maserati Ghibli,Maserati,Ghibli,2014-2024,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Ghibli
+TM_拆分,Maserati GranTurismo,Maserati,GranTurismo,2024-2026,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,GranTurismo
+TM_拆分,Maserati Quattroporte,Maserati,Quattroporte,2005-2024,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Quattroporte
+TM_拆分,Mercedes-Benz CL-Class,Mercedes-Benz,CL-Class,1998-2014,Incl: AMG,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: AMG,Incl: AMG,CL-Class
+TM_拆分,Mercedes-Benz CLS-Class,Mercedes-Benz,CLS-Class,2012-2021,AMG,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",AMG,AMG,CLS-Class
+TM_拆分,Mercedes-Benz CLS-Class,Mercedes-Benz,CLS-Class,2019-2023,4dr coupe,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",4dr coupe,4dr coupe,CLS-Class
+TM_拆分,Mercedes-Benz E-Class,Mercedes-Benz,E-Class,2019-2026,AMG/PHEV,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan AMG/PHEV,Sedan AMG/PHEV,E-Class
+TM_拆分,Mercedes-Benz E-Class,Mercedes-Benz,E-Class,2025-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,E-Class
+TM_拆分,Mercedes-Benz GLE-Class,Mercedes-Benz,GLE-Class,2021-2026,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,GLE-Class
+TM_拆分,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,1994-2026,Incl: LWB/Maybach/S 550e PHEV/S 560e PHEV,Convertible/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Sedan Incl: LWB/Maybach/S 550e PHEV/S 560e PHEV,Conv/Sdn Inc:LWB,S-Class
+TM_拆分,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2001-2026,AMG/PHEV,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan AMG/PHEV,Cpe/Sdn AMG/PHEV,S-Class
+TM_拆分,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2015-2020,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,S-Class
+TM_拆分,Mercury Cougar,Mercury,Cougar,1974-1979,Incl: XR-7,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan Incl: XR-7,Cpe/Sdn Inc:XR-7,Cougar
+TM_拆分,Mercury Cougar,Mercury,Cougar,1983-1997,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Cougar
+TM_拆分,Mercury Grand Marquis,Mercury,Grand Marquis,1979-2011,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Grand Marquis
+TM_拆分,Mercury Marauder,Mercury,Marauder,2003-2004,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Marauder
+TM_拆分,Mercury Marquis,Mercury,Marquis,1967-1970,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Marquis
+TM_拆分,Mercury Marquis,Mercury,Marquis,1973,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Marquis
+TM_拆分,Mercury Marquis,Mercury,Marquis,1979-1982,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Marquis
+TM_拆分,Mercury Monterey,Mercury,Monterey,1954-1974,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Monterey
+TM_拆分,Mercury Sable,Mercury,Sable,1996-2009,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,Sable
+TM_拆分,Mitsubishi Diamante,Mitsubishi,Diamante,1998-2004,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Diamante
+TM_拆分,Oldsmobile 88,Oldsmobile,88,1951-1971,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,88
+TM_拆分,Oldsmobile 88,Oldsmobile,88,1951-1972,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,88
+TM_拆分,Oldsmobile 88,Oldsmobile,88,1977-1985,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,88
+TM_拆分,Oldsmobile Aurora,Oldsmobile,Aurora,1995-2003,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Aurora
+TM_拆分,Oldsmobile Cutlass,Oldsmobile,Cutlass,1964-1967,Incl: F-85 Cutlass,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe Incl: F-85 Cutlass,Conv/Cpe Inc:F-85,Cutlass
+TM_拆分,Oldsmobile Cutlass,Oldsmobile,Cutlass,1965-1977,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,Cutlass
+TM_拆分,Oldsmobile Cutlass,Oldsmobile,Cutlass,1969-1977,,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe,Conv/Cpe,Cutlass
+TM_拆分,Oldsmobile Intrigue,Oldsmobile,Intrigue,1998-2002,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Intrigue
+TM_拆分,Plymouth Fury,Plymouth,Fury,1956-1960,Incl: 2dr Hardtop V-800/Belvedere Fury/Sport Fury,Convertible/Coupe/Hardtop,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Hardtop Incl: 2dr Hardtop V-800/Belvedere Fury/Sport Fury,Conv/Cpe/HTop,Fury
+TM_拆分,Plymouth Fury,Plymouth,Fury,1959-1961,Incl: 4dr Hardtop V-800,Convertible/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Sedan Incl: 4dr Hardtop V-800,Conv/Sdn Inc:4HT,Fury
+TM_拆分,Plymouth Fury,Plymouth,Fury,1961,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Fury
+TM_拆分,Plymouth Fury,Plymouth,Fury,1963-1978,Incl: Fast Top/Hardtop/Sport Fury,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan Incl: Fast Top/Hardtop/Sport Fury,Convertible/Coupe/Sedan Incl: Fast Top/Hardtop/Sport Fury,Fury
+TM_拆分,Plymouth Road Runner,Plymouth,Road Runner,1971-1975,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Road Runner
+TM_拆分,Pontiac Bonneville,Pontiac,Bonneville,1957-1969,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Bonneville
+TM_拆分,Pontiac Bonneville,Pontiac,Bonneville,1971,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Bonneville
+TM_拆分,Pontiac Bonneville,Pontiac,Bonneville,1971-1976,,Convertible,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible,Convertible,Bonneville
+TM_拆分,Pontiac Bonneville,Pontiac,Bonneville,1977-1981,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Bonneville
+TM_拆分,Pontiac Firebird,Pontiac,Firebird,1974-1981,Trans Am,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe Trans Am,Coupe Trans Am,Firebird
+TM_拆分,Pontiac Firebird,Pontiac,Firebird,1991-1997,Trans Am,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe Trans Am,Conv/Cpe TransAm,Firebird
+TM_拆分,Pontiac G8,Pontiac,G8,2008-2009,,Fastback,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,G8
+TM_拆分,Pontiac GTO,Pontiac,GTO,1964-1967,,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe,Conv/Cpe,GTO
+TM_拆分,Pontiac GTO,Pontiac,GTO,1970-1972,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,GTO
+TM_拆分,Pontiac Grand Prix,Pontiac,Grand Prix,1963-1977,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Grand Prix
+TM_拆分,Pontiac Grand Prix,Pontiac,Grand Prix,1997-2008,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Grand Prix
+TM_拆分,Pontiac LeMans,Pontiac,LeMans,1964-1967,,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe,Conv/Cpe,LeMans
+TM_拆分,Pontiac LeMans,Pontiac,LeMans,1964-1977,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,LeMans
+TM_拆分,Pontiac LeMans,Pontiac,LeMans,1970-1972,,Convertible,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible,Convertible,LeMans
+TM_拆分,Pontiac LeMans,Pontiac,LeMans,1971-1977,Incl: Can Am,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe Incl: Can Am,Cpe Inc:CanAm,LeMans
+TM_拆分,Porsche Panamera,Porsche,Panamera,2014-2026,Incl: Executive LWB,Liftback,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Liftback Incl: Executive LWB,Lftbk Inc:ExecLWB,Panamera
+TM_拆分,Porsche Taycan,Porsche,Taycan,2020-2026,Incl: Turbo GT,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan Incl: Turbo GT,Sdn Inc:TurboGT,Taycan
+TM_拆分,Saab 9-5,Saab,9-5,2010-2011,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,9-5
+TM_拆分,Toyota Avalon,Toyota,Avalon,2005-2022,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Avalon
+TM_拆分,Toyota Crown,Toyota,Crown,2023-2026,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Crown
+TM_拆分,Toyota MIRAI,Toyota,MIRAI,2021-2024,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,MIRAI
+TM_拆分,Volkswagen Phaeton,Volkswagen,Phaeton,2004-2006,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Phaeton
+TM_拆分,Volvo S90,Volvo,S90,2017-2025,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,S90

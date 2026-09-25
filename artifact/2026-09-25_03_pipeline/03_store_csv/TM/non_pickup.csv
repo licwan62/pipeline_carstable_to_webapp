@@ -1,5 +1,5 @@
 ﻿店铺,CAR,MAKE,MODEL,YEAR,VERSION,CONST,SIZE,SIZE-CODE,CATAGORY,LONG-TYPE,TYPE,SHORT-MODEL
-TM,Acura ADX,Acura,ADX,2025-2026,,SUV,YL,Y1,越野车,,,ADX
+TM,Acura ADX,Acura,ADX,2025-2026,,SUV,YL,Y3,越野车,,,ADX
 TM,Acura CL,Acura,CL,1997-2003,,Coupe,3XL-0,C3,跑车,,,CL
 TM,Acura ILX,Acura,ILX,2013-2022,,Sedan,3L,S2,三厢车,,,ILX
 TM,Acura Integra,Acura,Integra,1990-2001,,Sedan,3L,S2,三厢车,Sedan,Sedan,Integra
@@ -7,31 +7,33 @@ TM,Acura Integra,Acura,Integra,1994-2001,,Coupe,3M-0,C1,跑车,Coupe,Coupe,Integ
 TM,Acura Legend,Acura,Legend,1986-1988,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Legend
 TM,Acura Legend,Acura,Legend,1991-1995,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Legend
 TM,Acura Legend,Acura,Legend,1991-1995,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Legend
-TM,Acura MDX,Acura,MDX,2001-2009,,SUV,YL,Y1,越野车,,,MDX
-TM,Acura MDX,Acura,MDX,2010-2020,,SUV,YXL,Y2,越野车,,,MDX
-TM,Acura MDX,Acura,MDX,2022-2026,Incl: Type S,SUV,YXXL-545,Y4,越野车,Incl: Type S,Incl: Type S,MDX
+TM,Acura MDX,Acura,MDX,2001-2009,,SUV,YL,Y3,越野车,,,MDX
+TM,Acura MDX,Acura,MDX,2010-2020,,SUV,YXL,Y4,越野车,,,MDX
+TM,Acura MDX,Acura,MDX,2022-2026,Incl: Type S,SUV,YXXL-545,Y6,越野车,Incl: Type S,Incl: Type S,MDX
 TM,Acura NSX,Acura,NSX,1991-2022,Incl: Type S,Coupe,3M-0,C1,跑车,Incl: Type S,Incl: Type S,NSX
-TM,Acura RDX,Acura,RDX,2007-2009,,SUV,YM,Y0,越野车,,,RDX
-TM,Acura RDX,Acura,RDX,2010-2026,,SUV,YL,Y1,越野车,,,RDX
+TM,Acura RDX,Acura,RDX,2007-2009,,SUV,YM,Y2,越野车,,,RDX
+TM,Acura RDX,Acura,RDX,2010-2026,,SUV,YL,Y3,越野车,,,RDX
 TM,Acura RL,Acura,RL,1996-2004,,Sedan,3XL,S3,三厢车,,,RL
 TM,Acura RLX,Acura,RLX,2014-2020,,Sedan,3XL,S3,三厢车,,,RLX
-TM,Acura SLX,Acura,SLX,1996,,SUV,YL,Y1,越野车,,,SLX
-TM,Acura SLX,Acura,SLX,1997,,SUV,YM,Y0,越野车,,,SLX
-TM,Acura SLX,Acura,SLX,1998-1999,,SUV,YL,Y1,越野车,,,SLX
+TM,Acura SLX,Acura,SLX,1996,,SUV,YL,Y3,越野车,,,SLX
+TM,Acura SLX,Acura,SLX,1997,,SUV,YM,Y2,越野车,,,SLX
+TM,Acura SLX,Acura,SLX,1998-1999,,SUV,YL,Y3,越野车,,,SLX
 TM,Acura TL,Acura,TL,1996-2014,Incl: SH-AWD/Type-S,Sedan,3XL,S3,三厢车,Incl: SH-AWD/Type-S,Inc:SH-AWD/Type-S,TL
 TM,Acura TLX,Acura,TLX,2015-2025,Incl: Type S,Sedan,3XL,S3,三厢车,Incl: Type S,Incl: Type S,TLX
 TM,Acura TSX,Acura,TSX,2004-2014,,Sedan,3L,S2,三厢车,Sedan,Sedan,TSX
-TM,Acura ZDX,Acura,ZDX,2010-2013,,SUV,YXL,Y2,越野车,,,ZDX
-TM,Acura ZDX,Acura,ZDX,2024-2025,,SUV,YXXL-545,Y4,越野车,,,ZDX
+TM,Acura TSX,Acura,TSX,2011-2014,,Wagon,5XL,V3,两厢车,Wagon,Wagon,TSX
+TM,Acura ZDX,Acura,ZDX,2010-2013,,SUV,YXL,Y4,越野车,,,ZDX
+TM,Acura ZDX,Acura,ZDX,2024-2025,,SUV,YXXL-545,Y6,越野车,,,ZDX
 TM,Alfa Romeo 4C,Alfa Romeo,4C,2015-2020,,Convertible/Coupe,3S-0,C0,跑车,,,4C
 TM,Alfa Romeo GIULIA,Alfa Romeo,GIULIA,2017-2026,Incl: Quadrifoglio,Sedan,3L,S2,三厢车,Incl: Quadrifoglio,Inc:Quad,GIULIA
-TM,Alfa Romeo Stelvio,Alfa Romeo,Stelvio,2018-2026,,SUV,YL,Y1,越野车,,,Stelvio
-TM,Alfa Romeo Tonale,Alfa Romeo,Tonale,2024-2026,,SUV,YM,Y0,越野车,,,Tonale
+TM,Alfa Romeo Stelvio,Alfa Romeo,Stelvio,2018-2026,,SUV,YL,Y3,越野车,,,Stelvio
+TM,Alfa Romeo Tonale,Alfa Romeo,Tonale,2024-2026,,SUV,YM,Y2,越野车,,,Tonale
 TM,Audi 90,Audi,90,1995,,Sedan,3L,S2,三厢车,,,90
 TM,Audi A3/S3,Audi,A3/S3,2015-2016,,Sedan,3L,S2,三厢车,,,A3/S3
 TM,Audi A3/S3/RS3,Audi,A3/S3/RS3,2017-2026,,Sedan,3L,S2,三厢车,,,A3/S3/RS3
 TM,Audi A4,Audi,A4,1996-2009,,Sedan,3L,S2,三厢车,Sedan,Sedan,A4
 TM,Audi A4,Audi,A4,2003,,Convertible,3L-0,C2,跑车,Convertible,Convertible,A4
+TM,Audi A4 allroad quattro,Audi,A4 allroad quattro,2017-2025,,Wagon,5XL,V3,两厢车,,,A4 allroad qtro
 TM,Audi A4/S4,Audi,A4/S4,2000-2016,,Sedan,3L,S2,三厢车,Sedan,Sedan,A4/S4
 TM,Audi A4/S4,Audi,A4/S4,2017-2025,,Sedan,3XL,S3,三厢车,Sedan,Sedan,A4/S4
 TM,Audi A4/S4,Audi,A4/S4,2004-2009,,Convertible,3L-0,C2,跑车,Convertible,Convertible,A4/S4
@@ -42,30 +44,33 @@ TM,Audi A5/S5,Audi,A5/S5,2008-2024,,Convertible/Coupe,3L-0,C2,跑车,Convertible
 TM,Audi A5/S5/RS5,Audi,A5/S5/RS5,2018-2025,,Liftback,3XL,S3,三厢车,Liftback,Liftback,A5/S5/RS5
 TM,Audi A5/S5/RS5,Audi,A5/S5/RS5,2013-2024,,Convertible/Coupe,3L-0,C2,跑车,Convertible/Coupe,Conv/Cpe,A5/S5/RS5
 TM,Audi A6,Audi,A6,1998-2026,,Sedan,3XL,S3,三厢车,,,A6
+TM,Audi A6 allroad quattro,Audi,A6 allroad quattro,2001-2025,,Wagon,5XL,V3,两厢车,,,A6 allroad qtro
 TM,Audi A6 e-tron/S6 e-tron,Audi,A6 e-tron/S6 e-tron,2025,,Liftback,3XL,S3,三厢车,,,A6/S6 etron
+TM,Audi A6/RS6,Audi,A6/RS6,1998-2026,Incl: Avant,Wagon,5XL,V3,两厢车,Incl: Avant,Incl: Avant,A6/RS6
 TM,Audi A6/S6,Audi,A6/S6,1995-2025,,Sedan,3XL,S3,三厢车,Sedan,Sedan,A6/S6
+TM,Audi A6/S6,Audi,A6/S6,2001-2004,,Wagon,5XL,V3,两厢车,Wagon,Wagon,A6/S6
 TM,Audi A6/S6/RS6,Audi,A6/S6/RS6,2001-2004,,Sedan,3XL,S3,三厢车,,,A6/S6/RS6
 TM,Audi A7/S7/RS7,Audi,A7/S7/RS7,2012-2025,,Liftback,3XL,S3,三厢车,,,A7/S7/RS7
 TM,Audi A8/S8,Audi,A8/S8,1997-2003,,Sedan,3XL,S3,三厢车,,,A8/S8
 TM,Audi A8/S8,Audi,A8/S8,2000-2018,LWB,Sedan,3XXL-550,S5,三厢车,LWB,LWB,A8/S8
 TM,Audi A8/S8,Audi,A8/S8,2004-2026,,Sedan,3XXL-550,S5,三厢车,,,A8/S8
 TM,Audi Cabriolet,Audi,Cabriolet,1995-1998,,Convertible,3M-0,C1,跑车,,,Cabriolet
-TM,Audi Q3,Audi,Q3,2015-2026,,SUV,YM,Y0,越野车,,,Q3
-TM,Audi Q4 e-tron,Audi,Q4 e-tron,2022-2026,Incl: Sportback,SUV,YM,Y0,越野车,Incl: Sportback,Incl: Sportback,Q4 e-tron
-TM,Audi Q5,Audi,Q5,2009-2013,,SUV,YL,Y1,越野车,,,Q5
-TM,Audi Q5/SQ5,Audi,Q5/SQ5,2014-2026,Incl: Sportback,SUV,YL,Y1,越野车,Incl: Sportback,Incl: Sportback,Q5/SQ5
-TM,Audi Q6/SQ6 e-tron,Audi,Q6/SQ6 e-tron,2025,Incl: Sportback,SUV,YL,Y1,越野车,Incl: Sportback,Incl: Sportback,Q6/SQ6 e-tron
-TM,Audi Q7,Audi,Q7,2007-2019,,SUV,YXXL-545,Y4,越野车,,,Q7
-TM,Audi Q7/SQ7,Audi,Q7/SQ7,2020-2026,,SUV,YXXL-545,Y4,越野车,,,Q7/SQ7
-TM,Audi Q8,Audi,Q8,2019,,SUV,YXL,Y2,越野车,,,Q8
-TM,Audi Q8 e-tron/SQ8 e-tron,Audi,Q8 e-tron/SQ8 e-tron,2024-2025,Incl: Sportback,SUV,YXL,Y2,越野车,Incl: Sportback,Incl: Sportback,Q8/SQ8 etron
-TM,Audi Q8/SQ8/RS Q8,Audi,Q8/SQ8/RS Q8,2020-2026,,SUV,YXL,Y2,越野车,,,Q8/SQ8/RS Q8
+TM,Audi Q3,Audi,Q3,2015-2026,,SUV,YM,Y2,越野车,,,Q3
+TM,Audi Q4 e-tron,Audi,Q4 e-tron,2022-2026,Incl: Sportback,SUV,YM,Y2,越野车,Incl: Sportback,Incl: Sportback,Q4 e-tron
+TM,Audi Q5,Audi,Q5,2009-2013,,SUV,YL,Y3,越野车,,,Q5
+TM,Audi Q5/SQ5,Audi,Q5/SQ5,2014-2026,Incl: Sportback,SUV,YL,Y3,越野车,Incl: Sportback,Incl: Sportback,Q5/SQ5
+TM,Audi Q6/SQ6 e-tron,Audi,Q6/SQ6 e-tron,2025,Incl: Sportback,SUV,YL,Y3,越野车,Incl: Sportback,Incl: Sportback,Q6/SQ6 e-tron
+TM,Audi Q7,Audi,Q7,2007-2019,,SUV,YXXL-545,Y6,越野车,,,Q7
+TM,Audi Q7/SQ7,Audi,Q7/SQ7,2020-2026,,SUV,YXXL-545,Y6,越野车,,,Q7/SQ7
+TM,Audi Q8,Audi,Q8,2019,,SUV,YXL,Y4,越野车,,,Q8
+TM,Audi Q8 e-tron/SQ8 e-tron,Audi,Q8 e-tron/SQ8 e-tron,2024-2025,Incl: Sportback,SUV,YXL,Y4,越野车,Incl: Sportback,Incl: Sportback,Q8/SQ8 etron
+TM,Audi Q8/SQ8/RS Q8,Audi,Q8/SQ8/RS Q8,2020-2026,,SUV,YXL,Y4,越野车,,,Q8/SQ8/RS Q8
 TM,Audi R8/R8 GT,Audi,R8/R8 GT,2008-2023,Incl: Spyder,Convertible/Coupe,3M-0,C1,跑车,Incl: Spyder,Incl: Spyder,R8/R8 GT
 TM,Audi RS7,Audi,RS7,2026,,Liftback,3XL,S3,三厢车,,,RS7
 TM,Audi TT/TTS/TT RS,Audi,TT/TTS/TT RS,2000-2023,,Convertible/Coupe,3S-0,C0,跑车,,,TT/TTS/TT RS
 TM,Audi e-tron GT/RS e-tron GT,Audi,e-tron GT/RS e-tron GT,2022-2024,,Sedan,3XL,S3,三厢车,,,RS e-tron GT
 TM,Audi e-tron GT/S e-tron GT/RS e-tron GT,Audi,e-tron GT/S e-tron GT/RS e-tron GT,2025-2026,,Sedan,3XL,S3,三厢车,,,S/RS etron GT
-TM,Audi e-tron/S e-tron,Audi,e-tron/S e-tron,2019-2023,Sportback/SUV,SUV,YXL,Y2,越野车,Sportback/SUV,Sptbk/SUV,e-tron/S e-tron
+TM,Audi e-tron/S e-tron,Audi,e-tron/S e-tron,2019-2023,Sportback/SUV,SUV,YXL,Y4,越野车,Sportback/SUV,Sptbk/SUV,e-tron/S e-tron
 TM,BMW 1 Series,BMW,1 Series,2008-2013,,Convertible/Coupe,3M-0,C1,跑车,,,1 Series
 TM,BMW 2 Series,BMW,2 Series,2020-2026,Gran Coupe,Sedan,3L,S2,三厢车,Sedan Gran Coupe,Sdn GranCoupe,2 Series
 TM,BMW 2 Series,BMW,2 Series,2014-2021,,Convertible/Coupe,3M-0,C1,跑车,Convertible/Coupe,Conv/Cpe,2 Series
@@ -73,6 +78,7 @@ TM,BMW 2 Series,BMW,2 Series,2022-2026,M2,Coupe,3L-0,C2,跑车,Coupe M2,Coupe M2
 TM,BMW 3 Series,BMW,3 Series,1984-2026,,Sedan,3L,S2,三厢车,Sedan,Sedan,3 Series
 TM,BMW 3 Series,BMW,3 Series,1977-2006,,Convertible/Coupe,3M-0,C1,跑车,Convertible/Coupe,Conv/Cpe,3 Series
 TM,BMW 3 Series,BMW,3 Series,2007-2013,,Convertible/Coupe,3L-0,C2,跑车,Convertible/Coupe,Conv/Cpe,3 Series
+TM,BMW 3 Series,BMW,3 Series,2014-2019,GT,Hatchback,5XL,V3,两厢车,Hatchback GT,Hatchback GT,3 Series
 TM,BMW 4 Series,BMW,4 Series,2015-2020,Gran Coupe,Sedan,3L,S2,三厢车,Sedan Gran Coupe,Sedan Gran Coupe,4 Series
 TM,BMW 4 Series,BMW,4 Series,2022-2026,Gran Coupe,Sedan,3XL,S3,三厢车,Sedan Gran Coupe,Sedan Gran Coupe,4 Series
 TM,BMW 4 Series,BMW,4 Series,2014-2020,,Convertible/Coupe,3L-0,C2,跑车,Convertible/Coupe,Conv/Cpe,4 Series
@@ -81,21 +87,23 @@ TM,BMW 5 Series,BMW,5 Series,1975-1988,,Sedan,3L,S2,三厢车,Sedan,Sedan,5 Seri
 TM,BMW 5 Series,BMW,5 Series,1997-2003,,Sedan,3L,S2,三厢车,Sedan,Sedan,5 Series
 TM,BMW 5 Series,BMW,5 Series,2004-2023,Incl: GT,Sedan,3XL,S3,三厢车,Sedan Incl: GT,Sedan Incl: GT,5 Series
 TM,BMW 5 Series,BMW,5 Series,2024-2026,Incl: M5,Sedan,3XXL-550,S5,三厢车,Sedan Incl: M5,Sedan Incl: M5,5 Series
+TM,BMW 5 Series,BMW,5 Series,1999-2010,,Wagon,5XL,V3,两厢车,Wagon,Wagon,5 Series
 TM,BMW 6 Series,BMW,6 Series,2013-2019,Gran Coupe,Sedan,3XL,S3,三厢车,Sedan Gran Coupe,Sedan Gran Coupe,6 Series
 TM,BMW 6 Series,BMW,6 Series,1977-2019,,Convertible/Coupe,3XL-0,C3,跑车,Convertible/Coupe,Conv/Cpe,6 Series
+TM,BMW 6 Series,BMW,6 Series,2018-2019,Incl: GT,Hatchback,5XL,V3,两厢车,Hatchback Incl: GT,Hbk Inc:GT,6 Series
 TM,BMW 7 Series,BMW,7 Series,1995-2026,,Sedan,3XXL-550,S5,三厢车,,,7 Series
 TM,BMW 8 Series,BMW,8 Series,2020-2026,Gran Coupe,Sedan,3XXL-550,S5,三厢车,Sedan Gran Coupe,Sedan Gran Coupe,8 Series
 TM,BMW 8 Series,BMW,8 Series,1991-2026,,Convertible/Coupe,3XL-0,C3,跑车,Convertible/Coupe,Conv/Cpe,8 Series
-TM,BMW X1,BMW,X1,2013-2026,Incl: M35i,SUV,YM,Y0,越野车,Incl: M35i,Incl: M35i,X1
-TM,BMW X2,BMW,X2,2018-2026,Incl: M35i,Crossover/SUV,YM,Y0,越野车,Incl: M35i,Incl: M35i,X2
-TM,BMW X3,BMW,X3,2004-2010,,SUV,YM,Y0,越野车,,,X3
-TM,BMW X3,BMW,X3,2011-2026,,SUV,YL,Y1,越野车,,,X3
-TM,BMW X4,BMW,X4,2015-2025,,SUV,YL,Y1,越野车,,,X4
-TM,BMW X5,BMW,X5,2000-2006,,SUV,YL,Y1,越野车,,,X5
-TM,BMW X5,BMW,X5,2007-2026,,SUV,YXL,Y2,越野车,,,X5
-TM,BMW X6,BMW,X6,2008-2026,,SUV,YXL,Y2,越野车,,,X6
-TM,BMW X7,BMW,X7,2019-2026,Incl: M60i,SUV,YXXL-545,Y4,越野车,Incl: M60i,Incl: M60i,X7
-TM,BMW XM,BMW,XM,2023-2026,,SUV,YXXL-545,Y4,越野车,,,XM
+TM,BMW X1,BMW,X1,2013-2026,Incl: M35i,SUV,YM,Y2,越野车,Incl: M35i,Incl: M35i,X1
+TM,BMW X2,BMW,X2,2018-2026,Incl: M35i,Crossover/SUV,YM,Y2,越野车,Incl: M35i,Incl: M35i,X2
+TM,BMW X3,BMW,X3,2004-2010,,SUV,YM,Y2,越野车,,,X3
+TM,BMW X3,BMW,X3,2011-2026,,SUV,YL,Y3,越野车,,,X3
+TM,BMW X4,BMW,X4,2015-2025,,SUV,YL,Y3,越野车,,,X4
+TM,BMW X5,BMW,X5,2000-2006,,SUV,YL,Y3,越野车,,,X5
+TM,BMW X5,BMW,X5,2007-2026,,SUV,YXL,Y4,越野车,,,X5
+TM,BMW X6,BMW,X6,2008-2026,,SUV,YXL,Y4,越野车,,,X6
+TM,BMW X7,BMW,X7,2019-2026,Incl: M60i,SUV,YXXL-545,Y6,越野车,Incl: M60i,Incl: M60i,X7
+TM,BMW XM,BMW,XM,2023-2026,,SUV,YXXL-545,Y6,越野车,,,XM
 TM,BMW Z3,BMW,Z3,1996-2002,,Convertible/Coupe,3S-0,C0,跑车,,,Z3
 TM,BMW Z4,BMW,Z4,2003-2008,,Convertible,3S-0,C0,跑车,,,Z4
 TM,BMW Z4,BMW,Z4,2009-2026,,Convertible,3M-0,C1,跑车,,,Z4
@@ -104,26 +112,41 @@ TM,BMW i4,BMW,i4,2022-2026,,Fastback,3XL,S3,三厢车,,,i4
 TM,BMW i5,BMW,i5,2024-2026,,Sedan,3XXL-550,S5,三厢车,,,i5
 TM,BMW i7,BMW,i7,2023-2026,,Sedan,3XXL-550,S5,三厢车,,,i7
 TM,BMW i8,BMW,i8,2014-2020,,Convertible/Coupe,3L-0,C2,跑车,,,i8
-TM,BMW iX,BMW,iX,2022-2026,,SUV,YXL,Y2,越野车,,,iX
+TM,BMW iX,BMW,iX,2022-2026,,SUV,YXL,Y4,越野车,,,iX
 TM,Buick Cascada,Buick,Cascada,2016-2019,,Convertible,3L-0,C2,跑车,,,Cascada
 TM,Buick Century,Buick,Century,1957,,Convertible,3XXL-550,S5,三厢车,Convertible,Convertible,Century
 TM,Buick Century,Buick,Century,1998-2005,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Century
-TM,Buick Enclave,Buick,Enclave,2008-2026,,SUV,YXXL-545,Y4,越野车,,,Enclave
-TM,Buick Encore,Buick,Encore,2013-2022,,SUV,YM,Y0,越野车,,,Encore
-TM,Buick Encore GX,Buick,Encore GX,2020-2026,,SUV,YM,Y0,越野车,,,Encore GX
-TM,Buick Envision,Buick,Envision,2016-2026,,SUV,YL,Y1,越野车,,,Envision
-TM,Buick Envista,Buick,Envista,2024-2026,,SUV,YL,Y1,越野车,,,Envista
+TM,Buick Century,Buick,Century,1954-1956,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Century
+TM,Buick Century,Buick,Century,1978-1996,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Century
+TM,Buick Enclave,Buick,Enclave,2008-2026,,SUV,YXXL-545,Y6,越野车,,,Enclave
+TM,Buick Encore,Buick,Encore,2013-2022,,SUV,YM,Y2,越野车,,,Encore
+TM,Buick Encore GX,Buick,Encore GX,2020-2026,,SUV,YM,Y2,越野车,,,Encore GX
+TM,Buick Envision,Buick,Envision,2016-2026,,SUV,YL,Y3,越野车,,,Envision
+TM,Buick Envista,Buick,Envista,2024-2026,,SUV,YL,Y3,越野车,,,Envista
 TM,Buick LaCrosse,Buick,LaCrosse,2005-2019,,Sedan,3XL,S3,三厢车,,,LaCrosse
+TM,Buick LeSabre,Buick,LeSabre,1959-1973,Incl: 2dr/4dr/4dr Hardtop,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan Incl: 2dr/4dr/4dr Hardtop,Convertible/Coupe/Sedan Incl: 2dr/4dr/4dr Hardtop,LeSabre
+TM,Buick LeSabre,Buick,LeSabre,1974-1976,,Convertible/Coupe/Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,LeSabre
+TM,Buick LeSabre,Buick,LeSabre,1977-1985,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,LeSabre
 TM,Buick Lucerne,Buick,Lucerne,2006-2011,,Sedan,3XXL-550,S5,三厢车,,,Lucerne
-TM,Buick Rainier,Buick,Rainier,2004-2007,,SUV,YXL,Y2,越野车,,,Rainier
+TM,Buick Park Avenue,Buick,Park Avenue,1991-2005,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Park Avenue
+TM,Buick Rainier,Buick,Rainier,2004-2007,,SUV,YXL,Y4,越野车,,,Rainier
 TM,Buick Reatta,Buick,Reatta,1988-1991,,Convertible/Coupe,3L-0,C2,跑车,,,Reatta
 TM,Buick Regal,Buick,Regal,2011-2020,,Liftback/Sedan,3XL,S3,三厢车,Liftback/Sedan,Liftback/Sedan,Regal
-TM,Buick Rendezvous,Buick,Rendezvous,2002-2007,,Crossover,YL,Y1,越野车,,,Rendezvous
+TM,Buick Regal,Buick,Regal,2018-2020,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Regal
+TM,Buick Regal,Buick,Regal,1973-1977,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Regal
+TM,Buick Rendezvous,Buick,Rendezvous,2002-2007,,Crossover,YL,Y3,越野车,,,Rendezvous
+TM,Buick Riviera,Buick,Riviera,1963-1970,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Riviera
+TM,Buick Riviera,Buick,Riviera,1974,,Coupe,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Riviera
+TM,Buick Riviera,Buick,Riviera,1975-1985,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Riviera
+TM,Buick Riviera,Buick,Riviera,1996-1999,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Riviera
+TM,Buick Roadmaster,Buick,Roadmaster,1936-1996,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Roadmaster
 TM,Buick Skylark,Buick,Skylark,1953-1954,,Convertible,3XXL-550,S5,三厢车,Convertible,Convertible,Skylark
 TM,Buick Skylark,Buick,Skylark,1986-1991,,Sedan,3L,S2,三厢车,Sedan,Sedan,Skylark
 TM,Buick Skylark,Buick,Skylark,1992-1998,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Skylark
 TM,Buick Skylark,Buick,Skylark,1986-1991,,Coupe,3L-0,C2,跑车,Coupe,Coupe,Skylark
 TM,Buick Skylark,Buick,Skylark,1992-1997,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Skylark
+TM,Buick Skylark,Buick,Skylark,1975-1979,,Hatchback,5XL,V3,两厢车,Hatchback,Hatchback,Skylark
+TM,Buick Skylark,Buick,Skylark,1965-1972,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Skylark
 TM,Buick Verano,Buick,Verano,2012-2017,,Sedan,3L,S2,三厢车,,,Verano
 TM,Cadillac ATS,Cadillac,ATS,2013-2019,,Sedan,3L,S2,三厢车,Sedan,Sedan,ATS
 TM,Cadillac ATS,Cadillac,ATS,2015-2019,,Coupe,3L-0,C2,跑车,Coupe,Coupe,ATS
@@ -132,41 +155,61 @@ TM,Cadillac CT5,Cadillac,CT5,2020-2026,Incl: Blackwing,Sedan,3XL,S3,三厢车,In
 TM,Cadillac CT6,Cadillac,CT6,2016-2020,Incl: Blackwing/PHEV,Sedan,3XXL-550,S5,三厢车,Incl: Blackwing/PHEV,Inc:Black/PHEV,CT6
 TM,Cadillac CTS,Cadillac,CTS,2003-2019,Incl: CTS-V,Sedan,3XL,S3,三厢车,Sedan Incl: CTS-V,Sdn Inc:CTS-V,CTS
 TM,Cadillac CTS,Cadillac,CTS,2011-2015,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,CTS
+TM,Cadillac CTS,Cadillac,CTS,2010-2014,,Wagon,5XL,V3,两厢车,Wagon,Wagon,CTS
 TM,Cadillac Catera,Cadillac,Catera,1997-2001,,Sedan,3XL,S3,三厢车,,,Catera
 TM,Cadillac DTS,Cadillac,DTS,2006-2011,,Sedan,3XXL-550,S5,三厢车,,,DTS
 TM,Cadillac DTS-L,Cadillac,DTS-L,2007-2011,,Sedan,3XXL-550,S5,三厢车,,,DTS-L
+TM,Cadillac DeVille,Cadillac,DeVille,1949-1957,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,DeVille
+TM,Cadillac DeVille,Cadillac,DeVille,1958-1960,,Coupe/Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,DeVille
+TM,Cadillac DeVille,Cadillac,DeVille,1961-1967,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,DeVille
+TM,Cadillac DeVille,Cadillac,DeVille,1968-1976,,Coupe/Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,DeVille
+TM,Cadillac DeVille,Cadillac,DeVille,1977-1984,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,DeVille
+TM,Cadillac DeVille,Cadillac,DeVille,1989-2005,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,DeVille
 TM,Cadillac ELR,Cadillac,ELR,2014-2016,,Coupe,3L-0,C2,跑车,,,ELR
-TM,Cadillac Escalade,Cadillac,Escalade,1999-2026,,SUV,YXXL-545,Y4,越野车,,,Escalade
-TM,Cadillac Escalade,Cadillac,Escalade,2003-2026,ESV,SUV,YXXL-585,Y5,越野车,ESV,ESV,Escalade
-TM,Cadillac Lyriq,Cadillac,Lyriq,2023-2026,Incl: Lyriq-V,SUV,YXL,Y2,越野车,Incl: Lyriq-V,Incl: Lyriq-V,Lyriq
-TM,Cadillac Optiq,Cadillac,Optiq,2025-2026,,SUV,YL,Y1,越野车,,,Optiq
-TM,Cadillac SRX,Cadillac,SRX,2010-2016,,SUV,YL,Y1,越野车,SUV,SUV,SRX
+TM,Cadillac Eldorado,Cadillac,Eldorado,1953-1958,,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe,Conv/Cpe,Eldorado
+TM,Cadillac Eldorado,Cadillac,Eldorado,1959-1960,,Coupe,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Eldorado
+TM,Cadillac Eldorado,Cadillac,Eldorado,1961-1985,,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe,Conv/Cpe,Eldorado
+TM,Cadillac Escalade,Cadillac,Escalade,1999-2026,,SUV,YXXL-545,Y6,越野车,,,Escalade
+TM,Cadillac Escalade,Cadillac,Escalade,2003-2026,ESV,SUV,YXXL-585,Y7,越野车,ESV,ESV,Escalade
+TM,Cadillac Lyriq,Cadillac,Lyriq,2023-2026,Incl: Lyriq-V,SUV,YXL,Y4,越野车,Incl: Lyriq-V,Incl: Lyriq-V,Lyriq
+TM,Cadillac Optiq,Cadillac,Optiq,2025-2026,,SUV,YL,Y3,越野车,,,Optiq
+TM,Cadillac SRX,Cadillac,SRX,2010-2016,,SUV,YL,Y3,越野车,SUV,SUV,SRX
+TM,Cadillac SRX,Cadillac,SRX,2004-2009,,Wagon,5XL,V3,两厢车,Wagon,Wagon,SRX
 TM,Cadillac STS,Cadillac,STS,2005-2011,Incl: STS-V,Sedan,3XL,S3,三厢车,Incl: STS-V,Incl: STS-V,STS
-TM,Cadillac Vistiq,Cadillac,Vistiq,2026,,SUV,YXXL-545,Y4,越野车,,,Vistiq
+TM,Cadillac Seville,Cadillac,Seville,1976-1985,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Seville
+TM,Cadillac Seville,Cadillac,Seville,1992-1997,Incl: SLS/STS,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: SLS/STS,Incl: SLS/STS,Seville
+TM,Cadillac Vistiq,Cadillac,Vistiq,2026,,SUV,YXXL-545,Y6,越野车,,,Vistiq
 TM,Cadillac XLR,Cadillac,XLR,2004-2009,Incl: XLR-V,Convertible,3M-0,C1,跑车,Incl: XLR-V,Incl: XLR-V,XLR
-TM,Cadillac XT4,Cadillac,XT4,2019-2025,,SUV,YM,Y0,越野车,,,XT4
-TM,Cadillac XT5,Cadillac,XT5,2017-2026,,SUV,YL,Y1,越野车,,,XT5
-TM,Cadillac XT6,Cadillac,XT6,2020-2025,,SUV,YXXL-545,Y4,越野车,,,XT6
+TM,Cadillac XT4,Cadillac,XT4,2019-2025,,SUV,YM,Y2,越野车,,,XT4
+TM,Cadillac XT5,Cadillac,XT5,2017-2026,,SUV,YL,Y3,越野车,,,XT5
+TM,Cadillac XT6,Cadillac,XT6,2020-2025,,SUV,YXXL-545,Y6,越野车,,,XT6
 TM,Cadillac XTS,Cadillac,XTS,2015-2019,,Sedan,3XXL-550,S5,三厢车,,,XTS
+TM,Chevrolet Astro,Chevrolet,Astro,1995-2005,LWB,Wagon,5XL,V3,两厢车,LWB,LWB,Astro
 TM,Chevrolet Aveo,Chevrolet,Aveo,2004-2011,,Sedan,3L,S2,三厢车,Sedan,Sedan,Aveo
 TM,Chevrolet Aveo,Chevrolet,Aveo,2004-2005,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,Aveo
 TM,Chevrolet Aveo,Chevrolet,Aveo,2007-2011,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,Aveo
+TM,Chevrolet Bel Air,Chevrolet,Bel Air,1954-1957,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Bel Air
+TM,Chevrolet Bel Air,Chevrolet,Bel Air,1958-1975,Incl: 2dr/4dr/Hardtop,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan Incl: 2dr/4dr/Hardtop,Convertible/Coupe/Sedan Incl: 2dr/4dr/Hardtop,Bel Air
 TM,Chevrolet Beretta,Chevrolet,Beretta,1987-1996,,Coupe,3XL-0,C3,跑车,,,Beretta
 TM,Chevrolet Beretta,Chevrolet,Beretta,1992-1994,GT/GTZ,Coupe,3L-0,C2,跑车,GT/GTZ,GT/GTZ,Beretta
-TM,Chevrolet Blazer,Chevrolet,Blazer,1969-1972,,SUV,YM,Y0,越野车,,,Blazer
-TM,Chevrolet Blazer,Chevrolet,Blazer,1973-1994,,SUV,YL,Y1,越野车,,,Blazer
-TM,Chevrolet Blazer,Chevrolet,Blazer,1995-1997,2dr/2dr Base 4WD/4dr/4dr LS 4WD,SUV,YM,Y0,越野车,2dr/2dr Base 4WD/4dr/4dr LS 4WD,2dr/4dr 4WD,Blazer
-TM,Chevrolet Blazer,Chevrolet,Blazer,1998-2004,2dr,SUV,YM,Y0,越野车,2dr,2dr,Blazer
-TM,Chevrolet Blazer,Chevrolet,Blazer,1998-2005,4dr,SUV,YL,Y1,越野车,4dr,4dr,Blazer
-TM,Chevrolet Blazer,Chevrolet,Blazer,2019-2026,,SUV,YXL,Y2,越野车,,,Blazer
-TM,Chevrolet Blazer EV,Chevrolet,Blazer EV,2024-2026,Incl: SS,Crossover,YXL,Y2,越野车,Incl: SS,Incl: SS,Blazer EV
-TM,Chevrolet Bolt EUV,Chevrolet,Bolt EUV,2022-2023,,SUV,YM,Y0,越野车,,,Bolt EUV
+TM,Chevrolet Blazer,Chevrolet,Blazer,1969-1972,,SUV,YM,Y2,越野车,,,Blazer
+TM,Chevrolet Blazer,Chevrolet,Blazer,1973-1994,,SUV,YL,Y3,越野车,,,Blazer
+TM,Chevrolet Blazer,Chevrolet,Blazer,1995-1997,2dr/2dr Base 4WD/4dr/4dr LS 4WD,SUV,YM,Y2,越野车,2dr/2dr Base 4WD/4dr/4dr LS 4WD,2dr/4dr 4WD,Blazer
+TM,Chevrolet Blazer,Chevrolet,Blazer,1998-2004,2dr,SUV,YM,Y2,越野车,2dr,2dr,Blazer
+TM,Chevrolet Blazer,Chevrolet,Blazer,1998-2005,4dr,SUV,YL,Y3,越野车,4dr,4dr,Blazer
+TM,Chevrolet Blazer,Chevrolet,Blazer,2019-2026,,SUV,YXL,Y4,越野车,,,Blazer
+TM,Chevrolet Blazer EV,Chevrolet,Blazer EV,2024-2026,Incl: SS,Crossover,YXL,Y4,越野车,Incl: SS,Incl: SS,Blazer EV
+TM,Chevrolet Bolt EUV,Chevrolet,Bolt EUV,2022-2023,,SUV,YM,Y2,越野车,,,Bolt EUV
 TM,Chevrolet Camaro,Chevrolet,Camaro,1967-1969,,Convertible/Coupe,3L-0,C2,跑车,,,Camaro
 TM,Chevrolet Camaro,Chevrolet,Camaro,1970-2024,Incl: IROC-Z/Z28/ZL1,Convertible/Coupe,3XL-0,C3,跑车,Incl: IROC-Z/Z28/ZL1,Inc:IROC/Z28/ZL1,Camaro
-TM,Chevrolet Captiva,Chevrolet,Captiva,2012-2015,,SUV,YM,Y0,越野车,,,Captiva
+TM,Chevrolet Caprice,Chevrolet,Caprice,1966-1976,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Caprice
+TM,Chevrolet Captiva,Chevrolet,Captiva,2012-2015,,SUV,YM,Y2,越野车,,,Captiva
 TM,Chevrolet Cavalier,Chevrolet,Cavalier,1982-2004,,Sedan,3L,S2,三厢车,Sedan,Sedan,Cavalier
 TM,Chevrolet Cavalier,Chevrolet,Cavalier,1983-1990,,Coupe,3M-0,C1,跑车,Coupe,Coupe,Cavalier
 TM,Chevrolet Cavalier,Chevrolet,Cavalier,1991-2005,,Convertible/Coupe,3L-0,C2,跑车,Convertible/Coupe,Conv/Cpe,Cavalier
+TM,Chevrolet Chevelle,Chevrolet,Chevelle,1964-1972,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Chevelle
+TM,Chevrolet Chevelle,Chevrolet,Chevelle,1973-1977,Incl: Laguna Type S-3,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan Incl: Laguna Type S-3,Cpe/Sdn Inc:LagS3,Chevelle
+TM,Chevrolet Chevy Van,Chevrolet,Chevy Van,1967-1996,G10 Regular/G20 Regular/G30 Regular/G-Classic Regular/Regular,Wagon,5XL,V3,两厢车,G10 Regular/G20 Regular/G30 Regular/G-Classic Regular/Regular,G10/20/30/Reg,Chevy Van
 TM,Chevrolet Cobalt,Chevrolet,Cobalt,2005-2010,,Sedan,3L,S2,三厢车,Sedan,Sedan,Cobalt
 TM,Chevrolet Cobalt,Chevrolet,Cobalt,2005-2010,Incl: SS,Coupe,3L-0,C2,跑车,Coupe Incl: SS,Coupe Incl: SS,Cobalt
 TM,Chevrolet Corsica,Chevrolet,Corsica,1987-1996,,Sedan,3L,S2,三厢车,,,Corsica
@@ -177,40 +220,49 @@ TM,Chevrolet Corvette,Chevrolet,Corvette,1997-2004,,Convertible/Coupe,3L-0,C2,�
 TM,Chevrolet Corvette,Chevrolet,Corvette,2005-2019,Incl: Z06/ZR1,Coupe,3M-0,C1,跑车,Coupe Incl: Z06/ZR1,Cpe Inc:Z06/ZR1,Corvette
 TM,Chevrolet Corvette,Chevrolet,Corvette,2020-2026,Incl: ZR1,Coupe,3XL-0,C3,跑车,Coupe Incl: ZR1,Coupe Incl: ZR1,Corvette
 TM,Chevrolet Cruze,Chevrolet,Cruze,2011-2019,,Sedan,3L,S2,三厢车,Sedan,Sedan,Cruze
-TM,Chevrolet Equinox,Chevrolet,Equinox,2005-2026,,SUV,YL,Y1,越野车,,,Equinox
-TM,Chevrolet Equinox EV,Chevrolet,Equinox EV,2024,,SUV,YXL,Y2,越野车,,,Equinox EV
-TM,Chevrolet Equinox EV,Chevrolet,Equinox EV,2025-2026,,SUV,YL,Y1,越野车,,,Equinox EV
+TM,Chevrolet Equinox,Chevrolet,Equinox,2005-2026,,SUV,YL,Y3,越野车,,,Equinox
+TM,Chevrolet Equinox EV,Chevrolet,Equinox EV,2024,,SUV,YXL,Y4,越野车,,,Equinox EV
+TM,Chevrolet Equinox EV,Chevrolet,Equinox EV,2025-2026,,SUV,YL,Y3,越野车,,,Equinox EV
 TM,Chevrolet Impala,Chevrolet,Impala,2014-2020,,Sedan,3XXL-550,S5,三厢车,Sedan,Sedan,Impala
-TM,Chevrolet K5 Blazer,Chevrolet,K5 Blazer,1969-1972,,SUV,YM,Y0,越野车,,,K5 Blazer
-TM,Chevrolet K5 Blazer,Chevrolet,K5 Blazer,1973-1994,,SUV,YL,Y1,越野车,,,K5 Blazer
+TM,Chevrolet Impala,Chevrolet,Impala,1973-1996,Incl: SS,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan Incl: SS,Convertible/Coupe/Sedan Incl: SS,Impala
+TM,Chevrolet K5 Blazer,Chevrolet,K5 Blazer,1969-1972,,SUV,YM,Y2,越野车,,,K5 Blazer
+TM,Chevrolet K5 Blazer,Chevrolet,K5 Blazer,1973-1994,,SUV,YL,Y3,越野车,,,K5 Blazer
 TM,Chevrolet Lumina,Chevrolet,Lumina,1990-1994,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Lumina
 TM,Chevrolet Lumina,Chevrolet,Lumina,1995-2001,,Sedan,3XXL-550,S5,三厢车,Sedan,Sedan,Lumina
 TM,Chevrolet Lumina,Chevrolet,Lumina,1990-1994,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Lumina
+TM,Chevrolet Lumina APV,Chevrolet,Lumina APV,1990-1996,,Wagon,5XL,V3,两厢车,,,Lumina APV
 TM,Chevrolet Malibu,Chevrolet,Malibu,1997-2025,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Malibu
+TM,Chevrolet Malibu,Chevrolet,Malibu,1964-1974,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Malibu
+TM,Chevrolet Malibu,Chevrolet,Malibu,1978-1983,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Malibu
+TM,Chevrolet Malibu,Chevrolet,Malibu,1975-1977,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Malibu
 TM,Chevrolet Metro,Chevrolet,Metro,1998-2001,,Sedan,3S-0,C0,跑车,Sedan,Sedan,Metro
 TM,Chevrolet Metro,Chevrolet,Metro,1998-2000,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,Metro
 TM,Chevrolet Monte Carlo,Chevrolet,Monte Carlo,1995-1999,,Coupe,3XXL-520-0,C4,跑车,,,Monte Carlo
 TM,Chevrolet Monte Carlo,Chevrolet,Monte Carlo,2000-2007,,Coupe,3XL-0,C3,跑车,,,Monte Carlo
+TM,Chevrolet Monte Carlo,Chevrolet,Monte Carlo,1970-1977,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Monte Carlo
 TM,Chevrolet Nova,Chevrolet,Nova,1985-1988,,Sedan,3L,S2,三厢车,Sedan,Sedan,Nova
+TM,Chevrolet Nova,Chevrolet,Nova,1962-1979,,Hatchback/Wagon,5XL,V3,两厢车,Hatchback/Wagon,Hbk/Wgn,Nova
 TM,Chevrolet Prizm,Chevrolet,Prizm,1998-2002,,Sedan,3L,S2,三厢车,,,Prizm
-TM,Chevrolet S-10 Blazer,Chevrolet,S-10 Blazer,1983-2005,Incl: 2dr/2dr 2WD/2dr 4WD/4dr 2WD,SUV,YM,Y0,越野车,Incl: 2dr/2dr 2WD/2dr 4WD/4dr 2WD,Incl: 2dr/2dr 2WD/2dr 4WD/4dr 2WD,S-10 Blazer
-TM,Chevrolet S-10 Blazer,Chevrolet,S-10 Blazer,1995-2004,4dr,SUV,YL,Y1,越野车,4dr,4dr,S-10 Blazer
+TM,Chevrolet S-10 Blazer,Chevrolet,S-10 Blazer,1983-2005,Incl: 2dr/2dr 2WD/2dr 4WD/4dr 2WD,SUV,YM,Y2,越野车,Incl: 2dr/2dr 2WD/2dr 4WD/4dr 2WD,Incl: 2dr/2dr 2WD/2dr 4WD/4dr 2WD,S-10 Blazer
+TM,Chevrolet S-10 Blazer,Chevrolet,S-10 Blazer,1995-2004,4dr,SUV,YL,Y3,越野车,4dr,4dr,S-10 Blazer
 TM,Chevrolet SS,Chevrolet,SS,2014-2017,,Sedan,3XL,S3,三厢车,,,SS
 TM,Chevrolet Sonic,Chevrolet,Sonic,2012-2020,,Sedan,3L,S2,三厢车,Sedan,Sedan,Sonic
 TM,Chevrolet Sonic,Chevrolet,Sonic,2012-2020,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,Sonic
 TM,Chevrolet Spark,Chevrolet,Spark,2013-2022,,Hatchback,2L,H2,两厢车,,,Spark
-TM,Chevrolet Suburban,Chevrolet,Suburban,1935-1940,,SUV,YM,Y0,越野车,,,Suburban
-TM,Chevrolet Suburban,Chevrolet,Suburban,1941-1946,,SUV,YXXL-545,Y4,越野车,,,Suburban
-TM,Chevrolet Suburban,Chevrolet,Suburban,1947-1954,,SUV,YL,Y1,越野车,,,Suburban
-TM,Chevrolet Suburban,Chevrolet,Suburban,1955-1972,,SUV,YXXL-545,Y4,越野车,,,Suburban
-TM,Chevrolet Suburban,Chevrolet,Suburban,1973-2026,,SUV,YXXL-585,Y5,越野车,,,Suburban
-TM,Chevrolet Tahoe,Chevrolet,Tahoe,1995-1999,2dr 4WD,SUV,YL,Y1,越野车,2dr 4WD,2dr 4WD,Tahoe
-TM,Chevrolet Tahoe,Chevrolet,Tahoe,1995-2026,Incl: 4dr 2WD,SUV,YXXL-545,Y4,越野车,Incl: 4dr 2WD,Incl: 4dr 2WD,Tahoe
-TM,Chevrolet Tracker,Chevrolet,Tracker,2000-2004,4dr,SUV,YM,Y0,越野车,4dr,4dr,Tracker
-TM,Chevrolet Trailblazer,Chevrolet,Trailblazer,2002-2009,Incl: SS,SUV,YXL,Y2,越野车,Incl: SS,Incl: SS,Trailblazer
-TM,Chevrolet Trailblazer,Chevrolet,Trailblazer,2021-2026,,SUV,YM,Y0,越野车,,,Trailblazer
-TM,Chevrolet Traverse,Chevrolet,Traverse,2009-2026,Incl: Limited,SUV,YXXL-545,Y4,越野车,Incl: Limited,Incl: Limited,Traverse
-TM,Chevrolet Trax,Chevrolet,Trax,2015-2026,,SUV,YM,Y0,越野车,,,Trax
+TM,Chevrolet Suburban,Chevrolet,Suburban,1935-1940,,SUV,YM,Y2,越野车,,,Suburban
+TM,Chevrolet Suburban,Chevrolet,Suburban,1941-1946,,SUV,YXXL-545,Y6,越野车,,,Suburban
+TM,Chevrolet Suburban,Chevrolet,Suburban,1947-1954,,SUV,YL,Y3,越野车,,,Suburban
+TM,Chevrolet Suburban,Chevrolet,Suburban,1955-1972,,SUV,YXXL-545,Y6,越野车,,,Suburban
+TM,Chevrolet Suburban,Chevrolet,Suburban,1973-2026,,SUV,YXXL-585,Y7,越野车,,,Suburban
+TM,Chevrolet Tahoe,Chevrolet,Tahoe,1995-1999,2dr 4WD,SUV,YL,Y3,越野车,2dr 4WD,2dr 4WD,Tahoe
+TM,Chevrolet Tahoe,Chevrolet,Tahoe,1995-2026,Incl: 4dr 2WD,SUV,YXXL-545,Y6,越野车,Incl: 4dr 2WD,Incl: 4dr 2WD,Tahoe
+TM,Chevrolet Tracker,Chevrolet,Tracker,2000-2004,4dr,SUV,YM,Y2,越野车,4dr,4dr,Tracker
+TM,Chevrolet Trailblazer,Chevrolet,Trailblazer,2002-2009,Incl: SS,SUV,YXL,Y4,越野车,Incl: SS,Incl: SS,Trailblazer
+TM,Chevrolet Trailblazer,Chevrolet,Trailblazer,2021-2026,,SUV,YM,Y2,越野车,,,Trailblazer
+TM,Chevrolet Traverse,Chevrolet,Traverse,2009-2026,Incl: Limited,SUV,YXXL-545,Y6,越野车,Incl: Limited,Incl: Limited,Traverse
+TM,Chevrolet Trax,Chevrolet,Trax,2015-2026,,SUV,YM,Y2,越野车,,,Trax
+TM,Chevrolet Uplander,Chevrolet,Uplander,2005-2008,Incl: LWB,Wagon,5XL,V3,两厢车,Incl: LWB,Incl: LWB,Uplander
+TM,Chevrolet Venture,Chevrolet,Venture,1997-2005,LWB,Wagon,5XL,V3,两厢车,LWB,LWB,Venture
 TM,Chrysler 200,Chrysler,200,2011-2017,,Sedan,3XL,S3,三厢车,Sedan,Sedan,200
 TM,Chrysler 200,Chrysler,200,2011-2014,,Convertible,3XL-0,C3,跑车,Convertible,Convertible,200
 TM,Chrysler 200 Series,Chrysler,200 Series,2011-2017,,Sedan,3XL,S3,三厢车,Sedan,Sedan,200 Series
@@ -218,64 +270,72 @@ TM,Chrysler 200 Series,Chrysler,200 Series,2011-2014,,Convertible,3XL-0,C3,跑�
 TM,Chrysler 300,Chrysler,300,2005-2023,,Sedan,3XL,S3,三厢车,,,300
 TM,Chrysler 300 series,Chrysler,300 series,1999-2023,Incl: 300M,Sedan,3XL,S3,三厢车,Incl: 300M,Incl: 300M,300 series
 TM,Chrysler 300M,Chrysler,300M,1999-2004,,Sedan,3XL,S3,三厢车,,,300M
-TM,Chrysler Aspen,Chrysler,Aspen,2007-2009,,SUV,YXXL-545,Y4,越野车,,,Aspen
+TM,Chrysler Aspen,Chrysler,Aspen,2007-2009,,SUV,YXXL-545,Y6,越野车,,,Aspen
 TM,Chrysler Cirrus,Chrysler,Cirrus,1995-1997,,Sedan,3L,S2,三厢车,,,Cirrus
 TM,Chrysler Cirrus,Chrysler,Cirrus,1998-2000,,Sedan,3XL,S3,三厢车,,,Cirrus
 TM,Chrysler Concorde,Chrysler,Concorde,1993-2004,,Sedan,3XXL-550,S5,三厢车,,,Concorde
 TM,Chrysler Crossfire,Chrysler,Crossfire,2004-2008,,Convertible/Coupe,3S-0,C0,跑车,,,Crossfire
 TM,Chrysler LHS,Chrysler,LHS,1994-2001,,Sedan,3XXL-550,S5,三厢车,,,LHS
-TM,Chrysler Pacifica,Chrysler,Pacifica,2004-2008,,Crossover,YXXL-545,Y4,越野车,Crossover,Crossover,Pacifica
+TM,Chrysler Pacifica,Chrysler,Pacifica,2004-2008,,Crossover,YXXL-545,Y6,越野车,Crossover,Crossover,Pacifica
+TM,Chrysler Pacifica,Chrysler,Pacifica,2017-2026,,MPV,5XL,V3,两厢车,MPV,MPV,Pacifica
 TM,Chrysler Sebring,Chrysler,Sebring,2001-2010,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Sebring
 TM,Chrysler Sebring,Chrysler,Sebring,1995-2010,,Convertible/Coupe,3XL-0,C3,跑车,Convertible/Coupe,Conv/Cpe,Sebring
+TM,Chrysler Town & Country,Chrysler,Town & Country,1990-2016,,MPV,5XL,V3,两厢车,,,Town & Country
+TM,Chrysler Voyager,Chrysler,Voyager,2001-2026,,MPV,5XL,V3,两厢车,,,Voyager
 TM,Dodge Avenger,Dodge,Avenger,2008-2014,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Avenger
 TM,Dodge Avenger,Dodge,Avenger,1995-2000,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Avenger
+TM,Dodge Caravan,Dodge,Caravan,1987-2020,Grand Caravan/LWB,MPV,5XL,V3,两厢车,Grand Caravan/LWB,Grand/LWB,Caravan
+TM,Dodge Caravan,Dodge,Caravan,2001-2007,SWB,MPV,5XL,V3,两厢车,SWB,SWB,Caravan
 TM,Dodge Challenger,Dodge,Challenger,1978-1983,,Coupe,3L-0,C2,跑车,,,Challenger
 TM,Dodge Challenger,Dodge,Challenger,2008-2023,Incl: Widebody,Coupe,3XL-0,C3,跑车,Incl: Widebody,Incl: Widebody,Challenger
 TM,Dodge Charger,Dodge,Charger,2006-2014,,Sedan,3XXL-550,S5,三厢车,Sedan,Sedan,Charger
 TM,Dodge Charger,Dodge,Charger,2015-2023,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Charger
 TM,Dodge Charger,Dodge,Charger,2024-2026,,Coupe/Sedan,3XXL-550,S5,三厢车,Coupe/Sedan,Cpe/Sdn,Charger
+TM,Dodge Charger,Dodge,Charger,1966-1978,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Charger
 TM,Dodge Dart,Dodge,Dart,2013-2016,,Sedan,3L,S2,三厢车,,,Dart
-TM,Dodge Durango,Dodge,Durango,1998-2003,,SUV,YXL,Y2,越野车,,,Durango
-TM,Dodge Durango,Dodge,Durango,2004-2026,Incl: Hellcat/SRT,SUV,YXXL-545,Y4,越野车,Incl: Hellcat/SRT,Inc:HC/SRT,Durango
-TM,Dodge Hornet,Dodge,Hornet,2023-2025,,Crossover,YM,Y0,越野车,,,Hornet
+TM,Dodge Durango,Dodge,Durango,1998-2003,,SUV,YXL,Y4,越野车,,,Durango
+TM,Dodge Durango,Dodge,Durango,2004-2026,Incl: Hellcat/SRT,SUV,YXXL-545,Y6,越野车,Incl: Hellcat/SRT,Inc:HC/SRT,Durango
+TM,Dodge Hornet,Dodge,Hornet,2023-2025,,Crossover,YM,Y2,越野车,,,Hornet
 TM,Dodge Intrepid,Dodge,Intrepid,1993-2004,,Sedan,3XXL-550,S5,三厢车,,,Intrepid
-TM,Dodge Journey,Dodge,Journey,2009-2020,,Crossover/SUV,YXL,Y2,越野车,,,Journey
+TM,Dodge Journey,Dodge,Journey,2009-2020,,Crossover/SUV,YXL,Y4,越野车,,,Journey
+TM,Dodge Magnum,Dodge,Magnum,2005-2008,,Wagon,5XL,V3,两厢车,,,Magnum
 TM,Dodge Neon,Dodge,Neon,1995-2005,,Sedan,3L,S2,三厢车,,,Neon
-TM,Dodge Nitro,Dodge,Nitro,2007-2010,,SUV,YM,Y0,越野车,,,Nitro
-TM,Dodge Ramcharger,Dodge,Ramcharger,1974-1993,2WD/4WD,SUV,YL,Y1,越野车,2WD/4WD,2WD/4WD,Ramcharger
+TM,Dodge Nitro,Dodge,Nitro,2007-2010,,SUV,YM,Y2,越野车,,,Nitro
+TM,Dodge Ramcharger,Dodge,Ramcharger,1974-1993,2WD/4WD,SUV,YL,Y3,越野车,2WD/4WD,2WD/4WD,Ramcharger
 TM,Dodge Stealth,Dodge,Stealth,1991-1996,R/T Turbo,Coupe,3L-0,C2,跑车,R/T Turbo,R/T Turbo,Stealth
 TM,Dodge Stratus,Dodge,Stratus,1995-2000,,Sedan,3L,S2,三厢车,,,Stratus
 TM,Dodge Stratus,Dodge,Stratus,2001-2006,,Sedan,3XL,S3,三厢车,,,Stratus
 TM,Dodge Viper,Dodge,Viper,1992-2017,Incl: ACR/GTS,Convertible/Coupe/Roadster,3M-0,C1,跑车,Incl: ACR/GTS,Incl: ACR/GTS,Viper
 TM,Fiat 124 Spider,Fiat,124 Spider,2017-2020,Abarth,Convertible,3S-0,C0,跑车,Abarth,Abarth,124 Spider
 TM,Fiat 500,Fiat,500,2012-2019,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,500
-TM,Fiat 500X,Fiat,500X,2016-2023,,SUV,YM,Y0,越野车,,,500X
-TM,Ford Bronco,Ford,Bronco,1978-1991,2dr,SUV,YM,Y0,越野车,2dr,2dr,Bronco
-TM,Ford Bronco,Ford,Bronco,1992-1996,2dr,SUV,YL,Y1,越野车,2dr,2dr,Bronco
-TM,Ford Bronco,Ford,Bronco,2021-2026,4dr,SUV,YL,Y1,越野车,4dr,4dr,Bronco
-TM,Ford Bronco,Ford,Bronco,2022-2026,2dr,SUV,YM,Y0,越野车,2dr,2dr,Bronco
-TM,Ford Bronco,Ford,Bronco,2022-2026,4dr Raptor,SUV,YXL,Y2,越野车,4dr Raptor,4dr Raptor,Bronco
-TM,Ford Bronco Sport,Ford,Bronco Sport,2021-2026,4dr/4dr Badlands,SUV,YM,Y0,越野车,4dr/4dr Badlands,4dr/4dr Badlands,Bronco Sport
-TM,Ford EcoSport,Ford,EcoSport,2018-2022,,SUV,YM,Y0,越野车,,,EcoSport
-TM,Ford Edge,Ford,Edge,2007-2024,,SUV,YL,Y1,越野车,,,Edge
-TM,Ford Escape,Ford,Escape,2001-2026,,SUV,YM,Y0,越野车,,,Escape
+TM,Fiat 500X,Fiat,500X,2016-2023,,SUV,YM,Y2,越野车,,,500X
+TM,Ford Bronco,Ford,Bronco,1978-1991,2dr,SUV,YM,Y2,越野车,2dr,2dr,Bronco
+TM,Ford Bronco,Ford,Bronco,1992-1996,2dr,SUV,YL,Y3,越野车,2dr,2dr,Bronco
+TM,Ford Bronco,Ford,Bronco,2021-2026,4dr,SUV,YL,Y3,越野车,4dr,4dr,Bronco
+TM,Ford Bronco,Ford,Bronco,2022-2026,2dr,SUV,YM,Y2,越野车,2dr,2dr,Bronco
+TM,Ford Bronco,Ford,Bronco,2022-2026,4dr Raptor,SUV,YXL,Y4,越野车,4dr Raptor,4dr Raptor,Bronco
+TM,Ford Bronco Sport,Ford,Bronco Sport,2021-2026,4dr/4dr Badlands,SUV,YM,Y2,越野车,4dr/4dr Badlands,4dr/4dr Badlands,Bronco Sport
+TM,Ford Crown Victoria,Ford,Crown Victoria,1983-2011,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Crown Victoria
+TM,Ford EcoSport,Ford,EcoSport,2018-2022,,SUV,YM,Y2,越野车,,,EcoSport
+TM,Ford Edge,Ford,Edge,2007-2024,,SUV,YL,Y3,越野车,,,Edge
+TM,Ford Escape,Ford,Escape,2001-2026,,SUV,YM,Y2,越野车,,,Escape
 TM,Ford Escort,Ford,Escort,1981-2002,,Sedan,3L,S2,三厢车,Sedan,Sedan,Escort
 TM,Ford Escort,Ford,Escort,1998-2003,ZX2,Coupe,3M-0,C1,跑车,Coupe ZX2,Coupe ZX2,Escort
-TM,Ford Excursion,Ford,Excursion,2000-2005,,SUV,YXXL-585,Y5,越野车,,,Excursion
-TM,Ford Expedition,Ford,Expedition,1997-2026,Incl: Tremor,SUV,YXXL-545,Y4,越野车,Incl: Tremor,Incl: Tremor,Expedition
-TM,Ford Expedition,Ford,Expedition,2007-2026,EL/MAX,SUV,YXXL-585,Y5,越野车,EL/MAX,EL/MAX,Expedition
-TM,Ford Explorer,Ford,Explorer,1991-2001,,SUV,YM,Y0,越野车,,,Explorer
-TM,Ford Explorer,Ford,Explorer,2002,,SUV,YXL,Y2,越野车,,,Explorer
-TM,Ford Explorer,Ford,Explorer,2003-2005,,SUV,YL,Y1,越野车,,,Explorer
-TM,Ford Explorer,Ford,Explorer,2006-2015,,SUV,YXL,Y2,越野车,,,Explorer
-TM,Ford Explorer,Ford,Explorer,2016-2025,Incl: Timberline,SUV,YXXL-545,Y4,越野车,Incl: Timberline,Inc:Timber,Explorer
+TM,Ford Excursion,Ford,Excursion,2000-2005,,SUV,YXXL-585,Y7,越野车,,,Excursion
+TM,Ford Expedition,Ford,Expedition,1997-2026,Incl: Tremor,SUV,YXXL-545,Y6,越野车,Incl: Tremor,Incl: Tremor,Expedition
+TM,Ford Expedition,Ford,Expedition,2007-2026,EL/MAX,SUV,YXXL-585,Y7,越野车,EL/MAX,EL/MAX,Expedition
+TM,Ford Explorer,Ford,Explorer,1991-2001,,SUV,YM,Y2,越野车,,,Explorer
+TM,Ford Explorer,Ford,Explorer,2002,,SUV,YXL,Y4,越野车,,,Explorer
+TM,Ford Explorer,Ford,Explorer,2003-2005,,SUV,YL,Y3,越野车,,,Explorer
+TM,Ford Explorer,Ford,Explorer,2006-2015,,SUV,YXL,Y4,越野车,,,Explorer
+TM,Ford Explorer,Ford,Explorer,2016-2025,Incl: Timberline,SUV,YXXL-545,Y6,越野车,Incl: Timberline,Inc:Timber,Explorer
 TM,Ford Fiesta,Ford,Fiesta,2011-2019,,Sedan,3L,S2,三厢车,Sedan,Sedan,Fiesta
 TM,Ford Fiesta,Ford,Fiesta,2011-2019,Incl: ST,Hatchback,2L,H2,两厢车,Hatchback Incl: ST,Hbk Inc:ST,Fiesta
 TM,Ford Five Hundred,Ford,Five Hundred,2005-2007,,Sedan,3XXL-550,S5,三厢车,,,Five Hundred
-TM,Ford Flex,Ford,Flex,2009-2019,,Crossover,YXXL-545,Y4,越野车,,,Flex
+TM,Ford Flex,Ford,Flex,2009-2019,,Crossover,YXXL-545,Y6,越野车,,,Flex
 TM,Ford Focus,Ford,Focus,2000-2018,,Sedan,3L,S2,三厢车,Sedan,Sedan,Focus
 TM,Ford Focus,Ford,Focus,2008-2011,,Coupe,3M-0,C1,跑车,Coupe,Coupe,Focus
-TM,Ford Freestyle,Ford,Freestyle,2005-2007,,Crossover,YXXL-545,Y4,越野车,,,Freestyle
+TM,Ford Freestyle,Ford,Freestyle,2005-2007,,Crossover,YXXL-545,Y6,越野车,,,Freestyle
 TM,Ford Fusion,Ford,Fusion,2006-2020,,Sedan,3XL,S3,三厢车,,,Fusion
 TM,Ford GT,Ford,GT,2005-2006,,Coupe,3L-0,C2,跑车,,,GT
 TM,Ford GT,Ford,GT,2017-2022,,Coupe,3XL-0,C3,跑车,,,GT
@@ -285,42 +345,45 @@ TM,Ford Mustang,Ford,Mustang,1974-1986,,Coupe,3M-0,C1,跑车,Coupe,Coupe,Mustang
 TM,Ford Mustang,Ford,Mustang,1984-2004,Mach 1/Notchback/SVO/SVT Cobra,Coupe,3L-0,C2,跑车,Coupe Mach 1/Notchback/SVO/SVT Cobra,Cpe Mach1/Ntbk/SVO,Mustang
 TM,Ford Mustang,Ford,Mustang,1987-2004,,Convertible/Coupe,3L-0,C2,跑车,Convertible/Coupe,Conv/Cpe,Mustang
 TM,Ford Mustang,Ford,Mustang,2005-2026,Incl: Dark Horse,Convertible/Coupe,3XL-0,C3,跑车,Convertible/Coupe Incl: Dark Horse,Conv/Cpe Inc:DH,Mustang
-TM,Ford Mustang Mach-E,Ford,Mustang Mach-E,2021-2026,Incl: Rally,Crossover/SUV,YL,Y1,越野车,Incl: Rally,Incl: Rally,Mustang Mach-E
+TM,Ford Mustang Mach-E,Ford,Mustang Mach-E,2021-2026,Incl: Rally,Crossover/SUV,YL,Y3,越野车,Incl: Rally,Incl: Rally,Mustang Mach-E
 TM,Ford Taurus,Ford,Taurus,1986-2007,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Taurus
 TM,Ford Taurus,Ford,Taurus,2008-2019,Incl: SHO,Sedan,3XXL-550,S5,三厢车,Sedan Incl: SHO,Sedan Incl: SHO,Taurus
+TM,Ford Taurus,Ford,Taurus,1986-2005,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Taurus
 TM,Ford Thunderbird,Ford,Thunderbird,1955,,Convertible,3M-0,C1,跑车,Convertible,Convertible,Thunderbird
 TM,Ford Thunderbird,Ford,Thunderbird,1956-1957,,Convertible,3L-0,C2,跑车,Convertible,Convertible,Thunderbird
 TM,Ford Thunderbird,Ford,Thunderbird,1983-1993,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Thunderbird
 TM,Ford Thunderbird,Ford,Thunderbird,1996-1997,,Coupe,3XXL-520-0,C4,跑车,Coupe,Coupe,Thunderbird
 TM,Ford Thunderbird,Ford,Thunderbird,2002-2005,,Coupe,3L-0,C2,跑车,Coupe,Coupe,Thunderbird
-TM,GMC Acadia,GMC,Acadia,2007-2016,,SUV,YXXL-545,Y4,越野车,,,Acadia
-TM,GMC Acadia,GMC,Acadia,2017,Limited,SUV,YXXL-545,Y4,越野车,Limited,Limited,Acadia
-TM,GMC Acadia,GMC,Acadia,2017-2023,,SUV,YXL,Y2,越野车,,,Acadia
-TM,GMC Acadia,GMC,Acadia,2024-2026,,SUV,YXXL-545,Y4,越野车,,,Acadia
-TM,GMC Envoy,GMC,Envoy,2002-2009,,SUV,YXL,Y2,越野车,,,Envoy
-TM,GMC Hummer SUV,GMC,Hummer SUV,2024-2026,,SUV,YXXL-545,Y4,越野车,,,Hummer SUV
-TM,GMC Jimmy,GMC,Jimmy,1983-2001,Incl: 2dr,SUV,YM,Y0,越野车,Incl: 2dr,Incl: 2dr,Jimmy
-TM,GMC Jimmy,GMC,Jimmy,1991-1994,4dr,SUV,YM,Y0,越野车,4dr,4dr,Jimmy
-TM,GMC Jimmy,GMC,Jimmy,1995-2000,4dr,SUV,YL,Y1,越野车,4dr,4dr,Jimmy
-TM,GMC Terrain,GMC,Terrain,2010-2017,,SUV,YL,Y1,越野车,,,Terrain
-TM,GMC Terrain,GMC,Terrain,2018-2026,,SUV,YM,Y0,越野车,,,Terrain
-TM,GMC Yukon,GMC,Yukon,1992-1997,2dr,SUV,YL,Y1,越野车,2dr,2dr,Yukon
-TM,GMC Yukon,GMC,Yukon,1995-2026,Incl: 4dr,SUV,YXXL-545,Y4,越野车,Incl: 4dr,Incl: 4dr,Yukon
-TM,GMC Yukon XL,GMC,Yukon XL,2000-2026,,SUV,YXXL-585,Y5,越野车,,,Yukon XL
+TM,Ford Thunderbird,Ford,Thunderbird,1958-1979,Incl: 2dr Hardtop/4dr Landau/Landau,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan Incl: 2dr Hardtop/4dr Landau/Landau,Convertible/Coupe/Sedan Incl: 2dr Hardtop/4dr Landau/Landau,Thunderbird
+TM,GMC Acadia,GMC,Acadia,2007-2016,,SUV,YXXL-545,Y6,越野车,,,Acadia
+TM,GMC Acadia,GMC,Acadia,2017,Limited,SUV,YXXL-545,Y6,越野车,Limited,Limited,Acadia
+TM,GMC Acadia,GMC,Acadia,2017-2023,,SUV,YXL,Y4,越野车,,,Acadia
+TM,GMC Acadia,GMC,Acadia,2024-2026,,SUV,YXXL-545,Y6,越野车,,,Acadia
+TM,GMC Envoy,GMC,Envoy,2002-2009,,SUV,YXL,Y4,越野车,,,Envoy
+TM,GMC Hummer SUV,GMC,Hummer SUV,2024-2026,,SUV,YXXL-545,Y6,越野车,,,Hummer SUV
+TM,GMC Jimmy,GMC,Jimmy,1983-2001,Incl: 2dr,SUV,YM,Y2,越野车,Incl: 2dr,Incl: 2dr,Jimmy
+TM,GMC Jimmy,GMC,Jimmy,1991-1994,4dr,SUV,YM,Y2,越野车,4dr,4dr,Jimmy
+TM,GMC Jimmy,GMC,Jimmy,1995-2000,4dr,SUV,YL,Y3,越野车,4dr,4dr,Jimmy
+TM,GMC Terrain,GMC,Terrain,2010-2017,,SUV,YL,Y3,越野车,,,Terrain
+TM,GMC Terrain,GMC,Terrain,2018-2026,,SUV,YM,Y2,越野车,,,Terrain
+TM,GMC Yukon,GMC,Yukon,1992-1997,2dr,SUV,YL,Y3,越野车,2dr,2dr,Yukon
+TM,GMC Yukon,GMC,Yukon,1995-2026,Incl: 4dr,SUV,YXXL-545,Y6,越野车,Incl: 4dr,Incl: 4dr,Yukon
+TM,GMC Yukon XL,GMC,Yukon XL,2000-2026,,SUV,YXXL-585,Y7,越野车,,,Yukon XL
 TM,Genesis EQ900,Genesis,EQ900,2017-2026,G90,Sedan,3XXL-550,S5,三厢车,G90,G90,EQ900
 TM,Genesis G70,Genesis,G70,2019-2026,,Sedan,3L,S2,三厢车,,,G70
 TM,Genesis G80,Genesis,G80,2017-2026,Incl: Sport,Sedan,3XL,S3,三厢车,Incl: Sport,Incl: Sport,G80
 TM,Genesis G90,Genesis,G90,2017-2026,,Sedan,3XXL-550,S5,三厢车,,,G90
-TM,Genesis GV60,Genesis,GV60,2023-2026,,SUV,YM,Y0,越野车,,,GV60
-TM,Genesis GV70,Genesis,GV70,2022-2026,,SUV,YL,Y1,越野车,,,GV70
-TM,Genesis GV80,Genesis,GV80,2021-2026,,SUV,YXL,Y2,越野车,,,GV80
+TM,Genesis GV60,Genesis,GV60,2023-2026,,SUV,YM,Y2,越野车,,,GV60
+TM,Genesis GV70,Genesis,GV70,2022-2026,,SUV,YL,Y3,越野车,,,GV70
+TM,Genesis GV80,Genesis,GV80,2021-2026,,SUV,YXL,Y4,越野车,,,GV80
 TM,Honda Accord,Honda,Accord,1979-1993,,Sedan,3L,S2,三厢车,Sedan,Sedan,Accord
 TM,Honda Accord,Honda,Accord,1994-2026,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Accord
 TM,Honda Accord,Honda,Accord,1988-1997,,Coupe,3L-0,C2,跑车,Coupe,Coupe,Accord
 TM,Honda Accord,Honda,Accord,1998-2017,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Accord
 TM,Honda Accord,Honda,Accord,1976-1981,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,Accord
-TM,Honda CR-V,Honda,CR-V,1997-2022,,SUV,YM,Y0,越野车,,,CR-V
-TM,Honda CR-V,Honda,CR-V,2023-2026,,SUV,YL,Y1,越野车,,,CR-V
+TM,Honda Accord,Honda,Accord,1994-1997,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Accord
+TM,Honda CR-V,Honda,CR-V,1997-2022,,SUV,YM,Y2,越野车,,,CR-V
+TM,Honda CR-V,Honda,CR-V,2023-2026,,SUV,YL,Y3,越野车,,,CR-V
 TM,Honda CR-Z,Honda,CR-Z,2011-2016,,Hatchback,2L,H2,两厢车,,,CR-Z
 TM,Honda Civic,Honda,Civic,1988-2026,,Sedan,3L,S2,三厢车,Sedan,Sedan,Civic
 TM,Honda Civic,Honda,Civic,1973-1987,,Sedan,3S-0,C0,跑车,Sedan,Sedan,Civic
@@ -331,20 +394,22 @@ TM,Honda Civic,Honda,Civic,1980-1995,,Hatchback,2L,H2,两厢车,Hatchback,Hatchb
 TM,Honda Civic,Honda,Civic,1988-1991,,Wagon,2L,H2,两厢车,Wagon,Wagon,Civic
 TM,Honda Clarity,Honda,Clarity,2017-2021,,Sedan,3XL,S3,三厢车,,,Clarity
 TM,Honda Clarity Plug In,Honda,Clarity Plug In,2018-2021,,Sedan,3XL,S3,三厢车,,,Clarity Plug In
-TM,Honda Element,Honda,Element,2003-2009,,Crossover,YM,Y0,越野车,,,Element
+TM,Honda Crosstour,Honda,Crosstour,2010-2015,,Hatchback,5XL,V3,两厢车,,,Crosstour
+TM,Honda Element,Honda,Element,2003-2009,,Crossover,YM,Y2,越野车,,,Element
 TM,Honda Fit,Honda,Fit,2007-2020,,Hatchback,2L,H2,两厢车,,,Fit
-TM,Honda HR-V,Honda,HR-V,2016-2026,,SUV,YM,Y0,越野车,,,HR-V
+TM,Honda HR-V,Honda,HR-V,2016-2026,,SUV,YM,Y2,越野车,,,HR-V
 TM,Honda Insight,Honda,Insight,2019-2022,,Sedan,3L,S2,三厢车,Sedan,Sedan,Insight
 TM,Honda Insight,Honda,Insight,2000-2006,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,Insight
-TM,Honda Passport,Honda,Passport,1994-2002,,SUV,YM,Y0,越野车,,,Passport
-TM,Honda Passport,Honda,Passport,2019-2025,,SUV,YL,Y1,越野车,,,Passport
-TM,Honda Passport,Honda,Passport,2026,,SUV,YXL,Y2,越野车,,,Passport
-TM,Honda Pilot,Honda,Pilot,2003-2008,,SUV,YL,Y1,越野车,,,Pilot
-TM,Honda Pilot,Honda,Pilot,2009-2022,,SUV,YXL,Y2,越野车,,,Pilot
-TM,Honda Pilot,Honda,Pilot,2023-2026,Incl: TrailSport,SUV,YXXL-545,Y4,越野车,Incl: TrailSport,Inc:TrailSport,Pilot
+TM,Honda Odyssey,Honda,Odyssey,1995-2026,,MPV,5XL,V3,两厢车,,,Odyssey
+TM,Honda Passport,Honda,Passport,1994-2002,,SUV,YM,Y2,越野车,,,Passport
+TM,Honda Passport,Honda,Passport,2019-2025,,SUV,YL,Y3,越野车,,,Passport
+TM,Honda Passport,Honda,Passport,2026,,SUV,YXL,Y4,越野车,,,Passport
+TM,Honda Pilot,Honda,Pilot,2003-2008,,SUV,YL,Y3,越野车,,,Pilot
+TM,Honda Pilot,Honda,Pilot,2009-2022,,SUV,YXL,Y4,越野车,,,Pilot
+TM,Honda Pilot,Honda,Pilot,2023-2026,Incl: TrailSport,SUV,YXXL-545,Y6,越野车,Incl: TrailSport,Inc:TrailSport,Pilot
 TM,Honda Prelude,Honda,Prelude,1979-1982,,Coupe,3S-0,C0,跑车,,,Prelude
 TM,Honda Prelude,Honda,Prelude,1983-2026,,Coupe,3M-0,C1,跑车,,,Prelude
-TM,Honda Prologue,Honda,Prologue,2024-2026,,SUV,YXL,Y2,越野车,,,Prologue
+TM,Honda Prologue,Honda,Prologue,2024-2026,,SUV,YXL,Y4,越野车,,,Prologue
 TM,Honda S2000,Honda,S2000,2000-2009,,Convertible,3S-0,C0,跑车,,,S2000
 TM,Hyundai Accent,Hyundai,Accent,2000-2022,,Sedan,3L,S2,三厢车,Sedan,Sedan,Accent
 TM,Hyundai Accent,Hyundai,Accent,1995-1999,,Sedan,3S-0,C0,跑车,Sedan,Sedan,Accent
@@ -354,32 +419,32 @@ TM,Hyundai Azera,Hyundai,Azera,2006-2017,,Sedan,3XL,S3,三厢车,,,Azera
 TM,Hyundai Elantra,Hyundai,Elantra,1992-2026,,Sedan,3L,S2,三厢车,Sedan,Sedan,Elantra
 TM,Hyundai Equus,Hyundai,Equus,2011-2016,,Sedan,3XXL-550,S5,三厢车,,,Equus
 TM,Hyundai Genesis,Hyundai,Genesis,2009-2016,Incl: 5.0 R-Spec,Sedan,3XL,S3,三厢车,Incl: 5.0 R-Spec,Inc:5.0RSpc,Genesis
-TM,Hyundai IONIQ 5,Hyundai,IONIQ 5,2022-2026,Incl: N,SUV,YL,Y1,越野车,Incl: N,Incl: N,IONIQ 5
+TM,Hyundai IONIQ 5,Hyundai,IONIQ 5,2022-2026,Incl: N,SUV,YL,Y3,越野车,Incl: N,Incl: N,IONIQ 5
 TM,Hyundai IONIQ 6,Hyundai,IONIQ 6,2023-2026,Incl: N,Sedan,3XL,S3,三厢车,Incl: N,Incl: N,IONIQ 6
-TM,Hyundai Ioniq 9,Hyundai,Ioniq 9,2026,,SUV,YXXL-545,Y4,越野车,,,Ioniq 9
-TM,Hyundai Kona,Hyundai,Kona,2019-2026,,Crossover,YM,Y0,越野车,,,Kona
-TM,Hyundai Nexo,Hyundai,Nexo,2019-2024,,SUV,YL,Y1,越野车,,,Nexo
-TM,Hyundai Palisade,Hyundai,Palisade,2020-2025,,SUV,YXL,Y2,越野车,,,Palisade
-TM,Hyundai Palisade,Hyundai,Palisade,2026,,SUV,YXXL-545,Y4,越野车,,,Palisade
-TM,Hyundai Santa Fe,Hyundai,Santa Fe,2001-2006,,SUV,YM,Y0,越野车,,,Santa Fe
-TM,Hyundai Santa Fe,Hyundai,Santa Fe,2007-2026,Incl: Sport,SUV,YL,Y1,越野车,Incl: Sport,Incl: Sport,Santa Fe
-TM,Hyundai Santa Fe,Hyundai,Santa Fe,2013-2019,XL,SUV,YXL,Y2,越野车,XL,XL,Santa Fe
+TM,Hyundai Ioniq 9,Hyundai,Ioniq 9,2026,,SUV,YXXL-545,Y6,越野车,,,Ioniq 9
+TM,Hyundai Kona,Hyundai,Kona,2019-2026,,Crossover,YM,Y2,越野车,,,Kona
+TM,Hyundai Nexo,Hyundai,Nexo,2019-2024,,SUV,YL,Y3,越野车,,,Nexo
+TM,Hyundai Palisade,Hyundai,Palisade,2020-2025,,SUV,YXL,Y4,越野车,,,Palisade
+TM,Hyundai Palisade,Hyundai,Palisade,2026,,SUV,YXXL-545,Y6,越野车,,,Palisade
+TM,Hyundai Santa Fe,Hyundai,Santa Fe,2001-2006,,SUV,YM,Y2,越野车,,,Santa Fe
+TM,Hyundai Santa Fe,Hyundai,Santa Fe,2007-2026,Incl: Sport,SUV,YL,Y3,越野车,Incl: Sport,Incl: Sport,Santa Fe
+TM,Hyundai Santa Fe,Hyundai,Santa Fe,2013-2019,XL,SUV,YXL,Y4,越野车,XL,XL,Santa Fe
 TM,Hyundai Sonata,Hyundai,Sonata,1994-2002,,Sedan,3L,S2,三厢车,,,Sonata
 TM,Hyundai Sonata,Hyundai,Sonata,2003-2026,,Sedan,3XL,S3,三厢车,,,Sonata
 TM,Hyundai Tiburon,Hyundai,Tiburon,1997-2008,,Coupe,3M-0,C1,跑车,,,Tiburon
-TM,Hyundai Tucson,Hyundai,Tucson,2005-2024,,SUV,YM,Y0,越野车,,,Tucson
-TM,Hyundai Tucson,Hyundai,Tucson,2025-2026,,SUV,YL,Y1,越野车,,,Tucson
-TM,Hyundai Veracruz,Hyundai,Veracruz,2007-2012,,SUV,YL,Y1,越野车,,,Veracruz
+TM,Hyundai Tucson,Hyundai,Tucson,2005-2024,,SUV,YM,Y2,越野车,,,Tucson
+TM,Hyundai Tucson,Hyundai,Tucson,2025-2026,,SUV,YL,Y3,越野车,,,Tucson
+TM,Hyundai Veracruz,Hyundai,Veracruz,2007-2012,,SUV,YL,Y3,越野车,,,Veracruz
 TM,Hyundai XG,Hyundai,XG,2001-2005,,Sedan,3XL,S3,三厢车,,,XG
-TM,Ineos Automotive Grenadier,Ineos Automotive,Grenadier,2024-2026,,SUV,YXL,Y2,越野车,,,Grenadier
-TM,Infiniti EX,Infiniti,EX,2008-2013,EX35/EX37,SUV,YM,Y0,越野车,EX35/EX37,EX35/EX37,EX
-TM,Infiniti FX,Infiniti,FX,2003-2008,,Crossover,YL,Y1,越野车,,,FX
-TM,Infiniti FX,Infiniti,FX,2009-2013,,Crossover,YXL,Y2,越野车,,,FX
+TM,Ineos Automotive Grenadier,Ineos Automotive,Grenadier,2024-2026,,SUV,YXL,Y4,越野车,,,Grenadier
+TM,Infiniti EX,Infiniti,EX,2008-2013,EX35/EX37,SUV,YM,Y2,越野车,EX35/EX37,EX35/EX37,EX
+TM,Infiniti FX,Infiniti,FX,2003-2008,,Crossover,YL,Y3,越野车,,,FX
+TM,Infiniti FX,Infiniti,FX,2009-2013,,Crossover,YXL,Y4,越野车,,,FX
 TM,Infiniti G,Infiniti,G,1991-2006,,Sedan,3L,S2,三厢车,Sedan,Sedan,G
 TM,Infiniti G,Infiniti,G,2007-2013,,Sedan,3XL,S3,三厢车,Sedan,Sedan,G
 TM,Infiniti G,Infiniti,G,2003-2013,,Convertible/Coupe,3L-0,C2,跑车,Convertible/Coupe,Conv/Cpe,G
 TM,Infiniti I,Infiniti,I,1996-2004,,Sedan,3XL,S3,三厢车,,,I
-TM,Infiniti JX,Infiniti,JX,2013,,Crossover,YXL,Y2,越野车,,,JX
+TM,Infiniti JX,Infiniti,JX,2013,,Crossover,YXL,Y4,越野车,,,JX
 TM,Infiniti M,Infiniti,M,2003-2013,,Sedan,3XL,S3,三厢车,Sedan,Sedan,M
 TM,Infiniti M,Infiniti,M,1990-1992,,Convertible/Coupe,3XL-0,C3,跑车,Convertible/Coupe,Conv/Cpe,M
 TM,Infiniti Q40,Infiniti,Q40,2015,,Sedan,3XL,S3,三厢车,,,Q40
@@ -388,110 +453,112 @@ TM,Infiniti Q50,Infiniti,Q50,2014-2024,Incl: Red Sport,Sedan,3XL,S3,三厢车,In
 TM,Infiniti Q60,Infiniti,Q60,2014-2022,Incl: Red Sport,Convertible/Coupe,3L-0,C2,跑车,Incl: Red Sport,Incl: Red Sport,Q60
 TM,Infiniti Q70,Infiniti,Q70,2014-2019,,Sedan,3XL,S3,三厢车,,,Q70
 TM,Infiniti Q70L,Infiniti,Q70L,2015-2019,,Sedan,3XXL-550,S5,三厢车,,,Q70L
-TM,Infiniti QX30,Infiniti,QX30,2017-2019,,SUV,YM,Y0,越野车,,,QX30
-TM,Infiniti QX4,Infiniti,QX4,1997-2003,,SUV,YL,Y1,越野车,,,QX4
-TM,Infiniti QX50,Infiniti,QX50,2014-2015,,SUV,YM,Y0,越野车,,,QX50
-TM,Infiniti QX50,Infiniti,QX50,2016-2025,,SUV,YL,Y1,越野车,,,QX50
-TM,Infiniti QX55,Infiniti,QX55,2022-2025,,SUV,YL,Y1,越野车,,,QX55
-TM,Infiniti QX56,Infiniti,QX56,2004-2013,,SUV,YXXL-545,Y4,越野车,,,QX56
-TM,Infiniti QX60,Infiniti,QX60,2014-2016,,SUV,YXL,Y2,越野车,,,QX60
-TM,Infiniti QX60,Infiniti,QX60,2017-2026,,SUV,YXXL-545,Y4,越野车,,,QX60
-TM,Infiniti QX70,Infiniti,QX70,2014-2017,,Crossover,YXL,Y2,越野车,,,QX70
-TM,Infiniti QX80,Infiniti,QX80,2014-2026,,SUV,YXXL-545,Y4,越野车,,,QX80
-TM,Jaguar E-Pace,Jaguar,E-Pace,2018-2024,,SUV,YM,Y0,越野车,,,E-Pace
-TM,Jaguar F-Pace,Jaguar,F-Pace,2017-2023,,SUV,YL,Y1,越野车,,,F-Pace
+TM,Infiniti QX30,Infiniti,QX30,2017-2019,,SUV,YM,Y2,越野车,,,QX30
+TM,Infiniti QX4,Infiniti,QX4,1997-2003,,SUV,YL,Y3,越野车,,,QX4
+TM,Infiniti QX50,Infiniti,QX50,2014-2015,,SUV,YM,Y2,越野车,,,QX50
+TM,Infiniti QX50,Infiniti,QX50,2016-2025,,SUV,YL,Y3,越野车,,,QX50
+TM,Infiniti QX55,Infiniti,QX55,2022-2025,,SUV,YL,Y3,越野车,,,QX55
+TM,Infiniti QX56,Infiniti,QX56,2004-2013,,SUV,YXXL-545,Y6,越野车,,,QX56
+TM,Infiniti QX60,Infiniti,QX60,2014-2016,,SUV,YXL,Y4,越野车,,,QX60
+TM,Infiniti QX60,Infiniti,QX60,2017-2026,,SUV,YXXL-545,Y6,越野车,,,QX60
+TM,Infiniti QX70,Infiniti,QX70,2014-2017,,Crossover,YXL,Y4,越野车,,,QX70
+TM,Infiniti QX80,Infiniti,QX80,2014-2026,,SUV,YXXL-545,Y6,越野车,,,QX80
+TM,Jaguar E-Pace,Jaguar,E-Pace,2018-2024,,SUV,YM,Y2,越野车,,,E-Pace
+TM,Jaguar F-Pace,Jaguar,F-Pace,2017-2023,,SUV,YL,Y3,越野车,,,F-Pace
 TM,Jaguar F-Type,Jaguar,F-Type,2014-2024,Incl: P450/P575/R/R75/SVR/V6/V8 S,Convertible/Coupe,3M-0,C1,跑车,Incl: P450/P575/R/R75/SVR/V6/V8 S,Inc:R/SVR,F-Type
-TM,Jaguar I-Pace,Jaguar,I-Pace,2019-2024,,SUV,YL,Y1,越野车,,,I-Pace
+TM,Jaguar I-Pace,Jaguar,I-Pace,2019-2024,,SUV,YL,Y3,越野车,,,I-Pace
 TM,Jaguar S-Type,Jaguar,S-Type,2000-2008,,Sedan,3XL,S3,三厢车,,,S-Type
 TM,Jaguar X-Type,Jaguar,X-Type,2002-2008,,Sedan,3L,S2,三厢车,Sedan,Sedan,X-Type
 TM,Jaguar XE,Jaguar,XE,2017-2020,,Sedan,3L,S2,三厢车,,,XE
 TM,Jaguar XF,Jaguar,XF,2009-2024,,Sedan,3XL,S3,三厢车,Sedan,Sedan,XF
+TM,Jaguar XF,Jaguar,XF,2018-2020,Sportbrake,Wagon,5XL,V3,两厢车,Wagon Sportbrake,Wgn Sportbrake,XF
 TM,Jaguar XJ,Jaguar,XJ,1979-1992,,Sedan,3XXL-550,S5,三厢车,,,XJ
 TM,Jaguar XJ,Jaguar,XJ,1995-2003,SWB,Sedan,3XL,S3,三厢车,SWB,SWB,XJ
 TM,Jaguar XJ,Jaguar,XJ,1995-2019,LWB,Sedan,3XXL-550,S5,三厢车,LWB,LWB,XJ
 TM,Jaguar XJ,Jaguar,XJ,2004-2019,SWB,Sedan,3XXL-550,S5,三厢车,SWB,SWB,XJ
 TM,Jaguar XJS,Jaguar,XJS,1976-1996,,Convertible/Coupe,3XL-0,C3,跑车,,,XJS
 TM,Jaguar XK,Jaguar,XK,1997-2015,Incl: XKR/XKR-S,Convertible/Coupe,3XL-0,C3,跑车,Incl: XKR/XKR-S,Incl: XKR/XKR-S,XK
-TM,Jeep Cherokee,Jeep,Cherokee,1974-1983,,SUV,YL,Y1,越野车,,,Cherokee
-TM,Jeep Cherokee,Jeep,Cherokee,1984-2023,,SUV,YM,Y0,越野车,,,Cherokee
-TM,Jeep Cherokee,Jeep,Cherokee,2026,,SUV,YL,Y1,越野车,,,Cherokee
-TM,Jeep Commander,Jeep,Commander,2006-2010,,SUV,YL,Y1,越野车,,,Commander
-TM,Jeep Compass,Jeep,Compass,2007-2026,,SUV,YM,Y0,越野车,,,Compass
-TM,Jeep Grand Cherokee,Jeep,Grand Cherokee,1993-2004,,SUV,YM,Y0,越野车,,,Grand Cherokee
-TM,Jeep Grand Cherokee,Jeep,Grand Cherokee,2005-2021,,SUV,YL,Y1,越野车,,,Grand Cherokee
-TM,Jeep Grand Cherokee,Jeep,Grand Cherokee,2014-2021,SRT,SUV,YXL,Y2,越野车,SRT,SRT,Grand Cherokee
-TM,Jeep Grand Cherokee,Jeep,Grand Cherokee,2021-2026,L,SUV,YXXL-545,Y4,越野车,L,L,Grand Cherokee
-TM,Jeep Grand Cherokee,Jeep,Grand Cherokee,2022-2026,,SUV,YXL,Y2,越野车,,,Grand Cherokee
-TM,Jeep Grand Wagoneer,Jeep,Grand Wagoneer,1984-1991,,SUV,YL,Y1,越野车,,,Grand Wagoneer
-TM,Jeep Grand Wagoneer,Jeep,Grand Wagoneer,2022-2026,,SUV,YXXL-545,Y4,越野车,,,Grand Wagoneer
-TM,Jeep Grand Wagoneer,Jeep,Grand Wagoneer,2023-2026,L,SUV,YXXL-585,Y5,越野车,L,L,Grand Wagoneer
-TM,Jeep Liberty,Jeep,Liberty,2002-2012,,SUV,YM,Y0,越野车,,,Liberty
-TM,Jeep Patriot,Jeep,Patriot,2007-2017,,SUV,YM,Y0,越野车,,,Patriot
-TM,Jeep Renegade,Jeep,Renegade,2015-2023,,SUV,YM,Y0,越野车,,,Renegade
-TM,Jeep Wagoneer,Jeep,Wagoneer,1963-1991,,SUV,YL,Y1,越野车,,,Wagoneer
-TM,Jeep Wagoneer,Jeep,Wagoneer,2023-2025,,SUV,YXXL-545,Y4,越野车,,,Wagoneer
-TM,Jeep Wagoneer,Jeep,Wagoneer,2023-2025,L,SUV,YXXL-585,Y5,越野车,L,L,Wagoneer
-TM,Jeep Wagoneer S,Jeep,Wagoneer S,2025-2026,,SUV,YXL,Y2,越野车,,,Wagoneer S
-TM,Jeep Wrangler,Jeep,Wrangler,2004-2026,2dr JK/2dr JL/2dr JL Xtreme/2dr LJ Unlimited/2dr LJ Unlimited Rubicon,SUV,YM,Y0,越野车,2dr JK/2dr JL/2dr JL Xtreme/2dr LJ Unlimited/2dr LJ Unlimited Rubicon,2dr JK/JL/LJ,Wrangler
-TM,Jeep Wrangler,Jeep,Wrangler,2007-2026,4dr JKU/4dr JLU/4dr JLU Rubicon 392,SUV,YL,Y1,越野车,4dr JKU/4dr JLU/4dr JLU Rubicon 392,4dr JKU/JLU,Wrangler
-TM,Jeep Wrangler,Jeep,Wrangler,2024-2026,4dr JLU Xtreme,SUV,YXL,Y2,越野车,4dr JLU Xtreme,4dr JLU Xtreme,Wrangler
+TM,Jeep Cherokee,Jeep,Cherokee,1974-1983,,SUV,YL,Y3,越野车,,,Cherokee
+TM,Jeep Cherokee,Jeep,Cherokee,1984-2023,,SUV,YM,Y2,越野车,,,Cherokee
+TM,Jeep Cherokee,Jeep,Cherokee,2026,,SUV,YL,Y3,越野车,,,Cherokee
+TM,Jeep Commander,Jeep,Commander,2006-2010,,SUV,YL,Y3,越野车,,,Commander
+TM,Jeep Compass,Jeep,Compass,2007-2026,,SUV,YM,Y2,越野车,,,Compass
+TM,Jeep Grand Cherokee,Jeep,Grand Cherokee,1993-2004,,SUV,YM,Y2,越野车,,,Grand Cherokee
+TM,Jeep Grand Cherokee,Jeep,Grand Cherokee,2005-2021,,SUV,YL,Y3,越野车,,,Grand Cherokee
+TM,Jeep Grand Cherokee,Jeep,Grand Cherokee,2014-2021,SRT,SUV,YXL,Y4,越野车,SRT,SRT,Grand Cherokee
+TM,Jeep Grand Cherokee,Jeep,Grand Cherokee,2021-2026,L,SUV,YXXL-545,Y6,越野车,L,L,Grand Cherokee
+TM,Jeep Grand Cherokee,Jeep,Grand Cherokee,2022-2026,,SUV,YXL,Y4,越野车,,,Grand Cherokee
+TM,Jeep Grand Wagoneer,Jeep,Grand Wagoneer,1984-1991,,SUV,YL,Y3,越野车,,,Grand Wagoneer
+TM,Jeep Grand Wagoneer,Jeep,Grand Wagoneer,2022-2026,,SUV,YXXL-545,Y6,越野车,,,Grand Wagoneer
+TM,Jeep Grand Wagoneer,Jeep,Grand Wagoneer,2023-2026,L,SUV,YXXL-585,Y7,越野车,L,L,Grand Wagoneer
+TM,Jeep Liberty,Jeep,Liberty,2002-2012,,SUV,YM,Y2,越野车,,,Liberty
+TM,Jeep Patriot,Jeep,Patriot,2007-2017,,SUV,YM,Y2,越野车,,,Patriot
+TM,Jeep Renegade,Jeep,Renegade,2015-2023,,SUV,YM,Y2,越野车,,,Renegade
+TM,Jeep Wagoneer,Jeep,Wagoneer,1963-1991,,SUV,YL,Y3,越野车,,,Wagoneer
+TM,Jeep Wagoneer,Jeep,Wagoneer,2023-2025,,SUV,YXXL-545,Y6,越野车,,,Wagoneer
+TM,Jeep Wagoneer,Jeep,Wagoneer,2023-2025,L,SUV,YXXL-585,Y7,越野车,L,L,Wagoneer
+TM,Jeep Wagoneer S,Jeep,Wagoneer S,2025-2026,,SUV,YXL,Y4,越野车,,,Wagoneer S
+TM,Jeep Wrangler,Jeep,Wrangler,2004-2026,2dr JK/2dr JL/2dr JL Xtreme/2dr LJ Unlimited/2dr LJ Unlimited Rubicon,SUV,YM,Y2,越野车,2dr JK/2dr JL/2dr JL Xtreme/2dr LJ Unlimited/2dr LJ Unlimited Rubicon,2dr JK/JL/LJ,Wrangler
+TM,Jeep Wrangler,Jeep,Wrangler,2007-2026,4dr JKU/4dr JLU/4dr JLU Rubicon 392,SUV,YL,Y3,越野车,4dr JKU/4dr JLU/4dr JLU Rubicon 392,4dr JKU/JLU,Wrangler
+TM,Jeep Wrangler,Jeep,Wrangler,2024-2026,4dr JLU Xtreme,SUV,YXL,Y4,越野车,4dr JLU Xtreme,4dr JLU Xtreme,Wrangler
 TM,Karma Automotive GS-6,Karma Automotive,GS-6,2021-2022,,Sedan,3XXL-550,S5,三厢车,,,GS-6
 TM,Karma Automotive Revero,Karma Automotive,Revero,2017-2020,GT/GTS,Sedan,3XL,S3,三厢车,GT/GTS,GT/GTS,Revero
 TM,Karma Automotive Revero,Karma Automotive,Revero,2021-2025,Incl: GT/GTS,Sedan,3XXL-550,S5,三厢车,Incl: GT/GTS,Incl: GT/GTS,Revero
 TM,Kia Amanti,Kia,Amanti,2004-2009,,Sedan,3XL,S3,三厢车,,,Amanti
-TM,Kia Borrego,Kia,Borrego,2009,,SUV,YXL,Y2,越野车,,,Borrego
+TM,Kia Borrego,Kia,Borrego,2009,,SUV,YXL,Y4,越野车,,,Borrego
 TM,Kia Cadenza,Kia,Cadenza,2014-2020,,Sedan,3XL,S3,三厢车,,,Cadenza
-TM,Kia EV6,Kia,EV6,2022-2026,,Crossover,YL,Y1,越野车,,,EV6
-TM,Kia EV9,Kia,EV9,2024-2026,,SUV,YXL,Y2,越野车,,,EV9
+TM,Kia Carnival,Kia,Carnival,2002-2026,Incl: Sedona/Sedona LWB/Sedona SWB,MPV,5XL,V3,两厢车,Incl: Sedona/Sedona LWB/Sedona SWB,Inc:LWB/SWB,Carnival
+TM,Kia EV6,Kia,EV6,2022-2026,,Crossover,YL,Y3,越野车,,,EV6
+TM,Kia EV9,Kia,EV9,2024-2026,,SUV,YXL,Y4,越野车,,,EV9
 TM,Kia Forte,Kia,Forte,2010-2024,,Sedan,3L,S2,三厢车,Sedan,Sedan,Forte
 TM,Kia Forte,Kia,Forte,2010-2016,Incl: Koup,Coupe,3M-0,C1,跑车,Coupe Incl: Koup,Coupe Incl: Koup,Forte
 TM,Kia K5,Kia,K5,2021-2026,,Sedan,3XL,S3,三厢车,,,K5
 TM,Kia K900,Kia,K900,2015-2020,,Sedan,3XXL-550,S5,三厢车,,,K900
-TM,Kia NIRO,Kia,NIRO,2017-2026,Incl: EV,Crossover,YM,Y0,越野车,Incl: EV,Incl: EV,NIRO
+TM,Kia NIRO,Kia,NIRO,2017-2026,Incl: EV,Crossover,YM,Y2,越野车,Incl: EV,Incl: EV,NIRO
 TM,Kia Optima,Kia,Optima,2001-2020,Incl: Hybrid/PHEV,Sedan,3XL,S3,三厢车,Incl: Hybrid/PHEV,Inc:Hy/PHEV,Optima
 TM,Kia Rio,Kia,Rio,2001-2023,,Sedan,3L,S2,三厢车,Sedan,Sedan,Rio
 TM,Kia Rio,Kia,Rio,2006-2023,Rio5,Hatchback,2L,H2,两厢车,Hatchback Rio5,Hatchback Rio5,Rio
-TM,Kia Rondo,Kia,Rondo,2007-2010,,SUV,YM,Y0,越野车,,,Rondo
-TM,Kia SELTOS,Kia,SELTOS,2021-2025,,SUV,YM,Y0,越野车,,,SELTOS
+TM,Kia Rondo,Kia,Rondo,2007-2010,,SUV,YM,Y2,越野车,,,Rondo
+TM,Kia SELTOS,Kia,SELTOS,2021-2025,,SUV,YM,Y2,越野车,,,SELTOS
 TM,Kia Sephia,Kia,Sephia,1994-2001,,Sedan,3L,S2,三厢车,,,Sephia
-TM,Kia Sorento,Kia,Sorento,2003-2009,,SUV,YM,Y0,越野车,,,Sorento
-TM,Kia Sorento,Kia,Sorento,2011-2026,Incl: PHEV,SUV,YL,Y1,越野车,Incl: PHEV,Incl: PHEV,Sorento
+TM,Kia Sorento,Kia,Sorento,2003-2009,,SUV,YM,Y2,越野车,,,Sorento
+TM,Kia Sorento,Kia,Sorento,2011-2026,Incl: PHEV,SUV,YL,Y3,越野车,Incl: PHEV,Incl: PHEV,Sorento
 TM,Kia Soul,Kia,Soul,2010-2019,Incl: EV,Hatchback/Wagon,2L,H2,两厢车,Hatchback/Wagon Incl: EV,Hbk/Wgn Inc:EV,Soul
 TM,Kia Spectra,Kia,Spectra,2000-2009,,Sedan,3L,S2,三厢车,Sedan,Sedan,Spectra
-TM,Kia Sportage,Kia,Sportage,2005-2022,,SUV,YM,Y0,越野车,,,Sportage
-TM,Kia Sportage,Kia,Sportage,2023-2026,Incl: PHEV,SUV,YL,Y1,越野车,Incl: PHEV,Incl: PHEV,Sportage
+TM,Kia Sportage,Kia,Sportage,2005-2022,,SUV,YM,Y2,越野车,,,Sportage
+TM,Kia Sportage,Kia,Sportage,2023-2026,Incl: PHEV,SUV,YL,Y3,越野车,Incl: PHEV,Incl: PHEV,Sportage
 TM,Kia Stinger,Kia,Stinger,2018-2023,Incl: GT,Fastback/Liftback,3XL,S3,三厢车,Fastback/Liftback Incl: GT,Fastback/Liftback Incl: GT,Stinger
 TM,Kia Stinger,Kia,Stinger,2018-2021,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Stinger
-TM,Kia Telluride,Kia,Telluride,2020-2026,,SUV,YXL,Y2,越野车,,,Telluride
-TM,Land Rover Defender,Land Rover,Defender,1993-2026,90/110 NAS,SUV,YM,Y0,越野车,90/110 NAS,90/110 NAS,Defender
-TM,Land Rover Defender,Land Rover,Defender,2020-2026,110/110 OCTA,SUV,YXL,Y2,越野车,110/110 OCTA,110/110 OCTA,Defender
-TM,Land Rover Defender,Land Rover,Defender,2023-2026,130,SUV,YXXL-545,Y4,越野车,130,130,Defender
-TM,Land Rover Discovery,Land Rover,Discovery,1994-1999,,SUV,YM,Y0,越野车,,,Discovery
-TM,Land Rover Discovery,Land Rover,Discovery,2000-2016,,SUV,YL,Y1,越野车,,,Discovery
-TM,Land Rover Discovery,Land Rover,Discovery,2017-2024,,SUV,YXL,Y2,越野车,,,Discovery
-TM,Land Rover Discovery Sport,Land Rover,Discovery Sport,2015-2026,,SUV,YM,Y0,越野车,,,Discovery Sport
-TM,Land Rover Evoque,Land Rover,Evoque,2020-2026,,SUV,YM,Y0,越野车,SUV,SUV,Evoque
+TM,Kia Telluride,Kia,Telluride,2020-2026,,SUV,YXL,Y4,越野车,,,Telluride
+TM,Land Rover Defender,Land Rover,Defender,1993-2026,90/110 NAS,SUV,YM,Y2,越野车,90/110 NAS,90/110 NAS,Defender
+TM,Land Rover Defender,Land Rover,Defender,2020-2026,110/110 OCTA,SUV,YXL,Y4,越野车,110/110 OCTA,110/110 OCTA,Defender
+TM,Land Rover Defender,Land Rover,Defender,2023-2026,130,SUV,YXXL-545,Y6,越野车,130,130,Defender
+TM,Land Rover Discovery,Land Rover,Discovery,1994-1999,,SUV,YM,Y2,越野车,,,Discovery
+TM,Land Rover Discovery,Land Rover,Discovery,2000-2016,,SUV,YL,Y3,越野车,,,Discovery
+TM,Land Rover Discovery,Land Rover,Discovery,2017-2024,,SUV,YXL,Y4,越野车,,,Discovery
+TM,Land Rover Discovery Sport,Land Rover,Discovery Sport,2015-2026,,SUV,YM,Y2,越野车,,,Discovery Sport
+TM,Land Rover Evoque,Land Rover,Evoque,2020-2026,,SUV,YM,Y2,越野车,SUV,SUV,Evoque
 TM,Land Rover Evoque,Land Rover,Evoque,2012-2018,,Coupe,3M-0,C1,跑车,Coupe,Coupe,Evoque
-TM,Land Rover Freelander,Land Rover,Freelander,2002-2005,,SUV,YM,Y0,越野车,,,Freelander
-TM,Land Rover LR2,Land Rover,LR2,2008-2015,,SUV,YM,Y0,越野车,,,LR2
-TM,Land Rover LR3,Land Rover,LR3,2005-2009,,SUV,YL,Y1,越野车,,,LR3
-TM,Land Rover LR4,Land Rover,LR4,2010-2016,,SUV,YL,Y1,越野车,,,LR4
-TM,Land Rover Range Rover,Land Rover,Range Rover,1987-1992,,SUV,YM,Y0,越野车,,,Range Rover
-TM,Land Rover Range Rover,Land Rover,Range Rover,1993-2002,Incl: LWB,SUV,YL,Y1,越野车,Incl: LWB,Incl: LWB,Range Rover
-TM,Land Rover Range Rover,Land Rover,Range Rover,2003-2021,,SUV,YXL,Y2,越野车,,,Range Rover
-TM,Land Rover Range Rover,Land Rover,Range Rover,2014-2026,LWB,SUV,YXXL-545,Y4,越野车,LWB,LWB,Range Rover
-TM,Land Rover Range Rover,Land Rover,Range Rover,2022-2026,,SUV,YXXL-545,Y4,越野车,,,Range Rover
-TM,Land Rover Range Rover Evoque,Land Rover,Range Rover Evoque,2020-2026,,SUV,YM,Y0,越野车,SUV,SUV,RangeRov Evoq
+TM,Land Rover Freelander,Land Rover,Freelander,2002-2005,,SUV,YM,Y2,越野车,,,Freelander
+TM,Land Rover LR2,Land Rover,LR2,2008-2015,,SUV,YM,Y2,越野车,,,LR2
+TM,Land Rover LR3,Land Rover,LR3,2005-2009,,SUV,YL,Y3,越野车,,,LR3
+TM,Land Rover LR4,Land Rover,LR4,2010-2016,,SUV,YL,Y3,越野车,,,LR4
+TM,Land Rover Range Rover,Land Rover,Range Rover,1987-1992,,SUV,YM,Y2,越野车,,,Range Rover
+TM,Land Rover Range Rover,Land Rover,Range Rover,1993-2002,Incl: LWB,SUV,YL,Y3,越野车,Incl: LWB,Incl: LWB,Range Rover
+TM,Land Rover Range Rover,Land Rover,Range Rover,2003-2021,,SUV,YXL,Y4,越野车,,,Range Rover
+TM,Land Rover Range Rover,Land Rover,Range Rover,2014-2026,LWB,SUV,YXXL-545,Y6,越野车,LWB,LWB,Range Rover
+TM,Land Rover Range Rover,Land Rover,Range Rover,2022-2026,,SUV,YXXL-545,Y6,越野车,,,Range Rover
+TM,Land Rover Range Rover Evoque,Land Rover,Range Rover Evoque,2020-2026,,SUV,YM,Y2,越野车,SUV,SUV,RangeRov Evoq
 TM,Land Rover Range Rover Evoque,Land Rover,Range Rover Evoque,2012-2019,,Convertible/Coupe,3M-0,C1,跑车,Convertible/Coupe,Conv/Cpe,RangeRov Evoq
-TM,Land Rover Range Rover Sport,Land Rover,Range Rover Sport,2006-2013,,SUV,YL,Y1,越野车,,,RangeRov Sport
-TM,Land Rover Range Rover Sport,Land Rover,Range Rover Sport,2014-2026,,SUV,YXL,Y2,越野车,,,RangeRov Sport
-TM,Land Rover Range Rover Velar,Land Rover,Range Rover Velar,2018-2026,,SUV,YL,Y1,越野车,,,RangeRov Velar
+TM,Land Rover Range Rover Sport,Land Rover,Range Rover Sport,2006-2013,,SUV,YL,Y3,越野车,,,RangeRov Sport
+TM,Land Rover Range Rover Sport,Land Rover,Range Rover Sport,2014-2026,,SUV,YXL,Y4,越野车,,,RangeRov Sport
+TM,Land Rover Range Rover Velar,Land Rover,Range Rover Velar,2018-2026,,SUV,YL,Y3,越野车,,,RangeRov Velar
 TM,Lexus ES,Lexus,ES,1991,,Sedan,3L,S2,三厢车,,,ES
 TM,Lexus ES,Lexus,ES,1992-2025,,Sedan,3XL,S3,三厢车,,,ES
 TM,Lexus ES,Lexus,ES,2026,,Sedan,3XXL-550,S5,三厢车,,,ES
 TM,Lexus GS,Lexus,GS,1993-2020,,Sedan,3XL,S3,三厢车,,,GS
-TM,Lexus GX,Lexus,GX,2003-2013,,SUV,YL,Y1,越野车,,,GX
-TM,Lexus GX,Lexus,GX,2014-2026,Incl: Overtrail,SUV,YXL,Y2,越野车,Incl: Overtrail,Incl: Overtrail,GX
+TM,Lexus GX,Lexus,GX,2003-2013,,SUV,YL,Y3,越野车,,,GX
+TM,Lexus GX,Lexus,GX,2014-2026,Incl: Overtrail,SUV,YXL,Y4,越野车,Incl: Overtrail,Incl: Overtrail,GX
 TM,Lexus HS,Lexus,HS,2010-2012,,Sedan,3L,S2,三厢车,,,HS
 TM,Lexus IS,Lexus,IS,2001-2021,,Sedan,3L,S2,三厢车,Sedan,Sedan,IS
 TM,Lexus IS,Lexus,IS,2022-2026,,Sedan,3XL,S3,三厢车,Sedan,Sedan,IS
@@ -501,40 +568,46 @@ TM,Lexus LFA,Lexus,LFA,2012,,Coupe,3M-0,C1,跑车,,,LFA
 TM,Lexus LS,Lexus,LS,1995-2009,,Sedan,3XL,S3,三厢车,,,LS
 TM,Lexus LS,Lexus,LS,2007-2017,L,Sedan,3XXL-550,S5,三厢车,L,L,LS
 TM,Lexus LS,Lexus,LS,2010-2026,,Sedan,3XXL-550,S5,三厢车,,,LS
-TM,Lexus LX,Lexus,LX,1996-1997,,SUV,YL,Y1,越野车,,,LX
-TM,Lexus LX,Lexus,LX,1998-2015,,SUV,YXL,Y2,越野车,,,LX
-TM,Lexus LX,Lexus,LX,2016-2026,,SUV,YXXL-545,Y4,越野车,,,LX
-TM,Lexus NX,Lexus,NX,2015-2017,,SUV,YM,Y0,越野车,,,NX
-TM,Lexus NX,Lexus,NX,2018-2026,,SUV,YL,Y1,越野车,,,NX
+TM,Lexus LX,Lexus,LX,1996-1997,,SUV,YL,Y3,越野车,,,LX
+TM,Lexus LX,Lexus,LX,1998-2015,,SUV,YXL,Y4,越野车,,,LX
+TM,Lexus LX,Lexus,LX,2016-2026,,SUV,YXXL-545,Y6,越野车,,,LX
+TM,Lexus NX,Lexus,NX,2015-2017,,SUV,YM,Y2,越野车,,,NX
+TM,Lexus NX,Lexus,NX,2018-2026,,SUV,YL,Y3,越野车,,,NX
 TM,Lexus RC,Lexus,RC,2015-2025,Incl: RC F,Coupe,3L-0,C2,跑车,Incl: RC F,Incl: RC F,RC
-TM,Lexus RX,Lexus,RX,1999-2003,,SUV,YM,Y0,越野车,,,RX
-TM,Lexus RX,Lexus,RX,2004-2015,,SUV,YL,Y1,越野车,,,RX
-TM,Lexus RX,Lexus,RX,2016-2026,Incl: RX L,SUV,YXL,Y2,越野车,Incl: RX L,Incl: RX L,RX
-TM,Lexus RZ,Lexus,RZ,2023-2026,,SUV,YL,Y1,越野车,,,RZ
+TM,Lexus RX,Lexus,RX,1999-2003,,SUV,YM,Y2,越野车,,,RX
+TM,Lexus RX,Lexus,RX,2004-2015,,SUV,YL,Y3,越野车,,,RX
+TM,Lexus RX,Lexus,RX,2016-2026,Incl: RX L,SUV,YXL,Y4,越野车,Incl: RX L,Incl: RX L,RX
+TM,Lexus RZ,Lexus,RZ,2023-2026,,SUV,YL,Y3,越野车,,,RZ
 TM,Lexus SC,Lexus,SC,1992-2000,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,SC
 TM,Lexus SC,Lexus,SC,2002-2010,,Convertible,3M-0,C1,跑车,Convertible,Convertible,SC
-TM,Lexus TX,Lexus,TX,2024-2026,,SUV,YXXL-545,Y4,越野车,,,TX
-TM,Lexus UX,Lexus,UX,2019-2026,,SUV,YM,Y0,越野车,,,UX
-TM,Lincoln Aviator,Lincoln,Aviator,2003-2005,,SUV,YXL,Y2,越野车,,,Aviator
-TM,Lincoln Aviator,Lincoln,Aviator,2020-2026,,SUV,YXXL-545,Y4,越野车,,,Aviator
+TM,Lexus TX,Lexus,TX,2024-2026,,SUV,YXXL-545,Y6,越野车,,,TX
+TM,Lexus UX,Lexus,UX,2019-2026,,SUV,YM,Y2,越野车,,,UX
+TM,Lincoln Aviator,Lincoln,Aviator,2003-2005,,SUV,YXL,Y4,越野车,,,Aviator
+TM,Lincoln Aviator,Lincoln,Aviator,2020-2026,,SUV,YXXL-545,Y6,越野车,,,Aviator
 TM,Lincoln Continental,Lincoln,Continental,1940-1948,,Convertible,3XXL-550,S5,三厢车,Convertible,Convertible,Continental
 TM,Lincoln Continental,Lincoln,Continental,2017-2020,,Sedan,3XXL-550,S5,三厢车,Sedan,Sedan,Continental
-TM,Lincoln Corsair,Lincoln,Corsair,2020-2026,Incl: PHEV,SUV,YM,Y0,越野车,Incl: PHEV,Incl: PHEV,Corsair
+TM,Lincoln Continental,Lincoln,Continental,1958-1960,,Convertible/Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Sedan,Conv/Sdn,Continental
+TM,Lincoln Continental,Lincoln,Continental,1961-1969,,Convertible/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Sedan,Conv/Sdn,Continental
+TM,Lincoln Continental,Lincoln,Continental,1970-1979,,Coupe/Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Continental
+TM,Lincoln Continental,Lincoln,Continental,1980,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Continental
+TM,Lincoln Continental,Lincoln,Continental,1988-2002,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,Continental
+TM,Lincoln Corsair,Lincoln,Corsair,2020-2026,Incl: PHEV,SUV,YM,Y2,越野车,Incl: PHEV,Incl: PHEV,Corsair
 TM,Lincoln LS,Lincoln,LS,2000-2006,,Sedan,3XL,S3,三厢车,,,LS
-TM,Lincoln MKC,Lincoln,MKC,2015-2019,,SUV,YM,Y0,越野车,,,MKC
+TM,Lincoln MKC,Lincoln,MKC,2015-2019,,SUV,YM,Y2,越野车,,,MKC
 TM,Lincoln MKS,Lincoln,MKS,2009-2016,,Sedan,3XXL-550,S5,三厢车,,,MKS
-TM,Lincoln MKT,Lincoln,MKT,2010-2019,,Crossover,YXXL-545,Y4,越野车,,,MKT
-TM,Lincoln MKX,Lincoln,MKX,2007-2018,,Crossover,YL,Y1,越野车,,,MKX
+TM,Lincoln MKT,Lincoln,MKT,2010-2019,,Crossover,YXXL-545,Y6,越野车,,,MKT
+TM,Lincoln MKX,Lincoln,MKX,2007-2018,,Crossover,YL,Y3,越野车,,,MKX
 TM,Lincoln MKZ,Lincoln,MKZ,2008-2020,,Sedan,3XL,S3,三厢车,,,MKZ
 TM,Lincoln Mark VII,Lincoln,Mark VII,1984-1992,,Coupe,3XXL-520-0,C4,跑车,,,Mark VII
 TM,Lincoln Mark VIII,Lincoln,Mark VIII,1993-1998,,Coupe,3XXL-550,S5,三厢车,,,Mark VIII
-TM,Lincoln Nautilus,Lincoln,Nautilus,2019-2023,,SUV,YL,Y1,越野车,,,Nautilus
-TM,Lincoln Nautilus,Lincoln,Nautilus,2024-2026,,SUV,YXL,Y2,越野车,,,Nautilus
-TM,Lincoln Navigator,Lincoln,Navigator,1998-2026,,SUV,YXXL-545,Y4,越野车,,,Navigator
-TM,Lincoln Navigator,Lincoln,Navigator,2007-2026,L,SUV,YXXL-585,Y5,越野车,L,L,Navigator
+TM,Lincoln Nautilus,Lincoln,Nautilus,2019-2023,,SUV,YL,Y3,越野车,,,Nautilus
+TM,Lincoln Nautilus,Lincoln,Nautilus,2024-2026,,SUV,YXL,Y4,越野车,,,Nautilus
+TM,Lincoln Navigator,Lincoln,Navigator,1998-2026,,SUV,YXXL-545,Y6,越野车,,,Navigator
+TM,Lincoln Navigator,Lincoln,Navigator,2007-2026,L,SUV,YXXL-585,Y7,越野车,L,L,Navigator
+TM,Lincoln Town Car,Lincoln,Town Car,1981-2011,Incl: L,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Incl: L,Incl: L,Town Car
 TM,Lincoln Zephyr,Lincoln,Zephyr,2006,,Sedan,3XL,S3,三厢车,,,Zephyr
 TM,Lucid Motors Air,Lucid Motors,Air,2022-2026,,Sedan,3XL,S3,三厢车,,,Air
-TM,Lucid Motors Gravity,Lucid Motors,Gravity,2025-2026,,SUV,YXXL-545,Y4,越野车,,,Gravity
+TM,Lucid Motors Gravity,Lucid Motors,Gravity,2025-2026,,SUV,YXXL-545,Y6,越野车,,,Gravity
 TM,MG 1100,MG,1100,1963-1967,ADO16 2/4-door,Sedan,3S-0,C0,跑车,ADO16 2/4-door,ADO16 2/4-door,1100
 TM,MG MGA,MG,MGA,1956-1962,Standard,Coupe/Roadster,3S-0,C0,跑车,Standard,Standard,MGA
 TM,MG MGB,MG,MGB,1963-1980,Chrome Bumper Standard/Europe Chrome Bumper/Europe Rubber Bumper/North America 1974½ Rubber Bumper/North America Sabrina/Rubber Bumper,Roadster,3S-0,C0,跑车,Chrome Bumper Standard/Europe Chrome Bumper/Europe Rubber Bumper/North America 1974½ Rubber Bumper/North America Sabrina/Rubber Bumper,Chr/Rub/Sabrina,MGB
@@ -549,32 +622,33 @@ TM,MINI Clubman,MINI,Clubman,2008-2014,,Wagon,2L,H2,两厢车,,,Clubman
 TM,MINI Convertible,MINI,Convertible,2009-2026,Incl: JCW,Convertible,3S-0,C0,跑车,Incl: JCW,Incl: JCW,Convertible
 TM,MINI Cooper,MINI,Cooper,2002-2026,Incl: 2dr/2dr S/2dr SE/4dr/4dr S,Hatchback,2L,H2,两厢车,Incl: 2dr/2dr S/2dr SE/4dr/4dr S,Inc:2dr/4dr,Cooper
 TM,MINI Cooper SE,MINI,Cooper SE,2020-2024,,Hatchback,2L,H2,两厢车,,,Cooper SE
-TM,MINI Countryman,MINI,Countryman,2011-2026,Incl: JCW,SUV,YM,Y0,越野车,Incl: JCW,Incl: JCW,Countryman
+TM,MINI Countryman,MINI,Countryman,2011-2026,Incl: JCW,SUV,YM,Y2,越野车,Incl: JCW,Incl: JCW,Countryman
 TM,MINI Coupe,MINI,Coupe,2012-2015,,Coupe,3S-0,C0,跑车,,,Coupe
 TM,MINI Hardtop,MINI,Hardtop,2002-2024,2dr/4dr,Hatchback,2L,H2,两厢车,2dr/4dr,2dr/4dr,Hardtop
 TM,MINI Hatchback,MINI,Hatchback,2002-2024,2dr/2dr Cooper SE/4dr,Hatchback,2L,H2,两厢车,2dr/2dr Cooper SE/4dr,2dr/2drCprSE/4dr,Hatchback
-TM,MINI Paceman,MINI,Paceman,2013-2016,Incl: JCW ALL4,Crossover/SUV,YM,Y0,越野车,Incl: JCW ALL4,Incl: JCW ALL4,Paceman
+TM,MINI Paceman,MINI,Paceman,2013-2016,Incl: JCW ALL4,Crossover/SUV,YM,Y2,越野车,Incl: JCW ALL4,Incl: JCW ALL4,Paceman
 TM,MINI Roadster,MINI,Roadster,2012-2015,Incl: JCW,Convertible,3S-0,C0,跑车,Incl: JCW,Incl: JCW,Roadster
 TM,Maserati Ghibli,Maserati,Ghibli,2014-2024,,Sedan,3XL,S3,三厢车,,,Ghibli
 TM,Maserati GranTurismo,Maserati,GranTurismo,2008-2026,,Convertible/Coupe,3XL-0,C3,跑车,,,GranTurismo
-TM,Maserati Grecale,Maserati,Grecale,2023-2026,,SUV,YXL,Y2,越野车,,,Grecale
-TM,Maserati Levante,Maserati,Levante,2017-2024,,SUV,YXL,Y2,越野车,,,Levante
+TM,Maserati Grecale,Maserati,Grecale,2023-2026,,SUV,YXL,Y4,越野车,,,Grecale
+TM,Maserati Levante,Maserati,Levante,2017-2024,,SUV,YXL,Y4,越野车,,,Levante
 TM,Maserati MC20,Maserati,MC20,2022-2025,Incl: Cielo,Convertible/Coupe,3L-0,C2,跑车,Incl: Cielo,Incl: Cielo,MC20
 TM,Maserati Quattroporte,Maserati,Quattroporte,2005-2024,,Sedan,3XXL-550,S5,三厢车,,,Quattroporte
 TM,Mazda 2,Mazda,2,2011-2014,,Hatchback,2L,H2,两厢车,,,2
 TM,Mazda 3,Mazda,3,2004-2026,,Sedan,3L,S2,三厢车,Sedan,Sedan,3
-TM,Mazda 5,Mazda,5,2006-2015,,SUV,YM,Y0,越野车,,,5
+TM,Mazda 5,Mazda,5,2006-2015,,SUV,YM,Y2,越野车,,,5
 TM,Mazda 6,Mazda,6,2009-2021,,Sedan,3XL,S3,三厢车,Sedan,Sedan,6
-TM,Mazda CX-3,Mazda,CX-3,2016-2021,,SUV,YM,Y0,越野车,,,CX-3
-TM,Mazda CX-30,Mazda,CX-30,2020-2026,,SUV,YM,Y0,越野车,,,CX-30
-TM,Mazda CX-5,Mazda,CX-5,2013-2025,,SUV,YM,Y0,越野车,,,CX-5
-TM,Mazda CX-5,Mazda,CX-5,2026,,SUV,YL,Y1,越野车,,,CX-5
-TM,Mazda CX-50,Mazda,CX-50,2023-2026,,SUV,YL,Y1,越野车,,,CX-50
-TM,Mazda CX-7,Mazda,CX-7,2007-2012,,SUV,YL,Y1,越野车,,,CX-7
-TM,Mazda CX-70,Mazda,CX-70,2025-2026,,SUV,YXXL-545,Y4,越野车,,,CX-70
-TM,Mazda CX-9,Mazda,CX-9,2007-2023,,SUV,YXXL-545,Y4,越野车,,,CX-9
-TM,Mazda CX-90,Mazda,CX-90,2024-2026,,SUV,YXXL-545,Y4,越野车,,,CX-90
-TM,Mazda MX-30,Mazda,MX-30,2022-2023,,SUV,YM,Y0,越野车,,,MX-30
+TM,Mazda 6,Mazda,6,2004-2007,,Wagon,5XL,V3,两厢车,Wagon,Wagon,6
+TM,Mazda CX-3,Mazda,CX-3,2016-2021,,SUV,YM,Y2,越野车,,,CX-3
+TM,Mazda CX-30,Mazda,CX-30,2020-2026,,SUV,YM,Y2,越野车,,,CX-30
+TM,Mazda CX-5,Mazda,CX-5,2013-2025,,SUV,YM,Y2,越野车,,,CX-5
+TM,Mazda CX-5,Mazda,CX-5,2026,,SUV,YL,Y3,越野车,,,CX-5
+TM,Mazda CX-50,Mazda,CX-50,2023-2026,,SUV,YL,Y3,越野车,,,CX-50
+TM,Mazda CX-7,Mazda,CX-7,2007-2012,,SUV,YL,Y3,越野车,,,CX-7
+TM,Mazda CX-70,Mazda,CX-70,2025-2026,,SUV,YXXL-545,Y6,越野车,,,CX-70
+TM,Mazda CX-9,Mazda,CX-9,2007-2023,,SUV,YXXL-545,Y6,越野车,,,CX-9
+TM,Mazda CX-90,Mazda,CX-90,2024-2026,,SUV,YXXL-545,Y6,越野车,,,CX-90
+TM,Mazda MX-30,Mazda,MX-30,2022-2023,,SUV,YM,Y2,越野车,,,MX-30
 TM,Mazda MX-5,Mazda,MX-5,1990-2026,Incl: RF,Convertible/Coupe,3S-0,C0,跑车,Incl: RF,Incl: RF,MX-5
 TM,Mazda MX-6,Mazda,MX-6,1990-1992,,Coupe,3M-0,C1,跑车,,,MX-6
 TM,Mazda MX-6,Mazda,MX-6,1993-1997,,Coupe,3L-0,C2,跑车,,,MX-6
@@ -583,7 +657,7 @@ TM,Mazda Millenia,Mazda,Millenia,1995-2002,,Sedan,3XL,S3,三厢车,,,Millenia
 TM,Mazda Protege,Mazda,Protege,1990-2003,,Sedan,3L,S2,三厢车,Sedan,Sedan,Protege
 TM,Mazda RX-7,Mazda,RX-7,1979-1995,,Convertible/Coupe,3M-0,C1,跑车,,,RX-7
 TM,Mazda RX-8,Mazda,RX-8,2009-2011,,Coupe,3M-0,C1,跑车,,,RX-8
-TM,Mazda Tribute,Mazda,Tribute,2001-2011,,SUV,YM,Y0,越野车,,,Tribute
+TM,Mazda Tribute,Mazda,Tribute,2001-2011,,SUV,YM,Y2,越野车,,,Tribute
 TM,Mercedes-Benz 190,Mercedes-Benz,190,1984-1993,,Sedan,3L,S2,三厢车,,,190
 TM,Mercedes-Benz A-Class,Mercedes-Benz,A-Class,2019-2022,Incl: AMG,Sedan,3L,S2,三厢车,Incl: AMG,Incl: AMG,A-Class
 TM,Mercedes-Benz C-Class,Mercedes-Benz,C-Class,1994-2021,Incl: PHEV,Sedan,3L,S2,三厢车,Sedan Incl: PHEV,Sdn Inc:PHEV,C-Class
@@ -601,28 +675,30 @@ TM,Mercedes-Benz CLS-Class,Mercedes-Benz,CLS-Class,2019-2023,4dr coupe/AMG,Sedan
 TM,Mercedes-Benz E-Class,Mercedes-Benz,E-Class,1994-2026,Incl: AMG/PHEV,Sedan,3XL,S3,三厢车,Sedan Incl: AMG/PHEV,Sdn Inc:AMG/PHEV,E-Class
 TM,Mercedes-Benz E-Class,Mercedes-Benz,E-Class,1994-2017,Incl: Cabriolet,Convertible/Coupe,3L-0,C2,跑车,Convertible/Coupe Incl: Cabriolet,Conv/Cpe Inc:Cabr,E-Class
 TM,Mercedes-Benz E-Class,Mercedes-Benz,E-Class,2018-2023,,Convertible/Coupe,3XL-0,C3,跑车,Convertible/Coupe,Conv/Cpe,E-Class
-TM,Mercedes-Benz EQB,Mercedes-Benz,EQB,2022-2025,,SUV,YL,Y1,越野车,,,EQB
-TM,Mercedes-Benz G-Class,Mercedes-Benz,G-Class,2003-2018,AMG,SUV,YL,Y1,越野车,AMG,AMG,G-Class
-TM,Mercedes-Benz G-Class,Mercedes-Benz,G-Class,2019-2026,,SUV,YXL,Y2,越野车,,,G-Class
-TM,Mercedes-Benz GL-Class,Mercedes-Benz,GL-Class,2007-2016,Incl: AMG,SUV,YXXL-545,Y4,越野车,Incl: AMG,Incl: AMG,GL-Class
-TM,Mercedes-Benz GLA-Class,Mercedes-Benz,GLA-Class,2015-2026,Incl: AMG,SUV,YM,Y0,越野车,Incl: AMG,Incl: AMG,GLA-Class
-TM,Mercedes-Benz GLB-Class,Mercedes-Benz,GLB-Class,2020-2026,,SUV,YL,Y1,越野车,,,GLB-Class
-TM,Mercedes-Benz GLC-Class,Mercedes-Benz,GLC-Class,2016-2026,Incl: AMG,Crossover/SUV,YL,Y1,越野车,Incl: AMG,Incl: AMG,GLC-Class
-TM,Mercedes-Benz GLE-Class,Mercedes-Benz,GLE-Class,2016-2019,,SUV,YL,Y1,越野车,SUV,SUV,GLE-Class
-TM,Mercedes-Benz GLE-Class,Mercedes-Benz,GLE-Class,2020-2026,,SUV,YXL,Y2,越野车,SUV,SUV,GLE-Class
+TM,Mercedes-Benz E-Class,Mercedes-Benz,E-Class,1994-2026,Incl: All-Terrain,Wagon,5XL,V3,两厢车,Wagon Incl: All-Terrain,Wgn Inc:AllTerr,E-Class
+TM,Mercedes-Benz EQB,Mercedes-Benz,EQB,2022-2025,,SUV,YL,Y3,越野车,,,EQB
+TM,Mercedes-Benz G-Class,Mercedes-Benz,G-Class,2003-2018,AMG,SUV,YL,Y3,越野车,AMG,AMG,G-Class
+TM,Mercedes-Benz G-Class,Mercedes-Benz,G-Class,2019-2026,,SUV,YXL,Y4,越野车,,,G-Class
+TM,Mercedes-Benz GL-Class,Mercedes-Benz,GL-Class,2007-2016,Incl: AMG,SUV,YXXL-545,Y6,越野车,Incl: AMG,Incl: AMG,GL-Class
+TM,Mercedes-Benz GLA-Class,Mercedes-Benz,GLA-Class,2015-2026,Incl: AMG,SUV,YM,Y2,越野车,Incl: AMG,Incl: AMG,GLA-Class
+TM,Mercedes-Benz GLB-Class,Mercedes-Benz,GLB-Class,2020-2026,,SUV,YL,Y3,越野车,,,GLB-Class
+TM,Mercedes-Benz GLC-Class,Mercedes-Benz,GLC-Class,2016-2026,Incl: AMG,Crossover/SUV,YL,Y3,越野车,Incl: AMG,Incl: AMG,GLC-Class
+TM,Mercedes-Benz GLE-Class,Mercedes-Benz,GLE-Class,2016-2019,,SUV,YL,Y3,越野车,SUV,SUV,GLE-Class
+TM,Mercedes-Benz GLE-Class,Mercedes-Benz,GLE-Class,2020-2026,,SUV,YXL,Y4,越野车,SUV,SUV,GLE-Class
 TM,Mercedes-Benz GLE-Class,Mercedes-Benz,GLE-Class,2016-2026,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,GLE-Class
-TM,Mercedes-Benz GLK-Class,Mercedes-Benz,GLK-Class,2011-2015,,SUV,YM,Y0,越野车,,,GLK-Class
-TM,Mercedes-Benz GLS-Class,Mercedes-Benz,GLS-Class,2017-2026,AMG,SUV,YXXL-545,Y4,越野车,AMG,AMG,GLS-Class
-TM,Mercedes-Benz M-Class,Mercedes-Benz,M-Class,1998-2001,,SUV,YM,Y0,越野车,,,M-Class
-TM,Mercedes-Benz M-Class,Mercedes-Benz,M-Class,2002-2015,Incl: AMG/Diesel,SUV,YL,Y1,越野车,Incl: AMG/Diesel,Inc:AMG,M-Class
-TM,Mercedes-Benz ML-Class,Mercedes-Benz,ML-Class,1998-2001,,SUV,YM,Y0,越野车,,,ML-Class
-TM,Mercedes-Benz ML-Class,Mercedes-Benz,ML-Class,2002-2015,,SUV,YL,Y1,越野车,,,ML-Class
+TM,Mercedes-Benz GLK-Class,Mercedes-Benz,GLK-Class,2011-2015,,SUV,YM,Y2,越野车,,,GLK-Class
+TM,Mercedes-Benz GLS-Class,Mercedes-Benz,GLS-Class,2017-2026,AMG,SUV,YXXL-545,Y6,越野车,AMG,AMG,GLS-Class
+TM,Mercedes-Benz M-Class,Mercedes-Benz,M-Class,1998-2001,,SUV,YM,Y2,越野车,,,M-Class
+TM,Mercedes-Benz M-Class,Mercedes-Benz,M-Class,2002-2015,Incl: AMG/Diesel,SUV,YL,Y3,越野车,Incl: AMG/Diesel,Inc:AMG,M-Class
+TM,Mercedes-Benz ML-Class,Mercedes-Benz,ML-Class,1998-2001,,SUV,YM,Y2,越野车,,,ML-Class
+TM,Mercedes-Benz ML-Class,Mercedes-Benz,ML-Class,2002-2015,,SUV,YL,Y3,越野车,,,ML-Class
 TM,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2000-2026,Incl: AMG/LWB/Maybach/S 550e PHEV/S 560e PHEV,Sedan,3XXL-550,S5,三厢车,Sedan Incl: AMG/LWB/Maybach/S 550e PHEV/S 560e PHEV,Sedan Incl: AMG/LWB/Maybach/S 550e PHEV/S 560e PHEV,S-Class
 TM,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2015,PHEV,Coupe,3XL-0,C3,跑车,Coupe PHEV,Coupe PHEV,S-Class
 TM,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2015-2017,,Coupe,3XXL-520-0,C4,跑车,Coupe,Coupe,S-Class
 TM,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2018,,Convertible/Coupe,3XL-0,C3,跑车,Convertible/Coupe,Conv/Cpe,S-Class
 TM,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2019,,Convertible/Coupe,3XXL-520-0,C4,跑车,Convertible/Coupe,Conv/Cpe,S-Class
 TM,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,2020,,Convertible/Coupe,3XL-0,C3,跑车,Convertible/Coupe,Conv/Cpe,S-Class
+TM,Mercedes-Benz S-Class,Mercedes-Benz,S-Class,1994-1999,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,S-Class
 TM,Mercedes-Benz SL-Class,Mercedes-Benz,SL-Class,1954-1971,,Convertible/Coupe,3M-0,C1,跑车,Convertible/Coupe,Conv/Cpe,SL-Class
 TM,Mercedes-Benz SL-Class,Mercedes-Benz,SL-Class,1957-1989,300SL/560SL,Convertible,3L-0,C2,跑车,Convertible 300SL/560SL,Conv 300/560SL,SL-Class
 TM,Mercedes-Benz SL-Class,Mercedes-Benz,SL-Class,1972-1989,,Convertible,3L-0,C2,跑车,Convertible,Convertible,SL-Class
@@ -634,13 +710,27 @@ TM,Mercedes-Benz SLC-Class,Mercedes-Benz,SLC-Class,2017-2020,Incl: AMG,Convertib
 TM,Mercedes-Benz SLK-Class,Mercedes-Benz,SLK-Class,1998-2016,Incl: AMG,Convertible,3S-0,C0,跑车,Incl: AMG,Incl: AMG,SLK-Class
 TM,Mercury Cougar,Mercury,Cougar,1983,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Cougar
 TM,Mercury Cougar,Mercury,Cougar,1984-1997,,Coupe,3XXL-520-0,C4,跑车,Coupe,Coupe,Cougar
+TM,Mercury Cougar,Mercury,Cougar,1980-1982,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Cougar
+TM,Mercury Cougar,Mercury,Cougar,1974-1979,Incl: XR-7,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan Incl: XR-7,Cpe/Sdn Inc:XR-7,Cougar
+TM,Mercury Grand Marquis,Mercury,Grand Marquis,1975-1978,,Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Grand Marquis
+TM,Mercury Grand Marquis,Mercury,Grand Marquis,1979-2011,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Grand Marquis
 TM,Mercury Marauder,Mercury,Marauder,2003-2004,,Sedan,3XXL-550,S5,三厢车,,,Marauder
-TM,Mercury Mariner,Mercury,Mariner,2005-2011,,SUV,YM,Y0,越野车,,,Mariner
+TM,Mercury Mariner,Mercury,Mariner,2005-2011,,SUV,YM,Y2,越野车,,,Mariner
+TM,Mercury Marquis,Mercury,Marquis,1983-1986,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Marquis
+TM,Mercury Marquis,Mercury,Marquis,1967-1970,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Marquis
+TM,Mercury Marquis,Mercury,Marquis,1971-1972,,Coupe/Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Marquis
+TM,Mercury Marquis,Mercury,Marquis,1973,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Marquis
+TM,Mercury Marquis,Mercury,Marquis,1974-1978,,Coupe/Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Marquis
+TM,Mercury Marquis,Mercury,Marquis,1979-1982,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Marquis
 TM,Mercury Milan,Mercury,Milan,2006-2011,,Sedan,3XL,S3,三厢车,,,Milan
-TM,Mercury Mountaineer,Mercury,Mountaineer,1997-2005,,SUV,YL,Y1,越野车,,,Mountaineer
-TM,Mercury Mountaineer,Mercury,Mountaineer,2006-2010,,SUV,YXL,Y2,越野车,,,Mountaineer
+TM,Mercury Monterey,Mercury,Monterey,1952-1956,,Hatchback/Wagon,5XL,V3,两厢车,Hatchback/Wagon,Hbk/Wgn,Monterey
+TM,Mercury Monterey,Mercury,Monterey,2004-2007,,MPV,5XL,V3,两厢车,MPV,MPV,Monterey
+TM,Mercury Monterey,Mercury,Monterey,1954-1974,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Monterey
+TM,Mercury Mountaineer,Mercury,Mountaineer,1997-2005,,SUV,YL,Y3,越野车,,,Mountaineer
+TM,Mercury Mountaineer,Mercury,Mountaineer,2006-2010,,SUV,YXL,Y4,越野车,,,Mountaineer
 TM,Mercury Sable,Mercury,Sable,1986-1995,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Sable
 TM,Mercury Sable,Mercury,Sable,1996-2009,,Sedan,3XXL-550,S5,三厢车,Sedan,Sedan,Sable
+TM,Mercury Sable,Mercury,Sable,1986-2005,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Sable
 TM,Mercury Tracer,Mercury,Tracer,1990-1999,,Sedan,3L,S2,三厢车,Sedan,Sedan,Tracer
 TM,Mercury Tracer,Mercury,Tracer,1988-1989,,Sedan,3S-0,C0,跑车,Sedan,Sedan,Tracer
 TM,Mitsubishi 3000GT,Mitsubishi,3000GT,1991,,Coupe,3M-0,C1,跑车,Coupe,Coupe,3000GT
@@ -648,19 +738,19 @@ TM,Mitsubishi 3000GT,Mitsubishi,3000GT,1992-1999,,Convertible/Coupe,3L-0,C2,跑�
 TM,Mitsubishi Diamante,Mitsubishi,Diamante,1992-2004,,Sedan,3XL,S3,三厢车,,,Diamante
 TM,Mitsubishi Eclipse,Mitsubishi,Eclipse,1990-2005,Incl: Spyder,Convertible/Coupe,3M-0,C1,跑车,Convertible/Coupe Incl: Spyder,Conv/Cpe Inc:Spydr,Eclipse
 TM,Mitsubishi Eclipse,Mitsubishi,Eclipse,2006-2012,Incl: Spyder,Convertible/Coupe,3L-0,C2,跑车,Convertible/Coupe Incl: Spyder,Conv/Cpe Inc:Spydr,Eclipse
-TM,Mitsubishi Eclipse Cross,Mitsubishi,Eclipse Cross,2018-2026,,Crossover,YM,Y0,越野车,,,Eclipse Cross
-TM,Mitsubishi Endeavor,Mitsubishi,Endeavor,2004-2011,,SUV,YL,Y1,越野车,,,Endeavor
+TM,Mitsubishi Eclipse Cross,Mitsubishi,Eclipse Cross,2018-2026,,Crossover,YM,Y2,越野车,,,Eclipse Cross
+TM,Mitsubishi Endeavor,Mitsubishi,Endeavor,2004-2011,,SUV,YL,Y3,越野车,,,Endeavor
 TM,Mitsubishi Galant,Mitsubishi,Galant,1989-1993,,Sedan,3L,S2,三厢车,,,Galant
 TM,Mitsubishi Galant,Mitsubishi,Galant,1994-2012,,Sedan,3XL,S3,三厢车,,,Galant
 TM,Mitsubishi Lancer,Mitsubishi,Lancer,2002-2017,,Sedan,3L,S2,三厢车,Sedan,Sedan,Lancer
 TM,Mitsubishi Mirage,Mitsubishi,Mirage,2017-2024,,Sedan,3L,S2,三厢车,Sedan,Sedan,Mirage
 TM,Mitsubishi Mirage,Mitsubishi,Mirage,2014-2024,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,Mirage
-TM,Mitsubishi Montero,Mitsubishi,Montero,1989-1990,4dr LS LWB/4dr LWB,SUV,YM,Y0,越野车,4dr LS LWB/4dr LWB,4dr LS LWB/4dr LWB,Montero
-TM,Mitsubishi Montero,Mitsubishi,Montero,1991-2006,Incl: 4dr LWB,SUV,YL,Y1,越野车,Incl: 4dr LWB,Incl: 4dr LWB,Montero
-TM,Mitsubishi Montero Sport,Mitsubishi,Montero Sport,1997-2004,,SUV,YM,Y0,越野车,,,Montero Sport
-TM,Mitsubishi Outlander,Mitsubishi,Outlander,2003-2006,,SUV,YM,Y0,越野车,,,Outlander
-TM,Mitsubishi Outlander,Mitsubishi,Outlander,2007-2026,,SUV,YL,Y1,越野车,,,Outlander
-TM,Mitsubishi Outlander Sport,Mitsubishi,Outlander Sport,2011-2025,,SUV,YM,Y0,越野车,,,Outlander Sport
+TM,Mitsubishi Montero,Mitsubishi,Montero,1989-1990,4dr LS LWB/4dr LWB,SUV,YM,Y2,越野车,4dr LS LWB/4dr LWB,4dr LS LWB/4dr LWB,Montero
+TM,Mitsubishi Montero,Mitsubishi,Montero,1991-2006,Incl: 4dr LWB,SUV,YL,Y3,越野车,Incl: 4dr LWB,Incl: 4dr LWB,Montero
+TM,Mitsubishi Montero Sport,Mitsubishi,Montero Sport,1997-2004,,SUV,YM,Y2,越野车,,,Montero Sport
+TM,Mitsubishi Outlander,Mitsubishi,Outlander,2003-2006,,SUV,YM,Y2,越野车,,,Outlander
+TM,Mitsubishi Outlander,Mitsubishi,Outlander,2007-2026,,SUV,YL,Y3,越野车,,,Outlander
+TM,Mitsubishi Outlander Sport,Mitsubishi,Outlander Sport,2011-2025,,SUV,YM,Y2,越野车,,,Outlander Sport
 TM,Mitsubishi i-MiEV,Mitsubishi,i-MiEV,2012-2017,,Hatchback,2L,H2,两厢车,,,i-MiEV
 TM,Nissan 240SX,Nissan,240SX,1989-1998,,Convertible/Coupe,3M-0,C1,跑车,Convertible/Coupe,Conv/Cpe,240SX
 TM,Nissan 300ZX,Nissan,300ZX,1984-1985,,Coupe,3M-0,C1,跑车,Coupe,Coupe,300ZX
@@ -671,49 +761,71 @@ TM,Nissan 370Z,Nissan,370Z,2009-2020,Incl: NISMO,Convertible/Coupe,3M-0,C1,跑�
 TM,Nissan Altima,Nissan,Altima,1993-2001,,Sedan,3L,S2,三厢车,Sedan,Sedan,Altima
 TM,Nissan Altima,Nissan,Altima,2002-2026,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Altima
 TM,Nissan Altima,Nissan,Altima,2008-2013,,Coupe,3L-0,C2,跑车,Coupe,Coupe,Altima
-TM,Nissan Ariya,Nissan,Ariya,2023-2026,,SUV,YL,Y1,越野车,,,Ariya
-TM,Nissan Armada,Nissan,Armada,2004-2026,Incl: NISMO/PRO-4X,SUV,YXXL-545,Y4,越野车,Incl: NISMO/PRO-4X,Inc:NIS/PRO4X,Armada
+TM,Nissan Ariya,Nissan,Ariya,2023-2026,,SUV,YL,Y3,越野车,,,Ariya
+TM,Nissan Armada,Nissan,Armada,2004-2026,Incl: NISMO/PRO-4X,SUV,YXXL-545,Y6,越野车,Incl: NISMO/PRO-4X,Inc:NIS/PRO4X,Armada
 TM,Nissan Cube,Nissan,Cube,2009-2014,,Wagon,2L,H2,两厢车,,,Cube
 TM,Nissan GT-R,Nissan,GT-R,2009-2024,Incl: NISMO,Coupe,3L-0,C2,跑车,Incl: NISMO,Incl: NISMO,GT-R
-TM,Nissan Juke,Nissan,Juke,2011-2017,,Crossover,YM,Y0,越野车,,,Juke
-TM,Nissan Kicks,Nissan,Kicks,2018-2026,,SUV,YM,Y0,越野车,,,Kicks
-TM,Nissan Leaf,Nissan,Leaf,2026,,Crossover,YM,Y0,越野车,Crossover,Crossover,Leaf
+TM,Nissan Juke,Nissan,Juke,2011-2017,,Crossover,YM,Y2,越野车,,,Juke
+TM,Nissan Kicks,Nissan,Kicks,2018-2026,,SUV,YM,Y2,越野车,,,Kicks
+TM,Nissan Leaf,Nissan,Leaf,2026,,Crossover,YM,Y2,越野车,Crossover,Crossover,Leaf
 TM,Nissan Maxima,Nissan,Maxima,1981-1984,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Maxima
 TM,Nissan Maxima,Nissan,Maxima,1985-1988,,Sedan,3L,S2,三厢车,Sedan,Sedan,Maxima
 TM,Nissan Maxima,Nissan,Maxima,1989-2023,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Maxima
-TM,Nissan Murano,Nissan,Murano,2003-2014,,SUV,YL,Y1,越野车,,,Murano
-TM,Nissan Murano,Nissan,Murano,2015-2026,,SUV,YXL,Y2,越野车,,,Murano
-TM,Nissan Pathfinder,Nissan,Pathfinder,1987-2004,Incl: Narrow-body,SUV,YM,Y0,越野车,Incl: Narrow-body,Incl: Narrow-body,Pathfinder
-TM,Nissan Pathfinder,Nissan,Pathfinder,1988-1995,Wide-body,SUV,YL,Y1,越野车,Wide-body,Wide-body,Pathfinder
-TM,Nissan Pathfinder,Nissan,Pathfinder,2005-2011,,SUV,YL,Y1,越野车,,,Pathfinder
-TM,Nissan Pathfinder,Nissan,Pathfinder,2012,,SUV,YXL,Y2,越野车,,,Pathfinder
-TM,Nissan Pathfinder,Nissan,Pathfinder,2013-2026,Incl: Rock Creek,SUV,YXXL-545,Y4,越野车,Incl: Rock Creek,Inc:RockCrk,Pathfinder
-TM,Nissan Rogue,Nissan,Rogue,2008-2026,Incl: PHEV,SUV,YL,Y1,越野车,Incl: PHEV,Incl: PHEV,Rogue
-TM,Nissan Rogue Sport,Nissan,Rogue Sport,2017-2022,,SUV,YM,Y0,越野车,,,Rogue Sport
+TM,Nissan Murano,Nissan,Murano,2003-2014,,SUV,YL,Y3,越野车,,,Murano
+TM,Nissan Murano,Nissan,Murano,2015-2026,,SUV,YXL,Y4,越野车,,,Murano
+TM,Nissan Pathfinder,Nissan,Pathfinder,1987-2004,Incl: Narrow-body,SUV,YM,Y2,越野车,Incl: Narrow-body,Incl: Narrow-body,Pathfinder
+TM,Nissan Pathfinder,Nissan,Pathfinder,1988-1995,Wide-body,SUV,YL,Y3,越野车,Wide-body,Wide-body,Pathfinder
+TM,Nissan Pathfinder,Nissan,Pathfinder,2005-2011,,SUV,YL,Y3,越野车,,,Pathfinder
+TM,Nissan Pathfinder,Nissan,Pathfinder,2012,,SUV,YXL,Y4,越野车,,,Pathfinder
+TM,Nissan Pathfinder,Nissan,Pathfinder,2013-2026,Incl: Rock Creek,SUV,YXXL-545,Y6,越野车,Incl: Rock Creek,Inc:RockCrk,Pathfinder
+TM,Nissan Rogue,Nissan,Rogue,2008-2026,Incl: PHEV,SUV,YL,Y3,越野车,Incl: PHEV,Incl: PHEV,Rogue
+TM,Nissan Rogue Sport,Nissan,Rogue Sport,2017-2022,,SUV,YM,Y2,越野车,,,Rogue Sport
 TM,Nissan Sentra,Nissan,Sentra,1982-2026,Incl: 2dr/4dr,Sedan,3L,S2,三厢车,Sedan Incl: 2dr/4dr,Sdn Inc:2dr/4dr,Sentra
 TM,Nissan Sentra,Nissan,Sentra,1982-1994,,Coupe,3M-0,C1,跑车,Coupe,Coupe,Sentra
 TM,Nissan Versa,Nissan,Versa,2007-2026,,Sedan,3L,S2,三厢车,Sedan,Sedan,Versa
-TM,Nissan Xterra,Nissan,Xterra,2000-2015,,SUV,YM,Y0,越野车,,,Xterra
+TM,Nissan Xterra,Nissan,Xterra,2000-2015,,SUV,YM,Y2,越野车,,,Xterra
 TM,Nissan Z,Nissan,Z,2023-2026,Incl: NISMO,Coupe,3M-0,C1,跑车,Incl: NISMO,Incl: NISMO,Z
+TM,Oldsmobile 88,Oldsmobile,88,1957-1958,,Hatchback,5XL,V3,两厢车,Hatchback,Hatchback,88
+TM,Oldsmobile 88,Oldsmobile,88,1951-1971,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,88
+TM,Oldsmobile 88,Oldsmobile,88,1951-1972,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,88
+TM,Oldsmobile 88,Oldsmobile,88,1972-1976,,Coupe,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,88
+TM,Oldsmobile 88,Oldsmobile,88,1973-1976,,Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,88
+TM,Oldsmobile 88,Oldsmobile,88,1977-1985,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,88
 TM,Oldsmobile Achieva,Oldsmobile,Achieva,1992-1998,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Achieva
 TM,Oldsmobile Achieva,Oldsmobile,Achieva,1992-1998,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Achieva
 TM,Oldsmobile Alero,Oldsmobile,Alero,1999-2004,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Alero
 TM,Oldsmobile Alero,Oldsmobile,Alero,1999-2004,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Alero
 TM,Oldsmobile Aurora,Oldsmobile,Aurora,1995-2003,,Sedan,3XXL-550,S5,三厢车,,,Aurora
-TM,Oldsmobile Bravada,Oldsmobile,Bravada,1991-2001,,SUV,YM,Y0,越野车,,,Bravada
-TM,Oldsmobile Bravada,Oldsmobile,Bravada,2002-2004,,SUV,YXL,Y2,越野车,,,Bravada
+TM,Oldsmobile Bravada,Oldsmobile,Bravada,1991-2001,,SUV,YM,Y2,越野车,,,Bravada
+TM,Oldsmobile Bravada,Oldsmobile,Bravada,2002-2004,,SUV,YXL,Y4,越野车,,,Bravada
 TM,Oldsmobile Cutlass,Oldsmobile,Cutlass,1997-1999,FWD,Sedan,3XL,S3,三厢车,Sedan FWD,Sedan FWD,Cutlass
+TM,Oldsmobile Cutlass,Oldsmobile,Cutlass,1961-1996,Incl: Ciera/Cutlass/F-85,Wagon,5XL,V3,两厢车,Wagon Incl: Ciera/Cutlass/F-85,Wgn Inc:Ciera/F85,Cutlass
+TM,Oldsmobile Cutlass,Oldsmobile,Cutlass,1964-1967,Incl: F-85 Cutlass,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe Incl: F-85 Cutlass,Conv/Cpe Inc:F-85,Cutlass
+TM,Oldsmobile Cutlass,Oldsmobile,Cutlass,1965-1977,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,Cutlass
+TM,Oldsmobile Cutlass,Oldsmobile,Cutlass,1969-1977,,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe,Conv/Cpe,Cutlass
 TM,Oldsmobile Intrigue,Oldsmobile,Intrigue,1998-2002,,Sedan,3XL,S3,三厢车,,,Intrigue
 TM,Plymouth Acclaim,Plymouth,Acclaim,1989-1995,,Sedan,3L,S2,三厢车,,,Acclaim
 TM,Plymouth Breeze,Plymouth,Breeze,1996-2000,,Sedan,3XL,S3,三厢车,,,Breeze
+TM,Plymouth Fury,Plymouth,Fury,1956-1960,Incl: 2dr Hardtop V-800/Belvedere Fury/Sport Fury,Convertible/Coupe/Hardtop,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Hardtop Incl: 2dr Hardtop V-800/Belvedere Fury/Sport Fury,Conv/Cpe/HTop,Fury
+TM,Plymouth Fury,Plymouth,Fury,1959-1961,Incl: 4dr Hardtop V-800,Convertible/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Sedan Incl: 4dr Hardtop V-800,Conv/Sdn Inc:4HT,Fury
+TM,Plymouth Fury,Plymouth,Fury,1961,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Fury
+TM,Plymouth Fury,Plymouth,Fury,1963-1978,Incl: Fast Top/Hardtop/Sport Fury,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan Incl: Fast Top/Hardtop/Sport Fury,Convertible/Coupe/Sedan Incl: Fast Top/Hardtop/Sport Fury,Fury
 TM,Plymouth Laser,Plymouth,Laser,1990-1994,,Coupe,3M-0,C1,跑车,,,Laser
 TM,Plymouth Neon,Plymouth,Neon,1995-2001,,Sedan,3L,S2,三厢车,Sedan,Sedan,Neon
 TM,Plymouth Neon,Plymouth,Neon,1995-1999,,Coupe,3M-0,C1,跑车,Coupe,Coupe,Neon
+TM,Plymouth Road Runner,Plymouth,Road Runner,1971-1975,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",,,Road Runner
+TM,Plymouth Valiant,Plymouth,Valiant,1964-1966,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Valiant
 TM,Polestar 1,Polestar,1,2020-2021,,Coupe,3L-0,C2,跑车,,,1
-TM,Polestar 3,Polestar,3,2025-2026,,SUV,YXL,Y2,越野车,,,3
-TM,Polestar 4,Polestar,4,2026,,SUV,YL,Y1,越野车,,,4
+TM,Polestar 3,Polestar,3,2025-2026,,SUV,YXL,Y4,越野车,,,3
+TM,Polestar 4,Polestar,4,2026,,SUV,YL,Y3,越野车,,,4
 TM,Pontiac Astre,Pontiac,Astre,1975-1977,,Sedan,3L,S2,三厢车,Sedan,Sedan,Astre
-TM,Pontiac Aztec,Pontiac,Aztec,2001-2005,,Crossover,YM,Y0,越野车,,,Aztec
+TM,Pontiac Aztec,Pontiac,Aztec,2001-2005,,Crossover,YM,Y2,越野车,,,Aztec
+TM,Pontiac Bonneville,Pontiac,Bonneville,1957-1969,,Convertible/Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Bonneville
+TM,Pontiac Bonneville,Pontiac,Bonneville,1970,,Convertible/Coupe/Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe/Sedan,Conv/Cpe/Sdn,Bonneville
+TM,Pontiac Bonneville,Pontiac,Bonneville,1971,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Bonneville
+TM,Pontiac Bonneville,Pontiac,Bonneville,1971-1976,,Convertible,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible,Convertible,Bonneville
+TM,Pontiac Bonneville,Pontiac,Bonneville,1972-1976,,Coupe/Sedan,4XXL-0,L4,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Bonneville
+TM,Pontiac Bonneville,Pontiac,Bonneville,1977-1981,,Coupe/Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe/Sedan,Cpe/Sdn,Bonneville
 TM,Pontiac Firebird,Pontiac,Firebird,1967-2002,Incl: Trans Am,Convertible/Coupe,3XL-0,C3,跑车,Incl: Trans Am,Incl: Trans Am,Firebird
 TM,Pontiac G3,Pontiac,G3,2009,,Hatchback,2L,H2,两厢车,,,G3
 TM,Pontiac G5,Pontiac,G5,2007-2009,,Coupe,3L-0,C2,跑车,,,G5
@@ -721,18 +833,27 @@ TM,Pontiac G6,Pontiac,G6,2005-2010,,Sedan,3XL,S3,三厢车,Sedan,Sedan,G6
 TM,Pontiac G6,Pontiac,G6,2006-2009,,Convertible,3XL-0,C3,跑车,Convertible,Convertible,G6
 TM,Pontiac G8,Pontiac,G8,2008-2009,,Fastback,3XL,S3,三厢车,,,G8
 TM,Pontiac GTO,Pontiac,GTO,2004-2006,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,GTO
+TM,Pontiac GTO,Pontiac,GTO,1964-1967,,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe,Conv/Cpe,GTO
+TM,Pontiac GTO,Pontiac,GTO,1970-1972,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,GTO
 TM,Pontiac Grand Am,Pontiac,Grand Am,1992-1998,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Grand Am
 TM,Pontiac Grand Am,Pontiac,Grand Am,1999-2005,,Sedan,3L,S2,三厢车,Sedan,Sedan,Grand Am
 TM,Pontiac Grand Am,Pontiac,Grand Am,1992-1998,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Grand Am
 TM,Pontiac Grand Am,Pontiac,Grand Am,1999-2005,,Coupe,3L-0,C2,跑车,Coupe,Coupe,Grand Am
 TM,Pontiac Grand Prix,Pontiac,Grand Prix,1997-2008,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Grand Prix
 TM,Pontiac Grand Prix,Pontiac,Grand Prix,1988-2002,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Grand Prix
+TM,Pontiac Grand Prix,Pontiac,Grand Prix,1963-1977,,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe,Coupe,Grand Prix
 TM,Pontiac LeMans,Pontiac,LeMans,1988-1993,,Sedan,3L,S2,三厢车,Sedan,Sedan,LeMans
 TM,Pontiac LeMans,Pontiac,LeMans,1993,,Coupe,3M-0,C1,跑车,Coupe,Coupe,LeMans
+TM,Pontiac LeMans,Pontiac,LeMans,1963-1967,Incl: LeMans/Safari/Tempest,Hatchback/Wagon,5XL,V3,两厢车,Hatchback/Wagon Incl: LeMans/Safari/Tempest,Hbk/Wgn Inc:Saf/T,LeMans
+TM,Pontiac LeMans,Pontiac,LeMans,1977-1980,,Hatchback/Wagon,5XL,V3,两厢车,Hatchback/Wagon,Hbk/Wgn,LeMans
+TM,Pontiac LeMans,Pontiac,LeMans,1964-1967,,Convertible/Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible/Coupe,Conv/Cpe,LeMans
+TM,Pontiac LeMans,Pontiac,LeMans,1964-1977,,Sedan,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Sedan,Sedan,LeMans
+TM,Pontiac LeMans,Pontiac,LeMans,1970-1972,,Convertible,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Convertible,Convertible,LeMans
+TM,Pontiac LeMans,Pontiac,LeMans,1971-1977,Incl: Can Am,Coupe,4XL-0,L3,"越野车, 三厢车, 跑车, 两厢车, 皮卡",Coupe Incl: Can Am,Cpe Inc:CanAm,LeMans
 TM,Pontiac Solstice,Pontiac,Solstice,2006-2009,,Convertible/Coupe,3S-0,C0,跑车,,,Solstice
 TM,Pontiac Sunfire,Pontiac,Sunfire,1995-2005,,Sedan,3L,S2,三厢车,Sedan,Sedan,Sunfire
 TM,Pontiac Sunfire,Pontiac,Sunfire,1995-2005,,Convertible/Coupe,3L-0,C2,跑车,Convertible/Coupe,Conv/Cpe,Sunfire
-TM,Pontiac Torrent,Pontiac,Torrent,2006-2009,,SUV,YL,Y1,越野车,,,Torrent
+TM,Pontiac Torrent,Pontiac,Torrent,2006-2009,,SUV,YL,Y3,越野车,,,Torrent
 TM,Porsche 911,Porsche,911,1965-2024,Incl: Dakar,Coupe,3M-0,C1,跑车,Coupe Incl: Dakar,Coupe Incl: Dakar,911
 TM,Porsche 911,Porsche,911,1976-2012,GT2/GT2 RS/GT3/GT3 RS/Turbo,Coupe,3M-0,C1,跑车,Coupe GT2/GT2 RS/GT3/GT3 RS/Turbo,Cpe GT2/GT3/Turbo,911
 TM,Porsche 911,Porsche,911,1983-2016,,Convertible/Targa,3M-0,C1,跑车,Convertible/Targa,Convertible/Targa,911
@@ -747,88 +868,98 @@ TM,Porsche 911,Porsche,911,2025-2026,,Coupe,3L-0,C2,跑车,Coupe,Coupe,911
 TM,Porsche 912,Porsche,912,1965-1969,,Coupe,3S-0,C0,跑车,,,912
 TM,Porsche 912,Porsche,912,1976,912E,Coupe,3M-0,C1,跑车,912E,912E,912
 TM,Porsche Boxster,Porsche,Boxster,1997-2025,,Convertible/Coupe,3M-0,C1,跑车,,,Boxster
-TM,Porsche Cayenne,Porsche,Cayenne,2003-2010,,SUV,YL,Y1,越野车,SUV,SUV,Cayenne
-TM,Porsche Cayenne,Porsche,Cayenne,2011-2026,,SUV,YXL,Y2,越野车,SUV,SUV,Cayenne
+TM,Porsche Cayenne,Porsche,Cayenne,2003-2010,,SUV,YL,Y3,越野车,SUV,SUV,Cayenne
+TM,Porsche Cayenne,Porsche,Cayenne,2011-2026,,SUV,YXL,Y4,越野车,SUV,SUV,Cayenne
 TM,Porsche Cayenne,Porsche,Cayenne,2019-2026,,Coupe,3XL-0,C3,跑车,Coupe,Coupe,Cayenne
 TM,Porsche Cayman,Porsche,Cayman,2009-2025,,Coupe,3M-0,C1,跑车,,,Cayman
-TM,Porsche Macan,Porsche,Macan,2015-2026,,SUV,YL,Y1,越野车,,,Macan
+TM,Porsche Macan,Porsche,Macan,2015-2026,,SUV,YL,Y3,越野车,,,Macan
 TM,Porsche Panamera,Porsche,Panamera,2014-2023,Executive LWB,Liftback,3XXL-550,S5,三厢车,Liftback Executive LWB,Lftbk Exec LWB,Panamera
 TM,Porsche Panamera,Porsche,Panamera,2017-2023,,Liftback,3XL,S3,三厢车,Liftback,Liftback,Panamera
 TM,Porsche Panamera,Porsche,Panamera,2024-2026,,Liftback,3XXL-550,S5,三厢车,Liftback,Liftback,Panamera
+TM,Porsche Panamera,Porsche,Panamera,2010-2023,Incl: Sport Turismo,Hatchback/Wagon,5XL,V3,两厢车,Hatchback/Wagon Incl: Sport Turismo,Hbk/Wgn Inc:SptTur,Panamera
 TM,Porsche Taycan,Porsche,Taycan,2020-2026,Incl: Turbo GT,Sedan,3XL,S3,三厢车,Sedan Incl: Turbo GT,Sdn Inc:TurboGT,Taycan
-TM,Rivian R1S,Rivian,R1S,2022-2026,,SUV,YXXL-545,Y4,越野车,,,R1S
+TM,Porsche Taycan,Porsche,Taycan,2021-2026,Incl: Cross Turismo/Sport Turismo,Wagon,5XL,V3,两厢车,Wagon Incl: Cross Turismo/Sport Turismo,Wgn Inc:Cross/Spt,Taycan
+TM,Rivian R1S,Rivian,R1S,2022-2026,,SUV,YXXL-545,Y6,越野车,,,R1S
 TM,Saab 9-3,Saab,9-3,1999-2011,,Sedan,3L,S2,三厢车,Sedan,Sedan,9-3
 TM,Saab 9-3,Saab,9-3,1999-2011,,Convertible,3L-0,C2,跑车,Convertible,Convertible,9-3
 TM,Saab 9-5,Saab,9-5,1999-2011,,Sedan,3XL,S3,三厢车,Sedan,Sedan,9-5
+TM,Saab 9-5,Saab,9-5,1999-2009,,Wagon,5XL,V3,两厢车,Wagon,Wagon,9-5
 TM,Saab 900,Saab,900,1986-1998,,Convertible,3L-0,C2,跑车,Convertible,Convertible,900
 TM,Saturn Aura,Saturn,Aura,2007-2009,,Sedan,3XL,S3,三厢车,,,Aura
 TM,Saturn Ion,Saturn,Ion,2003-2007,,Sedan,3L,S2,三厢车,Sedan,Sedan,Ion
 TM,Saturn Ion,Saturn,Ion,2003-2007,,Coupe,3L-0,C2,跑车,Coupe,Coupe,Ion
 TM,Saturn L-Series,Saturn,L-Series,2000-2005,,Sedan,3XL,S3,三厢车,Sedan,Sedan,L-Series
-TM,Saturn Outlook,Saturn,Outlook,2007-2010,,SUV,YXXL-545,Y4,越野车,,,Outlook
+TM,Saturn L-Series,Saturn,L-Series,2000-2004,,Wagon,5XL,V3,两厢车,Wagon,Wagon,L-Series
+TM,Saturn Outlook,Saturn,Outlook,2007-2010,,SUV,YXXL-545,Y6,越野车,,,Outlook
 TM,Saturn S-Series,Saturn,S-Series,1991-2002,,Sedan,3L,S2,三厢车,Sedan,Sedan,S-Series
 TM,Saturn S-Series,Saturn,S-Series,1991-1996,,Coupe,3M-0,C1,跑车,Coupe,Coupe,S-Series
 TM,Saturn S-Series,Saturn,S-Series,1997-2002,,Coupe,3L-0,C2,跑车,Coupe,Coupe,S-Series
 TM,Saturn Sky,Saturn,Sky,2007-2010,,Convertible,3S-0,C0,跑车,,,Sky
-TM,Saturn Vue,Saturn,Vue,2002-2010,,SUV,YM,Y0,越野车,,,Vue
+TM,Saturn Vue,Saturn,Vue,2002-2010,,SUV,YM,Y2,越野车,,,Vue
 TM,Scion FR-S,Scion,FR-S,2013-2016,,Coupe,3M-0,C1,跑车,,,FR-S
 TM,Scion XA,Scion,XA,2004-2006,,Hatchback,2L,H2,两厢车,,,XA
 TM,Scion iA,Scion,iA,2016,,Sedan,3L,S2,三厢车,,,iA
 TM,Scion tC,Scion,tC,2005-2016,,Coupe,3M-0,C1,跑车,,,tC
 TM,Scion xB,Scion,xB,2004-2006,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,xB
 TM,Scion xD,Scion,xD,2008-2014,,Hatchback,2L,H2,两厢车,,,xD
-TM,Subaru Ascent,Subaru,Ascent,2019-2026,,SUV,YXL,Y2,越野车,,,Ascent
+TM,Subaru Ascent,Subaru,Ascent,2019-2026,,SUV,YXL,Y4,越野车,,,Ascent
 TM,Subaru BRZ,Subaru,BRZ,2013-2020,,Coupe,3M-0,C1,跑车,,,BRZ
-TM,Subaru Crosstrek,Subaru,Crosstrek,2013-2026,Incl: Wilderness,Crossover,YM,Y0,越野车,Incl: Wilderness,Inc:Wild,Crosstrek
-TM,Subaru Forester,Subaru,Forester,1998-2021,,SUV,YM,Y0,越野车,,,Forester
-TM,Subaru Forester,Subaru,Forester,2022-2026,Incl: Wilderness,SUV,YL,Y1,越野车,Incl: Wilderness,Incl: Wilderness,Forester
+TM,Subaru Crosstrek,Subaru,Crosstrek,2013-2026,Incl: Wilderness,Crossover,YM,Y2,越野车,Incl: Wilderness,Inc:Wild,Crosstrek
+TM,Subaru Forester,Subaru,Forester,1998-2021,,SUV,YM,Y2,越野车,,,Forester
+TM,Subaru Forester,Subaru,Forester,2022-2026,Incl: Wilderness,SUV,YL,Y3,越野车,Incl: Wilderness,Incl: Wilderness,Forester
 TM,Subaru Impreza,Subaru,Impreza,1993-2023,,Sedan,3L,S2,三厢车,Sedan,Sedan,Impreza
 TM,Subaru Impreza,Subaru,Impreza,1995-2001,,Coupe,3M-0,C1,跑车,Coupe,Coupe,Impreza
 TM,Subaru Legacy,Subaru,Legacy,1990-2009,,Sedan,3L,S2,三厢车,Sedan,Sedan,Legacy
 TM,Subaru Legacy,Subaru,Legacy,2010-2025,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Legacy
-TM,Subaru Solterra,Subaru,Solterra,2023-2026,,SUV,YL,Y1,越野车,,,Solterra
-TM,Subaru Tribeca,Subaru,Tribeca,2006-2014,,SUV,YXL,Y2,越野车,,,Tribeca
+TM,Subaru Legacy,Subaru,Legacy,2000-2007,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Legacy
+TM,Subaru Outback,Subaru,Outback,2000-2026,Incl: Wilderness,Hatchback/Wagon,5XL,V3,两厢车,Hatchback/Wagon Incl: Wilderness,Hbk/Wgn Inc:Wild,Outback
+TM,Subaru Solterra,Subaru,Solterra,2023-2026,,SUV,YL,Y3,越野车,,,Solterra
+TM,Subaru Tribeca,Subaru,Tribeca,2006-2014,,SUV,YXL,Y4,越野车,,,Tribeca
 TM,Subaru WRX,Subaru,WRX,2002-2026,STI/WRX,Sedan,3L,S2,三厢车,Sedan STI/WRX,Sedan STI/WRX,WRX
 TM,Suzuki Aerio,Suzuki,Aerio,2002-2007,,Sedan,3L,S2,三厢车,Sedan,Sedan,Aerio
 TM,Suzuki Forenza,Suzuki,Forenza,2004-2008,,Sedan,3L,S2,三厢车,Sedan,Sedan,Forenza
-TM,Suzuki Grand Vitara,Suzuki,Grand Vitara,1999-2013,,SUV,YM,Y0,越野车,,,Grand Vitara
+TM,Suzuki Grand Vitara,Suzuki,Grand Vitara,1999-2013,,SUV,YM,Y2,越野车,,,Grand Vitara
 TM,Suzuki SX4,Suzuki,SX4,2008-2013,,Sedan,3L,S2,三厢车,Sedan,Sedan,SX4
 TM,Suzuki SX4,Suzuki,SX4,2007-2013,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,SX4
-TM,Suzuki Sidekick,Suzuki,Sidekick,1996-1998,Sport,SUV,YM,Y0,越野车,Sport,Sport,Sidekick
-TM,Suzuki XL7,Suzuki,XL7,2002-2006,,SUV,YL,Y1,越野车,,,XL7
-TM,Suzuki XL7,Suzuki,XL7,2007-2009,XL7,SUV,YXL,Y2,越野车,XL7,XL7,XL7
+TM,Suzuki Sidekick,Suzuki,Sidekick,1996-1998,Sport,SUV,YM,Y2,越野车,Sport,Sport,Sidekick
+TM,Suzuki XL7,Suzuki,XL7,2002-2006,,SUV,YL,Y3,越野车,,,XL7
+TM,Suzuki XL7,Suzuki,XL7,2007-2009,XL7,SUV,YXL,Y4,越野车,XL7,XL7,XL7
 TM,Tesla Model 3,Tesla,Model 3,2017-2026,,Sedan,3L,S2,三厢车,,,Model 3
-TM,Tesla Model X,Tesla,Model X,2016-2026,,SUV,YXXL-545,Y4,越野车,,,Model X
-TM,Tesla Model Y,Tesla,Model Y,2020-2026,Incl: Performance,Crossover/SUV,YL,Y1,越野车,Incl: Performance,Inc:Perf,Model Y
-TM,Tesla Model Y L,Tesla,Model Y L,2026,,SUV,YXL,Y2,越野车,,,Model Y L
-TM,Toyota 4Runner,Toyota,4Runner,1984-1998,,SUV,YM,Y0,越野车,,,4Runner
-TM,Toyota 4Runner,Toyota,4Runner,1999-2013,,SUV,YL,Y1,越野车,,,4Runner
-TM,Toyota 4Runner,Toyota,4Runner,2014-2026,,SUV,YXL,Y2,越野车,,,4Runner
+TM,Tesla Model S,Tesla,Model S,2012-2026,,Hatchback,5XL,V3,两厢车,,,Model S
+TM,Tesla Model X,Tesla,Model X,2016-2026,,SUV,YXXL-545,Y6,越野车,,,Model X
+TM,Tesla Model Y,Tesla,Model Y,2020-2026,Incl: Performance,Crossover/SUV,YL,Y3,越野车,Incl: Performance,Inc:Perf,Model Y
+TM,Tesla Model Y L,Tesla,Model Y L,2026,,SUV,YXL,Y4,越野车,,,Model Y L
+TM,Toyota 4Runner,Toyota,4Runner,1984-1998,,SUV,YM,Y2,越野车,,,4Runner
+TM,Toyota 4Runner,Toyota,4Runner,1999-2013,,SUV,YL,Y3,越野车,,,4Runner
+TM,Toyota 4Runner,Toyota,4Runner,2014-2026,,SUV,YXL,Y4,越野车,,,4Runner
 TM,Toyota 86,Toyota,86,2017-2026,,Coupe,3M-0,C1,跑车,,,86
 TM,Toyota Avalon,Toyota,Avalon,1995-2022,,Sedan,3XL,S3,三厢车,,,Avalon
-TM,Toyota C-HR,Toyota,C-HR,2018-2022,,Crossover,YM,Y0,越野车,,,C-HR
+TM,Toyota C-HR,Toyota,C-HR,2018-2022,,Crossover,YM,Y2,越野车,,,C-HR
 TM,Toyota Camry,Toyota,Camry,1983-1991,,Sedan,3L,S2,三厢车,Sedan,Sedan,Camry
 TM,Toyota Camry,Toyota,Camry,1992-2026,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Camry
+TM,Toyota Camry,Toyota,Camry,1992-1996,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Camry
 TM,Toyota Celica,Toyota,Celica,1971-1999,Incl: All-Trac,Convertible/Coupe,3M-0,C1,跑车,Convertible/Coupe Incl: All-Trac,Conv/Cpe Inc:ATrac,Celica
 TM,Toyota Corolla,Toyota,Corolla,1975-2026,,Sedan,3L,S2,三厢车,Sedan,Sedan,Corolla
 TM,Toyota Corolla,Toyota,Corolla,1968-1974,,Coupe/Sedan,3S-0,C0,跑车,Coupe/Sedan,Cpe/Sdn,Corolla
 TM,Toyota Corolla,Toyota,Corolla,1980-1991,,Coupe,3M-0,C1,跑车,Coupe,Coupe,Corolla
 TM,Toyota Corolla,Toyota,Corolla,1968-1974,,Wagon,2L,H2,两厢车,Wagon,Wagon,Corolla
-TM,Toyota Corolla Cross,Toyota,Corolla Cross,2022-2026,,SUV,YM,Y0,越野车,,,Corolla Cross
+TM,Toyota Corolla Cross,Toyota,Corolla Cross,2022-2026,,SUV,YM,Y2,越野车,,,Corolla Cross
 TM,Toyota Crown,Toyota,Crown,2023-2026,,Sedan,3XL,S3,三厢车,,,Crown
+TM,Toyota Crown Signia,Toyota,Crown Signia,2025-2026,,Wagon,5XL,V3,两厢车,,,Crown Signia
 TM,Toyota Echo,Toyota,Echo,2000-2005,,Sedan,3S-0,C0,跑车,,,Echo
-TM,Toyota FJ Cruiser,Toyota,FJ Cruiser,2007-2014,,SUV,YL,Y1,越野车,,,FJ Cruiser
-TM,Toyota Grand Highlander,Toyota,Grand Highlander,2024-2026,,SUV,YXXL-545,Y4,越野车,,,Grd Highlander
-TM,Toyota Highlander,Toyota,Highlander,2001-2013,,SUV,YL,Y1,越野车,,,Highlander
-TM,Toyota Highlander,Toyota,Highlander,2014-2026,,SUV,YXL,Y2,越野车,,,Highlander
-TM,Toyota Land Cruiser,Toyota,Land Cruiser,1981-1997,,SUV,YL,Y1,越野车,SUV,SUV,Land Cruiser
-TM,Toyota Land Cruiser,Toyota,Land Cruiser,1998-2026,,SUV,YXL,Y2,越野车,SUV,SUV,Land Cruiser
+TM,Toyota FJ Cruiser,Toyota,FJ Cruiser,2007-2014,,SUV,YL,Y3,越野车,,,FJ Cruiser
+TM,Toyota Grand Highlander,Toyota,Grand Highlander,2024-2026,,SUV,YXXL-545,Y6,越野车,,,Grd Highlander
+TM,Toyota Highlander,Toyota,Highlander,2001-2013,,SUV,YL,Y3,越野车,,,Highlander
+TM,Toyota Highlander,Toyota,Highlander,2014-2026,,SUV,YXL,Y4,越野车,,,Highlander
+TM,Toyota Land Cruiser,Toyota,Land Cruiser,1981-1997,,SUV,YL,Y3,越野车,SUV,SUV,Land Cruiser
+TM,Toyota Land Cruiser,Toyota,Land Cruiser,1998-2026,,SUV,YXL,Y4,越野车,SUV,SUV,Land Cruiser
 TM,Toyota MIRAI,Toyota,MIRAI,2016-2024,,Sedan,3XL,S3,三厢车,,,MIRAI
 TM,Toyota MR2,Toyota,MR2,1985-2005,,Convertible/Coupe,3S-0,C0,跑车,,,MR2
 TM,Toyota Prius,Toyota,Prius,2001-2003,,Sedan,3L,S2,三厢车,Sedan,Sedan,Prius
 TM,Toyota Prius C,Toyota,Prius C,2012-2019,,Hatchback,2L,H2,两厢车,,,Prius C
-TM,Toyota RAV4,Toyota,RAV4,2001-2026,Incl: EV,SUV,YM,Y0,越野车,Incl: EV,Incl: EV,RAV4
-TM,Toyota Sequoia,Toyota,Sequoia,2001-2026,,SUV,YXXL-545,Y4,越野车,,,Sequoia
+TM,Toyota RAV4,Toyota,RAV4,2001-2026,Incl: EV,SUV,YM,Y2,越野车,Incl: EV,Incl: EV,RAV4
+TM,Toyota Sequoia,Toyota,Sequoia,2001-2026,,SUV,YXXL-545,Y6,越野车,,,Sequoia
+TM,Toyota Sienna,Toyota,Sienna,1998-2026,Incl: Woodland,MPV,5XL,V3,两厢车,Incl: Woodland,Incl: Woodland,Sienna
 TM,Toyota Solara,Toyota,Solara,1999-2008,,Convertible/Coupe,3XL-0,C3,跑车,,,Solara
 TM,Toyota Supra,Toyota,Supra,1979-1981,,Coupe,3L-0,C2,跑车,,,Supra
 TM,Toyota Supra,Toyota,Supra,1982-1986,,Coupe,3M-0,C1,跑车,,,Supra
@@ -836,49 +967,56 @@ TM,Toyota Supra,Toyota,Supra,1987-1992,,Coupe,3L-0,C2,跑车,,,Supra
 TM,Toyota Supra,Toyota,Supra,1993-2026,,Coupe,3M-0,C1,跑车,,,Supra
 TM,Toyota Tercel,Toyota,Tercel,1980-1998,Incl: 2dr Deluxe/4dr/4dr Deluxe,Sedan,3S-0,C0,跑车,Sedan Incl: 2dr Deluxe/4dr/4dr Deluxe,Sdn Inc:2drDlx/4dr,Tercel
 TM,Toyota Tercel,Toyota,Tercel,1989-1990,,Coupe,3M-0,C1,跑车,Coupe,Coupe,Tercel
-TM,Toyota Venza,Toyota,Venza,2021-2024,,SUV,YL,Y1,越野车,SUV,SUV,Venza
+TM,Toyota Venza,Toyota,Venza,2021-2024,,SUV,YL,Y3,越野车,SUV,SUV,Venza
+TM,Toyota Venza,Toyota,Venza,2009-2015,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Venza
 TM,Toyota Yaris,Toyota,Yaris,2007-2020,,Sedan,3L,S2,三厢车,Sedan,Sedan,Yaris
 TM,Toyota Yaris,Toyota,Yaris,2007-2020,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,Yaris
 TM,Toyota Yaris iA,Toyota,Yaris iA,2017-2018,,Sedan,3L,S2,三厢车,,,Yaris iA
-TM,Toyota bZ,Toyota,bZ,2026,Incl: Woodland,SUV,YL,Y1,越野车,Incl: Woodland,Incl: Woodland,bZ
-TM,Toyota bZ4X,Toyota,bZ4X,2023-2025,,SUV,YL,Y1,越野车,,,bZ4X
-TM,VinFast VF8,VinFast,VF8,2023-2025,Eco/Plus,SUV,YL,Y1,越野车,Eco/Plus,Eco/Plus,VF8
-TM,Volkswagen Atlas,Volkswagen,Atlas,2018-2026,SE/SEL R-Line/Technology/V6 SE w,SUV,YXXL-545,Y4,越野车,SE/SEL R-Line/Technology/V6 SE w,SE/SEL/Tech/V6SE,Atlas
-TM,Volkswagen Atlas,Volkswagen,Atlas,2020-2026,Cross Sport,SUV,YXL,Y2,越野车,Cross Sport,Cross Sport,Atlas
-TM,Volkswagen Atlas Cross,Volkswagen,Atlas Cross,2021-2026,Cross Sport,SUV,YXL,Y2,越野车,Cross Sport,Cross Sport,Atlas Cross
+TM,Toyota bZ,Toyota,bZ,2026,Incl: Woodland,SUV,YL,Y3,越野车,Incl: Woodland,Incl: Woodland,bZ
+TM,Toyota bZ4X,Toyota,bZ4X,2023-2025,,SUV,YL,Y3,越野车,,,bZ4X
+TM,VinFast VF8,VinFast,VF8,2023-2025,Eco/Plus,SUV,YL,Y3,越野车,Eco/Plus,Eco/Plus,VF8
+TM,Volkswagen Arteon,Volkswagen,Arteon,2019-2024,SE R-Line/SEL Premium 4MOTION,Hatchback,5XL,V3,两厢车,SE R-Line/SEL Premium 4MOTION,SERLine/SELPrem4MO,Arteon
+TM,Volkswagen Atlas,Volkswagen,Atlas,2018-2026,SE/SEL R-Line/Technology/V6 SE w,SUV,YXXL-545,Y6,越野车,SE/SEL R-Line/Technology/V6 SE w,SE/SEL/Tech/V6SE,Atlas
+TM,Volkswagen Atlas,Volkswagen,Atlas,2020-2026,Cross Sport,SUV,YXL,Y4,越野车,Cross Sport,Cross Sport,Atlas
+TM,Volkswagen Atlas Cross,Volkswagen,Atlas Cross,2021-2026,Cross Sport,SUV,YXL,Y4,越野车,Cross Sport,Cross Sport,Atlas Cross
 TM,Volkswagen Beetle,Volkswagen,Beetle,1998-2010,,Convertible,3S-0,C0,跑车,Convertible,Convertible,Beetle
 TM,Volkswagen Beetle,Volkswagen,Beetle,2012-2019,Incl: Dune,Convertible,3M-0,C1,跑车,Convertible Incl: Dune,Conv Inc:Dune,Beetle
 TM,Volkswagen Beetle,Volkswagen,Beetle,1998-2010,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,Beetle
 TM,Volkswagen Eos,Volkswagen,Eos,2007-2016,,Convertible,3M-0,C1,跑车,,,Eos
 TM,Volkswagen Golf,Volkswagen,Golf,1999,,Hatchback,2L,H2,两厢车,Hatchback,Hatchback,Golf
-TM,Volkswagen ID.4,Volkswagen,ID.4,2021-2026,,SUV,YM,Y0,越野车,,,ID.4
+TM,Volkswagen ID.4,Volkswagen,ID.4,2021-2026,,SUV,YM,Y2,越野车,,,ID.4
 TM,Volkswagen Jetta,Volkswagen,Jetta,1980-2022,Incl: Diesel/GLI,Sedan,3L,S2,三厢车,Sedan Incl: Diesel/GLI,Sdn Inc:Diesel/GLI,Jetta
 TM,Volkswagen Jetta,Volkswagen,Jetta,2023-2026,GLI,Sedan,3XL,S3,三厢车,Sedan GLI,Sedan GLI,Jetta
 TM,Volkswagen Passat,Volkswagen,Passat,1982-2005,,Sedan,3L,S2,三厢车,Sedan,Sedan,Passat
 TM,Volkswagen Passat,Volkswagen,Passat,2006-2022,,Sedan,3XL,S3,三厢车,Sedan,Sedan,Passat
+TM,Volkswagen Passat,Volkswagen,Passat,2007-2010,,Wagon,5XL,V3,两厢车,Wagon,Wagon,Passat
 TM,Volkswagen Passat CC,Volkswagen,Passat CC,2009-2017,,Sedan,3XL,S3,三厢车,,,Passat CC
 TM,Volkswagen Phaeton,Volkswagen,Phaeton,2004-2006,,Sedan,3XXL-550,S5,三厢车,,,Phaeton
 TM,Volkswagen Rabbit,Volkswagen,Rabbit,1980,,Convertible,3S-0,C0,跑车,Convertible,Convertible,Rabbit
 TM,Volkswagen Rabbit,Volkswagen,Rabbit,1975-1984,Incl: GTI,Hatchback,2L,H2,两厢车,Hatchback Incl: GTI,Hbk Inc:GTI,Rabbit
-TM,Volkswagen Taos,Volkswagen,Taos,2022-2026,,SUV,YM,Y0,越野车,,,Taos
-TM,Volkswagen Tiguan,Volkswagen,Tiguan,2009-2017,,SUV,YM,Y0,越野车,,,Tiguan
-TM,Volkswagen Tiguan,Volkswagen,Tiguan,2018-2026,,SUV,YL,Y1,越野车,,,Tiguan
-TM,Volkswagen Touareg,Volkswagen,Touareg,2004-2017,,SUV,YL,Y1,越野车,,,Touareg
-TM,Volvo C40,Volvo,C40,2022-2024,,SUV,YM,Y0,越野车,,,C40
-TM,Volvo C40 Recharge,Volvo,C40 Recharge,2022-2024,,SUV,YM,Y0,越野车,,,C40 Recharge
+TM,Volkswagen Taos,Volkswagen,Taos,2022-2026,,SUV,YM,Y2,越野车,,,Taos
+TM,Volkswagen Tiguan,Volkswagen,Tiguan,2009-2017,,SUV,YM,Y2,越野车,,,Tiguan
+TM,Volkswagen Tiguan,Volkswagen,Tiguan,2018-2026,,SUV,YL,Y3,越野车,,,Tiguan
+TM,Volkswagen Touareg,Volkswagen,Touareg,2004-2017,,SUV,YL,Y3,越野车,,,Touareg
+TM,Volvo C40,Volvo,C40,2022-2024,,SUV,YM,Y2,越野车,,,C40
+TM,Volvo C40 Recharge,Volvo,C40 Recharge,2022-2024,,SUV,YM,Y2,越野车,,,C40 Recharge
 TM,Volvo C70,Volvo,C70,1998-2013,,Convertible,3L-0,C2,跑车,,,C70
-TM,Volvo EC40,Volvo,EC40,2025-2026,,Crossover,YM,Y0,越野车,,,EC40
-TM,Volvo EX30,Volvo,EX30,2025-2026,,SUV,YM,Y0,越野车,,,EX30
-TM,Volvo EX40,Volvo,EX40,2025-2026,,SUV,YM,Y0,越野车,,,EX40
-TM,Volvo EX90,Volvo,EX90,2025-2026,,SUV,YXXL-545,Y4,越野车,,,EX90
+TM,Volvo EC40,Volvo,EC40,2025-2026,,Crossover,YM,Y2,越野车,,,EC40
+TM,Volvo EX30,Volvo,EX30,2025-2026,,SUV,YM,Y2,越野车,,,EX30
+TM,Volvo EX40,Volvo,EX40,2025-2026,,SUV,YM,Y2,越野车,,,EX40
+TM,Volvo EX90,Volvo,EX90,2025-2026,,SUV,YXXL-545,Y6,越野车,,,EX90
 TM,Volvo S40,Volvo,S40,2000-2011,,Sedan,3L,S2,三厢车,,,S40
 TM,Volvo S60,Volvo,S60,2001-2018,,Sedan,3L,S2,三厢车,,,S60
 TM,Volvo S60,Volvo,S60,2019-2025,,Sedan,3XL,S3,三厢车,,,S60
 TM,Volvo S80,Volvo,S80,1999-2016,,Sedan,3XL,S3,三厢车,,,S80
 TM,Volvo S90,Volvo,S90,2017,,Sedan,3XL,S3,三厢车,,,S90
 TM,Volvo S90,Volvo,S90,2021-2025,,Sedan,3XXL-550,S5,三厢车,,,S90
-TM,Volvo XC40,Volvo,XC40,2019-2025,,SUV,YM,Y0,越野车,,,XC40
-TM,Volvo XC60,Volvo,XC60,2010-2017,,SUV,YM,Y0,越野车,,,XC60
-TM,Volvo XC60,Volvo,XC60,2018-2026,,SUV,YL,Y1,越野车,,,XC60
-TM,Volvo XC90,Volvo,XC90,2003-2014,,SUV,YL,Y1,越野车,,,XC90
-TM,Volvo XC90,Volvo,XC90,2016-2026,,SUV,YXL,Y2,越野车,,,XC90
+TM,Volvo V60,Volvo,V60,2019-2026,,Wagon,5XL,V3,两厢车,,,V60
+TM,Volvo V70,Volvo,V70,2008-2010,,Hatchback,5XL,V3,两厢车,Hatchback,Hatchback,V70
+TM,Volvo V90,Volvo,V90,1997-2026,Incl: Cross Country,Wagon,5XL,V3,两厢车,Incl: Cross Country,Inc:CrossCtry,V90
+TM,Volvo XC40,Volvo,XC40,2019-2025,,SUV,YM,Y2,越野车,,,XC40
+TM,Volvo XC60,Volvo,XC60,2010-2017,,SUV,YM,Y2,越野车,,,XC60
+TM,Volvo XC60,Volvo,XC60,2018-2026,,SUV,YL,Y3,越野车,,,XC60
+TM,Volvo XC70,Volvo,XC70,2008-2016,,Wagon,5XL,V3,两厢车,,,XC70
+TM,Volvo XC90,Volvo,XC90,2003-2014,,SUV,YL,Y3,越野车,,,XC90
+TM,Volvo XC90,Volvo,XC90,2016-2026,,SUV,YXL,Y4,越野车,,,XC90

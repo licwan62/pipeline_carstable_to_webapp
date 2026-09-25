@@ -1,19 +1,19 @@
 Size chart generation log
-Generated at: 2026-09-25T12:35:28
-Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-w3nb0qh6\preference.yaml
+Generated at: 2026-09-25T13:01:35
+Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-0vxqy01x\preference.yaml
 Output directory: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\04_store_html\RU\nonpick
 CSS: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\04_store_html\RU\nonpick\size-chart.css
-Pages: 20
-Table chunks: 398
-Unique titles: 333
-Page table chunks: 21, 14, 26, 19, 24, 9, 29, 17, 24, 26, 18, 12, 12, 19, 26, 25, 17, 18, 35, 7
+Pages: 29
+Table chunks: 489
+Unique titles: 378
+Page table chunks: 22, 14, 12, 20, 9, 18, 19, 21, 7, 20, 18, 16, 18, 19, 20, 22, 8, 13, 12, 10, 21, 15, 26, 21, 18, 13, 11, 28, 18
 
 Inputs:
-- C:\Users\hzwlc\AppData\Local\Temp\html-config-w3nb0qh6\RU-non-pickup.tsv
+- C:\Users\hzwlc\AppData\Local\Temp\html-config-0vxqy01x\RU-non-pickup.tsv
   Sheet: 非皮卡压缩表
   Profile: non-pickup
-  Rows after filtering: 4309
-  Titles: 333
+  Rows after filtering: 6768
+  Titles: 378
   Brand column: MAKE
   Stripe column: MODEL
   Table columns: MODEL, YEAR, TYPE, SIZE
@@ -24,8 +24,8 @@ Logo settings:
 Enabled: True
 Directory: D:\Home\Scripts\generate_size_chart_html\img_logos
 Logo files indexed: 49
-Matched titles: 47
-Missing titles: 286
+Matched titles: 48
+Missing titles: 330
 
 Logo matches:
 - MISSING: 212
@@ -37,13 +37,17 @@ Logo matches:
 - MISSING: Adam
 - MISSING: Adler
 - MISSING: Aion
+- MISSING: Aistaland
 - MISSING: Aito
 - MISSING: Aiways
 - MATCH: Alfa Romeo -> img_logos/Alfa%20Romeo.png
 - MISSING: Alpina
 - MISSING: Alpine
 - MISSING: Arcfox
+- MISSING: Aro
+- MISSING: Asia
 - MISSING: Aston Martin
+- MISSING: Auburn
 - MATCH: Audi -> img_logos/Audi.png
 - MISSING: Austin
 - MISSING: Austin Healey
@@ -54,9 +58,11 @@ Logo matches:
 - MISSING: BAW
 - MATCH: BMW -> img_logos/BMW.png
 - MISSING: BYD
+- MISSING: Bajaj
 - MISSING: Baojun
 - MISSING: Belgee
 - MISSING: Bentley
+- MISSING: Bertone
 - MISSING: Bestune
 - MISSING: Bilenkin
 - MISSING: Bio Auto
@@ -68,6 +74,7 @@ Logo matches:
 - MISSING: Bristol
 - MISSING: Bugatti
 - MATCH: Buick -> img_logos/Buick.png
+- MISSING: Byvin
 - MATCH: Cadillac -> img_logos/Cadillac.png
 - MISSING: Callaway
 - MISSING: Carbodies
@@ -79,10 +86,12 @@ Logo matches:
 - MISSING: Chery
 - MATCH: Chevrolet -> img_logos/Chevrolet.png
 - MATCH: Chrysler -> img_logos/CHRYSLER.png
+- MISSING: Ciimo (Dongfeng-Honda)
 - MISSING: Citroen
 - MISSING: Cizeta
 - MISSING: Coda
 - MISSING: Cord
+- MISSING: Cowin
 - MISSING: Cupra
 - MISSING: Czinger
 - MISSING: DKW
@@ -96,8 +105,11 @@ Logo matches:
 - MISSING: Daimler
 - MISSING: Dallara
 - MISSING: Datsun
+- MISSING: Dayun
 - MISSING: De Tomaso
 - MISSING: DeLorean
+- MISSING: DeSoto
+- MISSING: Deco Rides
 - MISSING: Delage
 - MISSING: Denza
 - MISSING: Derways
@@ -108,9 +120,12 @@ Logo matches:
 - MISSING: E-Car
 - MISSING: Eagle
 - MISSING: Eagle Cars
+- MISSING: Edsel
 - MISSING: Enovate (Enoreve)
 - MISSING: Esteo
+- MISSING: Everus
 - MISSING: Evolute
+- MISSING: Excalibur
 - MISSING: Exeed
 - MISSING: FAW
 - MISSING: FSO
@@ -123,6 +138,7 @@ Logo matches:
 - MISSING: Forthing
 - MISSING: Foton
 - MISSING: Franklin
+- MISSING: Fuqi
 - MISSING: GAC
 - MISSING: GAC Trumpchi
 - MISSING: GMA
@@ -142,9 +158,11 @@ Logo matches:
 - MISSING: Haval
 - MISSING: Hawtai
 - MISSING: Hedmos
+- MISSING: Hengtian
 - MISSING: Hennessey
 - MISSING: HiPhi
 - MISSING: Hindustan
+- MISSING: Hispano-Suiza
 - MISSING: Holden
 - MATCH: Honda -> img_logos/Honda.png
 - MISSING: Hongqi
@@ -152,6 +170,7 @@ Logo matches:
 - MISSING: Hozon
 - MISSING: Huaihai (Hoann)
 - MISSING: HuangHai
+- MISSING: Hudson
 - MISSING: Humber
 - MISSING: Hummer
 - MISSING: Hycan
@@ -161,6 +180,7 @@ Logo matches:
 - MATCH: Ineos -> img_logos/Ineos.png
 - MATCH: Infiniti -> img_logos/Infiniti.png
 - MISSING: Innocenti
+- MISSING: International Harvester
 - MISSING: Invicta
 - MISSING: Iran Khodro
 - MISSING: Isdera
@@ -175,12 +195,18 @@ Logo matches:
 - MISSING: Jensen
 - MISSING: Jetour
 - MISSING: Jetta
+- MISSING: Jiangnan
 - MISSING: Jidu
+- MISSING: Jinbei
+- MISSING: Jonway
 - MISSING: KGM
 - MISSING: KTM AG
 - MISSING: Kaiyi
+- MATCH: Karma -> img_logos/Karma.png
 - MATCH: Kia -> img_logos/Kia.png
+- MISSING: Knewstar
 - MISSING: Koenigsegg
+- MISSING: LEVC
 - MISSING: LTI
 - MISSING: Lada (ВАЗ)
 - MISSING: Lamborghini
@@ -205,7 +231,9 @@ Logo matches:
 - MISSING: Lynk & Co
 - MISSING: M-Hero
 - MISSING: MG
+- MISSING: Maextro
 - MISSING: Mahindra
+- MISSING: Maple
 - MISSING: Marcos
 - MISSING: Marlin
 - MISSING: Marussia
@@ -213,12 +241,14 @@ Logo matches:
 - MATCH: Maserati -> img_logos/Maserati.png
 - MISSING: Matra
 - MISSING: Maxus
+- MISSING: Maybach
 - MATCH: Mazda -> img_logos/Mazda.png
 - MISSING: McLaren
 - MISSING: Mega
 - MATCH: Mercedes-Benz -> img_logos/Mercedes-Benz.png
 - MATCH: Mercury -> img_logos/MERCURY.png
 - MISSING: Merkur
+- MISSING: Metrocab
 - MISSING: Mia
 - MISSING: Microcar
 - MISSING: Minelli
@@ -228,6 +258,7 @@ Logo matches:
 - MISSING: Mobilize
 - MISSING: Morgan
 - MISSING: Morris
+- MISSING: Nash
 - MISSING: Nio
 - MATCH: Nissan -> img_logos/Nissan.png
 - MISSING: Noble
@@ -242,10 +273,12 @@ Logo matches:
 - MISSING: Oshan
 - MISSING: Oting
 - MISSING: PGO
+- MISSING: Packard
 - MISSING: Pagani
 - MISSING: Panoz
 - MISSING: Perodua
 - MISSING: Peugeot
+- MISSING: Pierce-Arrow
 - MATCH: Plymouth -> img_logos/Plymouth.png
 - MISSING: Polar Stone (Jishi)
 - MATCH: Polestar -> img_logos/Polestar.png
@@ -276,12 +309,14 @@ Logo matches:
 - MISSING: Rox
 - MISSING: SAIC
 - MISSING: SEAT
+- MISSING: SKM
 - MATCH: Saab -> img_logos/SAAB.png
 - MISSING: Saipa
 - MISSING: Santana
 - MATCH: Saturn -> img_logos/SATURN.png
 - MATCH: Scion -> img_logos/Scion.png
 - MISSING: Scout
+- MISSING: Senat
 - MISSING: Seres
 - MISSING: Shanghai Maple
 - MISSING: ShuangHuan
@@ -291,10 +326,13 @@ Logo matches:
 - MISSING: Skyworth
 - MISSING: Smart
 - MISSING: Solaris
+- MISSING: Sollers
 - MISSING: Soueast
 - MISSING: Spectre
 - MISSING: Spyker
 - MISSING: SsangYong
+- MISSING: Stelato
+- MISSING: Studebaker
 - MATCH: Subaru -> img_logos/Subaru.png
 - MATCH: Suzuki -> img_logos/Suzuki.png
 - MISSING: TVR
@@ -303,9 +341,11 @@ Logo matches:
 - MISSING: Tata
 - MISSING: Tatra
 - MISSING: Tenet
+- MISSING: Tenet Plus
 - MATCH: Tesla -> img_logos/Tesla.png
 - MISSING: Thairung
 - MISSING: Think
+- MISSING: Tianma
 - MISSING: Tianye
 - MISSING: Tofas
 - MATCH: Toyota -> img_logos/Toyota.png
@@ -334,12 +374,14 @@ Logo matches:
 - MISSING: Wiesmann
 - MISSING: Willys
 - MISSING: Wuling
+- MISSING: XEV
 - MISSING: Xcite
 - MISSING: Xiaomi
 - MISSING: Xin Kai
 - MISSING: Xpeng
 - MISSING: Yema
 - MISSING: Yipai
+- MISSING: Yudo
 - MISSING: Yulon
 - MISSING: ZX
 - MISSING: Zastava
@@ -351,12 +393,15 @@ Logo matches:
 - MISSING: Zubr
 - MISSING: iCar
 - MISSING: iCaur
+- MISSING: Ё-мобиль
+- MISSING: Автокам
 - MISSING: Амберавто
 - MISSING: Атом
 - MISSING: ГАЗ
 - MISSING: ЗАЗ
 - MISSING: Иж
 - MISSING: Комбат
+- MISSING: ЛуАЗ
 - MISSING: Москвич
 - MISSING: Спортивные авто и реплики
 - MISSING: ТагАЗ

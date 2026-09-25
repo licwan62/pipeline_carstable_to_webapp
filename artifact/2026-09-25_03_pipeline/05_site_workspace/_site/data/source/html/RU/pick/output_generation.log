@@ -1,19 +1,19 @@
 Size chart generation log
-Generated at: 2026-09-25T12:35:28
-Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-w3nb0qh6\preference.yaml
+Generated at: 2026-09-25T13:01:36
+Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-0vxqy01x\preference.yaml
 Output directory: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\04_store_html\RU\pick
 CSS: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\04_store_html\RU\pick\size-chart.css
-Pages: 3
-Table chunks: 147
-Unique titles: 145
-Page table chunks: 52, 58, 37
+Pages: 4
+Table chunks: 182
+Unique titles: 179
+Page table chunks: 51, 57, 55, 19
 
 Inputs:
-- C:\Users\hzwlc\AppData\Local\Temp\html-config-w3nb0qh6\RU-pickup.tsv
+- C:\Users\hzwlc\AppData\Local\Temp\html-config-0vxqy01x\RU-pickup.tsv
   Sheet: 皮卡压缩表
   Profile: pickup
-  Rows after filtering: 233
-  Titles: 145
+  Rows after filtering: 325
+  Titles: 179
   Brand column: TITLE
   Stripe column: CAB
   Table columns: YEAR, CAB, BED, SIZE
@@ -24,14 +24,18 @@ Logo settings:
 Enabled: True
 Directory: D:\Home\Scripts\generate_size_chart_html\img_logos
 Logo files indexed: 49
-Matched titles: 57
-Missing titles: 88
+Matched titles: 64
+Missing titles: 115
 
 Logo matches:
+- MISSING: 212 Explorer 01
+- MISSING: Ambertruck Work
 - MISSING: BAW Calorie F7
+- MISSING: BYD Shark (Shark 6)
 - MISSING: Baltijas Dzips BD-1322
 - MATCH: Cadillac Escalade -> img_logos/Cadillac.png
 - MISSING: Changan Hunter
+- MISSING: Changan Hunter Plus
 - MISSING: Changan Kaicene F70
 - MISSING: Changan Lantuozhe (Explorer)
 - MISSING: Changfeng Flying
@@ -52,12 +56,14 @@ Logo matches:
 - MISSING: Datsun 620
 - MISSING: Dayun Pickup
 - MISSING: Derways Antelope
+- MISSING: Derways Plutus
 - MATCH: Dodge D/W Series -> img_logos/Dodge.png
 - MATCH: Dodge Dakota -> img_logos/Dodge.png
 - MATCH: Dodge RAM -> img_logos/Dodge.png
 - MISSING: Dongfeng DF6
 - MISSING: Dongfeng Rich
 - MISSING: Dongfeng Rich 7
+- MISSING: Dongfeng Z9
 - MATCH: Fiat Fullback -> img_logos/FIAT.png
 - MATCH: Ford Explorer Sport Trac -> img_logos/Ford.png
 - MATCH: Ford F-100 -> img_logos/Ford.png
@@ -70,6 +76,9 @@ Logo matches:
 - MISSING: Foton Mars 7
 - MISSING: Foton Mars 9
 - MISSING: Foton Tunland
+- MISSING: Foton Tunland F9
+- MISSING: Foton Tunland G7
+- MISSING: Foton Tunland G9
 - MISSING: Foton Tunland V7
 - MISSING: Foton Tunland V9
 - MATCH: GMC 100 -> img_logos/GMC.png
@@ -79,19 +88,25 @@ Logo matches:
 - MATCH: GMC Sonoma -> img_logos/GMC.png
 - MISSING: Geely Farizon FX
 - MISSING: Geely Radar King Kong
+- MISSING: Gonow Troy
 - MISSING: Great Wall Deer
 - MISSING: Great Wall Poer
 - MISSING: Great Wall Poer King Kong
 - MISSING: Great Wall Sailor
+- MISSING: Great Wall Shanhai Poer
 - MISSING: Great Wall Socool
 - MISSING: Great Wall Wingle
+- MISSING: Great Wall Wingle 7
 - MISSING: HSV Maloo
 - MISSING: Holden Rodeo
 - MISSING: Holden UTE
 - MATCH: Honda Ridgeline -> img_logos/Honda.png
 - MISSING: HuangHai Antelope
+- MISSING: HuangHai N1
+- MISSING: HuangHai N2
 - MISSING: HuangHai N7
 - MISSING: HuangHai Plutus
+- MISSING: Hummer H3
 - MATCH: Hyundai Hyundai Santa Cruz -> img_logos/Hyundai.png
 - MATCH: Ineos Grenadier -> img_logos/Ineos.png
 - MISSING: Isuzu D-Max
@@ -99,6 +114,7 @@ Logo matches:
 - MISSING: Isuzu KB
 - MISSING: Isuzu Lingtuo
 - MISSING: Isuzu Ruimai
+- MISSING: Isuzu T17
 - MISSING: Isuzu T30 Explorer
 - MISSING: Isuzu TF (Pickup)
 - MISSING: JAC Hunter
@@ -109,37 +125,54 @@ Logo matches:
 - MISSING: JMC Baodian
 - MISSING: JMC Dadao
 - MISSING: JMC Vigus
+- MISSING: JMC Vigus Work
 - MISSING: JMC Yuhu 7
+- MATCH: Jeep Gladiator -> img_logos/Jeep.png
 - MISSING: Jetour Reaolo
 - MISSING: KGM Musso
 - MISSING: KGM Musso Sports
 - MISSING: KGM Rexton Sports
 - MISSING: KYC F3
+- MISSING: Kawei K1
+- MISSING: Kawei K150
+- MISSING: Kawei K150GT
+- MATCH: Kia Tasman -> img_logos/Kia.png
 - MISSING: Lamborghini LM001
 - MISSING: Lamborghini LM002
 - MATCH: Lincoln Blackwood -> img_logos/Lincoln.png
 - MATCH: Lincoln Mark LT -> img_logos/Lincoln.png
+- MISSING: MG T60
+- MISSING: MG U9
+- MISSING: Maxus Interstellar
+- MISSING: Maxus T70
 - MISSING: Maxus T90
 - MATCH: Mazda B-series -> img_logos/Mazda.png
 - MATCH: Mazda BT-50 -> img_logos/Mazda.png
 - MATCH: Mazda Proceed -> img_logos/Mazda.png
+- MATCH: Mercedes-Benz X-Класс -> img_logos/Mercedes-Benz.png
 - MATCH: Mitsubishi L200 -> img_logos/Mitsubishi.png
+- MATCH: Mitsubishi Raider -> img_logos/Mitsubishi.png
 - MATCH: Mitsubishi Strada -> img_logos/Mitsubishi.png
 - MATCH: Mitsubishi Triton -> img_logos/Mitsubishi.png
 - MATCH: Nissan Datsun -> img_logos/Nissan.png
 - MATCH: Nissan Frontier -> img_logos/Nissan.png
+- MATCH: Nissan Frontier Pro -> img_logos/Nissan.png
 - MATCH: Nissan NP300 -> img_logos/Nissan.png
 - MATCH: Nissan Navara (Frontier) -> img_logos/Nissan.png
 - MATCH: Nissan Patrol -> img_logos/Nissan.png
 - MATCH: Nissan Titan -> img_logos/Nissan.png
+- MISSING: Oting Z9
 - MISSING: Peugeot 504
 - MISSING: Peugeot Landtrek
 - MISSING: Peugeot Pick Up
+- MISSING: Qingling Taga H
 - MISSING: Radar RD6
 - MATCH: Ram 1500 -> img_logos/Ram.png
+- MATCH: Ram Dakota -> img_logos/Ram.png
 - MATCH: Ram Rampage -> img_logos/Ram.png
 - MISSING: Renault Alaskan
 - MISSING: Rezvani Fortress
+- MATCH: Rivian R1T -> img_logos/RIVIAN.png
 - MISSING: Scout Terra
 - MISSING: Sollers ST6
 - MISSING: Sollers ST8
@@ -165,6 +198,7 @@ Logo matches:
 - MATCH: Volkswagen Amarok -> img_logos/Volkswagen.png
 - MATCH: Volkswagen Taro -> img_logos/Volkswagen.png
 - MATCH: Volkswagen Transporter -> img_logos/Volkswagen.png
+- MISSING: Xin Kai Pickup X3
 - MISSING: ZX Admiral
 - MISSING: ZX Grand Tiger
 - MISSING: ZX Grandlion

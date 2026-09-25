@@ -1,0 +1,4 @@
+cwd: D:\Home\Repo\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/build_user_size_json.py --compress-root D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\01_compressed_fitment --config D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\00_input\pipeline.generated.json --rules D:\Home\Repo\pipeline_carstable_to_webapp\configs\user-size-rules.json --ai-config D:\Home\Repo\pipeline_carstable_to_webapp\configs\ai-user-size.yaml --output D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\02_user_size.json
+
+User-size JSON written: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\02_user_size.json

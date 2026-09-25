@@ -1,18 +1,18 @@
 Size chart generation log
-Generated at: 2026-09-25T12:35:27
-Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-w3nb0qh6\preference.yaml
+Generated at: 2026-09-25T13:01:35
+Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-0vxqy01x\preference.yaml
 Output directory: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\04_store_html\HNT\nonpick
 CSS: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\04_store_html\HNT\nonpick\size-chart.css
 Pages: 4
-Table chunks: 59
+Table chunks: 63
 Unique titles: 48
-Page table chunks: 14, 18, 18, 9
+Page table chunks: 12, 18, 17, 16
 
 Inputs:
-- C:\Users\hzwlc\AppData\Local\Temp\html-config-w3nb0qh6\HNT-non-pickup.tsv
+- C:\Users\hzwlc\AppData\Local\Temp\html-config-0vxqy01x\HNT-non-pickup.tsv
   Sheet: 非皮卡压缩表
   Profile: non-pickup
-  Rows after filtering: 800
+  Rows after filtering: 924
   Titles: 48
   Brand column: MAKE
   Stripe column: MODEL

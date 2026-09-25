@@ -1,19 +1,19 @@
 Size chart generation log
-Generated at: 2026-09-25T12:35:27
-Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-w3nb0qh6\preference.yaml
+Generated at: 2026-09-25T13:01:34
+Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-0vxqy01x\preference.yaml
 Output directory: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\04_store_html\EU\nonpick
 CSS: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\04_store_html\EU\nonpick\size-chart.css
-Pages: 18
-Table chunks: 290
-Unique titles: 226
-Page table chunks: 19, 16, 22, 18, 20, 20, 15, 19, 21, 12, 14, 12, 13, 11, 18, 15, 12, 13
+Pages: 20
+Table chunks: 309
+Unique titles: 232
+Page table chunks: 19, 14, 22, 15, 25, 8, 22, 18, 14, 24, 10, 15, 13, 7, 14, 16, 13, 17, 10, 13
 
 Inputs:
-- C:\Users\hzwlc\AppData\Local\Temp\html-config-w3nb0qh6\EU-non-pickup.tsv
+- C:\Users\hzwlc\AppData\Local\Temp\html-config-0vxqy01x\EU-non-pickup.tsv
   Sheet: 非皮卡压缩表
   Profile: non-pickup
-  Rows after filtering: 4127
-  Titles: 226
+  Rows after filtering: 4649
+  Titles: 232
   Brand column: MAKE
   Stripe column: MODEL
   Table columns: MODEL, YEAR, TYPE, SIZE
@@ -25,7 +25,7 @@ Enabled: True
 Directory: D:\Home\Scripts\generate_size_chart_html\img_logos
 Logo files indexed: 49
 Matched titles: 44
-Missing titles: 182
+Missing titles: 188
 
 Logo matches:
 - MISSING: AC
@@ -99,6 +99,7 @@ Logo matches:
 - MISSING: Exlantix
 - MISSING: FSO
 - MISSING: Farizon Auto
+- MISSING: Feidi
 - MISSING: Fengon
 - MISSING: Ferrari
 - MISSING: Fest
@@ -116,6 +117,7 @@ Logo matches:
 - MISSING: Geely
 - MATCH: Genesis -> img_logos/Genesis.png
 - MISSING: German E Cars
+- MISSING: Giotti Victoria
 - MISSING: Glas
 - MISSING: Great Wall
 - MISSING: Gumpert
@@ -150,6 +152,7 @@ Logo matches:
 - MISSING: Lamborghini
 - MISSING: Lancia
 - MATCH: Land Rover -> img_logos/Land%20Rover.png
+- MISSING: Landwind (jmc)
 - MISSING: Leapmotor
 - MISSING: Levc
 - MATCH: Lexus -> img_logos/Lexus.png
@@ -174,6 +177,7 @@ Logo matches:
 - MISSING: Mclaren
 - MATCH: Mercedes-benz -> img_logos/Mercedes-Benz.png
 - MATCH: Mercury -> img_logos/MERCURY.png
+- MISSING: Metrocab
 - MISSING: Minelli
 - MATCH: Mini -> img_logos/Mini.png
 - MATCH: Mitsubishi -> img_logos/Mitsubishi.png
@@ -214,6 +218,7 @@ Logo matches:
 - MISSING: Santana
 - MISSING: Seat
 - MISSING: Seres
+- MISSING: Shineray
 - MISSING: Shuanghuan
 - MISSING: Skoda
 - MISSING: Skywell
@@ -240,6 +245,7 @@ Logo matches:
 - MISSING: VW
 - MISSING: Vauxhall
 - MISSING: Vector
+- MISSING: Victory
 - MATCH: Vinfast -> img_logos/VinFast.png
 - MATCH: Volvo -> img_logos/Volvo.png
 - MISSING: Voyah
