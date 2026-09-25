@@ -4,3 +4,5 @@
 __pycache__/
 *.py[cod]
 /work/
+# 本机配置覆盖
+/configs/pipeline.local.yaml

@@ -767,7 +767,11 @@ def run_incremental(
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Run the fitment pipeline for configured Excel/CSV inputs.")
-    parser.add_argument("--config", default="configs/pipeline.yaml", help="Path to pipeline config yaml.")
+    parser.add_argument(
+        "--config",
+        help="Path to pipeline config yaml; defaults to configs/pipeline.local.yaml when present "
+        "(untracked per-machine overrides that include pipeline.yaml), else configs/pipeline.yaml.",
+    )
     parser.add_argument(
         "--artifact",
         type=Path,
@@ -779,7 +783,10 @@ def main() -> int:
     parser.add_argument("--dry-run", action="store_true", help="Print commands without running them.")
     args = parser.parse_args()
 
-    source_config = resolve_from_root(args.config)
+    local_config = resolve_from_root("configs/pipeline.local.yaml")
+    source_config = resolve_from_root(args.config) if args.config else (
+        local_config if local_config.is_file() else resolve_from_root("configs/pipeline.yaml")
+    )
     config = load_config(source_config)
     config["_config_path"] = str(source_config)
     if args.list_steps:

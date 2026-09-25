@@ -1,0 +1,6 @@
+# 复制为 configs/pipeline.local.yaml（已被 .gitignore 忽略），按本机目录布局覆盖共享配置。
+# run_all.py 未指定 --config 时会优先使用 pipeline.local.yaml。
+include: pipeline.yaml
+variables:
+  # 例：脚本仓库位于 <仓库上两级>/Scripts 时
+  scripts_root: "{root}/../../Scripts"

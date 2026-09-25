@@ -186,7 +186,12 @@ class AtomCheckTests(unittest.TestCase):
                     sep="\t", index=False, encoding="utf-8-sig",
                 )
 
-            compress_repo = Path(__file__).resolve().parents[2] / "compress_to_size_chart"
+            # 两种机器布局：与本仓库同级，或位于 <仓库上两级>/Scripts
+            repo_root = Path(__file__).resolve().parents[1]
+            candidates = [repo_root.parent / "compress_to_size_chart", repo_root.parents[1] / "Scripts" / "compress_to_size_chart"]
+            compress_repo = next((path for path in candidates if (path / "check_atom.py").is_file()), None)
+            if compress_repo is None:
+                self.skipTest("compress_to_size_chart 仓库不在已知位置")
             scoped, overlap, errors = validate_incremental_scope(
                 incremental_root=incremental_root,
                 full_root=full_root,
