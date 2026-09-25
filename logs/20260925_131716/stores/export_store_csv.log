@@ -1,0 +1,9 @@
+cwd: D:\Home\Repo\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/export_user_size_json_tables.py --input D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\02_user_size.json --output-root D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\03_store_csv
+
+EU: non-pickup=4649, pickup=774
+HNT: non-pickup=924, pickup=113
+RU: non-pickup=6768, pickup=325
+TM: non-pickup=1021, pickup=135
+TM_拆分: non-pickup=158, pickup=0
+US: non-pickup=1306, pickup=135
