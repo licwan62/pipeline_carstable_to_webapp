@@ -14,6 +14,7 @@ import yaml
 
 NON_COLUMNS = ["店铺","CAR","MAKE","MODEL","YEAR","VERSION","CONST","SIZE","SIZE-CODE","CATAGORY","LONG-TYPE","TYPE","SHORT-MODEL"]
 PICK_COLUMNS = ["店铺","MAKE","MODEL","YEAR","VERSION","CAB","BED","SIZE","SIZE-CODE","SHORT-CAB","TITLE","DESCRIPTION"]
+UNPUBLISHABLE_SIZES = {"", "无可用尺码", "数据不全"}
 
 
 def load_runtime_config(path: Path) -> dict:
@@ -49,10 +50,14 @@ def normalized_size(row: dict[str, str], sizes: dict[str, dict]) -> tuple[str, s
 
     New compressed tables provide SIZE/SIZE-CODE. BACKSIZE remains a read-only
     compatibility fallback for older compressor output.
+    SIZE-CODE 取 configs/user-size-rules.json 的 generic（对照表见 configs/size-code.csv）；
+    对照表之外的尺码直接用通用尺码名作代码，不可发布的占位尺码保持为空。
     """
     size_value = row.get("SIZE", "").strip() or row.get("BACKSIZE", "").strip()
     metadata = sizes.get(size_value, {})
     size_code = row.get("SIZE-CODE", "").strip() or str(metadata.get("generic", "")).strip()
+    if not size_code and size_value not in UNPUBLISHABLE_SIZES:
+        size_code = size_value
     return size_value, size_code, metadata
 
 
