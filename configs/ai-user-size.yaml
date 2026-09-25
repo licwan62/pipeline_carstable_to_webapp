@@ -3,7 +3,7 @@ enabled: true
 base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
 model: "qwen3.7-max"
 # 推荐：api_key_env 填环境变量名（例如 AI_API_KEY）。也支持另设 api_key 直接填值。
-api_key_env: "sk-ws-H.EHDMRMP.y2pw.MEUCIQDMoI_I7-EPPU1jnnnIYhbgjnxPvJinyoT5F4IbbLYeYwIgUNFrHMA552DUCqJZD94yM4evFsnZhn1V8iWzfELnli8"
+api_key_env: "AI_API_KEY"
 timeout_seconds: 120
 batch_size: 10
 retries: 2

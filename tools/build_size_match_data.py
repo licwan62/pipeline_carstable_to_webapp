@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""用上游 A1.全量汇总/output/全量表_汇总.csv 生成尺码配对页的 US / EU 数据源。
+"""用上游 A1.全量生成/output/全量表_汇总.csv 生成尺码配对页的 US / EU 数据源。
 
 校验 A1 manifest 的 sha256 后，按 DIMENSION-ID 末尾的区域拆分，各区域按 MAKE 分片写入
 public/data/generated/size-match-full-<区域>-NN-<make>.json，并写入清单 size-match-full.json。
@@ -18,7 +18,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = ROOT.parent / "all_cars_data" / "A1.全量汇总" / "output"
+DEFAULT_SOURCE = ROOT.parent / "all_cars_data" / "A1.全量生成" / "output"
 STORE_SOURCE = ROOT.parent / "all_cars_data" / "A0.尺码计算" / "output"
 REGIONS = ("US", "EU", "RU")
 # US 源下的店铺选择：名称 -> A0 店铺全量文件（自动尺码为该店铺的发货尺码）
