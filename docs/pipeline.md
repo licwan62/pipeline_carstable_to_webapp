@@ -1,9 +1,11 @@
 # 车型尺码流水线
 
-本项目采用 `input + artifact + public` 模式：
+本项目采用 `上游发布物 + artifact + public` 模式：产线输入直接读取 all_cars_data 已发布的 A1 全量表与 A2 压缩表（按 manifest 校验 sha256）。
 
 ```text
-input/                              人工输入，支持 CSV / XLSX / XLSM
+../all_cars_data/A1.全量生成/output/      产线全量表 全量生成_<产线>.csv
+../all_cars_data/A2.压缩尺寸信息/output/  产线压缩表 压缩尺码表_<产线>[_皮卡]_有损.csv
+input/                              旧的人工输入（仅 input.source 不是 all_cars_data 时使用）
 configs/
   pipeline.yaml                     流水线配置
   user-size-rules.json              尺码和缩写规则的唯一活动来源
@@ -16,7 +18,7 @@ logs/                               运行日志
 
 ## 运行
 
-把源文件放入 `input/`，然后执行：
+先在 all_cars_data 发布 A1/A2（`python scripts/publish_release.py`），然后执行：
 
 ```powershell
 python tools/run_all.py
@@ -43,7 +45,7 @@ artifact/2026-09-17_02_pipeline/
 artifact.json
 ```
 
-中间结构化数据只使用 CSV 和 JSON，不生成中间 XLSX。XLSX/XLSM 只作为输入格式读取，并在 `00_input/tables/` 规范化为 CSV。外部压缩器和 HTML 生成器当前仍以 TSV 为接口，流水线只在系统临时目录中做短暂转换，不会把 TSV 写入 artifact。
+中间结构化数据只使用 CSV 和 JSON，不生成中间 XLSX。`00_input/tables/` 是导入的产线全量表（供尺码配对页），`01_compressed_fitment/<产线>/compress/` 是导入的 A2 高度压缩表，`pipeline.generated.json` 记录店铺清单与来源版本（`sources`）。HTML 生成器当前仍以 TSV 为接口，只在系统临时目录中做短暂转换。
 
 ## 批次恢复执行
 
@@ -61,17 +63,16 @@ python tools/run_all.py --artifact 2026-09-17_02_pipeline --from-step build_user
 
 `--from-step` 必须同时指定 `--artifact`，避免把不完整结果误写进新批次。也可以用 `--to-step` 创建新批次并停在指定步骤。
 
-当前七个步骤统一采用“动作 + 产物”命名：
+当前六个步骤统一采用“动作 + 产物”命名：
 
-1. `normalize_store_inputs`：把每个店铺输入规范化为 CSV，并生成运行时 JSON。
-2. `compress_store_fitment`：生成每个店铺的压缩匹配数据和原子检查结果。
-3. `build_user_size_json`：应用尺码及缩写规则，生成紧凑 JSON。
-4. `export_store_csv`：按店铺导出 HTML 输入 CSV。
-5. `generate_store_html`：生成各店铺尺码表 HTML。
-6. `build_public_site`：构建并更新 `public/`。
-7. `publish_nas_site`：尝试将完整站点发布到 NAS；NAS 不可用时记录警告，但不影响 `public/` 构建成功。
+1. `import_a2_compressed`：按 A2 发布的产线（US、HNT、TM、TM_拆分、EU、RU；`input.lines` 可限定）导入 A1 全量表与 A2 高度压缩表，校验 manifest，生成运行时 JSON。压缩与原子检查已移至 all_cars_data 的 `A2.压缩尺寸信息`。
+2. `build_user_size_json`：应用尺码及缩写规则，生成紧凑 JSON。
+3. `export_store_csv`：按店铺导出 HTML 输入 CSV。
+4. `generate_store_html`：生成各店铺尺码表 HTML。
+5. `build_public_site`：构建并更新 `public/`。
+6. `publish_nas_site`：尝试将完整站点发布到 NAS；NAS 不可用时记录警告，但不影响 `public/` 构建成功。
 
-旧步骤名仍可用于 `--from-step`/`--to-step`，但 `--list-steps` 和新日志只显示上述标准名称。
+旧步骤名（`normalize_store_inputs`、`compress_store_fitment` 仍保留在旧手工输入模式中）仍可用于 `--from-step`/`--to-step`，但 `--list-steps` 和新日志只显示上述标准名称。
 
 ## 规则
 
@@ -125,7 +126,8 @@ python tools/cleanup.py --force
 - `paths.public_dir`：当前发布目录。
 - `paths.nas_publish_dir`：NAS 发布目录。
 - `file_rules.input_patterns`：输入格式，默认支持 CSV/XLSX/XLSM。
-- `input.store`：由文件名生成店铺名和标签；每个输入文件就是一个店铺。
+- `input.source`：`all_cars_data` 时按 A2 产线导入（产线名即 `{stem}`）；`input.lines` 可限定/排序产线。
+- `input.store`：由产线名（或旧模式的文件名）生成店铺名和标签。
 - `columns`：输入字段别名。
 - `steps`：流水线命令和启停状态。
 
@@ -133,6 +135,6 @@ HTML 样式位于 `configs/html-style.yaml`，AI 缩写补全位于 `configs/ai-
 
 ## 尺码参考、店铺分组与尺码配对数据源
 
-- `input/0921/` 由 A0 店铺全量表和 US 全量表复制而来，`input-provenance.json` 记录来源 artifact 与 sha256。
+- 产线输入不再手工复制到 `input/`：`import_a2_compressed` 直接读取 A1/A2 发布物并把来源版本写入 `pipeline.generated.json` 的 `sources`。
 - `size-ref.html`（US/EU/RU）与 `store-groups.html` 读取 A0 `output/` 中的尺码规则和店铺货架，`size-match.html` 的 US（含店铺下拉）/EU 数据源读取 A1 全量表汇总和 A0 店铺全量表；均校验上游 manifest 的 sha256。
-- 这些页面和数据由 `site_overrides/` 与 `tools/build_size_rules_data.py`、`tools/build_size_match_data.py` 在站点构建后叠加到 `public/`；size chart 与压缩分析仍只使用 US 店铺输入。
+- 这些页面和数据由 `site_overrides/` 与 `tools/build_size_rules_data.py`、`tools/build_size_match_data.py` 在站点构建后叠加到 `public/`；size chart 按 6 条产线（US 全量、HNT、TM、TM_拆分 店铺发货尺码、EU、RU）生成。

@@ -3,8 +3,24 @@ from __future__ import annotations
 import argparse
 import shutil
 import sys
+import time
 import uuid
 from pathlib import Path
+
+
+RENAME_RETRY_DELAYS = (1, 2, 4, 8, 15)
+
+
+def rename_with_retry(source: Path, target: Path, delays: tuple[float, ...] = RENAME_RETRY_DELAYS) -> None:
+    """NAS（SMB）上目录刚被重命名或仍被同步/Web 服务占用时会短暂拒绝访问，按退避重试。"""
+    for delay in (*delays, None):
+        try:
+            source.rename(target)
+            return
+        except PermissionError:
+            if delay is None:
+                raise
+            time.sleep(delay)
 
 
 def replace_directory(source: Path, destination: Path) -> None:
@@ -29,12 +45,12 @@ def replace_directory(source: Path, destination: Path) -> None:
         if not (staging / "index.html").is_file():
             raise FileNotFoundError(f"staged site has no index.html: {staging}")
         if destination.exists():
-            destination.rename(backup)
+            rename_with_retry(destination, backup)
             moved_existing = True
-        staging.rename(destination)
+        rename_with_retry(staging, destination)
     except Exception:
         if moved_existing and backup.exists() and not destination.exists():
-            backup.rename(destination)
+            rename_with_retry(backup, destination)
         raise
     finally:
         if staging.exists():

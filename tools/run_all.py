@@ -22,6 +22,7 @@ if str(ROOT) not in sys.path:  # 直接运行 tools/run_all.py 时保证 `tools`
 from tools.materialize_input_sources import discover_input_files  # noqa: E402
 ERROR_LOG_TAIL_LINES = 40
 STEP_ALIASES = {
+    "import": "import_a2_compressed",
     "prepare_inputs": "normalize_store_inputs",
     "compress": "compress_store_fitment",
     "user_size_json": "build_user_size_json",
@@ -120,10 +121,17 @@ def scan_cases(
     config: dict[str, Any], artifact_dir: Path, only_case: str | None = None
 ) -> list[dict[str, Any]]:
     paths = config["paths"]
-    input_dir = resolve_from_root(paths["input_dir"])
-    input_files = discover_input_files(input_dir, config)
-    if not input_files:
-        return []
+    if (config.get("input") or {}).get("source") == "all_cars_data":
+        # 产线输入来自 all_cars_data 的 A1/A2 发布物（由 import_a2_compressed 步骤校验导入）
+        input_files = [resolve_from_root(paths[key]) / "manifest.json" for key in ("a1_output_dir", "a2_output_dir")]
+        missing = [path for path in input_files if not path.is_file()]
+        if missing:
+            raise FileNotFoundError(f"all_cars_data 发布物缺少 manifest.json：{missing}")
+    else:
+        input_dir = resolve_from_root(paths["input_dir"])
+        input_files = discover_input_files(input_dir, config)
+        if not input_files:
+            return []
 
     manifest_path = artifact_dir / "artifact.json"
     manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.is_file() else {}
@@ -165,6 +173,8 @@ def build_variables(case: dict[str, Any], config: dict[str, Any]) -> dict[str, s
         "nas_publish_dir": str(paths.get("nas_publish_dir", "")),
         "output_dir": public_dir,
         "logs_dir": str(resolve_from_root(paths["logs_dir"])),
+        "a1_output_dir": str(resolve_from_root(paths["a1_output_dir"])) if paths.get("a1_output_dir") else "",
+        "a2_output_dir": str(resolve_from_root(paths["a2_output_dir"])) if paths.get("a2_output_dir") else "",
         "python": sys.executable,
     }
 
@@ -854,7 +864,7 @@ def main() -> int:
             "updated_at": timestamp,
             "status": "complete" if completed else "partial",
             "case": cases[0]["case_name"],
-            "inputs": [str(path.relative_to(ROOT)).replace("\\", "/") for path in cases[0]["input_files"]],
+            "inputs": [os.path.relpath(path, ROOT).replace("\\", "/") for path in cases[0]["input_files"]],
             "format": "csv-json",
             "steps": enabled_steps if completed else [step for step in enabled_steps if step in selected_steps],
             "public": str(configured_public_dir(config["paths"]).relative_to(ROOT)).replace("\\", "/"),

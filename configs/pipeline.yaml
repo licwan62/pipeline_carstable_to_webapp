@@ -5,6 +5,9 @@ repos:
   compress: "../../Scripts/compress_to_size_chart"
 
 paths:
+  # 产线输入：all_cars_data 的已发布交付物（相对本仓库；两仓库同级）。input_dir 仅供旧的手工输入/增量流程使用。
+  a1_output_dir: "../all_cars_data/A1.全量生成/output"
+  a2_output_dir: "../all_cars_data/A2.压缩尺寸信息/output"
   input_dir: "input/0925"
   artifact_root: "artifact"
   public_dir: "public"
@@ -17,6 +20,9 @@ file_rules:
 # 每个 Excel/CSV 文件就是一个店铺；stem 是不含扩展名的店铺名。
 # 例如 07-HNT.csv 会生成 store=07-HNT、label=07-HNT尺码匹配表。
 input:
+  # all_cars_data：按 A2 发布的产线（US、HNT、TM、TM_拆分、EU、RU）导入；可用 lines 限定/排序。
+  source: all_cars_data
+  # lines: [US, HNT, TM, TM_拆分, EU, RU]
   store:
     store: "{stem}"
     label: "{stem}尺码匹配表"
@@ -57,17 +63,11 @@ variables:
   webapp_repo: "{scripts_root}/publish_tables_to_webapp"
 
 steps:
-  normalize_store_inputs:
+  import_a2_compressed:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/materialize_input_sources.py, --input-dir, "{input_dir}", --config, "{source_config}", --output-dir, "{input_tables_dir}", --output-config, "{pipeline_config}"]
-    check_exists: ["{input_tables_dir}", "{pipeline_config}"]
-
-  compress_store_fitment:
-    enabled: true
-    repo: pipeline
-    command: ["{python}", tools/compress_configured_sheets.py, --output-root, "{compressed_fitment_dir}", --config, "{pipeline_config}", --compress-script, "{scripts_root}/compress_to_size_chart/process_tsv.py"]
-    check_exists: ["{compressed_fitment_dir}"]
+    command: ["{python}", tools/import_a2_compressed.py, --a1-output, "{a1_output_dir}", --a2-output, "{a2_output_dir}", --config, "{source_config}", --output-dir, "{input_tables_dir}", --output-config, "{pipeline_config}", --compressed-root, "{compressed_fitment_dir}"]
+    check_exists: ["{input_tables_dir}", "{pipeline_config}", "{compressed_fitment_dir}"]
 
   build_user_size_json:
     enabled: true
