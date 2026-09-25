@@ -1,0 +1,65 @@
+cwd: D:\Home\Repo\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/compress_configured_sheets.py --output-root D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\01_compressed_fitment --config D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\00_input\pipeline.generated.json --compress-script D:\Home\Repo\pipeline_carstable_to_webapp\..\..\Scripts/compress_to_size_chart/process_tsv.py
+
+[compress-new] 全量生成_EU: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\00_input\tables\001-全量生成_EU.csv
+[compress-new] 全量生成_RU: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\00_input\tables\002-全量生成_RU.csv
+[compress-new] 全量生成_US: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\00_input\tables\003-全量生成_US.csv
+[全量生成_US] [进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/671 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_RU] [进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/4559 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_US] [进度] 非皮卡高度压缩 | MAKE=Volvo | MODEL=XC90 | 已完成MODEL=671/671 | 合并项数量=696 | 尝试次数=3279 | 用时=1s
+[全量生成_US] [进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/34 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_US] [进度] 皮卡高度压缩 | MAKE=Toyota | MODEL=Tundra | 已完成MODEL=34/34 | 合并项数量=95 | 尝试次数=783 | 用时=0s
+[全量生成_US] [进度] 非皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/14356 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_EU] [进度] 非皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/3226 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_US] [进度] 非皮卡原子检查 | MAKE=Volvo | MODEL=XC90 | 已完成行=14356/14356 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_US] [进度] 皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/2334 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_US] [进度] 皮卡原子检查 | MAKE=Toyota | MODEL=Tundra | 已完成行=2334/2334 | 合并项数量=0 | 尝试次数=0 | 用时=1s
+[全量生成_US] 写入完成
+[全量生成_US] Input table: 全量生成_US
+[全量生成_US] Output dir: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-dvbk0e74\output\全量生成_US
+[全量生成_US] Non-pickup lossless TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-dvbk0e74\output\全量生成_US\compress\全量生成_US_非皮卡无损压缩表.tsv
+[全量生成_US] Non-pickup high TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-dvbk0e74\output\全量生成_US\compress\全量生成_US_非皮卡高度压缩表.tsv
+[全量生成_US] Pickup lossless TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-dvbk0e74\output\全量生成_US\compress\全量生成_US_皮卡无损压缩.tsv
+[全量生成_US] Pickup high TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-dvbk0e74\output\全量生成_US\compress\全量生成_US_皮卡高度压缩表.tsv
+[全量生成_US] Log TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-dvbk0e74\output\全量生成_US\compress\全量生成_US_压缩log.tsv
+[全量生成_US] Atom TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-dvbk0e74\output\全量生成_US\compress\全量生成_US_原子事实表.tsv
+[全量生成_US] Non-pickup atom check TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-dvbk0e74\output\全量生成_US\check\全量生成_US_非皮卡原子检查.tsv
+[全量生成_US] Pickup atom check TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-dvbk0e74\output\全量生成_US\check\全量生成_US_皮卡原子检查.tsv
+[全量生成_RU] [进度] 非皮卡高度压缩 | MAKE=ГАЗ | MODEL=Volga Siber | 已完成MODEL=4459/4559 | 合并项数量=1357 | 尝试次数=3007 | 用时=10s
+[全量生成_RU] [进度] 非皮卡高度压缩 | MAKE=Яндекс Ровер | MODEL=R3 | 已完成MODEL=4559/4559 | 合并项数量=1360 | 尝试次数=3010 | 用时=10s
+[全量生成_RU] [进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/222 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_EU] [进度] 非皮卡高度压缩 | MAKE=Mercedes-benz | MODEL=Viano | 已完成MODEL=1846/3226 | 合并项数量=5607 | 尝试次数=23417 | 用时=10s
+[全量生成_RU] [进度] 皮卡高度压缩 | MAKE=УАЗ | MODEL=Пикап | 已完成MODEL=222/222 | 合并项数量=45 | 尝试次数=250 | 用时=0s
+[全量生成_RU] [进度] 非皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/85635 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_RU] [进度] 非皮卡原子检查 | MAKE=Яндекс Ровер | MODEL=R3 | 已完成行=85635/85635 | 合并项数量=0 | 尝试次数=0 | 用时=1s
+[全量生成_RU] [进度] 皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/4680 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_RU] [进度] 皮卡原子检查 | MAKE=УАЗ | MODEL=Пикап | 已完成行=4680/4680 | 合并项数量=0 | 尝试次数=0 | 用时=1s
+[全量生成_RU] 写入完成
+[全量生成_RU] Input table: 全量生成_RU
+[全量生成_RU] Output dir: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-fwb46t9c\output\全量生成_RU
+[全量生成_RU] Non-pickup lossless TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-fwb46t9c\output\全量生成_RU\compress\全量生成_RU_非皮卡无损压缩表.tsv
+[全量生成_RU] Non-pickup high TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-fwb46t9c\output\全量生成_RU\compress\全量生成_RU_非皮卡高度压缩表.tsv
+[全量生成_RU] Pickup lossless TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-fwb46t9c\output\全量生成_RU\compress\全量生成_RU_皮卡无损压缩.tsv
+[全量生成_RU] Pickup high TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-fwb46t9c\output\全量生成_RU\compress\全量生成_RU_皮卡高度压缩表.tsv
+[全量生成_RU] Log TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-fwb46t9c\output\全量生成_RU\compress\全量生成_RU_压缩log.tsv
+[全量生成_RU] Atom TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-fwb46t9c\output\全量生成_RU\compress\全量生成_RU_原子事实表.tsv
+[全量生成_RU] Non-pickup atom check TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-fwb46t9c\output\全量生成_RU\check\全量生成_RU_非皮卡原子检查.tsv
+[全量生成_RU] Pickup atom check TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-fwb46t9c\output\全量生成_RU\check\全量生成_RU_皮卡原子检查.tsv
+[全量生成_EU] [进度] 非皮卡高度压缩 | MAKE=Zuendapp | MODEL=Janus | 已完成MODEL=3226/3226 | 合并项数量=9273 | 尝试次数=65376 | 用时=17s
+[全量生成_EU] [进度] 皮卡高度压缩 | MAKE=- | MODEL=- | 已完成MODEL=0/287 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_EU] [进度] 皮卡高度压缩 | MAKE=Xbus | MODEL=Xbus | 已完成MODEL=287/287 | 合并项数量=994 | 尝试次数=6224 | 用时=4s
+[全量生成_EU] [进度] 非皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/164137 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_EU] [进度] 非皮卡原子检查 | MAKE=Zuendapp | MODEL=Janus | 已完成行=164137/164137 | 合并项数量=0 | 尝试次数=0 | 用时=3s
+[全量生成_EU] [进度] 皮卡原子检查 | MAKE=- | MODEL=- | 已完成行=0/19352 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_EU] [进度] 皮卡原子检查 | MAKE=Xbus | MODEL=Xbus | 已完成行=19352/19352 | 合并项数量=0 | 尝试次数=0 | 用时=0s
+[全量生成_EU] 写入完成
+[全量生成_EU] Input table: 全量生成_EU
+[全量生成_EU] Output dir: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-vb5h_fs6\output\全量生成_EU
+[全量生成_EU] Non-pickup lossless TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-vb5h_fs6\output\全量生成_EU\compress\全量生成_EU_非皮卡无损压缩表.tsv
+[全量生成_EU] Non-pickup high TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-vb5h_fs6\output\全量生成_EU\compress\全量生成_EU_非皮卡高度压缩表.tsv
+[全量生成_EU] Pickup lossless TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-vb5h_fs6\output\全量生成_EU\compress\全量生成_EU_皮卡无损压缩.tsv
+[全量生成_EU] Pickup high TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-vb5h_fs6\output\全量生成_EU\compress\全量生成_EU_皮卡高度压缩表.tsv
+[全量生成_EU] Log TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-vb5h_fs6\output\全量生成_EU\compress\全量生成_EU_压缩log.tsv
+[全量生成_EU] Atom TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-vb5h_fs6\output\全量生成_EU\compress\全量生成_EU_原子事实表.tsv
+[全量生成_EU] Non-pickup atom check TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-vb5h_fs6\output\全量生成_EU\check\全量生成_EU_非皮卡原子检查.tsv
+[全量生成_EU] Pickup atom check TSV: C:\Users\hzwlc\AppData\Local\Temp\compress-csv-vb5h_fs6\output\全量生成_EU\check\全量生成_EU_皮卡原子检查.tsv

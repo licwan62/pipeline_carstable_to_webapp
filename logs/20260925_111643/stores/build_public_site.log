@@ -1,0 +1,29 @@
+cwd: D:\Home\Repo\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/build_publish_site.py --publish-repo D:\Home\Repo\pipeline_carstable_to_webapp\..\..\Scripts\publish_tables_to_webapp --html-root D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\04_store_html --pipeline-config D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\00_input\pipeline.generated.json --html-style-config D:\Home\Repo\pipeline_carstable_to_webapp/configs/html-style.yaml --workspace D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\05_site_workspace --site-output D:\Home\Repo\pipeline_carstable_to_webapp\public
+
+[configure_publish] stores=['全量生成_EU', '全量生成_RU', '全量生成_US']; reuse existing size reference
+[export_csv_sources] C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\05_site_workspace\tools\export_csv_sources.py --pipeline-config D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\00_input\pipeline.generated.json
+[build_site] C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\05_site_workspace\tools\build_site.py
+Traceback (most recent call last):
+  File "D:\Home\Repo\pipeline_carstable_to_webapp\tools\build_publish_site.py", line 216, in <module>
+    main()
+    ~~~~^^
+  File "D:\Home\Repo\pipeline_carstable_to_webapp\tools\build_publish_site.py", line 211, in main
+    apply_site_overrides(site_output)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "D:\Home\Repo\pipeline_carstable_to_webapp\tools\build_publish_site.py", line 138, in apply_site_overrides
+    build_size_match_data(SIZE_MATCH_SOURCE, generated)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Home\Repo\pipeline_carstable_to_webapp\tools\build_size_match_data.py", line 73, in build
+    manifest, rows = read_verified(source_dir, NAME)
+                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "D:\Home\Repo\pipeline_carstable_to_webapp\tools\build_size_match_data.py", line 64, in read_verified
+    manifest = json.loads((source_dir / "manifest.json").read_text(encoding="utf-8"))
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 787, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Home\\Repo\\all_cars_data\\A1.全量汇总\\output\\manifest.json'

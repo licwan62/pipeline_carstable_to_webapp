@@ -1,0 +1,8 @@
+cwd: D:\Home\Repo\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/materialize_input_sources.py --input-dir D:\Home\Repo\pipeline_carstable_to_webapp\input\0925 --config C:\Users\hzwlc\AppData\Local\Temp\claude\d--Home-Repo-all-cars-data\1589d4f0-d0d0-45b9-a3da-73fb6d161ee6\scratchpad\pipeline.local.yaml --output-dir D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\00_input\tables --output-config D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\00_input\pipeline.generated.json
+
+[store] 全量生成_EU.csv -> 全量生成_EU / 001-全量生成_EU.csv (29707 data rows)
+[store] 全量生成_RU.csv -> 全量生成_RU / 002-全量生成_RU.csv (13617 data rows)
+[store] 全量生成_US.csv -> 全量生成_US / 003-全量生成_US.csv (4371 data rows)
+Materialized 3 store(s): D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\00_input\tables
+Runtime config: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_02_pipeline\00_input\pipeline.generated.json
