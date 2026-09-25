@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "layout": "store-pipeline-v2",
+  "created_at": "2026-09-25T13:35:20+08:00",
+  "updated_at": "2026-09-25T13:35:20+08:00",
+  "status": "complete",
+  "case": "stores",
+  "inputs": [
+    "../all_cars_data/A1.全量生成/output/manifest.json",
+    "../all_cars_data/A2.压缩尺寸信息/output/manifest.json"
+  ],
+  "format": "csv-json",
+  "steps": [
+    "import_a2_compressed",
+    "build_user_size_json",
+    "export_store_csv",
+    "generate_store_html",
+    "build_public_site",
+    "publish_nas_site"
+  ],
+  "public": "public"
+}

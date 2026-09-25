@@ -1,0 +1,72 @@
+excel_source:
+  path: data/source/tables/车型数据尺码.xlsx
+  match_data_path: data/generated/size-match.json
+size_colors:
+  a: '#1777c8'
+  c: '#d62828'
+  h: '#00a6a6'
+  s: '#f28c28'
+  other: '#6b7280'
+  text: '#ffffff'
+match_sources:
+  - name: US
+    label: US尺码匹配表
+    sheet: US尺码匹配
+    header_row: 1
+    columns: DIMENSION-CODE,MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
+  - name: HNT
+    label: HNT尺码匹配表
+    sheet: HNT尺码匹配
+    header_row: 1
+    columns: DIMENSION-CODE,MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
+  - name: TM
+    label: TM尺码匹配表
+    sheet: TM尺码匹配
+    header_row: 1
+    columns: DIMENSION-CODE,MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
+  - name: TM_拆分
+    label: TM_拆分尺码匹配表
+    sheet: TM_拆分尺码匹配
+    header_row: 1
+    columns: DIMENSION-CODE,MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
+  - name: EU
+    label: EU尺码匹配表
+    sheet: EU尺码匹配
+    header_row: 1
+    columns: DIMENSION-CODE,MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
+  - name: RU
+    label: RU尺码匹配表
+    sheet: RU尺码匹配
+    header_row: 1
+    columns: DIMENSION-CODE,MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
+filters:
+  construct:
+    label: 结构
+    empty_label: All structures
+    source: TYPE
+    atomize: true
+  cab:
+    label: CAB
+    empty_label: All cabs
+    source: CAB
+    atomize: true
+  bed:
+    label: BED
+    empty_label: All beds
+    source: BED
+    atomize: true
+table_fields:
+  const:
+    label: 结构
+    source: CONST
+  cab:
+    label: CAB
+    source: CAB
+  bed:
+    label: BED
+    source: BED
+size_reference:
+  sheet: ALL尺码
+  header_row: 1
+  data_path: data/generated/size-ref.json
+  match_field: 通用尺码

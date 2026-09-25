@@ -1,0 +1,10 @@
+cwd: D:\Home\Repo\pipeline_carstable_to_webapp
+command: C:\Users\hzwlc\AppData\Local\Python\pythoncore-3.14-64\python.exe tools/import_a2_compressed.py --a1-output D:\Home\Repo\all_cars_data\A1.全量生成\output --a2-output D:\Home\Repo\all_cars_data\A2.压缩尺寸信息\output --config D:\Home\Repo\pipeline_carstable_to_webapp\configs\pipeline.local.yaml --output-dir D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_04_pipeline\00_input\tables --output-config D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_04_pipeline\00_input\pipeline.generated.json --compressed-root D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_04_pipeline\01_compressed_fitment
+
+[line] US -> US: 001-US.csv (4371 rows), D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_04_pipeline\01_compressed_fitment\US\compress
+[line] HNT -> HNT: 002-HNT.csv (4371 rows), D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_04_pipeline\01_compressed_fitment\HNT\compress
+[line] TM -> TM: 003-TM.csv (4371 rows), D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_04_pipeline\01_compressed_fitment\TM\compress
+[line] TM_拆分 -> TM_拆分: 004-TM_拆分.csv (4371 rows), D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_04_pipeline\01_compressed_fitment\TM_拆分\compress
+[line] EU -> EU: 005-EU.csv (29707 rows), D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_04_pipeline\01_compressed_fitment\EU\compress
+[line] RU -> RU: 006-RU.csv (13617 rows), D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_04_pipeline\01_compressed_fitment\RU\compress
+Imported 6 line(s) from A1 20260925_14 / A2 20260925_12; runtime config: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_04_pipeline\00_input\pipeline.generated.json
