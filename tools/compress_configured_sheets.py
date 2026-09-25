@@ -4,10 +4,13 @@ import argparse
 import csv
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
 import tempfile
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import yaml
@@ -76,6 +79,62 @@ def publish_csv_outputs(temporary_output: Path, output_root: Path) -> None:
         tsv_to_csv(source, output_root / relative)
 
 
+_PRINT_LOCK = threading.Lock()
+
+
+def locked_print(text: str) -> None:
+    with _PRINT_LOCK:
+        print(text, flush=True)
+
+
+def compress_store(
+    store_name: str,
+    csv_path: Path,
+    profile: dict,
+    fingerprint: str,
+    output_root: Path,
+    compress_script: Path,
+) -> None:
+    """在临时目录压缩单个店铺，逐行转出带店铺前缀的子进程输出，成功后发布 CSV。"""
+    with tempfile.TemporaryDirectory(prefix="compress-csv-") as temporary_dir:
+        temporary_root = Path(temporary_dir)
+        input_tsv = temporary_root / f"{store_name}.tsv"
+        output_dir = temporary_root / "output"
+        profile_path = temporary_root / "profile.yaml"
+        csv_to_tsv(csv_path, input_tsv)
+        profile_path.write_text(yaml.safe_dump(profile, allow_unicode=True, sort_keys=False), encoding="utf-8")
+        command = [
+            sys.executable,
+            str(compress_script),
+            str(input_tsv),
+            "--output-dir",
+            str(output_dir),
+            "--field-profile",
+            str(profile_path),
+            "--check-atom",
+            "--no-xlsx",
+        ]
+        process = subprocess.Popen(
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            env={**os.environ, "PYTHONUNBUFFERED": "1", "PYTHONIOENCODING": "utf-8"},
+        )
+        assert process.stdout is not None
+        for line in process.stdout:
+            locked_print(f"[{store_name}] {line.rstrip()}")
+        if process.wait() != 0:
+            raise subprocess.CalledProcessError(process.returncode, command)
+        destination = output_root / store_name
+        if destination.exists():
+            shutil.rmtree(destination)
+        publish_csv_outputs(output_dir, output_root)
+        (destination / FINGERPRINT_NAME).write_text(fingerprint, encoding="utf-8")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Compress normalized CSV sources and retain only CSV/JSON artifacts."
@@ -86,7 +145,15 @@ def main() -> None:
     parser.add_argument("--force", action="store_true", help="Recompress every configured source.")
     parser.add_argument("--store", action="append", help="Only process this store (repeatable).")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--jobs",
+        type=int,
+        default=0,
+        help="Stores compressed in parallel; 0 (default) = one per store, capped at CPU count.",
+    )
     args = parser.parse_args()
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(errors="replace")  # 子进程输出含本地编码无法表示的字符时不中断
 
     config = load_config(args.config)
     stores = list((config.get("input") or {}).get("stores") or [])
@@ -99,9 +166,9 @@ def main() -> None:
             raise ValueError(f"Unknown configured stores: {sorted(unknown)}")
         stores = [store for store in stores if str(store.get("store")) in selected]
 
+    jobs: list[tuple[str, Path, dict, str]] = []
     for store in stores:
         store_name = str(store["store"])
-        sheet = str(store["sheet"])
         output = expected_output(args.output_root, store_name)
         if output.is_file() and not args.force:
             print(f"[reuse] {store_name}")
@@ -118,37 +185,23 @@ def main() -> None:
             if not args.dry_run:
                 shutil.copytree(history, args.output_root / stem, dirs_exist_ok=True)
             continue
-        print(f"[compress-new] {store_name}: {csv_path}")
-        if args.dry_run:
-            continue
+        locked_print(f"[compress-new] {store_name}: {csv_path}")
+        if not args.dry_run:
+            jobs.append((stem, csv_path, profile, fingerprint))
 
-        with tempfile.TemporaryDirectory(prefix="compress-csv-") as temporary_dir:
-            temporary_root = Path(temporary_dir)
-            input_tsv = temporary_root / f"{stem}.tsv"
-            output_dir = temporary_root / "output"
-            profile_path = temporary_root / "profile.yaml"
-            csv_to_tsv(csv_path, input_tsv)
-            profile_path.write_text(
-                yaml.safe_dump(profile, allow_unicode=True, sort_keys=False), encoding="utf-8"
-            )
-            subprocess.run(
-                [
-                    sys.executable,
-                    str(args.compress_script),
-                    str(input_tsv),
-                    "--output-dir",
-                    str(output_dir),
-                    "--field-profile",
-                    str(profile_path),
-                    "--check-atom",
-                ],
-                check=True,
-            )
-            destination = args.output_root / stem
-            if destination.exists():
-                shutil.rmtree(destination)
-            publish_csv_outputs(output_dir, args.output_root)
-            (destination / FINGERPRINT_NAME).write_text(fingerprint, encoding="utf-8")
+    if not jobs:
+        return
+    workers = args.jobs if args.jobs > 0 else min(len(jobs), os.cpu_count() or 1)
+    with ThreadPoolExecutor(max_workers=workers) as executor:
+        futures = [
+            executor.submit(compress_store, *job, args.output_root, args.compress_script) for job in jobs
+        ]
+        errors = [future.exception() for future in futures]
+    failed = [(job[0], error) for job, error in zip(jobs, errors) if error is not None]
+    if failed:
+        for store_name, error in failed:
+            locked_print(f"[compress-failed] {store_name}: {error}")
+        raise failed[0][1]
 
 
 if __name__ == "__main__":

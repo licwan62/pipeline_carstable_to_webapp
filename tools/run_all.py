@@ -5,6 +5,7 @@ import copy
 import datetime as dt
 import json
 import locale
+import os
 import shutil
 import subprocess
 import sys
@@ -271,12 +272,14 @@ def run_step(
             text=True,
             encoding=locale.getpreferredencoding(False),
             errors="replace",
+            env={**os.environ, "PYTHONUNBUFFERED": "1"},  # 子进程输出经管道时也实时传回进度
         )
 
         assert process.stdout is not None
         for line in process.stdout:
-            print(line, end="")
+            print(line, end="", flush=True)
             log.write(line)
+            log.flush()
         result_code = process.wait()
 
     if result_code != 0:
@@ -650,6 +653,7 @@ def run_incremental(
                 str(profile),
                 "--check-atom",
                 "--no-progress",
+                "--no-xlsx",
             ],
             log_file=increment_log_dir / "incremental_atom_compress.log",
             dry_run=False,
