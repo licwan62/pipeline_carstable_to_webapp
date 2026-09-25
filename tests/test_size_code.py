@@ -24,6 +24,10 @@ def test_4x_shares_codes_with_4x_0():
     assert [code(s) for s in ("4S", "4M", "4L", "4XL", "4XXL")] == [code(f"{s}-0") for s in ("4S", "4M", "4L", "4XL", "4XXL")]
 
 
+def test_renamed_2xxl_sizes_share_5_series_codes():
+    assert (code("2XXL-510"), code("2XXL-530")) == (code("5L"), code("5XL")) == ("V2", "V3")
+
+
 def test_sizes_outside_table_use_size_name_and_placeholders_stay_empty():
     assert code("2L+") == "2L+"
     assert code("CHALLENGER") == "CHALLENGER"
