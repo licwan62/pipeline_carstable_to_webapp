@@ -1,0 +1,236 @@
+Size chart generation log
+Generated at: 2026-09-25T12:35:27
+Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-w3nb0qh6\preference.yaml
+Output directory: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\04_store_html\EU\pick
+CSS: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-25_03_pipeline\04_store_html\EU\pick\size-chart.css
+Pages: 6
+Table chunks: 218
+Unique titles: 206
+Page table chunks: 44, 40, 43, 14, 45, 32
+
+Inputs:
+- C:\Users\hzwlc\AppData\Local\Temp\html-config-w3nb0qh6\EU-pickup.tsv
+  Sheet: 皮卡压缩表
+  Profile: pickup
+  Rows after filtering: 774
+  Titles: 206
+  Brand column: TITLE
+  Stripe column: CAB
+  Table columns: YEAR, CAB, BED, SIZE
+  Store column: 店铺
+  Store value: (all)
+
+Logo settings:
+Enabled: True
+Directory: D:\Home\Scripts\generate_size_chart_html\img_logos
+Logo files indexed: 49
+Matched titles: 114
+Missing titles: 92
+
+Logo matches:
+- MISSING: B-on Giga
+- MISSING: BMC Megastar
+- MISSING: Cenntro Logistar 200
+- MISSING: Cenntro Logistar 400
+- MATCH: Chevrolet Avalanche -> img_logos/Chevrolet.png
+- MATCH: Chevrolet C1500 -> img_logos/Chevrolet.png
+- MATCH: Chevrolet C1500 extended cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet C1500 standard cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet C2500 -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Cheyenne crew cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Cheyenne standard cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Colorado -> img_logos/Chevrolet.png
+- MATCH: Chevrolet K2500 crew cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet K2500 extended cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet K2500 standard cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet S10 -> img_logos/Chevrolet.png
+- MATCH: Chevrolet S10 crew cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet S10 extended cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet S10 pick up -> img_logos/Chevrolet.png
+- MATCH: Chevrolet S10 standard cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 1500 -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 1500 crew cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 1500 extended cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 1500 standard cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 2500 -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 2500 crew cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 2500 extended cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 2500 hd -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 2500 hd crew cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 2500 hd extended cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 2500 hd standard cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 2500 standard cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 3500 -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 3500 crew cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 3500 extended cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 3500 hd crew cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 3500 hd extended cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 3500 hd standard cab pickup -> img_logos/Chevrolet.png
+- MATCH: Chevrolet Silverado 3500 standard cab pickup -> img_logos/Chevrolet.png
+- MISSING: Citroën C25
+- MISSING: Citroën C35
+- MISSING: Citroën Jumper i
+- MISSING: Citroën Jumper ii
+- MISSING: Citroën Jumper iii
+- MISSING: Citroën Jumpy i
+- MISSING: Citroën Jumpy ii
+- MISSING: Citroën Jumpy iii
+- MISSING: DR Dr pk8
+- MISSING: DSK Q51
+- MISSING: Dfsk C32
+- MATCH: Dodge Ram 1500 -> img_logos/Dodge.png
+- MATCH: Dodge Ram 1500 crew cab pickup -> img_logos/Dodge.png
+- MATCH: Dodge Ram 1500 extended cab pickup -> img_logos/Dodge.png
+- MATCH: Dodge Ram 1500 standard cab pickup -> img_logos/Dodge.png
+- MATCH: Dodge Ram 2500 -> img_logos/Dodge.png
+- MATCH: Dodge Ram 4000 -> img_logos/Dodge.png
+- MISSING: EVO Cross 4
+- MISSING: Faam Jolly 2000
+- MISSING: Feidi Enter
+- MATCH: Fiat Doblo -> img_logos/FIAT.png
+- MATCH: Fiat Ducato -> img_logos/FIAT.png
+- MATCH: Fiat Fullback -> img_logos/FIAT.png
+- MATCH: Fiat Scudo -> img_logos/FIAT.png
+- MATCH: Fiat Talento -> img_logos/FIAT.png
+- MATCH: Ford A-Series -> img_logos/Ford.png
+- MATCH: Ford Ranger -> img_logos/Ford.png
+- MATCH: Ford Transit -> img_logos/Ford.png
+- MATCH: Ford Transit v363 -> img_logos/Ford.png
+- MATCH: Ford USA F-150 -> img_logos/Ford.png
+- MATCH: Ford USA Ranger -> img_logos/Ford.png
+- MISSING: Foton Tunland
+- MISSING: GAZ Gazelle
+- MISSING: GAZ Valdaj
+- MATCH: GMC Sierra -> img_logos/GMC.png
+- MISSING: Goupil G6
+- MISSING: Great Wall Wingle 6
+- MISSING: Hummer Hummer h2 sut
+- MISSING: Hummer Hummer h3t
+- MATCH: Hyundai H-1 -> img_logos/Hyundai.png
+- MATCH: Hyundai H100 -> img_logos/Hyundai.png
+- MATCH: Hyundai H350 -> img_logos/Hyundai.png
+- MATCH: Hyundai Porter -> img_logos/Hyundai.png
+- MATCH: Ineos Grenadier quartermaster -> img_logos/Ineos.png
+- MISSING: Isuzu Campo
+- MISSING: Isuzu D-Max i
+- MISSING: Isuzu D-Max ii
+- MISSING: Isuzu D-Max iii
+- MISSING: Isuzu Elf
+- MISSING: Iveco Daily i
+- MISSING: Iveco Daily ii
+- MISSING: Iveco Daily iii
+- MISSING: Iveco Daily iv
+- MISSING: Iveco Daily v
+- MISSING: Iveco Daily vi
+- MISSING: Iveco Emoovy
+- MISSING: JAC T8 pro
+- MATCH: Jeep Comanche -> img_logos/Jeep.png
+- MATCH: Jeep Gladiator -> img_logos/Jeep.png
+- MATCH: Jeep J10 standard cab pickup -> img_logos/Jeep.png
+- MATCH: Jeep J20 standard cab pickup -> img_logos/Jeep.png
+- MISSING: KG Mobility Musso
+- MATCH: KIA Bongo -> img_logos/Kia.png
+- MATCH: KIA K2500 -> img_logos/Kia.png
+- MATCH: KIA K2700 -> img_logos/Kia.png
+- MATCH: KIA K2900 -> img_logos/Kia.png
+- MATCH: KIA Pv5 -> img_logos/Kia.png
+- MISSING: LDV 400
+- MISSING: LDV Convoy
+- MISSING: LDV Maxus
+- MATCH: Land Rover 110/127 -> img_logos/Land%20Rover.png
+- MATCH: Land Rover Defender -> img_logos/Land%20Rover.png
+- MATCH: Land Rover Defender pick up -> img_logos/Land%20Rover.png
+- MISSING: MAN Tge
+- MISSING: Maxus Deliver 9
+- MISSING: Maxus Edeliver 3
+- MISSING: Maxus Edeliver 9
+- MISSING: Maxus Eterron 9
+- MISSING: Maxus T60 max
+- MISSING: Maxus T90
+- MISSING: Maxus V80
+- MATCH: Mazda B-Serie -> img_logos/Mazda.png
+- MATCH: Mazda Bt-50 -> img_logos/Mazda.png
+- MATCH: Mercedes-benz E-Klasse -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz G-Class -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz G-Klasse -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz Mb -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz Sprinter 2-T -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz Sprinter 3 -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz Sprinter 3-T -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz Sprinter 4 -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz Sprinter 4-T -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz Sprinter 5-T -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz T1 -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz T1/tn -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz T2/l -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz T2/ln1 -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz Vario -> img_logos/Mercedes-Benz.png
+- MATCH: Mercedes-benz X-Klasse -> img_logos/Mercedes-Benz.png
+- MATCH: Mitsubishi L200 -> img_logos/Mitsubishi.png
+- MISSING: Nextem Humpback
+- MATCH: Nissan Cabstar -> img_logos/Nissan.png
+- MATCH: Nissan Interstar -> img_logos/Nissan.png
+- MATCH: Nissan Navara -> img_logos/Nissan.png
+- MATCH: Nissan Np300 pickup -> img_logos/Nissan.png
+- MATCH: Nissan Nt400 cabstar -> img_logos/Nissan.png
+- MATCH: Nissan Nv300 -> img_logos/Nissan.png
+- MATCH: Nissan Nv400 -> img_logos/Nissan.png
+- MATCH: Nissan Pick up -> img_logos/Nissan.png
+- MATCH: Nissan Primastar -> img_logos/Nissan.png
+- MATCH: Nissan Trade -> img_logos/Nissan.png
+- MISSING: Opel Campo
+- MISSING: Opel Movano a
+- MISSING: Opel Movano b
+- MISSING: Opel Movano c
+- MISSING: Opel Vivaro a
+- MISSING: Opel Vivaro b
+- MISSING: Opel Vivaro c platform cabin
+- MISSING: Peugeot 504
+- MISSING: Peugeot Boxer
+- MISSING: Peugeot Expert
+- MISSING: Peugeot J5
+- MATCH: RAM 1500 crew cab pickup -> img_logos/Ram.png
+- MATCH: RAM 1500 extended cab pickup -> img_logos/Ram.png
+- MATCH: RAM 1500 standard cab pickup -> img_logos/Ram.png
+- MATCH: RAM 2500 -> img_logos/Ram.png
+- MATCH: RAM Rampage -> img_logos/Ram.png
+- MISSING: Renault Alaskan
+- MISSING: Renault Mascott
+- MISSING: Renault Master i
+- MISSING: Renault Master ii
+- MISSING: Renault Master iii
+- MISSING: Renault Master iv
+- MISSING: Renault Master pro
+- MISSING: Renault Trafic
+- MISSING: Renault Trafic ii
+- MISSING: Renault Trafic iii
+- MISSING: Renault Trucks B
+- MISSING: Renault Trucks Mascott
+- MISSING: Renault Trucks Messenger
+- MISSING: Ssangyong Actyon
+- MISSING: Ssangyong Musso
+- MISSING: Streetscooter Work l
+- MISSING: Tata Xenon
+- MATCH: Toyota Dyna -> img_logos/Toyota.png
+- MATCH: Toyota Hilux v -> img_logos/Toyota.png
+- MATCH: Toyota Hilux vi -> img_logos/Toyota.png
+- MATCH: Toyota Hilux vii -> img_logos/Toyota.png
+- MATCH: Toyota Hilux viii -> img_logos/Toyota.png
+- MATCH: Toyota Land cruiser -> img_logos/Toyota.png
+- MATCH: Toyota Land cruiser pick-Up -> img_logos/Toyota.png
+- MATCH: Toyota Proace -> img_logos/Toyota.png
+- MATCH: Toyota Proace max -> img_logos/Toyota.png
+- MATCH: Toyota Tundra -> img_logos/Toyota.png
+- MISSING: UAZ Cargo
+- MISSING: UAZ Pickup
+- MISSING: VW Amarok
+- MISSING: VW Crafter
+- MISSING: VW Crafter 30-50
+- MISSING: VW Lt 28-35 i
+- MISSING: VW Lt 28-46 ii
+- MISSING: VW Lt 40-55 i
+- MISSING: VW Transporter t4
+- MISSING: VW Transporter t5
+- MISSING: VW Transporter t6
+- MISSING: VW Transporter t7
+- MISSING: Victory Victory
