@@ -8,6 +8,7 @@ paths:
   # 产线输入：all_cars_data 的已发布交付物（相对本仓库；两仓库同级）。input_dir 仅供旧的手工输入/增量流程使用。
   a0_output_dir: "../all_cars_data/A0.尺码计算/output"
   a2_output_dir: "../all_cars_data/A2.压缩尺寸信息/output"
+  size_code_map_file: "../all_cars_data/A0.尺码计算/data/参考/新旧尺码对应/新旧尺码对应2.csv"
   input_dir: "input/0925"
   artifact_root: "artifact"
   public_dir: "public"
@@ -20,15 +21,15 @@ file_rules:
 # 每个 Excel/CSV 文件就是一个店铺；stem 是不含扩展名的店铺名。
 # 例如 07-HNT.csv 会生成 store=07-HNT、label=07-HNT尺码匹配表。
 input:
-  # all_cars_data：按 A2 发布的产线（US、HNT、TM、TM_拆分、EU、RU）导入；可用 lines 限定/排序。
+  # size-chart 网站加载 US 及其店铺线；EU/RU 仍由 A2 生成，但不进入网站。
   source: all_cars_data
-  # lines: [US, HNT, TM, TM_拆分, EU, RU]
+  lines: [US, HNT, TM, TM_拆分]
   store:
     store: "{stem}"
     label: "{stem}尺码匹配表"
     sheet: "{stem}尺码匹配"
     header_row: 1
-    columns: DIMENSION-CODE,MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
+    columns: MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE
   csv:
     encoding: utf-8-sig
   # 修正已知来源中的表头笔误；物化时统一为下游标准字段。
@@ -56,6 +57,10 @@ variables:
   compressed_fitment_dir: "{artifact_dir}/01_compressed_fitment"
   user_size_json_file: "{artifact_dir}/02_user_size.json"
   user_size_rules_file: "{root}/configs/user-size-rules.json"
+  type_structure_abbreviations_file: "{root}/configs/type-structure-abbreviations.json"
+  # TYPE 人工确认表：自动缩写有损（去 Inc:、删字母、截断）时需在此填写 确认TYPE；待确认清单每次写入批次。
+  type_confirm_file: "{root}/configs/type-manual-confirm.csv"
+  type_pending_file: "{artifact_dir}/02_type_待确认.csv"
   user_size_ai_config_file: "{root}/configs/ai-user-size.yaml"
   store_csv_dir: "{artifact_dir}/03_store_csv"
   store_html_dir: "{artifact_dir}/04_store_html"
@@ -72,7 +77,7 @@ steps:
   build_user_size_json:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/build_user_size_json.py, --compress-root, "{compressed_fitment_dir}", --config, "{pipeline_config}", --rules, "{user_size_rules_file}", --ai-config, "{user_size_ai_config_file}", --output, "{user_size_json_file}"]
+    command: ["{python}", tools/build_user_size_json.py, --compress-root, "{compressed_fitment_dir}", --config, "{pipeline_config}", --rules, "{user_size_rules_file}", --size-code-map, "{size_code_map_file}", --type-abbreviations, "{type_structure_abbreviations_file}", --type-confirm, "{type_confirm_file}", --type-pending-output, "{type_pending_file}", --ai-config, "{user_size_ai_config_file}", --output, "{user_size_json_file}"]
     check_exists: ["{user_size_json_file}"]
 
   export_store_csv:

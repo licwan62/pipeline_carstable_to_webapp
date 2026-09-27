@@ -7,7 +7,6 @@ import os
 import urllib.request
 import time
 import re
-from collections import Counter
 from pathlib import Path
 
 import yaml
@@ -15,6 +14,128 @@ import yaml
 NON_COLUMNS = ["店铺","CAR","MAKE","MODEL","YEAR","VERSION","CONST","SIZE","SIZE-CODE","CATAGORY","LONG-TYPE","TYPE","SHORT-MODEL"]
 PICK_COLUMNS = ["店铺","MAKE","MODEL","YEAR","VERSION","CAB","BED","SIZE","SIZE-CODE","SHORT-CAB","TITLE","DESCRIPTION"]
 UNPUBLISHABLE_SIZES = {"", "无可用尺码", "数据不全"}
+
+def _replace_type_terms(value: str, replacements: dict[str, str]) -> str:
+    result = value.strip()
+    for source, replacement in sorted(replacements.items(), key=lambda item: len(item[0]), reverse=True):
+        pattern = re.escape(source)
+        if source[-1:].isalnum():
+            pattern = rf"\b{pattern}\b"
+        elif source.endswith(":"):
+            pattern = rf"{pattern}\s*"
+        result = re.sub(pattern, replacement, result, flags=re.IGNORECASE)
+    return re.sub(r"\s+", " ", result).strip()
+
+
+def _compact_token(token: str, max_length: int) -> str:
+    if len(token) <= max_length:
+        return token
+    consonants = token[:1] + re.sub(r"[aeiou]", "", token[1:], flags=re.IGNORECASE)
+    return consonants[:max_length]
+
+
+INC_MARKER = "Inc:"
+
+
+def normalize_inc_marker(value: str) -> str:
+    """网站 TYPE 的包含标记统一写作 Inc:（inc:/INC: 等大小写变体一律改写）。"""
+    return re.sub(r"(?<![A-Za-z])inc:", INC_MARKER, value, flags=re.IGNORECASE)
+
+
+def compact_type(value: str, max_length: int, abbreviation_rules: dict) -> str:
+    return compact_type_detail(value, max_length, abbreviation_rules)[0]
+
+
+def compact_type_detail(value: str, max_length: int, abbreviation_rules: dict) -> tuple[str, bool]:
+    """Apply JSON-maintained structure abbreviations and a strict length limit.
+
+    Returns (TYPE, lossy)。lossy=True 表示词表缩写后仍超长，走了去 Inc:、删字母或截断，需人工确认。
+    """
+    structure_terms = abbreviation_rules.get("structure_terms", {})
+    qualifier_terms = abbreviation_rules.get("qualifier_terms", {})
+    result = _replace_type_terms(value, structure_terms)
+    result = _replace_type_terms(result, {"Incl:": qualifier_terms.get("Incl:", "Inc:")})
+    if len(result) <= max_length:
+        return result, False
+    result = _replace_type_terms(result, qualifier_terms)
+    if len(result) <= max_length:
+        return result, False
+
+    # Keep the configured structure spelling intact. If necessary, remove the
+    # inclusion marker before shortening version names.
+    without_marker = result.replace(" Inc:", " ")
+    if len(without_marker) <= max_length:
+        return without_marker, True
+    result = without_marker
+    structure, separator, suffix = result.partition(" ")
+    if not separator:
+        return result[:max_length], True
+
+    parts = re.split(r"([/ ])", suffix)
+    while len(structure) + 1 + len("".join(parts)) > max_length:
+        candidates = [(len(part), index) for index, part in enumerate(parts) if part not in {"/", " "} and len(part) > 2]
+        if not candidates:
+            break
+        _, index = max(candidates)
+        parts[index] = _compact_token(parts[index], len(parts[index]) - 1)
+    result = structure + " " + "".join(parts)
+    return (result if len(result) <= max_length else result[:max_length]), True
+
+
+TYPE_CONFIRM_COLUMNS = ["LONG-TYPE", "自动TYPE", "确认TYPE", "店铺", "示例"]
+
+
+def load_type_confirmations(path: Path, max_length: int) -> dict[str, str]:
+    """人工确认表：LONG-TYPE -> 确认TYPE（空值表示待确认）。"""
+    if not path.is_file():
+        return {}
+    rows = read_csv(path)
+    if rows and not {"LONG-TYPE", "确认TYPE"}.issubset(rows[0]):
+        raise ValueError(f"Type confirmation table lacks LONG-TYPE/确认TYPE: {path}")
+    confirmed = {row["LONG-TYPE"].strip(): normalize_inc_marker(row["确认TYPE"].strip()) for row in rows if row["LONG-TYPE"].strip() and row["确认TYPE"].strip()}
+    too_long = {long: short for long, short in confirmed.items() if len(short) > max_length}
+    if too_long:
+        raise ValueError(f"确认TYPE 超过 {max_length} 个字符：{too_long}")
+    return confirmed
+
+
+def type_confirm_pending(non_pickup: list[dict[str, str]]) -> list[dict[str, str]]:
+    """汇总需人工确认的类型（每个 LONG-TYPE 一行）。"""
+    pending: dict[str, dict[str, set[str] | str]] = {}
+    for row in non_pickup:
+        if not row.get("_TYPE-LOSSY"):
+            continue
+        item = pending.setdefault(row["LONG-TYPE"], {"自动TYPE": row["TYPE"], "店铺": set(), "示例": set()})
+        item["店铺"].add(row["店铺"])  # type: ignore[union-attr]
+        item["示例"].add(f"{row.get('CAR', '')} {row.get('YEAR', '')}".strip())  # type: ignore[union-attr]
+    return [
+        {"LONG-TYPE": long, "自动TYPE": item["自动TYPE"], "确认TYPE": "", "店铺": "|".join(sorted(item["店铺"])), "示例": "|".join(sorted(item["示例"])[:3])}  # type: ignore[arg-type]
+        for long, item in sorted(pending.items())
+    ]
+
+
+def write_csv(path: Path, columns: list[str], rows: list[dict[str, str]]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8-sig", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=columns)
+        writer.writeheader()
+        writer.writerows(rows)
+
+
+def long_type_for_row(row: dict[str, str], multiple_sizes: bool) -> str:
+    const = row.get("CONST", "").strip()
+    version = row.get("VERSION", "").strip()
+    return " ".join(value for value in ((const if multiple_sizes else ""), version) if value)
+
+
+def expanded_years(value: str) -> tuple[str, ...]:
+    text = value.strip()
+    match = re.fullmatch(r"(\d{4})(?:-(\d{4}))?", text)
+    if not match:
+        return (text,)
+    start = int(match.group(1))
+    end = int(match.group(2) or start)
+    return tuple(str(year) for year in range(start, end + 1))
 
 
 def load_runtime_config(path: Path) -> dict:
@@ -59,6 +180,22 @@ def normalized_size(row: dict[str, str], sizes: dict[str, dict]) -> tuple[str, s
     if not size_code and size_value not in UNPUBLISHABLE_SIZES:
         size_code = size_value
     return size_value, size_code, metadata
+
+
+def load_size_code_map(path: Path, category: str = "皮卡") -> dict[str, str]:
+    """新通用尺码 -> 尺码代码（A2 输出的 SIZE 已是新通用尺码）。
+
+    只取该分类的行：映射表 2 的非皮卡代码与站点现行代码（configs/size-code.csv）不一致。
+    """
+    rows = read_csv(path)
+    required = {"分类", "新通用尺码", "尺码代码"}
+    if not rows or not required.issubset(rows[0]):
+        raise ValueError(f"Size-code mapping lacks required columns {sorted(required)}: {path}")
+    return {
+        row["新通用尺码"].strip(): row["尺码代码"].strip()
+        for row in rows
+        if row["分类"].strip() == category and row["新通用尺码"].strip() and row["尺码代码"].strip()
+    }
 
 
 def ai_abbreviations(
@@ -116,10 +253,13 @@ def ai_abbreviations(
     return accepted
 
 
-def build(compress_root: Path, config: Path, rules_path: Path, ai_config_path: Path, selected_stores: set[str] | None = None) -> dict:
+def build(compress_root: Path, config: Path, rules_path: Path, size_code_map_path: Path, type_abbreviations_path: Path, type_confirm_path: Path, ai_config_path: Path, selected_stores: set[str] | None = None) -> dict:
     rules = json.loads(rules_path.read_text(encoding="utf-8"))
+    type_abbreviations = json.loads(type_abbreviations_path.read_text(encoding="utf-8"))
+    size_code_map = load_size_code_map(size_code_map_path)
     ai_config = yaml.safe_load(ai_config_path.read_text(encoding="utf-8")) or {}
     limits = {key: int(value) for key, value in ai_config.get("max_length", {}).items()}
+    type_confirmed = load_type_confirmations(type_confirm_path, limits.get("type", 16))
     sizes = rules["size"]
     model_map = {**rules["model_abbreviations"], **rules.get("ai_cache", {}).get("model", {})}
     cab_map = {**rules["cab_abbreviations"], **rules.get("ai_cache", {}).get("cab", {})}
@@ -145,27 +285,37 @@ def build(compress_root: Path, config: Path, rules_path: Path, ai_config_path: P
         stem = store
         folder = compress_root / stem / "compress"
         non_rows = read_optional_csv(folder / f"{stem}_非皮卡高度压缩表.csv")
-        const_counts = Counter(row.get("CAR", "") for row in non_rows)
-        distinct_consts: dict[str, set[str]] = {}
+        sizes_by_model_year: dict[tuple[str, str, str], set[str]] = {}
         for row in non_rows:
-            distinct_consts.setdefault(row.get("CAR", ""), set()).add(row.get("CONST", ""))
+            size_value, _size_code, _size = normalized_size(row, sizes)
+            make_model = (row.get("MAKE", "").strip(), row.get("MODEL", "").strip())
+            for year in expanded_years(row.get("YEAR", "")):
+                sizes_by_model_year.setdefault((*make_model, year), set()).add(size_value)
         for row in non_rows:
-            car, const, version = row.get("CAR", ""), row.get("CONST", ""), row.get("VERSION", "")
-            long_type = version.strip() if len(distinct_consts.get(car, set())) == 1 else " ".join(x for x in (const.strip(), version.strip()) if x)
+            car = row.get("CAR", "")
+            make_model = (row.get("MAKE", "").strip(), row.get("MODEL", "").strip())
+            multiple_sizes = any(len(sizes_by_model_year.get((*make_model, year), set())) > 1 for year in expanded_years(row.get("YEAR", "")))
+            long_type = long_type_for_row(row, multiple_sizes)
             matches = [item for item in type_rows if item["long"].strip() == long_type.strip() and item["car"].strip() in ("", car.strip())]
             matches.sort(key=lambda item: item["car"].strip() == car.strip(), reverse=True)
             size_value, size_code, size = normalized_size(row, sizes)
-            derived = {**row, "店铺": store, "SIZE": size_value, "SIZE-CODE": size_code, "CATAGORY": size.get("category", ""), "LONG-TYPE": long_type, "TYPE": type_cache.get(long_type, matches[0]["short"] if matches else long_type), "SHORT-MODEL": model_map.get(row.get("MODEL", ""), row.get("MODEL", ""))}
+            mapped_type = type_cache.get(long_type, matches[0]["short"] if matches else long_type)
+            if long_type in type_confirmed:
+                short_type, lossy = type_confirmed[long_type], False
+            else:
+                short_type, lossy = compact_type_detail(mapped_type, limits.get("type", 16), type_abbreviations)
+            derived = {**row, "店铺": store, "SIZE": size_value, "SIZE-CODE": size_code, "CATAGORY": size.get("category", ""), "LONG-TYPE": long_type, "TYPE": normalize_inc_marker(short_type), "_TYPE-LOSSY": lossy, "SHORT-MODEL": model_map.get(row.get("MODEL", ""), row.get("MODEL", ""))}
             non_pickup.append(derived)
 
         for row in read_optional_csv(folder / f"{stem}_皮卡高度压缩表.csv"):
             front = pickup_front.get((row.get("MAKE", ""), row.get("MODEL", "")), {})
             size_value, size_code, _size = normalized_size(row, sizes)
+            size_code = size_code_map.get(size_value, size_code)
             pickup.append({**row, "店铺": store, "SIZE": size_value, "SIZE-CODE": size_code, "SHORT-CAB": cab_map.get(row.get("CAB", ""), row.get("CAB", "")), "TITLE": front.get("TITLE", f"{row.get('MAKE','')} {row.get('MODEL','')}".strip()), "DESCRIPTION": pickup_description.get(row.get("MAKE", ""), "")})
 
     candidates = {
         "model": sorted({row["MODEL"] for row in non_pickup if row["SHORT-MODEL"] == row["MODEL"] and len(row["MODEL"]) > limits.get("model", 12) and (retry_rejected or row["MODEL"] not in rejected.get("model", []))}),
-        "type": sorted({row["LONG-TYPE"] for row in non_pickup if row["TYPE"] == row["LONG-TYPE"] and len(row["LONG-TYPE"]) > limits.get("type", 18) and (retry_rejected or row["LONG-TYPE"] not in rejected.get("type", []))}),
+        "type": [],
         "cab": sorted({row["CAB"] for row in pickup if row["SHORT-CAB"] == row["CAB"] and len(row["CAB"]) > limits.get("cab", 15) and (retry_rejected or row["CAB"] not in rejected.get("cab", []))}),
     }
     examples = {
@@ -183,7 +333,9 @@ def build(compress_root: Path, config: Path, rules_path: Path, ai_config_path: P
         rules_path.write_text(json.dumps(rules, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
         for row in non_pickup:
             row["SHORT-MODEL"] = cache["model"].get(row["MODEL"], row["SHORT-MODEL"])
-            row["TYPE"] = cache["type"].get(row["LONG-TYPE"], row["TYPE"])
+            if row["LONG-TYPE"] not in type_confirmed:
+                row["TYPE"], row["_TYPE-LOSSY"] = compact_type_detail(cache["type"].get(row["LONG-TYPE"], row["TYPE"]), limits.get("type", 16), type_abbreviations)
+                row["TYPE"] = normalize_inc_marker(row["TYPE"])
         for row in pickup:
             row["SHORT-CAB"] = cache["cab"].get(row["CAB"], row["SHORT-CAB"])
 
@@ -192,7 +344,7 @@ def build(compress_root: Path, config: Path, rules_path: Path, ai_config_path: P
         return (int(head) if head.isdigit() else 9999, value)
     non_pickup.sort(key=lambda row: (row.get("MAKE", ""), row.get("MODEL", ""), category_rank.get(row.get("CATAGORY", ""), 999), year_key(row.get("YEAR", ""))))
     pickup.sort(key=lambda row: (row.get("TITLE", ""), row.get("MODEL", ""), year_key(row.get("YEAR", "")), row.get("CAB", ""), row.get("BED", "")))
-    return {"version": 2, "non_pickup": compact_table(NON_COLUMNS, non_pickup), "pickup": compact_table(PICK_COLUMNS, pickup)}
+    return {"version": 2, "non_pickup": compact_table(NON_COLUMNS, non_pickup), "pickup": compact_table(PICK_COLUMNS, pickup), "_type_pending": type_confirm_pending(non_pickup)}
 
 
 def main() -> None:
@@ -200,12 +352,21 @@ def main() -> None:
     parser.add_argument("--compress-root", type=Path, required=True)
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--rules", type=Path, required=True)
+    parser.add_argument("--size-code-map", type=Path, required=True)
+    parser.add_argument("--type-abbreviations", type=Path, required=True)
+    parser.add_argument("--type-confirm", type=Path, required=True, help="人工确认表 LONG-TYPE -> 确认TYPE")
+    parser.add_argument("--type-pending-output", type=Path, help="写出本次待人工确认的类型清单")
     parser.add_argument("--ai-config", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--store", action="append", help="Only rebuild this configured store (repeatable).")
     args = parser.parse_args()
     selected = set(args.store) if args.store else None
-    result = build(args.compress_root, args.config, args.rules, args.ai_config, selected)
+    result = build(args.compress_root, args.config, args.rules, args.size_code_map, args.type_abbreviations, args.type_confirm, args.ai_config, selected)
+    pending = result.pop("_type_pending")
+    if args.type_pending_output:
+        write_csv(args.type_pending_output, TYPE_CONFIRM_COLUMNS, pending)
+    if pending:
+        print(f"TYPE 待人工确认：{len(pending)} 个（填写 {args.type_confirm} 的 确认TYPE 列）")
     if selected and args.output.is_file():
         previous = json.loads(args.output.read_text(encoding="utf-8"))
         selected_store_names = set(selected)

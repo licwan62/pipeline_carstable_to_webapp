@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "structure_terms": {
+    "Convertible": "Conv",
+    "Coupe": "Cpe",
+    "Hatchback": "Hbk",
+    "Sportback": "Sptbk",
+    "Liftback": "Lftbk",
+    "Fastback": "Fastbk",
+    "Roadster": "Rdstr",
+    "Hardtop": "HTop",
+    "Sedan": "Sdn",
+    "Wagon": "Wgn"
+  },
+  "qualifier_terms": {
+    "Incl:": "Inc:",
+    "LeMans": "LM",
+    "Tempest": "Tmp",
+    "Panel": "Pnl",
+    "Performance": "Perf",
+    "Cabriolet": "Cabr",
+    "Sport Turismo": "Spt"
+  }
+}

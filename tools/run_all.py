@@ -175,6 +175,7 @@ def build_variables(case: dict[str, Any], config: dict[str, Any]) -> dict[str, s
         "logs_dir": str(resolve_from_root(paths["logs_dir"])),
         "a0_output_dir": str(resolve_from_root(paths["a0_output_dir"])) if paths.get("a0_output_dir") else "",
         "a2_output_dir": str(resolve_from_root(paths["a2_output_dir"])) if paths.get("a2_output_dir") else "",
+        "size_code_map_file": str(resolve_from_root(paths["size_code_map_file"])) if paths.get("size_code_map_file") else "",
         "python": sys.executable,
     }
 

@@ -28,4 +28,10 @@ file_rules:
 configs/user-size-rules.json
 ```
 
+网站 TYPE 不超过 16 个字符：先按 `configs/type-structure-abbreviations.json` 的词表缩写结构和限定词；词表缩写后仍超长时，
+自动结果（去 `Inc:`、删字母、截断）视为有损，必须在 `configs/type-manual-confirm.csv` 人工确认：按 `LONG-TYPE` 填写 `确认TYPE`
+（≤16 字符，填了即优先使用；空值暂用 `自动TYPE`）。包含标记统一写作 `Inc:`（确认表与自动结果中的 `inc:` 等写法在流水线中一律改写为 `Inc:`）。每次运行把仍待确认的类型写入批次 `02_type_待确认.csv`，新出现的行需补进确认表。
+
+皮卡 SIZE-CODE 取 all_cars_data `新旧尺码对应2.csv` 中皮卡行的「新通用尺码 → 尺码代码」；非皮卡代码仍按 `user-size-rules.json`。
+
 旧的 Excel template 链路已移除。`html-style.yaml` 控制 HTML 外观，`ai-user-size.yaml` 控制可选的 AI 缩写补全。

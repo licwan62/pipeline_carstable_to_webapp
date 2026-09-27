@@ -1,0 +1,40 @@
+﻿CAR,MAKE,MODEL,YEAR,VERSION,CAB,BED,BACKSIZE
+CadillacEscalade EXT,Cadillac,Escalade EXT,2002-2013,,Crew,5.3,无可用尺码
+Chevrolet Avalanche,Chevrolet,Avalanche,2002-2013,1500/2500,Crew,5.3,无可用尺码
+Chevrolet C/K,Chevrolet,C/K,1960-1986,Incl: DRW/Longhorn,Regular/Crew,6.5-9,无可用尺码
+Chevrolet C/K,Chevrolet,C/K,1987-1998,DRW/R/V/R/V DRW,Regular/Extended,6.5-8,无可用尺码
+Chevrolet C/K,Chevrolet,C/K,1987-1998,Incl: R/V/R/V DRW,Crew/Extended,6.5-8,无可用尺码
+Chevrolet C/K,Chevrolet,C/K,1988-2000,Incl: Classic/Classic DRW,Regular,6.5-8,无可用尺码
+Chevrolet C/K,Chevrolet,C/K,1992-2000,Classic/Classic DRW/DRW,Crew,6.5-8,无可用尺码
+Chevrolet C/K,Chevrolet,C/K,1999-2000,Classic/Classic DRW,Extended,6.5-8,无可用尺码
+Chevrolet Colorado,Chevrolet,Colorado,2004-2026,Incl: ZR2,Crew/Extended/Regular,5-6,无可用尺码
+Chevrolet El Camino,Chevrolet,El Camino,1959-1987,,Regular,6.5,无可用尺码
+Chevrolet S10,Chevrolet,S10,1982-2004,Incl: 4WD/EV/Xtreme/ZR2,Regular/Extended/Crew,4.5-7.5,无可用尺码
+Chevrolet Silverado 1500,Chevrolet,Silverado 1500,1999-2026,Incl: Trail Boss,Regular/Extended/Crew/Double,5.8-8,无可用尺码
+Chevrolet Silverado 1500HD,Chevrolet,Silverado 1500HD,2001-2007,Incl: Classic,Crew,6.6,无可用尺码
+Chevrolet Silverado 2500HD/3500HD,Chevrolet,Silverado 2500HD/3500HD,2001-2026,Incl: DRW,Crew/Regular/Double,6.5-8,无可用尺码
+ChevroletSSR,Chevrolet,SSR,2003-2006,,Regular,4.1,无可用尺码
+ChevroletSilverado EV,Chevrolet,Silverado EV,2024-2026,,Crew,5.9,无可用尺码
+Dodge Dakota,Dodge,Dakota,1987-2011,,Regular/Club/Quad,5.25-8,无可用尺码
+Ford F-100,Ford,F-100,1953-1983,,Regular/SuperCab,6.5-8,无可用尺码
+Ford F-150,Ford,F-150,1992-2026,Incl: Lightning/Raptor/Raptor R/Tremor,Regular/SuperCrew/SuperCab,5.5-8,无可用尺码
+Ford F-250/F-350 Super Duty,Ford,F-250/F-350 Super Duty,1999-2026,,Crew/Regular/SuperCab,6.8-8,无可用尺码
+Ford F-350 Super Duty,Ford,F-350 Super Duty,1999-2026,DRW,Crew/Regular,8,无可用尺码
+Ford Maverick,Ford,Maverick,2022-2026,Incl: Lobo/Tremor,SuperCrew,4.5,无可用尺码
+Ford Ranger,Ford,Ranger,1993-2026,Incl: Raptor,Regular/SuperCab/SuperCrew,5-7,无可用尺码
+FordExplorer,Ford,Explorer,2001-2005,Sport Trac,Crew,4.2,无可用尺码
+GMC Canyon,GMC,Canyon,2004-2026,Incl: AT4X,Crew/Extended/Regular,5-6,无可用尺码
+GMC Sierra 1500,GMC,Sierra 1500,1999-2026,,Extended/Crew/Double/Regular,5.8-8,无可用尺码
+GMC Sierra 2500HD/3500HD,GMC,Sierra 2500HD/3500HD,2001-2026,Incl: DRW,Crew/Regular/Double,6.8-8,无可用尺码
+GMCSierra EV,GMC,Sierra EV,2024-2026,,Crew,5.9,无可用尺码
+Honda Ridgeline,Honda,Ridgeline,2006-2026,,Crew,5-5.3,无可用尺码
+Hyundai Santa Cruz,Hyundai,Santa Cruz,2022-2026,Incl: XRT,Crew,4.3,无可用尺码
+Ineos AutomotiveGrenadier,Ineos Automotive,Grenadier,2024-2026,Quartermaster,Crew,5.1,无可用尺码
+Jeep Gladiator,Jeep,Gladiator,2020-2026,4dr JT/4dr JT Mojave/4dr JT Rubicon/Mojave,Crew,5,无可用尺码
+Nissan Frontier,Nissan,Frontier,1998-2026,Incl: SC-V6,King/Regular/Crew,4.5-6,无可用尺码
+Ram 1500,Ram,1500,1994-2026,Incl: RHO/TRX,Regular/Club/Quad/Crew,5.6-8,无可用尺码
+Ram 2500/3500,Ram,2500/3500,1994-2026,,Crew/Mega/Quad/Regular,6.4-8,无可用尺码
+Ram1500 Classic,Ram,1500 Classic,2019-2023,,Crew,5.6,无可用尺码
+Rivian R1T,Rivian,R1T,2022-2026,Incl: Adventure/Dual/Quad,Crew,4.5,无可用尺码
+Toyota Tacoma,Toyota,Tacoma,1995-2026,Incl: Trailhunter/TRD Pro,Regular/XtraCab/Access/Double,5-6,无可用尺码
+Toyota Tundra,Toyota,Tundra,2000-2026,,Regular/Access/CrewMax/Double,5.5-8.1,无可用尺码

@@ -11,6 +11,7 @@ enable_thinking: false
 retry_rejected: false
 
 max_length:
-  type: 18
+  # 网站 Type 必须少于 17 个字符。
+  type: 16
   model: 15
   cab: 12
