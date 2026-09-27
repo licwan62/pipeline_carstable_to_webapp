@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """从 all_cars_data 的已发布交付物导入网站流水线的产线输入（替代原 normalize_store_inputs + compress_store_fitment）。
 
-每条产线（US、HNT、TM、TM_拆分、EU、RU，取自 A2 manifest 的交付物，或 input.lines 指定）：
-  - A1.全量生成/output/全量生成_<产线>.csv  -> <output-dir>/NNN-<店铺>.csv（表头规范化同 materialize_input_sources）
-  - A2.压缩尺寸信息/output/压缩尺码表_<产线>_有损.csv      -> <compressed-root>/<店铺>/compress/<店铺>_非皮卡高度压缩表.csv
-  - A2.压缩尺寸信息/output/压缩尺码表_<产线>_皮卡_有损.csv -> <compressed-root>/<店铺>/compress/<店铺>_皮卡高度压缩表.csv
+每条产线（取自 A2 manifest 的国别目录 US/EU/RU，或 input.lines 指定）：
+  - A0.尺码计算/output/<国别>/全量/全量表.csv（店铺线 US/店铺/店铺全量_<店铺>.csv）
+      -> <output-dir>/NNN-<店铺>.csv（表头规范化同 materialize_input_sources）
+  - A2.压缩尺寸信息/output/<产线>/压缩尺码表.csv      -> <compressed-root>/<店铺>/compress/<店铺>_非皮卡高度压缩表.csv
+  - A2.压缩尺寸信息/output/<产线>/压缩尺码表_皮卡.csv -> <compressed-root>/<店铺>/compress/<店铺>_皮卡高度压缩表.csv
 所有读取的文件先按对应节点 output/manifest.json 校验 sha256；店铺名/标签按 input.store 模板以产线名为 {stem} 生成。
 运行时配置（含 input.stores 与来源版本）写入 --output-config，供下游步骤读取。
 """
@@ -24,7 +25,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from materialize_input_sources import build_store, csv_rows, load_config, safe_sheet_name, write_csv_rows  # noqa: E402
 
-LINE_PATTERN = re.compile(r"^压缩尺码表_(.+)_有损\.csv$")
+LINE_PATTERN = re.compile(r"^([^/]+)/压缩尺码表\.csv$")
+REGIONS = ("US", "EU", "RU")
 
 
 class SourceImportError(ValueError):
@@ -49,13 +51,18 @@ def verified(output_dir: Path, manifest: dict[str, Any], name: str) -> Path:
 
 
 def manifest_lines(manifest: dict[str, Any]) -> list[str]:
-    """A2 交付物中的产线，保持 manifest 顺序（非皮卡有损表 压缩尺码表_<产线>_有损.csv）。"""
+    """A2 交付物中的产线，保持 manifest 顺序（非皮卡表 <产线>/压缩尺码表.csv）。"""
     lines = []
     for item in manifest["deliverables"]:
         match = LINE_PATTERN.match(item["file"])
-        if match and not match.group(1).endswith("_皮卡"):
+        if match:
             lines.append(match.group(1))
     return lines
+
+
+def full_table_file(line: str) -> str:
+    """A0 output 中产线全量表：国别线读区域全量表，店铺线读 US 店铺全量表。"""
+    return f"{line}/全量/全量表.csv" if line in REGIONS else f"US/店铺/店铺全量_{line}.csv"
 
 
 def source_record(manifest: dict[str, Any]) -> dict[str, Any]:
@@ -63,7 +70,7 @@ def source_record(manifest: dict[str, Any]) -> dict[str, Any]:
 
 
 def import_lines(
-    a1_output: Path,
+    a0_output: Path,
     a2_output: Path,
     config_path: Path,
     output_dir: Path,
@@ -71,7 +78,7 @@ def import_lines(
     compressed_root: Path,
 ) -> list[dict[str, Any]]:
     config = load_config(config_path)
-    a1_manifest, a2_manifest = load_manifest(a1_output), load_manifest(a2_output)
+    a0_manifest, a2_manifest = load_manifest(a0_output), load_manifest(a2_output)
     available = manifest_lines(a2_manifest)
     configured = [str(line) for line in (config.get("input") or {}).get("lines") or []]
     unknown = sorted(set(configured) - set(available))
@@ -88,9 +95,9 @@ def import_lines(
             {
                 "line": line,
                 "store": store,
-                "table": verified(a1_output, a1_manifest, f"全量生成_{line}.csv"),
-                "non_pickup": verified(a2_output, a2_manifest, f"压缩尺码表_{line}_有损.csv"),
-                "pickup": verified(a2_output, a2_manifest, f"压缩尺码表_{line}_皮卡_有损.csv"),
+                "table": verified(a0_output, a0_manifest, full_table_file(line)),
+                "non_pickup": verified(a2_output, a2_manifest, f"{line}/压缩尺码表.csv"),
+                "pickup": verified(a2_output, a2_manifest, f"{line}/压缩尺码表_皮卡.csv"),
             }
         )
     names = [plan["store"]["store"] for plan in plans]
@@ -103,7 +110,7 @@ def import_lines(
         store, name = plan["store"], plan["store"]["store"]
         table_path = output_dir / f"{index:03d}-{safe_sheet_name(name)}.csv"
         row_count = write_csv_rows(csv_rows(plan["table"], config), table_path, config, plan["table"])
-        store["file"] = plan["table"].name
+        store["file"] = full_table_file(plan["line"])
         store["path"] = table_path.relative_to(output_config.parent).as_posix()
         store["line"] = plan["line"]
         folder = compressed_root / name / "compress"
@@ -121,19 +128,19 @@ def import_lines(
     runtime_input.pop("match_sources", None)
     runtime_input["stores"] = stores
     runtime_config["input"] = runtime_input
-    runtime_config["sources"] = {"full_tables": source_record(a1_manifest), "compressed": source_record(a2_manifest)}
+    runtime_config["sources"] = {"full_tables": source_record(a0_manifest), "compressed": source_record(a2_manifest)}
     output_config.parent.mkdir(parents=True, exist_ok=True)
     output_config.write_text(json.dumps(runtime_config, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
-        f"Imported {len(stores)} line(s) from A1 {a1_manifest.get('version')} / A2 {a2_manifest.get('version')}; "
+        f"Imported {len(stores)} line(s) from A0 {a0_manifest.get('version')} / A2 {a2_manifest.get('version')}; "
         f"runtime config: {output_config}"
     )
     return stores
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Import A1 full tables and A2 compressed tables per product line.")
-    parser.add_argument("--a1-output", type=Path, required=True)
+    parser = argparse.ArgumentParser(description="Import A0 full tables and A2 compressed tables per product line.")
+    parser.add_argument("--a0-output", type=Path, required=True)
     parser.add_argument("--a2-output", type=Path, required=True)
     parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
@@ -142,7 +149,7 @@ def main() -> int:
     args = parser.parse_args()
     try:
         import_lines(
-            args.a1_output.resolve(), args.a2_output.resolve(), args.config.resolve(),
+            args.a0_output.resolve(), args.a2_output.resolve(), args.config.resolve(),
             args.output_dir.resolve(), args.output_config.resolve(), args.compressed_root.resolve(),
         )
     except SourceImportError as error:

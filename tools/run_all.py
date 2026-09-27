@@ -123,7 +123,7 @@ def scan_cases(
     paths = config["paths"]
     if (config.get("input") or {}).get("source") == "all_cars_data":
         # 产线输入来自 all_cars_data 的 A1/A2 发布物（由 import_a2_compressed 步骤校验导入）
-        input_files = [resolve_from_root(paths[key]) / "manifest.json" for key in ("a1_output_dir", "a2_output_dir")]
+        input_files = [resolve_from_root(paths[key]) / "manifest.json" for key in ("a0_output_dir", "a2_output_dir")]
         missing = [path for path in input_files if not path.is_file()]
         if missing:
             raise FileNotFoundError(f"all_cars_data 发布物缺少 manifest.json：{missing}")
@@ -173,7 +173,7 @@ def build_variables(case: dict[str, Any], config: dict[str, Any]) -> dict[str, s
         "nas_publish_dir": str(paths.get("nas_publish_dir", "")),
         "output_dir": public_dir,
         "logs_dir": str(resolve_from_root(paths["logs_dir"])),
-        "a1_output_dir": str(resolve_from_root(paths["a1_output_dir"])) if paths.get("a1_output_dir") else "",
+        "a0_output_dir": str(resolve_from_root(paths["a0_output_dir"])) if paths.get("a0_output_dir") else "",
         "a2_output_dir": str(resolve_from_root(paths["a2_output_dir"])) if paths.get("a2_output_dir") else "",
         "python": sys.executable,
     }

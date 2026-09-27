@@ -17,6 +17,7 @@ def publish(output_dir: Path, node: str, files: dict[str, str]) -> None:
     output_dir.mkdir(parents=True)
     deliverables = []
     for name, text in files.items():
+        (output_dir / name).parent.mkdir(parents=True, exist_ok=True)
         (output_dir / name).write_text(text, encoding="utf-8-sig")
         deliverables.append({"file": name, "sha256": hashlib.sha256((output_dir / name).read_bytes()).hexdigest()})
     manifest = {"node": node, "version": "20260925_01", "artifact": f"{node}/artifacts/x", "deliverables": deliverables}
@@ -24,14 +25,12 @@ def publish(output_dir: Path, node: str, files: dict[str, str]) -> None:
 
 
 def setup(tmp_path: Path, lines=("US", "HNT", "EU"), config_lines=None) -> dict[str, Path]:
-    a1, a2 = tmp_path / "a1", tmp_path / "a2"
-    publish(a1, "full-generation", {f"全量生成_{line}.csv": FULL_HEADER + f"Ford,Focus,,Sedan,2020,M,Ford Focus 2020 {line}\n" for line in lines})
+    a1, a2 = tmp_path / "a0", tmp_path / "a2"
+    publish(a1, "size-calculation", {importer.full_table_file(line): FULL_HEADER + f"Ford,Focus,,Sedan,2020,M,Ford Focus 2020 {line}\n" for line in lines})
     a2_files = {}
     for line in lines:
-        a2_files[f"压缩尺码表_{line}.csv"] = NON_HEADER
-        a2_files[f"压缩尺码表_{line}_有损.csv"] = NON_HEADER + f"Ford Focus,Ford,Focus,2020,,Sedan,{line}-M\n"
-        a2_files[f"压缩尺码表_{line}_皮卡.csv"] = PICK_HEADER
-        a2_files[f"压缩尺码表_{line}_皮卡_有损.csv"] = PICK_HEADER
+        a2_files[f"{line}/压缩尺码表.csv"] = NON_HEADER + f"Ford Focus,Ford,Focus,2020,,Sedan,{line}-M\n"
+        a2_files[f"{line}/压缩尺码表_皮卡.csv"] = PICK_HEADER
     publish(a2, "size-compression", a2_files)
     config = tmp_path / "pipeline.yaml"
     input_block = {"source": "all_cars_data", "store": {"store": "{stem}", "label": "{stem}尺码匹配表", "sheet": "{stem}尺码匹配"},
@@ -75,7 +74,7 @@ def test_unknown_configured_line_fails(tmp_path: Path):
 
 def test_sha_mismatch_fails_before_writing(tmp_path: Path):
     paths = setup(tmp_path)
-    (paths["a2"] / "压缩尺码表_EU_有损.csv").write_text(NON_HEADER, encoding="utf-8-sig")
+    (paths["a2"] / "EU/压缩尺码表.csv").write_text(NON_HEADER, encoding="utf-8-sig")
     with pytest.raises(importer.SourceImportError, match="sha256"):
         run(paths)
     assert not paths["runtime"].exists() and not paths["compressed"].exists()

@@ -1,10 +1,10 @@
 # 车型尺码流水线
 
-本项目采用 `上游发布物 + artifact + public` 模式：产线输入直接读取 all_cars_data 已发布的 A1 全量表与 A2 压缩表（按 manifest 校验 sha256）。
+本项目采用 `上游发布物 + artifact + public` 模式：产线输入直接读取 all_cars_data 已发布的 A0 全量表与 A2 压缩表（按 manifest 校验 sha256）。上游目录由 `configs/pipeline.yaml` 的 `paths.a0_output_dir`、`paths.a2_output_dir` 指定，代码中不写死。
 
 ```text
-../all_cars_data/A1.全量生成/output/      产线全量表 全量生成_<产线>.csv
-../all_cars_data/A2.压缩尺寸信息/output/  产线压缩表 压缩尺码表_<产线>[_皮卡]_有损.csv
+../all_cars_data/A0.尺码计算/output/      <国别>/全量/全量表.csv、US/店铺/店铺全量_<店铺>.csv、<国别>/尺码匹配报告.md（规则与店铺货架表格）
+../all_cars_data/A2.压缩尺寸信息/output/  <国别>/压缩尺码表.csv、<国别>/压缩尺码表_皮卡.csv
 input/                              旧的人工输入（仅 input.source 不是 all_cars_data 时使用）
 configs/
   pipeline.yaml                     流水线配置
@@ -13,12 +13,13 @@ artifact/
   2026-09-01_01_最后的老尺码/       迁移前历史产物，只读保留
   YYYY-MM-DD_NN_pipeline/           每次新运行生成的独立批次
 public/                             当前可部署站点
-logs/                               运行日志
+logs/                               运行日志（不纳入 git）
+bak/                                tools/backup.py 的本地备份（不纳入 git）；.bak/ 为早期备份，同样只在本地保留
 ```
 
 ## 运行
 
-先在 all_cars_data 发布 A1/A2（`python scripts/publish_release.py`），然后执行：
+先在 all_cars_data 发布 A0/A2（`python scripts/publish_release.py`），然后执行：
 
 ```powershell
 python tools/run_all.py
@@ -65,7 +66,7 @@ python tools/run_all.py --artifact 2026-09-17_02_pipeline --from-step build_user
 
 当前六个步骤统一采用“动作 + 产物”命名：
 
-1. `import_a2_compressed`：按 A2 发布的产线（US、HNT、TM、TM_拆分、EU、RU；`input.lines` 可限定）导入 A1 全量表与 A2 高度压缩表，校验 manifest，生成运行时 JSON。压缩与原子检查已移至 all_cars_data 的 `A2.压缩尺寸信息`。
+1. `import_a2_compressed`：按 A2 发布的产线（US、HNT、TM、TM_拆分、EU、RU；`input.lines` 可限定）导入 A0 全量表与 A2 高度压缩表，校验 manifest，生成运行时 JSON。压缩与原子检查已移至 all_cars_data 的 `A2.压缩尺寸信息`。
 2. `build_user_size_json`：应用尺码及缩写规则，生成紧凑 JSON。
 3. `export_store_csv`：按店铺导出 HTML 输入 CSV。
 4. `generate_store_html`：生成各店铺尺码表 HTML。
@@ -135,6 +136,6 @@ HTML 样式位于 `configs/html-style.yaml`，AI 缩写补全位于 `configs/ai-
 
 ## 尺码参考、店铺分组与尺码配对数据源
 
-- 产线输入不再手工复制到 `input/`：`import_a2_compressed` 直接读取 A1/A2 发布物并把来源版本写入 `pipeline.generated.json` 的 `sources`。
-- `size-ref.html`（US/EU/RU）与 `store-groups.html` 读取 A0 `output/` 中的尺码规则和店铺货架，`size-match.html` 的 US（含店铺下拉）/EU 数据源读取 A1 全量表汇总和 A0 店铺全量表；均校验上游 manifest 的 sha256。
+- 产线输入不再手工复制到 `input/`：`import_a2_compressed` 直接读取 A0/A2 发布物并把来源版本写入 `pipeline.generated.json` 的 `sources`。
+- `size-ref.html`（US/EU/RU）与 `store-groups.html` 读取 A0 `output/<国别>/尺码匹配报告.md` 中的尺码规则与店铺货架表格，`size-match.html` 的 US（含店铺下拉）/EU/RU 数据源读取 A0 国别全量表与店铺全量表；均校验上游 manifest 的 sha256。
 - 这些页面和数据由 `site_overrides/` 与 `tools/build_size_rules_data.py`、`tools/build_size_match_data.py` 在站点构建后叠加到 `public/`；size chart 按 6 条产线（US 全量、HNT、TM、TM_拆分 店铺发货尺码、EU、RU）生成。

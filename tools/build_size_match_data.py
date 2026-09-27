@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""用上游 A1.全量生成/output/全量表_汇总.csv 生成尺码配对页的 US / EU 数据源。
+"""用上游 A0.尺码计算/output 的国别全量表与 US 店铺全量表生成尺码配对页的数据源。
 
-校验 A1 manifest 的 sha256 后，按 DIMENSION-ID 末尾的区域拆分，各区域按 MAKE 分片写入
+校验 A0 manifest 的 sha256 后，各数据源（US、各店铺、EU、RU）按 MAKE 分片写入
 public/data/generated/size-match-full-<区域>-NN-<make>.json，并写入清单 size-match-full.json。
 尺码配对页默认只加载 US，在侧栏大纲切换 EU 时才读取 EU 分片。
 """
@@ -17,13 +17,15 @@ import os
 import re
 from pathlib import Path
 
+from pipeline_paths import configured_path
+
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = ROOT.parent / "all_cars_data" / "A1.全量生成" / "output"
-STORE_SOURCE = ROOT.parent / "all_cars_data" / "A0.尺码计算" / "output"
+DEFAULT_SOURCE = configured_path("a0_output_dir")  # configs/pipeline.yaml paths.a0_output_dir
 REGIONS = ("US", "EU", "RU")
+# A0 output 按 <国别>/<类别>/ 分目录
+REGION_FILES = {region: f"{region}/全量/全量表.csv" for region in REGIONS}
 # US 源下的店铺选择：名称 -> A0 店铺全量文件（自动尺码为该店铺的发货尺码）
-STORES = {"HNT": "店铺全量_HNT.csv", "TM": "店铺全量_TM.csv", "TM_拆分": "店铺全量_TM_拆分.csv"}
-NAME = "全量表_汇总.csv"
+STORES = {store: f"US/店铺/店铺全量_{store}.csv" for store in ("HNT", "TM", "TM_拆分")}
 COLUMNS = ["CODE", "MODEL", "版本", "YEAR", "TYPE", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"]
 
 
@@ -52,7 +54,7 @@ def to_record(row: dict[str, str], region: str) -> dict:
     values["TYPE"] = row.get("结构", "")
     values["SIZE"] = row.get("自动尺码", "")
     values["SOURCE"] = region
-    values["CODE"] = row.get("DIMENSION-CODE", "")  # 来自 02.代码映射，经 A0 写入全量表
+    values["CODE"] = row.get("DIMENSION-CODE", "")  # A0 全量表已取消 DIMENSION-CODE，此列留空
     return {
         "make": row["MAKE"], "model": row["MODEL"], "year": row["YEAR"], "years": parse_years(row["YEAR"]),
         "construct": row.get("结构", ""), "cab": row.get("CAB", ""), "bed": row.get("BED", ""),
@@ -69,14 +71,14 @@ def read_verified(source_dir: Path, name: str) -> tuple[dict, list[dict[str, str
     return manifest, list(csv.DictReader(io.StringIO(data.decode("utf-8-sig"))))
 
 
-def build(source_dir: Path, out_dir: Path, store_dir: Path | None = None) -> dict[str, int]:
-    manifest, rows = read_verified(source_dir, NAME)
-    store_dir = store_dir or STORE_SOURCE
+def build(source_dir: Path, out_dir: Path) -> dict[str, int]:
+    region_rows = {region: read_verified(source_dir, name) for region, name in REGION_FILES.items()}
+    manifest = region_rows["US"][0]
     for stale in out_dir.glob("size-match-full*.json"):
         stale.unlink()
     sources, counts = [], {}
-    store_rows = {store: read_verified(store_dir, file)[1] for store, file in STORES.items()}
-    datasets = [(region, region, [r for r in rows if r["DIMENSION-ID"].endswith(f" {region}")]) for region in REGIONS]
+    store_rows = {store: read_verified(source_dir, file)[1] for store, file in STORES.items()}
+    datasets = [(region, region, rows) for region, (_, rows) in region_rows.items()]
     datasets[1:1] = [(store, "US", data) for store, data in store_rows.items()]  # US 全量之后紧跟 US 店铺
     for source_index, (name, group, dataset) in enumerate(datasets, 1):
         by_make: dict[str, list[dict]] = {}

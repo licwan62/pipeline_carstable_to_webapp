@@ -14,6 +14,7 @@ def write_source(folder, files):
     deliverables = []
     for name, text in files.items():
         data = text.encode()
+        (folder / name).parent.mkdir(parents=True, exist_ok=True)
         (folder / name).write_bytes(data)
         deliverables.append({"file": name, "sha256": hashlib.sha256(data).hexdigest()})
     (folder / "manifest.json").write_text(
@@ -21,11 +22,15 @@ def write_source(folder, files):
 
 
 def test_us_stores_and_eu_sources(tmp_path):
-    summary = HEADER + "Acura,ADX,SUV,,,2025-2026,YL,131,C1,Acura ADX 2025-2026 US\nCitroen,GS,Hatch,,,1970-1977,2M,53,C2,Citroen GS 1970-1977 EU\nRu,X,SUV,,,2020,YM,1,C3,Ru X 2020 RU\n"
+    regions = {
+        "US": HEADER + "Acura,ADX,SUV,,,2025-2026,YL,131,C1,Acura ADX 2025-2026 US\n",
+        "EU": HEADER + "Citroen,GS,Hatch,,,1970-1977,2M,53,C2,Citroen GS 1970-1977 EU\n",
+        "RU": HEADER + "Ru,X,SUV,,,2020,YM,1,C3,Ru X 2020 RU\n",
+    }
     store = HEADER + "Acura,ADX,SUV,,,2025-2026,YM,131,C1,Acura ADX 2025-2026 US\n"
-    write_source(tmp_path / "a1", {"全量表_汇总.csv": summary})
-    write_source(tmp_path / "a0", {name: store for name in mod.STORES.values()})
-    counts = mod.build(tmp_path / "a1", tmp_path / "out", tmp_path / "a0")
+    write_source(tmp_path / "a0", {**{mod.REGION_FILES[r]: text for r, text in regions.items()},
+                                   **{name: store for name in mod.STORES.values()}})
+    counts = mod.build(tmp_path / "a0", tmp_path / "out")
     assert counts == {"US": 1, "HNT": 1, "TM": 1, "TM_拆分": 1, "EU": 1, "RU": 1}
     manifest = json.loads((tmp_path / "out" / "size-match-full.json").read_text(encoding="utf-8"))
     assert [(s["name"], s["group"]) for s in manifest["sources"]] == [
