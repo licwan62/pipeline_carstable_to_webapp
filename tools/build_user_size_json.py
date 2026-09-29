@@ -12,6 +12,8 @@ from pathlib import Path
 import yaml
 
 NON_COLUMNS = ["店铺","CAR","MAKE","MODEL","YEAR","VERSION","CONST","SIZE","SIZE-CODE","CATAGORY","LONG-TYPE","TYPE","SHORT-MODEL"]
+# 压缩表尺码列候选，按顺序取第一个非空值（A2 RU 线为 亚马逊尺码，其余为 BACKSIZE）
+SIZE_SOURCE_COLUMNS = ("SIZE", "BACKSIZE", "亚马逊尺码")
 PICK_COLUMNS = ["店铺","MAKE","MODEL","YEAR","VERSION","CAB","BED","SIZE","SIZE-CODE","SHORT-CAB","TITLE","DESCRIPTION"]
 UNPUBLISHABLE_SIZES = {"", "无可用尺码", "数据不全"}
 
@@ -122,10 +124,46 @@ def write_csv(path: Path, columns: list[str], rows: list[dict[str, str]]) -> Non
         writer.writerows(rows)
 
 
-def long_type_for_row(row: dict[str, str], multiple_sizes: bool) -> str:
+def long_type_for_row(row: dict[str, str], show_const: bool, show_version: bool = True) -> str:
     const = row.get("CONST", "").strip()
     version = row.get("VERSION", "").strip()
-    return " ".join(value for value in ((const if multiple_sizes else ""), version) if value)
+    return " ".join(value for value in ((const if show_const else ""), (version if show_version else "")) if value)
+
+
+def version_covers_base(version: str) -> bool:
+    """A2 VERSION 语义：空=基础款，Incl:/Excl:=基础款+列出版本，裸版本列表=仅这些版本。"""
+    text = version.strip()
+    return not text or bool(re.search(r"\b(?:incl|excl)\s*:", text, flags=re.IGNORECASE))
+
+
+def const_atoms(value: str) -> set[str]:
+    return {part.strip() for part in value.split("/") if part.strip()}
+
+
+def type_parts_needed(rows: list[dict[str, str]], row_sizes: list[str]) -> list[tuple[bool, bool]]:
+    """TYPE 只用于区分同一网页上 MAKE+MODEL 相同、年份重叠且尺码不同的行。
+
+    返回每行 (show_const, show_version)：CONST 与某个对手行不同才显示；
+    不含基础款的裸版本列表始终显示；含基础款的行只在 CONST 区分不开的对手行也含基础款时显示 VERSION
+    （对手都是裸版本行时，未列出的版本自然归入本行）。
+    """
+    years = [set(expanded_years(row.get("YEAR", ""))) for row in rows]
+    consts = [const_atoms(row.get("CONST", "")) for row in rows]
+    covers_base = [version_covers_base(row.get("VERSION", "")) for row in rows]
+    groups: dict[tuple[str, str], list[int]] = {}
+    for index, row in enumerate(rows):
+        groups.setdefault((row.get("MAKE", "").strip(), row.get("MODEL", "").strip()), []).append(index)
+    result: list[tuple[bool, bool]] = []
+    for index, row in enumerate(rows):
+        key = (row.get("MAKE", "").strip(), row.get("MODEL", "").strip())
+        rivals = [other for other in groups[key] if other != index and row_sizes[other] != row_sizes[index] and years[other] & years[index]]
+        show_const = any(consts[other] != consts[index] for other in rivals)
+        base_ambiguous = any(
+            covers_base[other] and (not consts[other] or not consts[index] or consts[other] & consts[index]) for other in rivals
+        )
+        show_version = not covers_base[index] or base_ambiguous
+        result.append((show_const, show_version))
+    return result
 
 
 def expanded_years(value: str) -> tuple[str, ...]:
@@ -170,11 +208,14 @@ def normalized_size(row: dict[str, str], sizes: dict[str, dict]) -> tuple[str, s
     """Return canonical SIZE, SIZE-CODE, and size metadata.
 
     New compressed tables provide SIZE/SIZE-CODE. BACKSIZE remains a read-only
-    compatibility fallback for older compressor output.
+    compatibility fallback for older compressor output; A2 的 RU 压缩表把尺码列命名为
+    亚马逊尺码（其后的 OZON尺码/发货尺码 不参与此处）。
     SIZE-CODE 取 configs/user-size-rules.json 的 generic（对照表见 configs/size-code.csv）；
     对照表之外的尺码直接用通用尺码名作代码，不可发布的占位尺码保持为空。
     """
-    size_value = row.get("SIZE", "").strip() or row.get("BACKSIZE", "").strip()
+    size_value = next(
+        (row.get(column, "").strip() for column in SIZE_SOURCE_COLUMNS if row.get(column, "").strip()), ""
+    )
     metadata = sizes.get(size_value, {})
     size_code = row.get("SIZE-CODE", "").strip() or str(metadata.get("generic", "")).strip()
     if not size_code and size_value not in UNPUBLISHABLE_SIZES:
@@ -285,17 +326,10 @@ def build(compress_root: Path, config: Path, rules_path: Path, size_code_map_pat
         stem = store
         folder = compress_root / stem / "compress"
         non_rows = read_optional_csv(folder / f"{stem}_非皮卡高度压缩表.csv")
-        sizes_by_model_year: dict[tuple[str, str, str], set[str]] = {}
-        for row in non_rows:
-            size_value, _size_code, _size = normalized_size(row, sizes)
-            make_model = (row.get("MAKE", "").strip(), row.get("MODEL", "").strip())
-            for year in expanded_years(row.get("YEAR", "")):
-                sizes_by_model_year.setdefault((*make_model, year), set()).add(size_value)
-        for row in non_rows:
+        parts_needed = type_parts_needed(non_rows, [normalized_size(row, sizes)[0] for row in non_rows])
+        for row, (show_const, show_version) in zip(non_rows, parts_needed):
             car = row.get("CAR", "")
-            make_model = (row.get("MAKE", "").strip(), row.get("MODEL", "").strip())
-            multiple_sizes = any(len(sizes_by_model_year.get((*make_model, year), set())) > 1 for year in expanded_years(row.get("YEAR", "")))
-            long_type = long_type_for_row(row, multiple_sizes)
+            long_type = long_type_for_row(row, show_const, show_version)
             matches = [item for item in type_rows if item["long"].strip() == long_type.strip() and item["car"].strip() in ("", car.strip())]
             matches.sort(key=lambda item: item["car"].strip() == car.strip(), reverse=True)
             size_value, size_code, size = normalized_size(row, sizes)
