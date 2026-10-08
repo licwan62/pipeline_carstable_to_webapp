@@ -28,6 +28,10 @@ file_rules:
 configs/user-size-rules.json
 ```
 
+LONG-TYPE 只保留区分所必需的部分（`build_user_size_json.type_parts_needed`）。对手行指同一店铺页上 MAKE+MODEL 相同、年份重叠且尺码不同的行（含“无可用尺码”）：
+CONST 只在与某个对手行不同时显示；A2 VERSION 为裸版本列表（不含基础款）时始终显示；为空或带 `Incl:`/`Excl:`（含基础款）时，
+只有存在结构区分不开且同样含基础款的对手行才显示，否则未列出的版本自然归入该行，不再罗列全部版本。
+
 网站 TYPE 不超过 16 个字符：先按 `configs/type-structure-abbreviations.json` 的词表缩写结构和限定词；词表缩写后仍超长时，
 自动结果（去 `Inc:`、删字母、截断）视为有损，必须在 `configs/type-manual-confirm.csv` 人工确认：按 `LONG-TYPE` 填写 `确认TYPE`
 （≤16 字符，填了即优先使用；空值暂用 `自动TYPE`）。包含标记统一写作 `Inc:`（确认表与自动结果中的 `inc:` 等写法在流水线中一律改写为 `Inc:`）。每次运行把仍待确认的类型写入批次 `02_type_待确认.csv`，新出现的行需补进确认表。

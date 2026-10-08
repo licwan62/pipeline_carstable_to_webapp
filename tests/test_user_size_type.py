@@ -17,10 +17,57 @@ def test_website_loads_us_and_us_store_lines_only():
     assert "DIMENSION-CODE" not in config["input"]["store"]["columns"].split(",")
 
 
-def test_const_is_only_shown_when_model_year_has_multiple_sizes():
-    row = {"CONST": "Sedan", "VERSION": ""}
-    assert long_type_for_row(row, multiple_sizes=True) == "Sedan"
-    assert long_type_for_row(row, multiple_sizes=False) == ""
+def test_long_type_keeps_only_requested_parts():
+    row = {"CONST": "Sedan", "VERSION": "Incl: AMG"}
+    assert long_type_for_row(row, show_const=True, show_version=True) == "Sedan Incl: AMG"
+    assert long_type_for_row(row, show_const=False, show_version=True) == "Incl: AMG"
+    assert long_type_for_row(row, show_const=False, show_version=False) == ""
+
+
+def _parts(rows):
+    from tools.build_user_size_json import type_parts_needed
+
+    rows = [{"MAKE": "M", "MODEL": "X", **row} for row in rows]
+    return type_parts_needed(rows, [row["SIZE"] for row in rows])
+
+
+def test_version_dropped_when_row_is_the_only_size_for_its_years():
+    # Plymouth Fury 1956-1972：合并行覆盖全部版本，只有 Wagon 与其年份重叠且尺码不同
+    parts = _parts([
+        {"YEAR": "1956-1972", "CONST": "Convertible/Coupe/Hardtop/Sedan", "VERSION": "Incl: Belvedere Fury/Sport Fury", "SIZE": "4L-0"},
+        {"YEAR": "1962-1964", "CONST": "Wagon", "VERSION": "", "SIZE": "无可用尺码"},
+        {"YEAR": "1973-1974", "CONST": "Coupe", "VERSION": "", "SIZE": "4XL-0"},
+    ])
+    assert parts == [(True, False), (True, False), (False, False)]
+
+
+def test_base_row_needs_no_version_list_when_rivals_are_specific_versions():
+    # SL-Class：基础行 Incl: 列表 vs AMG 裸版本行，AMG 以外自然归入基础行
+    parts = _parts([
+        {"YEAR": "2003-2010", "CONST": "Convertible", "VERSION": "Incl: SL500/SL600", "SIZE": "4L-0"},
+        {"YEAR": "2003-2010", "CONST": "Convertible", "VERSION": "AMG", "SIZE": "4XL-0"},
+    ])
+    assert parts == [(False, False), (False, True)]
+
+
+def test_version_kept_when_two_base_rows_overlap_on_structure():
+    parts = _parts([
+        {"YEAR": "2000", "CONST": "SUV", "VERSION": "Incl: 2dr", "SIZE": "YL"},
+        {"YEAR": "2000", "CONST": "SUV/Wagon", "VERSION": "Incl: 4dr", "SIZE": "YXL"},
+    ])
+    assert parts == [(True, True), (True, True)]
+
+
+def test_specific_version_list_is_always_shown():
+    assert _parts([{"YEAR": "2018", "CONST": "Coupe", "VERSION": "GT3", "SIZE": "3L"}]) == [(False, True)]
+
+
+def test_same_size_rows_do_not_need_type():
+    parts = _parts([
+        {"YEAR": "2000-2005", "CONST": "Sedan", "VERSION": "", "SIZE": "3L"},
+        {"YEAR": "2003-2008", "CONST": "Wagon", "VERSION": "Incl: GT", "SIZE": "3L"},
+    ])
+    assert parts == [(False, False), (False, False)]
 
 
 def test_year_ranges_are_expanded_for_overlapping_model_year_checks():

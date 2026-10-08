@@ -33,3 +33,9 @@ def test_sizes_outside_table_use_size_name_and_placeholders_stay_empty():
     assert code("CHALLENGER") == "CHALLENGER"
     assert code("无可用尺码") == ""
     assert code("数据不全") == ""
+
+
+def test_ru_amazon_size_column_is_read_like_backsize():
+    ru_row = {"亚马逊尺码": "YL", "OZON尺码": "M", "发货尺码": "YL"}
+    assert normalized_size(ru_row, SIZES) == normalized_size({"BACKSIZE": "YL"}, SIZES)
+    assert normalized_size(ru_row, SIZES)[0] == "YL"
