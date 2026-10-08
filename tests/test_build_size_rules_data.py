@@ -11,11 +11,12 @@ import hashlib
 
 
 def report(region, rules, shelf=""):
-    """最小化的 A0 尺码匹配报告：规则表在“## 尺码规则”下，US 另有店铺货架表。"""
+    """最小化的 A0 尺码匹配报告：规则表在“## 尺码规则”的“### 规则表（N 条）”子节，其后是参数表；US 另有店铺货架表。"""
     return (
         f"# {region} 尺码匹配报告\n\n## 匹配概况\n\n| 指标 | 数值 |\n| --- | --- |\n| 车型数 | 1 |\n\n"
         + shelf
-        + f"\n## 尺码规则\n\n来源：`data/{region}/规则/x.csv`（1 条）。\n\n{rules}"
+        + f"\n## 尺码规则\n\n来源：`data/{region}/规则/x.csv`。\n\n### 计算量\n\n- 说明\n\n### 规则表（1 条）\n\n{rules}"
+        + "\n### 参数\n\n| 参数 | 值 |\n| --- | --- |\n| 余量 | 550 |\n"
     )
 
 

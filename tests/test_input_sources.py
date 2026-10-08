@@ -228,3 +228,18 @@ class InputMaterializationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_home_page_gets_code_entry_and_assets_are_stamped(tmp_path):
+    from tools import build_publish_site as site
+
+    (tmp_path / "index.html").write_text(
+        '<nav>\n      <a class="home-action" href="size-match.html">\n        <span>尺码配对</span>\n      </a>\n    </nav>\n'
+        '<link href="assets/app/viewer.css?v=20260831-4"><script src="assets/app/viewer.js?v=1"></script>\n', encoding="utf-8")
+    site.add_home_code_action(tmp_path)
+    site.add_home_code_action(tmp_path)  # 幂等
+    site.stamp_asset_versions(tmp_path)
+    text = (tmp_path / "index.html").read_text(encoding="utf-8")
+    assert text.count("size-match-code.html") == 1
+    assert text.index("size-match.html") < text.index("size-match-code.html") < text.index("</nav>")
+    assert f"viewer.css?v={site.ASSET_VERSION}" in text and f"viewer.js?v={site.ASSET_VERSION}" in text

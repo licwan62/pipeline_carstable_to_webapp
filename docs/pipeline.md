@@ -138,4 +138,6 @@ HTML 样式位于 `configs/html-style.yaml`，AI 缩写补全位于 `configs/ai-
 
 - 产线输入不再手工复制到 `input/`：`import_a2_compressed` 直接读取 A0/A2 发布物并把来源版本写入 `pipeline.generated.json` 的 `sources`。
 - `size-ref.html`（US/EU/RU）与 `store-groups.html` 读取 A0 `output/<国别>/尺码匹配报告.md` 中的尺码规则与店铺货架表格，`size-match.html` 的 US（含店铺下拉）/EU/RU 数据源读取 A0 国别全量表与店铺全量表；均校验上游 manifest 的 sha256。
-- 这些页面和数据由 `site_overrides/` 与 `tools/build_size_rules_data.py`、`tools/build_size_match_data.py` 在站点构建后叠加到 `public/`；size chart 按 6 条产线（US 全量、HNT、TM、TM_拆分 店铺发货尺码、EU、RU）生成。
+- `size-match-code.html`（「压缩代号」，侧栏与尺码配对平级，主页有入口）与尺码配对共用 `viewer.js` 搜索页（`navKey: "code"`），表格样式、列宽、复制、表头筛选/排序、分页与表格设置一致。数据为 A2 `output/<产线>/压缩尺码表[_皮卡].csv`（US、HNT、TM、TM_拆分；非皮卡与皮卡合为一个数据源，店铺下拉切换），列为 CODE、MODEL、版本、YEAR、TYPE（皮卡为 Pickup）、CAB、BED、销量合计（A2 尺码销量总和）、SIZE（A2 BACKSIZE）；CODE = 02.代码映射 MAKE_CODE + MODEL_CODE + 年份码（由 A2 生成），点击可复制。`tools/build_size_match_code_data.py` 校验 A2 manifest sha256 后按尺码配对相同格式写入 `data/generated/size-match-code*.json`。主页入口与各页面前端资源版本号（`ASSET_VERSION`）由 `build_publish_site.py` 在构建后写入。
+- 尺码配对与压缩代号的结果表（`public/assets/app/viewer.js`，构建时保留）：列宽按表头文字与当前页内容自动计算，列名完整显示；总宽超出时先压缩可换行的 MODEL/版本/TYPE/CAB，减少被右侧固定列遮挡；点击列名循环 升序/降序/不排序，点击漏斗打开排序与筛选弹层（选项搜索、计数、多选，回车只保留搜索结果；数值列按当前单位填范围），点击外部或 Esc 关闭。尺码配对数据源不再有 CODE 列（A0 已取消 DIMENSION-CODE）。
+- 这些页面和数据由 `site_overrides/` 与 `tools/build_size_rules_data.py`、`tools/build_size_match_data.py`、`tools/build_size_match_code_data.py` 在站点构建后叠加到 `public/`；size chart 按 6 条产线（US 全量、HNT、TM、TM_拆分 店铺发货尺码、EU、RU）生成。

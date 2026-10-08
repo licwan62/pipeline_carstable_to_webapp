@@ -1,18 +1,18 @@
 Size chart generation log
-Generated at: 2026-09-27T18:04:56
-Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-zin97wyg\preference.yaml
-Output directory: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-27_09_pipeline\04_store_html\TM\nonpick
-CSS: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-09-27_09_pipeline\04_store_html\TM\nonpick\size-chart.css
+Generated at: 2026-10-08T10:27:28
+Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-h1i1x42g\preference.yaml
+Output directory: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-10-08_07_pipeline\04_store_html\TM\nonpick
+CSS: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-10-08_07_pipeline\04_store_html\TM\nonpick\size-chart.css
 Pages: 5
-Table chunks: 69
+Table chunks: 68
 Unique titles: 49
-Page table chunks: 10, 17, 17, 20, 5
+Page table chunks: 11, 16, 16, 20, 5
 
 Inputs:
-- C:\Users\hzwlc\AppData\Local\Temp\html-config-zin97wyg\TM-non-pickup.tsv
+- C:\Users\hzwlc\AppData\Local\Temp\html-config-h1i1x42g\TM-non-pickup.tsv
   Sheet: 非皮卡压缩表
   Profile: non-pickup
-  Rows after filtering: 1022
+  Rows after filtering: 1049
   Titles: 49
   Brand column: MAKE
   Stripe column: MODEL

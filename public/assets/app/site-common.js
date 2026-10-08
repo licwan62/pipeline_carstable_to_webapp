@@ -29,6 +29,7 @@
             ${link("chart", "size-chart.html", "S", "Size Chart")}
             ${link("ref", "size-ref.html", "参", "尺码参考")}
             ${link("match", "size-match.html", "尺", "尺码配对")}
+            ${link("code", "size-match-code.html", "码", "压缩代号")}
           </nav>
           ${outline}
         </aside>

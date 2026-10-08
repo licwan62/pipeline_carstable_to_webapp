@@ -74,6 +74,30 @@ def read_source_records(
     return source_payload.get("records") or source.get("records") or []
 
 
+def validate_size_match_code(site_root: Path, errors: list[str]) -> int:
+    """压缩代号页（size-match-code.html）：清单中每个数据源的 MAKE 分片存在、行数一致且记录带 CODE。"""
+    if not (site_root / "size-match-code.html").is_file():
+        return 0
+    manifest_path = site_root / "data" / "generated" / "size-match-code.json"
+    manifest = read_json(manifest_path, errors)
+    if "CODE" not in (manifest.get("columns") or []):
+        errors.append("size-match-code does not declare CODE column")
+    total = 0
+    for source in manifest.get("sources") or []:
+        name = str(source.get("name") or "")
+        records = read_source_records(site_root, manifest_path, source, name, errors)
+        if not records:
+            errors.append(f"size-match-code source has no records: {name}")
+        if source.get("record_count") is not None and int(source["record_count"]) != len(records):
+            errors.append(f"size-match-code record count mismatch for {name}")
+        if any(not (record.get("values") or {}).get("CODE") for record in records):
+            errors.append(f"size-match-code {name} has records without CODE")
+        total += len(records)
+    if not manifest.get("sources"):
+        errors.append("size-match-code has no sources")
+    return total
+
+
 def validate_publish_site(site_root: Path) -> dict[str, int]:
     site_root = site_root.resolve()
     config_path = site_root / "config" / "size-chart-view.yaml"
@@ -129,12 +153,15 @@ def validate_publish_site(site_root: Path) -> dict[str, int]:
     if missing_reference:
         errors.append(f"size reference is missing required fields: {', '.join(missing_reference)}")
 
+    code_rows = validate_size_match_code(site_root, errors)
+
     if errors:
         raise ValueError("publish site validation failed:\n- " + "\n- ".join(errors))
     return {
         "sources": len(config.get("match_sources") or []),
         "records": total_records,
         "reference_rows": len(reference_rows),
+        "code_rows": code_rows,
     }
 
 

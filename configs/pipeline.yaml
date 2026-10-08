@@ -35,6 +35,8 @@ input:
   # 修正已知来源中的表头笔误；物化时统一为下游标准字段。
   header_aliases:
     S8MAKE: MAKE
+    # A0 全量表 2026-09-28 起把 销量合计 更名为 尺寸组销量
+    尺寸组销量: 销量合计
   required_fields: [品牌, 前台车型, 年份区间, 最终尺码]
 
 columns:

@@ -2,7 +2,7 @@
 """把上游 A0.尺码计算/output 发布的尺码匹配报告中的尺码规则和店铺货架转成网站参考页数据。
 
 A0 不再单独发布规则/货架 CSV，规则全文与店铺货架写在 <国别>/尺码匹配报告.md 的表格中：
-  ## 尺码规则                               -> 该国规则（表头 + 行）
+  ## 尺码规则 / ### 规则表（N 条）          -> 该国规则（表头 + 行）
   ### 店铺货架（匹配尺码 → 发货尺码）        -> 仅 US 报告
 读取 manifest.json 校验 sha256 后，写出：
   size-rules.json   {source, regions: {US/EU/RU: {file, headers, rows}}}
@@ -24,7 +24,7 @@ from pipeline_paths import configured_path
 DEFAULT_SOURCE = configured_path("a0_output_dir")  # configs/pipeline.yaml paths.a0_output_dir
 REGIONS = ("US", "EU", "RU")
 REPORT_FILES = {region: f"{region}/尺码匹配报告.md" for region in REGIONS}
-RULES_HEADING = "## 尺码规则"
+RULES_HEADING = "### 规则表"  # A0 报告“## 尺码规则”下的子节，标题带条数，按前缀匹配
 SHELF_HEADING = "### 店铺货架"
 CELL_SPLIT = re.compile(r"(?<!\\)\|")
 

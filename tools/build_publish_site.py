@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import shutil
 import subprocess
 import sys
@@ -9,6 +10,7 @@ from pathlib import Path
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from build_size_match_code_data import DEFAULT_SOURCE as SIZE_MATCH_CODE_SOURCE, build as build_size_match_code_data  # noqa: E402
 from build_size_match_data import DEFAULT_SOURCE as SIZE_MATCH_SOURCE, build as build_size_match_data  # noqa: E402
 from build_size_rules_data import DEFAULT_SOURCE, build as build_size_rules_data  # noqa: E402
 
@@ -130,12 +132,46 @@ MATCH_PAGE_OVERRIDE = """      matchDataPath: "data/generated/size-match-full.js
 """
 
 
+HOME_CODE_ACTION = """      <a class="home-action" href="size-match-code.html">
+        <span>压缩代号</span>
+        <strong>按 CODE 代号查询 US 及各店铺压缩尺码表</strong>
+      </a>
+"""
+# 前端资源版本：改动 viewer.js/css、site-common.js 后递增，构建时统一写入所有页面，避免浏览器沿用旧缓存。
+ASSET_VERSION = "20261008-3"
+ASSET_REFERENCE = re.compile(r"(assets/app/[\w.-]+\.(?:js|css))\?v=[\w-]+")
+
+
+def add_home_code_action(site_output: Path) -> None:
+    """主页在“尺码配对”入口之后加“压缩代号”入口（主页由发布仓库 build_site.py 生成）。"""
+    home = site_output / "index.html"
+    text = home.read_text(encoding="utf-8")
+    if "size-match-code.html" in text:
+        return
+    anchor = '<a class="home-action" href="size-match.html">'
+    start = text.find(anchor)
+    end = text.find("</a>", start)
+    if start < 0 or end < 0:
+        raise ValueError("index.html 缺少尺码配对入口，无法添加压缩代号入口")
+    end = text.index("\n", end) + 1
+    home.write_text(text[:end] + HOME_CODE_ACTION + text[end:], encoding="utf-8")
+
+
+def stamp_asset_versions(site_output: Path) -> None:
+    for page in site_output.glob("*.html"):
+        text = page.read_text(encoding="utf-8")
+        stamped = ASSET_REFERENCE.sub(lambda match: f"{match.group(1)}?v={ASSET_VERSION}", text)
+        if stamped != text:
+            page.write_text(stamped, encoding="utf-8")
+
+
 def apply_site_overrides(site_output: Path) -> None:
     """构建完成后叠加项目自有页面和上游发布数据（build_site.py 会重建这些文件）。"""
     copy_tree(Path(__file__).resolve().parents[1] / "site_overrides", site_output)
     generated = site_output / "data" / "generated"
     build_size_rules_data(DEFAULT_SOURCE, generated)
     build_size_match_data(SIZE_MATCH_SOURCE, generated)
+    build_size_match_code_data(SIZE_MATCH_CODE_SOURCE, generated)
     match_page = site_output / "size-match.html"
     text = match_page.read_text(encoding="utf-8")
     if "matchDataPath" not in text:
@@ -143,6 +179,8 @@ def apply_site_overrides(site_output: Path) -> None:
         if marker not in text:
             raise ValueError("size-match.html 缺少 sizeRefPath，无法注入 US/EU 数据源配置")
         match_page.write_text(text.replace(marker, marker + MATCH_PAGE_OVERRIDE, 1), encoding="utf-8")
+    add_home_code_action(site_output)
+    stamp_asset_versions(site_output)
 
 
 def main() -> None:

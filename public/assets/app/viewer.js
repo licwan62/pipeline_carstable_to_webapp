@@ -8,6 +8,8 @@
 
   const directories = config.directories || [];
   const pageMode = config.pageMode || "search";
+  // 侧栏高亮的页面：搜索页默认是尺码配对，压缩代号页传 navKey: "code"
+  const navKey = config.navKey || (pageMode === "charts" ? "chart" : "match");
   const defaultViewConfig = {
     filters: {
       construct: { label: "CONSTRUCT", empty_label: "All constructs", source: "CONST", atomize: true },
@@ -65,9 +67,11 @@
     selectedBed: "",
     columnFilters: {},
     openFilter: "",
-    columnWidths: {},
+    columnWidths: {},  // 用户拖动设定的列宽；未设定的列按表头与内容自动计算
+    filterSearch: "",  // 当前筛选弹层里的选项搜索词
+    resetResultScroll: false,
     visibleColumns: null,
-    fieldOrder: [],
+    fieldOrder: [...(config.fieldOrder || [])],  // 页面可指定初始列顺序；表格设置里仍可调整
     dimensionUnit: "cm",
     resultView: "table",
     tableFontSize: "md",
@@ -238,7 +242,8 @@
             <a href="index.html" title="首页"><span class="nav-icon">首</span><span class="nav-label">首页</span></a>
             <a class="${!isSearchPage ? "is-active" : ""}" href="size-chart.html" title="Size Chart"><span class="nav-icon">S</span><span class="nav-label">Size Chart</span></a>
             <a href="size-ref.html" title="尺码参考"><span class="nav-icon">参</span><span class="nav-label">尺码参考</span></a>
-            <a class="${isSearchPage ? "is-active" : ""}" href="size-match.html" title="尺码配对"><span class="nav-icon">尺</span><span class="nav-label">尺码配对</span></a>
+            <a class="${navKey === "match" ? "is-active" : ""}" href="size-match.html" title="尺码配对"><span class="nav-icon">尺</span><span class="nav-label">尺码配对</span></a>
+            <a class="${navKey === "code" ? "is-active" : ""}" href="size-match-code.html" title="压缩代号"><span class="nav-icon">码</span><span class="nav-label">压缩代号</span></a>
           </nav>
           ${isSearchPage ? `
             <nav class="sidebar-outline source-outline" aria-label="Source filter">
@@ -270,7 +275,7 @@
           <div class="global-search">
             <label>
               <span>GLOBAL</span>
-              <input class="global-search-input" type="search" value="${escapeHtml(searchState.query)}" placeholder="Search nonpick, pick, 宏能图, TM, make, model, type, size, year..." autocomplete="off">
+              <input class="global-search-input" type="search" value="${escapeHtml(searchState.query)}" placeholder="${escapeHtml(config.searchPlaceholder || "Search nonpick, pick, 宏能图, TM, make, model, type, size, year...")}" autocomplete="off">
             </label>
             <button class="search-reset" type="button">Reset</button>
           </div>
@@ -651,6 +656,7 @@
       control.addEventListener("change", () => {
         searchState.resultLimit = Math.min(maxResultPageSize, Math.max(1, Number(control.value) || 200));
         searchState.resultPage = 1;
+        searchState.resetResultScroll = true;
         updateSearchResults();
       });
     });
@@ -786,7 +792,8 @@
   }
 
   async function loadSearchIndex(scopeDirectories) {
-    if (!scopeDirectories.length) {
+    // 配置了 match_sources 时数据来自清单，不依赖 size chart 目录（压缩代号页 directories 为空）
+    if (!scopeDirectories.length && !viewConfig.match_sources?.length) {
       return;
     }
 
@@ -1219,9 +1226,18 @@
     renderSearchSummary(summary, summaryText, matches);
     updateActiveFilterChips();
     bindActiveFilterChips();
+    // 重绘前记下表格与筛选弹层的滚动位置：打开/修改筛选、排序时表格不跳回左上角；翻页时回到顶部
+    const previousWrap = results.querySelector(".size-results-wrap");
+    const previousScroll = previousWrap ? [previousWrap.scrollLeft, searchState.resetResultScroll ? 0 : previousWrap.scrollTop] : null;
+    const optionScroll = results.querySelector(".header-option-scroll")?.scrollTop || 0;
+    searchState.resetResultScroll = false;
     results.innerHTML = searchState.resultView === "outline"
       ? renderResultsOutline(visibleMatches, matches.length, maxPage)
       : renderResultsTable(visibleMatches, matches.length, maxPage);
+    const wrap = results.querySelector(".size-results-wrap");
+    if (wrap && previousScroll) [wrap.scrollLeft, wrap.scrollTop] = previousScroll;
+    const optionList = results.querySelector(".header-option-scroll");
+    if (optionList) optionList.scrollTop = optionScroll;
     bindResultColumnResizers();
     bindSizeLinkedRows();
     bindSizeHeaderFilterPopovers();
@@ -1427,15 +1443,20 @@
 
     const columns = resultColumns(records);
     const tableColumns = [
-      { key: "MAKE", label: "MAKE", width: "105px" },
+      { key: "MAKE", label: "MAKE" },
       ...columns.map((column) => ({
         key: column,
         label: column,
         dimension: isDimensionColumn(column),
-        size: isSizeColumn(column),
-        width: defaultResultColumnWidth(column)
+        size: isSizeColumn(column)
       }))
     ];
+    tableColumns.forEach((column, index) => {
+      column.width = autoColumnWidth(column.key, column.label, records);
+      // 右半部分的列（含右侧固定列）弹层向左展开，避免超出表格
+      column.alignRight = index >= tableColumns.length / 2;
+    });
+    fitColumnsToContainer(tableColumns);
     const tableWidth = resultTableWidth(tableColumns);
     return `
       <div class="results-table-wrap size-results-wrap">
@@ -1639,23 +1660,27 @@
       const displayValue = value || "NULL";
       return `<td class="size-cell size-sticky-col size-sticky-size${refClass}"${refAttr} style="--size-bg: ${sizeBackground(value)}; --size-fg: ${sizeTextColor()}"><strong>${escapeHtml(displayValue)}</strong></td>`;
     }
+    if (sameColumn(column.key, "CODE") && value) {
+      return `<td class="vehicle-copy-target code-cell" tabindex="0" data-copy-text="${escapeHtml(value)}" title="点击复制代号"><strong>${escapeHtml(value)}</strong></td>`;
+    }
     const vehicleField = ["MAKE", "MODEL", "版本", "TYPE", "YEAR", "CAB", "BED", "销量合计"].some((key) => sameColumn(column.key, key));
     const vehicleAttrs = vehicleField ? ` class="vehicle-copy-target" tabindex="0" data-copy-text="${escapeHtml(copyTextForRecord(record))}" title="点击复制车型信息"` : "";
     return `<td${vehicleAttrs}>${escapeHtml(value || "")}</td>`;
   }
 
   function sizeHeaderLabelMarkup(column) {
-    const filterValue = searchState.columnFilters[column.key];
-    const isFiltered = hasColumnFilterValue(filterValue);
-    const filteredClass = isFiltered ? " is-filtered" : "";
+    const isFiltered = hasColumnFilterValue(searchState.columnFilters[column.key]);
+    const isOpen = searchState.openFilter === column.key;
     const sortState = headerSortState(column.key);
-    const sortLabel = sortState === "asc" ? "取消升序，切换为降序" : sortState === "desc" ? "取消排序" : "升序排序";
+    const sortHint = sortState === "asc" ? "当前升序，点击改为降序" : sortState === "desc" ? "当前降序，点击取消排序" : "点击升序排序";
     return `
-      <div class="th-label th-header-control">
-        <button class="th-filter-trigger${filteredClass}" type="button" data-size-open-filter="${escapeHtml(column.key)}" aria-expanded="${searchState.openFilter === column.key ? "true" : "false"}" title="筛选 ${escapeHtml(column.label)}">
-          <span>${escapeHtml(column.label)}</span>
+      <div class="th-label th-header-control${isFiltered ? " is-filtered" : ""}${sortState !== "none" ? " is-sorted" : ""}">
+        <button class="th-sort-button sort-${escapeHtml(sortState)}" type="button" data-size-sort-toggle="${escapeHtml(column.key)}" aria-label="${escapeHtml(column.label)}：${sortHint}" title="${escapeHtml(sortHint)}">
+          <span class="th-text">${escapeHtml(column.label)}</span><span class="th-sort-icon" aria-hidden="true"></span>
         </button>
-        <button class="th-sort-toggle sort-${escapeHtml(sortState)}" type="button" data-size-sort-toggle="${escapeHtml(column.key)}" aria-label="${escapeHtml(column.label)} ${sortLabel}" title="${escapeHtml(sortLabel)}"></button>
+        <button class="th-filter-button${isFiltered ? " is-filtered" : ""}${isOpen ? " is-open" : ""}" type="button" data-size-open-filter="${escapeHtml(column.key)}" aria-expanded="${isOpen ? "true" : "false"}" aria-label="筛选 ${escapeHtml(column.label)}" title="${isFiltered ? "已筛选，点击修改" : "筛选"} ${escapeHtml(column.label)}">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12l-4.6 5.4v4.4l-2.8 1.4V8.4z"/></svg>
+        </button>
       </div>
     `;
   }
@@ -1666,43 +1691,55 @@
 
   function sizeHeaderFilterMarkup(column, tableColumns) {
     if (searchState.openFilter !== column.key) return "";
+    const key = escapeHtml(column.key);
+    const sortState = headerSortState(column.key);
+    const sortButton = (direction, label) => `<button type="button" class="filter-pop-sort-button${sortState === direction ? " is-active" : ""}" data-size-sort-set="${key}" data-sort-direction="${direction}">${label}</button>`;
+    const sortRow = `
+      <div class="filter-pop-section filter-pop-sort" role="group" aria-label="排序">
+        ${sortButton("asc", "↑ 升序")}${sortButton("desc", "↓ 降序")}
+        <button type="button" class="filter-pop-sort-button" data-size-sort-set="${key}" data-sort-direction=""${sortState === "none" ? " disabled" : ""}>不排序</button>
+      </div>`;
+    const isFiltered = hasColumnFilterValue(searchState.columnFilters[column.key]);
+    const clearButton = `<button type="button" class="filter-pop-link" data-filter-clear="${key}"${isFiltered ? "" : " disabled"}>清除筛选</button>`;
+    const align = column.alignRight ? " align-right" : "";
     if (isRangeFilterColumn(column.key)) {
       const value = typeof searchState.columnFilters[column.key] === "object" ? searchState.columnFilters[column.key] : {};
       return `
-        <div class="header-filter-popover header-filter-popover-wide">
-          <div class="header-range-filter">
+        <div class="header-filter-popover${align}" role="dialog" aria-label="${key} 排序与筛选">
+          ${sortRow}
+          <div class="filter-pop-section">
+            <div class="filter-pop-title"><span>数值范围（含边界，回车生效）</span>${clearButton}</div>
             <div class="range-inputs">
-              <input type="number" step="0.1" data-size-range-filter="${escapeHtml(column.key)}" data-range-side="min" value="${escapeHtml(value.min || "")}" placeholder="Min">
-              <input type="number" step="0.1" data-size-range-filter="${escapeHtml(column.key)}" data-range-side="max" value="${escapeHtml(value.max || "")}" placeholder="Max">
+              <input type="number" step="0.1" data-size-range-filter="${key}" data-range-side="min" value="${escapeHtml(value.min || "")}" placeholder="最小" aria-label="最小值">
+              <input type="number" step="0.1" data-size-range-filter="${key}" data-range-side="max" value="${escapeHtml(value.max || "")}" placeholder="最大" aria-label="最大值">
             </div>
           </div>
         </div>
       `;
     }
-    if (sameColumn(column.key, "YEAR")) {
-      const selected = arrayFilterValue(searchState.columnFilters[column.key]);
-      const options = sizeFilterOptions(column, tableColumns).filter((option) => option.value);
-      return `
-        <div class="header-filter-popover header-filter-popover-wide">
-          <div class="header-multi-filter" data-size-multi-group="${escapeHtml(column.key)}">
+    const selected = arrayFilterValue(searchState.columnFilters[column.key]);
+    const options = sizeFilterOptions(column, tableColumns).filter((option) => option.value);
+    const query = searchState.filterSearch.trim().toLowerCase();
+    const matchesQuery = (option) => !query || option.label.toLowerCase().includes(query);
+    return `
+      <div class="header-filter-popover${align}" role="dialog" aria-label="${key} 排序与筛选">
+        ${sortRow}
+        <div class="filter-pop-section">
+          <div class="filter-pop-title"><span>${selected.length ? `已选 ${formatCount(selected.length)} 项` : `共 ${formatCount(options.length)} 项`}</span>${clearButton}</div>
+          <input class="filter-pop-search" type="search" data-filter-search="${key}" value="${escapeHtml(searchState.filterSearch)}" placeholder="搜索选项，回车只看结果" autocomplete="off" aria-label="搜索 ${key} 选项">
+          <div class="header-option-scroll">
             ${options.map((option) => `
-              <label class="header-multi-option">
-                <input type="checkbox" data-size-multi-filter="${escapeHtml(column.key)}" value="${escapeHtml(option.value)}"${selected.includes(option.value) ? " checked" : ""}>
-                <span>${escapeHtml(option.label)}</span>
+              <label class="header-multi-option"${matchesQuery(option) ? "" : " hidden"}>
+                <input type="checkbox" data-size-multi-filter="${key}" value="${escapeHtml(option.value)}"${selected.includes(option.value) ? " checked" : ""}>
+                <span>${escapeHtml(option.label)}</span><em>${option.count ? formatCount(option.count) : ""}</em>
               </label>
             `).join("")}
+            <div class="filter-pop-empty"${options.some(matchesQuery) ? " hidden" : ""}>没有匹配的选项</div>
           </div>
-        </div>
-      `;
-    }
-    return `
-      <div class="header-filter-popover">
-        <div class="header-option-list" role="listbox" aria-label="筛选 ${escapeHtml(column.label)}">
-          ${sizeFilterOptions(column, tableColumns).map((option) => {
-            const current = searchState.columnFilters[column.key] || "";
-            const active = option.value === current;
-            return `<button class="header-option-item${active ? " is-active" : ""}" type="button" data-size-option-filter="${escapeHtml(column.key)}" data-filter-value="${escapeHtml(option.value)}">${escapeHtml(option.label)}</button>`;
-          }).join("")}
+          <div class="filter-pop-actions">
+            <button type="button" class="filter-pop-link" data-filter-select-visible="${key}">选中可见项</button>
+            <button type="button" class="filter-pop-link" data-filter-invert="${key}">反选可见项</button>
+          </div>
         </div>
       </div>
     `;
@@ -1711,11 +1748,16 @@
   function sizeFilterOptions(column, tableColumns) {
     const currentValue = searchState.columnFilters[column.key] || "";
     const records = getSearchMatchesIgnoringColumn(column.key);
-    const values = sortedSizeFilterValues(column.key, uniqueInOrder(records.flatMap((record) => sizeColumnFilterValues(record, column.key)).filter(Boolean)));
+    const counts = new Map();
+    records.forEach((record) => uniqueInOrder(sizeColumnFilterValues(record, column.key)).forEach((value) => {
+      if (value) counts.set(value, (counts.get(value) || 0) + 1);
+    }));
+    const values = sortedSizeFilterValues(column.key, [...counts.keys()]);
     const allLabel = `All ${column.label}`;
     const options = [{ value: "", label: allLabel }, ...values.map((value) => ({
       value,
-      label: sameColumn(column.key, "SOURCE") ? sourceLabel(value) : value
+      label: sameColumn(column.key, "SOURCE") ? sourceLabel(value) : value,
+      count: counts.get(value)
     }))];
     arrayFilterValue(currentValue).forEach((selectedValue) => {
       if (!values.includes(selectedValue)) {
@@ -1874,23 +1916,6 @@
         updateSearchResults();
       });
     });
-    app.querySelectorAll("[data-size-option-filter]").forEach((button) => {
-      if (button.dataset.bound === "true") return;
-      button.dataset.bound = "true";
-      button.addEventListener("click", () => {
-        const key = button.dataset.sizeOptionFilter;
-        const value = button.dataset.filterValue || "";
-        cancelHeaderFilterClose();
-        if (value) {
-          searchState.columnFilters[key] = value;
-        } else {
-          delete searchState.columnFilters[key];
-        }
-        searchState.openFilter = key;
-        searchState.resultPage = 1;
-        updateSearchResults();
-      });
-    });
     app.querySelectorAll("[data-size-multi-filter]").forEach((input) => {
       if (input.dataset.bound === "true") return;
       input.dataset.bound = "true";
@@ -1901,6 +1926,9 @@
     app.querySelectorAll("[data-size-range-filter]").forEach((input) => {
       if (input.dataset.bound === "true") return;
       input.dataset.bound = "true";
+      input.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") input.dispatchEvent(new Event("change"));
+      });
       input.addEventListener("change", () => {
         const key = input.dataset.sizeRangeFilter;
         const side = input.dataset.rangeSide;
@@ -1923,6 +1951,7 @@
       control.addEventListener("change", () => {
         searchState.resultLimit = Math.min(maxResultPageSize, Math.max(1, Number(control.value) || 200));
         searchState.resultPage = 1;
+        searchState.resetResultScroll = true;
         updateSearchResults();
       });
     });
@@ -1933,6 +1962,7 @@
         const maxPage = Number(button.dataset.maxPage || "1");
         const direction = button.dataset.resultPage === "next" ? 1 : -1;
         searchState.resultPage = Math.min(maxPage, Math.max(1, searchState.resultPage + direction));
+        searchState.resetResultScroll = true;
         updateSearchResults();
       });
     });
@@ -1975,25 +2005,18 @@
   }
 
   function bindSizeHeaderFilterPopovers() {
-    app.querySelectorAll(".size-results-table th[data-col-key]").forEach((cell) => {
-      if (cell.dataset.headerHoverBound === "true") return;
-      cell.dataset.headerHoverBound = "true";
-      cell.addEventListener("mouseenter", () => {
-        cancelHeaderFilterClose();
-        if (searchState.openFilter !== cell.dataset.colKey) {
-          searchState.openFilter = cell.dataset.colKey;
-          updateSearchResults();
-        }
-      });
-    });
     app.querySelectorAll("[data-size-open-filter]").forEach((button) => {
       if (button.dataset.bound === "true") return;
       button.dataset.bound = "true";
-      button.addEventListener("mouseenter", () => {
-        cancelHeaderFilterClose();
-        if (searchState.openFilter !== button.dataset.sizeOpenFilter) {
-          searchState.openFilter = button.dataset.sizeOpenFilter;
-          updateSearchResults();
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const key = button.dataset.sizeOpenFilter;
+        searchState.filterSearch = "";
+        searchState.openFilter = searchState.openFilter === key ? "" : key;
+        updateSearchResults();
+        if (searchState.openFilter) {
+          app.querySelector(".header-filter-popover .filter-pop-search, .header-filter-popover input[data-range-side='min']")?.focus({ preventScroll: true });
         }
       });
     });
@@ -2006,21 +2029,84 @@
         cycleHeaderSort(button.dataset.sizeSortToggle);
       });
     });
-    app.querySelectorAll(".size-results-table th.is-filter-open").forEach((cell) => {
-      if (cell.dataset.hoverBound === "true") return;
-      cell.dataset.hoverBound = "true";
-      cell.addEventListener("mouseenter", cancelHeaderFilterClose);
-      cell.addEventListener("mouseleave", () => {
-        if (cell.contains(document.activeElement)) return;
-        scheduleHeaderFilterClose();
-      });
-      cell.addEventListener("focusout", () => {
-        window.setTimeout(() => {
-          if (cell.matches(":hover") || cell.contains(document.activeElement)) return;
-          scheduleHeaderFilterClose();
-        }, 0);
+    app.querySelectorAll("[data-size-sort-set]").forEach((button) => {
+      if (button.dataset.bound === "true") return;
+      button.dataset.bound = "true";
+      button.addEventListener("click", () => {
+        const direction = button.dataset.sortDirection;
+        searchState.sortField = direction ? button.dataset.sizeSortSet : "";
+        searchState.sortDirection = direction || "asc";
+        searchState.resultPage = 1;
+        updateSearchResults();
       });
     });
+    app.querySelectorAll("[data-filter-search]").forEach((input) => {
+      if (input.dataset.bound === "true") return;
+      input.dataset.bound = "true";
+      // 只在弹层内显示/隐藏选项，不重绘表格，输入不丢焦点
+      input.addEventListener("input", () => {
+        searchState.filterSearch = input.value;
+        const query = input.value.trim().toLowerCase();
+        const popover = input.closest(".header-filter-popover");
+        let shown = 0;
+        popover.querySelectorAll(".header-multi-option").forEach((option) => {
+          const visible = !query || option.querySelector("span").textContent.toLowerCase().includes(query);
+          option.hidden = !visible;
+          if (visible) shown += 1;
+        });
+        popover.querySelector(".filter-pop-empty").hidden = shown > 0;
+      });
+      input.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") return;
+        // 回车：只保留可见项（搜索结果）作为筛选条件
+        event.preventDefault();
+        setColumnFilterFromVisible(input.dataset.filterSearch, "only");
+      });
+    });
+    app.querySelectorAll("[data-filter-clear]").forEach((button) => {
+      if (button.dataset.bound === "true") return;
+      button.dataset.bound = "true";
+      button.addEventListener("click", () => {
+        delete searchState.columnFilters[button.dataset.filterClear];
+        searchState.filterSearch = "";
+        searchState.resultPage = 1;
+        updateSearchResults();
+      });
+    });
+    app.querySelectorAll("[data-filter-select-visible], [data-filter-invert]").forEach((button) => {
+      if (button.dataset.bound === "true") return;
+      button.dataset.bound = "true";
+      button.addEventListener("click", () => {
+        const key = button.dataset.filterSelectVisible || button.dataset.filterInvert;
+        setColumnFilterFromVisible(key, button.dataset.filterInvert ? "invert" : "add");
+      });
+    });
+  }
+
+  function setColumnFilterFromVisible(key, mode) {
+    const options = Array.from(app.querySelectorAll(`.header-filter-popover [data-size-multi-filter="${cssEscape(key)}"]`));
+    const visible = options.filter((input) => !input.closest(".header-multi-option").hidden);
+    const selected = new Set(arrayFilterValue(searchState.columnFilters[key]));
+    if (mode === "only") {
+      selected.clear();
+      visible.forEach((input) => selected.add(input.value));
+    } else {
+      visible.forEach((input) => {
+        if (mode === "invert" && selected.has(input.value)) selected.delete(input.value);
+        else selected.add(input.value);
+      });
+    }
+    if (selected.size) searchState.columnFilters[key] = [...selected];
+    else delete searchState.columnFilters[key];
+    searchState.resultPage = 1;
+    updateSearchResults();
+  }
+
+  function closeHeaderFilter() {
+    if (!searchState.openFilter) return;
+    searchState.openFilter = "";
+    searchState.filterSearch = "";
+    updateSearchResults();
   }
 
   function cycleHeaderSort(key) {
@@ -2036,19 +2122,6 @@
     searchState.resultPage = 1;
     searchState.openFilter = "";
     updateSearchResults();
-  }
-
-  function scheduleHeaderFilterClose() {
-    cancelHeaderFilterClose();
-    const popover = app.querySelector(".size-results-table th.is-filter-open .header-filter-popover");
-    if (popover) {
-      popover.classList.add("is-closing");
-    }
-    headerFilterCloseTimer = window.setTimeout(() => {
-      headerFilterCloseTimer = 0;
-      searchState.openFilter = "";
-      updateSearchResults();
-    }, 170);
   }
 
   function cancelHeaderFilterClose() {
@@ -2130,8 +2203,8 @@
       return numericDisplayValue(dimensionDisplay(key, resultColumnValue(record, key)));
     }
     if (isLengthMarginColumn(key)) {
-      const number = Number(resultColumnValue(record, key));
-      return Number.isFinite(number) ? String(Math.round(number)) : "";
+      // 与长宽高一致：按当前显示单位（MM/CM/IN）筛选，和表格里看到的数值相同
+      return numericDisplayValue(lengthMarginDisplay(resultColumnValue(record, key)));
     }
     return resultColumnValue(record, key);
   }
@@ -2717,17 +2790,90 @@
   }
 
   function defaultResultColumnWidth(column) {
-    if (sameColumn(column, "MODEL")) return "150px";
-    if (sameColumn(column, "版本")) return "92px";
-    if (sameColumn(column, "YEAR")) return "112px";
-    if (sameColumn(column, "TYPE")) return "130px";
-    if (sameColumn(column, "CAB")) return "110px";
-    if (sameColumn(column, "BED")) return "90px";
-    if (isSalesTotalColumn(column)) return "122px";
-    if (isLengthMarginColumn(column)) return "100px";
-    if (isDimensionColumn(column)) return "82px";
-    if (isSizeColumn(column)) return "104px";
-    return "118px";
+    return autoColumnWidth(column, column);
+  }
+
+  // 自动列宽：不小于表头（文字 + 排序箭头 + 筛选按钮）所需宽度；内容取当前页最宽值，超过上限的列换行。
+  const textWidthCache = new Map();
+  let measureContext;
+
+  function tableFontPixels() {
+    return { sm: 15, md: 17, lg: 19 }[searchState.tableFontSize] || 17;
+  }
+
+  function measureTextWidth(text, weight) {
+    const size = tableFontPixels();
+    const cacheKey = `${weight}|${size}|${text}`;
+    if (textWidthCache.has(cacheKey)) return textWidthCache.get(cacheKey);
+    if (measureContext === undefined) measureContext = document.createElement("canvas").getContext("2d");
+    let width;
+    if (measureContext) {
+      measureContext.font = `${weight} ${size}px ${getComputedStyle(app).fontFamily || "sans-serif"}`;
+      width = measureContext.measureText(text).width;
+    } else {
+      width = Array.from(text).reduce((total, char) => total + (char.charCodeAt(0) > 255 ? size : size * 0.6), 0);
+    }
+    textWidthCache.set(cacheKey, width);
+    return width;
+  }
+
+  function columnWidthCap(column) {
+    if (sameColumn(column, "MODEL") || sameColumn(column, "CAB")) return 260;
+    if (sameColumn(column, "版本") || sameColumn(column, "TYPE")) return 210;
+    return 180;
+  }
+
+  function cellDisplayText(record, column) {
+    if (sameColumn(column, "MAKE")) return record.make || "";
+    const value = resultColumnValue(record, column);
+    if (isSalesTotalColumn(column)) return formatSalesTotal(value) || "-";
+    if (isLengthMarginColumn(column)) return lengthMarginDisplay(value) || "-";
+    if (isDimensionColumn(column)) return dimensionDisplay(column, value) || "-";
+    if (isSizeColumn(column)) return value || "NULL";
+    return value || "";
+  }
+
+  function contentColumnWidth(column, records) {
+    let widest = 0;
+    records.forEach((record) => {
+      const text = cellDisplayText(record, column);
+      if (text) widest = Math.max(widest, measureTextWidth(text, 700));
+    });
+    return widest + 18;  // 单元格左右内边距 7px×2 + 余量
+  }
+
+  function isWrappableColumn(column) {
+    return ["MODEL", "版本", "TYPE", "CONST", "CAB"].some((key) => sameColumn(column, key));
+  }
+
+  // 总宽超出可视区时，先把可换行的文本列压缩到不小于表头宽度（且≥90px），减少被右侧固定列遮挡的列
+  function fitColumnsToContainer(columns) {
+    // 以表格容器的内宽为准（已扣除纵向滚动条）；首次渲染时容器尚不存在，按结果区宽度预留滚动条
+    const wrap = app.querySelector(".size-results-wrap");
+    const available = wrap ? wrap.clientWidth - 6 : (app.querySelector(".search-results")?.clientWidth || 0) - 20;
+    if (available <= 0) return;
+    const pixels = (column) => Number.parseFloat(searchState.columnWidths[column.key] || column.width) || 0;
+    const excess = columns.reduce((total, column) => total + pixels(column), 0) - available;
+    if (excess <= 0) return;
+    const flexible = columns.filter((column) => !searchState.columnWidths[column.key] && isWrappableColumn(column.key));
+    const room = flexible.map((column) => Math.max(0, pixels(column) - Math.max(headerColumnWidth(column.label), 90)));
+    const totalRoom = room.reduce((total, value) => total + value, 0);
+    if (!totalRoom) return;
+    const ratio = Math.min(1, excess / totalRoom);
+    flexible.forEach((column, index) => {
+      column.width = `${Math.floor(pixels(column) - room[index] * ratio)}px`;
+    });
+  }
+
+  function headerColumnWidth(label) {
+    // 左右内边距 6+5 + 文字 + 间距 2 + 箭头 8 + 间距 2 + 筛选按钮 18 + 余量 3
+    return measureTextWidth(String(label), 800) + 44;
+  }
+
+  function autoColumnWidth(column, label, records = []) {
+    const header = headerColumnWidth(label);
+    const content = Math.min(contentColumnWidth(column, records), columnWidthCap(column));
+    return `${Math.ceil(Math.max(header, content, 56))}px`;
   }
 
   function bindResultColumnResizers() {
@@ -3014,5 +3160,23 @@
   }
 
   window.addEventListener("resize", resizeFrames);
+  let tableRefitTimer = 0;
+  window.addEventListener("resize", () => {
+    if (!app.querySelector(".size-results-table")) return;
+    window.clearTimeout(tableRefitTimer);
+    tableRefitTimer = window.setTimeout(updateSearchResults, 150);  // 窗口宽度变化后重新适配列宽
+  });
+  document.addEventListener("pointerdown", (event) => {
+    if (!searchState.openFilter) return;
+    if (event.target.closest?.(".header-filter-popover, [data-size-open-filter]")) return;
+    closeHeaderFilter();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && searchState.openFilter) closeHeaderFilter();
+  });
+  document.fonts?.ready.then(() => {
+    textWidthCache.clear();
+    if (app.querySelector(".size-results-table")) updateSearchResults();
+  });
   loadViewConfig().then(loadSizeReferences).then(render);
 })();

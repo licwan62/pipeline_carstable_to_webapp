@@ -37,4 +37,10 @@ def test_us_stores_and_eu_sources(tmp_path):
         ("US", "US"), ("HNT", "US"), ("TM", "US"), ("TM_拆分", "US"), ("EU", "EU"), ("RU", "RU")]
     shard = json.loads((tmp_path / "out" / manifest["sources"][1]["make_groups"][0]["records_path"]).read_text(encoding="utf-8"))
     assert shard["records"][0]["values"]["SIZE"] == "YM" and shard["records"][0]["years"] == [2025, 2026]
-    assert shard["records"][0]["values"]["CODE"] == "C1"
+    # A0 已取消 DIMENSION-CODE，尺码配对不再有 CODE 列（代号见压缩代号页）
+    assert "CODE" not in manifest["columns"] and "CODE" not in shard["records"][0]["values"]
+
+
+def test_renamed_sales_column_fills_sales_total():
+    record = mod.to_record({"MAKE": "Acura", "MODEL": "ADX", "YEAR": "2025", "尺寸组销量": "131"}, "US")
+    assert record["values"]["销量合计"] == "131"

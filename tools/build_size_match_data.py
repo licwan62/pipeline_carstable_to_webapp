@@ -26,7 +26,7 @@ REGIONS = ("US", "EU", "RU")
 REGION_FILES = {region: f"{region}/全量/全量表.csv" for region in REGIONS}
 # US 源下的店铺选择：名称 -> A0 店铺全量文件（自动尺码为该店铺的发货尺码）
 STORES = {store: f"US/店铺/店铺全量_{store}.csv" for store in ("HNT", "TM", "TM_拆分")}
-COLUMNS = ["CODE", "MODEL", "版本", "YEAR", "TYPE", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"]
+COLUMNS = ["MODEL", "版本", "YEAR", "TYPE", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"]
 
 
 def write_json(path: Path, payload: dict) -> None:
@@ -50,11 +50,11 @@ def slug(text: str) -> str:
 def to_record(row: dict[str, str], region: str) -> dict:
     values = dict(row)
     values["长度余量"] = row.get("自动长度余量", "")
+    values["销量合计"] = row.get("销量合计") or row.get("尺寸组销量", "")  # A0 2026-09-28 起改名 尺寸组销量
     values["CONST"] = row.get("结构", "")
     values["TYPE"] = row.get("结构", "")
     values["SIZE"] = row.get("自动尺码", "")
     values["SOURCE"] = region
-    values["CODE"] = row.get("DIMENSION-CODE", "")  # A0 全量表已取消 DIMENSION-CODE，此列留空
     return {
         "make": row["MAKE"], "model": row["MODEL"], "year": row["YEAR"], "years": parse_years(row["YEAR"]),
         "construct": row.get("结构", ""), "cab": row.get("CAB", ""), "bed": row.get("BED", ""),
