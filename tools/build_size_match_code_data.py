@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""用上游 A2.压缩尺寸信息/output 的 US 区域压缩尺码表（含 CODE 代号列）生成「压缩代号」页的数据源。
+"""用上游 A1.压缩尺寸信息/output 的 US 区域压缩尺码表（含 CODE 代号列）生成「压缩代号」页的数据源。
 
 页面与尺码配对共用 viewer.js，数据格式同 build_size_match_data（format_version 3：数据源 → MAKE 分片）：
 校验 A2 manifest 的 sha256 后，每条产线（US、HNT、TM、TM_拆分）的非皮卡与皮卡两张表合为一个数据源，

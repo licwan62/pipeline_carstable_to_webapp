@@ -122,7 +122,7 @@ def scan_cases(
 ) -> list[dict[str, Any]]:
     paths = config["paths"]
     if (config.get("input") or {}).get("source") == "all_cars_data":
-        # 产线输入来自 all_cars_data 的 A1/A2 发布物（由 import_a2_compressed 步骤校验导入）
+        # 产线输入来自 all_cars_data 的 A0/A1.压缩尺寸信息 发布物（由 import_a2_compressed 步骤校验导入）
         input_files = [resolve_from_root(paths[key]) / "manifest.json" for key in ("a0_output_dir", "a2_output_dir")]
         missing = [path for path in input_files if not path.is_file()]
         if missing:

@@ -4,8 +4,8 @@
 每条产线（取自 A2 manifest 的国别目录 US/EU/RU，或 input.lines 指定）：
   - A0.尺码计算/output/<国别>/全量/全量表.csv（店铺线 US/店铺/店铺全量_<店铺>.csv）
       -> <output-dir>/NNN-<店铺>.csv（表头规范化同 materialize_input_sources）
-  - A2.压缩尺寸信息/output/<产线>/压缩尺码表.csv      -> <compressed-root>/<店铺>/compress/<店铺>_非皮卡高度压缩表.csv
-  - A2.压缩尺寸信息/output/<产线>/压缩尺码表_皮卡.csv -> <compressed-root>/<店铺>/compress/<店铺>_皮卡高度压缩表.csv
+  - A1.压缩尺寸信息/output/<产线>/压缩尺码表.csv      -> <compressed-root>/<店铺>/compress/<店铺>_非皮卡高度压缩表.csv
+  - A1.压缩尺寸信息/output/<产线>/压缩尺码表_皮卡.csv -> <compressed-root>/<店铺>/compress/<店铺>_皮卡高度压缩表.csv
 所有读取的文件先按对应节点 output/manifest.json 校验 sha256；店铺名/标签按 input.store 模板以产线名为 {stem} 生成。
 运行时配置（含 input.stores 与来源版本）写入 --output-config，供下游步骤读取。
 """

@@ -1,10 +1,10 @@
 # 车型尺码流水线
 
-本项目采用 `上游发布物 + artifact + public` 模式：产线输入直接读取 all_cars_data 已发布的 A0 全量表与 A2 压缩表（按 manifest 校验 sha256）。上游目录由 `configs/pipeline.yaml` 的 `paths.a0_output_dir`、`paths.a2_output_dir` 指定，代码中不写死。
+本项目采用 `上游发布物 + artifact + public` 模式：产线输入直接读取 all_cars_data 已发布的 A0 全量表与 A1.压缩尺寸信息 压缩表（按 manifest 校验 sha256）。上游目录由 `configs/pipeline.yaml` 的 `paths.a0_output_dir`、`paths.a2_output_dir` 指定，代码中不写死。
 
 ```text
 ../all_cars_data/A0.尺码计算/output/      <国别>/全量/全量表.csv、US/店铺/店铺全量_<店铺>.csv、<国别>/尺码匹配报告.md（规则与店铺货架表格）
-../all_cars_data/A2.压缩尺寸信息/output/  <国别>/压缩尺码表.csv、<国别>/压缩尺码表_皮卡.csv
+../all_cars_data/A1.压缩尺寸信息/output/  <国别>/压缩尺码表.csv、<国别>/压缩尺码表_皮卡.csv
 input/                              旧的人工输入（仅 input.source 不是 all_cars_data 时使用）
 configs/
   pipeline.yaml                     流水线配置
@@ -66,7 +66,7 @@ python tools/run_all.py --artifact 2026-09-17_02_pipeline --from-step build_user
 
 当前六个步骤统一采用“动作 + 产物”命名：
 
-1. `import_a2_compressed`：按 A2 发布的产线（US、HNT、TM、TM_拆分、EU、RU；`input.lines` 可限定）导入 A0 全量表与 A2 高度压缩表，校验 manifest，生成运行时 JSON。压缩与原子检查已移至 all_cars_data 的 `A2.压缩尺寸信息`。
+1. `import_a2_compressed`：按 A1 发布的产线（US、HNT、TM、TM_拆分、EU、RU；`input.lines` 可限定）导入 A0 全量表与 A1 高度压缩表，校验 manifest，生成运行时 JSON。压缩与原子检查已移至 all_cars_data 的 `A1.压缩尺寸信息`（2026-10-09 前为 `A2.压缩尺寸信息`）。
 2. `build_user_size_json`：应用尺码及缩写规则，生成紧凑 JSON。
 3. `export_store_csv`：按店铺导出 HTML 输入 CSV。
 4. `generate_store_html`：生成各店铺尺码表 HTML。
