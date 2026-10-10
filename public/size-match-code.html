@@ -4,13 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>压缩代号</title>
-  <link rel="stylesheet" href="assets/app/viewer.css?v=20261010-2">
+  <link rel="stylesheet" href="assets/app/viewer.css?v=20261010-3">
 </head>
 <body>
   <div id="app"></div>
   <script>
     // 与尺码配对（size-match.html）同一个 viewer.js 搜索页：表格样式、列宽、复制、筛选与表格设置一致，
-    // 数据换成 A2 压缩尺码表（含 CODE 代号），由 tools/build_size_match_code_data.py 生成。
+    // 数据换成 A1 压缩尺码表（含 CODE 代号），由 tools/build_size_match_code_data.py 生成。
+    // 长宽高为记录来源车型的最大值；点 MAKE 展开/收回该记录覆盖的来源车型（A1 压缩来源）各年份长宽高。
     window.SIZE_CHART_VIEWER = {
       pageMode: "search",
       navKey: "code",
@@ -19,7 +20,7 @@
       viewConfigPath: "config/size-chart-view.yaml",
       sizeRefPath: "data/generated/size-ref.json",
       matchDataPath: "data/generated/size-match-code.json",
-      fieldOrder: ["CODE", "MODEL", "版本", "TYPE", "YEAR", "CAB", "BED", "销量合计", "SIZE"],
+      fieldOrder: ["CODE", "MODEL", "版本", "TYPE", "YEAR", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "SIZE"],
       searchPlaceholder: "Search code, make, model, type, size, year...",
       matchSources: [
         { name: "US", label: "US 全量", group: "US" },
@@ -30,6 +31,6 @@
       directories: []
     };
   </script>
-  <script src="assets/app/viewer.js?v=20261010-2"></script>
+  <script src="assets/app/viewer.js?v=20261010-3"></script>
 </body>
 </html>

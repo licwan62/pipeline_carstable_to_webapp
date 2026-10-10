@@ -96,6 +96,9 @@
   let frameSearchTimer = 0;
   let headerFilterCloseTimer = 0;
   let copyFeedbackTimer = 0;
+  // 压缩代号页：已展开来源车型的记录（记录对象随数据缓存常驻，重绘后保持展开）与当前表格渲染的记录
+  const expandedSourceRecords = new WeakSet();
+  let renderedResultRecords = [];
 
   function initialQuery() {
     return new URLSearchParams(window.location.search).get("q") || "";
@@ -1262,6 +1265,7 @@
     bindSizeHeaderFilterPopovers();
     bindSizeTableFilters();
     bindSizeReferenceHovers();
+    bindSourceToggles();
   }
 
   function getSearchMatches() {
@@ -1477,6 +1481,7 @@
       return '<div class="empty-results">No rows match the current selection.</div>';
     }
 
+    renderedResultRecords = records;
     const columns = resultColumns(records);
     const tableColumns = [
       { key: "MAKE", label: "MAKE" },
@@ -1515,11 +1520,7 @@
             </tr>
           </thead>
           <tbody>
-            ${records.map((record) => `
-              <tr class="copyable-result-row">
-                ${tableColumns.map((column) => resultCellMarkup(record, column)).join("")}
-              </tr>
-            `).join("")}
+            ${records.map((record, index) => resultRowMarkup(record, index, tableColumns)).join("")}
           </tbody>
         </table>
       </div>
@@ -1535,6 +1536,64 @@
         </label>
       </div>
     `;
+  }
+
+  // 压缩代号页：记录带 sources（A1 压缩来源：该压缩记录覆盖的 A0 全量表行）时，点 MAKE 单元格展开/收回来源车型各年份长宽高
+  function resultRowMarkup(record, index, tableColumns) {
+    const sources = recordSources(record);
+    const expanded = sources.length > 0 && expandedSourceRecords.has(record);
+    const cells = tableColumns.map((column) => (
+      column.key === "MAKE" && sources.length ? sourceToggleCellMarkup(record, index, sources.length, expanded) : resultCellMarkup(record, column)
+    )).join("");
+    const row = `<tr class="copyable-result-row${sources.length ? " has-sources" : ""}${expanded ? " is-expanded" : ""}">${cells}</tr>`;
+    if (!expanded) return row;
+    return row + sources.map((source, position) => sourceRowMarkup(record, source, position === sources.length - 1, tableColumns)).join("");
+  }
+
+  function recordSources(record) {
+    return Array.isArray(record.sources) ? record.sources : [];
+  }
+
+  function sourceToggleCellMarkup(record, index, count, expanded) {
+    const hint = expanded ? "收回来源车型" : `展开 ${count} 条来源车型的各年份长宽高`;
+    return `<td class="source-toggle-cell"><button class="source-toggle" type="button" data-source-toggle="${index}" aria-expanded="${expanded ? "true" : "false"}" title="${escapeHtml(hint)}"><span class="source-toggle-icon" aria-hidden="true"></span><span class="source-toggle-make">${escapeHtml(record.make)}</span><em>${count}</em></button></td>`;
+  }
+
+  // 来源行按普通记录渲染（同列、同单位换算、点击复制车型信息/长宽高），CODE、销量、SIZE 留空
+  function sourceRowMarkup(record, source, last, tableColumns) {
+    const item = {
+      ...record, model: source.MODEL, year: source.YEAR, construct: source.TYPE, type: source.TYPE, cab: source.CAB, bed: source.BED, sources: [],
+      values: { ...source, MAKE: record.make, CONST: source.TYPE, SOURCE: record.values.SOURCE }
+    };
+    const cells = tableColumns.map((column) => {
+      if (column.key === "MAKE") return `<td class="source-branch-cell" aria-hidden="true">${last ? "└" : "├"}</td>`;
+      if (column.size) return '<td class="size-sticky-col size-sticky-size source-size-cell"></td>';
+      if (column.dimension) return sourceDimensionCellMarkup(record, item, column);
+      if (sameColumn(column.key, "CODE") || isSalesTotalColumn(column.key)) return "<td></td>";
+      return resultCellMarkup(item, column);
+    }).join("");
+    return `<tr class="source-detail-row${last ? " is-last-source" : ""}" title="${escapeHtml(source["DIMENSION-ID"] || "")}">${cells}</tr>`;
+  }
+
+  function sourceDimensionCellMarkup(record, item, column) {
+    const value = resultColumnValue(item, column.key);
+    const isMax = Boolean(value) && Number(value) === Number(resultColumnValue(record, column.key));
+    return `<td class="dimension-cell size-dimension-cell size-sticky-col ${sizeStickyClass(column.key)} dimension-copy-target${isMax ? " is-source-max" : ""}" tabindex="0" data-copy-text="${escapeHtml(copyDimensionsForRecord(item))}" title="${isMax ? "该记录的最大值，" : ""}点击复制长宽高"><strong>${escapeHtml(dimensionDisplay(column.key, value) || "-")}</strong></td>`;
+  }
+
+  function bindSourceToggles() {
+    app.querySelectorAll("[data-source-toggle]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const record = renderedResultRecords[Number(button.dataset.sourceToggle)];
+        if (!record) return;
+        if (expandedSourceRecords.has(record)) expandedSourceRecords.delete(record);
+        else expandedSourceRecords.add(record);
+        updateSearchResults();
+        app.querySelector(`[data-source-toggle="${button.dataset.sourceToggle}"]`)?.focus({ preventScroll: true });
+      });
+    });
   }
 
   function renderResultsOutline(records, totalCount, maxPage) {
@@ -1684,7 +1743,8 @@
     if (column.dimension || isLengthMarginColumn(column.key)) {
       const displayValue = isLengthMarginColumn(column.key) ? lengthMarginDisplay(value) : dimensionDisplay(column.key, value);
       const copyClass = column.dimension ? " dimension-copy-target" : "";
-      const copyAttrs = column.dimension ? ` tabindex="0" data-copy-text="${escapeHtml(copyDimensionsForRecord(record))}" title="点击复制长宽高"` : "";
+      const copyTitle = recordSources(record).length ? "来源车型最大值，点击复制长宽高" : "点击复制长宽高";
+      const copyAttrs = column.dimension ? ` tabindex="0" data-copy-text="${escapeHtml(copyDimensionsForRecord(record))}" title="${copyTitle}"` : "";
       return `<td class="dimension-cell size-dimension-cell size-sticky-col ${sizeStickyClass(column.key)}${copyClass}"${copyAttrs} style="${escapeHtml(isLengthMarginColumn(column.key) ? lengthMarginStyle(value) : "")}"><strong>${escapeHtml(displayValue || "-")}</strong></td>`;
     }
     if (column.size) {
@@ -3065,7 +3125,9 @@
 
   function autoColumnWidth(column, label, records = []) {
     const header = headerColumnWidth(label);
-    const content = Math.min(contentColumnWidth(column, records), columnWidthCap(column));
+    // MAKE 单元格带展开按钮（三角 + 来源条数）时多留位置
+    const toggle = column === "MAKE" && records.some((record) => recordSources(record).length) ? 36 : 0;
+    const content = Math.min(contentColumnWidth(column, records), columnWidthCap(column)) + toggle;
     return `${Math.ceil(Math.max(header, content, 56))}px`;
   }
 
@@ -3108,7 +3170,8 @@
     const [lColumn, wColumn, hColumn] = activeDimensionColumns();
     const widthFor = (key, fallback) => {
       const col = table.querySelector(`col[data-col-key="${cssEscape(key)}"]`);
-      const width = col?.getBoundingClientRect().width;
+      if (!col) return "0px";  // 页面没有该列（如压缩代号页无 长度余量），右侧固定列不留空位
+      const width = col.getBoundingClientRect().width;
       return Number.isFinite(width) && width > 0 ? `${Math.round(width)}px` : fallback;
     };
     table.style.setProperty("--sticky-l-width", widthFor(lColumn, "82px"));

@@ -3015,3 +3015,33 @@ a.chart-outline-node { text-decoration: none; }
 .filter-pop-actions { display: flex; gap: 14px; }
 .size-results-table .range-inputs input { height: 30px; font-size: 13px; }
 .size-results-table th:last-child .col-resizer { right: 0; }  /* 最后一列的拖动柄不伸出表格，避免多出横向滚动条 */
+
+/* ===== 压缩代号页：点 MAKE 展开/收回压缩记录的来源车型（A1 压缩来源）各年份长宽高 ===== */
+.size-results-table td.source-toggle-cell { padding: 0; }
+.source-toggle {
+  display: flex; align-items: center; gap: 5px; width: 100%; min-height: 100%;
+  padding: 5px 7px; border: 0; background: transparent; color: inherit;
+  font: inherit; font-weight: 700; text-align: left; cursor: pointer;
+}
+.source-toggle:hover { background: rgba(11, 107, 203, 0.08); }
+.source-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.source-toggle-icon {
+  flex: 0 0 auto; width: 0; height: 0;
+  border-top: 4px solid transparent; border-bottom: 4px solid transparent; border-left: 6px solid var(--accent);
+  transition: transform 0.12s ease;
+}
+.source-toggle[aria-expanded="true"] .source-toggle-icon { transform: rotate(90deg); }
+.source-toggle-make { min-width: 0; overflow-wrap: anywhere; }
+.source-toggle em {
+  margin-left: auto; padding: 0 5px; border-radius: 8px; background: #e3edf8; color: var(--accent-dark);
+  font-size: 11px; font-style: normal; font-weight: 700; font-variant-numeric: tabular-nums;
+}
+.size-results-table tr.is-expanded > td { border-bottom-color: transparent; }
+.size-results-table tr.is-expanded > td:not(.size-sticky-col) { background: #eef5fc; }
+.size-results-table tr.source-detail-row > td { font-size: 0.92em; font-weight: 400; color: #3d4a5c; border-bottom: 1px dashed var(--line); }
+.size-results-table tr.source-detail-row > td:not(.size-sticky-col) { background: #f7fafd; }
+.size-results-table tr.source-detail-row.is-last-source > td { border-bottom: 1px solid var(--line); }
+.size-results-table td.source-branch-cell { color: var(--muted); text-align: right; font-weight: 400; }
+.size-results-table td.source-size-cell { background: #f7fafd; }
+.size-results-table tr.source-detail-row .dimension-cell strong { font-weight: 500; }
+.size-results-table tr.source-detail-row .dimension-cell.is-source-max strong { font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }

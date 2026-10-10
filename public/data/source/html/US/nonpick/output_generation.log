@@ -1,15 +1,15 @@
 Size chart generation log
-Generated at: 2026-10-08T10:27:28
-Config: C:\Users\hzwlc\AppData\Local\Temp\html-config-h1i1x42g\preference.yaml
-Output directory: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-10-08_07_pipeline\04_store_html\US\nonpick
-CSS: D:\Home\Repo\pipeline_carstable_to_webapp\artifact\2026-10-08_07_pipeline\04_store_html\US\nonpick\size-chart.css
+Generated at: 2026-10-10T17:09:40
+Config: C:\Users\cc\AppData\Local\Temp\html-config-51129bw1\preference.yaml
+Output directory: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-10-10_02_pipeline\04_store_html\US\nonpick
+CSS: D:\Licheng\Repo\pipeline_carstable_to_webapp\artifact\2026-10-10_02_pipeline\04_store_html\US\nonpick\size-chart.css
 Pages: 6
 Table chunks: 73
 Unique titles: 49
 Page table chunks: 11, 12, 15, 13, 17, 5
 
 Inputs:
-- C:\Users\hzwlc\AppData\Local\Temp\html-config-h1i1x42g\US-non-pickup.tsv
+- C:\Users\cc\AppData\Local\Temp\html-config-51129bw1\US-non-pickup.tsv
   Sheet: 非皮卡压缩表
   Profile: non-pickup
   Rows after filtering: 1333
@@ -22,7 +22,7 @@ Inputs:
 
 Logo settings:
 Enabled: True
-Directory: D:\Home\Scripts\generate_size_chart_html\img_logos
+Directory: D:\Licheng\Repo\generate_size_chart_html\img_logos
 Logo files indexed: 49
 Matched titles: 48
 Missing titles: 1
