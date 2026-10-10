@@ -51,6 +51,10 @@
   let configuredMatchManifestPromise = null;
   const sizeReferenceIndex = new Map();
   const sizeReferenceOrder = new Map();
+  // 尺码配对 SIZE hover：按记录所属国别（US/EU/RU）读取 A0 尺码规则，店铺来源再按货架把发货尺码换回匹配尺码
+  const sizeRuleIndexes = new Map();
+  const sizeRuleTolerances = new Map();
+  const storeShippingSizes = new Map();
   const initialSearchQuery = initialQuery();
   const searchState = {
     scopeKey: "",
@@ -58,6 +62,7 @@
     columns: [],
     query: initialSearchQuery,
     selectedSource: "",
+    vehicleKind: "nonpick",  // 非皮卡与皮卡分开检索：只加载并显示当前类别的分片
     selectedMake: "",
     selectedSize: "",
     selectedModel: "",
@@ -85,6 +90,7 @@
     requiresMakeSelection: false
   };
   const maxResultPageSize = 500;
+  const VEHICLE_KINDS = [["nonpick", "非皮卡"], ["pick", "皮卡"]];
   let searchLoadToken = 0;
   let globalSearchTimer = 0;
   let frameSearchTimer = 0;
@@ -280,6 +286,9 @@
             <button class="search-reset" type="button">Reset</button>
           </div>
           <div class="lazy-load-scope">
+            <div class="vehicle-kind-field"><span>类别</span><div class="result-view-toggle vehicle-kind-toggle" role="group" aria-label="车型类别">
+              ${VEHICLE_KINDS.map(([value, label]) => `<button type="button" data-vehicle-kind="${value}" class="${searchState.vehicleKind === value ? "is-active" : ""}" aria-pressed="${searchState.vehicleKind === value ? "true" : "false"}" ${searchState.status === "loading" ? "disabled" : ""}>${label}</button>`).join("")}
+            </div></div>
             <label${storeOptions().length > 1 ? "" : " hidden"}><span>店铺</span><select class="search-select" data-lazy-source ${searchState.status === "loading" ? "disabled" : ""}>
               ${storeOptions().map((source) => `<option value="${escapeHtml(source.name)}"${searchState.selectedSource === source.name ? " selected" : ""}>${escapeHtml(cleanField(source.label) || sourceLabel(source.name))}</option>`).join("")}
             </select></label>
@@ -533,6 +542,15 @@
       searchState.scopeKey = "";
       searchState.resultPage = 1;
       render();
+    });
+    app.querySelectorAll("[data-vehicle-kind]").forEach((button) => {
+      button.addEventListener("click", () => {
+        if (button.dataset.vehicleKind === searchState.vehicleKind) return;
+        searchState.vehicleKind = button.dataset.vehicleKind;
+        searchState.availableMakes = [];
+        resetSearchFilters();
+        render();
+      });
     });
     const lazySizeSelect = app.querySelector("[data-lazy-size]");
     if (lazySizeSelect) lazySizeSelect.addEventListener("change", () => {
@@ -800,7 +818,7 @@
     const token = ++searchLoadToken;
     const usesConfiguredSources = Boolean(viewConfig.match_sources?.length);
     const scopeKey = usesConfiguredSources
-      ? `configured:${searchState.selectedSource}:${searchState.selectedMake || "all-makes"}`
+      ? `configured:${searchState.selectedSource}:${searchState.vehicleKind}:${searchState.selectedMake || "all-makes"}`
       : scopeDirectories.map((directory) => directory.name).join("|");
     if (searchState.scopeKey === scopeKey && (searchState.status === "ready" || searchState.status === "loading")) {
       updateSearchControls();
@@ -844,6 +862,7 @@
       searchState.message = scopeDirectories.length === 1
         ? "Waiting for page previews to finish loading..."
         : "Unable to load all folders for global search.";
+      updateLazyMakeControl();
       updateSearchControls();
       updateSearchResults();
       if (scopeDirectories.length === 1) {
@@ -1311,9 +1330,13 @@
     `;
     makeSelect.value = searchState.selectedMake;
     makeSelect.disabled = searchState.status === "loading" || !searchState.availableMakes.length;
+    app.querySelectorAll("[data-vehicle-kind], [data-lazy-source]").forEach((control) => {
+      control.disabled = searchState.status === "loading";
+    });
     const sizeSelect = app.querySelector("[data-lazy-size]");
     if (sizeSelect) {
-      const sizes = unique(searchState.records.map((record) => resultColumnValue(record, "SIZE") || record.size).filter(Boolean));
+      const kindRecords = searchState.records.filter((record) => recordKind(record) === searchState.vehicleKind);
+      const sizes = unique(kindRecords.map((record) => resultColumnValue(record, "SIZE") || record.size).filter(Boolean));
       sizeSelect.innerHTML = `<option value="">全部尺码</option>${sizes.map((size) => `<option value="${escapeHtml(size)}">${escapeHtml(size)}</option>`).join("")}`;
       sizeSelect.value = searchState.selectedSize;
       sizeSelect.disabled = searchState.status !== "ready" || !sizes.length;
@@ -1405,8 +1428,9 @@
 
     const usesMakeGroups = sources.length > 0 && sources.every((source) => Array.isArray(source.make_groups));
     if (usesMakeGroups) {
+      const kindGroups = (source) => source.make_groups.filter((group) => !group.kind || group.kind === searchState.vehicleKind);
       searchState.availableMakes = uniqueInOrder(
-        sources.flatMap((source) => source.make_groups.map((group) => cleanField(group.make)).filter(Boolean))
+        sources.flatMap((source) => kindGroups(source).map((group) => cleanField(group.make)).filter(Boolean))
       ).sort((left, right) => left.localeCompare(right));
       const resolvedMake = cleanField(selectedMake);
       searchState.selectedMake = resolvedMake;
@@ -1414,7 +1438,7 @@
 
       return Promise.all(sources.flatMap((source) => {
         const configured = configuredSources.find((item) => item.name === source.name) || {};
-        return source.make_groups
+        return kindGroups(source)
           .filter((group) => !resolvedMake || cleanField(group.make) === resolvedMake)
           .map((group) => loadConfiguredMatchSource(path, payload, source, configured, group));
       }));
@@ -1429,11 +1453,23 @@
 
   function queryFilteredRecords() {
     const tokens = searchTokens(searchState.query);
+    const kindRecords = searchState.records.filter((record) => recordKind(record) === searchState.vehicleKind);
     if (!tokens.length) {
-      return searchState.records;
+      return kindRecords;
     }
 
-    return searchState.records.filter((record) => tokens.every((token) => recordMatchesToken(record, token)));
+    return kindRecords.filter((record) => tokens.every((token) => recordMatchesToken(record, token)));
+  }
+
+  // 数据分片带 kind；旧数据按 TYPE=Pickup 或 分类=皮卡 判定
+  function recordKind(record) {
+    if (record.kind) return record.kind;
+    return sameText(record.type || record.construct, "Pickup") || cleanField(record.values?.["分类"]) === "皮卡" ? "pick" : "nonpick";
+  }
+
+  // 非皮卡没有驾驶室/货箱，表格与表格设置都不显示 CAB、BED
+  function hiddenForVehicleKind(column) {
+    return searchState.vehicleKind === "nonpick" && (sameColumn(column, "CAB") || sameColumn(column, "BED"));
   }
 
   function renderResultsTable(records, totalCount, maxPage) {
@@ -1573,9 +1609,9 @@
       const value = resultColumnValue(record, column);
       const label = isSizeColumn(column) ? "SIZE" : isLengthMarginColumn(column) ? "长度余量" : outlineDimensionLabel(column);
       const display = isDimensionColumn(column) ? dimensionDisplay(column, value) : isLengthMarginColumn(column) ? lengthMarginDisplay(value) : (value || "NULL");
-      const ref = isSizeColumn(column) ? sizeReferenceFor(value) : null;
+      const ref = isSizeColumn(column) ? sizeRefAttributes(record, value) : { attr: "", className: "" };
       const style = isSizeColumn(column) ? ` style="--outline-value-color: ${sizeBackground(value)}"` : isLengthMarginColumn(column) ? ` style="${escapeHtml(lengthMarginStyle(value))}"` : "";
-      return `<span class="outline-combined-item outline-item-${isSizeColumn(column) ? "size" : isLengthMarginColumn(column) ? "margin" : cleanField(label)}${ref ? " size-cell-has-ref" : ""}"${ref ? ` data-size-ref="${escapeHtml(cleanField(value).toUpperCase())}"` : ""}${style}><b>${escapeHtml(label)}</b><strong>${escapeHtml(display || "-")}</strong></span>`;
+      return `<span class="outline-combined-item outline-item-${isSizeColumn(column) ? "size" : isLengthMarginColumn(column) ? "margin" : cleanField(label)}${ref.className}"${ref.attr}${style}><b>${escapeHtml(label)}</b><strong>${escapeHtml(display || "-")}</strong></span>`;
     }).join('<i aria-hidden="true"></i>');
     const copyClass = kind === "dimensions" ? " dimension-copy-target" : "";
     const copyAttrs = kind === "dimensions" ? ` tabindex="0" data-copy-text="${escapeHtml(copyDimensionsForRecord(record))}" title="点击复制长宽高"` : "";
@@ -1599,10 +1635,8 @@
       return `<span class="outline-value outline-dimension" style="${escapeHtml(lengthMarginStyle(value))}"><strong>${escapeHtml(lengthMarginDisplay(value) || "-")}</strong></span>`;
     }
     if (isSizeColumn(column)) {
-      const ref = sizeReferenceFor(value);
-      const refAttr = ref ? ` data-size-ref="${escapeHtml(cleanField(value).toUpperCase())}"` : "";
-      const refClass = ref ? " size-cell-has-ref" : "";
-      return `<span class="outline-value outline-size${refClass}"${refAttr} style="--size-bg: ${sizeBackground(value)}; --size-fg: ${sizeTextColor()}"><strong>${escapeHtml(value || "NULL")}</strong></span>`;
+      const ref = sizeRefAttributes(record, value);
+      return `<span class="outline-value outline-size${ref.className}"${ref.attr} style="--size-bg: ${sizeBackground(value)}; --size-fg: ${sizeTextColor()}"><strong>${escapeHtml(value || "NULL")}</strong></span>`;
     }
     return `<span class="outline-value"><strong>${escapeHtml(value || "-")}</strong></span>`;
   }
@@ -1635,7 +1669,7 @@
       ? ["MODEL", ...columns]
       : columns;
     const ordered = sortSizeFields(withModel.map((column) => ({ key: column, label: column }))).map((field) => field.key);
-    const visible = ordered.filter((column) => isSizeColumnVisible(column) || isSizeColumn(column));
+    const visible = ordered.filter((column) => !hiddenForVehicleKind(column) && (isSizeColumnVisible(column) || isSizeColumn(column)));
     const rightColumns = [...activeDimensionColumns(), "长度余量"].filter((column) => visible.some((item) => sameColumn(item, column)) || records.some((record) => resultColumnValue(record, column)));
     const withoutRight = visible.filter((column) => !isSizeColumn(column) && !isDimensionColumn(column) && !isLengthMarginColumn(column) && !rightColumns.some((item) => sameColumn(item, column)));
     const hasSize = withModel.some((column) => isSizeColumn(column)) || records.some((record) => record.values.SIZE || record.size);
@@ -1654,11 +1688,9 @@
       return `<td class="dimension-cell size-dimension-cell size-sticky-col ${sizeStickyClass(column.key)}${copyClass}"${copyAttrs} style="${escapeHtml(isLengthMarginColumn(column.key) ? lengthMarginStyle(value) : "")}"><strong>${escapeHtml(displayValue || "-")}</strong></td>`;
     }
     if (column.size) {
-      const ref = sizeReferenceFor(value);
-      const refAttr = ref ? ` data-size-ref="${escapeHtml(cleanField(value).toUpperCase())}"` : "";
-      const refClass = ref ? " size-cell-has-ref" : "";
+      const ref = sizeRefAttributes(record, value);
       const displayValue = value || "NULL";
-      return `<td class="size-cell size-sticky-col size-sticky-size${refClass}"${refAttr} style="--size-bg: ${sizeBackground(value)}; --size-fg: ${sizeTextColor()}"><strong>${escapeHtml(displayValue)}</strong></td>`;
+      return `<td class="size-cell size-sticky-col size-sticky-size${ref.className}"${ref.attr} style="--size-bg: ${sizeBackground(value)}; --size-fg: ${sizeTextColor()}"><strong>${escapeHtml(displayValue)}</strong></td>`;
     }
     if (sameColumn(column.key, "CODE") && value) {
       return `<td class="vehicle-copy-target code-cell" tabindex="0" data-copy-text="${escapeHtml(value)}" title="点击复制代号"><strong>${escapeHtml(value)}</strong></td>`;
@@ -2240,9 +2272,10 @@
     const floating = ensureSizeReferenceFloating();
     cells.forEach((cell) => {
       const show = () => {
-        const ref = sizeReferenceIndex.get(cell.dataset.sizeRef);
-        if (!ref) return;
-        floating.innerHTML = sizeReferenceMarkup(cell.textContent, ref);
+        const rule = sizeRuleFor(cell.dataset.sizeRef, cell.dataset.sizeSource);
+        const ref = rule ? null : sizeReferenceIndex.get(cell.dataset.sizeRef);
+        if (!rule && !ref) return;
+        floating.innerHTML = rule ? sizeRuleMarkup(rule) : sizeReferenceMarkup(cell.textContent, ref);
         floating.classList.add("is-open");
         positionSizeReferenceFloating(floating, cell.getBoundingClientRect());
       };
@@ -2252,6 +2285,123 @@
       cell.addEventListener("mouseleave", () => floating.classList.remove("is-open"));
       cell.addEventListener("blur", () => floating.classList.remove("is-open"));
     });
+  }
+
+  function sizeRefAttributes(record, value) {
+    const key = cleanField(value).toUpperCase();
+    const sourceName = recordSourceName(record);
+    // 该国别有规则时只用规则；没有规则数据（如规则文件缺失）才退回旧 size-ref 参考
+    if (!key || !(sizeRuleFor(key, sourceName) || (!sizeRuleScope(sourceName).index && sizeReferenceFor(key)))) {
+      return { attr: "", className: "" };
+    }
+    return { attr: ` data-size-ref="${escapeHtml(key)}" data-size-source="${escapeHtml(sourceName)}"`, className: " size-cell-has-ref" };
+  }
+
+  function recordSourceName(record) {
+    return cleanField(topSource(record?.directory)) || cleanField(searchState.selectedSource);
+  }
+
+  function sizeRuleScope(sourceName) {
+    const store = cleanField(sourceName).toUpperCase();
+    const isStore = storeShippingSizes.has(store);
+    const group = cleanField(sourceGroup(sourceName)).toUpperCase();
+    const region = sizeRuleIndexes.has(group) ? group : (isStore ? "US" : "");
+    return { region, store: isStore ? store : "", index: sizeRuleIndexes.get(region) };
+  }
+
+  function sizeRuleFor(value, sourceName) {
+    const scope = sizeRuleScope(sourceName);
+    const key = cleanField(value).toUpperCase();
+    if (!scope.index || !key) return null;
+    // 店铺列表的 SIZE 是发货尺码：多个匹配尺码可发同一个发货尺码，逐个列出对应规则
+    const matchSizes = scope.store ? (storeShippingSizes.get(scope.store).get(key) || []) : [key];
+    const rows = matchSizes.map((size) => scope.index.get(cleanField(size).toUpperCase())).filter(Boolean);
+    if (!rows.length) return null;
+    return { ...scope, size: cleanField(value), matchSizes, rows, tolerance: sizeRuleTolerances.get(scope.region) };
+  }
+
+  function sizeRuleMarkup(rule) {
+    const sections = rule.rows.map((row, index) => {
+      const matchSize = cleanField(rule.matchSizes[index]);
+      const via = rule.store && (rule.rows.length > 1 || matchSize.toUpperCase() !== rule.size.toUpperCase())
+        ? `<div class="size-reference-meta">匹配尺码 ${escapeHtml(matchSize)} → 发货 ${escapeHtml(rule.size)}</div>`
+        : "";
+      return `${via}${rule.region === "RU" ? sizeRuleRuMarkup(row, rule) : sizeRuleLengthMarkup(row, rule)}`;
+    }).join('<hr class="size-reference-divider">');
+    const scope = rule.store ? `${rule.region} · 店铺 ${rule.store}` : rule.region;
+    return `
+      <div class="size-reference-title">${escapeHtml(rule.size)}<small>${escapeHtml(scope)} 尺码规则</small></div>
+      ${sections}
+    `;
+  }
+
+  // US/EU：车长 ≤ 长上限 且 长上限 − 车长 ≤ 余量长容差，适配车长即 [长上限 − 容差, 长上限]
+  function sizeRuleLengthMarkup(row, rule) {
+    const meta = rule.region === "EU"
+      ? [cleanField(row["模式"]), cleanField(row["分类"]), cleanField(row["版本"]) && `版本 ${cleanField(row["版本"])}`]
+      : [cleanField(row["分类"]), cleanField(row["尺码池"]) && `尺码池 ${cleanField(row["尺码池"])}`];
+    const lengthMax = Number(cleanField(row["长上限"]) || NaN);
+    const tolerance = Number(rule.tolerance ?? NaN);
+    const hasRange = Number.isFinite(lengthMax) && Number.isFinite(tolerance) && tolerance > 0;
+    const items = [
+      ["适配车长", hasRange ? sizeRuleRangeDisplay(lengthMax - tolerance, lengthMax) : ""],
+      ["长上限", Number.isFinite(lengthMax) ? sizeReferenceDimensionDisplay(lengthMax) : ""],
+      ["余量容差", hasRange ? `≤ ${sizeReferenceDimensionDisplay(tolerance)}` : ""],
+      ["插片指数", sizeRuleInsertDisplay(row["插片指数上限"], row["插片指数下限"])],
+      ["白名单", cleanField(row["车型白名单"])],
+      ["备注", cleanField(row["备注"])]
+    ];
+    return `${sizeRuleMetaMarkup(meta)}${sizeRuleItemsMarkup(items)}`;
+  }
+
+  // RU：车型长宽高均不超过规则长宽高，且 长_mm − 车长 ≤ 余量长上限_mm（缺省用报告的余量长容差）
+  function sizeRuleRuMarkup(row, rule) {
+    const meta = [
+      cleanField(row["分类"]),
+      cleanField(row["OZON尺码"]) && `OZON ${cleanField(row["OZON尺码"])}`,
+      cleanField(row["发货尺码"]) && `发货 ${cleanField(row["发货尺码"])}`
+    ];
+    const lengthMax = Number(cleanField(row["长_mm"]) || NaN);
+    const rowTolerance = Number(cleanField(row["余量长上限_mm"]) || NaN);
+    const tolerance = Number.isFinite(rowTolerance) ? rowTolerance : Number(rule.tolerance ?? NaN);
+    const hasRange = Number.isFinite(lengthMax) && Number.isFinite(tolerance) && tolerance > 0;
+    const items = [
+      ["适配车长", hasRange ? sizeRuleRangeDisplay(lengthMax - tolerance, lengthMax) : ""],
+      ["余量容差", hasRange ? `≤ ${sizeReferenceDimensionDisplay(tolerance)}` : ""]
+    ];
+    return `${sizeRuleMetaMarkup(meta)}
+      <div class="size-reference-dims">
+        ${sizeReferenceDimension("长上限", row["长_mm"])}
+        ${sizeReferenceDimension("宽上限", row["宽_mm"])}
+        ${sizeReferenceDimension("高上限", row["高_mm"])}
+      </div>
+      ${sizeRuleItemsMarkup(items)}`;
+  }
+
+  function sizeRuleMetaMarkup(parts) {
+    const text = parts.filter(Boolean).join(" · ");
+    return text ? `<div class="size-reference-common">${escapeHtml(text)}</div>` : "";
+  }
+
+  function sizeRuleItemsMarkup(items) {
+    const visible = items.filter(([, value]) => value);
+    return visible.length
+      ? `<dl class="size-reference-rows">${visible.map(([label, value]) => `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`).join("")}</dl>`
+      : "";
+  }
+
+  function sizeRuleRangeDisplay(low, high) {
+    return `${measurementDisplay(Math.max(0, low))} – ${measurementDisplay(high)} ${searchState.dimensionUnit}`;
+  }
+
+  // 插片指数上限 999 表示不限
+  function sizeRuleInsertDisplay(upper, lower) {
+    const max = Number(cleanField(upper) || NaN);
+    const min = cleanField(lower);
+    const parts = [];
+    if (min) parts.push(`> ${min}`);
+    if (Number.isFinite(max) && max < 999) parts.push(`≤ ${max}`);
+    return parts.join("，");
   }
 
   function ensureSizeReferenceFloating() {
@@ -2419,6 +2569,10 @@
   }
 
   function sizeDisplayFields() {
+    return allSizeDisplayFields().filter((field) => !hiddenForVehicleKind(field.key));
+  }
+
+  function allSizeDisplayFields() {
     const seen = new Set();
     const keys = ["MODEL", ...searchState.columns, ...activeDimensionColumns(), "版本", "TYPE", "YEAR", "CAB", "BED", "SIZE"].filter(Boolean);
     const fields = keys.filter((key) => {
@@ -2431,7 +2585,7 @@
   }
 
   function ensureSizeFieldState() {
-    const fields = sizeDisplayFields();
+    const fields = allSizeDisplayFields();
     if (!searchState.fieldOrder.length) {
       searchState.fieldOrder = fields.map((field) => field.key);
     } else {
@@ -2477,8 +2631,10 @@
     if (index < 0 || nextIndex < 0 || nextIndex >= ordered.length) return;
     const [item] = ordered.splice(index, 1);
     ordered.splice(nextIndex, 0, item);
-    const orderedSet = new Set(ordered);
-    searchState.fieldOrder = [...ordered, ...searchState.fieldOrder.filter((field) => !orderedSet.has(field))];
+    // 当前类别隐藏的列留在原位，只重排可见列
+    const merged = allSizeDisplayFields().map((field) => (hiddenForVehicleKind(field.key) ? field.key : ordered.shift()));
+    const mergedSet = new Set(merged);
+    searchState.fieldOrder = [...merged, ...searchState.fieldOrder.filter((field) => !mergedSet.has(field))];
   }
 
   function sortSizeRows(rows) {
@@ -2772,6 +2928,43 @@
       sizeReferenceIndex.clear();
       sizeReferenceOrder.clear();
     }
+  }
+
+  async function loadSizeRules() {
+    const readJson = async (path) => {
+      try {
+        const response = await fetch(path, { cache: "no-cache" });
+        return response.ok ? await response.json() : null;
+      } catch (error) {
+        return null;
+      }
+    };
+    const [rules, groups] = await Promise.all([
+      readJson(config.sizeRulesPath || "data/generated/size-rules.json"),
+      readJson(config.storeGroupsPath || "data/generated/store-groups.json")
+    ]);
+    sizeRuleIndexes.clear();
+    sizeRuleTolerances.clear();
+    storeShippingSizes.clear();
+    Object.entries(rules?.regions || {}).forEach(([region, payload]) => {
+      const keyField = (payload.headers || [])[0];
+      const index = new Map();
+      (payload.rows || []).forEach((row) => {
+        const key = cleanField(row[keyField]).toUpperCase();
+        if (key && !index.has(key)) index.set(key, row);
+      });
+      sizeRuleIndexes.set(region.toUpperCase(), index);
+      sizeRuleTolerances.set(region.toUpperCase(), payload.length_tolerance);
+    });
+    Object.entries(groups?.stores || {}).forEach(([store, rows]) => {
+      const shipping = new Map();
+      (rows || []).forEach((row) => {
+        const shipSize = cleanField(row["发货尺码"]).toUpperCase();
+        const matchSize = cleanField(row["匹配尺码"]);
+        if (shipSize && matchSize) shipping.set(shipSize, [...(shipping.get(shipSize) || []), matchSize]);
+      });
+      storeShippingSizes.set(store.toUpperCase(), shipping);
+    });
   }
 
   function resultHeaderClass(column) {
@@ -3178,5 +3371,5 @@
     textWidthCache.clear();
     if (app.querySelector(".size-results-table")) updateSearchResults();
   });
-  loadViewConfig().then(loadSizeReferences).then(render);
+  loadViewConfig().then(() => Promise.all([loadSizeReferences(), loadSizeRules()])).then(render);
 })();

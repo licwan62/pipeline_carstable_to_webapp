@@ -924,18 +924,24 @@ button {
 
 .lazy-load-scope {
   display: grid;
-  grid-template-columns: repeat(3, minmax(140px, 240px));
+  grid-template-columns: minmax(150px, 190px) repeat(3, minmax(140px, 240px));
   gap: 10px;
   align-items: end;
   padding: 12px 16px 0;
 }
 
-.lazy-load-scope label {
+.lazy-load-scope label,
+.lazy-load-scope .vehicle-kind-field {
   display: grid;
   gap: 6px;
 }
 
-.lazy-load-scope label > span {
+.lazy-load-scope .vehicle-kind-toggle {
+  min-height: 38px;
+}
+
+.lazy-load-scope label > span,
+.lazy-load-scope .vehicle-kind-field > span {
   color: var(--muted);
   font-size: 12px;
   font-weight: 800;
@@ -2275,7 +2281,7 @@ body.is-resizing-column {
   position: fixed;
   z-index: 9999;
   display: none;
-  width: 230px;
+  width: 260px;
   padding: 11px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -2303,6 +2309,42 @@ body.is-resizing-column {
   color: var(--accent);
   font-size: 13px;
   font-weight: 700;
+}
+
+.size-reference-title small {
+  margin-left: 8px;
+  color: #667085;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.size-reference-rows {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 4px 10px;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.size-reference-rows dt {
+  color: #667085;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.size-reference-rows dd {
+  margin: 0;
+  color: #0a447d;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.size-reference-divider {
+  width: 100%;
+  margin: 2px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
 }
 
 .size-reference-dims {

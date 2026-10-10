@@ -5,9 +5,11 @@ A0 不再单独发布规则/货架 CSV，规则全文与店铺货架写在 <国�
   ## 尺码规则 / ### 规则表（N 条）          -> 该国规则（表头 + 行）
   ### 店铺货架（匹配尺码 → 发货尺码）        -> 仅 US 报告
 读取 manifest.json 校验 sha256 后，写出：
-  size-rules.json   {source, regions: {US/EU/RU: {file, headers, rows}}}
+  size-rules.json   {source, regions: {US/EU/RU: {file, headers, rows, length_tolerance}}}
   store-groups.json {source, stores: {店铺: [{匹配尺码, 发货尺码}]}}
 US/EU/RU 三套规则各自独立读取，不互相推导。
+length_tolerance 取报告正文中的“余量长容差 N mm”（长上限 − 车长 的上限，供尺码配对页 hover 计算适配车长）；
+RU 规则行自带 余量长上限_mm 时以行值为准，报告未写时为 null。
 """
 
 from __future__ import annotations
@@ -27,6 +29,7 @@ REPORT_FILES = {region: f"{region}/尺码匹配报告.md" for region in REGIONS}
 RULES_HEADING = "### 规则表"  # A0 报告“## 尺码规则”下的子节，标题带条数，按前缀匹配
 SHELF_HEADING = "### 店铺货架"
 CELL_SPLIT = re.compile(r"(?<!\\)\|")
+TOLERANCE = re.compile(r"余量长容差\s*\**\s*(\d+(?:\.\d+)?)\s*mm")
 
 
 def read_verified_text(source_dir: Path, manifest: dict, name: str) -> str:
@@ -66,6 +69,14 @@ def md_table_after(text: str, heading: str, name: str) -> tuple[list[str], list[
     return headers, [row for row in rows if any(row.values())]
 
 
+def length_tolerance(text: str) -> float | int | None:
+    match = TOLERANCE.search(text)
+    if not match:
+        return None
+    value = float(match.group(1))
+    return int(value) if value.is_integer() else value
+
+
 def write_json(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{path.name}.tmp")
@@ -82,7 +93,7 @@ def build(source_dir: Path, out_dir: Path) -> dict[str, int]:
         headers, rows = md_table_after(text, RULES_HEADING, REPORT_FILES[region])
         if not rows:
             raise ValueError(f"{REPORT_FILES[region]} 没有规则行")
-        regions[region] = {"file": REPORT_FILES[region], "headers": headers, "rows": rows}
+        regions[region] = {"file": REPORT_FILES[region], "headers": headers, "rows": rows, "length_tolerance": length_tolerance(text)}
     _, shelf = md_table_after(reports["US"], SHELF_HEADING, REPORT_FILES["US"])
     stores: dict[str, list[dict[str, str]]] = {}
     for row in shelf:

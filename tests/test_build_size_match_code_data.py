@@ -34,13 +34,16 @@ def test_builds_size_match_format_sources_with_codes(tmp_path):
     assert [(s["name"], s["group"]) for s in manifest["sources"]] == [(line, "US") for line in mod.LINES]
     assert manifest["origin"]["node"] == "size-compression"
     hnt = manifest["sources"][1]
-    assert [g["make"] for g in hnt["make_groups"]] == ["Acura", "Cadillac"]
+    # 非皮卡与皮卡分开检索：分片按 类别 + MAKE，非皮卡在前
+    assert [(g["kind"], g["make"]) for g in hnt["make_groups"]] == [("nonpick", "Acura"), ("pick", "Cadillac")]
+    assert hnt["kind_counts"] == {"nonpick": 1, "pick": 1}
     acura = json.loads((tmp_path / "out" / hnt["make_groups"][0]["records_path"]).read_text(encoding="utf-8"))
     record = acura["records"][0]
     assert acura["name"] == "HNT" and record["years"] == [2025, 2026]
     assert {k: record["values"][k] for k in ("CODE", "TYPE", "销量合计", "SIZE")} == {"CODE": "25112526", "TYPE": "SUV", "销量合计": "40266", "SIZE": "YL"}
     pickup = json.loads((tmp_path / "out" / hnt["make_groups"][1]["records_path"]).read_text(encoding="utf-8"))["records"][0]
-    assert (pickup["type"], pickup["cab"], pickup["bed"], pickup["size"]) == ("Pickup", "Crew", "5.3", "PK-M")
+    assert (pickup["type"], pickup["cab"], pickup["bed"], pickup["size"], pickup["kind"]) == ("Pickup", "Crew", "5.3", "PK-M", "pick")
+    assert record["kind"] == "nonpick"
 
 
 def test_rejects_tables_without_code(tmp_path):

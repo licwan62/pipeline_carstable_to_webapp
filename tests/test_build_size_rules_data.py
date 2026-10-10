@@ -10,12 +10,12 @@ import build_size_rules_data as mod  # noqa: E402
 import hashlib
 
 
-def report(region, rules, shelf=""):
+def report(region, rules, shelf="", tolerance=""):
     """最小化的 A0 尺码匹配报告：规则表在“## 尺码规则”的“### 规则表（N 条）”子节，其后是参数表；US 另有店铺货架表。"""
     return (
         f"# {region} 尺码匹配报告\n\n## 匹配概况\n\n| 指标 | 数值 |\n| --- | --- |\n| 车型数 | 1 |\n\n"
         + shelf
-        + f"\n## 尺码规则\n\n来源：`data/{region}/规则/x.csv`。\n\n### 计算量\n\n- 说明\n\n### 规则表（1 条）\n\n{rules}"
+        + f"\n## 尺码规则\n\n来源：`data/{region}/规则/x.csv`。\n\n### 计算量\n\n- 说明\n\n{tolerance}### 规则表（1 条）\n\n{rules}"
         + "\n### 参数\n\n| 参数 | 值 |\n| --- | --- |\n| 余量 | 550 |\n"
     )
 
@@ -23,9 +23,15 @@ def report(region, rules, shelf=""):
 def make_source(tmp_path, tamper=False):
     shelf = "### 店铺货架（匹配尺码 → 发货尺码）\n\n| 店铺 | 匹配尺码 | 发货尺码 |\n| --- | --- | --- |\n| HNT | 2M | 2M |\n"
     files = {
-        "US/尺码匹配报告.md": report("US", "| 尺码 | 分类 | 备注 |\n| --- | --- | --- |\n| 2M | 两厢车 | a\\|b |\n", shelf),
+        "US/尺码匹配报告.md": report(
+            "US", "| 尺码 | 分类 | 备注 |\n| --- | --- | --- |\n| 2M | 两厢车 | a\\|b |\n", shelf,
+            "### 选码\n\n3. 且 `长上限 − 长` ≤ 余量长容差 **550 mm**；\n\n",
+        ),
         "EU/尺码匹配报告.md": report("EU", "| 尺码 | 分类 |\n| --- | --- |\n| 2M | 两厢车 |\n"),
-        "RU/尺码匹配报告.md": report("RU", "| 亚马逊尺码 | OZON尺码 |\n| --- | --- |\n| 2M | 2XS |\n"),
+        "RU/尺码匹配报告.md": report(
+            "RU", "| 亚马逊尺码 | OZON尺码 |\n| --- | --- |\n| 2M | 2XS |\n", "",
+            "- 规则表没有该列时统一用参数 余量长容差 635 mm。\n\n",
+        ),
     }
     deliverables = []
     for name, text in files.items():
@@ -49,6 +55,7 @@ def test_build_writes_three_independent_regions_and_stores(tmp_path):
     assert rules["regions"]["RU"]["headers"] == ["亚马逊尺码", "OZON尺码"]
     assert groups["stores"]["HNT"] == [{"匹配尺码": "2M", "发货尺码": "2M"}]
     assert rules["regions"]["US"]["rows"] == [{"尺码": "2M", "分类": "两厢车", "备注": "a|b"}]
+    assert [rules["regions"][r]["length_tolerance"] for r in ("US", "EU", "RU")] == [550, None, 635]
 
 
 def test_build_rejects_hash_mismatch(tmp_path):
