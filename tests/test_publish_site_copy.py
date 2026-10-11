@@ -88,6 +88,32 @@ class PublishSiteCopyTests(unittest.TestCase):
             publish_owned(self.source, self.destination)
         self.assertEqual((self.destination / "manual.txt").read_text(encoding="utf-8"), "manual")
 
+    def test_first_publish_skips_identical_existing_files(self) -> None:
+        write(self.destination / "index.html", "new")
+        write(self.destination / "assets" / "app" / "viewer.js", "old viewer")
+
+        result = publish_owned(self.source, self.destination)
+
+        self.assertEqual(result["copied"], 1)
+        self.assertEqual((self.destination / "assets" / "app" / "viewer.js").read_text(encoding="utf-8"), "viewer")
+
+    def test_transient_network_errors_are_retried(self) -> None:
+        from tools.publish_site_copy import with_retry
+
+        calls = []
+
+        def flaky():
+            calls.append(1)
+            if len(calls) < 3:
+                error = OSError("unexpected network error")
+                error.winerror = 59
+                raise error
+            return "ok"
+
+        self.assertEqual(with_retry(flaky, delays=(0, 0, 0)), "ok")
+        with self.assertRaises(FileNotFoundError):
+            with_retry(lambda: (_ for _ in ()).throw(FileNotFoundError("missing")), delays=(0,))
+
     def test_requires_source_index(self) -> None:
         (self.source / "index.html").unlink()
         with self.assertRaises(FileNotFoundError):

@@ -24,15 +24,21 @@ PUBLISHER = "pipeline_carstable_to_webapp"
 STATE_DIR = "_publishers"
 REGISTRY = "registry.json"
 RETRY_DELAYS = (1, 2, 4, 8, 15)
+# SMB 瞬时网络错误：找不到网络路径、意外的网络错误、网络名不再可用、信号灯超时。
+TRANSIENT_WINERRORS = {53, 59, 64, 121}
+
+
+def transient(error: OSError) -> bool:
+    return isinstance(error, PermissionError) or getattr(error, "winerror", None) in TRANSIENT_WINERRORS
 
 
 def with_retry(action, delays: tuple[float, ...] = RETRY_DELAYS):
-    """NAS（SMB）上的文件仍被同步/Web 服务占用时会短暂拒绝访问，按退避重试。"""
+    """NAS（SMB）上的文件被同步/Web 服务占用或网络短暂中断时，按退避重试。"""
     for delay in (*delays, None):
         try:
             return action()
-        except PermissionError:
-            if delay is None:
+        except OSError as error:
+            if delay is None or not transient(error):
                 raise
             time.sleep(delay)
 
@@ -92,6 +98,17 @@ def update_registry(destination: Path, publisher: str, entry: dict) -> None:
     raise RuntimeError("registry.json 持续被其他发布方改写，请稍后重试")
 
 
+def copy_file(source: Path, target: Path) -> None:
+    target.parent.mkdir(parents=True, exist_ok=True)
+    temporary = target.with_name(f".{target.name}.{uuid.uuid4().hex}.publishing")
+    try:
+        shutil.copy2(source, temporary)
+        os.replace(temporary, target)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
 def publish_order(relative: str) -> tuple:
     # 先写数据与资源，最后写页面，避免新页面引用尚未到位的文件。
     return (relative.endswith(".html"), relative.endswith(".json"), relative)
@@ -131,15 +148,16 @@ def publish_owned(source: Path, destination: Path, publisher: str = PUBLISHER, n
         target = destination / relative
         if owned_before.get(relative) == digest and target.is_file():
             continue
-        target.parent.mkdir(parents=True, exist_ok=True)
-        temporary = target.with_name(f".{target.name}.{uuid.uuid4().hex}.publishing")
-        shutil.copy2(files[relative], temporary)
-        with_retry(lambda: os.replace(temporary, target))
+        # 首次登记（或上次中断）时没有记录的摘要：现有文件内容已一致则不再复制。
+        if relative in owned_before and owned_before[relative] is None and with_retry(lambda: target.is_file()
+                and target.stat().st_size == files[relative].stat().st_size and sha256(target) == digest):
+            continue
+        with_retry(lambda: copy_file(files[relative], target))
         copied += 1
 
     for relative in sorted(set(owned_before) - set(files) - set(claims), reverse=True):
         target = destination / relative
-        if target.is_file():
+        if with_retry(target.is_file):
             with_retry(target.unlink)
             removed += 1
         parent = target.parent
