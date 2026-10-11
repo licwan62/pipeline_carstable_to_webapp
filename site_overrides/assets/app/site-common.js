@@ -56,4 +56,36 @@
   const getJson = (path) => fetch(path, { cache: "no-store" }).then((r) => { if (!r.ok) throw new Error(path); return r.json(); });
 
   window.SiteCommon = { esc, shell, bindSidebar, table, sourceText, getJson };
+
+  // 站点由多个项目共同发布：其他项目在 _publishers/registry.json 登记自己的页面入口。
+  // 这里只读取并显示，不维护其内容；入口限于站点根目录下的 .html 页面。
+  let extensions = [];
+  const currentPage = () => decodeURIComponent(location.pathname.split("/").pop() || "index.html");
+  const extensionLink = (e) =>
+    `<a class="${currentPage() === e.href ? "is-active" : ""}" href="${esc(e.href)}" title="${esc(e.label)}" data-site-extension><span class="nav-icon">${esc(e.icon || e.label.slice(0, 1))}</span><span class="nav-label">${esc(e.label)}</span></a>`;
+  const extensionCard = (e) =>
+    `<a class="home-action" href="${esc(e.href)}" data-site-extension><span>${esc(e.label)}</span><strong>${esc(e.summary || "")}</strong></a>`;
+
+  function applyExtensions() {
+    if (!extensions.length) return;
+    const missing = (root, e) => !root.querySelector(`a[href="${CSS.escape(e.href)}"]`);
+    document.querySelectorAll(".sidebar-nav").forEach((nav) => {
+      extensions.filter((e) => missing(nav, e)).forEach((e) => nav.insertAdjacentHTML("beforeend", extensionLink(e)));
+    });
+    document.querySelectorAll(".home-actions").forEach((home) => {
+      extensions.filter((e) => missing(home, e)).forEach((e) => home.insertAdjacentHTML("beforeend", extensionCard(e)));
+    });
+  }
+
+  fetch("_publishers/registry.json", { cache: "no-store" })
+    .then((r) => (r.ok ? r.json() : null))
+    .then((registry) => {
+      const publishers = (registry && registry.publishers) || {};
+      extensions = Object.keys(publishers).sort().flatMap((name) => publishers[name].nav || [])
+        .filter((e) => e && typeof e.label === "string" && /^[\w.-]+\.html$/.test(e.href || ""));
+      applyExtensions();
+      // 各页面会整体重绘侧栏（含 viewer.js 自带的侧栏），重绘后补回入口。
+      if (extensions.length) new MutationObserver(applyExtensions).observe(document.body, { childList: true, subtree: true });
+    })
+    .catch(() => { /* 未部署登记文件（如 GitHub Pages）时只显示本站页面 */ });
 })();

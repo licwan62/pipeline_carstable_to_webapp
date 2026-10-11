@@ -138,7 +138,7 @@ HOME_CODE_ACTION = """      <a class="home-action" href="size-match-code.html">
       </a>
 """
 # 前端资源版本：改动 viewer.js/css、site-common.js 后递增，构建时统一写入所有页面，避免浏览器沿用旧缓存。
-ASSET_VERSION = "20261010-3"
+ASSET_VERSION = "20261011-1"
 ASSET_REFERENCE = re.compile(r"(assets/app/[\w.-]+\.(?:js|css))\?v=[\w-]+")
 
 
@@ -155,6 +155,17 @@ def add_home_code_action(site_output: Path) -> None:
         raise ValueError("index.html 缺少尺码配对入口，无法添加压缩代号入口")
     end = text.index("\n", end) + 1
     home.write_text(text[:end] + HOME_CODE_ACTION + text[end:], encoding="utf-8")
+
+
+def add_site_common_script(site_output: Path) -> None:
+    """每个根目录页面都加载 site-common.js，以显示其他项目在 _publishers/registry.json 登记的入口。"""
+    for page in site_output.glob("*.html"):
+        text = page.read_text(encoding="utf-8")
+        if "assets/app/site-common.js" in text or "</body>" not in text:
+            continue
+        tag = f'  <script src="assets/app/site-common.js?v={ASSET_VERSION}"></script>' + chr(10)
+        end = text.rindex("</body>")
+        page.write_text(text[:end] + tag + text[end:], encoding="utf-8")
 
 
 def stamp_asset_versions(site_output: Path) -> None:
@@ -180,6 +191,7 @@ def apply_site_overrides(site_output: Path) -> None:
             raise ValueError("size-match.html 缺少 sizeRefPath，无法注入 US/EU 数据源配置")
         match_page.write_text(text.replace(marker, marker + MATCH_PAGE_OVERRIDE, 1), encoding="utf-8")
     add_home_code_action(site_output)
+    add_site_common_script(site_output)
     stamp_asset_versions(site_output)
 
 
