@@ -71,7 +71,7 @@ python tools/run_all.py --artifact 2026-09-17_02_pipeline --from-step build_user
 3. `export_store_csv`：按店铺导出 HTML 输入 CSV。
 4. `generate_store_html`：生成各店铺尺码表 HTML。
 5. `build_public_site`：构建并更新 `public/`。
-6. `publish_nas_site`：尝试将完整站点发布到 NAS；NAS 不可用时记录警告，但不影响 `public/` 构建成功。
+6. `publish_nas_site`：尝试将本流水线的站点文件发布到 NAS（只更新本流水线登记的文件，见“发布”）；NAS 不可用时记录警告，但不影响 `public/` 构建成功。
 
 旧步骤名（`normalize_store_inputs`、`compress_store_fitment` 仍保留在旧手工输入模式中）仍可用于 `--from-step`/`--to-step`，但 `--list-steps` 和新日志只显示上述标准名称。
 
@@ -93,6 +93,15 @@ configs/user-size-rules.json
 - 最新站点写入 `public/`。
 - 流水线随后尝试将站点发布到 `\\NAS8824B4\Web\car`。
 - GitHub Pages 工作流发布 `public/`。
+
+### NAS 站点由多个项目共同维护
+
+`\\NAS8824B4\Web\car` 不归本流水线独占：本流水线负责其他项目登记页面以外的全部页面（目前另有 Amazon_Competitor_Analysis 的 `asin_analysis.html`）。各项目互不引用对方路径，各自维护状态：
+
+- `_publishers/<发布方>.json`：该发布方拥有的文件及 SHA-256，只由它自己改写。本流水线为 `pipeline_carstable_to_webapp.json`。
+- `_publishers/registry.json`：每个发布方一项（`nav` 入口、发布时间），各自只改写自己的键。
+- `tools/publish_site_copy.py` 只新增、更新、删除本流水线登记的文件，未变化的文件跳过；与其他发布方已登记的路径或无人登记的现有文件冲突时整体拒绝，不做改动。首次运行（尚无本流水线登记）时，把其他发布方未登记的现有文件视为本流水线此前整站发布的内容。
+- `site-common.js` 读取 `registry.json`，把其他发布方的 `nav` 入口补进侧栏（含 `viewer.js` 自绘的侧栏）和主页卡片；构建时 `add_site_common_script` 让每个根目录页面都加载它。GitHub Pages 上没有登记文件，只显示本站页面。
 
 发布站点校验：
 

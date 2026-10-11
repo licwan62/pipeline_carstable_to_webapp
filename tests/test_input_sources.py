@@ -243,3 +243,16 @@ def test_home_page_gets_code_entry_and_assets_are_stamped(tmp_path):
     assert text.count("size-match-code.html") == 1
     assert text.index("size-match.html") < text.index("size-match-code.html") < text.index("</nav>")
     assert f"viewer.css?v={site.ASSET_VERSION}" in text and f"viewer.js?v={site.ASSET_VERSION}" in text
+
+
+def test_every_root_page_loads_site_common_once(tmp_path):
+    from tools import build_publish_site as site
+
+    (tmp_path / "size-match.html").write_text('<body>\n  <script src="assets/app/viewer.js?v=1"></script>\n</body>\n', encoding="utf-8")
+    (tmp_path / "size-ref.html").write_text('<body><script src="assets/app/site-common.js?v=1"></script></body>', encoding="utf-8")
+    site.add_site_common_script(tmp_path)
+    site.add_site_common_script(tmp_path)  # 幂等
+    for page in ("size-match.html", "size-ref.html"):
+        assert (tmp_path / page).read_text(encoding="utf-8").count("assets/app/site-common.js") == 1
+    text = (tmp_path / "size-match.html").read_text(encoding="utf-8")
+    assert text.index("viewer.js") < text.index("site-common.js") < text.index("</body>")
