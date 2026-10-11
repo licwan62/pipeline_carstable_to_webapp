@@ -4,13 +4,29 @@
   let collapsed = false;
   try { collapsed = window.localStorage.getItem(storageKey) === "true"; } catch (error) { /* ignore */ }
 
-  // active: 页面键；sub: 尺码参考下当前高亮的子项（US/EU/RU/stores）。
-  function shell(active, body, sub) {
+  // 页面自定义大纲：{ title, items: [{ href, label, active, children: [...] }] }，文字由这里转义。
+  function customOutline(spec) {
+    const items = (list, depth) => (list || []).map((item) => {
+      const children = item.children && item.children.length
+        ? `<ol class="chart-outline-list chart-outline-children">${items(item.children, depth + 1)}</ol>` : "";
+      const leaf = depth > 0 && !children ? " chart-outline-leaf" : "";
+      return `<li><a class="chart-outline-node${leaf}${item.active ? " is-active" : ""}" href="${esc(item.href || "#")}" aria-current="${item.active ? "page" : "false"}"><span class="chart-outline-dot"></span><span>${esc(item.label)}</span></a>${children}</li>`;
+    }).join("");
+    return `
+          <nav class="sidebar-outline size-chart-outline" aria-label="${esc(spec.title)}大纲">
+            <div class="sidebar-filter-title">${esc(spec.title)}</div>
+            <div class="chart-outline"><ol class="chart-outline-list">${items(spec.items, 0)}</ol></div>
+          </nav>`;
+  }
+
+  // active: 页面键；sub: 尺码参考下当前高亮的子项（US/EU/RU/stores）；
+  // options.outline: 页面自己的大纲（如其他项目登记的页面），替代默认的尺码参考大纲。
+  function shell(active, body, sub, options) {
     const link = (key, href, icon, label) =>
       `<a class="${active === key && !sub ? "is-active" : ""}" href="${href}" title="${label}"><span class="nav-icon">${icon}</span><span class="nav-label">${label}</span></a>`;
     const node = (key, href, label) =>
       `<li><a class="chart-outline-node${sub === key ? " is-active" : ""}" href="${href}" aria-current="${sub === key ? "page" : "false"}"><span class="chart-outline-dot"></span><span>${label}</span></a></li>`;
-    const outline = `
+    const outline = options && options.outline ? customOutline(options.outline) : `
           <nav class="sidebar-outline size-chart-outline" aria-label="尺码参考大纲">
             <div class="sidebar-filter-title">尺码参考</div>
             <div class="chart-outline"><ol class="chart-outline-list">

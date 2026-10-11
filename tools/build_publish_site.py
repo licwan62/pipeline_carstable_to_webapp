@@ -138,7 +138,7 @@ HOME_CODE_ACTION = """      <a class="home-action" href="size-match-code.html">
       </a>
 """
 # 前端资源版本：改动 viewer.js/css、site-common.js 后递增，构建时统一写入所有页面，避免浏览器沿用旧缓存。
-ASSET_VERSION = "20261011-1"
+ASSET_VERSION = "20261011-2"
 ASSET_REFERENCE = re.compile(r"(assets/app/[\w.-]+\.(?:js|css))\?v=[\w-]+")
 
 
