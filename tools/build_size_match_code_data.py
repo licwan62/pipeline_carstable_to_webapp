@@ -9,12 +9,15 @@
 最大长/宽/高-MM → L-MM/W-MM/H-MM（记录覆盖的来源行中的最大值）。
 CODE = 02.代码映射 MAKE_CODE + MODEL_CODE + YEARCODE（由 A2 生成）。
 每条记录带 sources：A1 <产线>/压缩来源.csv 中该记录（压缩类型 + 记录序号）覆盖的 A0 全量表行，页面点击记录展开各年份长宽高。
+另写 vehicle-codes.json：CODE 前四位（MAKE_CODE + MODEL_CODE）→ MAKE、MODEL 与所在类别，供 viewer.js 全局搜索把
+8 位车型代码（如 01039426 = Ford Mustang 1994-2026）解析为 MAKE + MODEL + 年份区间。
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 
 from build_size_match_data import kind_counts, parse_years, read_verified, write_json, write_make_groups
@@ -28,6 +31,8 @@ TABLES = (("压缩尺码表.csv", False), ("压缩尺码表_皮卡.csv", True))
 SOURCES_FILE = "压缩来源.csv"
 SOURCE_KINDS = {False: "非皮卡", True: "皮卡"}  # 压缩来源.csv 的 压缩类型
 CODE_COLUMN = "CODE"
+CODE_PATTERN = re.compile(r"\d{8}")
+VEHICLE_CODES_FILE = "vehicle-codes.json"
 COLUMNS = ["CODE", "MODEL", "版本", "YEAR", "TYPE", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "SIZE"]
 DIMENSIONS = {"L-MM": "最大长-MM", "W-MM": "最大宽-MM", "H-MM": "最大高-MM"}
 PICKUP_TYPE = "Pickup"
@@ -66,10 +71,22 @@ def group_sources(rows: list[dict[str, str]]) -> dict[tuple[str, int], list[dict
     return grouped
 
 
+def add_vehicle_code(codes: dict[str, dict], row: dict[str, str], kind: str, where: str) -> None:
+    """登记 CODE 前四位 → MAKE、MODEL、类别；同一前四位对应不同车型说明上游代码映射有误。"""
+    code = row[CODE_COLUMN]
+    if not CODE_PATTERN.fullmatch(code):
+        raise ValueError(f"{where} 的 CODE 不是 8 位数字：{code!r}")
+    entry = codes.setdefault(code[:4], {"make": row["MAKE"], "model": row["MODEL"], "kinds": []})
+    if (entry["make"], entry["model"]) != (row["MAKE"], row["MODEL"]):
+        raise ValueError(f"{where} 的 CODE 前四位 {code[:4]} 同时对应 {entry['make']} {entry['model']} 与 {row['MAKE']} {row['MODEL']}")
+    if kind not in entry["kinds"]:
+        entry["kinds"].append(kind)
+
+
 def build(source_dir: Path, out_dir: Path) -> dict[str, int]:
     for stale in out_dir.glob("size-match-code*.json"):
         stale.unlink()
-    manifest, sources, counts = None, [], {}
+    manifest, sources, counts, vehicle_codes = None, [], {}, {}
     for source_index, line in enumerate(LINES, 1):
         records: list[dict] = []
         _, source_rows = read_verified(source_dir, f"{line}/{SOURCES_FILE}")
@@ -79,6 +96,7 @@ def build(source_dir: Path, out_dir: Path) -> dict[str, int]:
             if rows and CODE_COLUMN not in rows[0]:
                 raise ValueError(f"{line}/{name} 缺少 {CODE_COLUMN} 列，请先在 all_cars_data 重新运行并发布 A2")
             for number, row in enumerate(rows, 1):
+                add_vehicle_code(vehicle_codes, row, "pick" if pickup else "nonpick", f"{line}/{name}")
                 records.append(to_record(row, line, pickup, record_sources.pop((SOURCE_KINDS[pickup], number), [])))
         if record_sources:
             raise ValueError(f"{line}/{SOURCES_FILE} 有 {len(record_sources)} 个记录序号不在压缩表中，请重新发布 A1")
@@ -89,9 +107,12 @@ def build(source_dir: Path, out_dir: Path) -> dict[str, int]:
         sources.append({"name": line, "group": "US", "label": "US 全量" if line == "US" else f"US · {line}",
                         "sheet": f"{line}压缩尺码表", "columns": COLUMNS, "record_count": counts[line],
                         "kind_counts": kind_counts(groups), "make_groups": groups})
+    origin = {"node": manifest["node"], "version": manifest["version"], "published_at": manifest["published_at"]}
     write_json(out_dir / "size-match-code.json", {
-        "format_version": 3, "columns": COLUMNS, "sources": sources,
-        "origin": {"node": manifest["node"], "version": manifest["version"], "published_at": manifest["published_at"]},
+        "format_version": 3, "columns": COLUMNS, "sources": sources, "origin": origin,
+    })
+    write_json(out_dir / VEHICLE_CODES_FILE, {
+        "format_version": 1, "codes": dict(sorted(vehicle_codes.items())), "origin": origin,
     })
     return counts
 

@@ -99,6 +99,10 @@
   // 压缩代号页：已展开来源车型的记录（记录对象随数据缓存常驻，重绘后保持展开）与当前表格渲染的记录
   const expandedSourceRecords = new WeakSet();
   let renderedResultRecords = [];
+  // 车型代码表（CODE 前四位 → MAKE、MODEL、类别），查询含 8 位代码时才加载；首屏的 ?q= 只在首次渲染时检查一次
+  let vehicleCodes = null;
+  let vehicleCodesPromise = null;
+  let initialVehicleCodeChecked = false;
 
   function initialQuery() {
     return new URLSearchParams(window.location.search).get("q") || "";
@@ -284,7 +288,7 @@
           <div class="global-search">
             <label>
               <span>GLOBAL</span>
-              <input class="global-search-input" type="search" value="${escapeHtml(searchState.query)}" placeholder="${escapeHtml(config.searchPlaceholder || "Search nonpick, pick, 宏能图, TM, make, model, type, size, year...")}" autocomplete="off">
+              <input class="global-search-input" type="search" value="${escapeHtml(searchState.query)}" placeholder="${escapeHtml(config.searchPlaceholder || "Search nonpick, pick, 宏能图, TM, code, make, model, type, size, year...")}" autocomplete="off">
             </label>
             <button class="search-reset" type="button">Reset</button>
           </div>
@@ -349,7 +353,12 @@
     if (isSearchPage) {
       updateSearchControls();
       updateSearchResults();
-      loadSearchIndex(currentSearchDirectories());
+      if (initialVehicleCodeChecked) {
+        loadSearchIndex(currentSearchDirectories());
+      } else {
+        initialVehicleCodeChecked = true;
+        applyVehicleCodeKind().then(() => loadSearchIndex(currentSearchDirectories()));
+      }
     } else {
       resizeFrames();
     }
@@ -597,7 +606,10 @@
       resetSearchFilters();
       updateSourceOutlineState();
       searchLoadToken += 1;
-      globalSearchTimer = window.setTimeout(() => {
+      globalSearchTimer = window.setTimeout(async () => {
+        const query = searchState.query;
+        await applyVehicleCodeKind();
+        if (query !== searchState.query) return;
         loadSearchIndex(currentSearchDirectories());
       }, 180);
     });
@@ -1231,7 +1243,7 @@
 
     const queryRecords = queryFilteredRecords();
     if (!queryRecords.length) {
-      summary.textContent = searchState.query.trim() ? "未找到匹配记录。" : searchState.message;
+      summary.textContent = searchState.query.trim() ? `${vehicleCodeHint()}未找到匹配记录。` : searchState.message;
       results.innerHTML = "";
       return;
     }
@@ -1242,9 +1254,9 @@
     searchState.resultPage = Math.min(maxPage, Math.max(1, searchState.resultPage || 1));
     const start = (searchState.resultPage - 1) * limit;
     const visibleMatches = matches.slice(start, start + limit);
-    const summaryText = matches.length > visibleMatches.length
+    const summaryText = vehicleCodeHint() + (matches.length > visibleMatches.length
       ? `匹配结果：${formatCount(matches.length)} 条记录，当前第 ${formatCount(searchState.resultPage)} / ${formatCount(maxPage)} 页。`
-      : `匹配结果：${formatCount(matches.length)} 条记录。`;
+      : `匹配结果：${formatCount(matches.length)} 条记录。`);
     renderSearchSummary(summary, summaryText, matches);
     updateActiveFilterChips();
     bindActiveFilterChips();
@@ -3315,6 +3327,10 @@
     if (record.sourceTags.includes(token)) {
       return true;
     }
+    const vehicleCode = decodeVehicleCode(token);
+    if (vehicleCode && recordMatchesVehicleCode(record, vehicleCode)) {
+      return true;
+    }
 
     const haystack = normalizeSearchText([
       record.source,
@@ -3328,6 +3344,64 @@
       Object.values(record.values).join(" ")
     ].join(" "));
     return haystack.includes(token) || recordSearchAtoms(record).some((atom) => atom === token || atom.includes(token));
+  }
+
+  // 8 位车型代码 = MAKE_CODE(2) + MODEL_CODE(2) + 起始年(2) + 结束年(2)，如 01039426 = Ford Mustang 1994-2026。
+  // 前四位查 vehicle-codes.json；两位年份不晚于明年按 20xx，否则按 19xx
+  function decodeVehicleCode(token) {
+    const match = /^(\d{4})(\d{2})(\d{2})$/.exec(token);
+    const entry = match && vehicleCodes?.[match[1]];
+    if (!entry) return null;
+    const pivot = (new Date().getFullYear() + 1) % 100;
+    const fullYear = (value) => (Number(value) <= pivot ? 2000 : 1900) + Number(value);
+    const start = fullYear(match[2]);
+    const end = fullYear(match[3]);
+    if (start > end) return null;
+    return { code: token, make: entry.make, model: entry.model, kinds: entry.kinds || [], start, end };
+  }
+
+  // 同 MAKE、同 MODEL，且记录年份与代码年份区间有交集
+  function recordMatchesVehicleCode(record, vehicleCode) {
+    if (!sameText(record.make, vehicleCode.make) || !sameText(record.model, vehicleCode.model)) {
+      return false;
+    }
+    const years = Array.isArray(record.years) && record.years.length ? record.years : expandYears(record.year);
+    return years.some((year) => year >= vehicleCode.start && year <= vehicleCode.end);
+  }
+
+  function queryVehicleCodes() {
+    return searchTokens(searchState.query).map(decodeVehicleCode).filter(Boolean);
+  }
+
+  function vehicleCodeHint() {
+    return queryVehicleCodes()
+      .map((code) => `车型代码 ${code.code} = ${code.make} ${code.model} ${code.start}-${code.end}；`)
+      .join("");
+  }
+
+  function loadVehicleCodes() {
+    if (!vehicleCodesPromise) {
+      vehicleCodesPromise = fetchJsonWithRetry(config.vehicleCodesPath || "data/generated/vehicle-codes.json")
+        .then((payload) => { vehicleCodes = payload.codes || {}; })
+        .catch(() => { vehicleCodes = {}; });  // 代码表缺失时退回普通文本检索（压缩代号页仍可按 CODE 列精确匹配）
+    }
+    return vehicleCodesPromise;
+  }
+
+  // 查询含 8 位数字时先加载代码表；代码车型不在当前类别（皮卡/非皮卡）时切换到其所在类别
+  async function applyVehicleCodeKind() {
+    if (!searchTokens(searchState.query).some((token) => /^\d{8}$/.test(token))) return;
+    await loadVehicleCodes();
+    const kinds = uniqueInOrder(queryVehicleCodes().flatMap((code) => code.kinds));
+    if (!kinds.length || kinds.includes(searchState.vehicleKind)) return;
+    searchState.vehicleKind = kinds[0];
+    searchState.availableMakes = [];
+    searchState.scopeKey = "";
+    app.querySelectorAll("[data-vehicle-kind]").forEach((button) => {
+      const active = button.dataset.vehicleKind === searchState.vehicleKind;
+      button.classList.toggle("is-active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
   }
 
   function recordSearchAtoms(record) {

@@ -59,6 +59,25 @@ def test_builds_size_match_format_sources_with_codes(tmp_path):
     assert manifest["columns"][-4:] == ["L-MM", "W-MM", "H-MM", "SIZE"]
 
 
+def test_writes_vehicle_codes_for_global_search(tmp_path):
+    write_a2(tmp_path / "a2")
+    mod.build(tmp_path / "a2", tmp_path / "out")
+    payload = json.loads((tmp_path / "out" / mod.VEHICLE_CODES_FILE).read_text(encoding="utf-8"))
+    # CODE 前四位 = MAKE_CODE + MODEL_CODE，页面据此把 8 位代码解析为 MAKE + MODEL + 年份区间
+    assert payload["codes"] == {
+        "1416": {"make": "Cadillac", "model": "Escalade EXT", "kinds": ["pick"]},
+        "2511": {"make": "Acura", "model": "ADX", "kinds": ["nonpick"]},
+    }
+    assert payload["origin"]["node"] == "size-compression"
+
+
+def test_rejects_code_prefix_shared_by_two_models(tmp_path):
+    row = NONPICK.splitlines()[1].replace("25112526,Acura ADX,Acura,ADX", "25112426,Acura RDX,Acura,RDX")
+    write_a2(tmp_path / "a2", nonpick=f"{NONPICK}{row}\n")
+    with pytest.raises(ValueError, match="2511"):
+        mod.build(tmp_path / "a2", tmp_path / "out")
+
+
 def test_rejects_sources_for_unknown_records(tmp_path):
     write_a2(tmp_path / "a2", sources=SOURCES + "非皮卡,2,x,Acura,ADX,,SUV,,,2024,4600,1800,1600\n")
     with pytest.raises(ValueError, match="记录序号"):

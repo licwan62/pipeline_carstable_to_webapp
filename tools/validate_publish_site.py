@@ -75,11 +75,13 @@ def read_source_records(
 
 
 def validate_size_match_code(site_root: Path, errors: list[str]) -> int:
-    """压缩代号页（size-match-code.html）：清单中每个数据源的 MAKE 分片存在、行数一致且记录带 CODE。"""
+    """压缩代号页（size-match-code.html）：清单中每个数据源的 MAKE 分片存在、行数一致且记录带 CODE；
+    全局搜索用的 vehicle-codes.json 收录每条记录 CODE 的前四位。"""
     if not (site_root / "size-match-code.html").is_file():
         return 0
     manifest_path = site_root / "data" / "generated" / "size-match-code.json"
     manifest = read_json(manifest_path, errors)
+    vehicle_codes = read_json(site_root / "data" / "generated" / "vehicle-codes.json", errors).get("codes") or {}
     if "CODE" not in (manifest.get("columns") or []):
         errors.append("size-match-code does not declare CODE column")
     total = 0
@@ -92,6 +94,9 @@ def validate_size_match_code(site_root: Path, errors: list[str]) -> int:
             errors.append(f"size-match-code record count mismatch for {name}")
         if any(not (record.get("values") or {}).get("CODE") for record in records):
             errors.append(f"size-match-code {name} has records without CODE")
+        unknown = {code[:4] for record in records if (code := str((record.get("values") or {}).get("CODE") or ""))} - set(vehicle_codes)
+        if unknown:
+            errors.append(f"vehicle-codes.json is missing {name} code prefixes: {', '.join(sorted(unknown)[:5])}")
         total += len(records)
     if not manifest.get("sources"):
         errors.append("size-match-code has no sources")
