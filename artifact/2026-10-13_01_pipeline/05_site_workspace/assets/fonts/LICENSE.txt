@@ -1,0 +1,13 @@
+Bundled fonts:
+
+- D-DIN-PRO-400-Regular.woff2
+- D-DIN-PRO-600-SemiBold.woff2
+- D-DIN-PRO-700-Bold.woff2
+- D-DIN-PRO-900-Heavy.woff2
+
+D-DIN PRO copyright (C) 2017 Datto Inc. https://www.datto.com/fonts/d-din,
+with Reserved Font Name "D-DIN".
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+The full license text is available at:
+https://openfontlicense.org/open-font-license-official-text/

@@ -4,18 +4,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>尺码配对</title>
-  <link rel="stylesheet" href="assets/app/viewer.css?v=20261012-1">
+  <link rel="stylesheet" href="assets/app/viewer.css?v=20261013-5">
+  <link rel="stylesheet" href="assets/app/size-evolution.css?v=20261013-5">
 </head>
 <body>
   <div id="app"></div>
   <script>
     window.SIZE_CHART_VIEWER = {
+      evolution: {
+        enabled: true,
+        echartsPath: "assets/vendor/echarts/echarts.min.js?v=20261013-5",
+        historyDataPath: "data/generated/size-match-full.json"
+      },
       pageMode: "search",
       rootLabel: "全部尺码表",
       basePath: "data/source/html/",
       viewConfigPath: "config/size-chart-view.yaml",
       sizeRefPath: "data/generated/size-ref.json",
-      matchDataPath: "data/generated/size-match-full.json",
+      matchDataPath: "data/generated/size-match-code.json",
+      fieldOrder: ["CODE", "MODEL", "版本", "TYPE", "SHAPE", "YEAR", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"],
+      searchPlaceholder: "Search code, make, model, type, shape, size, year...",
       matchSources: [
         { name: "US", label: "US 全量", group: "US" },
         { name: "HNT", label: "US · HNT", group: "US" },
@@ -82,7 +90,9 @@
 ]
     };
   </script>
-  <script src="assets/app/viewer.js?v=20261012-1"></script>
-  <script src="assets/app/site-common.js?v=20261012-1"></script>
+  <script src="assets/app/size-evolution-data.js?v=20261013-5"></script>
+  <script src="assets/app/size-evolution.js?v=20261013-5"></script>
+  <script src="assets/app/viewer.js?v=20261013-5"></script>
+  <script src="assets/app/site-common.js?v=20261013-5"></script>
 </body>
 </html>

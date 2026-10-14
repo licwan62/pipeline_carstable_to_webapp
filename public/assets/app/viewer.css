@@ -2941,9 +2941,9 @@ body.is-resizing-column {
 .lazy-load-scope label[hidden] { display: none; }
 a.chart-outline-node { text-decoration: none; }
 
-/* 侧栏第 5 个页面（压缩代号）：窄屏时一行放下 */
+/* 窄屏时侧栏页面入口一行放下（入口数随其他发布方登记而变） */
 @media (max-width: 760px) {
-  .sidebar-nav { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .sidebar-nav { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); }
 }
 /* 压缩代号页：CODE 列等宽数字 */
 .size-results-table td.code-cell strong { font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
@@ -3016,7 +3016,7 @@ a.chart-outline-node { text-decoration: none; }
 .size-results-table .range-inputs input { height: 30px; font-size: 13px; }
 .size-results-table th:last-child .col-resizer { right: 0; }  /* 最后一列的拖动柄不伸出表格，避免多出横向滚动条 */
 
-/* ===== 压缩代号页：点 MAKE 展开/收回压缩记录的来源车型（A1 压缩来源）各年份长宽高 ===== */
+/* ===== 尺码配对：点首列 CODE 展开/收回压缩记录的来源车型（A1 压缩来源）各年份长宽高与车形 ===== */
 .size-results-table td.source-toggle-cell { padding: 0; }
 .source-toggle {
   display: flex; align-items: center; gap: 5px; width: 100%; min-height: 100%;
@@ -3032,6 +3032,7 @@ a.chart-outline-node { text-decoration: none; }
 }
 .source-toggle[aria-expanded="true"] .source-toggle-icon { transform: rotate(90deg); }
 .source-toggle-make { min-width: 0; overflow-wrap: anywhere; }
+.source-toggle-make.is-empty { color: var(--muted); font-weight: 400; }
 .source-toggle em {
   margin-left: auto; padding: 0 5px; border-radius: 8px; background: #e3edf8; color: var(--accent-dark);
   font-size: 11px; font-style: normal; font-weight: 700; font-variant-numeric: tabular-nums;
@@ -3045,3 +3046,12 @@ a.chart-outline-node { text-decoration: none; }
 .size-results-table td.source-size-cell { background: #f7fafd; }
 .size-results-table tr.source-detail-row .dimension-cell strong { font-weight: 500; }
 .size-results-table tr.source-detail-row .dimension-cell.is-source-max strong { font-weight: 800; text-decoration: underline; text-underline-offset: 2px; }
+
+/* SHAPE：小字显示，悬停看中文名与说明 */
+.size-results-table td.shape-cell { cursor: help; }
+.size-results-table td.shape-cell span { font-size: 0.78em; font-weight: 500; letter-spacing: 0.01em; color: #5b6475; }
+.shape-reference-item { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; align-items: baseline; }
+.shape-reference-item strong { color: #0f172a; font-size: 15px; font-weight: 800; }
+.shape-reference-item code { color: #667085; font-size: 11px; justify-self: start; }
+.shape-reference-item p { grid-column: 1 / -1; margin: 0; font-size: 12px; line-height: 1.4; color: var(--ink); }
+.shape-reference-note { color: #667085; font-size: 11px; }

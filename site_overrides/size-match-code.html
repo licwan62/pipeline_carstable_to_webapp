@@ -4,33 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>压缩代号</title>
-  <link rel="stylesheet" href="assets/app/viewer.css?v=20260831-4">
+  <!-- 压缩代号表已成为尺码配对页（size-match.html）的唯一表格；保留本页让旧链接与书签继续可用，查询参数原样带过去 -->
+  <meta http-equiv="refresh" content="0; url=size-match.html">
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      params.delete("view");
+      var search = params.toString();
+      window.location.replace("size-match.html" + (search ? "?" + search : "") + window.location.hash);
+    })();
+  </script>
 </head>
 <body>
-  <div id="app"></div>
-  <script>
-    // 与尺码配对（size-match.html）同一个 viewer.js 搜索页：表格样式、列宽、复制、筛选与表格设置一致，
-    // 数据换成 A1 压缩尺码表（含 CODE 代号），由 tools/build_size_match_code_data.py 生成。
-    // 长宽高为记录来源车型的最大值；点 MAKE 展开/收回该记录覆盖的来源车型（A1 压缩来源）各年份长宽高。
-    window.SIZE_CHART_VIEWER = {
-      pageMode: "search",
-      navKey: "code",
-      rootLabel: "全部压缩尺码表",
-      basePath: "data/source/html/",
-      viewConfigPath: "config/size-chart-view.yaml",
-      sizeRefPath: "data/generated/size-ref.json",
-      matchDataPath: "data/generated/size-match-code.json",
-      fieldOrder: ["CODE", "MODEL", "版本", "TYPE", "YEAR", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "SIZE"],
-      searchPlaceholder: "Search code, make, model, type, size, year...",
-      matchSources: [
-        { name: "US", label: "US 全量", group: "US" },
-        { name: "HNT", label: "US · HNT", group: "US" },
-        { name: "TM", label: "US · TM", group: "US" },
-        { name: "TM_拆分", label: "US · TM_拆分", group: "US" }
-      ],
-      directories: []
-    };
-  </script>
-  <script src="assets/app/viewer.js?v=20260831-8"></script>
+  <p>压缩代号表已并入<a href="size-match.html">尺码配对页</a>，正在跳转…</p>
 </body>
 </html>

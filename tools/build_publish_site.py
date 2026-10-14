@@ -120,7 +120,12 @@ def configure_csv_sources(
     )
 
 
-MATCH_PAGE_OVERRIDE = """      matchDataPath: "data/generated/size-match-full.json",
+# 尺码配对页（size-match.html）只有一张表：A1 压缩尺码表（CODE 代号在前，点 MAKE 展开来源车型各年份），
+# US 全量、US 店铺、EU、RU 六个数据源；SHAPE、长度余量、规则ID 由 A0 全量表按 DIMENSION-ID 补齐。
+# 车型可视化的历史仍读 A0 全量分片（evolution.historyDataPath），旧 size-match-code.html 只做跳转。
+MATCH_PAGE_OVERRIDE = """      matchDataPath: "data/generated/size-match-code.json",
+      fieldOrder: ["CODE", "MODEL", "版本", "TYPE", "SHAPE", "YEAR", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"],
+      searchPlaceholder: "Search code, make, model, type, shape, size, year...",
       matchSources: [
         { name: "US", label: "US 全量", group: "US" },
         { name: "HNT", label: "US · HNT", group: "US" },
@@ -132,29 +137,32 @@ MATCH_PAGE_OVERRIDE = """      matchDataPath: "data/generated/size-match-full.js
 """
 
 
-HOME_CODE_ACTION = """      <a class="home-action" href="size-match-code.html">
-        <span>压缩代号</span>
-        <strong>按 CODE 代号查询 US 及各店铺压缩尺码表</strong>
-      </a>
+# 前端资源版本：改动 viewer.js/css、site-common.js、size-evolution*、vendor 资源后递增，构建时统一写入所有页面，避免浏览器沿用旧缓存。
+ASSET_VERSION = "20261013-5"
+# assets/app/*.js|css 与 assets/vendor/<库>/*.js|css（ECharts 由页面配置 evolution.echartsPath 懒加载，路径同样带 ?v=）
+ASSET_REFERENCE = re.compile(r"(assets/(?:app|vendor/[\w.-]+)/[\w.-]+\.(?:js|css))\?v=[\w-]+")
+
+# 尺码配对页的车型尺寸演变可视化：只注入 size-match.html（viewer.js 按 evolution.enabled 启用，size-chart 不启用）；
+# 表格是压缩记录，弹窗历史读 A0 全量分片 historyDataPath
+EVOLUTION_PAGE = "size-match.html"
+EVOLUTION_STYLE = f'  <link rel="stylesheet" href="assets/app/size-evolution.css?v={ASSET_VERSION}">\n'
+EVOLUTION_SCRIPTS = (
+    f'  <script src="assets/app/size-evolution-data.js?v={ASSET_VERSION}"></script>\n'
+    f'  <script src="assets/app/size-evolution.js?v={ASSET_VERSION}"></script>\n'
+)
+EVOLUTION_CONFIG = f"""      evolution: {{
+        enabled: true,
+        echartsPath: "assets/vendor/echarts/echarts.min.js?v={ASSET_VERSION}",
+        historyDataPath: "data/generated/size-match-full.json"
+      }},
 """
-# 前端资源版本：改动 viewer.js/css、site-common.js 后递增，构建时统一写入所有页面，避免浏览器沿用旧缓存。
-ASSET_VERSION = "20261012-1"
-ASSET_REFERENCE = re.compile(r"(assets/app/[\w.-]+\.(?:js|css))\?v=[\w-]+")
-
-
-def add_home_code_action(site_output: Path) -> None:
-    """主页在“尺码配对”入口之后加“压缩代号”入口（主页由发布仓库 build_site.py 生成）。"""
-    home = site_output / "index.html"
-    text = home.read_text(encoding="utf-8")
-    if "size-match-code.html" in text:
-        return
-    anchor = '<a class="home-action" href="size-match.html">'
-    start = text.find(anchor)
-    end = text.find("</a>", start)
-    if start < 0 or end < 0:
-        raise ValueError("index.html 缺少尺码配对入口，无法添加压缩代号入口")
-    end = text.index("\n", end) + 1
-    home.write_text(text[:end] + HOME_CODE_ACTION + text[end:], encoding="utf-8")
+EVOLUTION_ASSETS = [
+    "assets/app/size-evolution-data.js",
+    "assets/app/size-evolution.js",
+    "assets/app/size-evolution.css",
+    "assets/vendor/echarts/echarts.min.js",
+    "assets/vendor/echarts/LICENSE",
+]
 
 
 def add_site_common_script(site_output: Path) -> None:
@@ -166,6 +174,29 @@ def add_site_common_script(site_output: Path) -> None:
         tag = f'  <script src="assets/app/site-common.js?v={ASSET_VERSION}"></script>' + chr(10)
         end = text.rindex("</body>")
         page.write_text(text[:end] + tag + text[end:], encoding="utf-8")
+
+
+def add_size_evolution(site_output: Path) -> None:
+    """尺码配对页加载可视化样式、脚本并打开 evolution 开关；其他页面不加载（viewer.js 无开关时不显示入口）。"""
+    missing = [relative for relative in EVOLUTION_ASSETS if not (site_output / relative).is_file()]
+    if missing:
+        raise FileNotFoundError(f"site_overrides 缺少可视化资源：{', '.join(missing)}")
+    page = site_output / EVOLUTION_PAGE
+    text = page.read_text(encoding="utf-8")
+    if "size-evolution.js" in text:
+        return
+    config_marker = "    window.SIZE_CHART_VIEWER = {\n"
+    style_marker = '  <link rel="stylesheet" href="assets/app/viewer.css'
+    script_marker = '  <script src="assets/app/viewer.js'
+    for marker in (config_marker, style_marker, script_marker):
+        if marker not in text:
+            raise ValueError(f"{EVOLUTION_PAGE} 缺少 {marker.strip()}，无法注入可视化")
+    text = text.replace(config_marker, config_marker + EVOLUTION_CONFIG, 1)
+    style_end = text.index("\n", text.index(style_marker)) + 1
+    text = text[:style_end] + EVOLUTION_STYLE + text[style_end:]
+    script_start = text.index(script_marker)
+    text = text[:script_start] + EVOLUTION_SCRIPTS + text[script_start:]
+    page.write_text(text, encoding="utf-8")
 
 
 def stamp_asset_versions(site_output: Path) -> None:
@@ -182,16 +213,16 @@ def apply_site_overrides(site_output: Path) -> None:
     generated = site_output / "data" / "generated"
     build_size_rules_data(DEFAULT_SOURCE, generated)
     build_size_match_data(SIZE_MATCH_SOURCE, generated)
-    build_size_match_code_data(SIZE_MATCH_CODE_SOURCE, generated)
+    build_size_match_code_data(SIZE_MATCH_CODE_SOURCE, generated, SIZE_MATCH_SOURCE)
     match_page = site_output / "size-match.html"
     text = match_page.read_text(encoding="utf-8")
-    if "matchDataPath" not in text:
+    if "matchDataPath:" not in text:
         marker = 'sizeRefPath: "data/generated/size-ref.json",' + chr(10)
         if marker not in text:
             raise ValueError("size-match.html 缺少 sizeRefPath，无法注入 US/EU 数据源配置")
         match_page.write_text(text.replace(marker, marker + MATCH_PAGE_OVERRIDE, 1), encoding="utf-8")
-    add_home_code_action(site_output)
     add_site_common_script(site_output)
+    add_size_evolution(site_output)
     stamp_asset_versions(site_output)
 
 

@@ -27,7 +27,8 @@ REGIONS = ("US", "EU", "RU")
 REGION_FILES = {region: f"{region}/全量/全量表.csv" for region in REGIONS}
 # US 源下的店铺选择：名称 -> A0 店铺全量文件（自动尺码为该店铺的发货尺码）
 STORES = {store: f"US/店铺/店铺全量_{store}.csv" for store in ("HNT", "TM", "TM_拆分")}
-COLUMNS = ["MODEL", "版本", "YEAR", "TYPE", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"]
+# SHAPE：03.车形分类核定 COVER_SHAPE 经 A0 add_cover_shape 回填的车形（不参与尺码计算），紧跟 TYPE 显示
+COLUMNS = ["MODEL", "版本", "YEAR", "TYPE", "SHAPE", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"]
 # 非皮卡与皮卡分开检索：分片与清单 make_groups 都带 kind，前端按当前类别只加载一种
 KINDS = ("nonpick", "pick")
 PICKUP_CATEGORY = "皮卡"

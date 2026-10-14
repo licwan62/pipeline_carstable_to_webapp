@@ -8,7 +8,7 @@
 
   const directories = config.directories || [];
   const pageMode = config.pageMode || "search";
-  // 侧栏高亮的页面：搜索页默认是尺码配对，压缩代号页传 navKey: "code"
+  // 侧栏高亮：搜索页是尺码配对，Size Chart 页是 chart
   const navKey = config.navKey || (pageMode === "charts" ? "chart" : "match");
   const defaultViewConfig = {
     filters: {
@@ -48,12 +48,15 @@
   const directoryMetadata = new Map();
   const tsvIndexes = new Map();
   const configuredMatchIndexPromises = new Map();
-  let configuredMatchManifestPromise = null;
+  const configuredMatchManifestPromises = new Map();
+  const matchDataOrigins = new Map();
   const sizeReferenceIndex = new Map();
   const sizeReferenceOrder = new Map();
   // 尺码配对 SIZE hover：按记录所属国别（US/EU/RU）读取 A0 尺码规则，店铺来源再按货架把发货尺码换回匹配尺码
   const sizeRuleIndexes = new Map();
   const sizeRuleTolerances = new Map();
+  // 全量表 规则ID → 该国别规则表中的行（A0 报告规则表末列）；只在全量数据与规则来自同一 A0 版本时用于精确解释
+  const sizeRuleIdIndexes = new Map();
   const storeShippingSizes = new Map();
   const initialSearchQuery = initialQuery();
   const searchState = {
@@ -103,6 +106,35 @@
   let vehicleCodes = null;
   let vehicleCodesPromise = null;
   let initialVehicleCodeChecked = false;
+  // 车型尺寸演变可视化（size-evolution.js）：只在页面配置 evolution.enabled 时启用（size-chart 不启用），压缩代号数据视图 evolution: false。
+  // 选择状态按稳定 recordKey 存储，翻页、排序、切换表格/大纲时保留；source 或类别切换时清空。
+  const evolutionConfig = config.evolution || {};
+  const evolutionData = window.SizeEvolutionData || null;
+  const evolutionAvailable = pageMode === "search" && Boolean(evolutionConfig.enabled && evolutionData && window.SizeEvolution);
+  const EVOLUTION_COLUMN = "__evolution__";
+  const evolutionSelection = new Map();
+  let evolutionSelectionScope = "";
+  let evolutionMatches = [];
+  let evolutionPageRecords = new Map();
+  let evolutionOutlineGroups = [];
+  let sizeRulesOrigin = null;
+  let storeGroupsOrigin = null;
+  // SHAPE（车罩外形分类）中文名与说明：数据清单 shape_labels 提供，SHAPE 单元格悬停显示
+  let shapeLabels = {};
+
+  // 尺码配对页是 A1 压缩记录（来源行带 DIMENSION-ID），车型可视化历史读 A0 全量分片
+  function evolutionOn() {
+    return evolutionAvailable;
+  }
+
+  function applyPageMatchConfig() {
+    if (!config.matchDataPath) return;
+    viewConfig = {
+      ...viewConfig,
+      excel_source: { ...(viewConfig.excel_source || {}), match_data_path: config.matchDataPath },
+      match_sources: config.matchSources || []
+    };
+  }
 
   function initialQuery() {
     return new URLSearchParams(window.location.search).get("q") || "";
@@ -255,8 +287,7 @@
             <a href="index.html" title="首页"><span class="nav-icon">首</span><span class="nav-label">首页</span></a>
             <a class="${!isSearchPage ? "is-active" : ""}" href="size-chart.html" title="Size Chart"><span class="nav-icon">S</span><span class="nav-label">Size Chart</span></a>
             <a href="size-ref.html" title="尺码参考"><span class="nav-icon">参</span><span class="nav-label">尺码参考</span></a>
-            <a class="${navKey === "match" ? "is-active" : ""}" href="size-match.html" title="尺码配对"><span class="nav-icon">尺</span><span class="nav-label">尺码配对</span></a>
-            <a class="${navKey === "code" ? "is-active" : ""}" href="size-match-code.html" title="压缩代号"><span class="nav-icon">码</span><span class="nav-label">压缩代号</span></a>
+            <a class="${navKey === "match" || navKey === "code" ? "is-active" : ""}" href="size-match.html" title="尺码配对（含压缩代号）"><span class="nav-icon">尺</span><span class="nav-label">尺码配对</span></a>
           </nav>
           ${isSearchPage ? `
             <nav class="sidebar-outline source-outline" aria-label="Source filter">
@@ -310,6 +341,7 @@
           </div>
           <div class="search-result-toolbar">
             <div class="search-summary" role="status"></div>
+            ${evolutionOn() ? '<div class="evolution-toolbar" data-evolution-toolbar hidden></div>' : ""}
             <div class="result-view-toggle" role="group" aria-label="结果视图">
               ${[
                 ["table", "表格"],
@@ -1235,9 +1267,11 @@
       return;
     }
 
+    syncEvolutionSelectionScope();
     if (searchState.status === "loading" || searchState.status === "error") {
       summary.textContent = searchState.message;
       results.innerHTML = "";
+      updateEvolutionToolbar([]);
       return;
     }
 
@@ -1245,6 +1279,7 @@
     if (!queryRecords.length) {
       summary.textContent = searchState.query.trim() ? `${vehicleCodeHint()}未找到匹配记录。` : searchState.message;
       results.innerHTML = "";
+      updateEvolutionToolbar([]);
       return;
     }
 
@@ -1254,6 +1289,8 @@
     searchState.resultPage = Math.min(maxPage, Math.max(1, searchState.resultPage || 1));
     const start = (searchState.resultPage - 1) * limit;
     const visibleMatches = matches.slice(start, start + limit);
+    evolutionPageRecords = new Map(visibleMatches.filter((record) => record.recordKey).map((record) => [record.recordKey, record]));
+    evolutionOutlineGroups = [];
     const summaryText = vehicleCodeHint() + (matches.length > visibleMatches.length
       ? `匹配结果：${formatCount(matches.length)} 条记录，当前第 ${formatCount(searchState.resultPage)} / ${formatCount(maxPage)} 页。`
       : `匹配结果：${formatCount(matches.length)} 条记录。`);
@@ -1277,7 +1314,10 @@
     bindSizeHeaderFilterPopovers();
     bindSizeTableFilters();
     bindSizeReferenceHovers();
+    bindShapeHovers();
     bindSourceToggles();
+    updateEvolutionToolbar(matches);
+    bindEvolutionResultControls();
   }
 
   function getSearchMatches() {
@@ -1321,20 +1361,30 @@
     });
   }
 
+  function configuredMatchPath() {
+    return viewConfig.excel_source?.match_data_path || defaultViewConfig.excel_source.match_data_path;
+  }
+
   async function loadConfiguredMatchManifest() {
-    const path = viewConfig.excel_source?.match_data_path || defaultViewConfig.excel_source.match_data_path;
-    if (!configuredMatchManifestPromise) {
-      configuredMatchManifestPromise = fetch(path, { cache: "no-cache" }).then(async (response) => {
+    return loadMatchManifest(configuredMatchPath());
+  }
+
+  async function loadMatchManifest(path) {
+    if (!configuredMatchManifestPromises.has(path)) {
+      configuredMatchManifestPromises.set(path, fetch(path, { cache: "no-cache" }).then(async (response) => {
         if (!response.ok) {
           throw new Error(`Cannot load ${path}`);
         }
-        return { path, payload: await response.json() };
+        const payload = await response.json();
+        matchDataOrigins.set(path, payload.origin || null);
+        if (payload.shape_labels) shapeLabels = { ...shapeLabels, ...payload.shape_labels };
+        return { path, payload };
       }).catch((error) => {
-        configuredMatchManifestPromise = null;
+        configuredMatchManifestPromises.delete(path);
         throw error;
-      });
+      }));
     }
-    return configuredMatchManifestPromise;
+    return configuredMatchManifestPromises.get(path);
   }
 
   function updateLazyMakeControl() {
@@ -1423,6 +1473,8 @@
           sourceTags: [String(source.name || "").toLowerCase()],
           file: record.file || ""
         }));
+        // 可视化与跨页选择用的稳定身份：在完整分片（source + kind + MAKE）上分配，不依赖分页行号
+        if (evolutionData) evolutionData.assignRecordKeys(records, source.name);
         return { records, columns };
       })().catch((error) => {
         configuredMatchIndexPromises.delete(cacheKey);
@@ -1495,20 +1547,31 @@
 
     renderedResultRecords = records;
     const columns = resultColumns(records);
+    // 压缩记录：CODE 放首列并作为展开来源车型的开关（无 CODE 列时开关在 MAKE）；
+    // SHAPE 属于来源车型（各年份），只在本页有展开的记录时显示该列，且只填在来源行
+    const codeColumn = columns.find((column) => sameColumn(column, "CODE"));
+    const showShape = records.some((record) => recordSources(record).length && expandedSourceRecords.has(record));
+    const otherColumns = columns.filter((column) => column !== codeColumn && (showShape || !sameColumn(column, "SHAPE")));
     const tableColumns = [
+      ...(codeColumn ? [{ key: codeColumn, label: codeColumn }] : []),
       { key: "MAKE", label: "MAKE" },
-      ...columns.map((column) => ({
+      ...otherColumns.map((column) => ({
         key: column,
         label: column,
         dimension: isDimensionColumn(column),
         size: isSizeColumn(column)
       }))
     ];
+    const toggleKey = sourceToggleKey(tableColumns);
     tableColumns.forEach((column, index) => {
-      column.width = autoColumnWidth(column.key, column.label, records);
+      column.toggle = column.key === toggleKey && records.some((record) => recordSources(record).length);
+      column.width = autoColumnWidth(column.key, column.label, records, column.toggle);
       // 右半部分的列（含右侧固定列）弹层向左展开，避免超出表格
       column.alignRight = index >= tableColumns.length / 2;
     });
+    if (evolutionOn()) {
+      tableColumns.unshift({ key: EVOLUTION_COLUMN, label: "", evolution: true, width: "36px" });
+    }
     fitColumnsToContainer(tableColumns);
     const tableWidth = resultTableWidth(tableColumns);
     return `
@@ -1522,7 +1585,7 @@
           </colgroup>
           <thead>
             <tr>
-              ${tableColumns.map((column) => `
+              ${tableColumns.map((column) => column.evolution ? evolutionHeaderMarkup(records) : `
                 <th class="${resultHeaderClass(column)}${searchState.openFilter === column.key ? " is-filter-open" : ""}" data-col-key="${escapeHtml(column.key)}">
                   ${sizeHeaderLabelMarkup(column)}
                   ${sizeHeaderFilterMarkup(column, tableColumns)}
@@ -1550,14 +1613,19 @@
     `;
   }
 
-  // 压缩代号页：记录带 sources（A1 压缩来源：该压缩记录覆盖的 A0 全量表行）时，点 MAKE 单元格展开/收回来源车型各年份长宽高
+  // 记录带 sources（A1 压缩来源：该压缩记录覆盖的 A0 全量表行）时，点首列 CODE（无 CODE 列时 MAKE）展开/收回来源车型各年份长宽高与车形
   function resultRowMarkup(record, index, tableColumns) {
     const sources = recordSources(record);
     const expanded = sources.length > 0 && expandedSourceRecords.has(record);
-    const cells = tableColumns.map((column) => (
-      column.key === "MAKE" && sources.length ? sourceToggleCellMarkup(record, index, sources.length, expanded) : resultCellMarkup(record, column)
-    )).join("");
-    const row = `<tr class="copyable-result-row${sources.length ? " has-sources" : ""}${expanded ? " is-expanded" : ""}">${cells}</tr>`;
+    const cells = tableColumns.map((column) => {
+      if (column.evolution) return evolutionCellMarkup(record);
+      if (column.toggle && sources.length) return sourceToggleCellMarkup(record, column, index, sources.length, expanded);
+      // 记录本身不显示 SHAPE（各年份车形在展开的来源行里）
+      if (sources.length && sameColumn(column.key, "SHAPE")) return "<td></td>";
+      return resultCellMarkup(record, column);
+    }).join("");
+    const keyAttr = evolutionOn() && record.recordKey ? ` data-record-key="${escapeHtml(record.recordKey)}"` : "";
+    const row = `<tr class="copyable-result-row${sources.length ? " has-sources" : ""}${expanded ? " is-expanded" : ""}"${keyAttr}>${cells}</tr>`;
     if (!expanded) return row;
     return row + sources.map((source, position) => sourceRowMarkup(record, source, position === sources.length - 1, tableColumns)).join("");
   }
@@ -1566,9 +1634,16 @@
     return Array.isArray(record.sources) ? record.sources : [];
   }
 
-  function sourceToggleCellMarkup(record, index, count, expanded) {
-    const hint = expanded ? "收回来源车型" : `展开 ${count} 条来源车型的各年份长宽高`;
-    return `<td class="source-toggle-cell"><button class="source-toggle" type="button" data-source-toggle="${index}" aria-expanded="${expanded ? "true" : "false"}" title="${escapeHtml(hint)}"><span class="source-toggle-icon" aria-hidden="true"></span><span class="source-toggle-make">${escapeHtml(record.make)}</span><em>${count}</em></button></td>`;
+  function sourceToggleKey(tableColumns) {
+    return (tableColumns.find((column) => sameColumn(column.key, "CODE")) || { key: "MAKE" }).key;
+  }
+
+  // 开关显示 CODE（EU/RU 没有 CODE 时显示 —），无 CODE 列时显示 MAKE
+  function sourceToggleCellMarkup(record, column, index, count, expanded) {
+    const hint = expanded ? "收回来源车型" : `展开 ${count} 条来源车型的各年份长宽高与车形`;
+    const isCode = sameColumn(column.key, "CODE");
+    const label = isCode ? cleanField(resultColumnValue(record, column.key)) : record.make;
+    return `<td class="source-toggle-cell${isCode ? " code-cell" : ""}"><button class="source-toggle" type="button" data-source-toggle="${index}" aria-expanded="${expanded ? "true" : "false"}" title="${escapeHtml(hint)}"><span class="source-toggle-icon" aria-hidden="true"></span><strong class="source-toggle-make${label ? "" : " is-empty"}">${escapeHtml(label || "—")}</strong><em>${count}</em></button></td>`;
   }
 
   // 来源行按普通记录渲染（同列、同单位换算、点击复制车型信息/长宽高），CODE、销量、SIZE 留空
@@ -1578,13 +1653,16 @@
       values: { ...source, MAKE: record.make, CONST: source.TYPE, SOURCE: record.values.SOURCE }
     };
     const cells = tableColumns.map((column) => {
-      if (column.key === "MAKE") return `<td class="source-branch-cell" aria-hidden="true">${last ? "└" : "├"}</td>`;
+      if (column.toggle) return `<td class="source-branch-cell" aria-hidden="true">${last ? "└" : "├"}</td>`;
+      if (column.key === "MAKE") return "<td></td>";
       if (column.size) return '<td class="size-sticky-col size-sticky-size source-size-cell"></td>';
       if (column.dimension) return sourceDimensionCellMarkup(record, item, column);
-      if (sameColumn(column.key, "CODE") || isSalesTotalColumn(column.key)) return "<td></td>";
+      if (isSalesTotalColumn(column.key)) return "<td></td>";
       return resultCellMarkup(item, column);
     }).join("");
-    return `<tr class="source-detail-row${last ? " is-last-source" : ""}" title="${escapeHtml(source["DIMENSION-ID"] || "")}">${cells}</tr>`;
+    // 来源行对应的 A0 历史 recordKey（不能用 item：它继承了压缩记录自身的 recordKey）
+    const historyAttr = evolutionOn() ? ` data-history-key="${escapeHtml(evolutionData.recordKeyOf({ values: source }, recordSourceName(record)))}"` : "";
+    return `<tr class="source-detail-row${last ? " is-last-source" : ""}" title="${escapeHtml(source["DIMENSION-ID"] || "")}"${historyAttr}>${cells}</tr>`;
   }
 
   function sourceDimensionCellMarkup(record, item, column) {
@@ -1606,6 +1684,287 @@
         app.querySelector(`[data-source-toggle="${button.dataset.sourceToggle}"]`)?.focus({ preventScroll: true });
       });
     });
+  }
+
+  // ---------- 车型尺寸演变可视化入口（size-evolution.js） ----------
+
+  // source 或类别切换后，已选记录不再属于当前数据范围，清空
+  function syncEvolutionSelectionScope() {
+    if (!evolutionOn()) return;
+    const scope = `${searchState.selectedSource}|${searchState.vehicleKind}`;
+    if (scope !== evolutionSelectionScope) {
+      evolutionSelectionScope = scope;
+      evolutionSelection.clear();
+    }
+  }
+
+  function evolutionModelKey(record) {
+    return evolutionData.modelKeyForRecord(record, recordSourceName(record));
+  }
+
+  // 表格是 A1 压缩记录，可视化历史是 A0 全量行：车型、配置与 recordKey 都按压缩记录覆盖的来源行（产线 + DIMENSION-ID）计算，
+  // 与历史分片一一对应（压缩记录可能合并多个版本/年份段，不能直接用记录本身的字段）
+  function evolutionRefs(record) {
+    const sources = recordSources(record);
+    if (!sources.length) return [record];
+    return sources.map((source) => ({
+      make: record.make, model: source.MODEL || record.model, kind: record.kind, directory: record.directory,
+      values: { ...source, MAKE: record.make }
+    }));
+  }
+
+  function evolutionHistoryKeys(record) {
+    return evolutionRefs(record).map((ref) => evolutionData.recordKeyOf(ref, recordSourceName(ref)));
+  }
+
+  function evolutionRecordLabel(record) {
+    return [cleanField(resultColumnValue(record, "YEAR") || record.year), record.make, record.model, cleanField(resultColumnValue(record, "版本")), cleanField(resultColumnValue(record, "TYPE"))].filter(Boolean).join(" ");
+  }
+
+  function evolutionHeaderMarkup(records) {
+    const keys = records.map((record) => record.recordKey).filter(Boolean);
+    const selected = keys.filter((key) => evolutionSelection.has(key)).length;
+    return `<th class="evolution-heading" data-col-key="${EVOLUTION_COLUMN}"><label title="选择本页 ${formatCount(keys.length)} 条记录（不是全部搜索结果）"><input type="checkbox" class="evolution-select" data-evolution-page-select ${keys.length && selected === keys.length ? "checked" : ""} aria-label="选择本页"></label></th>`;
+  }
+
+  // 每行只有选择框：统一勾选后点「车型可视化」进入
+  function evolutionCellMarkup(record) {
+    if (!record.recordKey) return '<td class="evolution-cell"></td>';
+    const label = escapeHtml(evolutionRecordLabel(record));
+    return `<td class="evolution-cell"><input type="checkbox" class="evolution-select" data-evolution-select="${escapeHtml(record.recordKey)}" ${evolutionSelection.has(record.recordKey) ? "checked" : ""} aria-label="选择 ${label}"></td>`;
+  }
+
+  // 大纲 MODEL 组：一次勾选本页该车型的全部记录
+  function evolutionGroupSelectMarkup(records) {
+    const keys = records.map((record) => record.recordKey).filter(Boolean);
+    if (!keys.length) return "";
+    const index = evolutionOutlineGroups.push(keys) - 1;
+    const selected = keys.filter((key) => evolutionSelection.has(key)).length;
+    const label = escapeHtml(`${records[0].make} ${records[0].model}`);
+    return `<label class="outline-group-select" title="勾选本页 ${label} 的 ${formatCount(keys.length)} 条记录"><input type="checkbox" class="evolution-select" data-evolution-group="${index}" ${selected === keys.length ? "checked" : ""} aria-label="选择本页 ${label} 的全部记录"></label>`;
+  }
+
+  function evolutionOutlineSelectMarkup(record, depth) {
+    if (!record.recordKey) return "";
+    const label = escapeHtml(evolutionRecordLabel(record));
+    return `<div class="outline-tree-leaf outline-evolution-leaf" style="--outline-leaf-depth: ${depth}"><label class="outline-evolution-select"><input type="checkbox" class="evolution-select" data-evolution-select="${escapeHtml(record.recordKey)}" ${evolutionSelection.has(record.recordKey) ? "checked" : ""} aria-label="选择 ${label}">选择</label></div>`;
+  }
+
+  function updateEvolutionToolbar(matches) {
+    if (!evolutionOn()) return;
+    evolutionMatches = matches;
+    const toolbar = app.querySelector("[data-evolution-toolbar]");
+    if (!toolbar) return;
+    const ready = searchState.status === "ready";
+    toolbar.hidden = !ready;
+    if (!ready) return;
+    const matchKeys = new Set(matches.map((record) => record.recordKey));
+    const outside = Array.from(evolutionSelection.keys()).filter((key) => !matchKeys.has(key)).length;
+    const count = evolutionSelection.size;
+    const title = count
+      ? "可视化已勾选记录所属车型的完整历史（勾选的配置优先显示）"
+      : "未勾选时：当前结果只有一个车型直接打开，否则先选择车型";
+    const markup = `
+      <button type="button" class="evolution-launch${count ? " has-selection" : ""}" data-evolution-launch ${count || matches.length ? "" : "disabled"} title="${title}">${count ? `车型可视化（已选 ${formatCount(count)}）` : "车型可视化"}</button>
+      ${outside ? `<span class="evolution-selection-note">包含 ${formatCount(outside)} 条当前筛选外记录</span>` : ""}
+      ${count ? '<button type="button" class="evolution-clear" data-evolution-clear>清空</button>' : ""}
+    `;
+    // 内容不变时保留原按钮元素：结果区重绘（字体加载、窗口缩放）不打断正在进行的点击
+    if (toolbar.dataset.markup === markup) return;
+    toolbar.dataset.markup = markup;
+    toolbar.innerHTML = markup;
+    toolbar.querySelector("[data-evolution-launch]")?.addEventListener("click", (event) => launchEvolution(event.currentTarget));
+    toolbar.querySelector("[data-evolution-clear]")?.addEventListener("click", () => {
+      evolutionSelection.clear();
+      refreshEvolutionSelectionUi();
+      app.querySelector("[data-evolution-launch]")?.focus({ preventScroll: true });
+    });
+  }
+
+  function setCheckboxState(input, keys) {
+    const selected = keys.filter((key) => evolutionSelection.has(key)).length;
+    input.checked = Boolean(keys.length) && selected === keys.length;
+    input.indeterminate = selected > 0 && selected < keys.length;
+  }
+
+  // 选择变化只刷新选择框和工具栏，不重绘表格（保留滚动位置）
+  function refreshEvolutionSelectionUi() {
+    app.querySelectorAll("[data-evolution-select]").forEach((input) => {
+      input.checked = evolutionSelection.has(input.dataset.evolutionSelect);
+    });
+    app.querySelectorAll("[data-evolution-group]").forEach((input) => {
+      setCheckboxState(input, evolutionOutlineGroups[Number(input.dataset.evolutionGroup)] || []);
+    });
+    const pageSelect = app.querySelector("[data-evolution-page-select]");
+    if (pageSelect) setCheckboxState(pageSelect, Array.from(evolutionPageRecords.keys()));
+    updateEvolutionToolbar(evolutionMatches);
+  }
+
+  function toggleEvolutionRecords(keys, checked) {
+    keys.forEach((key) => {
+      const record = evolutionPageRecords.get(key);
+      if (checked && record) evolutionSelection.set(key, record);
+      else if (!checked) evolutionSelection.delete(key);
+    });
+    refreshEvolutionSelectionUi();
+  }
+
+  function bindEvolutionResultControls() {
+    if (!evolutionOn()) return;
+    const stop = (event) => event.stopPropagation();
+    app.querySelectorAll("[data-evolution-select]").forEach((input) => {
+      input.addEventListener("click", stop);
+      input.addEventListener("change", () => toggleEvolutionRecords([input.dataset.evolutionSelect], input.checked));
+    });
+    app.querySelectorAll("[data-evolution-group]").forEach((input) => {
+      input.addEventListener("click", stop);
+      input.addEventListener("change", () => toggleEvolutionRecords(evolutionOutlineGroups[Number(input.dataset.evolutionGroup)] || [], input.checked));
+    });
+    const pageSelect = app.querySelector("[data-evolution-page-select]");
+    if (pageSelect) {
+      pageSelect.addEventListener("click", stop);
+      pageSelect.addEventListener("change", () => toggleEvolutionRecords(Array.from(evolutionPageRecords.keys()), pageSelect.checked));
+    }
+    refreshEvolutionSelectionUi();
+  }
+
+  // 「车型可视化」：有勾选时打开已选记录所属车型的完整历史（已选配置优先）；
+  // 未勾选时全部匹配结果（不限当前分页）只有一个车型就直接打开，否则打开车型选择器
+  function launchEvolution(trigger) {
+    if (evolutionSelection.size) {
+      const refs = Array.from(evolutionSelection.values()).flatMap(evolutionRefs);
+      openEvolutionView({
+        modelKeys: uniqueInOrder(refs.map(evolutionModelKey)),
+        anchorRecordKeys: refs.map((ref) => evolutionData.recordKeyOf(ref, recordSourceName(ref))),
+        selectedConfigurationKeys: uniqueInOrder(refs.map((ref) => evolutionData.configurationKeyForRecord(ref, recordSourceName(ref)))),
+        trigger
+      });
+      return;
+    }
+    const matches = getSearchMatches();
+    const models = new Map();
+    matches.forEach((record) => {
+      uniqueInOrder(evolutionRefs(record).map(evolutionModelKey)).forEach((key) => {
+        const parsed = evolutionData.parseModelKey(key);
+        if (!models.has(key)) models.set(key, { key, make: parsed.make, model: parsed.model, count: 0 });
+        models.get(key).count += 1;
+      });
+    });
+    if (!models.size) return;
+    if (models.size === 1) {
+      openEvolutionView({ modelKeys: [...models.keys()], anchorRecordKeys: [], selectedConfigurationKeys: [], trigger });
+      return;
+    }
+    window.SizeEvolution.openModelPicker({
+      models: [...models.values()].sort((left, right) => compareValues(left.make, right.make) || compareValues(left.model, right.model)),
+      source: searchState.selectedSource,
+      sourceLabel: evolutionSourceLabel(),
+      kind: searchState.vehicleKind,
+      matchCount: matches.length,
+      returnFocus: trigger,
+      onConfirm: (modelKeys) => openEvolutionView({ modelKeys, anchorRecordKeys: [], selectedConfigurationKeys: [], trigger })
+    });
+  }
+
+  function evolutionSourceLabel() {
+    const configured = (viewConfig.match_sources || []).find((source) => source.name === searchState.selectedSource);
+    return cleanField(configured?.label) || sourceLabel(searchState.selectedSource);
+  }
+
+  // 页面已选的 TYPE / CAB / BED / 版本 作为弹窗的初始配置选择（用户可在弹窗内调整）
+  function evolutionInitialFilters() {
+    const columnValues = (key) => arrayFilterValue(searchState.columnFilters[Object.keys(searchState.columnFilters).find((item) => sameColumn(item, key))]);
+    return {
+      type: uniqueInOrder([searchState.selectedConstruct, ...columnValues("TYPE")]),
+      cab: uniqueInOrder([searchState.selectedCab, ...columnValues("CAB")]),
+      bed: uniqueInOrder([searchState.selectedBed, ...columnValues("BED")]),
+      version: uniqueInOrder(columnValues("版本"))
+    };
+  }
+
+  function openEvolutionView({ modelKeys, anchorRecordKeys, selectedConfigurationKeys, trigger }) {
+    // 打开时冻结当前筛选快照（完整 matches，不是当前分页）
+    const currentMatchRecordKeys = getSearchMatches().flatMap(evolutionHistoryKeys);
+    window.SizeEvolution.open({
+      modelKeys,
+      anchorRecordKeys,
+      selectedConfigurationKeys,
+      source: searchState.selectedSource,
+      sourceLabel: evolutionSourceLabel(),
+      kind: searchState.vehicleKind,
+      unit: searchState.dimensionUnit,
+      currentMatchRecordKeys,
+      initialFilters: evolutionInitialFilters(),
+      echartsSrc: evolutionConfig.echartsPath || "assets/vendor/echarts/echarts.min.js",
+      lookupRule: (record) => exactSizeRule(record),
+      sizeColor: (value) => sizeBackground(value),
+      sizeTextColor: sizeTextColor(),
+      returnFocus: trigger,
+      loadModelHistory: loadEvolutionHistory,
+      onLocateRecord: locateEvolutionRecord
+    });
+  }
+
+  // 读 A0 全量清单（evolution.historyDataPath，未配置时用表格清单），按车型涉及的 MAKE 取同产线 + kind 的分片，
+  // 再按 MAKE/MODEL 精确收窄；不改检索状态
+  async function loadEvolutionHistory(modelKeys) {
+    const models = modelKeys.map(evolutionData.parseModelKey).filter(Boolean);
+    if (!models.length) throw new Error("没有可视化的车型");
+    const { path, payload } = await loadMatchManifest(evolutionConfig.historyDataPath || configuredMatchPath());
+    const sourceName = models[0].source;
+    const source = (payload.sources || []).find((item) => item.name === sourceName);
+    if (!source) throw new Error(`数据清单中没有来源 ${sourceName}`);
+    const configured = (viewConfig.match_sources || []).find((item) => item.name === source.name) || {};
+    const shards = Array.isArray(source.make_groups)
+      ? source.make_groups.filter((group) => models.some((model) => (!group.kind || group.kind === model.kind) && cleanField(group.make) === model.make))
+      : [undefined];
+    const indexes = await Promise.all(shards.map((group) => loadConfiguredMatchSource(path, payload, source, configured, group)));
+    const keys = new Set(modelKeys);
+    const records = indexes.flatMap((index) => index.records).filter((record) => keys.has(evolutionModelKey(record)));
+    return {
+      records,
+      group: source.group,
+      origin: { data: payload.origin || null, rules: sizeRulesOrigin, stores: storeGroupsOrigin }
+    };
+  }
+
+  // 定位原记录：在当前完整结果里按稳定 ID 找到所在页并滚动到该行；「查看该车型记录」先明确切换到该车型范围
+  async function locateEvolutionRecord(target) {
+    if (target.switchToModel) {
+      window.clearTimeout(globalSearchTimer);
+      searchState.query = "";
+      resetSearchFilters();
+      searchState.selectedMake = target.make;
+      searchState.selectedModel = target.model;
+      const globalInput = app.querySelector(".global-search-input");
+      if (globalInput) globalInput.value = "";
+      await loadSearchIndex(currentSearchDirectories());
+    }
+    // target 是 A0 历史行：找到覆盖它的压缩记录，翻到所在页并展开来源行，定位到对应年份
+    const matches = sortSizeRows(getSearchMatches());
+    const index = matches.findIndex((record) => evolutionHistoryKeys(record).includes(target.recordKey));
+    const feedbackAnchor = app.querySelector(".search-summary") || app;
+    if (index < 0) {
+      showCopyFeedback(feedbackAnchor, "该记录不在当前结果中，可在可视化中使用「查看该车型记录」。", false);
+      return;
+    }
+    const record = matches[index];
+    if (recordSources(record).length) expandedSourceRecords.add(record);
+    searchState.resultPage = Math.floor(index / pageSizeFor(matches.length)) + 1;
+    updateSearchResults();
+    const element = app.querySelector(`[data-history-key="${cssEscape(target.recordKey)}"]`)
+      || app.querySelector(`[data-record-key="${cssEscape(record.recordKey)}"]`);
+    if (!element) return;
+    let parent = element.parentElement?.closest("details");
+    while (parent) {
+      parent.open = true;
+      parent = parent.parentElement?.closest("details");
+    }
+    element.classList.remove("is-evolution-located");
+    void element.offsetWidth;
+    element.classList.add("is-evolution-located");
+    element.scrollIntoView({ block: "center", behavior: "smooth" });
+    element.querySelector("[data-evolution-select]")?.focus({ preventScroll: true });
   }
 
   function renderResultsOutline(records, totalCount, maxPage) {
@@ -1661,6 +2020,7 @@
             <span class="outline-field-name">${escapeHtml(field)}</span>
             <strong>${escapeHtml(value)}</strong>
             ${countMarkup}
+            ${evolutionOn() && sameColumn(field, "MODEL") ? evolutionGroupSelectMarkup(groupRecords) : ""}
           </summary>
           <div class="outline-children" role="group">
             ${outlineLevelMarkup(groupRecords, hierarchy, dataColumns, depth + 1, visualDepth + 1)}
@@ -1672,7 +2032,8 @@
 
   function outlineRecordMarkup(record, dataColumns, index, visualDepth, leafField) {
     const leafValue = cleanField(resultColumnValue(record, leafField)) || `记录 ${index + 1}`;
-    return `<details class="outline-group outline-record-node" open style="--outline-depth: ${visualDepth}" role="treeitem"><summary><span class="outline-branch" aria-hidden="true"></span><span class="outline-field-name">${escapeHtml(leafField)}</span><strong class="vehicle-copy-target" tabindex="0" data-copy-text="${escapeHtml(copyTextForRecord(record))}" title="点击复制车型信息">${escapeHtml(leafValue)}</strong></summary><div class="outline-record-fields" role="group">${outlineCombinedLeafMarkup(record, ["SIZE", "长度余量"], visualDepth + 1, "size")}${outlineCombinedLeafMarkup(record, activeDimensionColumns(), visualDepth + 1, "dimensions")}</div></details>`;
+    const keyAttr = evolutionOn() && record.recordKey ? ` data-record-key="${escapeHtml(record.recordKey)}"` : "";
+    return `<details class="outline-group outline-record-node" open style="--outline-depth: ${visualDepth}" role="treeitem"${keyAttr}><summary><span class="outline-branch" aria-hidden="true"></span><span class="outline-field-name">${escapeHtml(leafField)}</span><strong class="vehicle-copy-target" tabindex="0" data-copy-text="${escapeHtml(copyTextForRecord(record))}" title="点击复制车型信息">${escapeHtml(leafValue)}</strong></summary><div class="outline-record-fields" role="group">${evolutionOn() ? evolutionOutlineSelectMarkup(record, visualDepth + 1) : ""}${outlineCombinedLeafMarkup(record, ["SIZE", "长度余量"], visualDepth + 1, "size")}${outlineCombinedLeafMarkup(record, activeDimensionColumns(), visualDepth + 1, "dimensions")}</div></details>`;
   }
 
   function outlineCombinedLeafMarkup(record, columns, visualDepth, kind) {
@@ -1763,6 +2124,9 @@
       const ref = sizeRefAttributes(record, value);
       const displayValue = value || "NULL";
       return `<td class="size-cell size-sticky-col size-sticky-size${ref.className}"${ref.attr} style="--size-bg: ${sizeBackground(value)}; --size-fg: ${sizeTextColor()}"><strong>${escapeHtml(displayValue)}</strong></td>`;
+    }
+    if (sameColumn(column.key, "SHAPE") && value) {
+      return `<td class="shape-cell" tabindex="0" data-shape="${escapeHtml(value)}"><span>${escapeHtml(value)}</span></td>`;
     }
     if (sameColumn(column.key, "CODE") && value) {
       return `<td class="vehicle-copy-target code-cell" tabindex="0" data-copy-text="${escapeHtml(value)}" title="点击复制代号"><strong>${escapeHtml(value)}</strong></td>`;
@@ -2344,7 +2708,9 @@
     const floating = ensureSizeReferenceFloating();
     cells.forEach((cell) => {
       const show = () => {
-        const rule = sizeRuleFor(cell.dataset.sizeRef, cell.dataset.sizeSource);
+        const rule = cell.dataset.sizeRuleId
+          ? exactSizeRuleFor(cell.dataset.sizeRuleId, cell.dataset.sizeSource, cell.dataset.sizeRef, cell.dataset.sizeMatch)
+          : sizeRuleFor(cell.dataset.sizeRef, cell.dataset.sizeSource);
         const ref = rule ? null : sizeReferenceIndex.get(cell.dataset.sizeRef);
         if (!rule && !ref) return;
         floating.innerHTML = rule ? sizeRuleMarkup(rule) : sizeReferenceMarkup(cell.textContent, ref);
@@ -2359,9 +2725,44 @@
     });
   }
 
+  // SHAPE 悬停：压缩记录覆盖多个车形时（A / B）逐个列出中文名与说明
+  function bindShapeHovers() {
+    const cells = app.querySelectorAll("[data-shape]");
+    if (!cells.length) return;
+    const floating = ensureSizeReferenceFloating();
+    cells.forEach((cell) => {
+      const show = () => {
+        floating.innerHTML = shapeMarkup(cell.dataset.shape);
+        floating.classList.add("is-open");
+        positionSizeReferenceFloating(floating, cell.getBoundingClientRect());
+      };
+      cell.addEventListener("mouseenter", show);
+      cell.addEventListener("focus", show);
+      cell.addEventListener("mouseleave", () => floating.classList.remove("is-open"));
+      cell.addEventListener("blur", () => floating.classList.remove("is-open"));
+    });
+  }
+
+  function shapeMarkup(value) {
+    const shapes = value.split("/").map(cleanField).filter(Boolean);
+    const items = shapes.map((shape) => {
+      const info = shapeLabels[shape];
+      return `<div class="shape-reference-item"><strong>${escapeHtml(info?.label || shape)}</strong><code>${escapeHtml(shape)}</code><p>${escapeHtml(info?.description || "暂无中文说明")}</p></div>`;
+    }).join("");
+    const note = shapes.length > 1 ? "该记录覆盖的年份含多种车形" : "车罩外形分类，不参与尺码计算";
+    return `<div class="size-reference-meta">车形 SHAPE</div>${items}<div class="shape-reference-note">${note}</div>`;
+  }
+
   function sizeRefAttributes(record, value) {
     const key = cleanField(value).toUpperCase();
     const sourceName = recordSourceName(record);
+    const exact = exactSizeRule(record);
+    if (key && exact) {
+      return {
+        attr: ` data-size-ref="${escapeHtml(key)}" data-size-source="${escapeHtml(sourceName)}" data-size-rule-id="${escapeHtml(exact.ruleId)}" data-size-match="${escapeHtml(exact.matchSize)}"`,
+        className: " size-cell-has-ref"
+      };
+    }
     // 该国别有规则时只用规则；没有规则数据（如规则文件缺失）才退回旧 size-ref 参考
     if (!key || !(sizeRuleFor(key, sourceName) || (!sizeRuleScope(sourceName).index && sizeReferenceFor(key)))) {
       return { attr: "", className: "" };
@@ -2392,17 +2793,44 @@
     return { ...scope, size: cleanField(value), matchSizes, rows, tolerance: sizeRuleTolerances.get(scope.region) };
   }
 
+  // 表格数据所依据的 A0 版本（压缩表清单的 a0_version）与尺码规则同版本时才按规则ID 精确解释（版本混用不作为有效匹配解释）；
+  // 可视化历史（A0 全量分片）与压缩表同 A0 版本由站点校验保证
+  function sizeRuleVersionsConsistent() {
+    const origin = matchDataOrigins.get(configuredMatchPath());
+    const versions = [origin?.a0_version || origin?.version, sizeRulesOrigin?.version];
+    return versions.every(Boolean) && versions[0] === versions[1];
+  }
+
+  function exactSizeRule(record) {
+    const ruleId = cleanField(record?.values?.["规则ID"]);
+    if (!ruleId || !sizeRuleVersionsConsistent()) return null;
+    const sourceName = recordSourceName(record);
+    const scope = sizeRuleScope(sourceName);
+    const row = sizeRuleIdIndexes.get(scope.region)?.get(ruleId);
+    if (!row) return null;
+    const matchSize = cleanField(record.values["匹配尺码"]) || (scope.store ? "" : cleanField(record.values["SIZE"] || record.size));
+    return { ruleId, row, region: scope.region, store: scope.store, matchSize, tolerance: sizeRuleTolerances.get(scope.region) };
+  }
+
+  function exactSizeRuleFor(ruleId, sourceName, size, matchSize) {
+    const scope = sizeRuleScope(sourceName);
+    const row = sizeRuleIdIndexes.get(scope.region)?.get(cleanField(ruleId));
+    if (!row) return sizeRuleFor(size, sourceName);
+    return { ...scope, exact: true, ruleId: cleanField(ruleId), size: cleanField(size), matchSizes: [cleanField(matchSize) || cleanField(size)], rows: [row], tolerance: sizeRuleTolerances.get(scope.region) };
+  }
+
   function sizeRuleMarkup(rule) {
     const sections = rule.rows.map((row, index) => {
       const matchSize = cleanField(rule.matchSizes[index]);
-      const via = rule.store && (rule.rows.length > 1 || matchSize.toUpperCase() !== rule.size.toUpperCase())
+      const via = rule.store && (rule.exact || rule.rows.length > 1 || matchSize.toUpperCase() !== rule.size.toUpperCase())
         ? `<div class="size-reference-meta">匹配尺码 ${escapeHtml(matchSize)} → 发货 ${escapeHtml(rule.size)}</div>`
         : "";
       return `${via}${rule.region === "RU" ? sizeRuleRuMarkup(row, rule) : sizeRuleLengthMarkup(row, rule)}`;
     }).join('<hr class="size-reference-divider">');
     const scope = rule.store ? `${rule.region} · 店铺 ${rule.store}` : rule.region;
+    const heading = rule.exact ? `命中规则 ${rule.ruleId}` : "尺码规则";
     return `
-      <div class="size-reference-title">${escapeHtml(rule.size)}<small>${escapeHtml(scope)} 尺码规则</small></div>
+      <div class="size-reference-title">${escapeHtml(rule.size)}<small>${escapeHtml(scope)} ${escapeHtml(heading)}</small></div>
       ${sections}
     `;
   }
@@ -2876,13 +3304,7 @@
     } catch (error) {
       viewConfig = defaultViewConfig;
     }
-    if (config.matchDataPath) {
-      viewConfig = {
-        ...viewConfig,
-        excel_source: { ...(viewConfig.excel_source || {}), match_data_path: config.matchDataPath },
-        match_sources: config.matchSources || []
-      };
-    }
+    applyPageMatchConfig();
     searchState.selectedSource = defaultSourceFilter();
   }
 
@@ -3018,14 +3440,21 @@
     sizeRuleIndexes.clear();
     sizeRuleTolerances.clear();
     storeShippingSizes.clear();
+    sizeRulesOrigin = rules?.source || null;
+    storeGroupsOrigin = groups?.source || null;
+    sizeRuleIdIndexes.clear();
     Object.entries(rules?.regions || {}).forEach(([region, payload]) => {
       const keyField = (payload.headers || [])[0];
       const index = new Map();
+      const byId = new Map();
       (payload.rows || []).forEach((row) => {
         const key = cleanField(row[keyField]).toUpperCase();
         if (key && !index.has(key)) index.set(key, row);
+        const id = cleanField(row["规则ID"]);
+        if (id && !byId.has(id)) byId.set(id, row);
       });
       sizeRuleIndexes.set(region.toUpperCase(), index);
+      sizeRuleIdIndexes.set(region.toUpperCase(), byId);
       sizeRuleTolerances.set(region.toUpperCase(), payload.length_tolerance);
     });
     Object.entries(groups?.stores || {}).forEach(([store, rows]) => {
@@ -3135,11 +3564,13 @@
     return measureTextWidth(String(label), 800) + 44;
   }
 
-  function autoColumnWidth(column, label, records = []) {
+  function autoColumnWidth(column, label, records = [], hasToggle = false) {
     const header = headerColumnWidth(label);
-    // MAKE 单元格带展开按钮（三角 + 来源条数）时多留位置
-    const toggle = column === "MAKE" && records.some((record) => recordSources(record).length) ? 36 : 0;
-    const content = Math.min(contentColumnWidth(column, records), columnWidthCap(column)) + toggle;
+    // 展开开关列（CODE，或无 CODE 时的 MAKE）带三角 + 来源条数，多留位置
+    const toggle = hasToggle ? 36 : 0;
+    // SHAPE 以小字显示（viewer.css .shape-cell 0.78em），按缩小后的宽度留位置
+    const scale = sameColumn(column, "SHAPE") ? 0.8 : 1;
+    const content = Math.min(contentColumnWidth(column, records) * scale, columnWidthCap(column)) + toggle;
     return `${Math.ceil(Math.max(header, content, 56))}px`;
   }
 

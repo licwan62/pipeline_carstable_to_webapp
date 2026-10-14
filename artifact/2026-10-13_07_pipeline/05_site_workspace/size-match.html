@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>尺码配对</title>
+  <link rel="stylesheet" href="assets/app/viewer.css?v=20261013-3">
+  <link rel="stylesheet" href="assets/app/size-evolution.css?v=20261013-3">
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.SIZE_CHART_VIEWER = {
+      evolution: {
+        enabled: true,
+        echartsPath: "assets/vendor/echarts/echarts.min.js?v=20261013-3"
+      },
+      pageMode: "search",
+      rootLabel: "全部尺码表",
+      basePath: "data/source/html/",
+      viewConfigPath: "config/size-chart-view.yaml",
+      sizeRefPath: "data/generated/size-ref.json",
+      datasets: [
+        {
+          key: "match",
+          label: "尺码配对",
+          title: "尺码配对",
+          hint: "A0 全量匹配结果：US 全量与各店铺发货尺码、EU、RU；支持勾选后车型可视化",
+          matchDataPath: "data/generated/size-match-full.json",
+          matchSources: [
+            { name: "US", label: "US 全量", group: "US" },
+            { name: "HNT", label: "US · HNT", group: "US" },
+            { name: "TM", label: "US · TM", group: "US" },
+            { name: "TM_拆分", label: "US · TM_拆分", group: "US" },
+            { name: "EU", label: "EU", group: "EU" },
+            { name: "RU", label: "RU", group: "RU" }
+          ]
+        },
+        {
+          key: "code",
+          label: "压缩代号",
+          title: "压缩代号 · 尺码配对",
+          hint: "A1 压缩尺码表：按 CODE 代号查询 US 及各店铺；点 MAKE 展开来源车型各年份长宽高",
+          matchDataPath: "data/generated/size-match-code.json",
+          fieldOrder: ["CODE", "MODEL", "版本", "TYPE", "YEAR", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "SIZE"],
+          searchPlaceholder: "Search code, make, model, type, size, year...",
+          evolution: false,
+          matchSources: [
+            { name: "US", label: "US 全量", group: "US" },
+            { name: "HNT", label: "US · HNT", group: "US" },
+            { name: "TM", label: "US · TM", group: "US" },
+            { name: "TM_拆分", label: "US · TM_拆分", group: "US" }
+          ]
+        }
+      ],
+      directories: [
+        {
+                "name": "HNT/nonpick",
+                "files": [
+                        "output_001.html",
+                        "output_002.html",
+                        "output_003.html",
+                        "output_004.html",
+                        "output_005.html"
+                ]
+        },
+        {
+                "name": "HNT/pick",
+                "files": [
+                        "output_001.html"
+                ]
+        },
+        {
+                "name": "TM/nonpick",
+                "files": [
+                        "output_001.html",
+                        "output_002.html",
+                        "output_003.html",
+                        "output_004.html",
+                        "output_005.html"
+                ]
+        },
+        {
+                "name": "TM/pick",
+                "files": [
+                        "output_001.html"
+                ]
+        },
+        {
+                "name": "TM_拆分/nonpick",
+                "files": [
+                        "output_001.html"
+                ]
+        },
+        {
+                "name": "US/nonpick",
+                "files": [
+                        "output_001.html",
+                        "output_002.html",
+                        "output_003.html",
+                        "output_004.html",
+                        "output_005.html",
+                        "output_006.html"
+                ]
+        },
+        {
+                "name": "US/pick",
+                "files": [
+                        "output_001.html"
+                ]
+        }
+]
+    };
+  </script>
+  <script src="assets/app/size-evolution-data.js?v=20261013-3"></script>
+  <script src="assets/app/size-evolution.js?v=20261013-3"></script>
+  <script src="assets/app/viewer.js?v=20261013-3"></script>
+  <script src="assets/app/site-common.js?v=20261013-3"></script>
+</body>
+</html>

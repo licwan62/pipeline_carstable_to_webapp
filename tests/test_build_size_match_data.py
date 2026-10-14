@@ -51,3 +51,12 @@ def test_us_stores_and_eu_sources(tmp_path):
 def test_renamed_sales_column_fills_sales_total():
     record = mod.to_record({"MAKE": "Acura", "MODEL": "ADX", "YEAR": "2025", "尺寸组销量": "131"}, "US")
     assert record["values"]["销量合计"] == "131"
+
+
+def test_shape_column_and_rule_identity_fields_pass_through():
+    # SHAPE（03 COVER_SHAPE）作为表格列紧跟 TYPE；规则ID / 匹配尺码 保留在 values，供可视化追溯命中规则
+    assert mod.COLUMNS.index("SHAPE") == mod.COLUMNS.index("TYPE") + 1
+    row = {"MAKE": "Acura", "MODEL": "ADX", "YEAR": "2025", "结构": "SUV", "SHAPE": "SUV-C", "自动尺码": "YM",
+           "匹配尺码": "YL", "规则ID": "R0123456789"}
+    values = mod.to_record(row, "HNT")["values"]
+    assert (values["SHAPE"], values["匹配尺码"], values["规则ID"], values["SIZE"]) == ("SUV-C", "YL", "R0123456789", "YM")
