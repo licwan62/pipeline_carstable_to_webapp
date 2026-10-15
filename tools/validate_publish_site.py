@@ -82,8 +82,8 @@ CODE_SOURCES = ("US", "HNT", "TM", "TM_拆分")
 def validate_size_match_code(site_root: Path, errors: list[str]) -> int:
     """尺码配对页的压缩尺码表（size-match-code.json）：清单中每个数据源的 MAKE 分片存在、行数一致、记录带来源行；
     US 区域产线的记录都带 CODE，全局搜索用的 vehicle-codes.json 收录每条记录 CODE 的前四位。"""
-    pages = [site_root / "size-match.html", site_root / "size-match-code.html"]
-    if not any(page.is_file() and "size-match-code.json" in page.read_text(encoding="utf-8") for page in pages):
+    page = site_root / "size-match.html"
+    if not (page.is_file() and "size-match-code.json" in page.read_text(encoding="utf-8")):
         return 0
     manifest_path = site_root / "data" / "generated" / "size-match-code.json"
     manifest = read_json(manifest_path, errors)
@@ -112,7 +112,7 @@ def validate_size_match_code(site_root: Path, errors: list[str]) -> int:
 
 
 EVOLUTION_PAGE = "size-match.html"
-EVOLUTION_FREE_PAGES = ("size-chart.html", "size-charts.html", "size-match-code.html")
+EVOLUTION_FREE_PAGES = ("size-chart.html", "size-charts.html")
 EVOLUTION_HISTORY = "data/generated/size-match-full.json"
 ASSET_LINK = re.compile(r"""["'](assets/[\w./-]+\.(?:js|css))(?:\?v=[\w-]+)?["']""")
 
@@ -155,6 +155,28 @@ def validate_size_evolution(site_root: Path, errors: list[str]) -> bool:
     return True
 
 
+# viewer.js 拆出的模块（数据纯函数 window.SizeViewerData → SIZE 规则 window.SizeViewerRules），须按此顺序先于 viewer.js 加载
+VIEWER_MODULES = ["assets/app/viewer-data.js", "assets/app/viewer-rules.js"]
+
+
+def validate_viewer_data(site_root: Path, errors: list[str]) -> int:
+    """加载 viewer.js 的页面必须在它之前按顺序加载 VIEWER_MODULES。返回检查的页面数。"""
+    pages = 0
+    for page in sorted(site_root.glob("*.html")):
+        text = page.read_text(encoding="utf-8")
+        viewer = text.find('src="assets/app/viewer.js')
+        if viewer < 0:
+            continue
+        pages += 1
+        positions = [text.find(f'src="{module}') for module in VIEWER_MODULES]
+        if any(position < 0 for position in positions) or positions != sorted(positions) or positions[-1] > viewer:
+            errors.append(f"{page.name} must load {' then '.join(VIEWER_MODULES)} before assets/app/viewer.js")
+    for module in VIEWER_MODULES:
+        if pages and not (site_root / module).is_file():
+            errors.append(f"{module} is missing")
+    return pages
+
+
 def validate_rule_ids(site_root: Path, generated: Path, errors: list[str]) -> None:
     """A0 全量表的 规则ID（命中规则）必须都能在同版本 size-rules.json 对应国别的规则表中找到。"""
     rules = read_json(generated / "size-rules.json", errors).get("regions") or {}
@@ -172,7 +194,7 @@ def validate_rule_ids(site_root: Path, generated: Path, errors: list[str]) -> No
 
 
 def validate_merged_match_page(site_root: Path, errors: list[str]) -> bool:
-    """尺码配对页只有一张表：A1 压缩尺码表（size-match-code.json），不再有数据视图切换；旧 size-match-code.html 只做跳转。"""
+    """尺码配对页只有一张表：A1 压缩尺码表（size-match-code.json），不再有数据视图切换；旧 size-match-code.html 已弃用，不得再发布。"""
     page = site_root / "size-match.html"
     text = page.read_text(encoding="utf-8") if page.is_file() else ""
     if "size-match-code.json" not in text:
@@ -181,11 +203,8 @@ def validate_merged_match_page(site_root: Path, errors: list[str]) -> bool:
         errors.append("size-match.html must use size-match-code.json as its only table")
     if "datasets:" in text:
         errors.append("size-match.html must not declare switchable data views")
-    redirect = site_root / "size-match-code.html"
-    if redirect.is_file():
-        redirect_text = redirect.read_text(encoding="utf-8")
-        if "size-match.html" not in redirect_text or "viewer.js" in redirect_text:
-            errors.append("size-match-code.html must only redirect to size-match.html")
+    if (site_root / "size-match-code.html").exists():
+        errors.append("size-match-code.html is deprecated and must not be published")
     return True
 
 
@@ -247,6 +266,7 @@ def validate_publish_site(site_root: Path) -> dict[str, int]:
     code_rows = validate_size_match_code(site_root, errors)
     merged = validate_merged_match_page(site_root, errors)
     evolution = validate_size_evolution(site_root, errors)
+    validate_viewer_data(site_root, errors)
 
     if errors:
         raise ValueError("publish site validation failed:\n- " + "\n- ".join(errors))

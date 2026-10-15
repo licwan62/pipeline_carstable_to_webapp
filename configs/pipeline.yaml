@@ -2,15 +2,19 @@
 # 可选 AI 补全通过环境变量启用：AI_ENRICH=1、AI_API_KEY、AI_MODEL、AI_BASE_URL。
 repos:
   pipeline: "."
-  compress: "../../Scripts/compress_to_size_chart"
+  # 只供旧手工输入/增量模式（tools/run_legacy.py）；正式模式不依赖它，批次清单登记其版本（required: false）
+  compress: "../compress_to_size_chart"
 
 paths:
   # 产线输入：all_cars_data 的已发布交付物（相对本仓库；两仓库同级）。input_dir 仅供旧的手工输入/增量流程使用。
+  # 运行开始时按 manifest 校验并固定到 work/<批次>/upstream/，之后各步骤只读固定副本（tools/upstream_pin.py）。
+  # compressed_output_dir 原名 a2_output_dir（旧键仍兼容，两者同时出现且不一致时报错）。
   a0_output_dir: "../all_cars_data/A0.尺码计算/output"
-  a2_output_dir: "../all_cars_data/A1.压缩尺寸信息/output"
+  compressed_output_dir: "../all_cars_data/A1.压缩尺寸信息/output"
+  # 新旧尺码对应：正式读取固定的 A0 发布物 US/新旧尺码对应.csv；仅当 A0 尚未发布该文件时退回下面的兼容路径（A0 data/）
   size_code_map_file: "../all_cars_data/A0.尺码计算/data/参考/新旧尺码对应/新旧尺码对应2.csv"
   input_dir: "input/0925"
-  artifact_root: "artifact"
+  artifact_root: "artifact"   # 批次清单与去重后的站点字节；中间文件在 work/<批次>/（不纳入 Git）
   public_dir: "public"
   nas_publish_dir: '\\NAS8824B4\Web\car'
   logs_dir: "logs"
@@ -56,24 +60,24 @@ defaults:
 
 variables:
   scripts_root: "{root}/.."
-  compressed_fitment_dir: "{artifact_dir}/01_compressed_fitment"
-  user_size_json_file: "{artifact_dir}/02_user_size.json"
+  compressed_fitment_dir: "{work_dir}/01_compressed_fitment"
+  user_size_json_file: "{work_dir}/02_user_size.json"
   user_size_rules_file: "{root}/configs/user-size-rules.json"
   type_structure_abbreviations_file: "{root}/configs/type-structure-abbreviations.json"
   # TYPE 人工确认表：自动缩写有损（去 Inc:、删字母、截断）时需在此填写 确认TYPE；待确认清单每次写入批次。
   type_confirm_file: "{root}/configs/type-manual-confirm.csv"
-  type_pending_file: "{artifact_dir}/02_type_待确认.csv"
+  type_pending_file: "{work_dir}/02_type_待确认.csv"
   user_size_ai_config_file: "{root}/configs/ai-user-size.yaml"
-  store_csv_dir: "{artifact_dir}/03_store_csv"
-  store_html_dir: "{artifact_dir}/04_store_html"
-  site_workspace_dir: "{artifact_dir}/05_site_workspace"
+  store_csv_dir: "{work_dir}/03_store_csv"
+  store_html_dir: "{work_dir}/04_store_html"
+  site_workspace_dir: "{work_dir}/05_site_workspace"
   webapp_repo: "{scripts_root}/publish_tables_to_webapp"
 
 steps:
-  import_a2_compressed:
+  import_compressed_tables:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/import_a2_compressed.py, --a0-output, "{a0_output_dir}", --a2-output, "{a2_output_dir}", --config, "{source_config}", --output-dir, "{input_tables_dir}", --output-config, "{pipeline_config}", --compressed-root, "{compressed_fitment_dir}"]
+    command: ["{python}", tools/import_compressed_tables.py, --a0-output, "{a0_output_dir}", --compressed-output, "{compressed_output_dir}", --config, "{source_config}", --output-dir, "{input_tables_dir}", --output-config, "{pipeline_config}", --compressed-root, "{compressed_fitment_dir}"]
     check_exists: ["{input_tables_dir}", "{pipeline_config}", "{compressed_fitment_dir}"]
 
   build_user_size_json:
@@ -97,10 +101,10 @@ steps:
   build_public_site:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/build_publish_site.py, --publish-repo, "{webapp_repo}", --html-root, "{store_html_dir}", --pipeline-config, "{pipeline_config}", --html-style-config, "{root}/configs/html-style.yaml", --workspace, "{site_workspace_dir}", --site-output, "{public_dir}"]
+    command: ["{python}", tools/build_publish_site.py, --publish-repo, "{webapp_repo}", --html-root, "{store_html_dir}", --pipeline-config, "{pipeline_config}", --html-style-config, "{root}/configs/html-style.yaml", --workspace, "{site_workspace_dir}", --site-output, "{public_dir}", --a0-dir, "{a0_output_dir}", --compressed-dir, "{compressed_output_dir}", --site-manifest, "{work_dir}/site_manifest.json"]
     check_exists: ["{case_public}/index.html"]
 
   publish_nas_site:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/publish_site_copy.py, --source, "{public_dir}", --destination, "{nas_publish_dir}", --best-effort]
+    command: ["{python}", tools/publish_site_copy.py, --source, "{public_dir}", --destination, "{nas_publish_dir}", --best-effort, --status-file, "{work_dir}/nas_publish.json"]

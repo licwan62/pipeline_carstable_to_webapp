@@ -51,7 +51,7 @@ def test_build_writes_three_independent_regions_and_stores(tmp_path):
     counts = mod.build(src, out)
     rules = json.loads((out / "size-rules.json").read_text(encoding="utf-8"))
     groups = json.loads((out / "store-groups.json").read_text(encoding="utf-8"))
-    assert counts == {"US": 1, "EU": 1, "RU": 1, "stores": 1}
+    assert counts == {"US": 1, "EU": 1, "RU": 1, "stores": 1, "interface": "markdown-legacy"}
     assert rules["regions"]["RU"]["headers"] == ["亚马逊尺码", "OZON尺码"]
     assert groups["stores"]["HNT"] == [{"匹配尺码": "2M", "发货尺码": "2M"}]
     assert rules["regions"]["US"]["rows"] == [{"尺码": "2M", "分类": "两厢车", "备注": "a|b"}]
@@ -62,5 +62,51 @@ def test_build_rejects_hash_mismatch(tmp_path):
     src = tmp_path / "src"
     src.mkdir()
     make_source(src, tamper=True)
+    with pytest.raises(ValueError, match="sha256"):
+        mod.build(src, tmp_path / "out")
+
+
+def add_json_interface(src, *, eu_tolerance=None):
+    """A0 2026-10-14 起的机器接口：<国别>/尺码规则.json 与 US/店铺货架.json（内容与 make_source 的 md 表格同源）。"""
+    payloads = {
+        "US/尺码规则.json": {"headers": ["尺码", "分类", "备注"], "rules": [{"尺码": "2M", "分类": "两厢车", "备注": "a|b"}], "length_tolerance_mm": 550},
+        "EU/尺码规则.json": {"headers": ["尺码", "分类"], "rules": [{"尺码": "2M", "分类": "两厢车"}], "length_tolerance_mm": eu_tolerance},
+        "RU/尺码规则.json": {"headers": ["亚马逊尺码", "OZON尺码"], "rules": [{"亚马逊尺码": " 2M ", "OZON尺码": "2XS"}], "length_tolerance_mm": 635},
+        "US/店铺货架.json": {"stores": {"HNT": [{"匹配尺码": "2M", "发货尺码": "2M"}]}},
+    }
+    manifest = json.loads((src / "manifest.json").read_text(encoding="utf-8"))
+    for name, payload in payloads.items():
+        data = json.dumps(payload, ensure_ascii=False).encode()
+        (src / name).write_bytes(data)
+        manifest["deliverables"].append({"file": name, "sha256": hashlib.sha256(data).hexdigest()})
+    (src / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+
+
+def test_json_interface_matches_markdown_interface(tmp_path):
+    md_src, json_src = tmp_path / "md", tmp_path / "json"
+    md_src.mkdir()
+    json_src.mkdir()
+    make_source(md_src)
+    make_source(json_src)
+    add_json_interface(json_src)
+    assert mod.build(json_src, tmp_path / "out_json")["interface"] == "json"
+    mod.build(md_src, tmp_path / "out_md")
+    from_json = json.loads((tmp_path / "out_json" / "size-rules.json").read_text(encoding="utf-8"))
+    from_md = json.loads((tmp_path / "out_md" / "size-rules.json").read_text(encoding="utf-8"))
+    assert {r: v.pop("file") for r, v in from_json["regions"].items()} == {r: f"{r}/尺码规则.json" for r in ("US", "EU", "RU")}
+    for value in from_md["regions"].values():
+        value.pop("file")
+    assert from_json == from_md
+    assert (tmp_path / "out_json" / "store-groups.json").read_bytes() == (tmp_path / "out_md" / "store-groups.json").read_bytes()
+
+
+def test_json_interface_is_verified_and_strict_mode_rejects_markdown(tmp_path):
+    src = tmp_path / "src"
+    src.mkdir()
+    make_source(src)
+    with pytest.raises(ValueError, match="未发布"):
+        mod.build(src, tmp_path / "out", allow_markdown=False)
+    add_json_interface(src)
+    (src / "US/店铺货架.json").write_bytes(b'{"stores": {}}')
     with pytest.raises(ValueError, match="sha256"):
         mod.build(src, tmp_path / "out")

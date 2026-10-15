@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
-"""把上游 A0.尺码计算/output 发布的尺码匹配报告中的尺码规则和店铺货架转成网站参考页数据。
+"""把上游 A0.尺码计算/output 发布的尺码规则和店铺货架转成网站参考页数据。
 
-A0 不再单独发布规则/货架 CSV，规则全文与店铺货架写在 <国别>/尺码匹配报告.md 的表格中：
+正式接口（A0 2026-10-14 起发布，见 A0 AGENTS.md）：
+  <国别>/尺码规则.json   规则表（headers + rules，末列 规则ID）、参数、length_tolerance_mm
+  US/店铺货架.json       stores: {店铺: [{匹配尺码, 发货尺码}]}
+A0 manifest 未登记这些文件时（更早的 A0 版本），退回兼容模式解析 <国别>/尺码匹配报告.md 的表格：
   ## 尺码规则 / ### 规则表（N 条）          -> 该国规则（表头 + 行）
   ### 店铺货架（匹配尺码 → 发货尺码）        -> 仅 US 报告
+两种接口生成的规则行与货架逐项一致（值按 md 单元格规则归一：换行变空格、去首尾空白），仅 file 字段指向实际来源文件。
 读取 manifest.json 校验 sha256 后，写出：
   size-rules.json   {source, regions: {US/EU/RU: {file, headers, rows, length_tolerance}}}
   store-groups.json {source, stores: {店铺: [{匹配尺码, 发货尺码}]}}
@@ -26,6 +30,8 @@ from pipeline_paths import configured_path
 DEFAULT_SOURCE = configured_path("a0_output_dir")  # configs/pipeline.yaml paths.a0_output_dir
 REGIONS = ("US", "EU", "RU")
 REPORT_FILES = {region: f"{region}/尺码匹配报告.md" for region in REGIONS}
+RULES_FILES = {region: f"{region}/尺码规则.json" for region in REGIONS}
+SHELF_FILE = "US/店铺货架.json"
 RULES_HEADING = "### 规则表"  # A0 报告“## 尺码规则”下的子节，标题带条数，按前缀匹配
 SHELF_HEADING = "### 店铺货架"
 CELL_SPLIT = re.compile(r"(?<!\\)\|")
@@ -84,25 +90,64 @@ def write_json(path: Path, payload: dict) -> None:
     os.replace(temporary, path)
 
 
-def build(source_dir: Path, out_dir: Path) -> dict[str, int]:
-    manifest = json.loads((source_dir / "manifest.json").read_text(encoding="utf-8"))
-    source = {"node": manifest["node"], "version": manifest["version"], "published_at": manifest["published_at"]}
+def cell_text(value: object) -> str:
+    """与 md 单元格同一归一：A0 写 md 时换行变空格，网站解析时去首尾空白。"""
+    return str(value).replace("\n", " ").strip()
+
+
+def uses_json_interface(manifest: dict) -> bool:
+    listed = {item["file"] for item in manifest["deliverables"]}
+    return SHELF_FILE in listed and all(name in listed for name in RULES_FILES.values())
+
+
+def from_json(source_dir: Path, manifest: dict) -> tuple[dict, dict[str, list[dict[str, str]]]]:
+    regions = {}
+    for region, name in RULES_FILES.items():
+        payload = json.loads(read_verified_text(source_dir, manifest, name))
+        headers = list(payload["headers"])
+        rows = [{header: cell_text(rule.get(header, "")) for header in headers} for rule in payload["rules"]]
+        rows = [row for row in rows if any(row.values())]
+        regions[region] = {"file": name, "headers": headers, "rows": rows, "length_tolerance": payload.get("length_tolerance_mm")}
+    shelf = json.loads(read_verified_text(source_dir, manifest, SHELF_FILE))
+    stores = {str(store): [{"匹配尺码": cell_text(i["匹配尺码"]), "发货尺码": cell_text(i["发货尺码"])} for i in items]
+              for store, items in shelf["stores"].items()}
+    return regions, stores
+
+
+def from_markdown(source_dir: Path, manifest: dict) -> tuple[dict, dict[str, list[dict[str, str]]]]:
+    """兼容模式：A0 早于 2026-10-14 的版本没有 JSON 接口，只能解析报告中的 md 表格。"""
     reports = {region: read_verified_text(source_dir, manifest, name) for region, name in REPORT_FILES.items()}
     regions = {}
     for region, text in reports.items():
         headers, rows = md_table_after(text, RULES_HEADING, REPORT_FILES[region])
-        if not rows:
-            raise ValueError(f"{REPORT_FILES[region]} 没有规则行")
         regions[region] = {"file": REPORT_FILES[region], "headers": headers, "rows": rows, "length_tolerance": length_tolerance(text)}
     _, shelf = md_table_after(reports["US"], SHELF_HEADING, REPORT_FILES["US"])
     stores: dict[str, list[dict[str, str]]] = {}
     for row in shelf:
         stores.setdefault(row["店铺"], []).append({"匹配尺码": row["匹配尺码"], "发货尺码": row["发货尺码"]})
+    return regions, stores
+
+
+def build(source_dir: Path, out_dir: Path, *, allow_markdown: bool = True) -> dict[str, int]:
+    manifest = json.loads((source_dir / "manifest.json").read_text(encoding="utf-8"))
+    source = {"node": manifest["node"], "version": manifest["version"], "published_at": manifest["published_at"]}
+    if uses_json_interface(manifest):
+        regions, stores = from_json(source_dir, manifest)
+        interface = "json"
+    elif allow_markdown:
+        print(f"[size-rules] 警告：A0 {manifest['version']} 未发布 尺码规则.json/店铺货架.json，兼容模式解析尺码匹配报告.md；请重新发布 A0")
+        regions, stores = from_markdown(source_dir, manifest)
+        interface = "markdown-legacy"
+    else:
+        raise ValueError(f"A0 {manifest['version']} 未发布 尺码规则.json/店铺货架.json")
+    for region, item in regions.items():
+        if not item["rows"]:
+            raise ValueError(f"A0 {region} 没有规则行（{item['file']}）")
     if not stores:
-        raise ValueError(f"{REPORT_FILES['US']} 没有店铺货架")
+        raise ValueError("A0 没有店铺货架")
     write_json(out_dir / "size-rules.json", {"source": source, "regions": regions})
     write_json(out_dir / "store-groups.json", {"source": source, "stores": stores})
-    return {**{region: len(item["rows"]) for region, item in regions.items()}, "stores": len(stores)}
+    return {**{region: len(item["rows"]) for region, item in regions.items()}, "stores": len(stores), "interface": interface}
 
 
 def main() -> int:

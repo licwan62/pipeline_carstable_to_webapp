@@ -181,18 +181,27 @@ def main() -> int:
         action="store_true",
         help="Report deployment errors as warnings without failing the pipeline.",
     )
+    parser.add_argument("--status-file", type=Path, help="写出 NAS 发布结果 JSON（status: published/failed），供批次清单单独记录")
     args = parser.parse_args()
+
+    def write_status(**record) -> None:
+        if args.status_file:
+            args.status_file.parent.mkdir(parents=True, exist_ok=True)
+            record.update(destination=str(args.destination), publisher=args.publisher)
+            args.status_file.write_text(json.dumps(record, ensure_ascii=False, indent=2, default=str) + "\n", encoding="utf-8")
 
     try:
         result = publish_owned(args.source, args.destination, args.publisher)
     except Exception as error:
         message = f"NAS publish failed: {error}"
+        write_status(status="failed", error=str(error))
         if args.best_effort:
             print(f"WARNING: {message}", file=sys.stderr)
             return 0
         print(f"ERROR: {message}", file=sys.stderr)
         return 1
 
+    write_status(status="published", result=result)
     print(f"Published site: {args.source.absolute()} -> {args.destination.absolute()} {result}")
     return 0
 

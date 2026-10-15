@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -41,11 +40,10 @@ class MergedMatchPageTests(unittest.TestCase):
         for source in ("US", "HNT", "TM", "TM_拆分", "EU", "RU"):
             self.assertIn(f'{{ name: "{source}"', override)
 
-    def test_validator_accepts_single_table_page_and_redirect(self) -> None:
+    def test_validator_accepts_single_table_page(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "size-match.html").write_text(match_page(), encoding="utf-8")
-            shutil.copy2(ROOT / "site_overrides" / "size-match-code.html", root / "size-match-code.html")
             errors: list[str] = []
             self.assertTrue(validate_merged_match_page(root, errors))
             self.assertEqual(errors, [])
@@ -59,20 +57,17 @@ class MergedMatchPageTests(unittest.TestCase):
             validate_merged_match_page(root, errors)
             self.assertEqual(errors, ["size-match.html must not declare switchable data views"])
 
-    def test_validator_rejects_standalone_code_page(self) -> None:
+    def test_validator_rejects_deprecated_code_page(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             (root / "size-match.html").write_text(match_page(), encoding="utf-8")
             (root / "size-match-code.html").write_text(PAGE, encoding="utf-8")
             errors: list[str] = []
             validate_merged_match_page(root, errors)
-            self.assertIn("size-match-code.html must only redirect to size-match.html", errors)
+            self.assertIn("size-match-code.html is deprecated and must not be published", errors)
 
-    def test_redirect_keeps_query_and_drops_view(self) -> None:
-        text = (ROOT / "site_overrides" / "size-match-code.html").read_text(encoding="utf-8")
-        self.assertIn('params.delete("view")', text)
-        self.assertIn("window.location.search", text)
-        self.assertNotIn("viewer.js", text)
+    def test_code_page_is_not_in_overrides(self) -> None:
+        self.assertFalse((ROOT / "site_overrides" / "size-match-code.html").exists())
 
     def test_viewer_has_no_view_toggle(self) -> None:
         viewer = (ROOT / "site_overrides" / "assets" / "app" / "viewer.js").read_text(encoding="utf-8")

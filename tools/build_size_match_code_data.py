@@ -29,7 +29,7 @@ from build_size_match_data import (
 from pipeline_paths import configured_path
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = configured_path("a2_output_dir")  # configs/pipeline.yaml paths.a2_output_dir
+DEFAULT_SOURCE = configured_path("compressed_output_dir")  # configs/pipeline.yaml paths.compressed_output_dir（原 a2_output_dir）
 # 产线 → 所属区域（尺码规则、侧栏大纲按区域分组）；只有 US 区域产线带 CODE（02.代码映射只维护 US）
 LINES = {"US": "US", "HNT": "US", "TM": "US", "TM_拆分": "US", "EU": "EU", "RU": "RU"}
 CODE_LINES = ("US", "HNT", "TM", "TM_拆分")

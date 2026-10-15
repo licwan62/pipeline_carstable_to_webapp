@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-import import_a2_compressed as importer
+import import_compressed_tables as importer
 
 FULL_HEADER = "MAKE,MODEL,版本,结构,YEAR,自动尺码,DIMENSION-ID\n"
 NON_HEADER = "CAR,MAKE,MODEL,YEAR,VERSION,CONST,BACKSIZE\n"

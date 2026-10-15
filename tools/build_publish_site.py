@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import re
 import shutil
 import subprocess
@@ -12,22 +14,21 @@ import yaml
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_size_match_code_data import DEFAULT_SOURCE as SIZE_MATCH_CODE_SOURCE, build as build_size_match_code_data  # noqa: E402
 from build_size_match_data import DEFAULT_SOURCE as SIZE_MATCH_SOURCE, build as build_size_match_data  # noqa: E402
-from build_size_rules_data import DEFAULT_SOURCE, build as build_size_rules_data  # noqa: E402
+from build_size_rules_data import build as build_size_rules_data  # noqa: E402
+from site_promote import promote_site  # noqa: E402
+from validate_publish_site import validate_publish_site  # noqa: E402
 
 
-SKELETON_DIRS = ["assets", "config", "data/generated", "pages"]
+# 外部站点骨架（publish_tables_to_webapp）只复制构建需要的源文件与资源：
+# - data/generated 中的 size-match*.json 由本流水线每次重新生成，不复制，避免旧分片混入；
+# - size-ref.json（旧尺码参考，35 行，本流水线不生成）是页面 sizeRefPath 的静态来源，按白名单单独复制。
+# 当前 public 不再参与构建（原先从 public 回读的 8 个前端文件与 site_overrides/构建结果逐字节一致，见 docs/pipeline.md）。
+SKELETON_DIRS = ["assets", "config", "pages"]
+SKELETON_DATA_FILES = ["data/generated/size-ref.json"]
 SKELETON_FILES = ["README.md", ".nojekyll"]
+SKELETON_TOOLS = ["build_site.py", "export_xlsx_sources.py", "validate_generated_data.py"]
 MATCH_COLUMNS = "MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE"
-PRESERVED_FRONTEND_FILES = [
-    "assets/app/viewer.js",
-    "assets/app/viewer.css",
-    "size-match.html",
-    "size-ref.html",
-    "store-groups.html",
-    "assets/app/site-common.js",
-    "assets/app/size-ref.js",
-    "assets/app/store-groups.js",
-]
+STAGED_SITE = "_site"
 
 
 class IndentedSafeDumper(yaml.SafeDumper):
@@ -48,14 +49,6 @@ def copy_file(source: Path, target: Path) -> None:
         return
     target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(source, target)
-
-
-def preserve_frontend_overrides(site_output: Path, workspace: Path) -> None:
-    """Keep reviewed match-view UI customizations when rebuilding generated data."""
-    for relative in PRESERVED_FRONTEND_FILES:
-        source = site_output / relative
-        if source.is_file():
-            copy_file(source, workspace / relative)
 
 
 def configure_csv_sources(
@@ -122,7 +115,7 @@ def configure_csv_sources(
 
 # 尺码配对页（size-match.html）只有一张表：A1 压缩尺码表（CODE 代号在前，点 MAKE 展开来源车型各年份），
 # US 全量、US 店铺、EU、RU 六个数据源；SHAPE、长度余量、规则ID 由 A0 全量表按 DIMENSION-ID 补齐。
-# 车型可视化的历史仍读 A0 全量分片（evolution.historyDataPath），旧 size-match-code.html 只做跳转。
+# 车型可视化的历史仍读 A0 全量分片（evolution.historyDataPath）；旧 size-match-code.html 已弃用。
 MATCH_PAGE_OVERRIDE = """      matchDataPath: "data/generated/size-match-code.json",
       fieldOrder: ["CODE", "MODEL", "版本", "TYPE", "SHAPE", "YEAR", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"],
       searchPlaceholder: "Search code, make, model, type, shape, size, year...",
@@ -138,7 +131,7 @@ MATCH_PAGE_OVERRIDE = """      matchDataPath: "data/generated/size-match-code.js
 
 
 # 前端资源版本：改动 viewer.js/css、site-common.js、size-evolution*、vendor 资源后递增，构建时统一写入所有页面，避免浏览器沿用旧缓存。
-ASSET_VERSION = "20261013-5"
+ASSET_VERSION = "20261015-1"
 # assets/app/*.js|css 与 assets/vendor/<库>/*.js|css（ECharts 由页面配置 evolution.echartsPath 懒加载，路径同样带 ?v=）
 ASSET_REFERENCE = re.compile(r"(assets/(?:app|vendor/[\w.-]+)/[\w.-]+\.(?:js|css))\?v=[\w-]+")
 
@@ -176,6 +169,34 @@ def add_site_common_script(site_output: Path) -> None:
         page.write_text(text[:end] + tag + text[end:], encoding="utf-8")
 
 
+# viewer.js 拆出的模块，凡加载 viewer.js 的页面都必须按此顺序在它之前加载：
+# viewer-data.js（数据纯函数，window.SizeViewerData）→ viewer-rules.js（SIZE 规则索引与悬停 HTML，window.SizeViewerRules，依赖前者）
+VIEWER_SCRIPT = '<script src="assets/app/viewer.js'
+VIEWER_DATA_ASSET = "assets/app/viewer-data.js"
+VIEWER_RULES_ASSET = "assets/app/viewer-rules.js"
+VIEWER_MODULES = [VIEWER_DATA_ASSET, VIEWER_RULES_ASSET]
+
+
+def add_viewer_module_scripts(site_output: Path) -> None:
+    """在每个加载 viewer.js 的根目录页面中，于 viewer.js 之前按顺序插入尚未加载的 VIEWER_MODULES（幂等）。"""
+    missing = [asset for asset in VIEWER_MODULES if not (site_output / asset).is_file()]
+    if missing:
+        raise FileNotFoundError(f"site_overrides 缺少 {', '.join(missing)}")
+    for page in site_output.glob("*.html"):
+        text = page.read_text(encoding="utf-8")
+        modules = [asset for asset in VIEWER_MODULES if asset not in text]
+        if VIEWER_SCRIPT not in text or not modules:
+            continue
+        start = text.index(VIEWER_SCRIPT)
+        line_start = text.rfind(chr(10), 0, start) + 1
+        indent = text[line_start:start]
+        tags = "".join(f'<script src="{asset}?v={ASSET_VERSION}"></script>' + chr(10) + indent for asset in modules)
+        page.write_text(text[:start] + tags + text[start:], encoding="utf-8")
+
+
+add_viewer_data_script = add_viewer_module_scripts  # 旧名（只注入 viewer-data.js 时的函数名）
+
+
 def add_size_evolution(site_output: Path) -> None:
     """尺码配对页加载可视化样式、脚本并打开 evolution 开关；其他页面不加载（viewer.js 无开关时不显示入口）。"""
     missing = [relative for relative in EVOLUTION_ASSETS if not (site_output / relative).is_file()]
@@ -207,13 +228,19 @@ def stamp_asset_versions(site_output: Path) -> None:
             page.write_text(stamped, encoding="utf-8")
 
 
-def apply_site_overrides(site_output: Path) -> None:
-    """构建完成后叠加项目自有页面和上游发布数据（build_site.py 会重建这些文件）。"""
+def apply_site_overrides(site_output: Path, a0_dir: Path | None = None, compressed_dir: Path | None = None) -> None:
+    """构建完成后叠加项目自有页面和上游发布数据（build_site.py 会重建这些文件）。
+
+    a0_dir/compressed_dir 为本次运行固定的上游副本（run_all 在运行开始固定）；缺省时读 configs 中的上游 output。
+    """
+    a0_dir = a0_dir or SIZE_MATCH_SOURCE
+    compressed_dir = compressed_dir or SIZE_MATCH_CODE_SOURCE
     copy_tree(Path(__file__).resolve().parents[1] / "site_overrides", site_output)
     generated = site_output / "data" / "generated"
-    build_size_rules_data(DEFAULT_SOURCE, generated)
-    build_size_match_data(SIZE_MATCH_SOURCE, generated)
-    build_size_match_code_data(SIZE_MATCH_CODE_SOURCE, generated, SIZE_MATCH_SOURCE)
+    rules = build_size_rules_data(a0_dir, generated)
+    print(f"[size-rules] {rules}")
+    build_size_match_data(a0_dir, generated)
+    build_size_match_code_data(compressed_dir, generated, a0_dir)
     match_page = site_output / "size-match.html"
     text = match_page.read_text(encoding="utf-8")
     if "matchDataPath:" not in text:
@@ -222,18 +249,78 @@ def apply_site_overrides(site_output: Path) -> None:
             raise ValueError("size-match.html 缺少 sizeRefPath，无法注入 US/EU 数据源配置")
         match_page.write_text(text.replace(marker, marker + MATCH_PAGE_OVERRIDE, 1), encoding="utf-8")
     add_site_common_script(site_output)
+    add_viewer_module_scripts(site_output)
     add_size_evolution(site_output)
     stamp_asset_versions(site_output)
 
 
+def prepare_workspace(publish_repo: Path, html_root: Path, workspace: Path) -> None:
+    """在 workspace 中放置外部站点骨架（白名单）、本仓库导出工具与店铺 HTML；不读取当前 public。"""
+    if workspace.exists():
+        shutil.rmtree(workspace)
+    workspace.mkdir(parents=True)
+    for relative in SKELETON_DIRS:
+        copy_tree(publish_repo / relative, workspace / relative)
+    for relative in [*SKELETON_DATA_FILES, *SKELETON_FILES]:
+        copy_file(publish_repo / relative, workspace / relative)
+    for name in SKELETON_TOOLS:
+        copy_file(publish_repo / "tools" / name, workspace / "tools" / name)
+    copy_file(Path(__file__).with_name("export_csv_sources.py"), workspace / "tools" / "export_csv_sources.py")
+    copy_tree(html_root, workspace / "data" / "source" / "html")
+
+
+def site_file_list(site_root: Path) -> list[dict[str, object]]:
+    files = []
+    for path in sorted(p for p in site_root.rglob("*") if p.is_file()):
+        data = path.read_bytes()
+        files.append({"path": path.relative_to(site_root).as_posix(), "sha256": hashlib.sha256(data).hexdigest(), "bytes": len(data)})
+    return files
+
+
+def build_staged_site(
+    publish_repo: Path,
+    html_root: Path,
+    pipeline_config: Path,
+    html_style_config: Path | None,
+    workspace: Path,
+    a0_dir: Path | None = None,
+    compressed_dir: Path | None = None,
+) -> Path:
+    """在 workspace 内完成导出、骨架构建、页面叠加、配对与规则数据、资源版本与完整校验，返回已校验的临时站点。"""
+    prepare_workspace(publish_repo, html_root, workspace)
+    configure_csv_sources(workspace, pipeline_config, html_style_config)
+
+    export_command = [sys.executable, str(workspace / "tools" / "export_csv_sources.py"), "--pipeline-config", str(pipeline_config)]
+    print(f"[export_csv_sources] {' '.join(export_command)}")
+    subprocess.run(export_command, cwd=workspace, check=True)
+
+    command = [sys.executable, str(workspace / "tools" / "build_site.py")]
+    print(f"[build_site] {' '.join(command)}")
+    subprocess.run(command, cwd=workspace, check=True)
+
+    staged = workspace / STAGED_SITE
+    if not staged.exists():
+        raise FileNotFoundError(f"build_site.py did not produce: {staged}")
+    apply_site_overrides(staged, a0_dir, compressed_dir)
+    summary = validate_publish_site(staged)
+    print(f"[validate] staged site: {summary}")
+    return staged
+
+
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Build a webapp site in a local workspace without modifying the publish repo.")
+    parser = argparse.ArgumentParser(
+        description="Build the webapp site in a work directory, validate it, then switch it into --site-output."
+    )
     parser.add_argument("--publish-repo", type=Path, required=True)
     parser.add_argument("--html-root", type=Path, required=True)
     parser.add_argument("--pipeline-config", type=Path, required=True)
     parser.add_argument("--html-style-config", type=Path)
-    parser.add_argument("--workspace", type=Path, required=True)
+    parser.add_argument("--workspace", type=Path, required=True, help="构建工作目录（work/<运行号>/05_site_workspace），每次重建")
     parser.add_argument("--site-output", type=Path, required=True)
+    parser.add_argument("--a0-dir", type=Path, help="本次运行固定的 A0 output 副本（缺省读 configs 的 a0_output_dir）")
+    parser.add_argument("--compressed-dir", type=Path, help="本次运行固定的 A1 压缩表 output 副本（缺省读 configs）")
+    parser.add_argument("--site-manifest", type=Path, help="写出已校验站点的文件清单与 sha256（JSON）")
+    parser.add_argument("--no-promote", action="store_true", help="只构建并校验临时站点，不切换 --site-output")
     args = parser.parse_args()
 
     publish_repo = args.publish_repo.resolve()
@@ -243,54 +330,28 @@ def main() -> None:
     workspace = args.workspace.resolve()
     site_output = args.site_output.resolve()
 
-    if not publish_repo.exists():
-        raise FileNotFoundError(f"Publish repo does not exist: {publish_repo}")
-    if not html_root.exists():
-        raise FileNotFoundError(f"HTML root does not exist: {html_root}")
-    if not pipeline_config.exists():
-        raise FileNotFoundError(f"Pipeline config does not exist: {pipeline_config}")
+    for label, path in (("Publish repo", publish_repo), ("HTML root", html_root), ("Pipeline config", pipeline_config)):
+        if not path.exists():
+            raise FileNotFoundError(f"{label} does not exist: {path}")
     if html_style_config and not html_style_config.exists():
         raise FileNotFoundError(f"HTML style config does not exist: {html_style_config}")
+    if workspace == site_output or site_output in workspace.parents:
+        raise ValueError(f"--workspace 不能位于 --site-output 内：{workspace}")
 
-    if workspace.exists():
-        shutil.rmtree(workspace)
-    workspace.mkdir(parents=True)
-
-    for relative in SKELETON_DIRS:
-        copy_tree(publish_repo / relative, workspace / relative)
-    for relative in SKELETON_FILES:
-        copy_file(publish_repo / relative, workspace / relative)
-
-    copy_file(publish_repo / "tools" / "build_site.py", workspace / "tools" / "build_site.py")
-    copy_file(publish_repo / "tools" / "export_xlsx_sources.py", workspace / "tools" / "export_xlsx_sources.py")
-    copy_file(Path(__file__).with_name("export_csv_sources.py"), workspace / "tools" / "export_csv_sources.py")
-    copy_file(publish_repo / "tools" / "validate_generated_data.py", workspace / "tools" / "validate_generated_data.py")
-    copy_tree(html_root, workspace / "data" / "source" / "html")
-    configure_csv_sources(workspace, pipeline_config, html_style_config)
-    preserve_frontend_overrides(site_output, workspace)
-
-    export_command = [
-        sys.executable,
-        str(workspace / "tools" / "export_csv_sources.py"),
-        "--pipeline-config",
-        str(pipeline_config),
-    ]
-    print(f"[export_csv_sources] {' '.join(export_command)}")
-    subprocess.run(export_command, cwd=workspace, check=True)
-
-    command = [sys.executable, str(workspace / "tools" / "build_site.py")]
-    print(f"[build_site] {' '.join(command)}")
-    subprocess.run(command, cwd=workspace, check=True)
-
-    built_site = workspace / "_site"
-    if not built_site.exists():
-        raise FileNotFoundError(f"build_site.py did not produce: {built_site}")
-
-    if site_output.exists():
-        shutil.rmtree(site_output)
-    shutil.copytree(built_site, site_output)
-    apply_site_overrides(site_output)
-    print(f"Built site: {site_output}")
+    staged = build_staged_site(
+        publish_repo, html_root, pipeline_config, html_style_config, workspace,
+        args.a0_dir.resolve() if args.a0_dir else None,
+        args.compressed_dir.resolve() if args.compressed_dir else None,
+    )
+    files = site_file_list(staged)
+    if args.site_manifest:
+        args.site_manifest.parent.mkdir(parents=True, exist_ok=True)
+        args.site_manifest.write_text(json.dumps({"files": files}, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    if args.no_promote:
+        print(f"Built and validated staged site (not promoted): {staged}")
+        return
+    method = promote_site(staged, site_output, validate_publish_site)
+    print(f"Built site: {site_output} ({len(files)} files, switched by {method})")
 
 
 if __name__ == "__main__":

@@ -18,9 +18,20 @@ def pipeline_config() -> dict:
     return load_config(local if local.is_file() else ROOT / "configs" / "pipeline.yaml")
 
 
+# 语义名 -> 旧名（与 pipeline_core.PATH_KEY_ALIASES 相反方向）
+LEGACY_KEYS = {"compressed_output_dir": "a2_output_dir"}
+
+
 def configured_path(key: str) -> Path:
-    value = (pipeline_config().get("paths") or {}).get(key)
+    paths = pipeline_config().get("paths") or {}
+    new_key = {old: new for new, old in LEGACY_KEYS.items()}.get(key, key)
+    old_key = LEGACY_KEYS.get(new_key)
+    value = paths.get(new_key)
+    legacy = paths.get(old_key) if old_key else None
+    if value and legacy and str(value) != str(legacy):
+        raise ValueError(f"paths.{old_key}（旧名）与 paths.{new_key} 不一致，请只保留 {new_key}")
+    value = value or legacy
     if not value:
-        raise KeyError(f"configs/pipeline.yaml 缺少 paths.{key}")
+        raise KeyError(f"configs/pipeline.yaml 缺少 paths.{new_key}")
     path = Path(value)
     return (path if path.is_absolute() else ROOT / path).resolve()

@@ -3055,3 +3055,55 @@ a.chart-outline-node { text-decoration: none; }
 .shape-reference-item code { color: #667085; font-size: 11px; justify-self: start; }
 .shape-reference-item p { grid-column: 1 / -1; margin: 0; font-size: 12px; line-height: 1.4; color: var(--ink); }
 .shape-reference-note { color: #667085; font-size: 11px; }
+
+/* ===== 结果表头：列名小一号，排序箭头/筛选按钮收窄，避免短内容列（销量合计、长度余量、YEAR 等）被列名撑宽 =====
+   列宽估算见 viewer.js headerColumnWidth（HEADER_FONT_SCALE 与这里的 0.8em 保持一致） */
+.results-table.size-results-table th { padding: 6px 4px 6px 5px; font-size: 0.8em; letter-spacing: 0.01em; }
+.size-results-table .th-header-control { gap: 2px; }
+.size-results-table .th-sort-icon { flex-basis: 7px; width: 7px; }
+.size-results-table .th-filter-button { flex: 0 0 14px; width: 14px; height: 18px; border-radius: 4px; }
+.size-results-table .th-filter-button svg { width: 10px; height: 10px; }
+.size-results-table .header-filter-popover { font-size: 13px; letter-spacing: 0; }
+
+/* ===== 侧栏：窄版。宽度由 --side-width 统一控制（内容区左边距、底部分页条随之调整） ===== */
+:root { --side-width: 112px; --side-width-collapsed: 52px; }
+@media (min-width: 761px) {
+  .viewer-shell { padding-left: calc(var(--side-width) + 14px); }
+  .viewer-shell.is-sidebar-collapsed { padding-left: calc(var(--side-width-collapsed) + 14px); }
+  .viewer-side { width: var(--side-width); gap: 10px; padding: 10px 8px; box-shadow: none; background: #fbfcfe; }
+  .viewer-shell.is-sidebar-collapsed .viewer-side { width: var(--side-width-collapsed); padding-inline: 6px; }
+  .result-limit-bar { left: var(--side-width); }
+  .viewer-shell.is-sidebar-collapsed .result-limit-bar { left: var(--side-width-collapsed); }
+
+  .sidebar-head { justify-items: start; }
+  .viewer-shell.is-sidebar-collapsed .sidebar-head { justify-items: center; }
+  .sidebar-toggle { width: 30px; height: 30px; font-size: 17px; border-radius: 6px; }
+
+  .sidebar-nav { gap: 1px; }
+  .sidebar-nav a {
+    position: relative; gap: 6px; min-height: 30px; padding: 0 8px; border: 0; border-radius: 5px;
+    font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sidebar-nav a:focus, .sidebar-nav a:hover { background: #eef3f8; }
+  .sidebar-nav a.is-active { background: #e3edf8; color: var(--accent-dark); }
+  .sidebar-nav a.is-active::before {
+    content: ""; position: absolute; left: 0; top: 6px; bottom: 6px; width: 3px; border-radius: 2px; background: var(--accent);
+  }
+  .viewer-shell.is-sidebar-collapsed .sidebar-nav a { min-height: 32px; }
+  .viewer-shell.is-sidebar-collapsed .nav-icon { width: 30px; height: 26px; font-size: 13px; }
+
+  .sidebar-filter-title { padding: 0 8px; font-size: 10.5px; letter-spacing: 0.06em; }
+  .source-outline { padding-top: 8px; }
+  .source-outline .chart-outline { margin-top: 4px; }
+  .sidebar-outline .chart-outline-node { min-height: 26px; padding: 0 8px; gap: 6px; border: 0; }
+  .sidebar-outline .chart-outline-node span:last-child { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .sidebar-outline .chart-outline-node:hover { background: #eef3f8; }
+  .sidebar-outline .chart-outline-children { margin-left: 6px; padding-left: 6px; }
+
+  .sidebar-tools { gap: 6px; padding-top: 8px; }
+  .sidebar-tools .sidebar-unit-toggle {
+    gap: 0; padding: 2px; border: 1px solid var(--line); border-radius: 6px; background: #ffffff;
+  }
+  .sidebar-tools .sidebar-unit-toggle button { min-height: 24px; padding: 0; border: 0; border-radius: 4px; font-size: 11px; }
+  .settings-launch { min-height: 30px; padding: 0 6px; font-size: 12px; }
+}

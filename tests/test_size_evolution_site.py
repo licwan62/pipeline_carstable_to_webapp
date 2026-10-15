@@ -39,7 +39,7 @@ def write_site(root: Path, *, rules_version: str = "20261013_12") -> None:
     for name in ("viewer.js", "viewer.css"):
         (root / "assets" / "app" / name).write_text("", encoding="utf-8")
     (root / "size-match.html").write_text(MATCH_PAGE, encoding="utf-8")
-    (root / "size-match-code.html").write_text(MATCH_PAGE, encoding="utf-8")
+    (root / "size-chart.html").write_text(MATCH_PAGE, encoding="utf-8")
     generated = root / "data" / "generated"
     generated.mkdir(parents=True)
     origin = {"node": "size-calculation", "version": "20261013_12"}
@@ -78,7 +78,7 @@ class SizeEvolutionSiteTests(unittest.TestCase):
             self.assertIn(f"assets/app/viewer.js?v={version}", page)
             # 可视化脚本在 viewer.js 之前加载
             self.assertLess(page.index("size-evolution.js"), page.index("assets/app/viewer.js"))
-            self.assertNotIn("size-evolution", (root / "size-match-code.html").read_text(encoding="utf-8"))
+            self.assertNotIn("size-evolution", (root / "size-chart.html").read_text(encoding="utf-8"))
             errors: list[str] = []
             self.assertTrue(validate_size_evolution(root, errors))
             self.assertEqual(errors, [])
@@ -105,10 +105,10 @@ class SizeEvolutionSiteTests(unittest.TestCase):
             root = Path(directory)
             write_site(root)
             build_publish_site.add_size_evolution(root)
-            shutil.copy2(root / "size-match.html", root / "size-match-code.html")
+            shutil.copy2(root / "size-match.html", root / "size-chart.html")
             errors: list[str] = []
             validate_size_evolution(root, errors)
-            self.assertIn("size-match-code.html must not load size-evolution", errors)
+            self.assertIn("size-chart.html must not load size-evolution", errors)
 
 
 if __name__ == "__main__":
