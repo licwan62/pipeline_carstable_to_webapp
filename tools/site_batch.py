@@ -41,6 +41,9 @@ MANIFEST = "artifact.json"
 SITE_FILES = "site_files.json"
 FORMAT_VERSION = 3
 LAYOUT = "site-batch-v3"
+# 批次内文件按 sha256 登记，Git 必须原样保存字节：仓库 core.autocrlf=true 会把 CRLF 存成 LF、检出时再改写换行，
+# 导致换机检出后 restore 校验失败。每个 v3 批次自带此文件（不影响旧批次）。
+BATCH_GITATTRIBUTES = b"* -text\n"
 INCOMPLETE = {"running", "failed", "partial"}
 # 外部仓库未跟踪文件快照跳过的目录（备份、缓存、依赖，不参与构建）
 SKIP_UNTRACKED_DIRS = {"bak", ".bak", "__pycache__", "node_modules", ".pytest_cache"}
@@ -120,6 +123,8 @@ class SiteBatch:
         if batch_dir.exists() and any(batch_dir.iterdir()):
             raise FileExistsError(f"批次目录已存在且非空，不覆盖：{batch_dir}")
         batch = cls(batch_dir, root=root)
+        batch_dir.mkdir(parents=True, exist_ok=True)
+        (batch_dir / ".gitattributes").write_bytes(BATCH_GITATTRIBUTES)
         stamp = now()
         batch.manifest = {
             "version": FORMAT_VERSION,

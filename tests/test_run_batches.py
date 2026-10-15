@@ -153,6 +153,12 @@ def test_store_site_rejects_public_that_differs_from_validated_build(tmp_path):
         batch.store_site(public, expected)
 
 
+def test_create_marks_batch_bytes_binary_for_git(tmp_path):
+    batch_dir = tmp_path / "artifact" / "2026-10-15_01_pipeline"
+    site_batch.SiteBatch.create(batch_dir, work_dir=tmp_path / "w", config_path=tmp_path / "c.yaml", steps=[], root=tmp_path)
+    assert (batch_dir / ".gitattributes").read_bytes() == b"* -text\n"
+
+
 def test_create_refuses_to_overwrite_existing_batch(tmp_path):
     existing = tmp_path / "artifact" / "2026-10-14_01_pipeline"
     existing.mkdir(parents=True)

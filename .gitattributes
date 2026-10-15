@@ -1,0 +1,3 @@
+# public 按原样保存字节：GitHub Pages 部署的就是工作区构建产物；core.autocrlf 改写换行会让检出内容与构建结果不一致。
+# artifact/<v3 批次>/ 各自带 .gitattributes（tools/site_batch.py 创建），旧批次保持原状。
+public/** -text
