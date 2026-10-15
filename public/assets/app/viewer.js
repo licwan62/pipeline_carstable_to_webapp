@@ -1,4 +1,36 @@
 (function () {
+  const {
+    parseTsv,
+    extractRecords,
+    logoMake,
+    sourceTags,
+    pickupKey,
+    nonPickupKey,
+    sameText,
+    recordKind,
+    compareBedValues,
+    firstNumber,
+    compareValues,
+    fieldAtoms,
+    fieldAtomicValues,
+    expandYearRangeAtoms,
+    parseSizeViewYaml,
+    parseYamlValue,
+    mergeViewConfig,
+    csvList,
+    unique,
+    uniqueInOrder,
+    uniqueYears,
+    expandYears,
+    normalizeMake,
+    searchTokens,
+    normalizeSearchText,
+    recordMatchesVehicleCode,
+    recordSearchAtoms,
+    cleanField,
+    cleanText,
+    escapeHtml
+  } = window.SizeViewerData; // 数据纯函数，见 viewer-data.js
   const config = window.SIZE_CHART_VIEWER;
   const app = document.getElementById("app");
 
@@ -52,12 +84,8 @@
   const matchDataOrigins = new Map();
   const sizeReferenceIndex = new Map();
   const sizeReferenceOrder = new Map();
-  // 尺码配对 SIZE hover：按记录所属国别（US/EU/RU）读取 A0 尺码规则，店铺来源再按货架把发货尺码换回匹配尺码
-  const sizeRuleIndexes = new Map();
-  const sizeRuleTolerances = new Map();
-  // 全量表 规则ID → 该国别规则表中的行（A0 报告规则表末列）；只在全量数据与规则来自同一 A0 版本时用于精确解释
-  const sizeRuleIdIndexes = new Map();
-  const storeShippingSizes = new Map();
+  // 尺码配对 SIZE hover：按记录所属国别（US/EU/RU）读取 A0 尺码规则，店铺来源再按货架把发货尺码换回匹配尺码（viewer-rules.js）
+  const sizeRules = window.SizeViewerRules.createRuleIndex({ sourceGroup: (name) => sourceGroup(name) });
   const initialSearchQuery = initialQuery();
   const searchState = {
     scopeKey: "",
@@ -994,48 +1022,6 @@
     updateSearchResults();
   }
 
-  function extractRecords(doc, file, directory, columns) {
-    const records = [];
-    const tags = sourceTags(directory.name);
-    doc.querySelectorAll(".brand-table").forEach((tableBlock) => {
-      const isPickup = tableBlock.classList.contains("profile-pickup");
-      const title = normalizeMake(cleanText(tableBlock.querySelector(".brand-title-main, h2")));
-      const fallbackMake = isPickup ? logoMake(tableBlock) : title;
-      const description = cleanText(tableBlock.querySelector(".brand-title-description"));
-      const headers = Array.from(tableBlock.querySelectorAll("thead th")).map(cleanText);
-      headers.forEach((header) => {
-        if (header && !columns.includes(header)) {
-          columns.push(header);
-        }
-      });
-
-      tableBlock.querySelectorAll("tbody tr").forEach((row) => {
-        const values = {};
-        Array.from(row.children).forEach((cell, index) => {
-          const header = headers[index] || `COL ${index + 1}`;
-          values[header] = cleanText(cell);
-        });
-        const year = values.YEAR || values.Year || "";
-        records.push({
-          make: fallbackMake,
-          model: values.MODEL || values.Model || "",
-          year,
-          years: expandYears(year),
-          construct: values.CONST || values.CONSTRUCT || values.Const || "",
-          values,
-          title,
-          description,
-          searchText: "",
-          directory: directory.name,
-          source: `${directory.name}/${file}`,
-          sourceTags: tags,
-          file
-        });
-      });
-    });
-    return records;
-  }
-
   async function enrichRecordsFromSource(directory, records) {
     try {
       const metadata = await loadDirectoryMetadata(directory);
@@ -1180,49 +1166,6 @@
     const rows = parseTsv(await response.text());
     tsvIndexes.set(path, rows);
     return rows;
-  }
-
-  function parseTsv(text) {
-    const normalizedText = text
-      .replace(/^\uFEFF/, "")
-      .replace(/"([^"]*)\r?\n([^"]*)"/g, (_, before, after) => `"${before} ${after}"`);
-    const lines = normalizedText.split(/\r?\n/).filter((line) => line.trim());
-    if (!lines.length) {
-      return [];
-    }
-    const headers = lines[0].split("\t").map((header) => header.trim().replace(/^"|"$/g, ""));
-    return lines.slice(1).map((line) => {
-      const cells = line.split("\t");
-      const row = {};
-      headers.forEach((header, index) => {
-        row[header] = cleanField(cells[index]);
-      });
-      return row;
-    });
-  }
-
-  function pickupKey(row) {
-    return [
-      cleanField(row.title).toUpperCase(),
-      cleanField(row.year),
-      cleanField(row.cab).toUpperCase(),
-      cleanField(row.bed),
-      cleanField(row.size).toUpperCase()
-    ].join("|");
-  }
-
-  function nonPickupKey(row) {
-    return [
-      cleanField(row.make).toUpperCase(),
-      cleanField(row.model).toUpperCase(),
-      cleanField(row.year),
-      cleanField(row.type).toUpperCase(),
-      cleanField(row.size).toUpperCase()
-    ].join("|");
-  }
-
-  function sameText(left, right) {
-    return cleanField(left).toUpperCase() === cleanField(right).toUpperCase();
   }
 
   function updateSearchControls() {
@@ -1529,12 +1472,6 @@
     return kindRecords.filter((record) => tokens.every((token) => recordMatchesToken(record, token)));
   }
 
-  // 数据分片带 kind；旧数据按 TYPE=Pickup 或 分类=皮卡 判定
-  function recordKind(record) {
-    if (record.kind) return record.kind;
-    return sameText(record.type || record.construct, "Pickup") || cleanField(record.values?.["分类"]) === "皮卡" ? "pick" : "nonpick";
-  }
-
   // 非皮卡没有驾驶室/货箱，表格与表格设置都不显示 CAB、BED
   function hiddenForVehicleKind(column) {
     return searchState.vehicleKind === "nonpick" && (sameColumn(column, "CAB") || sameColumn(column, "BED"));
@@ -1572,7 +1509,7 @@
     if (evolutionOn()) {
       tableColumns.unshift({ key: EVOLUTION_COLUMN, label: "", evolution: true, width: "36px" });
     }
-    fitColumnsToContainer(tableColumns);
+    fitColumnsToContainer(tableColumns, records);
     const tableWidth = resultTableWidth(tableColumns);
     return `
       <div class="results-table-wrap size-results-wrap">
@@ -2254,23 +2191,6 @@
     return values;
   }
 
-  function compareBedValues(left, right) {
-    const leftNumber = firstNumber(left);
-    const rightNumber = firstNumber(right);
-    if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber) && leftNumber !== rightNumber) {
-      return leftNumber - rightNumber;
-    }
-    if (Number.isFinite(leftNumber) !== Number.isFinite(rightNumber)) {
-      return Number.isFinite(leftNumber) ? -1 : 1;
-    }
-    return String(left).localeCompare(String(right), undefined, { numeric: true, sensitivity: "base" });
-  }
-
-  function firstNumber(value) {
-    const match = cleanField(value).match(/\d+(?:\.\d+)?/);
-    return match ? Number(match[0]) : Number.NaN;
-  }
-
   function getSearchMatchesIgnoringColumn(ignoredKey) {
     const saved = searchState.columnFilters[ignoredKey];
     delete searchState.columnFilters[ignoredKey];
@@ -2775,22 +2695,11 @@
   }
 
   function sizeRuleScope(sourceName) {
-    const store = cleanField(sourceName).toUpperCase();
-    const isStore = storeShippingSizes.has(store);
-    const group = cleanField(sourceGroup(sourceName)).toUpperCase();
-    const region = sizeRuleIndexes.has(group) ? group : (isStore ? "US" : "");
-    return { region, store: isStore ? store : "", index: sizeRuleIndexes.get(region) };
+    return sizeRules.scope(sourceName);
   }
 
   function sizeRuleFor(value, sourceName) {
-    const scope = sizeRuleScope(sourceName);
-    const key = cleanField(value).toUpperCase();
-    if (!scope.index || !key) return null;
-    // 店铺列表的 SIZE 是发货尺码：多个匹配尺码可发同一个发货尺码，逐个列出对应规则
-    const matchSizes = scope.store ? (storeShippingSizes.get(scope.store).get(key) || []) : [key];
-    const rows = matchSizes.map((size) => scope.index.get(cleanField(size).toUpperCase())).filter(Boolean);
-    if (!rows.length) return null;
-    return { ...scope, size: cleanField(value), matchSizes, rows, tolerance: sizeRuleTolerances.get(scope.region) };
+    return sizeRules.ruleFor(value, sourceName);
   }
 
   // 表格数据所依据的 A0 版本（压缩表清单的 a0_version）与尺码规则同版本时才按规则ID 精确解释（版本混用不作为有效匹配解释）；
@@ -2802,106 +2711,21 @@
   }
 
   function exactSizeRule(record) {
-    const ruleId = cleanField(record?.values?.["规则ID"]);
-    if (!ruleId || !sizeRuleVersionsConsistent()) return null;
-    const sourceName = recordSourceName(record);
-    const scope = sizeRuleScope(sourceName);
-    const row = sizeRuleIdIndexes.get(scope.region)?.get(ruleId);
-    if (!row) return null;
-    const matchSize = cleanField(record.values["匹配尺码"]) || (scope.store ? "" : cleanField(record.values["SIZE"] || record.size));
-    return { ruleId, row, region: scope.region, store: scope.store, matchSize, tolerance: sizeRuleTolerances.get(scope.region) };
+    if (!cleanField(record?.values?.["规则ID"]) || !sizeRuleVersionsConsistent()) return null;
+    return sizeRules.exactForRecord(record, recordSourceName(record));
   }
 
   function exactSizeRuleFor(ruleId, sourceName, size, matchSize) {
-    const scope = sizeRuleScope(sourceName);
-    const row = sizeRuleIdIndexes.get(scope.region)?.get(cleanField(ruleId));
-    if (!row) return sizeRuleFor(size, sourceName);
-    return { ...scope, exact: true, ruleId: cleanField(ruleId), size: cleanField(size), matchSizes: [cleanField(matchSize) || cleanField(size)], rows: [row], tolerance: sizeRuleTolerances.get(scope.region) };
+    return sizeRules.exactFor(ruleId, sourceName, size, matchSize);
   }
 
   function sizeRuleMarkup(rule) {
-    const sections = rule.rows.map((row, index) => {
-      const matchSize = cleanField(rule.matchSizes[index]);
-      const via = rule.store && (rule.exact || rule.rows.length > 1 || matchSize.toUpperCase() !== rule.size.toUpperCase())
-        ? `<div class="size-reference-meta">匹配尺码 ${escapeHtml(matchSize)} → 发货 ${escapeHtml(rule.size)}</div>`
-        : "";
-      return `${via}${rule.region === "RU" ? sizeRuleRuMarkup(row, rule) : sizeRuleLengthMarkup(row, rule)}`;
-    }).join('<hr class="size-reference-divider">');
-    const scope = rule.store ? `${rule.region} · 店铺 ${rule.store}` : rule.region;
-    const heading = rule.exact ? `命中规则 ${rule.ruleId}` : "尺码规则";
-    return `
-      <div class="size-reference-title">${escapeHtml(rule.size)}<small>${escapeHtml(scope)} ${escapeHtml(heading)}</small></div>
-      ${sections}
-    `;
+    return window.SizeViewerRules.ruleMarkup(rule, dimensionFormat());
   }
 
-  // US/EU：车长 ≤ 长上限 且 长上限 − 车长 ≤ 余量长容差，适配车长即 [长上限 − 容差, 长上限]
-  function sizeRuleLengthMarkup(row, rule) {
-    const meta = rule.region === "EU"
-      ? [cleanField(row["模式"]), cleanField(row["分类"]), cleanField(row["版本"]) && `版本 ${cleanField(row["版本"])}`]
-      : [cleanField(row["分类"]), cleanField(row["尺码池"]) && `尺码池 ${cleanField(row["尺码池"])}`];
-    const lengthMax = Number(cleanField(row["长上限"]) || NaN);
-    const tolerance = Number(rule.tolerance ?? NaN);
-    const hasRange = Number.isFinite(lengthMax) && Number.isFinite(tolerance) && tolerance > 0;
-    const items = [
-      ["适配车长", hasRange ? sizeRuleRangeDisplay(lengthMax - tolerance, lengthMax) : ""],
-      ["长上限", Number.isFinite(lengthMax) ? sizeReferenceDimensionDisplay(lengthMax) : ""],
-      ["余量容差", hasRange ? `≤ ${sizeReferenceDimensionDisplay(tolerance)}` : ""],
-      ["插片指数", sizeRuleInsertDisplay(row["插片指数上限"], row["插片指数下限"])],
-      ["白名单", cleanField(row["车型白名单"])],
-      ["备注", cleanField(row["备注"])]
-    ];
-    return `${sizeRuleMetaMarkup(meta)}${sizeRuleItemsMarkup(items)}`;
-  }
-
-  // RU：车型长宽高均不超过规则长宽高，且 长_mm − 车长 ≤ 余量长上限_mm（缺省用报告的余量长容差）
-  function sizeRuleRuMarkup(row, rule) {
-    const meta = [
-      cleanField(row["分类"]),
-      cleanField(row["OZON尺码"]) && `OZON ${cleanField(row["OZON尺码"])}`,
-      cleanField(row["发货尺码"]) && `发货 ${cleanField(row["发货尺码"])}`
-    ];
-    const lengthMax = Number(cleanField(row["长_mm"]) || NaN);
-    const rowTolerance = Number(cleanField(row["余量长上限_mm"]) || NaN);
-    const tolerance = Number.isFinite(rowTolerance) ? rowTolerance : Number(rule.tolerance ?? NaN);
-    const hasRange = Number.isFinite(lengthMax) && Number.isFinite(tolerance) && tolerance > 0;
-    const items = [
-      ["适配车长", hasRange ? sizeRuleRangeDisplay(lengthMax - tolerance, lengthMax) : ""],
-      ["余量容差", hasRange ? `≤ ${sizeReferenceDimensionDisplay(tolerance)}` : ""]
-    ];
-    return `${sizeRuleMetaMarkup(meta)}
-      <div class="size-reference-dims">
-        ${sizeReferenceDimension("长上限", row["长_mm"])}
-        ${sizeReferenceDimension("宽上限", row["宽_mm"])}
-        ${sizeReferenceDimension("高上限", row["高_mm"])}
-      </div>
-      ${sizeRuleItemsMarkup(items)}`;
-  }
-
-  function sizeRuleMetaMarkup(parts) {
-    const text = parts.filter(Boolean).join(" · ");
-    return text ? `<div class="size-reference-common">${escapeHtml(text)}</div>` : "";
-  }
-
-  function sizeRuleItemsMarkup(items) {
-    const visible = items.filter(([, value]) => value);
-    return visible.length
-      ? `<dl class="size-reference-rows">${visible.map(([label, value]) => `<dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value)}</dd>`).join("")}</dl>`
-      : "";
-  }
-
-  function sizeRuleRangeDisplay(low, high) {
-    return `${measurementDisplay(Math.max(0, low))} – ${measurementDisplay(high)} ${searchState.dimensionUnit}`;
-  }
-
-  // 插片指数上限 999 表示不限
-  function sizeRuleInsertDisplay(upper, lower) {
-    const max = Number(cleanField(upper) || NaN);
-    const min = cleanField(lower);
-    const parts = [];
-    if (min) parts.push(`> ${min}`);
-    if (Number.isFinite(max) && max < 999) parts.push(`≤ ${max}`);
-    return parts.join("，");
+  // 长度显示单位随页面切换（mm/cm/in），每次渲染时取当前值
+  function dimensionFormat() {
+    return { measurement: measurementDisplay, unit: searchState.dimensionUnit };
   }
 
   function ensureSizeReferenceFloating() {
@@ -2938,16 +2762,7 @@
   }
 
   function sizeReferenceDimension(label, value) {
-    const display = sizeReferenceDimensionDisplay(value);
-    return `<span><em>${escapeHtml(label)}</em><strong>${escapeHtml(display || "-")}</strong></span>`;
-  }
-
-  function sizeReferenceDimensionDisplay(value) {
-    const number = Number(value);
-    if (!Number.isFinite(number)) {
-      return cleanField(value);
-    }
-    return `${measurementDisplay(number)} ${searchState.dimensionUnit}`;
+    return window.SizeViewerRules.dimensionMarkup(label, value, dimensionFormat());
   }
 
   function sizeBackground(value) {
@@ -3167,15 +2982,6 @@
     return sizeReferenceOrder.has(key) ? sizeReferenceOrder.get(key) : Number.MAX_SAFE_INTEGER;
   }
 
-  function compareValues(left, right) {
-    const leftNumber = Number(left);
-    const rightNumber = Number(right);
-    if (Number.isFinite(leftNumber) && Number.isFinite(rightNumber)) {
-      return leftNumber - rightNumber;
-    }
-    return String(left || "").localeCompare(String(right || ""), undefined, { numeric: true });
-  }
-
   function formatCount(value) {
     return new Intl.NumberFormat("en-US").format(value);
   }
@@ -3249,49 +3055,6 @@
     return { ...(defaultViewConfig.table_fields[key] || {}), ...(viewConfig.table_fields?.[key] || {}) };
   }
 
-  function fieldAtoms(value) {
-    const text = cleanField(value);
-    if (!text) {
-      return [];
-    }
-    return uniqueInOrder(text.split(/\s*(?:\/|,|;|\||\+|&)\s*/).map(cleanField));
-  }
-
-  function fieldAtomicValues(value) {
-    const text = cleanField(value);
-    if (!text) {
-      return [];
-    }
-    const years = expandYearRangeAtoms(text);
-    if (years.length) {
-      return years;
-    }
-    const pieces = text.split(/\s*(?:\/|\\|,|;|\|)\s*/).map(cleanField).filter(Boolean);
-    return uniqueInOrder(pieces.length > 1 ? pieces : [text]);
-  }
-
-  function expandYearRangeAtoms(value) {
-    const text = cleanField(value);
-    const atoms = [];
-    const rangePattern = /\b((?:19|20)\d{2})\s*[-–—]\s*((?:19|20)\d{2})\b/g;
-    let match;
-    while ((match = rangePattern.exec(text))) {
-      const start = Number(match[1]);
-      const end = Number(match[2]);
-      if (!Number.isFinite(start) || !Number.isFinite(end) || end < start || end - start > 100) {
-        continue;
-      }
-      for (let year = start; year <= end; year += 1) {
-        atoms.push(String(year));
-      }
-    }
-    if (atoms.length) {
-      return uniqueInOrder(atoms);
-    }
-    const singleYear = text.match(/^(?:19|20)\d{2}$/);
-    return singleYear ? [text] : [];
-  }
-
   async function loadViewConfig() {
     if (!config.viewConfigPath) {
       return;
@@ -3310,90 +3073,6 @@
 
   function defaultSourceFilter() {
     return cleanField(viewConfig.match_sources?.[0]?.name);
-  }
-
-  function parseSizeViewYaml(text) {
-    const result = { filters: {}, table_fields: {}, excel_source: {}, match_sources: [], size_reference: {}, size_colors: {} };
-    let section = "";
-    let keyName = "";
-    let currentMatchSource = null;
-    text.split(/\r?\n/).forEach((line) => {
-      if (!line.trim() || line.trim().startsWith("#")) return;
-      const indent = (line.match(/^\s*/) || [""])[0].length;
-      const trimmed = line.trim();
-      if (indent === 0 && trimmed.endsWith(":")) {
-        section = trimmed.slice(0, -1);
-        keyName = "";
-        currentMatchSource = null;
-        return;
-      }
-      if (section === "match_sources" && indent === 2 && trimmed.startsWith("- ")) {
-        currentMatchSource = {};
-        result.match_sources.push(currentMatchSource);
-        const rest = trimmed.slice(2);
-        if (rest.includes(":")) {
-          const [rawKey, ...rawValue] = rest.split(":");
-          currentMatchSource[rawKey.trim()] = parseYamlValue(rawValue.join(":").trim());
-        }
-        return;
-      }
-      if (section === "match_sources" && indent >= 4 && currentMatchSource && trimmed.includes(":")) {
-        const [rawKey, ...rawValue] = trimmed.split(":");
-        currentMatchSource[rawKey.trim()] = parseYamlValue(rawValue.join(":").trim());
-        return;
-      }
-      if (indent === 2 && section === "excel_source" && trimmed.includes(":")) {
-        const [rawKey, ...rawValue] = trimmed.split(":");
-        result.excel_source[rawKey.trim()] = parseYamlValue(rawValue.join(":").trim());
-        return;
-      }
-      if (indent === 2 && trimmed.endsWith(":") && (section === "filters" || section === "table_fields")) {
-        keyName = trimmed.slice(0, -1);
-        result[section][keyName] = result[section][keyName] || {};
-        return;
-      }
-      if (indent === 2 && section === "size_reference" && trimmed.includes(":")) {
-        const [rawKey, ...rawValue] = trimmed.split(":");
-        result.size_reference[rawKey.trim()] = parseYamlValue(rawValue.join(":").trim());
-        return;
-      }
-      if (indent === 2 && section === "size_colors" && trimmed.includes(":")) {
-        const [rawKey, ...rawValue] = trimmed.split(":");
-        result.size_colors[rawKey.trim()] = parseYamlValue(rawValue.join(":").trim());
-        return;
-      }
-      if (indent >= 4 && keyName && trimmed.includes(":")) {
-        const [rawKey, ...rawValue] = trimmed.split(":");
-        result[section][keyName][rawKey.trim()] = parseYamlValue(rawValue.join(":").trim());
-      }
-    });
-    return result;
-  }
-
-  function parseYamlValue(value) {
-    const cleaned = value.replace(/^["']|["']$/g, "");
-    if (/^(true|false)$/i.test(cleaned)) {
-      return cleaned.toLowerCase() === "true";
-    }
-    return cleaned;
-  }
-
-  function mergeViewConfig(fallback, parsed) {
-    const merged = {
-      filters: { ...fallback.filters },
-      table_fields: { ...fallback.table_fields },
-      excel_source: { ...fallback.excel_source, ...(parsed.excel_source || {}) },
-      match_sources: parsed.match_sources || fallback.match_sources || [],
-      size_reference: { ...fallback.size_reference, ...(parsed.size_reference || {}) },
-      size_colors: { ...fallback.size_colors, ...(parsed.size_colors || {}) }
-    };
-    Object.entries(parsed.filters || {}).forEach(([key, value]) => {
-      merged.filters[key] = { ...(merged.filters[key] || {}), ...value };
-    });
-    Object.entries(parsed.table_fields || {}).forEach(([key, value]) => {
-      merged.table_fields[key] = { ...(merged.table_fields[key] || {}), ...value };
-    });
-    return merged;
   }
 
   async function loadSizeReferences() {
@@ -3437,35 +3116,9 @@
       readJson(config.sizeRulesPath || "data/generated/size-rules.json"),
       readJson(config.storeGroupsPath || "data/generated/store-groups.json")
     ]);
-    sizeRuleIndexes.clear();
-    sizeRuleTolerances.clear();
-    storeShippingSizes.clear();
     sizeRulesOrigin = rules?.source || null;
     storeGroupsOrigin = groups?.source || null;
-    sizeRuleIdIndexes.clear();
-    Object.entries(rules?.regions || {}).forEach(([region, payload]) => {
-      const keyField = (payload.headers || [])[0];
-      const index = new Map();
-      const byId = new Map();
-      (payload.rows || []).forEach((row) => {
-        const key = cleanField(row[keyField]).toUpperCase();
-        if (key && !index.has(key)) index.set(key, row);
-        const id = cleanField(row["规则ID"]);
-        if (id && !byId.has(id)) byId.set(id, row);
-      });
-      sizeRuleIndexes.set(region.toUpperCase(), index);
-      sizeRuleIdIndexes.set(region.toUpperCase(), byId);
-      sizeRuleTolerances.set(region.toUpperCase(), payload.length_tolerance);
-    });
-    Object.entries(groups?.stores || {}).forEach(([store, rows]) => {
-      const shipping = new Map();
-      (rows || []).forEach((row) => {
-        const shipSize = cleanField(row["发货尺码"]).toUpperCase();
-        const matchSize = cleanField(row["匹配尺码"]);
-        if (shipSize && matchSize) shipping.set(shipSize, [...(shipping.get(shipSize) || []), matchSize]);
-      });
-      storeShippingSizes.set(store.toUpperCase(), shipping);
-    });
+    sizeRules.load(rules, groups);
   }
 
   function resultHeaderClass(column) {
@@ -3487,7 +3140,8 @@
     return autoColumnWidth(column, column);
   }
 
-  // 自动列宽：不小于表头（文字 + 排序箭头 + 筛选按钮）所需宽度；内容取当前页最宽值，超过上限的列换行。
+  // 自动列宽：不小于表头（小字列名 + 排序箭头 + 筛选按钮）所需宽度；内容取当前页最宽值。
+  // 可换行的文本列先按内容完整宽度排，放不下时才由 fitColumnsToContainer 压缩（才会换行）。
   const textWidthCache = new Map();
   let measureContext;
 
@@ -3495,8 +3149,8 @@
     return { sm: 15, md: 17, lg: 19 }[searchState.tableFontSize] || 17;
   }
 
-  function measureTextWidth(text, weight) {
-    const size = tableFontPixels();
+  function measureTextWidth(text, weight, scale = 1) {
+    const size = tableFontPixels() * scale;
     const cacheKey = `${weight}|${size}|${text}`;
     if (textWidthCache.has(cacheKey)) return textWidthCache.get(cacheKey);
     if (measureContext === undefined) measureContext = document.createElement("canvas").getContext("2d");
@@ -3512,9 +3166,7 @@
   }
 
   function columnWidthCap(column) {
-    if (sameColumn(column, "MODEL") || sameColumn(column, "CAB")) return 260;
-    if (sameColumn(column, "版本") || sameColumn(column, "TYPE")) return 210;
-    return 180;
+    return isWrappableColumn(column) ? Infinity : 180;
   }
 
   function cellDisplayText(record, column) {
@@ -3527,30 +3179,45 @@
     return value || "";
   }
 
-  function contentColumnWidth(column, records) {
-    let widest = 0;
-    records.forEach((record) => {
+  // quantile < 1 时取该分位行的内容宽度（如 0.95：95% 的行放得下），用作压缩下限
+  function contentColumnWidth(column, records, quantile = 1) {
+    const widths = records.map((record) => {
       const text = cellDisplayText(record, column);
-      if (text) widest = Math.max(widest, measureTextWidth(text, 700));
+      return text ? measureTextWidth(text, 700) : 0;
     });
-    return widest + 18;  // 单元格左右内边距 7px×2 + 余量
+    if (!widths.length) return 18;
+    widths.sort((a, b) => a - b);
+    return widths[Math.ceil(quantile * widths.length) - 1] + 18;  // 单元格左右内边距 7px×2 + 余量
   }
 
   function isWrappableColumn(column) {
     return ["MODEL", "版本", "TYPE", "CONST", "CAB"].some((key) => sameColumn(column, key));
   }
 
-  // 总宽超出可视区时，先把可换行的文本列压缩到不小于表头宽度（且≥90px），减少被右侧固定列遮挡的列
-  function fitColumnsToContainer(columns) {
-    // 以表格容器的内宽为准（已扣除纵向滚动条）；首次渲染时容器尚不存在，按结果区宽度预留滚动条
+  // 总宽超出可视区时，先把可换行的文本列压缩，减少被右侧固定列遮挡的列；下限为表头宽度与 95% 行内容宽度的较大者，
+  // 只有少数超长值换行，再放不下就横向滚动（尽量不出现多行）。
+  // 有富余时只把富余分给可换行的文本列，数字列保持紧凑（否则 table-layout: fixed 会按比例撑宽所有列）
+  function fitColumnsToContainer(columns, records) {
+    // 以表格容器外宽减去滚动条预留为准：渲染时容器和页面可能都还没有纵向滚动条（宽度偏大），
+    // 渲染后出现会挤出横向滚动，所以两条都预留；首次渲染时容器尚不存在，用结果区宽度
     const wrap = app.querySelector(".size-results-wrap");
-    const available = wrap ? wrap.clientWidth - 6 : (app.querySelector(".search-results")?.clientWidth || 0) - 20;
+    const available = (wrap ? wrap.offsetWidth : app.querySelector(".search-results")?.clientWidth || 0) - 36;
     if (available <= 0) return;
     const pixels = (column) => Number.parseFloat(searchState.columnWidths[column.key] || column.width) || 0;
     const excess = columns.reduce((total, column) => total + pixels(column), 0) - available;
-    if (excess <= 0) return;
     const flexible = columns.filter((column) => !searchState.columnWidths[column.key] && isWrappableColumn(column.key));
-    const room = flexible.map((column) => Math.max(0, pixels(column) - Math.max(headerColumnWidth(column.label), 90)));
+    if (excess <= 0) {
+      // 余下的几像素由表格 width: max(100%, …) 补满
+      const slack = -excess;
+      const total = flexible.reduce((sum, column) => sum + pixels(column), 0);
+      if (slack <= 0 || !total) return;
+      flexible.forEach((column) => {
+        column.width = `${Math.floor(pixels(column) + slack * pixels(column) / total)}px`;
+      });
+      return;
+    }
+    const floor = (column) => Math.ceil(Math.max(headerColumnWidth(column.label), contentColumnWidth(column.key, records, 0.95)));
+    const room = flexible.map((column) => Math.max(0, pixels(column) - floor(column)));
     const totalRoom = room.reduce((total, value) => total + value, 0);
     if (!totalRoom) return;
     const ratio = Math.min(1, excess / totalRoom);
@@ -3559,15 +3226,18 @@
     });
   }
 
+  // 表头列名比单元格小一号（viewer.css .size-results-table th 0.8em），避免短内容列被列名撑宽
+  const HEADER_FONT_SCALE = 0.8;
+
   function headerColumnWidth(label) {
-    // 左右内边距 6+5 + 文字 + 间距 2 + 箭头 8 + 间距 2 + 筛选按钮 18 + 余量 3
-    return measureTextWidth(String(label), 800) + 44;
+    // 左右内边距 5+4 + 文字 + 间距 2 + 箭头 7 + 间距 2 + 筛选按钮 14 + 余量 2
+    return measureTextWidth(String(label), 800, HEADER_FONT_SCALE) + 36;
   }
 
   function autoColumnWidth(column, label, records = [], hasToggle = false) {
     const header = headerColumnWidth(label);
-    // 展开开关列（CODE，或无 CODE 时的 MAKE）带三角 + 来源条数，多留位置
-    const toggle = hasToggle ? 36 : 0;
+    // 展开开关列（CODE，或无 CODE 时的 MAKE）带三角 + 来源条数（两位数徽标）+ 900 粗体，多留位置，避免徽标被挤到第二行
+    const toggle = hasToggle ? 48 : 0;
     // SHAPE 以小字显示（viewer.css .shape-cell 0.78em），按缩小后的宽度留位置
     const scale = sameColumn(column, "SHAPE") ? 0.8 : 1;
     const content = Math.min(contentColumnWidth(column, records) * scale, columnWidthCap(column)) + toggle;
@@ -3662,11 +3332,6 @@
     return cleanField(left).toUpperCase() === cleanField(right).toUpperCase();
   }
 
-  function csvList(value) {
-    if (Array.isArray(value)) return value;
-    return String(value || "").split(",").map(cleanField).filter(Boolean);
-  }
-
   function pagePathByName(directoryName, file) {
     const directory = directories.find((item) => item.name === directoryName) || chartDirectories()[0] || directories[0];
     return directory ? pagePath(directory, file) : "#";
@@ -3680,71 +3345,6 @@
     select.innerHTML = `<option value="">${label}</option>${options.map((option) => (
       `<option value="${escapeHtml(option)}"${option === selectedValue ? " selected" : ""}>${escapeHtml(option)}</option>`
     )).join("")}`;
-  }
-
-  function unique(values) {
-    return Array.from(new Set(values.filter(Boolean))).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
-  }
-
-  function uniqueInOrder(values) {
-    const result = [];
-    values.filter(Boolean).forEach((value) => {
-      if (!result.includes(value)) {
-        result.push(value);
-      }
-    });
-    return result;
-  }
-
-  function uniqueYears(records) {
-    const years = new Set();
-    records.forEach((record) => record.years.forEach((year) => years.add(year)));
-    return Array.from(years).sort((a, b) => a - b).map(String);
-  }
-
-  function expandYears(value) {
-    const text = String(value || "");
-    const rangeMatch = text.match(/\b(19\d{2}|20\d{2})\s*[-–]\s*(19\d{2}|20\d{2})\b/);
-    if (rangeMatch) {
-      const start = Number(rangeMatch[1]);
-      const end = Number(rangeMatch[2]);
-      if (end >= start && end - start <= 150) {
-        const years = [];
-        for (let year = start; year <= end; year += 1) {
-          years.push(year);
-        }
-        return years;
-      }
-    }
-    return Array.from(new Set((text.match(/\b(?:19|20)\d{2}\b/g) || []).map(Number)));
-  }
-
-  function normalizeMake(value) {
-    return String(value || "").replace(/\s+\d+\s*\/\s*\d+\s*$/, "").trim();
-  }
-
-  function logoMake(tableBlock) {
-    const alt = cleanField(tableBlock.querySelector(".brand-title-logo")?.getAttribute("alt"));
-    return alt.replace(/\s+logo$/i, "");
-  }
-
-  function sourceTags(directoryName) {
-    const normalized = normalizeSearchText(directoryName);
-    const tags = new Set(normalized.split(/\s+/).filter(Boolean));
-    if (normalized.includes("nonpick")) {
-      tags.add("nonpick");
-    } else if (normalized.includes("pick")) {
-      tags.add("pick");
-    }
-    return Array.from(tags);
-  }
-
-  function searchTokens(value) {
-    return normalizeSearchText(value).split(/\s+/).filter(Boolean);
-  }
-
-  function normalizeSearchText(value) {
-    return String(value || "").toLowerCase().replace(/[-_/]+/g, " ").replace(/\s+/g, " ").trim();
   }
 
   function recordMatchesToken(record, token) {
@@ -3791,15 +3391,6 @@
     return { code: token, make: entry.make, model: entry.model, kinds: entry.kinds || [], start, end };
   }
 
-  // 同 MAKE、同 MODEL，且记录年份与代码年份区间有交集
-  function recordMatchesVehicleCode(record, vehicleCode) {
-    if (!sameText(record.make, vehicleCode.make) || !sameText(record.model, vehicleCode.model)) {
-      return false;
-    }
-    const years = Array.isArray(record.years) && record.years.length ? record.years : expandYears(record.year);
-    return years.some((year) => year >= vehicleCode.start && year <= vehicleCode.end);
-  }
-
   function queryVehicleCodes() {
     return searchTokens(searchState.query).map(decodeVehicleCode).filter(Boolean);
   }
@@ -3835,56 +3426,9 @@
     });
   }
 
-  function recordSearchAtoms(record) {
-    if (record.searchAtoms) {
-      return record.searchAtoms;
-    }
-    const values = [
-      record.source,
-      record.make,
-      record.model,
-      record.type,
-      record.year,
-      record.title,
-      record.description,
-      record.searchText,
-      ...Object.values(record.values || {})
-    ];
-    const atoms = [];
-    values.forEach((value) => {
-      const text = cleanField(value);
-      if (!text) return;
-      atoms.push(text, ...fieldAtomicValues(text));
-    });
-    if (Array.isArray(record.years)) {
-      record.years.forEach((year) => atoms.push(String(year)));
-    }
-    record.searchAtoms = uniqueInOrder(atoms.map(normalizeSearchText).filter(Boolean));
-    return record.searchAtoms;
-  }
-
-  function cleanField(value) {
-    return String(value || "").replace(/\s+/g, " ").trim();
-  }
-
-  function cleanText(element) {
-    if (!element) {
-      return "";
-    }
-    return element.textContent.replace(/\s+/g, " ").trim();
-  }
-
   function cssEscape(value) {
     if (window.CSS && CSS.escape) return CSS.escape(value);
     return String(value).replace(/"/g, '\\"');
-  }
-
-  function escapeHtml(value) {
-    return String(value || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
   }
 
   function measureFrame(frame) {
