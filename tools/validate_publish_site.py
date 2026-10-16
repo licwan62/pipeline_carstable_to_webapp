@@ -77,43 +77,92 @@ def read_source_records(
 
 # 只有 US 区域产线有 CODE（02.代码映射只维护 US）；EU/RU 压缩记录 CODE 为空
 CODE_SOURCES = ("US", "HNT", "TM", "TM_拆分")
+# 尺码配对页的唯一数据源：A0 全量行 + 引用这些行的 A1 压缩记录（同一份分片，页面切换 压缩表 / 全量表）
+MATCH_PAGE = "size-match.html"
+MATCH_DATA = "data/generated/size-match-data.json"
+MATCH_VIEWS = ("compressed", "full")
+# 旧版两套重复数据（压缩表分片内嵌 A0 来源行 + 另一套 A0 全量分片）不得再发布
+DUPLICATE_DATA_PREFIXES = ("size-match-code", "size-match-full")
 
 
-def validate_size_match_code(site_root: Path, errors: list[str]) -> int:
-    """尺码配对页的压缩尺码表（size-match-code.json）：清单中每个数据源的 MAKE 分片存在、行数一致、记录带来源行；
-    US 区域产线的记录都带 CODE，全局搜索用的 vehicle-codes.json 收录每条记录 CODE 的前四位。"""
-    page = site_root / "size-match.html"
-    if not (page.is_file() and "size-match-code.json" in page.read_text(encoding="utf-8")):
-        return 0
-    manifest_path = site_root / "data" / "generated" / "size-match-code.json"
+def validate_size_match_data(site_root: Path, errors: list[str]) -> dict[str, int]:
+    """size-match-data.json：每个数据源的 MAKE 分片存在、全量行与压缩记录数与清单一致；压缩记录的 refs 都指向本分片的全量行，
+    被覆盖年份在该行年份内，且每条压缩记录至少覆盖一行；US 区域产线的压缩记录都带 CODE，vehicle-codes.json 收录其前四位。
+    返回 {"full": 全量行数, "compressed": 压缩记录数}。页面没有使用该数据时跳过。"""
+    page = site_root / MATCH_PAGE
+    if not (page.is_file() and MATCH_DATA in page.read_text(encoding="utf-8")):
+        return {}
+    manifest_path = site_root / MATCH_DATA
     manifest = read_json(manifest_path, errors)
     vehicle_codes = read_json(site_root / "data" / "generated" / "vehicle-codes.json", errors).get("codes") or {}
-    if "CODE" not in (manifest.get("columns") or []):
-        errors.append("size-match-code does not declare CODE column")
-    total = 0
+    if manifest.get("format_version") != 4:
+        errors.append(f"{MATCH_DATA} must be format_version 4 (one shard per line/kind/make holding both views)")
+    views = manifest.get("views") or {}
+    missing_views = [view for view in MATCH_VIEWS if view not in views]
+    if missing_views:
+        errors.append(f"{MATCH_DATA} does not declare views: {', '.join(missing_views)}")
+    if "CODE" not in ((views.get("compressed") or {}).get("columns") or []):
+        errors.append(f"{MATCH_DATA} compressed view does not declare CODE column")
+    totals = {"full": 0, "compressed": 0}
     for source in manifest.get("sources") or []:
         name = str(source.get("name") or "")
-        records = read_source_records(site_root, manifest_path, source, name, errors)
-        if not records:
-            errors.append(f"size-match-code source has no records: {name}")
-        if source.get("record_count") is not None and int(source["record_count"]) != len(records):
-            errors.append(f"size-match-code record count mismatch for {name}")
-        if name in CODE_SOURCES and any(not (record.get("values") or {}).get("CODE") for record in records):
-            errors.append(f"size-match-code {name} has records without CODE")
-        if any(not record.get("sources") for record in records):
-            errors.append(f"size-match-code {name} has records without A0 source rows")
-        unknown = {code[:4] for record in records if (code := str((record.get("values") or {}).get("CODE") or ""))} - set(vehicle_codes)
-        if unknown:
-            errors.append(f"vehicle-codes.json is missing {name} code prefixes: {', '.join(sorted(unknown)[:5])}")
-        total += len(records)
+        full_count = compressed_count = 0
+        for group in source.get("make_groups") or []:
+            path = resolve_records_path(site_root, manifest_path, str(group.get("records_path") or ""), errors)
+            shard = read_json(path, errors) if path else {}
+            where = f"{name} / {group.get('kind')} / {group.get('make')}"
+            if shard.get("name") != name or str(shard.get("make") or "") != str(group.get("make") or "") or shard.get("kind") != group.get("kind"):
+                errors.append(f"shard identity mismatch for {where}: {group.get('records_path')}")
+            rows = shard.get("records") or []
+            compressed = shard.get("compressed")
+            if not isinstance(compressed, list):
+                errors.append(f"{where} shard has no compressed view")
+                compressed = []
+            if int(group.get("record_count", -1)) != len(rows) or int(group.get("compressed_count", -1)) != len(compressed):
+                errors.append(f"record count mismatch for {where}")
+            for position, item in enumerate(compressed):
+                refs = item.get("refs") or []
+                values = item.get("values") or {}
+                if not refs:
+                    errors.append(f"{where} compressed record {position} has no A0 source rows")
+                for ref in refs:
+                    if not (isinstance(ref, list) and len(ref) == 2 and isinstance(ref[0], int) and 0 <= ref[0] < len(rows)):
+                        errors.append(f"{where} compressed record {position} has invalid ref {ref!r}")
+                        continue
+                    covered = set(_years(str(ref[1])))
+                    if not covered or not covered <= set(rows[ref[0]].get("years") or []):
+                        errors.append(f"{where} compressed record {position} covers years {ref[1]} outside its A0 row")
+                if name in CODE_SOURCES:
+                    code = str(values.get("CODE") or "")
+                    if not code:
+                        errors.append(f"{where} compressed record {position} has no CODE")
+                    elif code[:4] not in vehicle_codes:
+                        errors.append(f"vehicle-codes.json is missing {name} code prefix {code[:4]}")
+            full_count += len(rows)
+            compressed_count += len(compressed)
+        if not full_count or not compressed_count:
+            errors.append(f"{MATCH_DATA} source {name} has no rows in one of its views")
+        if source.get("record_count") != full_count or source.get("compressed_count") != compressed_count:
+            errors.append(f"{MATCH_DATA} source {name} counts do not match its shards")
+        totals["full"] += full_count
+        totals["compressed"] += compressed_count
     if not manifest.get("sources"):
-        errors.append("size-match-code has no sources")
-    return total
+        errors.append(f"{MATCH_DATA} has no sources")
+    generated = site_root / "data" / "generated"
+    duplicates = sorted(path.name for prefix in DUPLICATE_DATA_PREFIXES for path in generated.glob(f"{prefix}*.json"))
+    if duplicates:
+        errors.append(f"duplicate size-match data must not be published: {', '.join(duplicates[:3])}")
+    return totals
+
+
+def _years(text: str) -> list[int]:
+    numbers = [int(part) for part in re.findall(r"\d{4}", text)]
+    return numbers if len(numbers) <= 1 else list(range(numbers[0], numbers[-1] + 1))
 
 
 EVOLUTION_PAGE = "size-match.html"
 EVOLUTION_FREE_PAGES = ("size-chart.html", "size-charts.html")
-EVOLUTION_HISTORY = "data/generated/size-match-full.json"
+EVOLUTION_HISTORY = MATCH_DATA  # 可视化历史与表格同一份数据（全量行）
 ASSET_LINK = re.compile(r"""["'](assets/[\w./-]+\.(?:js|css))(?:\?v=[\w-]+)?["']""")
 
 
@@ -142,15 +191,14 @@ def validate_size_evolution(site_root: Path, errors: list[str]) -> bool:
         errors.append(f"{EVOLUTION_PAGE} evolution.historyDataPath must be {EVOLUTION_HISTORY}")
 
     generated = site_root / "data" / "generated"
-    # 表格（压缩记录的 SHAPE/规则ID 补充所依据的 A0）、可视化历史、尺码规则、店铺货架必须是同一 A0 版本
+    # 表格与可视化历史（同一份数据的 A0 版本）、尺码规则、店铺货架必须是同一 A0 版本
     versions = {
-        "size-match-code.json a0_version": (read_json(generated / "size-match-code.json", errors).get("origin") or {}).get("a0_version"),
-        "size-match-full.json": (read_json(generated / "size-match-full.json", errors).get("origin") or {}).get("version"),
+        "size-match-data.json a0_version": (read_json(site_root / MATCH_DATA, errors).get("origin") or {}).get("a0_version"),
         "size-rules.json": (read_json(generated / "size-rules.json", errors).get("source") or {}).get("version"),
         "store-groups.json": (read_json(generated / "store-groups.json", errors).get("source") or {}).get("version"),
     }
     if len({version for version in versions.values()}) != 1 or not all(versions.values()):
-        errors.append(f"size-match table, history, rules and store groups come from different A0 versions: {versions}")
+        errors.append(f"size-match data, rules and store groups come from different A0 versions: {versions}")
     validate_rule_ids(site_root, generated, errors)
     return True
 
@@ -181,7 +229,7 @@ def validate_rule_ids(site_root: Path, generated: Path, errors: list[str]) -> No
     """A0 全量表的 规则ID（命中规则）必须都能在同版本 size-rules.json 对应国别的规则表中找到。"""
     rules = read_json(generated / "size-rules.json", errors).get("regions") or {}
     known = {region: {str(row.get("规则ID") or "") for row in payload.get("rows") or []} - {""} for region, payload in rules.items()}
-    manifest_path = generated / "size-match-full.json"
+    manifest_path = site_root / MATCH_DATA
     for source in read_json(manifest_path, errors).get("sources") or []:
         name, region = str(source.get("name") or ""), str(source.get("group") or source.get("name") or "")
         ids = {
@@ -193,16 +241,23 @@ def validate_rule_ids(site_root: Path, generated: Path, errors: list[str]) -> No
             errors.append(f"{name} 规则ID not found in size-rules.json {region}: {', '.join(unknown[:5])}")
 
 
-def validate_merged_match_page(site_root: Path, errors: list[str]) -> bool:
-    """尺码配对页只有一张表：A1 压缩尺码表（size-match-code.json），不再有数据视图切换；旧 size-match-code.html 已弃用，不得再发布。"""
-    page = site_root / "size-match.html"
+def validate_match_page_views(site_root: Path, errors: list[str]) -> bool:
+    """尺码配对页只读一份数据（size-match-data.json），用「视图」控件切换压缩表 / 全量表：页面声明两种 tableModes 与默认视图；
+    旧 size-match-code.html 已弃用，不得再发布。页面没有使用该数据时跳过。"""
+    page = site_root / MATCH_PAGE
     text = page.read_text(encoding="utf-8") if page.is_file() else ""
-    if "size-match-code.json" not in text:
+    if MATCH_DATA not in text:
         return False
-    if not re.search(r'matchDataPath:\s*"data/generated/size-match-code\.json"', text):
-        errors.append("size-match.html must use size-match-code.json as its only table")
-    if "datasets:" in text:
-        errors.append("size-match.html must not declare switchable data views")
+    if not re.search(rf'matchDataPath:\s*"{re.escape(MATCH_DATA)}"', text):
+        errors.append(f"{MATCH_PAGE} must use {MATCH_DATA} as matchDataPath")
+    modes = re.findall(r'\{\s*key:\s*"(\w+)"', text[text.find("tableModes:"):] if "tableModes:" in text else "")
+    if [mode for mode in MATCH_VIEWS if mode not in modes]:
+        errors.append(f"{MATCH_PAGE} must declare tableModes for both views: {', '.join(MATCH_VIEWS)}")
+    default = re.search(r'defaultTableMode:\s*"(\w+)"', text)
+    if not default or default.group(1) not in MATCH_VIEWS:
+        errors.append(f"{MATCH_PAGE} must declare defaultTableMode as one of {', '.join(MATCH_VIEWS)}")
+    if re.findall(r'(?:matchDataPath|historyDataPath):\s*"([^"]+)"', text).count(MATCH_DATA) != len(re.findall(r'(?:matchDataPath|historyDataPath):', text)):
+        errors.append(f"{MATCH_PAGE} must read table and history from the same {MATCH_DATA}")
     if (site_root / "size-match-code.html").exists():
         errors.append("size-match-code.html is deprecated and must not be published")
     return True
@@ -263,8 +318,8 @@ def validate_publish_site(site_root: Path) -> dict[str, int]:
     if missing_reference:
         errors.append(f"size reference is missing required fields: {', '.join(missing_reference)}")
 
-    code_rows = validate_size_match_code(site_root, errors)
-    merged = validate_merged_match_page(site_root, errors)
+    match_rows = validate_size_match_data(site_root, errors)
+    views = validate_match_page_views(site_root, errors)
     evolution = validate_size_evolution(site_root, errors)
     validate_viewer_data(site_root, errors)
 
@@ -274,12 +329,13 @@ def validate_publish_site(site_root: Path) -> dict[str, int]:
         "sources": len(config.get("match_sources") or []),
         "records": total_records,
         "reference_rows": len(reference_rows),
-        "code_rows": code_rows,
+        "match_full_rows": match_rows.get("full", 0),
+        "match_compressed_rows": match_rows.get("compressed", 0),
     }
     if evolution:
         summary["evolution"] = 1
-    if merged:
-        summary["merged_match_page"] = 1
+    if views:
+        summary["match_page_views"] = 1
     return summary
 
 

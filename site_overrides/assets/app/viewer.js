@@ -26,7 +26,9 @@
     searchTokens,
     normalizeSearchText,
     recordMatchesVehicleCode,
-    recordSearchAtoms,
+    searchQueryTokens,
+    expandMatchShard,
+    recordMatchesSearchToken,
     cleanField,
     cleanText,
     escapeHtml
@@ -118,7 +120,8 @@
     status: "idle",
     message: "",
     availableMakes: [],
-    requiresMakeSelection: false
+    requiresMakeSelection: false,
+    tableMode: initialTableMode()  // 压缩表 / 全量表：同一份分片的两种视图（config.tableModes），?view= 可直接指定
   };
   const maxResultPageSize = 500;
   const VEHICLE_KINDS = [["nonpick", "非皮卡"], ["pick", "皮卡"]];
@@ -134,7 +137,7 @@
   let vehicleCodes = null;
   let vehicleCodesPromise = null;
   let initialVehicleCodeChecked = false;
-  // 车型尺寸演变可视化（size-evolution.js）：只在页面配置 evolution.enabled 时启用（size-chart 不启用），压缩代号数据视图 evolution: false。
+  // 车型尺寸演变可视化（size-evolution.js）：只在页面配置 evolution.enabled 时启用（size-chart 不启用）。
   // 选择状态按稳定 recordKey 存储，翻页、排序、切换表格/大纲时保留；source 或类别切换时清空。
   const evolutionConfig = config.evolution || {};
   const evolutionData = window.SizeEvolutionData || null;
@@ -150,7 +153,7 @@
   // SHAPE（车罩外形分类）中文名与说明：数据清单 shape_labels 提供，SHAPE 单元格悬停显示
   let shapeLabels = {};
 
-  // 尺码配对页是 A1 压缩记录（来源行带 DIMENSION-ID），车型可视化历史读 A0 全量分片
+  // 尺码配对页：压缩表视图是 A1 压缩记录（来源行带 DIMENSION-ID），全量表视图是 A0 行；车型可视化历史读同一份分片的全量行
   function evolutionOn() {
     return evolutionAvailable;
   }
@@ -166,6 +169,30 @@
 
   function initialQuery() {
     return new URLSearchParams(window.location.search).get("q") || "";
+  }
+
+  // 尺码配对页的数据视图：页面声明 tableModes 时显示「视图」切换；同一份分片，切换只改显示逻辑，不重新下载
+  function tableModes() {
+    return Array.isArray(config.tableModes) ? config.tableModes.filter((mode) => mode && mode.key) : [];
+  }
+
+  function initialTableMode() {
+    const modes = tableModes().map((mode) => mode.key);
+    if (!modes.length) return "full";
+    const requested = new URLSearchParams(window.location.search).get("view");
+    if (modes.includes(requested)) return requested;
+    return modes.includes(config.defaultTableMode) ? config.defaultTableMode : modes[0];
+  }
+
+  function tableModeLabel(key) {
+    return tableModes().find((mode) => mode.key === key)?.label || key;
+  }
+
+  function syncTableModeUrl() {
+    if (!tableModes().length || !window.history?.replaceState) return;
+    const url = new URL(window.location.href);
+    url.searchParams.set("view", searchState.tableMode);
+    window.history.replaceState(window.history.state, "", url);
   }
 
   function readSidebarCollapsed() {
@@ -355,6 +382,9 @@
             <div class="vehicle-kind-field"><span>类别</span><div class="result-view-toggle vehicle-kind-toggle" role="group" aria-label="车型类别">
               ${VEHICLE_KINDS.map(([value, label]) => `<button type="button" data-vehicle-kind="${value}" class="${searchState.vehicleKind === value ? "is-active" : ""}" aria-pressed="${searchState.vehicleKind === value ? "true" : "false"}" ${searchState.status === "loading" ? "disabled" : ""}>${label}</button>`).join("")}
             </div></div>
+            ${tableModes().length ? `<div class="vehicle-kind-field table-mode-field"><span>视图</span><div class="result-view-toggle table-mode-toggle" role="group" aria-label="数据视图">
+              ${tableModes().map((mode) => `<button type="button" data-table-mode="${escapeHtml(mode.key)}" class="${searchState.tableMode === mode.key ? "is-active" : ""}" aria-pressed="${searchState.tableMode === mode.key ? "true" : "false"}" title="${escapeHtml(mode.key === "full" ? "A0 全量表：每个车型年份段一行" : "A1 压缩尺码表：同尺码合并，点 CODE 展开来源车型")}">${escapeHtml(mode.label || mode.key)}</button>`).join("")}
+            </div></div>` : ""}
             <label${storeOptions().length > 1 ? "" : " hidden"}><span>店铺</span><select class="search-select" data-lazy-source ${searchState.status === "loading" ? "disabled" : ""}>
               ${storeOptions().map((source) => `<option value="${escapeHtml(source.name)}"${searchState.selectedSource === source.name ? " selected" : ""}>${escapeHtml(cleanField(source.label) || sourceLabel(source.name))}</option>`).join("")}
             </select></label>
@@ -621,6 +651,24 @@
         searchState.vehicleKind = button.dataset.vehicleKind;
         searchState.availableMakes = [];
         resetSearchFilters();
+        render();
+      });
+    });
+    // 压缩表 / 全量表：保留搜索词、来源、类别、MAKE、SIZE 与 MODEL 等选择，只清列筛选与排序（两种视图的列不同）；
+    // 分片已缓存，切换不重新下载
+    app.querySelectorAll("[data-table-mode]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const nextMode = button.dataset.tableMode;
+        if (nextMode === searchState.tableMode || !tableModes().some((mode) => mode.key === nextMode)) return;
+        searchState.tableMode = nextMode;
+        searchState.scopeKey = "";
+        searchState.columnFilters = {};
+        searchState.openFilter = "";
+        searchState.sortField = "";
+        searchState.sortDirection = "asc";
+        searchState.resultPage = 1;
+        searchState.resetResultScroll = true;
+        syncTableModeUrl();
         render();
       });
     });
@@ -893,7 +941,7 @@
     const token = ++searchLoadToken;
     const usesConfiguredSources = Boolean(viewConfig.match_sources?.length);
     const scopeKey = usesConfiguredSources
-      ? `configured:${searchState.selectedSource}:${searchState.vehicleKind}:${searchState.selectedMake || "all-makes"}`
+      ? `configured:${searchState.tableMode}:${searchState.selectedSource}:${searchState.vehicleKind}:${searchState.selectedMake || "all-makes"}`
       : scopeDirectories.map((directory) => directory.name).join("|");
     if (searchState.scopeKey === scopeKey && (searchState.status === "ready" || searchState.status === "loading")) {
       updateSearchControls();
@@ -1210,6 +1258,9 @@
       return;
     }
 
+    // 加载状态与视图标在结果摘要上（idle/loading/ready/error），供验收脚本等待（tests/acceptance/size_match_browser.cjs）
+    summary.dataset.status = searchState.status;
+    summary.dataset.viewMode = searchState.tableMode;
     syncEvolutionSelectionScope();
     if (searchState.status === "loading" || searchState.status === "error") {
       summary.textContent = searchState.message;
@@ -1399,26 +1450,34 @@
         if (makeGroup && cleanField(sourcePayload.make) !== cleanField(makeGroup.make)) {
           throw new Error(`Configured make mismatch: expected ${makeGroup.make}, received ${sourcePayload.make}`);
         }
-        const columns = csvList(configured.columns).length
-          ? csvList(configured.columns)
-          : (sourcePayload.columns || source.columns || payload.columns || []);
-        const sourceRecords = sourcePayload.records || source.records || [];
-        if (shard.record_count !== undefined && Number(shard.record_count) !== sourceRecords.length) {
-          throw new Error(`Record count mismatch for ${source.name}${makeGroup ? ` / ${makeGroup.make}` : ""}`);
+        // 一份分片两种视图：full = A0 全量行，compressed = A1 压缩记录（来源行按 refs 从全量行还原）
+        const views = expandMatchShard({ ...sourcePayload, records: sourcePayload.records || source.records || [] });
+        const label = `${source.name}${makeGroup ? ` / ${makeGroup.make}` : ""}`;
+        if (shard.record_count !== undefined && Number(shard.record_count) !== views.full.records.length) {
+          throw new Error(`Record count mismatch for ${label}`);
         }
-        const records = sourceRecords.map((record) => ({
-          ...record,
-          title: record.title || [record.make, record.model].filter(Boolean).join(" "),
-          description: record.description || "",
-          searchText: record.searchText || Object.values(record.values || {}).join(" "),
-          directory: source.name,
-          source: source.label || configured.label || source.name,
-          sourceTags: [String(source.name || "").toLowerCase()],
-          file: record.file || ""
-        }));
-        // 可视化与跨页选择用的稳定身份：在完整分片（source + kind + MAKE）上分配，不依赖分页行号
-        if (evolutionData) evolutionData.assignRecordKeys(records, source.name);
-        return { records, columns };
+        if (views.compressed && shard.compressed_count !== undefined && Number(shard.compressed_count) !== views.compressed.records.length) {
+          throw new Error(`Compressed record count mismatch for ${label}`);
+        }
+        const prepare = (view, fallbackColumns) => {
+          const columns = csvList(configured.columns).length ? csvList(configured.columns) : (view.columns.length ? view.columns : fallbackColumns);
+          const records = view.records.map((record) => ({
+            ...record,
+            title: record.title || [record.make, record.model].filter(Boolean).join(" "),
+            description: record.description || "",
+            directory: source.name,
+            source: source.label || configured.label || source.name,
+            sourceTags: [String(source.name || "").toLowerCase()],
+            file: record.file || ""
+          }));
+          // 可视化与跨页选择用的稳定身份：在完整分片（source + kind + MAKE）上分配，不依赖分页行号
+          if (evolutionData) evolutionData.assignRecordKeys(records, source.name);
+          return { records, columns };
+        };
+        return {
+          full: prepare(views.full, source.columns || payload.columns || []),
+          compressed: views.compressed ? prepare(views.compressed, source.compressed_columns || []) : null
+        };
       })().catch((error) => {
         configuredMatchIndexPromises.delete(cacheKey);
         throw error;
@@ -1451,19 +1510,28 @@
         const configured = configuredSources.find((item) => item.name === source.name) || {};
         return kindGroups(source)
           .filter((group) => !resolvedMake || cleanField(group.make) === resolvedMake)
-          .map((group) => loadConfiguredMatchSource(path, payload, source, configured, group));
+          .map((group) => loadConfiguredMatchSource(path, payload, source, configured, group).then(currentView));
       }));
     }
 
     searchState.requiresMakeSelection = false;
     return Promise.all(sources.map((source) => {
       const configured = configuredSources.find((item) => item.name === source.name) || {};
-      return loadConfiguredMatchSource(path, payload, source, configured);
+      return loadConfiguredMatchSource(path, payload, source, configured).then(currentView);
     }));
   }
 
+  // 当前视图的记录与列：压缩表视图要求分片带压缩记录（旧格式数据只有全量行）
+  function currentView(index) {
+    if (searchState.tableMode === "compressed" && tableModes().length) {
+      if (!index.compressed) throw new Error("数据清单没有压缩表视图");
+      return index.compressed;
+    }
+    return index.full;
+  }
+
   function queryFilteredRecords() {
-    const tokens = searchTokens(searchState.query);
+    const tokens = searchQueryTokens(searchState.query);
     const kindRecords = searchState.records.filter((record) => recordKind(record) === searchState.vehicleKind);
     if (!tokens.length) {
       return kindRecords;
@@ -1485,9 +1553,9 @@
     renderedResultRecords = records;
     const columns = resultColumns(records);
     // 压缩记录：CODE 放首列并作为展开来源车型的开关（无 CODE 列时开关在 MAKE）；
-    // SHAPE 属于来源车型（各年份），只在本页有展开的记录时显示该列，且只填在来源行
+    // 压缩表：SHAPE 属于来源车型（各年份），只在本页有展开的记录时显示该列，且只填在来源行；全量表每行就是一个车型年份段，直接显示
     const codeColumn = columns.find((column) => sameColumn(column, "CODE"));
-    const showShape = records.some((record) => recordSources(record).length && expandedSourceRecords.has(record));
+    const showShape = searchState.tableMode === "full" || records.some((record) => recordSources(record).length && expandedSourceRecords.has(record));
     const otherColumns = columns.filter((column) => column !== codeColumn && (showShape || !sameColumn(column, "SHAPE")));
     const tableColumns = [
       ...(codeColumn ? [{ key: codeColumn, label: codeColumn }] : []),
@@ -1625,10 +1693,10 @@
 
   // ---------- 车型尺寸演变可视化入口（size-evolution.js） ----------
 
-  // source 或类别切换后，已选记录不再属于当前数据范围，清空
+  // 视图、source 或类别切换后，已选记录不再属于当前数据范围（压缩记录与全量行的 recordKey 不同），清空
   function syncEvolutionSelectionScope() {
     if (!evolutionOn()) return;
-    const scope = `${searchState.selectedSource}|${searchState.vehicleKind}`;
+    const scope = `${searchState.tableMode}|${searchState.selectedSource}|${searchState.vehicleKind}`;
     if (scope !== evolutionSelectionScope) {
       evolutionSelectionScope = scope;
       evolutionSelection.clear();
@@ -1639,7 +1707,7 @@
     return evolutionData.modelKeyForRecord(record, recordSourceName(record));
   }
 
-  // 表格是 A1 压缩记录，可视化历史是 A0 全量行：车型、配置与 recordKey 都按压缩记录覆盖的来源行（产线 + DIMENSION-ID）计算，
+  // 压缩表视图的记录是 A1 压缩记录，可视化历史是 A0 全量行：车型、配置与 recordKey 都按压缩记录覆盖的来源行（产线 + DIMENSION-ID）计算，
   // 与历史分片一一对应（压缩记录可能合并多个版本/年份段，不能直接用记录本身的字段）
   function evolutionRefs(record) {
     const sources = recordSources(record);
@@ -1842,7 +1910,7 @@
     });
   }
 
-  // 读 A0 全量清单（evolution.historyDataPath，未配置时用表格清单），按车型涉及的 MAKE 取同产线 + kind 的分片，
+  // 读数据清单（evolution.historyDataPath，与表格同一份 size-match-data.json），按车型涉及的 MAKE 取同产线 + kind 的分片，
   // 再按 MAKE/MODEL 精确收窄；不改检索状态
   async function loadEvolutionHistory(modelKeys) {
     const models = modelKeys.map(evolutionData.parseModelKey).filter(Boolean);
@@ -1857,7 +1925,8 @@
       : [undefined];
     const indexes = await Promise.all(shards.map((group) => loadConfiguredMatchSource(path, payload, source, configured, group)));
     const keys = new Set(modelKeys);
-    const records = indexes.flatMap((index) => index.records).filter((record) => keys.has(evolutionModelKey(record)));
+    // 历史永远是全量行（同一份分片的 full 视图），与表格当前是压缩表还是全量表无关
+    const records = indexes.flatMap((index) => index.full.records).filter((record) => keys.has(evolutionModelKey(record)));
     return {
       records,
       group: source.group,
@@ -3355,26 +3424,15 @@
     if (sourceOnlyTokens.includes(token)) {
       return false;
     }
-    if (record.sourceTags.includes(token)) {
+    if (record.sourceTags.some((tag) => tag === token || tag.replace(/[-_/]+/g, "") === token)) {
       return true;
     }
     const vehicleCode = decodeVehicleCode(token);
     if (vehicleCode && recordMatchesVehicleCode(record, vehicleCode)) {
       return true;
     }
-
-    const haystack = normalizeSearchText([
-      record.source,
-      record.make,
-      record.model,
-      record.type,
-      record.year,
-      record.title,
-      record.description,
-      record.searchText,
-      Object.values(record.values).join(" ")
-    ].join(" "));
-    return haystack.includes(token) || recordSearchAtoms(record).some((atom) => atom === token || atom.includes(token));
+    // 按字段语义匹配（viewer-data.js recordMatchesSearchToken）：数字只比年份、CODE、车型/版本单词，不再整行子串匹配
+    return recordMatchesSearchToken(record, token, shapeLabels);
   }
 
   // 8 位车型代码 = MAKE_CODE(2) + MODEL_CODE(2) + 起始年(2) + 结束年(2)，如 01039426 = Ford Mustang 1994-2026。

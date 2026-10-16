@@ -52,7 +52,7 @@ MATCH_PAGE = """<!doctype html>
 </head><body>
   <script>
     window.SIZE_CHART_VIEWER = {
-      matchDataPath: "data/generated/size-match-code.json",
+      matchDataPath: "data/generated/size-match-data.json",
     };
   </script>
   <script src="assets/app/viewer.js?v=old"></script>
@@ -105,30 +105,27 @@ def env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Path]:
         out.mkdir(parents=True, exist_ok=True)
         (out / "size-rules.json").write_text(json.dumps({"a0": a0_dir.name}), encoding="utf-8")
 
-    def fake_match(a0_dir: Path, out: Path) -> None:
-        (out / "size-match-full.json").write_text(json.dumps({"a0": a0_dir.name}), encoding="utf-8")
-
     def fake_code(compressed_dir: Path, out: Path, a0_dir: Path) -> None:
-        (out / "size-match-code.json").write_text(json.dumps({"a1": compressed_dir.name, "a0": a0_dir.name}), encoding="utf-8")
+        (out / "size-match-data.json").write_text(json.dumps({"a1": compressed_dir.name, "a0": a0_dir.name}), encoding="utf-8")
 
     calls: list[Path] = []
 
     def fake_validate(root: Path) -> dict:
         calls.append(root)
-        if not (root / "index.html").is_file() or not (root / "data" / "generated" / "size-match-code.json").is_file():
+        if not (root / "index.html").is_file() or not (root / "data" / "generated" / "size-match-data.json").is_file():
             raise ValueError("publish site validation failed")
         return {"ok": 1}
 
     monkeypatch.setattr(site, "build_size_rules_data", fake_rules)
-    monkeypatch.setattr(site, "build_size_match_data", fake_match)
     monkeypatch.setattr(site, "build_size_match_code_data", fake_code)
     monkeypatch.setattr(site, "validate_publish_site", fake_validate)
+    monkeypatch.setattr(site, "run_size_match_acceptance", lambda root, compressed_dir=None: None)
 
     public = tmp_path / "public"
     public.mkdir()
     (public / "index.html").write_text("<html><body>previous release</body></html>\n", encoding="utf-8")
     (public / "data" / "generated").mkdir(parents=True)
-    (public / "data" / "generated" / "size-match-code.json").write_text('{"old": true}', encoding="utf-8")
+    (public / "data" / "generated" / "size-match-data.json").write_text('{"old": true}', encoding="utf-8")
     (public / "assets" / "app").mkdir(parents=True)
     (public / "assets" / "app" / "viewer.js").write_text("// hand-edited in public, must not leak into builds\n", encoding="utf-8")
 
@@ -155,14 +152,15 @@ def leftovers(public: Path) -> list[str]:
     return sorted(p.name for p in public.parent.iterdir() if p.name.startswith(f".{public.name}."))
 
 
-@pytest.mark.parametrize("stage", ["generated_data", "page_overlay", "full_validation"])
+@pytest.mark.parametrize("stage", ["generated_data", "page_overlay", "full_validation", "size_match_acceptance"])
 def test_failure_in_any_stage_keeps_previous_public_bytes(env, monkeypatch, stage):
     before = tree_hashes(env["public"])
 
     def boom(*args, **kwargs):
         raise RuntimeError(f"injected failure: {stage}")
 
-    target = {"generated_data": "build_size_match_data", "page_overlay": "add_size_evolution", "full_validation": "validate_publish_site"}[stage]
+    target = {"generated_data": "build_size_match_code_data", "page_overlay": "add_size_evolution", "full_validation": "validate_publish_site",
+              "size_match_acceptance": "run_size_match_acceptance"}[stage]
     monkeypatch.setattr(site, target, boom)
     with pytest.raises(RuntimeError, match="injected failure"):
         run_build(env, monkeypatch)
@@ -189,7 +187,7 @@ def test_success_switches_public_and_validates_live(env, monkeypatch):
     listed = json.loads((env["work"] / "site_manifest.json").read_text(encoding="utf-8"))["files"]
     assert {f["path"]: f["sha256"] for f in listed if Path(f["path"]).name not in RUN_METADATA} == tree_hashes(env["public"])
     assert env["calls"][-1] == env["public"].resolve(), "切换后对新 public 再做一次站点校验"
-    assert json.loads((env["public"] / "data" / "generated" / "size-match-code.json").read_text(encoding="utf-8")) == {"a1": "a1", "a0": "a0"}
+    assert json.loads((env["public"] / "data" / "generated" / "size-match-data.json").read_text(encoding="utf-8")) == {"a1": "a1", "a0": "a0"}
     assert leftovers(env["public"]) == []
 
 

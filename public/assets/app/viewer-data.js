@@ -357,6 +357,128 @@
     return record.searchAtoms;
   }
 
+  // ---------- 尺码配对数据（size-match-data.json，format_version 4）：一份分片，两种视图 ----------
+  // 分片 records = A0 全量行（全量表视图），compressed = A1 压缩记录 {values, refs: [[行号, 被覆盖年份], ...]}（压缩表视图）。
+  // 压缩记录不重复存放 A0 行：来源行按 refs 从本分片 records 还原，字段同构建端 build_size_match_code_data.to_source。
+  const PICKUP_TYPE = "Pickup";
+
+  // 同构建端 parse_years：一个四位数取它本身，多个取首尾之间的连续年份
+  function spanYears(value) {
+    const numbers = (String(value || "").match(/\d{4}/g) || []).map(Number);
+    if (numbers.length <= 1) return numbers;
+    const years = [];
+    for (let year = numbers[0]; year <= numbers[numbers.length - 1]; year += 1) years.push(year);
+    return years;
+  }
+
+  function compressedSourceRow(row, year, pickup) {
+    const values = (row && row.values) || {};
+    const text = (key) => String(values[key] ?? "");
+    return {
+      "DIMENSION-ID": text("DIMENSION-ID"), MODEL: text("MODEL"), "版本": text("版本"), YEAR: String(year ?? ""),
+      TYPE: pickup ? PICKUP_TYPE : text("结构"), CAB: text("CAB"), BED: text("BED"),
+      "L-MM": text("L-MM"), "W-MM": text("W-MM"), "H-MM": text("H-MM"),
+      SHAPE: text("SHAPE"), "长度余量": text("自动长度余量"), "规则ID": text("规则ID"), "匹配尺码": text("匹配尺码")
+    };
+  }
+
+  // 返回 { full: { records, columns }, compressed: { records, columns } | null }；旧格式（只有 records）没有压缩视图
+  function expandMatchShard(payload) {
+    const rows = Array.isArray(payload?.records) ? payload.records : [];
+    const full = { records: rows, columns: payload?.columns || [] };
+    if (!Array.isArray(payload?.compressed)) return { full, compressed: null };
+    const pickup = payload.kind === "pick";
+    const records = payload.compressed.map((item, position) => {
+      const values = item.values || {};
+      const sources = (item.refs || []).map(([index, year]) => {
+        if (!rows[index]) throw new Error(`Compressed record ${position} of ${payload.name}/${payload.make} refers to missing row ${index}`);
+        return compressedSourceRow(rows[index], year, pickup);
+      });
+      const type = String(values.TYPE ?? "");
+      return {
+        make: String(values.MAKE || payload.make || ""), model: String(values.MODEL ?? ""), year: String(values.YEAR ?? ""),
+        years: spanYears(values.YEAR), construct: type, type, cab: String(values.CAB ?? ""), bed: String(values.BED ?? ""),
+        size: String(values.SIZE ?? ""), kind: payload.kind || (pickup ? "pick" : "nonpick"), values, sources
+      };
+    });
+    return { full, compressed: { records, columns: payload.compressed_columns || [] } };
+  }
+
+  // ---------- 全局搜索：按字段语义匹配，不在整行文本里做子串匹配 ----------
+  // 旧逻辑把整行（含年份、长宽高、销量、CODE、尺码）拼成一段做子串匹配，「bmw 7」里的 7 命中 2017、长宽高、销量等，
+  // 结果混入 3/5 系等上下文之外的车型。查询按空格分词，词内连字符等分隔去掉（f-150 → f150，cr-v → crv），
+  // 年份区间（2019-2021）拆成两个年份；每个词都要命中（AND）：
+  // - 纯数字词：四位年份 → 记录年份包含该年；≥4 位 → CODE 前缀；其余只与 MODEL、版本 按空格分出的整词（去连字符）比较，
+  //   要求整段数字相同（7 → 7、7 Series，不命中 X7/i7/700/740i/3 Series；740 → 740i；mazda 3 → 3，不命中 CX-3/CX-30）；
+  //   车型名以品牌开头连写的（Mazda3）也可命中。
+  // - 含中文的词：在身份字段文本（含 SHAPE 中文名）中做子串匹配。
+  // - 其他词：身份字段（MAKE、MODEL、版本、TYPE、SHAPE、CAB、BED、SIZE、CODE；≥4 字符时含 规则ID）的单词前缀
+  //   （含连字符拆开的部分，benz → Mercedes-Benz）或整段去分隔后的前缀（landrover → Land Rover）。长宽高、销量、长度余量、年份文本不参与。
+  const IDENTITY_FIELDS = ["MAKE", "MODEL", "版本", "TYPE", "CONST", "结构", "SHAPE", "CAB", "BED", "SIZE", "CODE"];
+  const NUMERIC_FIELDS = ["MODEL", "版本"];
+  const RULE_ID_MIN_LENGTH = 4;
+  const CJK = /[㐀-鿿]/;
+  const WORD_SEPARATORS = /[-_/]+/g;
+
+  function searchQueryTokens(value) {
+    return String(value || "").toLowerCase().split(/\s+/).flatMap((part) => {
+      const range = /^((?:19|20)\d{2})[-–]((?:19|20)\d{2})$/.exec(part);
+      if (range) return [range[1], range[2]];
+      const compact = part.replace(WORD_SEPARATORS, "");
+      return compact ? [compact] : [];
+    });
+  }
+
+  function fieldWords(text) {
+    return normalizeSearchText(text).split(/\s+/).filter(Boolean);
+  }
+
+  function compactWords(text) {
+    return String(text || "").toLowerCase().split(/\s+/).map((word) => word.replace(WORD_SEPARATORS, "")).filter(Boolean);
+  }
+
+  function recordSearchIndex(record, shapeLabels = {}) {
+    if (record.searchIndex) return record.searchIndex;
+    const values = record.values || {};
+    const pick = (key) => cleanField(values[key] ?? (key === "MAKE" ? record.make : key === "MODEL" ? record.model : ""));
+    const fields = {};
+    IDENTITY_FIELDS.forEach((key) => { fields[key] = pick(key); });
+    if (!fields.TYPE) fields.TYPE = cleanField(record.type || record.construct);
+    if (!fields.SIZE) fields.SIZE = cleanField(record.size);
+    // HTML 尺码表记录（Size Chart 页）没有结构化字段时退回标题与说明
+    const hasFields = Object.values(fields).some(Boolean);
+    const extra = hasFields ? [] : [record.title, record.description].map(cleanField).filter(Boolean);
+    const shapes = fieldAtoms(fields.SHAPE).map((shape) => shapeLabels[shape]?.label || "").filter(Boolean);
+    const texts = [...Object.values(fields), ...extra, ...shapes].filter(Boolean);
+    const words = uniqueInOrder(texts.flatMap((text) => [...fieldWords(text), ...compactWords(text)]));
+    const compacts = uniqueInOrder(texts.map((text) => normalizeSearchText(text).replace(/\s+/g, "")).filter(Boolean));
+    const make = normalizeSearchText(fields.MAKE).replace(/\s+/g, "");
+    const numericWords = uniqueInOrder([...NUMERIC_FIELDS.map((key) => fields[key]), ...extra].flatMap(compactWords).flatMap((word) => (
+      make && word.length > make.length && word.startsWith(make) ? [word, word.slice(make.length)] : [word]
+    )));
+    const years = Array.isArray(record.years) && record.years.length ? record.years.map(Number) : expandYears(record.year || values.YEAR);
+    record.searchIndex = {
+      words, compacts, numericWords, years,
+      code: normalizeSearchText(fields.CODE).replace(/\s+/g, ""),
+      ruleId: normalizeSearchText(values["规则ID"]),
+      text: normalizeSearchText(texts.join(" "))
+    };
+    return record.searchIndex;
+  }
+
+  function recordMatchesSearchToken(record, token, shapeLabels) {
+    const index = recordSearchIndex(record, shapeLabels);
+    if (/^\d+$/.test(token)) {
+      if (token.length === 4 && index.years.includes(Number(token))) return true;
+      if (token.length >= 4 && index.code.startsWith(token)) return true;
+      // 整段数字：7 命中 7、7 Series、740i 的 740 不命中 7；不命中 700、75（7 后面紧跟数字的是另一个车型号）
+      return index.numericWords.some((word) => word.startsWith(token) && !/\d/.test(word.charAt(token.length)));
+    }
+    if (CJK.test(token)) return index.text.includes(token);
+    if (token.length >= RULE_ID_MIN_LENGTH && index.ruleId.startsWith(token)) return true;
+    return index.words.some((word) => word.startsWith(token)) || index.compacts.some((compact) => compact.startsWith(token));
+  }
+
   function cleanField(value) {
     return String(value || "").replace(/\s+/g, " ").trim();
   }
@@ -404,6 +526,12 @@
     normalizeSearchText,
     recordMatchesVehicleCode,
     recordSearchAtoms,
+    searchQueryTokens,
+    spanYears,
+    compressedSourceRow,
+    expandMatchShard,
+    recordSearchIndex,
+    recordMatchesSearchToken,
     cleanField,
     cleanText,
     escapeHtml

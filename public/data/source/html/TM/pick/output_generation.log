@@ -1,15 +1,15 @@
 Size chart generation log
-Generated at: 2026-10-15T09:20:32
-Config: C:\Users\cc\AppData\Local\Temp\html-config-bu0fslug\preference.yaml
-Output directory: D:\Licheng\Repo\pipeline_carstable_to_webapp\work\2026-10-15_01_pipeline\04_store_html\TM\pick
-CSS: D:\Licheng\Repo\pipeline_carstable_to_webapp\work\2026-10-15_01_pipeline\04_store_html\TM\pick\size-chart.css
+Generated at: 2026-10-16T14:23:47
+Config: C:\Users\cc\AppData\Local\Temp\html-config-cbiie9ss\preference.yaml
+Output directory: D:\Licheng\Repo\pipeline_carstable_to_webapp\work\2026-10-16_01_pipeline\04_store_html\TM\pick
+CSS: D:\Licheng\Repo\pipeline_carstable_to_webapp\work\2026-10-16_01_pipeline\04_store_html\TM\pick\size-chart.css
 Pages: 1
 Table chunks: 35
 Unique titles: 33
 Page table chunks: 35
 
 Inputs:
-- C:\Users\cc\AppData\Local\Temp\html-config-bu0fslug\TM-pickup.tsv
+- C:\Users\cc\AppData\Local\Temp\html-config-cbiie9ss\TM-pickup.tsv
   Sheet: 皮卡压缩表
   Profile: pickup
   Rows after filtering: 135

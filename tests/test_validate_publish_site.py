@@ -63,7 +63,7 @@ size_reference:
 
             self.assertEqual(
                 validate_publish_site(root),
-                {"sources": 1, "records": 1, "reference_rows": 1, "code_rows": 0},
+                {"sources": 1, "records": 1, "reference_rows": 1, "match_full_rows": 0, "match_compressed_rows": 0},
             )
 
 

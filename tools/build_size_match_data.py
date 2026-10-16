@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-"""用上游 A0.尺码计算/output 的国别全量表与 US 店铺全量表生成尺码配对页的数据源。
+"""尺码配对页全量表视图的 A0 行：读上游 A0.尺码计算/output 的国别全量表与 US 店铺全量表（校验 manifest sha256）并转成页面记录。
 
-校验 A0 manifest 的 sha256 后，各数据源（US、各店铺、EU、RU）按 类别（非皮卡/皮卡）+ MAKE 分片写入
-public/data/generated/size-match-full-NN-<区域>-<类别>-NNN-<make>.json，并写入清单 size-match-full.json。
-尺码配对页默认只加载 US 非皮卡，在侧栏大纲切换 EU、或切换到皮卡时才读取对应分片。
+本模块只提供共用函数；数据文件由 build_size_match_code_data.build 写出（size-match-data.json 与分片：
+每个分片同时存 A0 行 records 与引用这些行的 A1 压缩记录，页面控件切换压缩表/全量表，见该模块说明）。
 类别按 A0 `分类` 判定：分类为“皮卡”的（含 EU 的 Chassis Cab 等）归皮卡，其余为非皮卡。
 """
 
 from __future__ import annotations
 
-import argparse
 import csv
 import hashlib
 import io
@@ -52,28 +50,6 @@ def slug(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-") or "other"
 
 
-def write_make_groups(
-    out_dir: Path, prefix: str, source_index: int, name: str, columns: list[str], records: list[dict]
-) -> list[dict]:
-    """按 类别 + MAKE 分片写出记录，返回清单 make_groups（非皮卡在前，各类别内 MAKE 按字母序）。"""
-    by_kind_make: dict[tuple[str, str], list[dict]] = {}
-    for record in records:
-        by_kind_make.setdefault((record["kind"], record["make"]), []).append(record)
-    groups = []
-    for kind in KINDS:
-        makes = sorted((make for k, make in by_kind_make if k == kind), key=str.lower)
-        for index, make in enumerate(makes, 1):
-            shard = by_kind_make[(kind, make)]
-            file_name = f"{prefix}-{source_index:02d}-{slug(name)}-{kind}-{index:03d}-{slug(make)}.json"
-            write_json(out_dir / file_name, {"name": name, "make": make, "kind": kind, "columns": columns, "records": shard})
-            groups.append({"make": make, "kind": kind, "records_path": file_name, "record_count": len(shard)})
-    return groups
-
-
-def kind_counts(groups: list[dict]) -> dict[str, int]:
-    return {kind: sum(group["record_count"] for group in groups if group["kind"] == kind) for kind in KINDS}
-
-
 def to_record(row: dict[str, str], region: str) -> dict:
     values = dict(row)
     values["长度余量"] = row.get("自动长度余量", "")
@@ -97,40 +73,3 @@ def read_verified(source_dir: Path, name: str) -> tuple[dict, list[dict[str, str
     if expected is None or hashlib.sha256(data).hexdigest() != expected:
         raise ValueError(f"{name} 与 {manifest['node']} 的 manifest.json sha256 不一致，请重新发布上游")
     return manifest, list(csv.DictReader(io.StringIO(data.decode("utf-8-sig"))))
-
-
-def build(source_dir: Path, out_dir: Path) -> dict[str, int]:
-    region_rows = {region: read_verified(source_dir, name) for region, name in REGION_FILES.items()}
-    manifest = region_rows["US"][0]
-    for stale in out_dir.glob("size-match-full*.json"):
-        stale.unlink()
-    sources, counts = [], {}
-    store_rows = {store: read_verified(source_dir, file)[1] for store, file in STORES.items()}
-    datasets = [(region, region, rows) for region, (_, rows) in region_rows.items()]
-    datasets[1:1] = [(store, "US", data) for store, data in store_rows.items()]  # US 全量之后紧跟 US 店铺
-    for source_index, (name, group, dataset) in enumerate(datasets, 1):
-        if not dataset:
-            raise ValueError(f"{name} 没有数据")
-        groups = write_make_groups(out_dir, "size-match-full", source_index, name, COLUMNS, [to_record(row, name) for row in dataset])
-        counts[name] = sum(g["record_count"] for g in groups)
-        sources.append({"name": name, "group": group, "label": name if name in REGIONS else f"US · {name}",
-                        "sheet": f"{name}全量", "columns": COLUMNS, "record_count": counts[name],
-                        "kind_counts": kind_counts(groups), "make_groups": groups})
-    write_json(out_dir / "size-match-full.json", {
-        "format_version": 3, "columns": COLUMNS, "sources": sources,
-        "origin": {"node": manifest["node"], "version": manifest["version"], "published_at": manifest["published_at"]},
-    })
-    return counts
-
-
-def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source-dir", type=Path, default=DEFAULT_SOURCE)
-    parser.add_argument("--out-dir", type=Path, default=ROOT / "public" / "data" / "generated")
-    args = parser.parse_args()
-    print(json.dumps(build(args.source_dir, args.out_dir), ensure_ascii=False))
-    return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())

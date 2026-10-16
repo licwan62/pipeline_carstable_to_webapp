@@ -1,15 +1,15 @@
 Size chart generation log
-Generated at: 2026-10-15T09:20:32
-Config: C:\Users\cc\AppData\Local\Temp\html-config-bu0fslug\preference.yaml
-Output directory: D:\Licheng\Repo\pipeline_carstable_to_webapp\work\2026-10-15_01_pipeline\04_store_html\TM_拆分\nonpick
-CSS: D:\Licheng\Repo\pipeline_carstable_to_webapp\work\2026-10-15_01_pipeline\04_store_html\TM_拆分\nonpick\size-chart.css
+Generated at: 2026-10-16T14:23:47
+Config: C:\Users\cc\AppData\Local\Temp\html-config-cbiie9ss\preference.yaml
+Output directory: D:\Licheng\Repo\pipeline_carstable_to_webapp\work\2026-10-16_01_pipeline\04_store_html\TM_拆分\nonpick
+CSS: D:\Licheng\Repo\pipeline_carstable_to_webapp\work\2026-10-16_01_pipeline\04_store_html\TM_拆分\nonpick\size-chart.css
 Pages: 1
 Table chunks: 34
 Unique titles: 32
 Page table chunks: 34
 
 Inputs:
-- C:\Users\cc\AppData\Local\Temp\html-config-bu0fslug\TM_拆分-non-pickup.tsv
+- C:\Users\cc\AppData\Local\Temp\html-config-cbiie9ss\TM_拆分-non-pickup.tsv
   Sheet: 非皮卡压缩表
   Profile: non-pickup
   Rows after filtering: 162

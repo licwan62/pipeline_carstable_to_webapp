@@ -13,7 +13,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_size_match_code_data import DEFAULT_SOURCE as SIZE_MATCH_CODE_SOURCE, build as build_size_match_code_data  # noqa: E402
-from build_size_match_data import DEFAULT_SOURCE as SIZE_MATCH_SOURCE, build as build_size_match_data  # noqa: E402
+from build_size_match_data import DEFAULT_SOURCE as SIZE_MATCH_SOURCE  # noqa: E402
 from build_size_rules_data import build as build_size_rules_data  # noqa: E402
 from site_promote import promote_site  # noqa: E402
 from validate_publish_site import validate_publish_site  # noqa: E402
@@ -113,30 +113,37 @@ def configure_csv_sources(
     )
 
 
-# 尺码配对页（size-match.html）只有一张表：A1 压缩尺码表（CODE 代号在前，点 MAKE 展开来源车型各年份），
-# US 全量、US 店铺、EU、RU 六个数据源；SHAPE、长度余量、规则ID 由 A0 全量表按 DIMENSION-ID 补齐。
-# 车型可视化的历史仍读 A0 全量分片（evolution.historyDataPath）；旧 size-match-code.html 已弃用。
-MATCH_PAGE_OVERRIDE = """      matchDataPath: "data/generated/size-match-code.json",
+# 尺码配对页（size-match.html）：一份数据 size-match-data.json（A0 全量行 + 引用这些行的 A1 压缩记录），
+# 「视图」控件切换 压缩表（CODE 在前，点 CODE 展开来源车型各年份）/ 全量表（A0 逐行），默认压缩表，?view=full 直接打开全量表；
+# US 全量、US 店铺、EU、RU 六个数据源；车型可视化历史读同一份数据的全量行（evolution.historyDataPath 与 matchDataPath 相同）。
+# 旧 size-match-code.html 已弃用；验收要求见 docs/size-match-acceptance.md。
+MATCH_DATA_PATH = "data/generated/size-match-data.json"
+MATCH_PAGE_OVERRIDE = f"""      matchDataPath: "{MATCH_DATA_PATH}",
+      tableModes: [
+        {{ key: "compressed", label: "压缩表" }},
+        {{ key: "full", label: "全量表" }}
+      ],
+      defaultTableMode: "compressed",
       fieldOrder: ["CODE", "MODEL", "版本", "TYPE", "SHAPE", "YEAR", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"],
       searchPlaceholder: "Search code, make, model, type, shape, size, year...",
       matchSources: [
-        { name: "US", label: "US 全量", group: "US" },
-        { name: "HNT", label: "US · HNT", group: "US" },
-        { name: "TM", label: "US · TM", group: "US" },
-        { name: "TM_拆分", label: "US · TM_拆分", group: "US" },
-        { name: "EU", label: "EU", group: "EU" },
-        { name: "RU", label: "RU", group: "RU" }
+        {{ name: "US", label: "US 全量", group: "US" }},
+        {{ name: "HNT", label: "US · HNT", group: "US" }},
+        {{ name: "TM", label: "US · TM", group: "US" }},
+        {{ name: "TM_拆分", label: "US · TM_拆分", group: "US" }},
+        {{ name: "EU", label: "EU", group: "EU" }},
+        {{ name: "RU", label: "RU", group: "RU" }}
       ],
 """
 
 
 # 前端资源版本：改动 viewer.js/css、site-common.js、size-evolution*、vendor 资源后递增，构建时统一写入所有页面，避免浏览器沿用旧缓存。
-ASSET_VERSION = "20261015-1"
+ASSET_VERSION = "20261016-1"
 # assets/app/*.js|css 与 assets/vendor/<库>/*.js|css（ECharts 由页面配置 evolution.echartsPath 懒加载，路径同样带 ?v=）
 ASSET_REFERENCE = re.compile(r"(assets/(?:app|vendor/[\w.-]+)/[\w.-]+\.(?:js|css))\?v=[\w-]+")
 
 # 尺码配对页的车型尺寸演变可视化：只注入 size-match.html（viewer.js 按 evolution.enabled 启用，size-chart 不启用）；
-# 表格是压缩记录，弹窗历史读 A0 全量分片 historyDataPath
+# 弹窗历史读同一份数据的全量行（historyDataPath = matchDataPath）
 EVOLUTION_PAGE = "size-match.html"
 EVOLUTION_STYLE = f'  <link rel="stylesheet" href="assets/app/size-evolution.css?v={ASSET_VERSION}">\n'
 EVOLUTION_SCRIPTS = (
@@ -146,7 +153,7 @@ EVOLUTION_SCRIPTS = (
 EVOLUTION_CONFIG = f"""      evolution: {{
         enabled: true,
         echartsPath: "assets/vendor/echarts/echarts.min.js?v={ASSET_VERSION}",
-        historyDataPath: "data/generated/size-match-full.json"
+        historyDataPath: "{MATCH_DATA_PATH}"
       }},
 """
 EVOLUTION_ASSETS = [
@@ -239,7 +246,6 @@ def apply_site_overrides(site_output: Path, a0_dir: Path | None = None, compress
     generated = site_output / "data" / "generated"
     rules = build_size_rules_data(a0_dir, generated)
     print(f"[size-rules] {rules}")
-    build_size_match_data(a0_dir, generated)
     build_size_match_code_data(compressed_dir, generated, a0_dir)
     match_page = site_output / "size-match.html"
     text = match_page.read_text(encoding="utf-8")
@@ -277,6 +283,25 @@ def site_file_list(site_root: Path) -> list[dict[str, object]]:
     return files
 
 
+# 尺码配对页数据层验收（docs/size-match-acceptance.md）：用页面自己的 viewer-data.js 检查临时站点的数据——两种视图、同一数据源、
+# 压缩来源与 A1 逐条一致、搜索场景不出现上下文之外的车型。切换 public 之前运行，失败即不发布。
+SIZE_MATCH_ACCEPTANCE = Path(__file__).resolve().parents[1] / "tests" / "acceptance" / "size_match_data.cjs"
+
+
+def run_size_match_acceptance(site: Path, compressed_dir: Path | None = None) -> None:
+    node = shutil.which("node")
+    if not node:
+        raise RuntimeError("尺码配对数据验收需要 Node.js（node 不在 PATH）")
+    command = [node, str(SIZE_MATCH_ACCEPTANCE), "--site", str(site), "--a1", str(compressed_dir or SIZE_MATCH_CODE_SOURCE)]
+    print(f"[size-match acceptance] {' '.join(command)}")
+    # Node 输出 UTF-8；经本进程按 stdout 编码转发（run_all 以本地编码读管道，直接继承管道会出现乱码与编码错误）
+    completed = subprocess.run(command, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    encoding = sys.stdout.encoding or "utf-8"
+    print((completed.stdout + completed.stderr).encode(encoding, errors="replace").decode(encoding), end="", flush=True)
+    if completed.returncode:
+        raise RuntimeError(f"尺码配对数据验收未通过（退出码 {completed.returncode}），见上方 FAIL 项；public 未改动")
+
+
 def build_staged_site(
     publish_repo: Path,
     html_root: Path,
@@ -304,6 +329,7 @@ def build_staged_site(
     apply_site_overrides(staged, a0_dir, compressed_dir)
     summary = validate_publish_site(staged)
     print(f"[validate] staged site: {summary}")
+    run_size_match_acceptance(staged, compressed_dir)
     return staged
 
 

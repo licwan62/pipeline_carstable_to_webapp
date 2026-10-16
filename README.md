@@ -18,4 +18,5 @@
 ```powershell
 python tools/run_all.py
 python -m pytest tests
+python tools/acceptance_size_match.py   # 尺码配对页验收（需求见 docs/size-match-acceptance.md）
 ```

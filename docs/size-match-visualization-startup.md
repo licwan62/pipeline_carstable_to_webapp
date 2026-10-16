@@ -83,7 +83,7 @@ A0.尺码计算/output/
   RU/尺码匹配报告.md
 ```
 
-页面读取：`size-match-full.json` 及其 MAKE 分片；规则/货架为 `size-rules.json`、`store-groups.json`。`size-ref.json` 是尺码参考尺寸，不能代替实际匹配规则。
+页面读取：`size-match-full.json` 及其 MAKE 分片（2026-10-16 起合并为 `size-match-data.json` 分片的全量行 `records`，见 size-match-acceptance.md）；规则/货架为 `size-rules.json`、`store-groups.json`。`size-ref.json` 是尺码参考尺寸，不能代替实际匹配规则。
 
 现有 record 外层提供 make、model、year、years、construct/type、cab、bed、size、kind；`values` 保留原始 CSV 字段，并增加 TYPE、SIZE、SOURCE、长度余量等别名。多数可视化字段无需新增上游 CSV 列。
 

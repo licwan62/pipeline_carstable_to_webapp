@@ -1,0 +1,96 @@
+{
+  "description": "尺码配对页验收场景（docs/size-match-acceptance.md）。数据层（size_match_data.cjs）与浏览器（size_match_browser.cjs）共用；每个搜索场景在压缩表与全量表两种视图下都检查。",
+  "searches": [
+    {
+      "id": "S1",
+      "requirement": "R3",
+      "title": "bmw 7 只出现 7 系（缺陷复现：曾混入 3/5 系等）",
+      "query": "bmw 7",
+      "source": "US",
+      "kind": "nonpick",
+      "expect": { "makes": ["BMW"], "models": ["7 Series"] }
+    },
+    {
+      "id": "S2",
+      "requirement": "R3",
+      "title": "bmw 3 只出现 3 系，不混入尺码 3M 的 1/2 系",
+      "query": "bmw 3",
+      "source": "US",
+      "kind": "nonpick",
+      "expect": { "makes": ["BMW"], "models": ["3 Series"] }
+    },
+    {
+      "id": "S3",
+      "requirement": "R3",
+      "title": "bmw x5 只出现 X5",
+      "query": "bmw x5",
+      "source": "US",
+      "kind": "nonpick",
+      "expect": { "makes": ["BMW"], "models": ["X5"] }
+    },
+    {
+      "id": "S4",
+      "requirement": "R3",
+      "title": "mazda 3 只出现 Mazda 3，不混入 CX-3/CX-30/MX-30",
+      "query": "mazda 3",
+      "source": "US",
+      "kind": "nonpick",
+      "expect": { "makes": ["Mazda"], "models": ["3"] }
+    },
+    {
+      "id": "S5",
+      "requirement": "R3",
+      "title": "连字符车型：honda crv / cr-v",
+      "query": "honda cr-v",
+      "source": "US",
+      "kind": "nonpick",
+      "expect": { "makes": ["Honda"], "models": ["CR-V"] }
+    },
+    {
+      "id": "S6",
+      "requirement": "R3",
+      "title": "皮卡：ford f150",
+      "query": "ford f150",
+      "source": "US",
+      "kind": "pick",
+      "expect": { "makes": ["Ford"], "models": ["F-150"] }
+    },
+    {
+      "id": "S7",
+      "requirement": "R3",
+      "title": "年份按年份区间匹配：camry 2017",
+      "query": "toyota camry 2017",
+      "source": "US",
+      "kind": "nonpick",
+      "expect": { "makes": ["Toyota"], "models": ["Camry"], "year": 2017 }
+    },
+    {
+      "id": "S8",
+      "requirement": "R3",
+      "title": "EU 数据源：bmw 7 只出现 7（EU 车型名为 7），不混入 700/X7/i7",
+      "query": "bmw 7",
+      "source": "EU",
+      "kind": "nonpick",
+      "expect": { "makes": ["BMW"], "models": ["7"] }
+    },
+    {
+      "id": "S10",
+      "requirement": "R3",
+      "title": "RU 数据源：bmw 7 只出现 7 серии，不混入 700/X7/i7",
+      "query": "bmw 7",
+      "source": "RU",
+      "kind": "nonpick",
+      "expect": { "makes": ["BMW"], "models": ["7 серии"] }
+    },
+    {
+      "id": "S9",
+      "requirement": "R3",
+      "title": "8 位车型代码 01039426 = Ford Mustang 1994-2026",
+      "query": "01039426",
+      "source": "US",
+      "kind": "nonpick",
+      "browser_only": true,
+      "expect": { "makes": ["Ford"], "models": ["Mustang"] }
+    }
+  ]
+}

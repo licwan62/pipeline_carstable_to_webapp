@@ -43,10 +43,9 @@ def write_site(root: Path, *, rules_version: str = "20261013_12") -> None:
     generated = root / "data" / "generated"
     generated.mkdir(parents=True)
     origin = {"node": "size-calculation", "version": "20261013_12"}
-    (generated / "size-match-full.json").write_text(json.dumps({"origin": origin}), encoding="utf-8")
-    # 表格是 A1 压缩记录，a0_version 为其来源行补充字段所依据的 A0 版本
-    code_origin = {"node": "size-compression", "version": "20261013_08", "a0_version": "20261013_12"}
-    (generated / "size-match-code.json").write_text(json.dumps({"origin": code_origin}), encoding="utf-8")
+    # 一份数据（A0 全量行 + A1 压缩记录）：version 为 A1 版本，a0_version 为全量行所依据的 A0 版本
+    data_origin = {"node": "size-compression", "version": "20261013_08", "a0_version": "20261013_12"}
+    (generated / "size-match-data.json").write_text(json.dumps({"origin": data_origin}), encoding="utf-8")
     (generated / "size-rules.json").write_text(json.dumps({"source": {**origin, "version": rules_version}}), encoding="utf-8")
     (generated / "store-groups.json").write_text(json.dumps({"source": origin}), encoding="utf-8")
 
@@ -73,8 +72,8 @@ class SizeEvolutionSiteTests(unittest.TestCase):
             self.assertEqual(page.count("size-evolution.js"), 1)
             self.assertIn("enabled: true", page)
             self.assertIn(f"assets/vendor/echarts/echarts.min.js?v={version}", page)
-            # 可视化历史读 A0 全量分片，与表格（压缩记录）分开
-            self.assertIn('historyDataPath: "data/generated/size-match-full.json"', page)
+            # 可视化历史读表格同一份数据（size-match-data.json 的全量行），不另发一套全量分片
+            self.assertIn('historyDataPath: "data/generated/size-match-data.json"', page)
             self.assertIn(f"assets/app/viewer.js?v={version}", page)
             # 可视化脚本在 viewer.js 之前加载
             self.assertLess(page.index("size-evolution.js"), page.index("assets/app/viewer.js"))
