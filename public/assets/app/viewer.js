@@ -29,6 +29,8 @@
     searchQueryTokens,
     expandMatchShard,
     recordMatchesSearchToken,
+    filterBySearchTokens,
+    queryVehicleKind,
     cleanField,
     cleanText,
     escapeHtml
@@ -133,10 +135,14 @@
   // 压缩代号页：已展开来源车型的记录（记录对象随数据缓存常驻，重绘后保持展开）与当前表格渲染的记录
   const expandedSourceRecords = new WeakSet();
   let renderedResultRecords = [];
-  // 车型代码表（CODE 前四位 → MAKE、MODEL、类别），查询含 8 位代码时才加载；首屏的 ?q= 只在首次渲染时检查一次
+  // 车型代码表（CODE 前四位 → MAKE、MODEL、类别），有搜索词时才加载，用于 8 位代码解析与按车型自动切换类别；
+  // 首屏的 ?q= 只在首次渲染时检查一次。lastAutoKind：上次按查询识别出的类别，识别结果不变时不再切换（保留用户随后的手动选择）
   let vehicleCodes = null;
   let vehicleCodesPromise = null;
   let initialVehicleCodeChecked = false;
+  let lastAutoKind = "";
+  // 本次搜索因会清空结果而被忽略的词（filterBySearchTokens），显示在结果摘要里
+  let ignoredSearchTokens = [];
   // 车型尺寸演变可视化（size-evolution.js）：只在页面配置 evolution.enabled 时启用（size-chart 不启用）。
   // 选择状态按稳定 recordKey 存储，翻页、排序、切换表格/大纲时保留；source 或类别切换时清空。
   const evolutionConfig = config.evolution || {};
@@ -447,7 +453,9 @@
         loadSearchIndex(currentSearchDirectories());
       } else {
         initialVehicleCodeChecked = true;
-        applyVehicleCodeKind().then(() => loadSearchIndex(currentSearchDirectories()));
+        // 首屏 URL 明确指定了 ?view= 时保持该视图，只切换类别
+        const keepView = new URLSearchParams(window.location.search).has("view");
+        applyQueryVehicleKind({ keepView }).then(() => loadSearchIndex(currentSearchDirectories()));
       }
     } else {
       resizeFrames();
@@ -716,7 +724,7 @@
       searchLoadToken += 1;
       globalSearchTimer = window.setTimeout(async () => {
         const query = searchState.query;
-        await applyVehicleCodeKind();
+        await applyQueryVehicleKind();
         if (query !== searchState.query) return;
         loadSearchIndex(currentSearchDirectories());
       }, 180);
@@ -1285,7 +1293,7 @@
     const visibleMatches = matches.slice(start, start + limit);
     evolutionPageRecords = new Map(visibleMatches.filter((record) => record.recordKey).map((record) => [record.recordKey, record]));
     evolutionOutlineGroups = [];
-    const summaryText = vehicleCodeHint() + (matches.length > visibleMatches.length
+    const summaryText = vehicleCodeHint() + ignoredTokenHint() + (matches.length > visibleMatches.length
       ? `匹配结果：${formatCount(matches.length)} 条记录，当前第 ${formatCount(searchState.resultPage)} / ${formatCount(maxPage)} 页。`
       : `匹配结果：${formatCount(matches.length)} 条记录。`);
     renderSearchSummary(summary, summaryText, matches);
@@ -1533,11 +1541,19 @@
   function queryFilteredRecords() {
     const tokens = searchQueryTokens(searchState.query);
     const kindRecords = searchState.records.filter((record) => recordKind(record) === searchState.vehicleKind);
-    if (!tokens.length) {
+    if (!tokens.length || !kindRecords.length) {
+      ignoredSearchTokens = [];
       return kindRecords;
     }
 
-    return kindRecords.filter((record) => tokens.every((token) => recordMatchesToken(record, token)));
+    // 逐词收窄：无映射的词（如 short bed）忽略并提示，不把结果清空
+    const result = filterBySearchTokens(kindRecords, tokens, recordMatchesToken);
+    ignoredSearchTokens = result.ignored;
+    return result.records;
+  }
+
+  function ignoredTokenHint() {
+    return ignoredSearchTokens.length ? `未匹配的词已忽略：${ignoredSearchTokens.join("、")}；` : "";
   }
 
   // 非皮卡没有驾驶室/货箱，表格与表格设置都不显示 CAB、BED
@@ -3468,20 +3484,45 @@
     return vehicleCodesPromise;
   }
 
-  // 查询含 8 位数字时先加载代码表；代码车型不在当前类别（皮卡/非皮卡）时切换到其所在类别
-  async function applyVehicleCodeKind() {
-    if (!searchTokens(searchState.query).some((token) => /^\d{8}$/.test(token))) return;
+  // 有搜索词时先加载代码表，按查询识别车型所在类别（皮卡/非皮卡）并切换：8 位代码按代码车型的类别（当前类别已包含时不动），
+  // 否则按查询提到的 MAKE/MODEL（viewer-data.js queryVehicleKind）。识别为皮卡时同时切到全量表（keepView：首屏 URL 指定了视图）。
+  // 识别结果与上次相同则不再切换，用户切换后继续输入不会被拉回。
+  async function applyQueryVehicleKind({ keepView = false } = {}) {
+    const tokens = searchQueryTokens(searchState.query);
+    if (!tokens.length) {
+      lastAutoKind = "";
+      return;
+    }
     await loadVehicleCodes();
-    const kinds = uniqueInOrder(queryVehicleCodes().flatMap((code) => code.kinds));
-    if (!kinds.length || kinds.includes(searchState.vehicleKind)) return;
-    searchState.vehicleKind = kinds[0];
+    const codeKinds = uniqueInOrder(queryVehicleCodes().flatMap((code) => code.kinds));
+    const kind = codeKinds.length
+      ? (codeKinds.includes(searchState.vehicleKind) ? searchState.vehicleKind : codeKinds[0])
+      : queryVehicleKind(tokens, vehicleCodes);
+    if (kind === lastAutoKind) return;
+    lastAutoKind = kind;
+    if (!kind) return;
+    const mode = kind === "pick" && !keepView && tableModes().some((item) => item.key === "full") ? "full" : searchState.tableMode;
+    if (kind === searchState.vehicleKind && mode === searchState.tableMode) return;
+    searchState.vehicleKind = kind;
     searchState.availableMakes = [];
     searchState.scopeKey = "";
-    app.querySelectorAll("[data-vehicle-kind]").forEach((button) => {
-      const active = button.dataset.vehicleKind === searchState.vehicleKind;
+    if (mode !== searchState.tableMode) {
+      searchState.tableMode = mode;
+      searchState.columnFilters = {};
+      searchState.openFilter = "";
+      searchState.sortField = "";
+      searchState.sortDirection = "asc";
+      searchState.resultPage = 1;
+      searchState.resetResultScroll = true;
+      syncTableModeUrl();
+    }
+    const toggle = (selector, key, value) => app.querySelectorAll(selector).forEach((button) => {
+      const active = button.dataset[key] === value;
       button.classList.toggle("is-active", active);
       button.setAttribute("aria-pressed", active ? "true" : "false");
     });
+    toggle("[data-vehicle-kind]", "vehicleKind", searchState.vehicleKind);
+    toggle("[data-table-mode]", "tableMode", searchState.tableMode);
   }
 
   function cssEscape(value) {

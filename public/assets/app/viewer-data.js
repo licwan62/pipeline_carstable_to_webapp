@@ -407,7 +407,8 @@
   // ---------- 全局搜索：按字段语义匹配，不在整行文本里做子串匹配 ----------
   // 旧逻辑把整行（含年份、长宽高、销量、CODE、尺码）拼成一段做子串匹配，「bmw 7」里的 7 命中 2017、长宽高、销量等，
   // 结果混入 3/5 系等上下文之外的车型。查询按空格分词，词内连字符等分隔去掉（f-150 → f150，cr-v → crv），
-  // 年份区间（2019-2021）拆成两个年份；每个词都要命中（AND）：
+  // 年份区间（2008-2026）保留为一个区间词；每个词都要命中（AND，见 filterBySearchTokens 的逐词收窄）：
+  // - 年份区间词：记录年份与区间有交集即命中（2009-2014 命中 2008-2026），不要求记录同时含首尾两年。
   // - 纯数字词：四位年份 → 记录年份包含该年；≥4 位 → CODE 前缀；其余只与 MODEL、版本 按空格分出的整词（去连字符）比较，
   //   要求整段数字相同（7 → 7、7 Series，不命中 X7/i7/700/740i/3 Series；740 → 740i；mazda 3 → 3，不命中 CX-3/CX-30）；
   //   车型名以品牌开头连写的（Mazda3）也可命中。
@@ -423,7 +424,7 @@
   function searchQueryTokens(value) {
     return String(value || "").toLowerCase().split(/\s+/).flatMap((part) => {
       const range = /^((?:19|20)\d{2})[-–]((?:19|20)\d{2})$/.exec(part);
-      if (range) return [range[1], range[2]];
+      if (range) return [[range[1], range[2]].sort().join("-")];
       const compact = part.replace(WORD_SEPARATORS, "");
       return compact ? [compact] : [];
     });
@@ -468,6 +469,8 @@
 
   function recordMatchesSearchToken(record, token, shapeLabels) {
     const index = recordSearchIndex(record, shapeLabels);
+    const range = /^(\d{4})-(\d{4})$/.exec(token);
+    if (range) return index.years.some((year) => year >= Number(range[1]) && year <= Number(range[2]));
     if (/^\d+$/.test(token)) {
       if (token.length === 4 && index.years.includes(Number(token))) return true;
       if (token.length >= 4 && index.code.startsWith(token)) return true;
@@ -477,6 +480,37 @@
     if (CJK.test(token)) return index.text.includes(token);
     if (token.length >= RULE_ID_MIN_LENGTH && index.ruleId.startsWith(token)) return true;
     return index.words.some((word) => word.startsWith(token)) || index.compacts.some((compact) => compact.startsWith(token));
+  }
+
+  // 逐词收窄：按查询顺序，每个词在前面词的结果内筛选；某个词会把结果清空（数据里没有对应值，如 short bed 没有映射、
+  // cab / bed 只是字段名）时忽略该词并记入 ignored，不让一个无映射的词把全部记录清空。matches(record, token) 由调用方给出。
+  function filterBySearchTokens(records, tokens, matches) {
+    let current = records;
+    const ignored = [];
+    tokens.forEach((token) => {
+      const next = current.filter((record) => matches(record, token));
+      if (next.length) current = next;
+      else ignored.push(token);
+    });
+    return { records: current, ignored };
+  }
+
+  // 查询提到的车型在车型代码表（vehicle-codes.json：CODE 前四位 → MAKE、MODEL、kinds）里只属于一个类别时返回该类别，否则 ""。
+  // 车型词：与 MODEL 去分隔的整段（f150、silverado1500）、首个单词（silverado）或斜杠分开的部分（2500/3500）相同；
+  // 查询同时含 MAKE 时只看该 MAKE 的车型。没有车型词时，只提到一个 MAKE 且它全部车型同属一个类别（Ram）也算。
+  function queryVehicleKind(tokens, codes) {
+    const entries = Object.values(codes || {}).filter((entry) => entry && entry.make && Array.isArray(entry.kinds));
+    const words = tokens.filter((token) => token.length >= 2 && !/^(?:19|20)\d{2}(?:-\d{4})?$/.test(token));
+    const compact = (text) => normalizeSearchText(text).replace(/\s+/g, "");
+    const makes = new Set(entries.map((entry) => entry.make).filter((make) => (
+      words.includes(compact(make)) || fieldWords(make).some((word) => word.length >= 3 && words.includes(word))
+    )));
+    const inMake = entries.filter((entry) => !makes.size || makes.has(entry.make));
+    const modelKeys = (model) => uniqueInOrder([compact(model), compactWords(model)[0], ...String(model).split("/").map(compact)].filter(Boolean));
+    let candidates = inMake.filter((entry) => modelKeys(entry.model).some((key) => words.includes(key)));
+    if (!candidates.length && makes.size === 1) candidates = inMake;
+    const kinds = uniqueInOrder(candidates.flatMap((entry) => entry.kinds));
+    return kinds.length === 1 ? kinds[0] : "";
   }
 
   function cleanField(value) {
@@ -532,6 +566,8 @@
     expandMatchShard,
     recordSearchIndex,
     recordMatchesSearchToken,
+    filterBySearchTokens,
+    queryVehicleKind,
     cleanField,
     cleanText,
     escapeHtml
