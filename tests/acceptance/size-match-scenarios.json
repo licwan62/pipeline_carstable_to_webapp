@@ -1,5 +1,5 @@
 {
-  "description": "尺码配对页验收场景（docs/size-match-acceptance.md）。数据层（size_match_data.cjs）与浏览器（size_match_browser.cjs）共用；每个搜索场景在压缩表与全量表两种视图下都检查。",
+  "description": "尺码配对页验收场景（docs/size-match-acceptance.md）。数据层（size_match_data.cjs）与浏览器（size_match_browser.cjs）共用；每个搜索场景在压缩表与全量表两种视图下都检查。expect.auto：从默认页面（非皮卡、压缩表）输入搜索词后必须自动切到该类别与视图；expect.yearRange：命中必须恰好是期望车型中与该年份区间有交集的全部记录；expect.cabs：命中记录的 CAB；expect.ignored：允许被忽略的无映射词（其他词被忽略即失败）。",
   "searches": [
     {
       "id": "S1",
@@ -81,6 +81,27 @@
       "source": "RU",
       "kind": "nonpick",
       "expect": { "makes": ["BMW"], "models": ["7 серии"] }
+    },
+    {
+      "id": "S11",
+      "requirement": "R7",
+      "title": "皮卡年份区间：自动切到皮卡全量表，2008-2026 按区间交集筛选",
+      "query": "Ford F-150 2008-2026",
+      "source": "US",
+      "kind": "pick",
+      "expect": { "makes": ["Ford"], "models": ["F-150"], "auto": { "kind": "pick", "view": "full" }, "yearRange": [2008, 2026] }
+    },
+    {
+      "id": "S12",
+      "requirement": "R7",
+      "title": "皮卡驾驶室：SuperCrew 收窄，Cab / Short Bed 无映射时忽略而不清空结果",
+      "query": "Ford F-150 2008-2026 SuperCrew Cab Short Bed",
+      "source": "US",
+      "kind": "pick",
+      "expect": {
+        "makes": ["Ford"], "models": ["F-150"], "auto": { "kind": "pick", "view": "full" }, "yearRange": [2008, 2026],
+        "cabs": ["SuperCrew"], "ignored": ["cab", "short", "bed"]
+      }
     },
     {
       "id": "S9",

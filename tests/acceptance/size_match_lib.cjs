@@ -6,6 +6,7 @@ const path = require("node:path");
 const ROOT = path.resolve(__dirname, "..", "..");
 const VIEWER_DATA = path.join("assets", "app", "viewer-data.js");
 const MATCH_DATA = "data/generated/size-match-data.json";
+const VEHICLE_CODES = "data/generated/vehicle-codes.json";
 const SOURCE_KINDS = { nonpick: "非皮卡", pick: "皮卡" };
 const TABLES = { 非皮卡: "压缩尺码表.csv", 皮卡: "压缩尺码表_皮卡.csv" };
 
@@ -60,9 +61,23 @@ class Site {
     return this.cache.get(key);
   }
 
-  search(records, query) {
+  // 与页面 queryFilteredRecords 相同：逐词收窄，会清空结果的词忽略（ignored）。站点的 viewer-data.js 没有逐词收窄时按旧规则全部 AND
+  searchDetail(records, query) {
     const tokens = this.D.searchQueryTokens(query);
-    return records.filter((record) => tokens.every((token) => this.D.recordMatchesSearchToken(record, token)));
+    const matches = (record, token) => this.D.recordMatchesSearchToken(record, token);
+    if (!this.D.filterBySearchTokens) return { records: records.filter((record) => tokens.every((token) => matches(record, token))), ignored: [] };
+    return this.D.filterBySearchTokens(records, tokens, matches);
+  }
+
+  search(records, query) {
+    return this.searchDetail(records, query).records;
+  }
+
+  // 页面按查询自动切换到的类别（viewer-data.js queryVehicleKind + 站点的 vehicle-codes.json）；站点没有该规则时为 ""
+  vehicleKind(query) {
+    if (!this.D.queryVehicleKind) return "";
+    if (!this.vehicleCodes) this.vehicleCodes = readJson(path.join(this.root, VEHICLE_CODES)).codes || {};
+    return this.D.queryVehicleKind(this.D.searchQueryTokens(query), this.vehicleCodes);
   }
 }
 

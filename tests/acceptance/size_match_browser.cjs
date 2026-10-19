@@ -139,23 +139,54 @@ async function run() {
       return `切换前已请求 ${requests.filter((item) => /size-match-data/.test(item)).length} 个数据文件，切换时 0 个`;
     });
 
+    // ford f150 首屏自动切到皮卡全量表（R7），这里再手动切回压缩表：URL 明确指定的视图在刷新后优先于自动切换
     await check("B3", "R1", "切换视图保留搜索词与类别，URL 记录视图（?view=），刷新后保持", async () => {
       const url = new URL("size-match.html", options.url);
       url.searchParams.set("q", "ford f150");
       await page.goto(url.href);
       await waitReady(page);
-      await page.click('[data-vehicle-kind="pick"]');
+      await page.click('[data-table-mode="compressed"]');
+      await page.waitForSelector('[data-table-mode="compressed"][aria-pressed="true"]');
       await waitReady(page);
-      await page.click('[data-table-mode="full"]');
-      await waitReady(page);
-      assert(new URL(page.url()).searchParams.get("view") === "full", `URL：${page.url()}`);
+      assert(new URL(page.url()).searchParams.get("view") === "compressed", `URL：${page.url()}`);
       assert((await page.inputValue(".global-search-input")) === "ford f150", "搜索词丢失");
       assert(await page.locator('[data-vehicle-kind="pick"][aria-pressed="true"]').count(), "类别被重置");
       await page.goto(page.url());
       await waitReady(page);
-      assert((await activeMode(page)) === "full", "刷新后视图未保持");
+      assert((await activeMode(page)) === "compressed", "刷新后视图未保持");
       return page.url().replace(options.url, "");
     });
+
+    // R7：从默认页面（非皮卡、压缩表）在搜索框输入，页面必须自动切到场景要求的类别与视图并有筛选记录，数量与数据规则一致
+    for (const scenario of scenarios.searches.filter((item) => item.expect.auto)) {
+      const { auto } = scenario.expect;
+      await check(scenario.id.replace(/^S/, "A"), "R7", `输入「${scenario.query}」自动切到${auto.kind === "pick" ? "皮卡" : "非皮卡"}${auto.view === "full" ? "全量表" : "压缩表"}且有筛选记录`, async () => {
+        await page.goto(new URL("size-match.html", options.url).href);
+        await waitReady(page);
+        assert(await page.locator('[data-vehicle-kind="nonpick"][aria-pressed="true"]').count() && (await activeMode(page)) === "compressed", "默认页面不是非皮卡压缩表");
+        await page.fill(".global-search-input", scenario.query);
+        try {
+          await page.waitForSelector(`[data-vehicle-kind="${auto.kind}"][aria-pressed="true"]`, { timeout: 10000 });
+          await page.waitForSelector(`[data-table-mode="${auto.view}"][aria-pressed="true"]`, { timeout: 2000 });
+        } catch (error) {
+          const kind = await page.locator('[data-vehicle-kind][aria-pressed="true"]').getAttribute("data-vehicle-kind");
+          throw new Error(`没有自动跳转：当前类别 ${kind}、视图 ${await activeMode(page)}，应为 ${auto.kind} / ${auto.view}`);
+        }
+        await page.waitForSelector(`.search-summary[data-status="ready"][data-view-mode="${auto.view}"]`, { timeout: 60000 });
+        assert(new URL(page.url()).searchParams.get("view") === auto.view, `URL 未记录视图：${page.url()}`);
+        const count = await summaryCount(page);
+        assert(count > 0, "没有筛选记录");
+        const expected = site.search(site.views(scenario.source, auto.kind)[auto.view], scenario.query).length;
+        assert(count === expected, `页面 ${count} 条，数据规则应为 ${expected} 条`);
+        const rows = await tableRows(page);
+        const stray = rows.filter((row) => !scenario.expect.makes.includes(row.make) || !scenario.expect.models.includes(row.model));
+        assert(!stray.length, `出现上下文之外的车型：${stray[0]?.make} ${stray[0]?.model}`);
+        const ignored = scenario.expect.ignored || [];
+        const summary = await page.locator(".search-summary").innerText();
+        if (ignored.length) assert(ignored.every((token) => summary.includes(token)), `摘要未提示忽略的词：${summary}`);
+        return `${auto.kind} / ${auto.view} · ${count} 条${ignored.length ? ` · ${summary.split("；")[0]}` : ""}`;
+      });
+    }
 
     for (const scenario of scenarios.searches) {
       await check(scenario.id, scenario.requirement, `${scenario.title}（页面 ${scenario.source}/${scenario.kind}「${scenario.query}」）`, async () => {

@@ -46,6 +46,52 @@ test("four-digit years match the record's year span, not text inside other numbe
   assert.deepEqual(search(BMW, "bmw 2030"), []);
 });
 
+test("a year range matches every record whose years overlap it, not only records that contain both ends", () => {
+  const trucks = [
+    row("Ford", "F-150", "2004-2008", { CAB: "SuperCrew", BED: "5.5" }), row("Ford", "F-150", "2009-2014", { CAB: "SuperCab", BED: "6.5" }),
+    row("Ford", "F-150", "2021-2026", { CAB: "SuperCrew", BED: "5.5" }), row("Ford", "F-150", "1997-2003", { CAB: "Regular", BED: "8" })
+  ];
+  assert.deepEqual(D.searchQueryTokens("Ford F-150 2008-2026"), ["ford", "f150", "2008-2026"]);
+  assert.deepEqual(D.searchQueryTokens("2026–2008"), ["2008-2026"], "倒序与长破折号统一成升序区间");
+  assert.deepEqual(search(trucks, "ford f150 2008-2026").length, 3, "2009-2014 不含首尾两年也在区间内");
+  assert.deepEqual(search(trucks, "f150 1990-1996"), []);
+});
+
+test("filterBySearchTokens ignores words that would empty the result (short bed has no mapping) and reports them", () => {
+  const trucks = [
+    row("Ford", "F-150", "2009-2014", { CAB: "SuperCrew", BED: "5.5" }), row("Ford", "F-150", "2015-2020", { CAB: "SuperCab", BED: "6.5" }),
+    row("Chevrolet", "Silverado 1500", "2019-2026", { CAB: "Crew Cab", BED: "Short Bed" }), row("Ford", "F-150", "1997-2003", { CAB: "SuperCrew", BED: "5.5" })
+  ];
+  const matches = (record, token) => D.recordMatchesSearchToken(record, token);
+  const result = D.filterBySearchTokens(trucks, D.searchQueryTokens("Ford F-150 2008-2026 SuperCrew Cab Short Bed"), matches);
+  assert.deepEqual(result.records.map((record) => `${record.model} ${record.year}`), ["F-150 2009-2014"]);
+  assert.deepEqual(result.ignored, ["cab", "short", "bed"], "Silverado 的 Crew Cab / Short Bed 不能把 F-150 结果清空");
+  assert.deepEqual(D.filterBySearchTokens(trucks, ["silverado", "short"], matches).ignored, [], "有映射时照常收窄");
+  assert.deepEqual(D.filterBySearchTokens([], ["ford"], matches), { records: [], ignored: ["ford"] });
+});
+
+test("queryVehicleKind finds the vehicle kind from MAKE / MODEL words in the vehicle code table", () => {
+  const codes = {
+    "0100": { make: "Ford", model: "F-150", kinds: ["pick"] }, "0103": { make: "Ford", model: "Mustang", kinds: ["nonpick"] },
+    "1000": { make: "Ram", model: "1500", kinds: ["pick"] }, "1001": { make: "Ram", model: "2500/3500", kinds: ["pick"] },
+    "0001": { make: "Chevrolet", model: "Silverado 1500", kinds: ["pick"] }, "1907": { make: "BMW", model: "7 Series", kinds: ["nonpick"] },
+    "0300": { make: "Jeep", model: "Gladiator", kinds: ["nonpick", "pick"] }
+  };
+  const kind = (query) => D.queryVehicleKind(D.searchQueryTokens(query), codes);
+  assert.equal(kind("Ford F-150 2008-2026"), "pick");
+  assert.equal(kind("Ford F-150 2008-2026 SuperCrew Cab Short Bed"), "pick");
+  assert.equal(kind("f150"), "pick");
+  assert.equal(kind("chevrolet silverado"), "pick");
+  assert.equal(kind("ram"), "pick", "只提到 MAKE 且其车型全是皮卡");
+  assert.equal(kind("ram 3500"), "pick");
+  assert.equal(kind("ford mustang 2017"), "nonpick");
+  assert.equal(kind("ford"), "", "MAKE 两类都有时不切换");
+  assert.equal(kind("jeep gladiator"), "", "车型两类都有时不切换");
+  assert.equal(kind("2017"), "");
+  assert.equal(kind("bmw 7"), "nonpick", "MAKE 只有非皮卡车型");
+  assert.equal(D.queryVehicleKind(["f150"], null), "");
+});
+
 test("codes match by prefix of at least four digits; short numbers never hit CODE", () => {
   assert.deepEqual(search(BMW, "1907"), ["7 Series"]);
   assert.deepEqual(search(BMW, "19"), []);

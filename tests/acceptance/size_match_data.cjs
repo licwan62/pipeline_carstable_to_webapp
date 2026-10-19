@@ -114,10 +114,30 @@ function scenarioChecks(site, scenarios, results) {
     check(results, scenario.id, scenario.requirement, `${scenario.title}（${scenario.source}/${scenario.kind}「${scenario.query}」）`, () => {
       const views = site.views(scenario.source, scenario.kind);
       const counts = {};
+      const { auto, yearRange, cabs } = scenario.expect;
+      if (auto) {
+        // R7：页面按查询识别的类别必须是场景类别（视图切换由浏览器层检查）
+        const kind = site.vehicleKind(scenario.query);
+        assert(kind === auto.kind, `查询识别的类别为「${kind || "无"}」，应自动切到 ${auto.kind}`);
+      }
+      const overlaps = (record) => record.years.some((year) => year >= yearRange[0] && year <= yearRange[1]);
+      const cabOf = (record) => record.cab || record.values?.CAB || "";
       for (const mode of ["compressed", "full"]) {
-        const hits = site.search(views[mode], scenario.query);
+        const { records: hits, ignored } = site.searchDetail(views[mode], scenario.query);
         counts[mode] = hits.length;
         assert(hits.length, `${mode} 视图没有结果`);
+        // 只有场景声明的无映射词可以被忽略；车型、年份等词被忽略说明规则失效
+        const strayIgnored = ignored.filter((token) => !(scenario.expect.ignored || []).includes(token));
+        assert(!strayIgnored.length, `${mode} 视图忽略了不该忽略的词：${strayIgnored.join(", ")}`);
+        if (yearRange) {
+          // 命中必须恰好是期望车型中与区间有交集的全部记录：不能只取含首尾年份的子集，也不能混入区间外的年份段
+          const expected = views[mode].filter((record) => scenario.expect.makes.includes(record.make) && scenario.expect.models.includes(record.model)
+            && (!cabs || cabs.includes(cabOf(record))) && overlaps(record));
+          assert(hits.every(overlaps), `${mode} 视图有与 ${yearRange.join("-")} 无交集的记录：${hits.find((record) => !overlaps(record))?.year}`);
+          const missing = expected.filter((record) => !hits.includes(record));
+          assert(!missing.length, `${mode} 视图漏掉 ${missing.length} 条区间内记录（如 ${missing[0]?.year}），应为 ${expected.length} 条`);
+        }
+        if (cabs) assert(hits.every((record) => cabs.includes(cabOf(record))), `${mode} 视图出现 CAB ${hits.map(cabOf).find((cab) => !cabs.includes(cab))}`);
         const strayMakes = [...new Set(hits.map((record) => record.make))].filter((make) => !scenario.expect.makes.includes(make));
         const strayModels = [...new Set(hits.map((record) => record.model))].filter((model) => !scenario.expect.models.includes(model));
         assert(!strayMakes.length && !strayModels.length, `${mode} 视图出现上下文之外的车型：${[...strayMakes, ...strayModels].join(", ")}`);
@@ -134,7 +154,8 @@ function scenarioChecks(site, scenarios, results) {
       const covered = new Set(site.search(views.compressed, scenario.query).flatMap((record) => record.sources.map((item) => item["DIMENSION-ID"])));
       const lost = site.search(views.full, scenario.query).filter((row) => row.size && !covered.has(row.values["DIMENSION-ID"]));
       assert(!lost.length, `全量视图的 ${lost.length} 行在压缩视图中找不到（如 ${lost[0]?.values["DIMENSION-ID"]}）`);
-      return `压缩 ${counts.compressed} 条 · 全量 ${counts.full} 行`;
+      const ignored = site.searchDetail(views.full, scenario.query).ignored;
+      return `压缩 ${counts.compressed} 条 · 全量 ${counts.full} 行${auto ? ` · 自动切到 ${auto.kind}` : ""}${ignored.length ? ` · 忽略 ${ignored.join("/")}` : ""}`;
     });
   }
 }
