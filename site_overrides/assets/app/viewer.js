@@ -1903,6 +1903,8 @@
     };
   }
 
+  const loadModelSales = evolutionData?.createSalesLoader(fetchJsonWithRetry, evolutionConfig.salesDataPath || "data/generated/sales-year-data.json");
+
   function openEvolutionView({ modelKeys, anchorRecordKeys, selectedConfigurationKeys, trigger }) {
     // 打开时冻结当前筛选快照（完整 matches，不是当前分页）
     const currentMatchRecordKeys = getSearchMatches().flatMap(evolutionHistoryKeys);
@@ -1922,6 +1924,7 @@
       sizeTextColor: sizeTextColor(),
       returnFocus: trigger,
       loadModelHistory: loadEvolutionHistory,
+      loadModelSales,
       onLocateRecord: locateEvolutionRecord
     });
   }

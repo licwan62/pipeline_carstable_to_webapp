@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-26",
+  "site_batch": "2026-10-26_03_pipeline",
+  "a1_version": "20261026_02",
+  "sales_origin": {
+    "sales_version": "20261019_02",
+    "a0_version": "20261023_04",
+    "sales_sha256": "9f410ec1f3b2f19de1052c7c91353177696977fe03fc79fa07c4f8a19af7c83c",
+    "a0_sha256": "feb13a570f427f848cc5f3b06c3f4f5aafb04c3fba4350a8548fd6cba2c86ca4"
+  },
+  "dimension_count": 4383,
+  "atom_count": 15223,
+  "sales_shards": 63,
+  "missing_values": 2,
+  "python_tests": 150,
+  "node_tests": 50,
+  "a1_tests": 40,
+  "public_matches_accepted_sandbox_excluding_runtime_logs": true,
+  "build_public_site": "succeeded",
+  "publish_nas_site": "skipped",
+  "browser_checks": [
+    "单车型多配置",
+    "多车型",
+    "皮卡 CAB/BED",
+    "图例开关",
+    "完整历史/当前筛选",
+    "年份窗口",
+    "单位切换",
+    "全屏",
+    "390px 窄屏",
+    "店铺市场口径",
+    "EU 无数据",
+    "年度文字明细与原子ID",
+    "2027 真实缺失",
+    "独立加载失败重试",
+    "压缩/全量切换",
+    "定位原记录",
+    "车型复制"
+  ],
+  "unrelated_check_failure": "all_cars_data 全仓结构校验仍报告 D2.链接分析 旧目录登记及缺少 output；未修改该分析节点。"
+}

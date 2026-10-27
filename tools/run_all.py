@@ -57,7 +57,7 @@ from tools.run_legacy import (  # noqa: E402,F401
 )
 from tools.site_promote import mirror_directory, rename_with_retry  # noqa: E402,F401
 
-UPSTREAM_KEYS = ("a0_output_dir", "compressed_output_dir")
+UPSTREAM_KEYS = ("a0_output_dir", "compressed_output_dir", "sales_output_dir")
 SITE_MANIFEST = "site_manifest.json"
 NAS_STATUS = "nas_publish.json"
 PUBLIC_STEP = "build_public_site"
@@ -228,6 +228,9 @@ def main() -> int:
                 context = load_context(work_dir)
                 if context is None:
                     raise UpstreamPinError(f"{work_dir} 缺少 run_context.json，无法恢复；请重新运行创建新批次")
+                missing = set(UPSTREAM_KEYS) - set(context["sources"])
+                if missing:
+                    raise UpstreamPinError(f"旧批次缺少固定输入 {sorted(missing)}，请创建新批次")
                 verify_pinned(context)
             else:
                 sources = {key: resolve_from_root((config["paths"])[key]) for key in UPSTREAM_KEYS}

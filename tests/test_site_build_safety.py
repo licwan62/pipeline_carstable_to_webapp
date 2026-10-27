@@ -116,6 +116,7 @@ def env(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> dict[str, Path]:
             raise ValueError("publish site validation failed")
         return {"ok": 1}
 
+    monkeypatch.setattr(site, "build_sales_year_data", lambda *args: None)
     monkeypatch.setattr(site, "build_size_rules_data", fake_rules)
     monkeypatch.setattr(site, "build_size_match_code_data", fake_code)
     monkeypatch.setattr(site, "validate_publish_site", fake_validate)
@@ -152,7 +153,7 @@ def leftovers(public: Path) -> list[str]:
     return sorted(p.name for p in public.parent.iterdir() if p.name.startswith(f".{public.name}."))
 
 
-@pytest.mark.parametrize("stage", ["generated_data", "page_overlay", "full_validation", "size_match_acceptance"])
+@pytest.mark.parametrize("stage", ["generated_data", "page_overlay", "full_validation", "size_match_acceptance", "sales_data"])
 def test_failure_in_any_stage_keeps_previous_public_bytes(env, monkeypatch, stage):
     before = tree_hashes(env["public"])
 
@@ -160,7 +161,7 @@ def test_failure_in_any_stage_keeps_previous_public_bytes(env, monkeypatch, stag
         raise RuntimeError(f"injected failure: {stage}")
 
     target = {"generated_data": "build_size_match_code_data", "page_overlay": "add_size_evolution", "full_validation": "validate_publish_site",
-              "size_match_acceptance": "run_size_match_acceptance"}[stage]
+              "size_match_acceptance": "run_size_match_acceptance", "sales_data": "build_sales_year_data"}[stage]
     monkeypatch.setattr(site, target, boom)
     with pytest.raises(RuntimeError, match="injected failure"):
         run_build(env, monkeypatch)

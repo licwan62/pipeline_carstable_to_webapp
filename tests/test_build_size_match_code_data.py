@@ -36,6 +36,12 @@ def sha(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
 
+def test_make_shard_order_is_stable_for_case_variants(tmp_path):
+    full = [{"make": make, "kind": "nonpick"} for make in ("Fiat", "FIAT")]
+    groups = mod.write_line_shards(tmp_path, 1, "US", full, [])
+    assert [group["make"] for group in groups] == ["FIAT", "Fiat"]
+
+
 def write_inputs(root: Path, nonpick: str = NONPICK, sources: str = SOURCES, a0_rows: str = A0_ROWS) -> tuple[Path, Path]:
     a0, a1 = root / "a0", root / "a1"
     a0_deliverables = []

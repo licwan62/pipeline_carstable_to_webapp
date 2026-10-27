@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import math
 from pathlib import Path
 from typing import Any
 
@@ -321,6 +322,7 @@ def validate_publish_site(site_root: Path) -> dict[str, int]:
     match_rows = validate_size_match_data(site_root, errors)
     views = validate_match_page_views(site_root, errors)
     evolution = validate_size_evolution(site_root, errors)
+    validate_sales_year_data(site_root, errors)
     validate_viewer_data(site_root, errors)
 
     if errors:
@@ -337,6 +339,49 @@ def validate_publish_site(site_root: Path) -> dict[str, int]:
     if views:
         summary["match_page_views"] = 1
     return summary
+
+
+def validate_sales_year_data(site_root: Path, errors: list[str]) -> None:
+    page = site_root / MATCH_PAGE
+    if not page.is_file() or "salesDataPath:" not in page.read_text(encoding="utf-8"):
+        return
+    path = site_root / "data/generated/sales-year-data.json"
+    manifest = read_json(path, errors)
+    origin = manifest.get("origin") or {}
+    match_origin = read_json(site_root / MATCH_DATA, errors).get("origin") or {}
+    if manifest.get("format_version") != 1 or origin.get("a0_version") != match_origin.get("a0_version"):
+        errors.append("annual sales must use format 1 and the same A0 version as size-match data")
+    if not origin.get("sales_version") or any(not re.fullmatch(r"[0-9a-f]{64}", str(origin.get(key, ""))) for key in ("sales_sha256", "a0_sha256")):
+        errors.append("annual sales provenance is missing or invalid")
+    if manifest.get("source_aliases") != {source: "US" for source in CODE_SOURCES}:
+        errors.append("annual sales US/store aliases must share US data")
+    seen = set()
+    atom_count = 0
+    for group in manifest.get("make_groups", []):
+        shard_path = resolve_records_path(site_root, path, group.get("records_path", ""), errors)
+        shard = read_json(shard_path, errors) if shard_path else {}
+        records = shard.get("records") or {}
+        if shard.get("make") != group.get("make") or shard.get("kind") != group.get("kind") or len(records) != group.get("record_count"):
+            errors.append(f"annual sales shard metadata mismatch: {shard_path}")
+        model_ids = [identity for ids in (shard.get("models") or {}).values() for identity in ids]
+        if len(model_ids) != len(set(model_ids)) or set(model_ids) != set(records):
+            errors.append(f"annual sales model index mismatch: {shard_path}")
+        for identity, pairs in records.items():
+            if identity in seen:
+                errors.append(f"duplicate annual sales identity: {identity}")
+            seen.add(identity)
+            previous = 0
+            for pair in pairs:
+                if not isinstance(pair, list) or len(pair) != 2:
+                    errors.append(f"invalid annual sales pair: {identity}")
+                    continue
+                year, value = pair
+                if not isinstance(year, int) or not max(1885, previous) < year <= 2100 or (value is not None and (type(value) not in (int, float) or not math.isfinite(value) or value < 0)):
+                    errors.append(f"invalid annual sales year/value: {identity}")
+                previous = year if isinstance(year, int) else previous
+                atom_count += 1
+    if len(seen) != manifest.get("record_count") or atom_count != manifest.get("atom_count"):
+        errors.append("annual sales record/atom counts mismatch")
 
 
 def main() -> None:

@@ -268,6 +268,7 @@
       if (token !== openToken) return;
       initialiseSession(history);
       renderSession();
+      loadSales();
     } catch (error) {
       if (token !== openToken) return;
       body().innerHTML = `
@@ -315,6 +316,9 @@
       scope: "full",
       unit: UNITS.includes(options.unit) ? options.unit : "mm",
       showWidthHeight: false,
+      showSales: true,
+      salesState: "loading",
+      sales: null,
       showSizeBand: true,
       filters,
       visibleKeys: new Set(D.defaultVisibleConfigurations(initiallyFiltered.length ? initiallyFiltered : allConfigurations, DEFAULT_VISIBLE)),
@@ -394,6 +398,7 @@
             <button type="button" class="evo-link" data-evo-year-reset>全部</button>
           </div>
           <button type="button" class="evo-toggle" data-evo-toggle="wh" aria-pressed="${session.showWidthHeight}">${session.showWidthHeight ? "收起宽高" : "展开宽高"}</button>
+          <button type="button" class="evo-toggle" data-evo-toggle="sales" aria-pressed="${session.showSales}">${session.showSales ? "收起年度销量" : "展开年度销量"}</button>
           <button type="button" class="evo-toggle" data-evo-toggle="size" aria-pressed="${session.showSizeBand}">SIZE 时间带</button>
           <button type="button" class="evo-toggle" data-evo-toggle="rules" aria-pressed="${session.showRules}" ${session.ruleResolved ? "" : "disabled"} title="${session.ruleResolved ? "叠加命中规则的长度条件与长上限（RU 另有宽/高上限）" : "没有可按同版本规则表解析的规则ID，无法叠加规则"}">规则叠加</button>
         </div>
@@ -404,12 +409,14 @@
             <div class="evo-legend" data-evo-legend>${legendMarkup(view)}</div>
           </aside>
           <div class="evo-chart-column">
+            <div class="evo-sales-status" data-evo-sales-status></div>
             <div class="evo-chart-wrap" data-evo-chart-wrap>
               <div class="evo-chart" data-evo-chart role="img" aria-label="车型年份尺寸演变图，详细数据见下方文字详情"></div>
               <div class="evo-tooltip" data-evo-tooltip hidden></div>
               <div class="evo-empty" data-evo-empty hidden></div>
             </div>
             <div class="evo-detail" data-evo-detail aria-live="polite">${detailMarkup()}</div>
+            <div data-evo-sales-details></div>
             ${textDetailsMarkup(view)}
           </div>
         </div>
@@ -417,13 +424,14 @@
     `;
     bindSession();
     mountChart();
+    refreshSales();
   }
 
   function metaMarkup(view) {
     const options = session.options;
     const origin = options.origin || {};
-    const dataVersion = origin.data?.version || "未知";
-    const versions = [["数据", origin.data?.version], ["规则", origin.rules?.version], ["货架", origin.stores?.version]];
+    const dataVersion = origin.data?.a0_version || origin.data?.version || "未知";
+    const versions = [["数据", origin.data?.a0_version || origin.data?.version], ["规则", origin.rules?.version], ["货架", origin.stores?.version]];
     const known = versions.filter(([, value]) => value);
     const mismatch = new Set(known.map(([, value]) => value)).size > 1;
     const counts = D.issueSummary(view.records);
@@ -612,6 +620,7 @@
     if (!entries.length) return `<div class="evo-detail-title">${year} 年 · 可见配置均无记录</div>`;
     return `
       <div class="evo-detail-title">${year} 年 · ${entries.length} 个配置 · ${entries.reduce((total, entry) => total + entry.records.length, 0)} 条记录</div>
+      ${salesYearMarkup(year, { showAtomIds: !actions })}
       ${entries.map((entry) => `
         <div class="evo-detail-config">
           <div class="evo-detail-config-name">${swatch(entry.configuration.colorIndex)}${escapeHtml(entry.configuration.label)}${entry.records.length > 1 ? `<b class="evo-tag is-warn">同年 ${entry.records.length} 条</b>` : ""}</div>
@@ -713,6 +722,7 @@
     root.querySelectorAll("[data-evo-toggle]").forEach((button) => {
       button.addEventListener("click", () => {
         if (button.dataset.evoToggle === "wh") session.showWidthHeight = !session.showWidthHeight;
+        else if (button.dataset.evoToggle === "sales") session.showSales = !session.showSales;
         else if (button.dataset.evoToggle === "rules") session.showRules = !session.showRules;
         else session.showSizeBand = !session.showSizeBand;
         rerenderKeepingFocus(`[data-evo-toggle="${button.dataset.evoToggle}"]`);
@@ -883,6 +893,7 @@
     const gap = 46;
     const add = (id, height) => { panels.push({ id, top, height }); top += height + gap; };
     add("length", narrow ? 210 : 250);
+    if (session.showSales && session.sales?.supported) add("sales", narrow ? 180 : 210);
     if (session.showWidthHeight) {
       add("width", narrow ? 120 : 140);
       add("height", narrow ? 120 : 140);
@@ -922,6 +933,7 @@
         session.zoom = zoom.start === 0 && zoom.end === 100 ? null : { startValue: zoom.startValue, endValue: zoom.endValue };
       }
       syncYearInputs();
+      refreshSales();
     });
     const zr = chart.getZr();
     zr.on("mousemove", (event) => showHover(event.offsetX, event.offsetY));
@@ -1172,12 +1184,13 @@
       }
     }));
     const titles = plan.panels.map((panel) => ({
-      text: panel.id === "size" ? `${D.sizeHeading(D.sizeMeaningOf(options.source))} 年份时间带` : `${PANEL_TITLES[panel.id]}（${unit}）`,
+      text: panel.id === "sales" ? "年度预估销量（辆）" : panel.id === "size" ? `${D.sizeHeading(D.sizeMeaningOf(options.source))} 年份时间带` : `${PANEL_TITLES[panel.id]}（${unit}）`,
       left: 8,
       top: panel.top - 26,
       textStyle: { fontSize: 13, fontWeight: 700, color: "#172033" }
     }));
     const yAxis = plan.panels.map((panel, index) => {
+      if (panel.id === "sales") return { type: "value", gridIndex: index, min: 0, minInterval: 1, axisLabel: { color: axisColor, fontSize: 11 }, splitLine: { lineStyle: { color: "#eef1f5" } } };
       if (panel.id === "size") {
         return {
           type: "category",
@@ -1278,6 +1291,26 @@
         animation: false
       });
     }
+    if (panelIndex.has("sales")) {
+      const index = panelIndex.get("sales");
+      const aggregated = salesAggregation();
+      aggregated.groups.forEach(({ configuration, years }, slot) => {
+        const count = aggregated.groups.length;
+        series.push({
+          id: `sales|${configuration.key}`, name: configuration.label, type: "custom",
+          xAxisIndex: index, yAxisIndex: index, clip: true, animation: false,
+          encode: { x: 0, y: 1 },
+          data: Array.from(years.values()).filter((item) => item.atomIds.length > item.missing).map((item) => ({ value: [item.year, item.known], meta: { year: item.year } })),
+          renderItem: (params, api) => {
+            const year = api.value(0), value = api.value(1);
+            const left = year - 0.4 + slot * 0.8 / count;
+            const a = api.coord([left, value]), b = api.coord([left + 0.72 / count, 0]);
+            const shape = window.echarts.graphic.clipRectByRect({ x: a[0], y: Math.min(a[1], b[1] - 1), width: Math.max(1, b[0] - a[0]), height: Math.max(1, b[1] - a[1]) }, params.coordSys);
+            return shape ? { type: "rect", shape, style: { fill: colorFor(configuration.colorIndex), opacity: 0.86 } } : null;
+          }
+        });
+      });
+    }
     const allAxes = plan.panels.map((panel, index) => index);
     const zoom = session.zoom || {};
     return {
@@ -1305,6 +1338,7 @@
 
   function updateChart() {
     if (!session || !session.chart) return;
+    refreshSales();
     const view = session.view;
     const element = body().querySelector("[data-evo-chart]");
     const empty = body().querySelector("[data-evo-empty]");
@@ -1329,6 +1363,70 @@
     session.chart.resize();
     session.chart.setOption(buildOption(view, plan), { notMerge: true });
     syncYearInputs();
+  }
+
+  async function loadSales() {
+    const current = session;
+    current.salesState = "loading";
+    refreshSales();
+    try {
+      const sales = current.options.loadModelSales ? await current.options.loadModelSales(current.options.modelKeys) : { supported: false };
+      if (session !== current) return;
+      const a0 = current.options.origin?.data?.a0_version || current.options.origin?.data?.version;
+      if (sales.supported && a0 && sales.origin.a0_version !== a0) throw new Error("年度销量与车型历史的 A0 版本不一致，请刷新页面");
+      current.sales = sales;
+      current.salesState = "ready";
+    } catch (error) {
+      if (session !== current) return;
+      current.salesState = "error";
+      current.salesError = error.message || String(error);
+    }
+    refreshSales();
+    updateChart();
+    refreshDetail();
+  }
+
+  function salesAggregation() {
+    if (session.salesView !== session.view || session.salesInput !== session.sales) {
+      session.salesView = session.view;
+      session.salesInput = session.sales;
+      session.salesAggregated = D.aggregateSales(session.view.visible, session.sales.records);
+    }
+    return session.salesAggregated;
+  }
+
+  function salesValue(item) {
+    if (!item) return "无记录";
+    if (item.missing) return `已知销量小计 ${formatCount(item.known)} 辆＋缺失 ${item.missing} 条`;
+    return `${formatCount(item.known)} 辆`;
+  }
+
+  function salesYearMarkup(year, { showAtomIds = false } = {}) {
+    if (!session.sales?.supported) return "";
+    const data = salesAggregation();
+    const origin = session.sales.origin;
+    return `<div class="evo-sales-year"><strong>${year} 年 · 可见配置合计：${salesValue(data.totals.get(year))}</strong>
+      ${data.groups.filter((group) => group.years.has(year)).map(({ configuration, years }) => `<div>${swatch(configuration.colorIndex)} ${escapeHtml(configuration.label)}：${salesValue(years.get(year))}<details ${showAtomIds ? "open" : ""}><summary>原子 ID（${years.get(year).atomIds.length}）</summary><div class="evo-sales-ids">${years.get(year).atomIds.map(escapeHtml).join("<br>")}</div></details></div>`).join("")}
+      <small>预估销量版本 ${escapeHtml(origin.sales_version)} · A0 ${escapeHtml(origin.a0_version)}</small></div>`;
+  }
+
+  function refreshSales() {
+    const status = body().querySelector("[data-evo-sales-status]");
+    const details = body().querySelector("[data-evo-sales-details]");
+    if (!status || !details) return;
+    status.hidden = !session.showSales;
+    details.hidden = !session.showSales;
+    if (session.salesState === "loading") status.textContent = "年度预估销量加载中…";
+    else if (session.salesState === "error") {
+      status.innerHTML = `年度预估销量加载失败：${escapeHtml(session.salesError)} <button type="button" class="evo-link" data-evo-sales-retry>重试销量</button>`;
+      status.querySelector("button").addEventListener("click", loadSales);
+    } else if (!session.sales?.supported) status.textContent = "暂无同口径年度销量数据";
+    else status.textContent = `美国车型预估销量 · 单位：辆 · ${D.isStoreSource(session.options.source) ? "车型市场预估销量；不代表店铺订单量 · " : ""}销量版本 ${session.sales.origin.sales_version} · 缺失不补零`;
+    if (!session.sales?.supported) { details.innerHTML = ""; return; }
+    const wasOpen = details.querySelector("details")?.open;
+    const data = salesAggregation();
+    const years = Array.from(data.totals.keys()).sort((a, b) => a - b).filter((year) => !session.zoom || (year >= Math.ceil(session.zoom.startValue) && year <= Math.floor(session.zoom.endValue)));
+    details.innerHTML = `<details class="evo-sales-details" ${wasOpen ? "open" : ""}><summary>年度预估销量文字明细（${years.length} 年）</summary>${years.map(salesYearMarkup).join("")}</details>`;
   }
 
   window.SizeEvolution = { open, openModelPicker, close, isOpen };

@@ -9,10 +9,11 @@ paths:
   # 产线输入：all_cars_data 的已发布交付物（相对本仓库；两仓库同级）。input_dir 仅供旧的手工输入/增量流程使用。
   # 运行开始时按 manifest 校验并固定到 work/<批次>/upstream/，之后各步骤只读固定副本（tools/upstream_pin.py）。
   # compressed_output_dir 原名 a2_output_dir（旧键仍兼容，两者同时出现且不一致时报错）。
-  a0_output_dir: "../all_cars_data/A0.尺码计算/output"
-  compressed_output_dir: "../all_cars_data/A1.压缩尺寸信息/output"
+  a0_output_dir: "../all_cars_data/nodes/A0.尺码计算/output"
+  sales_output_dir: "../all_cars_data/nodes/02.销量评估/output"
+  compressed_output_dir: "../all_cars_data/nodes/A1.压缩尺寸信息/output"
   # 新旧尺码对应：正式读取固定的 A0 发布物 US/新旧尺码对应.csv；仅当 A0 尚未发布该文件时退回下面的兼容路径（A0 data/）
-  size_code_map_file: "../all_cars_data/A0.尺码计算/data/参考/新旧尺码对应/新旧尺码对应2.csv"
+  size_code_map_file: "../all_cars_data/nodes/A0.尺码计算/data/参考/新旧尺码对应/新旧尺码对应2.csv"
   input_dir: "input/0925"
   artifact_root: "artifact"   # 批次清单与去重后的站点字节；中间文件在 work/<批次>/（不纳入 Git）
   public_dir: "public"
@@ -101,7 +102,7 @@ steps:
   build_public_site:
     enabled: true
     repo: pipeline
-    command: ["{python}", tools/build_publish_site.py, --publish-repo, "{webapp_repo}", --html-root, "{store_html_dir}", --pipeline-config, "{pipeline_config}", --html-style-config, "{root}/configs/html-style.yaml", --workspace, "{site_workspace_dir}", --site-output, "{public_dir}", --a0-dir, "{a0_output_dir}", --compressed-dir, "{compressed_output_dir}", --site-manifest, "{work_dir}/site_manifest.json"]
+    command: ["{python}", tools/build_publish_site.py, --publish-repo, "{webapp_repo}", --html-root, "{store_html_dir}", --pipeline-config, "{pipeline_config}", --html-style-config, "{root}/configs/html-style.yaml", --workspace, "{site_workspace_dir}", --site-output, "{public_dir}", --a0-dir, "{a0_output_dir}", --compressed-dir, "{compressed_output_dir}", --sales-dir, "{sales_output_dir}", --site-manifest, "{work_dir}/site_manifest.json"]
     check_exists: ["{case_public}/index.html"]
 
   publish_nas_site:

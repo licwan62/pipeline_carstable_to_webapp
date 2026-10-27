@@ -1,4 +1,4 @@
-"""运行开始时固定 all_cars_data 已发布交付物（A0 全量与报告、A1 压缩表），供本次运行的所有步骤读取。
+"""运行开始时固定 all_cars_data 已发布交付物（A0 全量与报告、A1 压缩表、年度原子销量），供本次运行的所有步骤读取。
 
 每个来源（上游节点 output/）按 manifest.json 复制全部交付物到 ``<work>/upstream/<key>/``，复制时逐文件校验 sha256；
 复制完成后再读一次上游 manifest，若期间上游重新发布（manifest 变化）或任一文件与 manifest 不一致则失败，
@@ -112,6 +112,9 @@ def verify_pinned(context: dict[str, Any]) -> None:
     """恢复执行前确认固定副本完整未被改动。"""
     for source in context["sources"].values():
         pinned = Path(source["pinned_dir"])
+        manifest = pinned / "manifest.json"
+        if not manifest.is_file() or sha256_bytes(manifest.read_bytes()) != source["manifest_sha256"]:
+            raise UpstreamPinError(f"固定输入 manifest {manifest} 缺失或已改动，无法恢复执行")
         for item in source["files"]:
             path = pinned / item["file"]
             if not path.is_file() or sha256_bytes(path.read_bytes()) != item["sha256"]:

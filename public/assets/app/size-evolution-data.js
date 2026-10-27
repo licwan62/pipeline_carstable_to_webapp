@@ -640,7 +640,58 @@
     return counts;
   }
 
+  // Unique DIMENSION-ID + year atoms; totals across configurations also deduplicate.
+  function aggregateSales(configurations, records) {
+    const totals = new Map();
+    const add = (map, year, id, value) => {
+      if (!map.has(year)) map.set(year, { year, known: 0, missing: 0, atomIds: [], seen: new Set() });
+      const item = map.get(year);
+      const key = `${id}|ATOM_YEAR=${year}`;
+      if (item.seen.has(key)) return;
+      item.seen.add(key);
+      item.atomIds.push(key);
+      if (value === null) item.missing += 1;
+      else item.known += value;
+    };
+    const groups = configurations.map((configuration) => {
+      const years = new Map();
+      configuration.records.forEach((record) => {
+        const pairs = new Map(records[record.dimensionId] || []);
+        intervalYears(record.intervals).forEach((year) => {
+          const value = pairs.has(year) ? pairs.get(year) : null;
+          add(years, year, record.dimensionId || record.recordKey, value);
+          add(totals, year, record.dimensionId || record.recordKey, value);
+        });
+      });
+      return { configuration, years };
+    });
+    return { groups, totals };
+  }
+
+  function createSalesLoader(fetchJson, manifestPath) {
+    const cache = new Map();
+    const get = (path) => {
+      if (!cache.has(path)) cache.set(path, Promise.resolve().then(() => fetchJson(path)).catch((error) => { cache.delete(path); throw error; }));
+      return cache.get(path);
+    };
+    return async (modelKeys) => {
+      const models = modelKeys.map(parseModelKey).filter(Boolean);
+      if (!models.length || models.some((model) => !["US", ...STORE_SOURCES].includes(model.source))) return { supported: false };
+      const manifest = await get(manifestPath);
+      if (manifest.format_version !== 1) throw new Error("年度销量数据版本不支持");
+      const groups = manifest.make_groups.filter((group) => models.some((model) => model.kind === group.kind && model.make === group.make));
+      const shards = await Promise.all(groups.map((group) => get(manifestPath.slice(0, manifestPath.lastIndexOf("/") + 1) + group.records_path)));
+      const records = {};
+      shards.forEach((shard) => models.filter((model) => model.kind === shard.kind && model.make === shard.make).forEach((model) => {
+        (shard.models[model.model] || []).forEach((id) => { records[id] = shard.records[id]; });
+      }));
+      return { supported: true, records, origin: manifest.origin };
+    };
+  }
+
   return {
+    aggregateSales,
+    createSalesLoader,
     MIN_MODEL_YEAR,
     MAX_MODEL_YEAR,
     STORE_SOURCES,

@@ -1,0 +1,3 @@
+include: D:\Licheng\Repo\pipeline_carstable_to_webapp\configs\pipeline.yaml
+paths:
+  public_dir: work/sales-preview/site

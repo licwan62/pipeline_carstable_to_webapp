@@ -188,7 +188,7 @@ def write_line_shards(
         compressed_by_shard.setdefault((item[0]["kind"], item[0]["make"]), []).append(item)
     groups = []
     for kind in KINDS:
-        makes = sorted({make for k, make in [*full_by_shard, *compressed_by_shard] if k == kind}, key=str.lower)
+        makes = sorted({make for k, make in [*full_by_shard, *compressed_by_shard] if k == kind}, key=lambda make: (make.lower(), make))
         for number, make in enumerate(makes, 1):
             indexes = full_by_shard.get((kind, make), [])
             local = {index: position for position, index in enumerate(indexes)}

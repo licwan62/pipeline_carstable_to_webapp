@@ -72,7 +72,7 @@ def test_run_all_pin_failure_keeps_public_and_records_failed_batch(tmp_path, mon
     config = {
         "repos": {"pipeline": str(tmp_path)},
         "paths": {
-            "a0_output_dir": str(a0), "compressed_output_dir": str(a1), "input_dir": str(tmp_path / "input"),
+            "a0_output_dir": str(a0), "compressed_output_dir": str(a1), "sales_output_dir": str(a0), "input_dir": str(tmp_path / "input"),
             "artifact_root": str(tmp_path / "artifact"), "public_dir": str(public), "logs_dir": str(tmp_path / "logs"),
             "work_root": str(tmp_path / "work"),
         },

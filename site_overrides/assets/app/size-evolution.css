@@ -933,3 +933,11 @@ tr.is-evolution-located td,
     width: 100%;
   }
 }
+/* Annual market estimates share the chart's configuration colors and year axis. */
+.evo-sales-status { padding: 8px 12px; color: #49566b; background: #f3f6fb; border-radius: 6px; font-size: 12px; }
+.evo-sales-details { padding: 12px; border: 1px solid #dce3ed; border-radius: 8px; margin: 12px 0; }
+.evo-sales-details > summary { cursor: pointer; font-weight: 600; }
+.evo-sales-year { padding: 10px 0; border-bottom: 1px solid #e8edf4; line-height: 1.7; overflow-wrap: anywhere; }
+.evo-sales-year > strong, .evo-sales-year > small { display: block; }
+.evo-sales-year details { font-size: 11px; }
+.evo-sales-ids { max-height: 150px; overflow: auto; }

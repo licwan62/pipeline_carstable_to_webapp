@@ -15,6 +15,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from build_size_match_code_data import DEFAULT_SOURCE as SIZE_MATCH_CODE_SOURCE, build as build_size_match_code_data  # noqa: E402
 from build_size_match_data import DEFAULT_SOURCE as SIZE_MATCH_SOURCE  # noqa: E402
 from build_size_rules_data import build as build_size_rules_data  # noqa: E402
+from build_sales_year_data import DEFAULT_SOURCE as SALES_SOURCE, build as build_sales_year_data
 from site_promote import promote_site  # noqa: E402
 from validate_publish_site import validate_publish_site  # noqa: E402
 
@@ -138,7 +139,7 @@ MATCH_PAGE_OVERRIDE = f"""      matchDataPath: "{MATCH_DATA_PATH}",
 
 
 # 前端资源版本：改动 viewer.js/css、site-common.js、size-evolution*、vendor 资源后递增，构建时统一写入所有页面，避免浏览器沿用旧缓存。
-ASSET_VERSION = "20261016-1"
+ASSET_VERSION = "20261026-1"
 # assets/app/*.js|css 与 assets/vendor/<库>/*.js|css（ECharts 由页面配置 evolution.echartsPath 懒加载，路径同样带 ?v=）
 ASSET_REFERENCE = re.compile(r"(assets/(?:app|vendor/[\w.-]+)/[\w.-]+\.(?:js|css))\?v=[\w-]+")
 
@@ -153,7 +154,8 @@ EVOLUTION_SCRIPTS = (
 EVOLUTION_CONFIG = f"""      evolution: {{
         enabled: true,
         echartsPath: "assets/vendor/echarts/echarts.min.js?v={ASSET_VERSION}",
-        historyDataPath: "{MATCH_DATA_PATH}"
+        historyDataPath: "{MATCH_DATA_PATH}",
+        salesDataPath: "data/generated/sales-year-data.json"
       }},
 """
 EVOLUTION_ASSETS = [
@@ -235,7 +237,7 @@ def stamp_asset_versions(site_output: Path) -> None:
             page.write_text(stamped, encoding="utf-8")
 
 
-def apply_site_overrides(site_output: Path, a0_dir: Path | None = None, compressed_dir: Path | None = None) -> None:
+def apply_site_overrides(site_output: Path, a0_dir: Path | None = None, compressed_dir: Path | None = None, sales_dir: Path | None = None) -> None:
     """构建完成后叠加项目自有页面和上游发布数据（build_site.py 会重建这些文件）。
 
     a0_dir/compressed_dir 为本次运行固定的上游副本（run_all 在运行开始固定）；缺省时读 configs 中的上游 output。
@@ -247,6 +249,7 @@ def apply_site_overrides(site_output: Path, a0_dir: Path | None = None, compress
     rules = build_size_rules_data(a0_dir, generated)
     print(f"[size-rules] {rules}")
     build_size_match_code_data(compressed_dir, generated, a0_dir)
+    build_sales_year_data(sales_dir or SALES_SOURCE, generated, a0_dir)
     match_page = site_output / "size-match.html"
     text = match_page.read_text(encoding="utf-8")
     if "matchDataPath:" not in text:
@@ -300,6 +303,13 @@ def run_size_match_acceptance(site: Path, compressed_dir: Path | None = None) ->
     print((completed.stdout + completed.stderr).encode(encoding, errors="replace").decode(encoding), end="", flush=True)
     if completed.returncode:
         raise RuntimeError(f"尺码配对数据验收未通过（退出码 {completed.returncode}），见上方 FAIL 项；public 未改动")
+    annual = subprocess.run(
+        [node, str(SIZE_MATCH_ACCEPTANCE.with_name("sales_year_data.cjs")), "--site", str(site)],
+        capture_output=True, text=True, encoding="utf-8", errors="replace",
+    )
+    print((annual.stdout + annual.stderr).encode(encoding, errors="replace").decode(encoding), end="", flush=True)
+    if annual.returncode:
+        raise RuntimeError("年度销量数据验收未通过；public 未改动")
 
 
 def build_staged_site(
@@ -310,6 +320,7 @@ def build_staged_site(
     workspace: Path,
     a0_dir: Path | None = None,
     compressed_dir: Path | None = None,
+    sales_dir: Path | None = None,
 ) -> Path:
     """在 workspace 内完成导出、骨架构建、页面叠加、配对与规则数据、资源版本与完整校验，返回已校验的临时站点。"""
     prepare_workspace(publish_repo, html_root, workspace)
@@ -326,7 +337,7 @@ def build_staged_site(
     staged = workspace / STAGED_SITE
     if not staged.exists():
         raise FileNotFoundError(f"build_site.py did not produce: {staged}")
-    apply_site_overrides(staged, a0_dir, compressed_dir)
+    apply_site_overrides(staged, a0_dir, compressed_dir, sales_dir)
     summary = validate_publish_site(staged)
     print(f"[validate] staged site: {summary}")
     run_size_match_acceptance(staged, compressed_dir)
@@ -345,6 +356,7 @@ def main() -> None:
     parser.add_argument("--site-output", type=Path, required=True)
     parser.add_argument("--a0-dir", type=Path, help="本次运行固定的 A0 output 副本（缺省读 configs 的 a0_output_dir）")
     parser.add_argument("--compressed-dir", type=Path, help="本次运行固定的 A1 压缩表 output 副本（缺省读 configs）")
+    parser.add_argument("--sales-dir", type=Path, help="本次运行固定的销量 output 副本")
     parser.add_argument("--site-manifest", type=Path, help="写出已校验站点的文件清单与 sha256（JSON）")
     parser.add_argument("--no-promote", action="store_true", help="只构建并校验临时站点，不切换 --site-output")
     args = parser.parse_args()
@@ -368,6 +380,7 @@ def main() -> None:
         publish_repo, html_root, pipeline_config, html_style_config, workspace,
         args.a0_dir.resolve() if args.a0_dir else None,
         args.compressed_dir.resolve() if args.compressed_dir else None,
+        args.sales_dir.resolve() if args.sales_dir else None,
     )
     files = site_file_list(staged)
     if args.site_manifest:
