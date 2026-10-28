@@ -317,6 +317,7 @@
       unit: UNITS.includes(options.unit) ? options.unit : "mm",
       showWidthHeight: false,
       showSales: true,
+      metric: "potential",
       salesState: "loading",
       sales: null,
       showSizeBand: true,
@@ -398,16 +399,16 @@
             <button type="button" class="evo-link" data-evo-year-reset>全部</button>
           </div>
           <button type="button" class="evo-toggle" data-evo-toggle="wh" aria-pressed="${session.showWidthHeight}">${session.showWidthHeight ? "收起宽高" : "展开宽高"}</button>
-          <button type="button" class="evo-toggle" data-evo-toggle="sales" aria-pressed="${session.showSales}">${session.showSales ? "收起年度销量" : "展开年度销量"}</button>
+          <button type="button" class="evo-toggle" data-evo-toggle="sales" aria-pressed="${session.showSales}">${session.showSales ? "收起柱状图" : "展开柱状图"}</button>
+          <div class="evo-segmented" role="group" aria-label="柱状图指标">
+            ${[["potential", "市场潜力"], ["sales", "年度销量"]].map(([key, label]) => `<button type="button" data-evo-metric="${key}" class="${session.metric === key ? "is-active" : ""}" aria-pressed="${session.metric === key}">${label}</button>`).join("")}
+          </div>
           <button type="button" class="evo-toggle" data-evo-toggle="size" aria-pressed="${session.showSizeBand}">SIZE 时间带</button>
           <button type="button" class="evo-toggle" data-evo-toggle="rules" aria-pressed="${session.showRules}" ${session.ruleResolved ? "" : "disabled"} title="${session.ruleResolved ? "叠加命中规则的长度条件与长上限（RU 另有宽/高上限）" : "没有可按同版本规则表解析的规则ID，无法叠加规则"}">规则叠加</button>
         </div>
         <div class="evo-meta" data-evo-meta>${metaMarkup(view)}</div>
         <div class="evo-main">
-          <aside class="evo-side" aria-label="配置筛选与图例">
-            ${filtersMarkup(view, isPick)}
-            <div class="evo-legend" data-evo-legend>${legendMarkup(view)}</div>
-          </aside>
+          <div class="evo-top-filters" aria-label="配置筛选">${filtersMarkup(view, isPick)}</div>
           <div class="evo-chart-column">
             <div class="evo-sales-status" data-evo-sales-status></div>
             <div class="evo-chart-wrap" data-evo-chart-wrap>
@@ -415,6 +416,7 @@
               <div class="evo-tooltip" data-evo-tooltip hidden></div>
               <div class="evo-empty" data-evo-empty hidden></div>
             </div>
+            <details class="evo-legend-panel" open><summary>配置图例（可折叠）</summary><div class="evo-legend" data-evo-legend>${legendMarkup(view)}</div></details>
             <div class="evo-detail" data-evo-detail aria-live="polite">${detailMarkup()}</div>
             <div data-evo-sales-details></div>
             ${textDetailsMarkup(view)}
@@ -586,6 +588,7 @@
           ${record.generation ? `<span>代际 ${escapeHtml(record.generation)}</span>` : ""}
           <span>长 ${escapeHtml(measure(record.lengthMm))} · 宽 ${escapeHtml(measure(record.widthMm))} · 高 ${escapeHtml(measure(record.heightMm))}</span>
           <span>${sizeTextMarkup(record)}</span>
+          <span>市场潜力 ${potentialNumber(record.marketPotential)} · 基础 ${potentialNumber(record.marketPotential === null || record.potentialAdjustment === null ? null : Math.max(0, record.marketPotential - record.potentialAdjustment))} · 销量潜力调整 ${potentialNumber(record.potentialAdjustment)}</span>
           <span>长度余量 ${escapeHtml(record.lengthMarginMm === null ? "—" : measure(record.lengthMarginMm))}</span>
           ${record.shape ? `<span>SHAPE ${escapeHtml(record.shape)}</span>` : ""}
           ${ruleMarkup(record, { full: actions })}
@@ -740,6 +743,10 @@
         rerenderKeepingFocus(`[data-evo-filter="${name}"][data-value="${cssEscape(value)}"]`);
       });
     });
+    root.querySelectorAll("[data-evo-metric]").forEach((button) => button.addEventListener("click", () => {
+      session.metric = button.dataset.evoMetric;
+      rerenderKeepingFocus(`[data-evo-metric="${session.metric}"]`);
+    }));
     bindLegend();
     bindDetailActions(root);
     root.querySelectorAll("[data-evo-year]").forEach((input) => {
@@ -812,9 +819,11 @@
 
   function rerenderKeepingFocus(selector) {
     const detailsOpen = body().querySelector(".evo-text-details")?.open;
+    const legendOpen = body().querySelector(".evo-legend-panel")?.open;
     const scrollTop = body().scrollTop;
     renderSession();
     if (detailsOpen) body().querySelector(".evo-text-details").open = true;
+    if (legendOpen !== undefined) body().querySelector(".evo-legend-panel").open = legendOpen;
     body().scrollTop = scrollTop;
     if (selector) body().querySelector(selector)?.focus({ preventScroll: true });
   }
@@ -893,14 +902,18 @@
     const gap = 46;
     const add = (id, height) => { panels.push({ id, top, height }); top += height + gap; };
     add("length", narrow ? 210 : 250);
-    if (session.showSales && session.sales?.supported) add("sales", narrow ? 180 : 210);
+    if (session.showSales && session.metric === "potential" && potentialEntries().length) {
+      add("potential", narrow ? 200 : 230);
+      top += 38;
+    }
+    if (session.showSales && session.metric === "sales" && session.sales?.supported) add("sales", narrow ? 180 : 210);
     if (session.showWidthHeight) {
       add("width", narrow ? 120 : 140);
       add("height", narrow ? 120 : 140);
     }
     const lanes = sizeLanes(view);
     if (session.showSizeBand && lanes.length) add("size", Math.max(30, lanes.length * (narrow ? 22 : 24)));
-    return { panels, height: top + 24, left: narrow ? 104 : 210, right: narrow ? 12 : 24, narrow, lanes };
+    return { panels, height: top + 24, left: narrow ? 70 : 86, right: narrow ? 12 : 24, narrow, lanes };
   }
 
   // SIZE 带行：每个可见配置一行，同年冲突分支各占一子行
@@ -933,7 +946,8 @@
         session.zoom = zoom.start === 0 && zoom.end === 100 ? null : { startValue: zoom.startValue, endValue: zoom.endValue };
       }
       syncYearInputs();
-      refreshSales();
+      if (session.metric === "potential") updateChart();
+      else refreshSales();
     });
     const zr = chart.getZr();
     zr.on("mousemove", (event) => showHover(event.offsetX, event.offsetY));
@@ -970,7 +984,7 @@
   function yearAtPixel(x, y) {
     if (!session.chart || !session.layout || !session.extent) return null;
     const gridIndex = session.layout.panels.findIndex((panel, index) => session.chart.containPixel({ gridIndex: index }, [x, y]));
-    if (gridIndex < 0) return null;
+    if (gridIndex < 0 || session.layout.panels[gridIndex].id === "potential") return null;
     const point = session.chart.convertFromPixel({ gridIndex }, [x, y]);
     const year = Math.round(Array.isArray(point) ? point[0] : Number.NaN);
     if (!Number.isFinite(year) || year < session.extent[0] || year > session.extent[1]) return null;
@@ -980,9 +994,17 @@
   function showHover(x, y) {
     const tooltip = body().querySelector("[data-evo-tooltip]");
     if (!tooltip) return;
+    const potentialIndex = session.layout?.panels.findIndex((panel) => panel.id === "potential");
+    const onPotential = potentialIndex >= 0 && session.chart.containPixel({ gridIndex: potentialIndex }, [x, y]);
     const year = yearAtPixel(x, y);
-    if (year === null) { hideHover(); return; }
-    if (session.hoverYear !== year) {
+    if (onPotential) {
+      const point = session.chart.convertFromPixel({ gridIndex: potentialIndex }, [x, y]);
+      const entry = potentialEntries()[Math.round(point[0])];
+      if (!entry) { hideHover(); return; }
+      tooltip.innerHTML = `<strong>${escapeHtml(entry.configuration.label)}</strong>${recordLineMarkup(entry.record)}<code>${escapeHtml(entry.record.dimensionId || "")}</code><p>整条 YEAR 区间的潜力分，非年度销量。</p>`;
+      session.hoverYear = null;
+    } else if (year === null) { hideHover(); return; }
+    else if (session.hoverYear !== year) {
       session.hoverYear = year;
       tooltip.innerHTML = yearSummaryMarkup(year);
     }
@@ -1165,7 +1187,12 @@
     const panelIndex = new Map(plan.panels.map((panel, index) => [panel.id, index]));
     const axisColor = "#667084";
     const grid = plan.panels.map((panel) => ({ left: plan.left, right: plan.right, top: panel.top, height: panel.height, containLabel: false }));
-    const xAxis = plan.panels.map((panel, index) => ({
+    const entries = potentialEntries();
+    const xAxis = plan.panels.map((panel, index) => panel.id === "potential" ? {
+      type: "category", gridIndex: index, data: entries.map(({ record }) => record.recordKey),
+      axisLabel: { color: axisColor, fontSize: 10, rotate: 20, hideOverlap: true, formatter: (_, i) => `${entries[i]?.configuration.compactLabel || ""}\n${entries[i]?.record.yearText || ""}` },
+      axisTick: { alignWithLabel: true }, axisPointer: { show: false }
+    } : ({
       type: "value",
       gridIndex: index,
       min: minYear - 0.5,
@@ -1184,12 +1211,13 @@
       }
     }));
     const titles = plan.panels.map((panel) => ({
-      text: panel.id === "sales" ? "年度预估销量（辆）" : panel.id === "size" ? `${D.sizeHeading(D.sizeMeaningOf(options.source))} 年份时间带` : `${PANEL_TITLES[panel.id]}（${unit}）`,
+      text: panel.id === "potential" ? "市场潜力（分 · 每条尺寸记录）" : panel.id === "sales" ? "年度预估销量（辆）" : panel.id === "size" ? `${D.sizeHeading(D.sizeMeaningOf(options.source))} 年份时间带` : `${PANEL_TITLES[panel.id]}（${unit}）`,
       left: 8,
       top: panel.top - 26,
       textStyle: { fontSize: 13, fontWeight: 700, color: "#172033" }
     }));
     const yAxis = plan.panels.map((panel, index) => {
+      if (panel.id === "potential") return { type: "value", gridIndex: index, min: 0, axisLabel: { color: axisColor, fontSize: 11 }, splitLine: { lineStyle: { color: "#eef1f5" } } };
       if (panel.id === "sales") return { type: "value", gridIndex: index, min: 0, minInterval: 1, axisLabel: { color: axisColor, fontSize: 11 }, splitLine: { lineStyle: { color: "#eef1f5" } } };
       if (panel.id === "size") {
         return {
@@ -1222,7 +1250,7 @@
         splitNumber: panel.height > 180 ? 5 : 3,
         axisLabel: { color: axisColor, fontSize: 11, formatter: (value) => (unit === "mm" ? String(Math.round(value)) : String(Number(value.toFixed(1)))) },
         splitLine: { lineStyle: { color: "#eef1f5" } },
-        name: unit,
+        name: "",
         nameLocation: "end",
         nameGap: 8,
         nameTextStyle: { color: axisColor, fontSize: 11, align: "right" }
@@ -1311,7 +1339,15 @@
         });
       });
     }
-    const allAxes = plan.panels.map((panel, index) => index);
+    if (panelIndex.has("potential")) {
+      const index = panelIndex.get("potential");
+      series.push({ id: "market-potential", name: "市场潜力", type: "bar", xAxisIndex: index, yAxisIndex: index,
+        barMaxWidth: 42, animation: false,
+        data: entries.map(({ configuration, record }) => ({ value: record.marketPotential,
+          itemStyle: { color: colorFor(configuration.colorIndex), opacity: emphasisOf(record) === 2 ? 0.4 : 0.86 },
+          meta: { recordKey: record.recordKey } })) });
+    }
+    const allAxes = plan.panels.flatMap((panel, index) => panel.id === "potential" ? [] : [index]);
     const zoom = session.zoom || {};
     return {
       animation: false,
@@ -1320,7 +1356,7 @@
       xAxis,
       yAxis,
       series,
-      axisPointer: { link: [{ xAxisIndex: "all" }], triggerOn: "mousemove" },
+      axisPointer: { link: [{ xAxisIndex: allAxes }], triggerOn: "mousemove" },
       tooltip: { show: false },
       dataZoom: [
         { type: "inside", xAxisIndex: allAxes, filterMode: "none", zoomOnMouseWheel: "ctrl", moveOnMouseWheel: false, moveOnMouseMove: true, minValueSpan: 3, ...zoomRange(zoom) },
@@ -1410,12 +1446,27 @@
       <small>预估销量版本 ${escapeHtml(origin.sales_version)} · A0 ${escapeHtml(origin.a0_version)}</small></div>`;
   }
 
+  function potentialEntries() {
+    return D.potentialRecords(session.view.visible, session.zoom);
+  }
+
+  function potentialNumber(value) {
+    return value === null || !Number.isFinite(value) ? "—" : value.toLocaleString("en-US", { maximumFractionDigits: 6 });
+  }
+
   function refreshSales() {
     const status = body().querySelector("[data-evo-sales-status]");
     const details = body().querySelector("[data-evo-sales-details]");
     if (!status || !details) return;
     status.hidden = !session.showSales;
     details.hidden = !session.showSales;
+    if (session.metric === "potential") {
+      const entries = potentialEntries();
+      const supported = ["US", "HNT", "TM", "TM_拆分"].includes(session.options.source);
+      status.textContent = !supported ? "暂无同口径市场潜力数据" : `市场潜力 · 单位：分 · ${entries.length} 条尺寸记录 · 合计 ${potentialNumber(entries.reduce((sum, entry) => sum + entry.record.marketPotential, 0))} · 年份窗口仅筛选相交记录，分数不按年重复或折算`;
+      details.innerHTML = "";
+      return;
+    }
     if (session.salesState === "loading") status.textContent = "年度预估销量加载中…";
     else if (session.salesState === "error") {
       status.innerHTML = `年度预估销量加载失败：${escapeHtml(session.salesError)} <button type="button" class="evo-link" data-evo-sales-retry>重试销量</button>`;

@@ -2082,6 +2082,7 @@
 
   function outlineDataCellMarkup(record, column) {
     const value = resultColumnValue(record, column);
+    if (sameColumn(column, "市场潜力")) return `<span class="outline-value outline-sales-total"><strong>${formatPotential(value)}</strong></span>`;
     if (isSalesTotalColumn(column)) {
       return `<span class="outline-value outline-sales-total"><strong>${escapeHtml(formatSalesTotal(value) || "-")}</strong></span>`;
     }
@@ -2135,6 +2136,7 @@
 
   function resultCellMarkup(record, column) {
     const value = column.key === "MAKE" ? record.make : resultColumnValue(record, column.key);
+    if (sameColumn(column.key, "市场潜力")) return `<td class="sales-total-cell potential-cell"><strong>${formatPotential(value)}</strong></td>`;
     if (isSalesTotalColumn(column.key)) {
       return `<td class="sales-total-cell"><strong>${escapeHtml(formatSalesTotal(value) || "-")}</strong></td>`;
     }
@@ -2203,8 +2205,8 @@
           <div class="filter-pop-section">
             <div class="filter-pop-title"><span>数值范围（含边界，回车生效）</span>${clearButton}</div>
             <div class="range-inputs">
-              <input type="number" step="0.1" data-size-range-filter="${key}" data-range-side="min" value="${escapeHtml(value.min || "")}" placeholder="最小" aria-label="最小值">
-              <input type="number" step="0.1" data-size-range-filter="${key}" data-range-side="max" value="${escapeHtml(value.max || "")}" placeholder="最大" aria-label="最大值">
+              <input type="number" step="${sameColumn(column.key, "市场潜力") ? "any" : "0.1"}" data-size-range-filter="${key}" data-range-side="min" value="${escapeHtml(value.min || "")}" placeholder="最小" aria-label="最小值">
+              <input type="number" step="${sameColumn(column.key, "市场潜力") ? "any" : "0.1"}" data-size-range-filter="${key}" data-range-side="max" value="${escapeHtml(value.max || "")}" placeholder="最大" aria-label="最大值">
             </div>
           </div>
         </div>
@@ -2953,6 +2955,11 @@
     return Number.isFinite(number) ? number : null;
   }
 
+  function formatPotential(value) {
+    const number = salesTotalNumber(value);
+    return number === null ? "—" : number.toLocaleString("en-US", { maximumFractionDigits: 6 });
+  }
+
   function formatSalesTotal(value) {
     const number = salesTotalNumber(value);
     return number === null ? cleanField(value) : formatCount(number);
@@ -2964,6 +2971,13 @@
     messageNode.textContent = message;
     element.appendChild(messageNode);
     const salesValues = records.map((record) => salesTotalNumber(resultColumnValue(record, "销量合计"))).filter((value) => value !== null);
+    const potentialValues = records.map((record) => salesTotalNumber(resultColumnValue(record, "市场潜力"))).filter((value) => value !== null);
+    if (potentialValues.length) {
+      const node = document.createElement("strong");
+      node.className = "potential-total-summary";
+      node.textContent = `市场潜力合计：${formatPotential(potentialValues.reduce((sum, value) => sum + value, 0))}`;
+      element.appendChild(node);
+    }
     if (!salesValues.length) return;
     const salesNode = document.createElement("strong");
     salesNode.className = "sales-total-summary";
@@ -3260,6 +3274,7 @@
   function cellDisplayText(record, column) {
     if (sameColumn(column, "MAKE")) return record.make || "";
     const value = resultColumnValue(record, column);
+    if (sameColumn(column, "市场潜力")) return formatPotential(value);
     if (isSalesTotalColumn(column)) return formatSalesTotal(value) || "-";
     if (isLengthMarginColumn(column)) return lengthMarginDisplay(value) || "-";
     if (isDimensionColumn(column)) return dimensionDisplay(column, value) || "-";
@@ -3399,7 +3414,7 @@
   }
 
   function isRangeFilterColumn(column) {
-    return isDimensionColumn(column) || isLengthMarginColumn(column) || isSalesTotalColumn(column);
+    return isDimensionColumn(column) || isLengthMarginColumn(column) || isSalesTotalColumn(column) || sameColumn(column, "市场潜力");
   }
 
   function sizeStickyClass(column) {

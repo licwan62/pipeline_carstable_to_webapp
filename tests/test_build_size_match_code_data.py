@@ -262,3 +262,12 @@ def test_validator_rejects_broken_refs_and_duplicate_data(tmp_path):
     assert any("invalid ref [9, '2025']" in error for error in errors)
     assert any("covers years 2025 outside its A0 row" in error for error in errors)
     assert any("duplicate size-match data must not be published" in error for error in errors)
+
+
+def test_potential_values_are_preserved_for_full_and_compressed_rows():
+    raw={"MAKE":"Ford", "MODEL":"Focus", "YEAR":"2020", "DIMENSION-ID":"test US", "市场潜力":"0.123456", "销量潜力调整":"0.000001"}
+    full=mod.full_record(raw,"US")
+    assert full["values"]["市场潜力"]=="0.123456"
+    compressed=mod.to_record({**raw,"尺码销量总和":"1"},"US",False,[])
+    assert compressed["values"]["市场潜力"]=="0.123456"
+    assert "市场潜力" in mod.COLUMNS and "市场潜力" in mod.FULL_COLUMNS

@@ -449,7 +449,7 @@ tr.is-evolution-located td,
 /* 主区：左侧筛选 + 图例，右侧图与详情 */
 .evo-main {
   display: grid;
-  grid-template-columns: minmax(230px, 290px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 14px;
   margin-top: 10px;
 }
@@ -941,3 +941,14 @@ tr.is-evolution-located td,
 .evo-sales-year > strong, .evo-sales-year > small { display: block; }
 .evo-sales-year details { font-size: 11px; }
 .evo-sales-ids { max-height: 150px; overflow: auto; }
+
+/* 全宽绘图区：标题在上，配置图例在下，不为侧栏预留画布宽度。 */
+.evo-top-filters .evo-filters { flex-direction: row; flex-wrap: wrap; gap: 10px 20px; }
+.evo-top-filters .evo-filter-group { max-width: 100%; }
+.evo-legend-panel { margin: 12px 0; padding: 10px; border: 1px solid var(--line); border-radius: 8px; }
+.evo-legend-panel > summary { cursor: pointer; font-size: 13px; font-weight: 700; }
+.evo-legend-panel .evo-legend { margin-top: 10px; }
+.evo-legend-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); max-height: 30vh; }
+.evo-legend-tools { flex-wrap: wrap; }
+.evo-legend-tools .evo-search { max-width: 420px; }
+.potential-total-summary { margin-inline: 8px; }

@@ -42,7 +42,7 @@ SOURCE_KINDS = {False: "非皮卡", True: "皮卡"}  # 压缩来源.csv 的 压�
 CODE_COLUMN = "CODE"
 CODE_PATTERN = re.compile(r"\d{8}")
 VEHICLE_CODES_FILE = "vehicle-codes.json"
-COLUMNS = ["CODE", "MODEL", "版本", "YEAR", "TYPE", "SHAPE", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"]
+COLUMNS = ["CODE", "MODEL", "版本", "YEAR", "TYPE", "SHAPE", "CAB", "BED", "销量合计", "市场潜力", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"]
 # 同一份数据的两种视图（页面 tableModes 控件切换）：压缩表 = compressed 记录，全量表 = records（A0 行）
 DATA_PREFIX = "size-match-data"
 DATA_MANIFEST = f"{DATA_PREFIX}.json"
@@ -110,7 +110,7 @@ def to_record(row: dict[str, str], line: str, pickup: bool, sources: list[dict[s
         "CODE": row.get(CODE_COLUMN, ""), "MAKE": row["MAKE"], "MODEL": row["MODEL"], "版本": row.get("VERSION", ""),
         "YEAR": row["YEAR"], "TYPE": construct, "CONST": construct, "CAB": row.get("CAB", ""), "BED": row.get("BED", ""),
         "SHAPE": unique_join([source["SHAPE"] for source in sources]),
-        "销量合计": row.get("尺码销量总和", ""), "SIZE": size, "SOURCE": line,
+        "市场潜力": row.get("市场潜力", ""), "销量合计": row.get("尺码销量总和", ""), "SIZE": size, "SOURCE": line,
         "长度余量": min_margin([source["长度余量"] for source in sources]),
         **{column: row.get(source, "") for column, source in DIMENSIONS.items()},
     }

@@ -28,7 +28,7 @@ SKELETON_DIRS = ["assets", "config", "pages"]
 SKELETON_DATA_FILES = ["data/generated/size-ref.json"]
 SKELETON_FILES = ["README.md", ".nojekyll"]
 SKELETON_TOOLS = ["build_site.py", "export_xlsx_sources.py", "validate_generated_data.py"]
-MATCH_COLUMNS = "MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,L-MM,W-MM,H-MM,长度余量,SIZE"
+MATCH_COLUMNS = "MODEL,版本,YEAR,TYPE,CAB,BED,销量合计,市场潜力,L-MM,W-MM,H-MM,长度余量,SIZE"
 STAGED_SITE = "_site"
 
 
@@ -125,7 +125,7 @@ MATCH_PAGE_OVERRIDE = f"""      matchDataPath: "{MATCH_DATA_PATH}",
         {{ key: "full", label: "全量表" }}
       ],
       defaultTableMode: "compressed",
-      fieldOrder: ["CODE", "MODEL", "版本", "TYPE", "SHAPE", "YEAR", "CAB", "BED", "销量合计", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"],
+      fieldOrder: ["CODE", "MODEL", "版本", "TYPE", "SHAPE", "YEAR", "CAB", "BED", "销量合计", "市场潜力", "L-MM", "W-MM", "H-MM", "长度余量", "SIZE"],
       searchPlaceholder: "Search code, make, model, type, shape, size, year...",
       matchSources: [
         {{ name: "US", label: "US 全量", group: "US" }},
@@ -139,7 +139,7 @@ MATCH_PAGE_OVERRIDE = f"""      matchDataPath: "{MATCH_DATA_PATH}",
 
 
 # 前端资源版本：改动 viewer.js/css、site-common.js、size-evolution*、vendor 资源后递增，构建时统一写入所有页面，避免浏览器沿用旧缓存。
-ASSET_VERSION = "20261026-1"
+ASSET_VERSION = "20261028-1"
 # assets/app/*.js|css 与 assets/vendor/<库>/*.js|css（ECharts 由页面配置 evolution.echartsPath 懒加载，路径同样带 ?v=）
 ASSET_REFERENCE = re.compile(r"(assets/(?:app|vendor/[\w.-]+)/[\w.-]+\.(?:js|css))\?v=[\w-]+")
 

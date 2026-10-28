@@ -1,0 +1,46 @@
+{
+  "base": "http://127.0.0.1:8766/",
+  "results": [
+    {
+      "name": "full table: decimal potential, numeric sorting/filter, summary",
+      "status": "passed"
+    },
+    {
+      "name": "default potential bars: unique records, full width, legend below",
+      "status": "passed"
+    },
+    {
+      "name": "bar tooltip and record locking include potential breakdown and ID",
+      "status": "passed"
+    },
+    {
+      "name": "metric switching preserves annual sales and year-window potential is not multiplied",
+      "status": "passed"
+    },
+    {
+      "name": "compressed and store tables publish potential and visualize full history",
+      "status": "passed"
+    },
+    {
+      "name": "multi-model and pickup configuration controls remain available",
+      "status": "passed"
+    },
+    {
+      "name": "EU has no invented potential values",
+      "status": "passed"
+    },
+    {
+      "name": "annual sales loading failure can be retried after metric switch",
+      "status": "passed"
+    },
+    {
+      "name": "390px viewport: full-width plot, collapsible legend, no document overflow",
+      "status": "passed"
+    },
+    {
+      "name": "no browser script errors",
+      "status": "passed"
+    }
+  ],
+  "errors": []
+}

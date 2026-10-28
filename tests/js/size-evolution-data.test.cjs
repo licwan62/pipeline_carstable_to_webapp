@@ -303,3 +303,16 @@ test("规则叠加：RU 用本条规则的长宽高上限与余量长上限", ()
   assert.equal(fallback.fitLow, 3885);
   assert.equal(data.ruleOverlay(null), null);
 });
+
+
+test("potential counts each dimension once, preserves fractions/zero and only filters intersecting intervals", () => {
+  const record = (id, start, end, value) => ({ dimensionId: id, recordKey:id, marketPotential:value, intervals:[{startYear:start,endYear:end}] });
+  const a=record("a",2010,2020,1.234567), b=record("b",2020,2026,0), missing=record("missing",2020,2026,null);
+  const configs=[{key:"one",records:[a,a,b,missing]},{key:"two",records:[a,record("old",1990,2000,10)]}];
+  const all=data.potentialRecords(configs,null);
+  assert.equal(all.length,3);
+  const window=data.potentialRecords(configs,{startValue:2019.5,endValue:2021.5});
+  assert.deepEqual(window.map(e=>e.record.dimensionId),["a","b"]);
+  assert.equal(window.reduce((sum,e)=>sum+e.record.marketPotential,0),1.234567);
+  assert.equal(data.potentialRecords(configs,{startValue:2030,endValue:2040}).length,0);
+});

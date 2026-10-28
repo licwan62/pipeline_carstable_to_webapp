@@ -376,6 +376,8 @@
     const normalized = {
       recordKey: recordKeyOf(record, source),
       dimensionId: orNull(field(record, "DIMENSION-ID")),
+      marketPotential: toNumberOrNull(field(record, "市场潜力")),
+      potentialAdjustment: toNumberOrNull(field(record, "销量潜力调整")),
       source,
       sourceLabel: clean(context.sourceLabel) || source,
       region: regionOf(source, context.group),
@@ -668,6 +670,19 @@
     return { groups, totals };
   }
 
+  // 潜力是整条尺寸记录的分数。年份窗口仅筛选相交记录，不按年重复或折算。
+  function potentialRecords(configurations, zoom) {
+    const seen = new Set();
+    return configurations.flatMap((configuration) => configuration.records.map((record) => ({ configuration, record })))
+      .filter(({ record }) => {
+        const key = record.dimensionId || record.recordKey;
+        if (seen.has(key) || record.marketPotential === null || !Number.isFinite(record.marketPotential) || record.marketPotential < 0) return false;
+        if (zoom && !record.intervals.some((interval) => interval.endYear >= Math.ceil(zoom.startValue) && interval.startYear <= Math.floor(zoom.endValue))) return false;
+        seen.add(key);
+        return true;
+      });
+  }
+
   function createSalesLoader(fetchJson, manifestPath) {
     const cache = new Map();
     const get = (path) => {
@@ -691,6 +706,7 @@
 
   return {
     aggregateSales,
+    potentialRecords,
     createSalesLoader,
     MIN_MODEL_YEAR,
     MAX_MODEL_YEAR,

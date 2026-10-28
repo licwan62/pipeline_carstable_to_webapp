@@ -1,0 +1,46 @@
+{
+  "versions": {
+    "02.销量评估": "20261028_02",
+    "A0.尺码计算": "20261028_03",
+    "A1.压缩尺寸信息": "20261028_04"
+  },
+  "rows": 4383,
+  "potential_unchanged_ids": 4383,
+  "original_atom_sales_unchanged": true,
+  "expected_total": "396126.151697",
+  "site_totals": {
+    "US": {
+      "full": "396126.151697",
+      "compressed": "396126.151697"
+    },
+    "HNT": {
+      "full": "396126.151697",
+      "compressed": "396126.151697"
+    },
+    "TM": {
+      "full": "396126.151697",
+      "compressed": "396126.151697"
+    },
+    "TM_拆分": {
+      "full": "396126.151697",
+      "compressed": "396126.151697"
+    }
+  },
+  "tests": {
+    "upstream_pytest": 174,
+    "upstream_subtests": 11,
+    "website_pytest": 151,
+    "frontend_node": 51,
+    "browser_regression": 35,
+    "potential_browser": 10,
+    "pipeline_root_selected": {
+      "passed": 23,
+      "failed": 2,
+      "reason": "Both failures are the existing D2 root registration/manifest issue."
+    }
+  },
+  "known_existing_repository_issues": [
+    "D2.链接分析 根节点登记仍指向缺失的 W型车/、tests 和 output；未修改该节点。",
+    "D1.发货评估 原有规则变更未发布，trace 标为 STALE。"
+  ]
+}
