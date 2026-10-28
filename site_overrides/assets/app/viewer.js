@@ -2957,7 +2957,7 @@
 
   function formatPotential(value) {
     const number = salesTotalNumber(value);
-    return number === null ? "—" : number.toLocaleString("en-US", { maximumFractionDigits: 6 });
+    return number === null ? "—" : Math.round(number).toLocaleString("en-US");
   }
 
   function formatSalesTotal(value) {

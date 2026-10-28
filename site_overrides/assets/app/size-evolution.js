@@ -1451,7 +1451,7 @@
   }
 
   function potentialNumber(value) {
-    return value === null || !Number.isFinite(value) ? "—" : value.toLocaleString("en-US", { maximumFractionDigits: 6 });
+    return value === null || !Number.isFinite(value) ? "—" : Math.round(value).toLocaleString("en-US");
   }
 
   function refreshSales() {
